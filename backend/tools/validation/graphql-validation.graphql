@@ -1,0 +1,460 @@
+# SIRA Step 1G GraphQL validation operations
+# Run against each Multisite site's /graphql endpoint.
+# The investor collection must be tested with an authenticated user and must
+# disclose no records anonymously.
+
+query SiraSchemaTypes {
+  root: __type(name: "RootQuery") {
+    fields {
+      name
+    }
+  }
+  brand: __type(name: "SiraBrand") {
+    fields {
+      name
+    }
+  }
+  projectDetails: __type(name: "SiraProjectDetails") {
+    fields {
+      name
+    }
+  }
+  personDetails: __type(name: "SiraPersonDetails") {
+    fields {
+      name
+    }
+  }
+  documentDetails: __type(name: "SiraDocumentDetails") {
+    fields {
+      name
+    }
+  }
+}
+
+query SiraBrandValidation {
+  siraBrand {
+    name
+    key
+    tagline
+    primaryColor
+    secondaryColor
+    accentColor
+    paperColor
+    inkColor
+    logo {
+      databaseId
+      sourceUrl
+      altText
+      width
+      height
+      mediaItem {
+        id
+        databaseId
+        sourceUrl
+        altText
+      }
+    }
+    mark {
+      databaseId
+      sourceUrl
+      altText
+      width
+      height
+    }
+    email
+    phone
+    address
+    description
+    mission
+    vision
+    values {
+      title
+      description
+    }
+    officeLocations {
+      name
+      address
+      phone
+      email
+    }
+    socialProfiles {
+      linkedin
+      instagram
+      x
+      youtube
+    }
+    announcementBanner
+    emergencyBanner
+  }
+}
+
+query SiraAllContentFamilies {
+  company: siraCompanies(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  project: siraProjects(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  investment: siraInvestments(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  portfolio: siraPortfolioItems(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  news: siraNewsItems(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  insight: siraInsights(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  article: siraArticles(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  event: siraEvents(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  leadership: siraLeadershipProfiles(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  executive: siraExecutives(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  board_member: siraBoardMembers(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  partner: siraPartners(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  investor: siraInvestors(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  download: siraDownloads(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  media_item: siraMediaItems(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  case_study: siraCaseStudies(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  service: siraServices(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  office: siraOffices(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  testimonial: siraTestimonials(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  career: siraCareerAreas(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  job: siraJobs(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  csr: siraCsrInitiatives(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  award: siraAwards(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  faq: siraFaqs(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  resource: siraResources(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  document: siraDocuments(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  press_release: siraPressReleases(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+
+  whitepaper: siraWhitepapers(first: 1) {
+    nodes {
+      databaseId
+      title
+      slug
+    }
+  }
+}
+
+query SiraAllTaxonomyFamilies {
+  industry: siraIndustries(first: 5, where: { hideEmpty: false }) {
+    nodes {
+      databaseId
+      name
+      slug
+    }
+  }
+
+  country: siraCountries(first: 5, where: { hideEmpty: false }) {
+    nodes {
+      databaseId
+      name
+      slug
+    }
+  }
+
+  business_unit: siraBusinessUnits(first: 5, where: { hideEmpty: false }) {
+    nodes {
+      databaseId
+      name
+      slug
+    }
+  }
+
+  investment_stage: siraInvestmentStages(first: 5, where: { hideEmpty: false }) {
+    nodes {
+      databaseId
+      name
+      slug
+    }
+  }
+
+  sector: siraSectors(first: 5, where: { hideEmpty: false }) {
+    nodes {
+      databaseId
+      name
+      slug
+    }
+  }
+
+  project_status: siraProjectStatuses(first: 5, where: { hideEmpty: false }) {
+    nodes {
+      databaseId
+      name
+      slug
+    }
+  }
+
+  office_region: siraOfficeRegions(first: 5, where: { hideEmpty: false }) {
+    nodes {
+      databaseId
+      name
+      slug
+    }
+  }
+
+  department: siraDepartments(first: 5, where: { hideEmpty: false }) {
+    nodes {
+      databaseId
+      name
+      slug
+    }
+  }
+
+  region: siraRegions(first: 5, where: { hideEmpty: false }) {
+    nodes {
+      databaseId
+      name
+      slug
+    }
+  }
+
+  resource_category: siraResourceCategories(first: 5, where: { hideEmpty: false }) {
+    nodes {
+      databaseId
+      name
+      slug
+    }
+  }
+}
+
+query SiraStructuredFields($projectSlug: ID!, $personSlug: ID!, $documentSlug: ID!) {
+  project: siraProject(id: $projectSlug, idType: SLUG) {
+    databaseId
+    title
+    projectDetails {
+      subtitle
+      location
+      status
+      relatedCompany {
+        nodes {
+          ... on SiraCompany {
+            databaseId
+            title
+            slug
+          }
+        }
+      }
+      gallery {
+        nodes {
+          databaseId
+          sourceUrl
+          altText
+          mediaDetails {
+            width
+            height
+          }
+        }
+      }
+      statistics {
+        value
+        label
+      }
+    }
+  }
+
+  person: siraLeadershipProfile(id: $personSlug, idType: SLUG) {
+    databaseId
+    title
+    personDetails {
+      role
+      linkedin
+      company {
+        nodes {
+          ... on SiraCompany {
+            databaseId
+            title
+            slug
+          }
+        }
+      }
+    }
+  }
+
+  document: siraDocument(id: $documentSlug, idType: SLUG) {
+    databaseId
+    title
+    documentDetails {
+      version
+      publicationDate
+    }
+  }
+}

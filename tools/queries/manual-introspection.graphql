@@ -1,0 +1,88 @@
+query SiraInventoryRootQuery {
+  __type(name: "RootQuery") {
+    name
+    fields(includeDeprecated: true) {
+      name
+      description
+      type {
+        ...SiraInventoryTypeRef
+      }
+      args {
+        name
+        defaultValue
+        type {
+          ...SiraInventoryTypeRef
+        }
+      }
+    }
+  }
+}
+
+query SiraInventoryPageType {
+  __type(name: "Page") {
+    name
+    interfaces {
+      name
+    }
+    fields(includeDeprecated: true) {
+      name
+      description
+      type {
+        ...SiraInventoryTypeRef
+      }
+    }
+  }
+}
+
+query SiraInventoryAcfInterface {
+  __type(name: "AcfFieldGroup") {
+    name
+    possibleTypes {
+      name
+    }
+  }
+}
+
+query SiraInventoryContentNode {
+  __type(name: "ContentNode") {
+    name
+    possibleTypes {
+      name
+    }
+    fields(includeDeprecated: true) {
+      name
+      type {
+        ...SiraInventoryTypeRef
+      }
+    }
+  }
+}
+
+query SiraInventoryBrand {
+  siraBrand {
+    name
+    key
+    primaryColor
+    secondaryColor
+    accentColor
+    paperColor
+    inkColor
+  }
+}
+
+fragment SiraInventoryTypeRef on __Type {
+  kind
+  name
+  ofType {
+    kind
+    name
+    ofType {
+      kind
+      name
+      ofType {
+        kind
+        name
+      }
+    }
+  }
+}

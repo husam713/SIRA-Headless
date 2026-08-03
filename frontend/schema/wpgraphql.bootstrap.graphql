@@ -1,0 +1,72 @@
+"""
+Bootstrap-only subset derived from the approved SIRA Step 1 PHP schema.
+
+This is not a live WPGraphQL snapshot and must never be used as the production
+code-generation source. Run `pnpm schema:fetch` to create
+schema/wpgraphql.graphql from all five configured WordPress Multisite sites.
+"""
+schema {
+  query: RootQuery
+}
+
+type RootQuery {
+  siraBrand: SiraBrand!
+}
+
+type SiraBrand {
+  name: String!
+  key: String!
+  tagline: String
+  primaryColor: String!
+  secondaryColor: String!
+  accentColor: String!
+  paperColor: String!
+  inkColor: String!
+  logo: SiraBrandMedia
+  mark: SiraBrandMedia
+  email: String
+  phone: String
+  address: String
+  description: String
+  mission: String
+  vision: String
+  values: [SiraBrandValue]
+  officeLocations: [SiraBrandOffice]
+  socialProfiles: SiraBrandSocialProfiles
+  announcementBanner: String
+  emergencyBanner: String
+}
+
+type SiraBrandMedia {
+  databaseId: Int!
+  sourceUrl: String!
+  altText: String
+  width: Int
+  height: Int
+  mediaItem: MediaItem
+}
+
+type SiraBrandValue {
+  title: String!
+  description: String
+}
+
+type SiraBrandOffice {
+  name: String!
+  address: String
+  phone: String
+  email: String
+}
+
+type SiraBrandSocialProfiles {
+  linkedin: String
+  instagram: String
+  x: String
+  youtube: String
+}
+
+type MediaItem {
+  databaseId: Int!
+  sourceUrl: String
+  altText: String
+}

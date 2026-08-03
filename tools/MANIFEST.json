@@ -1,0 +1,47 @@
+[
+  {
+    "path": ".env.inventory.example",
+    "sha256": "a0a772cd6fb01225a03912612f17509ee85b66d3343ee23a03807d60676b4b1e",
+    "bytes": 694
+  },
+  {
+    "path": "README.md",
+    "sha256": "292e8e1ebe6fa24829c7bbd6372bf2299b98624347f983813d25266a034330ce",
+    "bytes": 3102
+  },
+  {
+    "path": "VALIDATION.md",
+    "sha256": "30b41736c20ccd757de0629f4f2cf84a66f3d242c46cda73b8868d455a8a0f2e",
+    "bytes": 1064
+  },
+  {
+    "path": "queries/manual-introspection.graphql",
+    "sha256": "f8966afa2aaca85dabc2cc77437948e5eebed0cf9ff4147dc9f228eab7510756",
+    "bytes": 1221
+  },
+  {
+    "path": "report/LIVE-REPORT-TEMPLATE.md",
+    "sha256": "a787d2b6b7322c36d3bacf2b48abb8dfb4c45b97d7904cf73f90034ef941871e",
+    "bytes": 3450
+  },
+  {
+    "path": "report/SOURCE-VERIFIED-BASELINE.md",
+    "sha256": "b7fa2d8db3608558b465a149a0d7403ebebaa1ef5b776b1c836173d9a9b504db",
+    "bytes": 2754
+  },
+  {
+    "path": "scripts/graphql-inventory.mjs",
+    "sha256": "703f77969820716177edd086e0c0e4c5cf066397230db6ec9c7eb658eb875d96",
+    "bytes": 16894
+  },
+  {
+    "path": "scripts/run-staging-inventory.sh",
+    "sha256": "99ec7c301f6f335be22bc0b5720589253868b81d4b098402631b47045dcb8fa4",
+    "bytes": 804
+  },
+  {
+    "path": "scripts/wp-inventory.php",
+    "sha256": "6de6b1f349c9a37f085cc3db26ffcfd6347d7a022c5f18a878e71fc93cd9cccb",
+    "bytes": 13056
+  }
+]

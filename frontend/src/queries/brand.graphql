@@ -1,0 +1,67 @@
+query SiraBrand {
+  siraBrand {
+    name
+    key
+    tagline
+    primaryColor
+    secondaryColor
+    accentColor
+    paperColor
+    inkColor
+
+    logo {
+      databaseId
+      sourceUrl
+      altText
+      width
+      height
+      mediaItem {
+        databaseId
+        sourceUrl
+        altText
+      }
+    }
+
+    mark {
+      databaseId
+      sourceUrl
+      altText
+      width
+      height
+      mediaItem {
+        databaseId
+        sourceUrl
+        altText
+      }
+    }
+
+    email
+    phone
+    address
+    description
+    mission
+    vision
+
+    values {
+      title
+      description
+    }
+
+    officeLocations {
+      name
+      address
+      phone
+      email
+    }
+
+    socialProfiles {
+      linkedin
+      instagram
+      x
+      youtube
+    }
+
+    announcementBanner
+    emergencyBanner
+  }
+}

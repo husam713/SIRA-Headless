@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-bright: var(--brand-accent-bright);
+  --color-brand-on-accent: var(--brand-on-accent);
+  --color-brand-paper: var(--brand-paper);
+  --color-brand-paper-glass: var(--brand-paper-glass);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-ink-soft: var(--brand-ink-soft);
+  --color-brand-ink-faint: var(--brand-ink-faint);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-deep-card: var(--brand-deep-card);
+  --color-brand-footer: var(--brand-footer);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-border: var(--brand-border);
+  --color-brand-shadow: var(--brand-shadow);
+  --color-brand-on-accent-border: var(--brand-on-accent-border);
+  --color-brand-deep-border: var(--brand-deep-border);
+
+  --font-sans: var(--font-sira-body);
+  --font-display: var(--font-sira-display);
+  --font-interface: var(--font-sira-interface);
+}
+
+:root {
+  /* Safe Group defaults before the server-rendered site variables apply. */
+  --brand-primary: #cca34b;
+  --brand-secondary: #172232;
+  --brand-accent: #cca34b;
+  --brand-paper: #f7f4ed;
+  --brand-ink: #20242b;
+
+  --brand-accent-bright: oklch(0.78 0.14 78);
+  --brand-on-accent: #20242b;
+  --brand-paper-glass: oklch(0.97 0.006 75 / 0.92);
+  --brand-ink-soft: oklch(0.45 0.01 260);
+  --brand-ink-faint: oklch(0.6 0.01 260);
+  --brand-deep: oklch(0.16 0.024 255);
+  --brand-deep-card: oklch(0.24 0.03 250);
+  --brand-footer: oklch(0.16 0.024 255);
+  --brand-tint: oklch(0.94 0.008 255);
+  --brand-border: oklch(0.88 0.01 75);
+  --brand-shadow: oklch(0.08 0.02 255 / 0.85);
+  --brand-on-accent-border: oklch(0.16 0.02 260 / 0.18);
+  --brand-deep-border: oklch(0.3 0.02 255);
+  --brand-hero-overlay-top: oklch(0.15 0.02 255 / 0.4);
+  --brand-hero-overlay-middle: oklch(0.15 0.02 255 / 0.35);
+  --brand-hero-overlay-bottom: oklch(0.12 0.02 255 / 0.94);
+
+  /* next/font creates the three lower-level font variables. */
+  --font-sira-body:
+    var(--font-archivo), Arial, Helvetica, sans-serif;
+  --font-sira-interface:
+    var(--font-archivo), Arial, Helvetica, sans-serif;
+  --font-sira-display:
+    var(--font-newsreader), Georgia, "Times New Roman", serif;
+
+  /* Frontend-owned structural tokens. */
+  --layout-container: 82.5rem;
+  --layout-reading-width: 42rem;
+  --space-section: clamp(4.5rem, 9vw, 7.5rem);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 4px;
+}
+
+html:lang(ar) {
+  --font-sira-body:
+    var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
+  --font-sira-interface:
+    var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
+  --font-sira-display:
+    var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--brand-paper);
+  color: var(--brand-ink);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sira-body);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-sira-interface);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p,
+li,
+blockquote,
+figcaption {
+  text-wrap: pretty;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--brand-accent);
+  outline-offset: var(--focus-ring-offset);
+}
+
+[dir="rtl"] {
+  text-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

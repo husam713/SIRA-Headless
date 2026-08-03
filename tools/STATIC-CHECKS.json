@@ -1,0 +1,20 @@
+{
+  "node": {
+    "available": true,
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "php": {
+    "available": true,
+    "returncode": 0,
+    "stdout": "No syntax errors detected in /mnt/data/sira-step2c2a-live-inventory/scripts/wp-inventory.php",
+    "stderr": ""
+  },
+  "bash": {
+    "available": true,
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+}

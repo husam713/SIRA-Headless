@@ -1,0 +1,37 @@
+{
+  "public/brands/group/mark.png": {
+    "width": 285,
+    "height": 274,
+    "sha256": "0c47c9242fefaab04e40f734f40241b93a16623a412b1f3883826094b8b406fb"
+  },
+  "public/brands/group/logo.png": {
+    "width": 768,
+    "height": 290,
+    "sha256": "7a9ecf41c92ad2cef54c16524e45c2aa67384570fc2fec688ee012eb5f985f06"
+  },
+  "public/brands/consulting/mark.png": {
+    "width": 285,
+    "height": 274,
+    "sha256": "298f34acaa6c38d2bba6134eec813fae5b1d3b349a8c81a13327b28872d8585f"
+  },
+  "public/brands/healthcare/mark.png": {
+    "width": 285,
+    "height": 274,
+    "sha256": "5718a29a38990fd6a6a443615f29ef6a45b694990c24b1b1540ee4e94d04a9a4"
+  },
+  "public/brands/lifestyle/mark.png": {
+    "width": 285,
+    "height": 274,
+    "sha256": "39abe8ea45ff206fe21ea427d2510f3f11e5141fdfcf5c8d0c07a6a0e9d3da6d"
+  },
+  "public/brands/realestate/mark.png": {
+    "width": 285,
+    "height": 274,
+    "sha256": "27f8e3d0826571af6f492d16b15d16a6994fb1422c17399649c5f04456d3d703"
+  },
+  "public/brands/shared/mark-white.png": {
+    "width": 285,
+    "height": 274,
+    "sha256": "79af7243402b354d15f69af140438055a9657803509508ae1b7c1012f92e50b7"
+  }
+}

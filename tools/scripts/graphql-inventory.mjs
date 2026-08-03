@@ -262,14 +262,22 @@ function selectExistingFields(type, candidates) {
   return candidates.filter((candidate) => available[candidate] !== undefined);
 }
 
-async function requestGraphQL(endpoint, operationName, query, variables = {}) {
+async function requestGraphQL(
+  endpoint,
+  operationName,
+  query,
+  variables = {},
+  { useAuthorization = false } = {},
+) {
   const headers = {
     accept: "application/graphql-response+json, application/json;q=0.9",
     "content-type": "application/json",
     "user-agent": "sira-step2c2a-inventory/1",
   };
 
-  const authorization = process.env.SIRA_INVENTORY_AUTHORIZATION;
+  const authorization = useAuthorization
+    ? process.env.SIRA_INVENTORY_AUTHORIZATION
+    : undefined;
 
   if (typeof authorization === "string" && authorization.trim() !== "") {
     headers.authorization = authorization;
@@ -562,6 +570,8 @@ async function inventorySite(siteKey, environmentKey, outputRoot) {
       schemaDescription: true,
       specifiedByUrl: true,
     }),
+    {},
+    { useAuthorization: true },
   );
 
   const schema = lexicographicSortSchema(

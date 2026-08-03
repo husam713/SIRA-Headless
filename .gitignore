@@ -1,0 +1,44 @@
+﻿# Environment secrets
+.env
+.env.local
+.env.production
+.env.development
+.env.*.local
+!.env.example
+
+# Node.js / Next.js
+node_modules/
+.next/
+out/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# PHP / Composer
+vendor/
+.phpunit.result.cache
+.phpcs-cache
+
+# WordPress runtime
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-config.php
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/settings.json
+.idea/
+
+# Temporary archives
+*.tmp
+*.bak

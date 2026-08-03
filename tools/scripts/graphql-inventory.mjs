@@ -554,7 +554,7 @@ async function inventorySite(siteKey, environmentKey, outputRoot) {
 
   const introspectionData = await requestGraphQL(
     endpoint,
-    "SiraInventoryIntrospection",
+    "IntrospectionQuery",
     getIntrospectionQuery({
       descriptions: true,
       directiveIsRepeatable: true,

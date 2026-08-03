@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import type { WordPressEnvironment } from "@/config/wordpress";
 import {
   getGraphQLRevalidateSeconds,
   getGraphQLTimeoutMs,
@@ -6,13 +7,13 @@ import {
   WordPressConfigurationError,
 } from "@/config/wordpress";
 
-const validEnvironment: NodeJS.ProcessEnv = {
+const validEnvironment = {
   SIRA_WP_GROUP_GRAPHQL_URL: "https://cms.example.test/graphql",
   SIRA_WP_GROUP_BLOG_ID: "1",
   SIRA_WP_CONSULTING_GRAPHQL_URL:
     "https://cms.example.test/consulting/graphql",
   SIRA_WP_CONSULTING_BLOG_ID: "2",
-};
+} satisfies WordPressEnvironment;
 
 describe("WordPress server configuration", () => {
   it("resolves a site-aware endpoint and blog ID", () => {

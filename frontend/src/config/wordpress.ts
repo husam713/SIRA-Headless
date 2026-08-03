@@ -8,6 +8,10 @@ interface WordPressEnvironmentKeys {
   readonly blogId: string;
 }
 
+export type WordPressEnvironment = Readonly<
+  Record<string, string | undefined>
+>;
+
 export interface WordPressSiteConfig {
   readonly siteKey: SiteKey;
   readonly blogId: number;
@@ -116,7 +120,7 @@ function parseGraphQLEndpoint(
 
 export function getWordPressSiteConfig(
   siteKey: SiteKey,
-  environment: NodeJS.ProcessEnv = process.env,
+  environment: WordPressEnvironment = process.env,
 ): WordPressSiteConfig {
   const keys = WORDPRESS_ENVIRONMENT_KEYS[siteKey];
 
@@ -132,7 +136,7 @@ export function getWordPressSiteConfig(
 
 export function getWordPressSiteConfigFromUnknown(
   value: string,
-  environment: NodeJS.ProcessEnv = process.env,
+  environment: WordPressEnvironment = process.env,
 ): WordPressSiteConfig {
   if (!isSiteKey(value)) {
     throw new WordPressConfigurationError(
@@ -144,7 +148,7 @@ export function getWordPressSiteConfigFromUnknown(
 }
 
 export function getGraphQLTimeoutMs(
-  environment: NodeJS.ProcessEnv = process.env,
+  environment: WordPressEnvironment = process.env,
 ): number {
   const rawValue = environment["SIRA_GRAPHQL_TIMEOUT_MS"] ?? "8000";
   const timeout = Number(rawValue);
@@ -163,7 +167,7 @@ export function getGraphQLTimeoutMs(
 }
 
 export function getGraphQLRevalidateSeconds(
-  environment: NodeJS.ProcessEnv = process.env,
+  environment: WordPressEnvironment = process.env,
 ): number {
   const rawValue = environment["SIRA_GRAPHQL_REVALIDATE_SECONDS"] ?? "3600";
   const revalidate = Number(rawValue);

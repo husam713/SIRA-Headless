@@ -37,7 +37,7 @@
     "@types/node": "22.20.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "eslint": "10.8.0",
+    "eslint": "9.39.5",
     "eslint-config-next": "16.2.12",
     "postcss": "8.5.23",
     "tailwindcss": "4.3.3",
@@ -47,6 +47,6 @@
     "@graphql-codegen/client-preset": "6.1.0",
     "@graphql-codegen/typescript-operations": "6.1.2",
     "@graphql-typed-document-node/core": "3.2.0",
-    "graphql": "17.0.2"
+    "graphql": "16.14.2"
   }
 }

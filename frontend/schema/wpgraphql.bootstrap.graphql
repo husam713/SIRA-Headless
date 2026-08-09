@@ -1,9 +1,9 @@
 """
-Bootstrap-only subset derived from the approved SIRA Step 1 PHP schema.
+Bootstrap-only review subset aligned with the verified live SIRA contract.
 
 This is not a live WPGraphQL snapshot and must never be used as the production
-code-generation source. Run `pnpm schema:fetch` to create
-schema/wpgraphql.graphql from all five configured WordPress Multisite sites.
+code-generation source. Run `pnpm schema:fetch` to create the canonical branch
+schema and separate Group audit schema.
 """
 schema {
   query: RootQuery
@@ -11,6 +11,23 @@ schema {
 
 type RootQuery {
   siraBrand: SiraBrand!
+  siraProjects: SiraProjectConnection
+}
+
+interface ContentNode {
+  databaseId: Int!
+  uri: String
+}
+
+type Page implements ContentNode {
+  databaseId: Int!
+  uri: String
+  isFrontPage: Boolean!
+  siraHomepage: SiraHomepage
+}
+
+type SiraHomepage {
+  variant: String
 }
 
 type SiraBrand {
@@ -35,6 +52,30 @@ type SiraBrand {
   socialProfiles: SiraBrandSocialProfiles
   announcementBanner: String
   emergencyBanner: String
+  announcement: SiraBrandBanner
+  emergency: SiraBrandBanner
+}
+
+type SiraBrandBanner {
+  message: String!
+  severity: SiraBrandBannerSeverity!
+  link: SiraBrandLink
+  startsAt: String
+  endsAt: String
+  dismissible: Boolean!
+  revisionKey: String!
+}
+
+enum SiraBrandBannerSeverity {
+  INFO
+  IMPORTANT
+  URGENT
+}
+
+type SiraBrandLink {
+  label: String!
+  url: String!
+  target: String
 }
 
 type SiraBrandMedia {
@@ -63,6 +104,32 @@ type SiraBrandSocialProfiles {
   instagram: String
   x: String
   youtube: String
+}
+
+type SiraProjectConnection {
+  nodes: [SiraProject]
+}
+
+type SiraProject {
+  databaseId: Int!
+  title: String
+  uri: String
+  projectDetails: ProjectDetails
+}
+
+"""
+Verified live WPGraphQL-for-ACF generated type.
+"""
+type ProjectDetails {
+  subtitle: String
+  location: String
+  status: String
+  statistics: [ProjectDetailsStatistics]
+}
+
+type ProjectDetailsStatistics {
+  label: String
+  value: String
 }
 
 type MediaItem {

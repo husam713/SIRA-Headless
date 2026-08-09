@@ -1,30 +1,39 @@
+import { createHash } from "node:crypto";
 import {
   existsSync,
-  readFileSync,
+  mkdirSync,
+  renameSync,
+  rmSync,
   writeFileSync,
 } from "node:fs";
-import { createHash } from "node:crypto";
 import {
   buildClientSchema,
   getIntrospectionQuery,
   lexicographicSortSchema,
   printSchema,
 } from "graphql";
+import {
+  GROUP_SITE_KEY,
+  SCHEMA_POLICY,
+  SITE_DEFINITIONS,
+  assertExactBranchSchemas,
+  assertRequiredContract,
+  compareCanonicalToGroup,
+  createCompatibilityReport,
+  createSchemaMetadata,
+  schemaHash,
+} from "./schema-compatibility.mjs";
 
 if (existsSync(".env.local") && typeof process.loadEnvFile === "function") {
   process.loadEnvFile(".env.local");
 }
 
-const sites = [
-  ["group", "SIRA_WP_GROUP_GRAPHQL_URL"],
-  ["consulting", "SIRA_WP_CONSULTING_GRAPHQL_URL"],
-  ["healthcare", "SIRA_WP_HEALTHCARE_GRAPHQL_URL"],
-  ["lifestyle", "SIRA_WP_LIFESTYLE_GRAPHQL_URL"],
-  ["realestate", "SIRA_WP_REALESTATE_GRAPHQL_URL"],
-];
-
-const requiredRootFields = ["siraBrand", "siraProjects"];
-const requiredTypes = ["SiraBrand", "SiraProject", "SiraProjectDetails"];
+const OUTPUT_DIRECTORY = "schema";
+const CANONICAL_SCHEMA_PATH = `${OUTPUT_DIRECTORY}/wpgraphql.graphql`;
+const GROUP_SCHEMA_PATH = `${OUTPUT_DIRECTORY}/wpgraphql.group.graphql`;
+const METADATA_PATH = `${OUTPUT_DIRECTORY}/wpgraphql.meta.json`;
+const COMPATIBILITY_PATH =
+  `${OUTPUT_DIRECTORY}/wpgraphql.compatibility.json`;
 
 function validateEndpoint(rawValue, environmentKey) {
   if (typeof rawValue !== "string" || rawValue.trim() === "") {
@@ -47,27 +56,43 @@ function validateEndpoint(rawValue, environmentKey) {
     url.hostname.endsWith(".localhost");
 
   if (url.protocol !== "https:" && !(isLocal && url.protocol === "http:")) {
-    throw new Error(`${environmentKey} must use HTTPS outside local development.`);
+    throw new Error(
+      `${environmentKey} must use HTTPS outside local development.`,
+    );
   }
 
   return url;
 }
 
-function schemaHash(schemaText) {
-  return createHash("sha256").update(schemaText).digest("hex");
+function authorizationHeader() {
+  const value = process.env.SIRA_SCHEMA_AUTHORIZATION;
+
+  return typeof value === "string" && value.trim() !== ""
+    ? value.trim()
+    : null;
 }
 
-async function fetchSchema(siteKey, environmentKey) {
-  const endpoint = validateEndpoint(process.env[environmentKey], environmentKey);
+async function fetchSchema(definition) {
+  const endpoint = validateEndpoint(
+    process.env[definition.environmentKey],
+    definition.environmentKey,
+  );
+  const headers = {
+    accept: "application/graphql-response+json, application/json;q=0.9",
+    "content-type": "application/json",
+    "user-agent": "sira-web-schema-fetch/2",
+  };
+  const authorization = authorizationHeader();
+
+  if (authorization !== null) {
+    headers.authorization = authorization;
+  }
+
   const response = await fetch(endpoint, {
     method: "POST",
-    headers: {
-      accept: "application/graphql-response+json, application/json;q=0.9",
-      "content-type": "application/json",
-      "user-agent": "sira-web-schema-fetch/1",
-    },
+    headers,
     body: JSON.stringify({
-      operationName: "SiraSchemaIntrospection",
+      operationName: "IntrospectionQuery",
       query: getIntrospectionQuery({
         descriptions: true,
         directiveIsRepeatable: true,
@@ -78,16 +103,25 @@ async function fetchSchema(siteKey, environmentKey) {
       variables: {},
     }),
     redirect: "error",
-    signal: AbortSignal.timeout(15_000),
+    signal: AbortSignal.timeout(20_000),
   });
 
   if (!response.ok) {
     throw new Error(
-      `Schema fetch failed for ${siteKey} (${endpoint.hostname}) with HTTP ${response.status}.`,
+      `Schema fetch failed for ${definition.siteKey} ` +
+        `(${endpoint.hostname}) with HTTP ${response.status}.`,
     );
   }
 
-  const payload = await response.json();
+  let payload;
+
+  try {
+    payload = await response.json();
+  } catch {
+    throw new Error(
+      `Schema fetch for ${definition.siteKey} did not return JSON.`,
+    );
+  }
 
   if (
     typeof payload !== "object" ||
@@ -96,80 +130,110 @@ async function fetchSchema(siteKey, environmentKey) {
     !("data" in payload) ||
     payload.data === null
   ) {
-    throw new Error(`Invalid introspection response for ${siteKey}.`);
+    throw new Error(
+      `Invalid introspection response for ${definition.siteKey}.`,
+    );
   }
 
-  if ("errors" in payload && Array.isArray(payload.errors) && payload.errors.length > 0) {
-    throw new Error(`GraphQL introspection returned errors for ${siteKey}.`);
+  if (
+    "errors" in payload &&
+    Array.isArray(payload.errors) &&
+    payload.errors.length > 0
+  ) {
+    throw new Error(
+      `GraphQL introspection returned errors for ${definition.siteKey}.`,
+    );
   }
 
   const schema = lexicographicSortSchema(buildClientSchema(payload.data));
-  const queryType = schema.getQueryType();
-
-  if (queryType === undefined) {
-    throw new Error(`No RootQuery type was found for ${siteKey}.`);
-  }
-
-  for (const field of requiredRootFields) {
-    if (queryType.getFields()[field] === undefined) {
-      throw new Error(`Required RootQuery field ${field} is missing on ${siteKey}.`);
-    }
-  }
-
-  for (const typeName of requiredTypes) {
-    if (schema.getType(typeName) === undefined) {
-      throw new Error(`Required type ${typeName} is missing on ${siteKey}.`);
-    }
-  }
+  assertRequiredContract(schema, definition.siteKey);
 
   const printed = `${printSchema(schema).trim()}\n`;
 
   return {
-    siteKey,
+    ...definition,
     hostname: endpoint.hostname,
+    schemaObject: schema,
     schema: printed,
     sha256: schemaHash(printed),
   };
 }
 
+function writeAtomic(path, value) {
+  const temporaryPath =
+    `${path}.tmp-${process.pid}-${createHash("sha256")
+      .update(path)
+      .digest("hex")
+      .slice(0, 8)}`;
+
+  writeFileSync(temporaryPath, value, "utf8");
+  rmSync(path, { force: true });
+  renameSync(temporaryPath, path);
+}
+
 const results = [];
 
-for (const [siteKey, environmentKey] of sites) {
-  results.push(await fetchSchema(siteKey, environmentKey));
+for (const definition of SITE_DEFINITIONS) {
+  results.push(await fetchSchema(definition));
 }
 
-const uniqueHashes = new Set(results.map((result) => result.sha256));
+const canonical = assertExactBranchSchemas(results);
+const group = results.find(
+  (result) => result.siteKey === GROUP_SITE_KEY,
+);
 
-if (uniqueHashes.size !== 1) {
-  const summary = results
-    .map((result) => `${result.siteKey}:${result.sha256}`)
+if (canonical === undefined || group === undefined) {
+  throw new Error("Canonical branch or Group schema result is missing.");
+}
+
+const comparison = compareCanonicalToGroup(
+  canonical.schemaObject,
+  group.schemaObject,
+);
+
+if (!comparison.compatible) {
+  const coordinates = comparison.issues
+    .slice(0, 10)
+    .map((issue) => `${issue.code}:${issue.coordinate}`)
     .join(", ");
 
-  throw new Error(`SIRA Multisite GraphQL schemas differ: ${summary}`);
+  throw new Error(
+    "Group schema is not structurally compatible with the canonical " +
+      `branch contract: ${coordinates}`,
+  );
 }
 
-writeFileSync("schema/wpgraphql.graphql", results[0].schema, "utf8");
+const generatedAt = new Date().toISOString();
+const metadata = createSchemaMetadata(results, generatedAt);
+const compatibility = createCompatibilityReport({
+  results,
+  comparison,
+  generatedAt,
+});
 
-writeFileSync(
-  "schema/wpgraphql.meta.json",
-  `${JSON.stringify(
-    {
-      source: "live-multisite-introspection",
-      fetchedAt: new Date().toISOString(),
-      canonicalSite: results[0].siteKey,
-      sha256: results[0].sha256,
-      sites: results.map(({ siteKey, hostname, sha256 }) => ({
-        siteKey,
-        hostname,
-        sha256,
-      })),
-    },
-    null,
-    2,
-  )}\n`,
-  "utf8",
+if (!compatibility.branches.exactSchemaEquality) {
+  throw new Error("Compatibility report did not preserve branch equality.");
+}
+
+mkdirSync(OUTPUT_DIRECTORY, { recursive: true });
+
+writeAtomic(CANONICAL_SCHEMA_PATH, canonical.schema);
+writeAtomic(GROUP_SCHEMA_PATH, group.schema);
+writeAtomic(
+  METADATA_PATH,
+  `${JSON.stringify(metadata, null, 2)}\n`,
+);
+writeAtomic(
+  COMPATIBILITY_PATH,
+  `${JSON.stringify(compatibility, null, 2)}\n`,
 );
 
 console.log(
-  `WPGraphQL snapshot written. Sites: ${results.length}. SHA-256: ${results[0].sha256}`,
+  [
+    "WPGraphQL compatibility snapshots written.",
+    `Policy: ${SCHEMA_POLICY}.`,
+    `Canonical: ${canonical.siteKey}:${canonical.sha256}.`,
+    `Group audit: ${group.siteKey}:${group.sha256}.`,
+    `Group-only types: ${comparison.groupOnlyAdditions.types.length}.`,
+  ].join(" "),
 );

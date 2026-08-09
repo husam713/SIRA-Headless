@@ -1,0 +1,125 @@
+{
+  "stage": "Step 2C.3A",
+  "classification": "source-only-static-validation",
+  "generatedAtUtc": "2026-08-04T06:01:55.927787+00:00",
+  "checks": {
+    "nodeSyntax": {
+      "passed": true,
+      "results": [
+        {
+          "path": "scripts/schema-compatibility.mjs",
+          "passed": true,
+          "returnCode": 0,
+          "stderr": ""
+        },
+        {
+          "path": "scripts/fetch-schema.mjs",
+          "passed": true,
+          "returnCode": 0,
+          "stderr": ""
+        },
+        {
+          "path": "scripts/check-schema.mjs",
+          "passed": true,
+          "returnCode": 0,
+          "stderr": ""
+        }
+      ]
+    },
+    "typescriptTranspile": {
+      "passed": true,
+      "returnCode": 0,
+      "output": "[{\"file\":\"/mnt/data/sira-web-step2c3a/sira-web/tests/unit/schema-compatibility.test.ts\",\"errorCount\":0}]",
+      "stderr": ""
+    },
+    "focusedStrictTypecheck": {
+      "passed": true,
+      "returnCode": 0,
+      "stdout": "",
+      "stderr": "",
+      "note": "Uses local declarations only because project dependencies are not installed in this artifact runtime."
+    },
+    "jsonSyntax": {
+      "passed": true,
+      "fileCount": 4,
+      "failures": []
+    },
+    "scopeAndContracts": {
+      "passed": true,
+      "checks": {
+        "changedFilesRemainInSchemaToolingScope": true,
+        "requiredTypeUsesProjectDetails": true,
+        "projectDetailsFieldValidated": true,
+        "fourBranchesDeclared": true,
+        "consultingCanonical": true,
+        "exactBranchEqualityEnforced": true,
+        "groupStructuralCompatibilityEnforced": true,
+        "groupAuditSchemaWrittenSeparately": true,
+        "allFiveHashesMetadataFunction": true,
+        "standardIntrospectionOperationName": true,
+        "canonicalCodegenFileUnchanged": true,
+        "bootstrapUsesProjectDetails": true,
+        "customNavigationAbsent": true,
+        "customEditorialFeedAbsent": true,
+        "authorizationNotInEnvExample": true,
+        "focusedTestsPresent": true,
+        "liveSchemaSnapshotsNotFabricated": true
+      },
+      "scopeViolations": [],
+      "changedFilesBeforeReports": [
+        "README.md",
+        "docs/STEP-2C3A-NOTES.md",
+        "docs/STEP-2C3A-VALIDATION.md",
+        "package.json",
+        "schema/README.md",
+        "schema/wpgraphql.bootstrap.graphql",
+        "scripts/check-schema.mjs",
+        "scripts/fetch-schema.mjs",
+        "scripts/schema-compatibility.d.mts",
+        "scripts/schema-compatibility.mjs",
+        "tests/fixtures/schema/canonical.graphql",
+        "tests/fixtures/schema/group-changed-field.graphql",
+        "tests/fixtures/schema/group-missing-field.graphql",
+        "tests/fixtures/schema/group-required-argument.graphql",
+        "tests/fixtures/schema/group-superset.graphql",
+        "tests/unit/schema-compatibility.test.ts"
+      ]
+    },
+    "secretValueScan": {
+      "passed": true,
+      "findings": [],
+      "note": "Environment variable names and REDACTED examples are permitted; credential values are not."
+    },
+    "dependencyBackedTests": {
+      "passed": null,
+      "status": "not-run",
+      "reason": "The artifact runtime has no project node_modules and its internal npm registry does not provide the declared GraphQL package. No lockfile or dependency result was fabricated.",
+      "commands": [
+        "pnpm test:schema-compatibility",
+        "pnpm lint",
+        "pnpm typecheck",
+        "pnpm test:run",
+        "pnpm build"
+      ]
+    },
+    "patch": {
+      "passed": true,
+      "status": "validated during artifact packaging"
+    },
+    "zipIntegrity": {
+      "passed": true,
+      "status": "validated during artifact packaging"
+    }
+  },
+  "deferred": [
+    "pnpm lint",
+    "pnpm typecheck against installed project dependencies",
+    "pnpm test:schema-compatibility",
+    "pnpm test:run",
+    "pnpm build",
+    "pnpm schema:fetch",
+    "pnpm schema:check",
+    "pnpm codegen",
+    "production deployment and acceptance"
+  ]
+}

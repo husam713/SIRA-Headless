@@ -1,0 +1,40 @@
+schema {
+  query: RootQuery
+}
+
+interface ContentNode {
+  databaseId: Int!
+}
+
+type Page implements ContentNode {
+  databaseId: Int!
+}
+
+type RootQuery {
+  siraBrand: SiraBrand!
+  siraProjects(first: Int): SiraProjectConnection
+}
+
+type SiraBrand {
+  key: String!
+}
+
+type SiraProjectConnection {
+  nodes: [SiraProject!]!
+}
+
+type SiraProject {
+  id: ID!
+  title: String!
+  projectDetails: ProjectDetails
+}
+
+type ProjectDetails {
+  status: String
+  statistics: [ProjectDetailsStatistics]
+}
+
+type ProjectDetailsStatistics {
+  label: String
+  value: String
+}

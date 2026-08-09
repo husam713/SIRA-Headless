@@ -1,6 +1,6 @@
 {
   "name": "sira-web",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "packageManager": "pnpm@11.17.0",
   "engines": {
@@ -24,7 +24,9 @@
     "check:source": "pnpm lint && pnpm typecheck && pnpm test:run && pnpm build",
     "check:graphql": "pnpm schema:check && pnpm codegen && pnpm typecheck && pnpm test:graphql",
     "test:brand": "vitest run tests/unit/brand tests/contract/brand-contract.test.ts tests/contract/design-runtime-exclusion.test.ts",
-    "check:brand": "pnpm lint && pnpm typecheck && pnpm test:brand && pnpm build"
+    "check:brand": "pnpm lint && pnpm typecheck && pnpm test:brand && pnpm build",
+    "test:schema-compatibility": "vitest run tests/unit/schema-compatibility.test.ts",
+    "check:schema-tooling": "pnpm lint && pnpm typecheck && pnpm test:schema-compatibility"
   },
   "dependencies": {
     "next": "16.2.12",

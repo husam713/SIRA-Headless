@@ -1,10 +1,10 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { describe, expect, it, vi } from "vitest";
 import {
   buildSchema,
   lexicographicSortSchema,
 } from "graphql";
-import { describe, expect, it } from "vitest";
 import {
   assertExactBranchSchemas,
   assertRequiredContract,
@@ -304,6 +304,53 @@ describe("live schema compatibility policy", () => {
       actual: null,
     });
   });
+
+  it("reports a missing Group root type instead of throwing on a null root", () => {
+  const canonicalWithMutation = buildSchema(`
+    type Query {
+      status: String
+    }
+
+    type Mutation {
+      updateStatus: String
+    }
+  `);
+
+  const groupWithoutMutation = buildSchema(`
+    type Query {
+      status: String
+    }
+  `);
+
+  const mutationTypeSpy = vi
+    .spyOn(groupWithoutMutation, "getMutationType")
+    .mockReturnValue(null as never);
+
+  try {
+    expect(() =>
+      compareCanonicalToGroup(
+        canonicalWithMutation,
+        groupWithoutMutation,
+      ),
+    ).not.toThrow();
+
+    const comparison = compareCanonicalToGroup(
+      canonicalWithMutation,
+      groupWithoutMutation,
+    );
+
+    expect(comparison.compatible).toBe(false);
+
+    expect(comparison.issues).toContainEqual({
+      code: "MISSING_ROOT_TYPE",
+      coordinate: "mutation",
+      expected: "Mutation",
+      actual: null,
+    });
+  } finally {
+    mutationTypeSpy.mockRestore();
+  }
+});
 
   it("requires the verified live ProjectDetails type", () => {
     expect(() =>

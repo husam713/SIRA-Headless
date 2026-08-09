@@ -1,0 +1,850 @@
+{
+  "branches": {
+    "exactSchemaEquality": true,
+    "hashes": {
+      "consulting": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "healthcare": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "lifestyle": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "realestate": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0"
+    },
+    "siteKeys": [
+      "consulting",
+      "healthcare",
+      "lifestyle",
+      "realestate"
+    ]
+  },
+  "canonical": {
+    "sha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+    "siteKey": "consulting"
+  },
+  "compatible": true,
+  "generatedAt": "2026-08-09T06:01:26.643Z",
+  "group": {
+    "groupOnlyAdditions": {
+      "arguments": [],
+      "directiveLocations": [],
+      "directives": [],
+      "enumValues": [
+        {
+          "enum": "ContentTypeEnum",
+          "value": "PROJECT"
+        },
+        {
+          "enum": "ContentTypeEnum",
+          "value": "SERVICE"
+        },
+        {
+          "enum": "ContentTypeEnum",
+          "value": "SLIDER_IMAGE"
+        },
+        {
+          "enum": "TaxonomyEnum",
+          "value": "PROJECTLOCATION"
+        },
+        {
+          "enum": "TaxonomyEnum",
+          "value": "PROJECTSECTOR"
+        }
+      ],
+      "fields": [
+        {
+          "coordinate": "RootMutation.createProject",
+          "type": "CreateProjectPayload"
+        },
+        {
+          "coordinate": "RootMutation.createProjectLocation",
+          "type": "CreateProjectLocationPayload"
+        },
+        {
+          "coordinate": "RootMutation.createProjectSector",
+          "type": "CreateProjectSectorPayload"
+        },
+        {
+          "coordinate": "RootMutation.createService",
+          "type": "CreateServicePayload"
+        },
+        {
+          "coordinate": "RootMutation.createSliderImage",
+          "type": "CreateSliderImagePayload"
+        },
+        {
+          "coordinate": "RootMutation.deleteProject",
+          "type": "DeleteProjectPayload"
+        },
+        {
+          "coordinate": "RootMutation.deleteProjectLocation",
+          "type": "DeleteProjectLocationPayload"
+        },
+        {
+          "coordinate": "RootMutation.deleteProjectSector",
+          "type": "DeleteProjectSectorPayload"
+        },
+        {
+          "coordinate": "RootMutation.deleteService",
+          "type": "DeleteServicePayload"
+        },
+        {
+          "coordinate": "RootMutation.deleteSliderImage",
+          "type": "DeleteSliderImagePayload"
+        },
+        {
+          "coordinate": "RootMutation.updateProject",
+          "type": "UpdateProjectPayload"
+        },
+        {
+          "coordinate": "RootMutation.updateProjectLocation",
+          "type": "UpdateProjectLocationPayload"
+        },
+        {
+          "coordinate": "RootMutation.updateProjectSector",
+          "type": "UpdateProjectSectorPayload"
+        },
+        {
+          "coordinate": "RootMutation.updateService",
+          "type": "UpdateServicePayload"
+        },
+        {
+          "coordinate": "RootMutation.updateSliderImage",
+          "type": "UpdateSliderImagePayload"
+        },
+        {
+          "coordinate": "RootQuery.project",
+          "type": "Project"
+        },
+        {
+          "coordinate": "RootQuery.projectBy",
+          "type": "Project"
+        },
+        {
+          "coordinate": "RootQuery.projectLocation",
+          "type": "ProjectLocation"
+        },
+        {
+          "coordinate": "RootQuery.projectLocations",
+          "type": "RootQueryToProjectLocationConnection"
+        },
+        {
+          "coordinate": "RootQuery.projects",
+          "type": "RootQueryToProjectConnection"
+        },
+        {
+          "coordinate": "RootQuery.projectSector",
+          "type": "ProjectSector"
+        },
+        {
+          "coordinate": "RootQuery.projectSectors",
+          "type": "RootQueryToProjectSectorConnection"
+        },
+        {
+          "coordinate": "RootQuery.service",
+          "type": "Service"
+        },
+        {
+          "coordinate": "RootQuery.serviceBy",
+          "type": "Service"
+        },
+        {
+          "coordinate": "RootQuery.services",
+          "type": "RootQueryToServiceConnection"
+        },
+        {
+          "coordinate": "RootQuery.sliderImage",
+          "type": "SliderImage"
+        },
+        {
+          "coordinate": "RootQuery.sliderImageBy",
+          "type": "SliderImage"
+        },
+        {
+          "coordinate": "RootQuery.sliderImages",
+          "type": "RootQueryToSliderImageConnection"
+        }
+      ],
+      "inputFields": [],
+      "interfaces": [],
+      "types": [
+        {
+          "kind": "OBJECT",
+          "name": "Buttons"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "Buttons_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CompanyInformation"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "CompanyInformation_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CompanyInformationBranchOffice"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "CompanyInformationBranchOffice_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CompanyInformationCompanyJourney"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "CompanyInformationCompanyJourney_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CompanyInformationCompanyValues"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "CompanyInformationCompanyValues_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CompanyInformationOurPartners"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "CompanyInformationOurPartners_Fields"
+        },
+        {
+          "kind": "ENUM",
+          "name": "ContentTypesOfProjectLocationEnum"
+        },
+        {
+          "kind": "ENUM",
+          "name": "ContentTypesOfProjectSectorEnum"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CreateProjectInput"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CreateProjectLocationInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CreateProjectLocationPayload"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CreateProjectPayload"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CreateProjectSectorInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CreateProjectSectorPayload"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CreateServiceInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CreateServicePayload"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CreateSliderImageInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CreateSliderImagePayload"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "DeleteProjectInput"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "DeleteProjectLocationInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "DeleteProjectLocationPayload"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "DeleteProjectPayload"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "DeleteProjectSectorInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "DeleteProjectSectorPayload"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "DeleteServiceInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "DeleteServicePayload"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "DeleteSliderImageInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "DeleteSliderImagePayload"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Project"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectConnection"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectConnectionEdge"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectConnectionPageInfo"
+        },
+        {
+          "kind": "ENUM",
+          "name": "ProjectIdType"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectItem"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectItem_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectItemProjectDetails"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectItemProjectDetails_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectItemProjectDetailsProjectList"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectItemProjectDetailsProjectList_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocation"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectLocationConnection"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectLocationConnectionEdge"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectLocationConnectionPageInfo"
+        },
+        {
+          "kind": "ENUM",
+          "name": "ProjectLocationIdType"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToAncestorsProjectLocationConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToAncestorsProjectLocationConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToAncestorsProjectLocationConnectionPageInfo"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToContentNodeConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToContentNodeConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToContentNodeConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectLocationToContentNodeConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToParentProjectLocationConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToProjectConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToProjectConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToProjectConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectLocationToProjectConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToProjectLocationConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToProjectLocationConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToProjectLocationConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectLocationToProjectLocationConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectLocationToTaxonomyConnectionEdge"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectProjectLocationsInput"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectProjectLocationsNodeInput"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectProjectSectorsInput"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectProjectSectorsNodeInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSector"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectSectorConnection"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectSectorConnectionEdge"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ProjectSectorConnectionPageInfo"
+        },
+        {
+          "kind": "ENUM",
+          "name": "ProjectSectorIdType"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToAncestorsProjectSectorConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToAncestorsProjectSectorConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToAncestorsProjectSectorConnectionPageInfo"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToContentNodeConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToContentNodeConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToContentNodeConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectSectorToContentNodeConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToParentProjectSectorConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToProjectConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToProjectConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToProjectConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectSectorToProjectConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToProjectSectorConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToProjectSectorConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToProjectSectorConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectSectorToProjectSectorConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectSectorToTaxonomyConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectToPreviewConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectToProjectLocationConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectToProjectLocationConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectToProjectLocationConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectToProjectLocationConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectToProjectSectorConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectToProjectSectorConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectToProjectSectorConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectToProjectSectorConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectToTermNodeConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectToTermNodeConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ProjectToTermNodeConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectToTermNodeConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToProjectConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToProjectConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToProjectConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "RootQueryToProjectConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToProjectLocationConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToProjectLocationConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToProjectLocationConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "RootQueryToProjectLocationConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToProjectSectorConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToProjectSectorConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToProjectSectorConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "RootQueryToProjectSectorConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToServiceConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToServiceConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToServiceConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "RootQueryToServiceConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToSliderImageConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToSliderImageConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RootQueryToSliderImageConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "RootQueryToSliderImageConnectionWhereArgs"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Service"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ServiceConnection"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ServiceConnectionEdge"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ServiceConnectionPageInfo"
+        },
+        {
+          "kind": "ENUM",
+          "name": "ServiceIdType"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ServiceItem"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ServiceItem_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ServiceItemAdvisoryServices"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ServiceItemAdvisoryServices_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ServiceItemServiceDetails"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ServiceItemServiceDetails_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ServiceItemServiceDetailsList"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "ServiceItemServiceDetailsList_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ServiceToPreviewConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SliderImage"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "SliderImageConnection"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "SliderImageConnectionEdge"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "SliderImageConnectionPageInfo"
+        },
+        {
+          "kind": "ENUM",
+          "name": "SliderImageIdType"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SliderImageToParentConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SliderImageToPreviewConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SliderImageToSliderImageConnection"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SliderImageToSliderImageConnectionEdge"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SliderImageToSliderImageConnectionPageInfo"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UpdateProjectInput"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UpdateProjectLocationInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "UpdateProjectLocationPayload"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "UpdateProjectPayload"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UpdateProjectSectorInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "UpdateProjectSectorPayload"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UpdateServiceInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "UpdateServicePayload"
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UpdateSliderImageInput"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "UpdateSliderImagePayload"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "WithAcfButtons"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "WithAcfProjectItem"
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "WithAcfServiceItem"
+        }
+      ],
+      "unionMembers": [
+        {
+          "member": "Project",
+          "union": "MenuItemObjectUnion"
+        },
+        {
+          "member": "ProjectLocation",
+          "union": "MenuItemObjectUnion"
+        },
+        {
+          "member": "ProjectSector",
+          "union": "MenuItemObjectUnion"
+        },
+        {
+          "member": "Service",
+          "union": "MenuItemObjectUnion"
+        },
+        {
+          "member": "SliderImage",
+          "union": "MenuItemObjectUnion"
+        }
+      ]
+    },
+    "issues": [],
+    "sha256": "9469ebc4fbea5e55982661ca58e31de5b592fc8a9e6f0a31efd9bf000bf49971",
+    "siteKey": "group",
+    "structurallyContainsCanonical": true
+  },
+  "policy": "four-branch-exact-group-structural-superset",
+  "source": "live-multisite-introspection"
+}

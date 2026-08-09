@@ -528,7 +528,6 @@ function compareDirectives(canonicalSchema, groupSchema, issues, additions) {
     }
   }
 }
-
 function compareRootTypes(canonicalSchema, groupSchema, issues) {
   const operations = [
     ["query", canonicalSchema.getQueryType(), groupSchema.getQueryType()],
@@ -541,11 +540,11 @@ function compareRootTypes(canonicalSchema, groupSchema, issues) {
   ];
 
   for (const [operation, canonicalRoot, groupRoot] of operations) {
-    if (canonicalRoot === undefined) {
+    if (canonicalRoot === undefined || canonicalRoot === null) {
       continue;
     }
 
-    if (groupRoot === undefined) {
+    if (groupRoot === undefined || groupRoot === null) {
       issues.push({
         code: "MISSING_ROOT_TYPE",
         coordinate: operation,

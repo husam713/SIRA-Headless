@@ -1,0 +1,41 @@
+{
+  "canonicalSha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+  "canonicalSite": "consulting",
+  "fetchedAt": "2026-08-09T06:01:26.643Z",
+  "groupAuditSite": "group",
+  "groupSha256": "9469ebc4fbea5e55982661ca58e31de5b592fc8a9e6f0a31efd9bf000bf49971",
+  "policy": "four-branch-exact-group-structural-superset",
+  "sites": [
+    {
+      "hostname": "siratrgroup.com",
+      "role": "group-audit",
+      "sha256": "9469ebc4fbea5e55982661ca58e31de5b592fc8a9e6f0a31efd9bf000bf49971",
+      "siteKey": "group"
+    },
+    {
+      "hostname": "consulting.siratrgroup.com",
+      "role": "canonical-branch",
+      "sha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "siteKey": "consulting"
+    },
+    {
+      "hostname": "healthcare.siratrgroup.com",
+      "role": "branch",
+      "sha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "siteKey": "healthcare"
+    },
+    {
+      "hostname": "lifestyle.siratrgroup.com",
+      "role": "branch",
+      "sha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "siteKey": "lifestyle"
+    },
+    {
+      "hostname": "realestate.siratrgroup.com",
+      "role": "branch",
+      "sha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "siteKey": "realestate"
+    }
+  ],
+  "source": "live-multisite-introspection"
+}

@@ -1,8 +1,17 @@
 import { describe, expect, it, vi } from "vitest";
-import { resolveEditorialFeed } from "@/lib/editorial/get-editorial-feed";
+import { getEditorialBusinessUnit } from "@/lib/editorial/business-unit";
+import {
+  resolveEditorialFeed,
+  resolveSiteEditorialFeed,
+  type SiteEditorialFeedExecutors,
+} from "@/lib/editorial/get-editorial-feed";
 import { normalizeEditorialFeed } from "@/lib/editorial/normalize-editorial-feed";
 import type { EditorialTypename } from "@/lib/editorial/types";
-import type { SiraEditorialFeedQueryData } from "@/queries/editorial-feed";
+import type {
+  SiraBusinessUnitEditorialFeedQueryData,
+  SiraEditorialFeedQueryData,
+} from "@/queries/editorial-feed";
+import type { SiteKey } from "@/types/site";
 
 type ContentNodes = NonNullable<
   SiraEditorialFeedQueryData["contentNodes"]
@@ -55,7 +64,199 @@ function createData(
   };
 }
 
+function createBusinessUnitData(
+  data: SiraEditorialFeedQueryData,
+): SiraBusinessUnitEditorialFeedQueryData {
+  return {
+    siraBusinessUnit: {
+      contentNodes: data.contentNodes,
+    },
+  };
+}
+
+function createExecutors(
+  data: SiraEditorialFeedQueryData = createData([]),
+): {
+  readonly execute: SiteEditorialFeedExecutors;
+  readonly unfiltered: ReturnType<typeof vi.fn>;
+  readonly businessUnit: ReturnType<typeof vi.fn>;
+} {
+  const unfiltered = vi.fn().mockResolvedValue(data);
+  const businessUnit = vi
+    .fn()
+    .mockResolvedValue(createBusinessUnitData(data));
+
+  return {
+    execute: { unfiltered, businessUnit },
+    unfiltered,
+    businessUnit,
+  };
+}
+
 describe("native editorial feed server adapter", () => {
+  it("maps every SiteKey to the exact locked Business Unit slug", () => {
+    expect(
+      Object.fromEntries(
+        ([
+          "group",
+          "consulting",
+          "healthcare",
+          "lifestyle",
+          "realestate",
+        ] satisfies readonly SiteKey[]).map((siteKey) => [
+          siteKey,
+          getEditorialBusinessUnit(siteKey),
+        ]),
+      ),
+    ).toEqual({
+      group: null,
+      consulting: "consulting",
+      healthcare: "healthcare",
+      lifestyle: "lifestyle",
+      realestate: "real-estate",
+    });
+    expect(getEditorialBusinessUnit("realestate")).not.toBe("realestate");
+  });
+
+  it("uses only the unfiltered operation for Group", async () => {
+    const { execute, unfiltered, businessUnit } = createExecutors();
+
+    await expect(
+      resolveSiteEditorialFeed(
+        "group",
+        { first: 12, after: "group-cursor" },
+        execute,
+      ),
+    ).resolves.toMatchObject({ status: "empty", siteKey: "group" });
+    expect(unfiltered).toHaveBeenCalledWith({
+      first: 12,
+      after: "group-cursor",
+    });
+    expect(businessUnit).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ["consulting", "consulting"],
+    ["healthcare", "healthcare"],
+    ["lifestyle", "lifestyle"],
+    ["realestate", "real-estate"],
+  ] as const)(
+    "uses only the exact filtered operation for %s",
+    async (siteKey, expectedBusinessUnit) => {
+      const { execute, unfiltered, businessUnit } = createExecutors();
+
+      await resolveSiteEditorialFeed(
+        siteKey,
+        { first: 18, after: "branch-cursor" },
+        execute,
+      );
+
+      expect(businessUnit).toHaveBeenCalledWith({
+        businessUnit: expectedBusinessUnit,
+        first: 18,
+        after: "branch-cursor",
+      });
+      expect(unfiltered).not.toHaveBeenCalled();
+    },
+  );
+
+  it("keeps an empty branch result empty without unfiltered fallback", async () => {
+    const { execute, unfiltered } = createExecutors(createData([]));
+
+    await expect(
+      resolveSiteEditorialFeed(
+        "healthcare",
+        { first: 10, after: null },
+        execute,
+      ),
+    ).resolves.toEqual({
+      status: "empty",
+      siteKey: "healthcare",
+      pageInfo: { hasNextPage: false, endCursor: null },
+    });
+    expect(unfiltered).not.toHaveBeenCalled();
+  });
+
+  it("treats a missing mapped CMS term as empty without fallback content", async () => {
+    const unfiltered = vi.fn();
+    const businessUnit = vi.fn().mockResolvedValue({
+      siraBusinessUnit: null,
+    });
+
+    await expect(
+      resolveSiteEditorialFeed(
+        "lifestyle",
+        { first: 10, after: null },
+        { unfiltered, businessUnit },
+      ),
+    ).resolves.toEqual({
+      status: "empty",
+      siteKey: "lifestyle",
+      pageInfo: { hasNextPage: false, endCursor: null },
+    });
+    expect(unfiltered).not.toHaveBeenCalled();
+  });
+
+  it("preserves branch cursor pagination and normalized source order", async () => {
+    const data = createData(
+      [createNode("SiraArticle", 4), createNode("SiraNewsItem", 2)],
+      { hasNextPage: true, endCursor: "next-branch-cursor" },
+    );
+    const { execute } = createExecutors(data);
+    const result = await resolveSiteEditorialFeed(
+      "consulting",
+      { first: 2, after: "current-branch-cursor" },
+      execute,
+    );
+
+    if (result.status !== "ready") {
+      throw new Error("Expected the branch editorial feed to be ready.");
+    }
+
+    expect(result.page.items.map((item) => item.databaseId)).toEqual([4, 2]);
+    expect(result.page.pageInfo).toEqual({
+      hasNextPage: true,
+      endCursor: "next-branch-cursor",
+    });
+  });
+
+  it("rejects invalid site-aware pagination before either transport", async () => {
+    const { execute, unfiltered, businessUnit } = createExecutors();
+
+    await expect(
+      resolveSiteEditorialFeed(
+        "realestate",
+        { first: 51, after: null },
+        execute,
+      ),
+    ).resolves.toMatchObject({
+      status: "invalid",
+      reason: "invalid-pagination-request",
+    });
+    expect(unfiltered).not.toHaveBeenCalled();
+    expect(businessUnit).not.toHaveBeenCalled();
+  });
+
+  it("does not retry an unfiltered operation after a branch failure", async () => {
+    const warning = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const unfiltered = vi.fn();
+    const businessUnit = vi.fn().mockRejectedValue(new Error("offline"));
+
+    await expect(
+      resolveSiteEditorialFeed(
+        "realestate",
+        { first: 10, after: null },
+        { unfiltered, businessUnit },
+      ),
+    ).resolves.toEqual({
+      status: "remote-error",
+      siteKey: "realestate",
+      errorName: "Error",
+    });
+    expect(unfiltered).not.toHaveBeenCalled();
+    warning.mockRestore();
+  });
+
   it("represents an empty native collection without fabricated content", () => {
     expect(normalizeEditorialFeed("consulting", createData([]))).toEqual({
       status: "empty",

@@ -1,4 +1,7 @@
 import {
+  SiraBusinessUnitEditorialFeedDocument,
+  type SiraBusinessUnitEditorialFeedQuery,
+  type SiraBusinessUnitEditorialFeedQueryVariables as GeneratedSiraBusinessUnitEditorialFeedQueryVariables,
   SiraEditorialFeedDocument,
   type SiraEditorialFeedQuery,
   type SiraEditorialFeedQueryVariables as GeneratedSiraEditorialFeedQueryVariables,
@@ -11,6 +14,10 @@ import {
 export type SiraEditorialFeedQueryData = SiraEditorialFeedQuery;
 export type SiraEditorialFeedQueryVariables =
   GeneratedSiraEditorialFeedQueryVariables;
+export type SiraBusinessUnitEditorialFeedQueryData =
+  SiraBusinessUnitEditorialFeedQuery;
+export type SiraBusinessUnitEditorialFeedQueryVariables =
+  GeneratedSiraBusinessUnitEditorialFeedQueryVariables;
 
 export const SIRA_EDITORIAL_FEED_QUERY: GraphQLOperation<
   SiraEditorialFeedQueryData,
@@ -19,3 +26,14 @@ export const SIRA_EDITORIAL_FEED_QUERY: GraphQLOperation<
   SiraEditorialFeedQueryData,
   SiraEditorialFeedQueryVariables
 >("SiraEditorialFeed", SiraEditorialFeedDocument.toString());
+
+export const SIRA_BUSINESS_UNIT_EDITORIAL_FEED_QUERY: GraphQLOperation<
+  SiraBusinessUnitEditorialFeedQueryData,
+  SiraBusinessUnitEditorialFeedQueryVariables
+> = defineGraphQLOperation<
+  SiraBusinessUnitEditorialFeedQueryData,
+  SiraBusinessUnitEditorialFeedQueryVariables
+>(
+  "SiraBusinessUnitEditorialFeed",
+  SiraBusinessUnitEditorialFeedDocument.toString(),
+);

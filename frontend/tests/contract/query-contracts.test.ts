@@ -3,12 +3,16 @@ import { buildSchema, parse, validate } from "graphql";
 import { describe, expect, it } from "vitest";
 import {
   SiraBrandDocument,
+  SiraBusinessUnitEditorialFeedDocument,
   SiraEditorialFeedDocument,
   SiraHomepageDocument,
   SiraNavigationDocument,
 } from "@/generated/graphql/graphql";
 import { SIRA_BRAND_QUERY } from "@/queries/brand";
-import { SIRA_EDITORIAL_FEED_QUERY } from "@/queries/editorial-feed";
+import {
+  SIRA_BUSINESS_UNIT_EDITORIAL_FEED_QUERY,
+  SIRA_EDITORIAL_FEED_QUERY,
+} from "@/queries/editorial-feed";
 import { SIRA_HOMEPAGE_QUERY } from "@/queries/homepage";
 import { SIRA_NAVIGATION_QUERY } from "@/queries/navigation";
 import { SIRA_PROJECTS_QUERY } from "@/queries/projects";
@@ -87,6 +91,47 @@ describe("approved SIRA GraphQL operation contracts", () => {
     expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toContain(
       "siraBusinessUnits",
     );
+  });
+
+  it("derives the filtered editorial operation from canonical Codegen output", () => {
+    expect(SIRA_BUSINESS_UNIT_EDITORIAL_FEED_QUERY.operationName).toBe(
+      "SiraBusinessUnitEditorialFeed",
+    );
+    expect(SIRA_BUSINESS_UNIT_EDITORIAL_FEED_QUERY.source).toBe(
+      SiraBusinessUnitEditorialFeedDocument.toString().trim(),
+    );
+    expect(
+      validate(
+        canonicalSchema,
+        parse(SIRA_BUSINESS_UNIT_EDITORIAL_FEED_QUERY.source),
+      ),
+    ).toEqual([]);
+  });
+
+  it("uses the canonical Business Unit slug lookup and native term connection", () => {
+    const source = SIRA_BUSINESS_UNIT_EDITORIAL_FEED_QUERY.source;
+
+    expect(source).toMatch(
+      /siraBusinessUnit\s*\(\s*id:\s*\$businessUnit,\s*idType:\s*SLUG\s*\)/u,
+    );
+    expect(source).toMatch(
+      /contentNodes\s*\(\s*first:\s*\$first\s+after:\s*\$after/u,
+    );
+    expect(source).toContain("hasNextPage");
+    expect(source).toContain("endCursor");
+    expect(source).toContain("orderby: [{field: DATE, order: DESC}]");
+
+    for (const type of [
+      "SIRA_NEWS",
+      "SIRA_INSIGHT",
+      "SIRA_ARTICLE",
+      "SIRA_PRESS_RELEASE",
+    ]) {
+      expect(source).toContain(type);
+    }
+
+    expect(source).not.toContain("siraEditorialFeed");
+    expect(source).not.toContain("siraBusinessUnits");
   });
 
   it("derives the homepage operation from canonical Codegen output", () => {

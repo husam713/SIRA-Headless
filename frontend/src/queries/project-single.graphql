@@ -1,0 +1,62 @@
+query SiraProjectSingle($uri: ID!) {
+  siraProject(id: $uri, idType: URI, asPreview: false) {
+    databaseId
+    title
+    uri
+    excerpt
+    content(format: RENDERED)
+    isRestricted
+    featuredImage {
+      node {
+        databaseId
+        sourceUrl
+        altText
+        isRestricted
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
+    projectDetails {
+      subtitle
+      location
+      status
+      gallery(first: 50) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          databaseId
+          sourceUrl
+          altText
+          isRestricted
+          mediaDetails {
+            width
+            height
+          }
+        }
+      }
+      statistics {
+        label
+        value
+      }
+      relatedCompany(first: 10) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          __typename
+          databaseId
+          isRestricted
+          ... on SiraCompany {
+            title
+            uri
+          }
+        }
+      }
+    }
+  }
+}

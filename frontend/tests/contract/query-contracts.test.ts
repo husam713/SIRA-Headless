@@ -1,5 +1,11 @@
 import { readFileSync } from "node:fs";
-import { buildSchema, isObjectType, parse, validate } from "graphql";
+import {
+  buildSchema,
+  isEnumType,
+  isObjectType,
+  parse,
+  validate,
+} from "graphql";
 import { describe, expect, it } from "vitest";
 import {
   SiraBrandDocument,
@@ -7,6 +13,7 @@ import {
   SiraEditorialFeedDocument,
   SiraHomepageDocument,
   SiraNavigationDocument,
+  SiraProjectSingleDocument,
   SiraProjectsDocument,
 } from "@/generated/graphql/graphql";
 import { SIRA_BRAND_QUERY } from "@/queries/brand";
@@ -17,6 +24,7 @@ import {
 import { SIRA_HOMEPAGE_QUERY } from "@/queries/homepage";
 import { SIRA_NAVIGATION_QUERY } from "@/queries/navigation";
 import { SIRA_PROJECTS_QUERY } from "@/queries/projects";
+import { SIRA_PROJECT_SINGLE_QUERY } from "@/queries/project-single";
 
 const canonicalSchema = buildSchema(
   readFileSync(
@@ -260,5 +268,62 @@ describe("approved SIRA GraphQL operation contracts", () => {
         ? project.getFields()["isRestricted"]?.type.toString()
         : null,
     ).toBe("Boolean");
+  });
+
+  it("derives the native project single operation from canonical Codegen output", () => {
+    expect(SIRA_PROJECT_SINGLE_QUERY.operationName).toBe(
+      "SiraProjectSingle",
+    );
+    expect(SIRA_PROJECT_SINGLE_QUERY.source).toBe(
+      SiraProjectSingleDocument.toString().trim(),
+    );
+    expect(
+      validate(canonicalSchema, parse(SIRA_PROJECT_SINGLE_QUERY.source)),
+    ).toEqual([]);
+  });
+
+  it("uses the native URI project lookup without a plural first-node fallback", () => {
+    const source = SIRA_PROJECT_SINGLE_QUERY.source;
+
+    expect(source).toMatch(
+      /siraProject\s*\(\s*id:\s*\$uri,\s*idType:\s*URI,\s*asPreview:\s*false\s*\)/u,
+    );
+    expect(source).not.toMatch(/\bsiraProjects\s*\(/u);
+    expect(source).not.toMatch(/first:\s*1\b/u);
+    expect(source).toContain("projectDetails");
+    expect(source).not.toContain("SiraProjectDetails");
+    expect(source).toContain("content(format: RENDERED)");
+    expect(source).toMatch(/gallery\s*\(\s*first:\s*50\s*\)/u);
+    expect(source).toMatch(
+      /relatedCompany\s*\(\s*first:\s*10\s*\)/u,
+    );
+    expect(source.match(/hasNextPage/gu)).toHaveLength(2);
+    expect(source.match(/endCursor/gu)).toHaveLength(2);
+  });
+
+  it("proves the native singular signature and complete locator enum", () => {
+    const rootQuery = canonicalSchema.getQueryType();
+    const field = rootQuery?.getFields()["siraProject"];
+    const locatorEnum = canonicalSchema.getType("SiraProjectIdType");
+
+    expect(field?.type.toString()).toBe("SiraProject");
+    expect(
+      Object.fromEntries(
+        field?.args.map((argument) => [
+          argument.name,
+          argument.type.toString(),
+        ]) ?? [],
+      ),
+    ).toEqual({
+      asPreview: "Boolean",
+      id: "ID!",
+      idType: "SiraProjectIdType",
+    });
+    expect(isEnumType(locatorEnum)).toBe(true);
+    expect(
+      isEnumType(locatorEnum)
+        ? locatorEnum.getValues().map((value) => value.name)
+        : [],
+    ).toEqual(["DATABASE_ID", "ID", "SLUG", "URI"]);
   });
 });

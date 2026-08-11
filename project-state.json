@@ -1,23 +1,31 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-11T07:11:00+03:00",
+  "updatedAt": "2026-08-11T08:07:00+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.3C",
   "currentSubstage": "B1",
-  "executionBranch": "step-2c3c-typed-query-contracts",
+  "executionBranch": "main",
   "executionBaseline": "d59035d4ec2a97aa9524cf0b4788606745be245a",
-  "executionHead": "c26b658b4dfafb82c04af42ca880e6894aefcf0d",
+  "executionHead": "e2a0d425cd7fe435981427d9be33a6e6f9d8f436",
   "latestApprovedMilestone": "Step 2C.3B",
   "latestApprovedTag": "step-2c3b-approved",
   "productionAuthorized": false,
   "repositoryEvidencePolicy": "evidence-first",
   "governance": {
-    "g0Bootstrap": "MERGED",
+    "g0Bootstrap": "COMPLETE",
     "g0MergeCommit": "c26b658b4dfafb82c04af42ca880e6894aefcf0d",
-    "g0cGitHubGovernance": "IN_PROGRESS",
-    "g0cWorkingBranch": "chore/github-governance-ci",
-    "targetCanonicalBranch": "main",
-    "targetCanonicalBranchStatus": "PROPOSED_NOT_CUT_OVER"
+    "g0cGitHubGovernance": "COMPLETE",
+    "g0cMergeCommit": "e2a0d425cd7fe435981427d9be33a6e6f9d8f436",
+    "canonicalBranch": "main",
+    "defaultBranch": "main",
+    "branchProtection": "CONFIGURED_NOT_ENFORCED",
+    "branchProtectionReason": "GitHub plan limitation for this private repository",
+    "compensatingControls": [
+      "pull-request workflow",
+      "frontend CI",
+      "owner approval before merge",
+      "no direct agent merge to main"
+    ]
   },
   "nextMajorStages": [
     "2C.3C typed frontend query contracts",
@@ -37,13 +45,18 @@
   "knownGovernanceIssues": [
     {
       "id": "GOV-001",
-      "status": "OPEN",
-      "summary": "Repository default branch is step-2c2a-inventory. G0-C proposes main as the canonical protected integration branch; default-branch cutover is not yet performed."
+      "status": "CLOSED",
+      "summary": "Repository default branch is main."
     },
     {
       "id": "GOV-002",
-      "status": "IN_PROGRESS",
-      "summary": "Frontend GitHub Actions CI is being introduced in G0-C and must produce real workflow evidence before this issue can be closed."
+      "status": "CLOSED",
+      "summary": "Frontend GitHub Actions CI is installed and has successful workflow evidence from G0-C."
+    },
+    {
+      "id": "GOV-003",
+      "status": "WARNING",
+      "summary": "A main branch protection rule is configured but GitHub reports it is not enforced for this private repository under the current plan; PR + CI + owner approval remain compensating controls."
     }
   ]
 }

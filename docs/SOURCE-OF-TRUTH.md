@@ -21,16 +21,16 @@ A later verified artifact may temporarily supersede repository source for a spec
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Current governed frontend baseline/head: `ace3d058a688dbe1a483b5a1f60f742bfe85cc5b`
-- Latest accepted increment: Step 2C.3C-B1
-- B1 PR / implementation / merge: `#5` / `d0b0d7fae5aa0870487335e066e51d56010e2137` / `ace3d058a688dbe1a483b5a1f60f742bfe85cc5b`
+- Current governed frontend baseline/head: `5efc1ef7b1a49418aaa4258ed250cc6f9541474c`
+- Latest accepted increment: Step 2C.3C-B2
+- B2 PR / implementation / merge: `#6` / `63d4bac028f6760bd57e522bd4a5f88622c797eb` / `5efc1ef7b1a49418aaa4258ed250cc6f9541474c`
 - Approved tag: `step-2c3b-approved`
 - Checked-in canonical live schema: `frontend/schema/wpgraphql.graphql`
 - Group audit schema: `frontend/schema/wpgraphql.group.graphql`
 - Metadata: `frontend/schema/wpgraphql.meta.json`
 - Compatibility evidence: `frontend/schema/wpgraphql.compatibility.json`
 
-The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. B1 Frontend CI run #5 passed before owner acceptance and merge.
+The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. B2 Frontend CI run #7 passed before owner acceptance and merge.
 
 ## Current backend source status
 

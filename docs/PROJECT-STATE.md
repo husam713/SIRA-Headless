@@ -5,11 +5,11 @@ Last reconciled from repository and GitHub evidence: 2026-08-11
 ## Current execution state
 
 - **Current business stage:** Step 2C.3C — Typed Frontend Query Contracts
-- **Current substage:** B2 — Homepage Contract + Typed Brand Banner Server Adapter
+- **Current substage:** B3 — Native Navigation + Footer/Legal Contracts
 - **Canonical integration/default branch:** `main`
-- **Business-code baseline:** `ace3d058a688dbe1a483b5a1f60f742bfe85cc5b`
-- **Current governed integration head:** `ace3d058a688dbe1a483b5a1f60f742bfe85cc5b`
-- **Latest approved business milestone:** Step 2C.3C-B1
+- **Business-code baseline:** `5efc1ef7b1a49418aaa4258ed250cc6f9541474c`
+- **Current governed integration head:** `5efc1ef7b1a49418aaa4258ed250cc6f9541474c`
+- **Latest approved business milestone:** Step 2C.3C-B2
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
@@ -18,6 +18,8 @@ G0 — AI Engineering Governance Bootstrap is complete and merged at `c26b658b4d
 G0-C — GitHub Governance + CI is complete and merged at `e2a0d425cd7fe435981427d9be33a6e6f9d8f436`. The repository default branch is now `main`, and `main` is the canonical integration branch.
 
 Step 2C.3C-B1 is owner accepted and merged through PR `#5` at `ace3d058a688dbe1a483b5a1f60f742bfe85cc5b`. Its implementation head is `d0b0d7fae5aa0870487335e066e51d56010e2137`, and Frontend CI run #5 passed.
+
+Step 2C.3C-B2 is owner accepted and merged through PR `#6` at `5efc1ef7b1a49418aaa4258ed250cc6f9541474c`. Its implementation head is `63d4bac028f6760bd57e522bd4a5f88622c797eb`, and Frontend CI run #7 passed.
 
 ## GitHub governance status
 
@@ -51,6 +53,8 @@ The lack of platform enforcement is a documented GitHub-plan limitation, not a b
 - Step 2C.3B approved tag at `d59035d`
 - Step 2C.3C-B1 generated runtime brand contract bridge and typed banner query contract
 - Step 2C.3C-B1 owner acceptance, Frontend CI, and merge through PR `#5` at `ace3d058`
+- Step 2C.3C-B2 canonical homepage contract/server adapter and typed brand banner server normalization
+- Step 2C.3C-B2 owner acceptance, Frontend CI, and merge through PR `#6` at `5efc1ef`
 - G0 evidence-first AI engineering governance
 - G0-C GitHub governance and executable Frontend CI
 - canonical/default branch cutover to `main`
@@ -95,9 +99,9 @@ Before Step 2C.3C can be accepted, the typed frontend contract layer must cover:
 
 Production visual components remain out of scope for this stage.
 
-## Current B2 execution policy
+## Current B3 execution policy
 
-Step 2C.3C-B2 branches from governed `main` at the accepted B1 merge and implements only the canonical homepage operation/runtime server adapter plus typed brand banner server normalization. It must preserve the existing GraphQL clients, cache architecture, site registry, generated-contract ownership, and server-only boundaries.
+Step 2C.3C-B3 branches from governed `main` at the accepted B2 merge and implements only native WPGraphQL navigation plus stable primary/footer/legal server contracts. It must preserve the existing GraphQL clients, cache architecture, site registry, generated-contract ownership, and server-only boundaries. Missing or unassigned menus remain Step 2C.3D CMS-readiness results and must not be hidden with frontend hardcoding.
 
 Required delivery flow:
 

@@ -5,11 +5,11 @@ Last reconciled from repository and GitHub evidence: 2026-08-11
 ## Current execution state
 
 - **Current business stage:** Step 2C.3C — Typed Frontend Query Contracts
-- **Current substage:** B5 — Business Unit Filtering Contract
+- **Current substage:** B6 — Project Archive Contract
 - **Canonical integration/default branch:** `main`
-- **Business-code baseline:** `684bce5b51f977e078029870b085a15b2204ad60`
-- **Current governed integration head:** `684bce5b51f977e078029870b085a15b2204ad60`
-- **Latest approved business milestone:** Step 2C.3C-B4
+- **Business-code baseline:** `00022da346777ce67acc92b0c53c07627e1d85e3`
+- **Current governed integration head:** `00022da346777ce67acc92b0c53c07627e1d85e3`
+- **Latest approved business milestone:** Step 2C.3C-B5
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
@@ -24,6 +24,8 @@ Step 2C.3C-B2 is owner accepted and merged through PR `#6` at `5efc1ef7b1a49418a
 Step 2C.3C-B3 is owner accepted and merged through PR `#7` at `2653a66f8c6a469be9412e173abd4f6216725e9b`. Its implementation head is `0e35146a41941c3d400fb8aa55e4a19b6c6791dd`, and Frontend CI run #9 passed.
 
 Step 2C.3C-B4 is owner accepted and merged through PR `#8` at `684bce5b51f977e078029870b085a15b2204ad60`. Its implementation head is `e31ce8e793601266be4ae8064ebb0f5fa74c2e81`, and Frontend CI run #11 passed.
+
+Step 2C.3C-B5 is owner accepted and merged through PR `#9` at `00022da346777ce67acc92b0c53c07627e1d85e3`. Its implementation head is `9fec2ea30c36cab62c1af4f576429bea3ea42628`, and Frontend CI run #13 passed.
 
 ## GitHub governance status
 
@@ -63,6 +65,8 @@ The lack of platform enforcement is a documented GitHub-plan limitation, not a b
 - Step 2C.3C-B3 owner acceptance, Frontend CI, and merge through PR `#7` at `2653a66`
 - Step 2C.3C-B4 native WPGraphQL editorial feed and stable cursor-paginated server contract
 - Step 2C.3C-B4 owner acceptance, Frontend CI, and merge through PR `#8` at `684bce5`
+- Step 2C.3C-B5 site-aware server-side Business Unit filtering with stable cursor pagination
+- Step 2C.3C-B5 owner acceptance, Frontend CI, and merge through PR `#9` at `00022da`
 - G0 evidence-first AI engineering governance
 - G0-C GitHub governance and executable Frontend CI
 - canonical/default branch cutover to `main`
@@ -107,9 +111,9 @@ Before Step 2C.3C can be accepted, the typed frontend contract layer must cover:
 
 Production visual components remain out of scope for this stage.
 
-## Current B5 execution policy
+## Current B6 execution policy
 
-Step 2C.3C-B5 branches from governed `main` at the accepted B4 merge and implements only site-aware, server-side Business Unit filtering over the accepted native WPGraphQL editorial feed. It must preserve B4 content types, ordering, cursor pagination, normalization, result states, GraphQL clients, cache architecture, site registry, generated-contract ownership, and server-only boundaries. Group remains unfiltered by default; branches must never fall back to unfiltered content.
+Step 2C.3C-B6 branches from governed `main` at the accepted B5 merge and implements only the generated, server-only project archive contract. It must use canonical shared-schema project coordinates, preserve trusted site isolation and cursor pagination, remove project-single overfetch, and return explicit normalized result states without fabricated or cross-site fallback content.
 
 Required delivery flow:
 

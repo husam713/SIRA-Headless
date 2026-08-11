@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { buildSchema, parse, validate } from "graphql";
+import { buildSchema, isObjectType, parse, validate } from "graphql";
 import { describe, expect, it } from "vitest";
 import {
   SiraBrandDocument,
@@ -7,6 +7,7 @@ import {
   SiraEditorialFeedDocument,
   SiraHomepageDocument,
   SiraNavigationDocument,
+  SiraProjectsDocument,
 } from "@/generated/graphql/graphql";
 import { SIRA_BRAND_QUERY } from "@/queries/brand";
 import {
@@ -188,10 +189,76 @@ describe("approved SIRA GraphQL operation contracts", () => {
     expect(SIRA_NAVIGATION_QUERY.source).not.toMatch(/\b(name|slug)\b/u);
   });
 
-  it("queries projects through the Step 1A GraphQL plural name", () => {
+  it("derives the project archive operation from canonical Codegen output", () => {
     expect(SIRA_PROJECTS_QUERY.operationName).toBe("SiraProjects");
-    expect(SIRA_PROJECTS_QUERY.source).toContain("siraProjects");
+    expect(SIRA_PROJECTS_QUERY.source).toBe(
+      SiraProjectsDocument.toString().trim(),
+    );
+    expect(
+      validate(canonicalSchema, parse(SIRA_PROJECTS_QUERY.source)),
+    ).toEqual([]);
+  });
+
+  it("uses the canonical lightweight project archive coordinates", () => {
+    expect(SIRA_PROJECTS_QUERY.source).toMatch(
+      /siraProjects\s*\(\s*first:\s*\$first,\s*after:\s*\$after\s*\)/u,
+    );
+    expect(SIRA_PROJECTS_QUERY.source).toContain("hasNextPage");
+    expect(SIRA_PROJECTS_QUERY.source).toContain("endCursor");
+    expect(SIRA_PROJECTS_QUERY.source).toContain("isRestricted");
     expect(SIRA_PROJECTS_QUERY.source).toContain("projectDetails");
+    expect(SIRA_PROJECTS_QUERY.source).toContain("subtitle");
+    expect(SIRA_PROJECTS_QUERY.source).toContain("location");
+    expect(SIRA_PROJECTS_QUERY.source).toContain("status");
+    expect(SIRA_PROJECTS_QUERY.source).not.toContain("SiraProjectDetails");
+    expect(SIRA_PROJECTS_QUERY.source).not.toMatch(
+      /\b(gallery|statistics|relatedCompany|slug|content|date|modified)\b/u,
+    );
+    expect(SIRA_PROJECTS_QUERY.source).not.toContain("orderby");
     expect(SIRA_PROJECTS_QUERY.source).not.toContain("_sira_");
+  });
+
+  it("proves the shared project connection and ProjectDetails schema types", () => {
+    const rootQuery = canonicalSchema.getQueryType();
+    const projectConnection = canonicalSchema.getType(
+      "RootQueryToSiraProjectConnection",
+    );
+    const project = canonicalSchema.getType("SiraProject");
+
+    expect(rootQuery).toBeDefined();
+    expect(rootQuery?.getFields()["siraProjects"]?.type.toString()).toBe(
+      "RootQueryToSiraProjectConnection",
+    );
+    expect(
+      Object.fromEntries(
+        rootQuery?.getFields()["siraProjects"]?.args.map((argument) => [
+          argument.name,
+          argument.type.toString(),
+        ]) ?? [],
+      ),
+    ).toEqual({
+      after: "String",
+      before: "String",
+      first: "Int",
+      last: "Int",
+      where: "RootQueryToSiraProjectConnectionWhereArgs",
+    });
+    expect(isObjectType(projectConnection)).toBe(true);
+    expect(
+      isObjectType(projectConnection)
+        ? projectConnection.getFields()["nodes"]?.type.toString()
+        : null,
+    ).toBe("[SiraProject!]!");
+    expect(isObjectType(project)).toBe(true);
+    expect(
+      isObjectType(project)
+        ? project.getFields()["projectDetails"]?.type.toString()
+        : null,
+    ).toBe("ProjectDetails");
+    expect(
+      isObjectType(project)
+        ? project.getFields()["isRestricted"]?.type.toString()
+        : null,
+    ).toBe("Boolean");
   });
 });

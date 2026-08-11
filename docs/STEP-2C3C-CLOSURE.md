@@ -56,7 +56,7 @@ Classification meanings are defined in `docs/tasks/step-2c3c-closure.md`. No `BL
 | Requirement | Classification | Repository evidence |
 | --- | --- | --- |
 | Native `contentNodes` | PASS | `frontend/src/queries/editorial-feed.graphql` and generated `SiraEditorialFeedDocument` |
-| Accepted editorial types | PASS | Article, News, Perspective, and Publication discriminators are selected and normalized |
+| Accepted editorial types | PASS | News, Insight, Article, and Press Release (`SIRA_NEWS`, `SIRA_INSIGHT`, `SIRA_ARTICLE`, `SIRA_PRESS_RELEASE`; `SiraNewsItem`, `SiraInsight`, `SiraArticle`, `SiraPressRelease`) are selected and normalized |
 | Cursor pagination and stable order | PASS | Opaque `after`, bounded `first`, pageInfo preservation, and `DATE DESC` operation ordering |
 | Unfiltered root Group feed | PASS | Group dispatches to the native unfiltered operation |
 | No `siraEditorialFeed` custom API | PASS | Canonical operation and cumulative structural test |
@@ -89,7 +89,7 @@ Classification meanings are defined in `docs/tasks/step-2c3c-closure.md`. No `BL
 | Requirement | Classification | Repository evidence |
 | --- | --- | --- |
 | Native singular `siraProject` | PASS | Dedicated `frontend/src/queries/project-single.graphql`; no plural first-node lookup |
-| URI lookup | PASS | Generated variables use `SiraProjectIdType.URI`; locator validation precedes transport |
+| URI lookup | PASS | The operation hard-codes `idType: URI` for the `$uri: ID!` locator; `URI` is verified as a member of `SiraProjectIdType`, and locator validation precedes transport |
 | Complete `SiraProjectIdType` evidence | PASS | Checked-in schema and closure test verify `DATABASE_ID`, `ID`, `SLUG`, `URI` |
 | Published operation fixes `asPreview: false` | PASS | Generated operation call explicitly supplies `false`; authenticated preview is not introduced |
 | `ProjectDetails`, never `SiraProjectDetails` | PASS | Canonical field/type naming is asserted against operations and repository sources |

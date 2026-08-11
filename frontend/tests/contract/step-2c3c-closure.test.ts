@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { buildSchema, isEnumType, parse, validate } from "graphql";
+import { buildSchema, isEnumType, Kind, parse, validate, visit } from "graphql";
 import { describe, expect, it } from "vitest";
 import {
   SiraBrandDocument,
@@ -53,6 +53,37 @@ const operations = [
     SiraProjectSingleDocument.toString().trim(),
   ],
 ] as const;
+
+const ACCEPTED_EDITORIAL_CONTENT_TYPES = [
+  "SIRA_NEWS",
+  "SIRA_INSIGHT",
+  "SIRA_ARTICLE",
+  "SIRA_PRESS_RELEASE",
+] as const;
+
+function editorialContentTypeLists(source: string): readonly string[][] {
+  const contentTypeLists: string[][] = [];
+
+  visit(parse(source), {
+    ObjectField(node) {
+      if (node.name.value !== "contentTypes" || node.value.kind !== Kind.LIST) {
+        return;
+      }
+
+      contentTypeLists.push(
+        node.value.values.map((value) => {
+          if (value.kind !== Kind.ENUM) {
+            throw new Error("Editorial contentTypes must contain enum literals.");
+          }
+
+          return value.value;
+        }),
+      );
+    },
+  });
+
+  return contentTypeLists;
+}
 
 describe("Step 2C.3C cumulative closure contract", () => {
   it("keeps every B1-B7 operation generated and canonical-schema valid", () => {
@@ -127,6 +158,15 @@ describe("Step 2C.3C cumulative closure contract", () => {
     expect(SIRA_BUSINESS_UNIT_EDITORIAL_FEED_QUERY.source).toMatch(
       /siraBusinessUnit\s*\(\s*id:\s*\$businessUnit,\s*idType:\s*SLUG/u,
     );
+
+    for (const operation of [
+      SIRA_EDITORIAL_FEED_QUERY,
+      SIRA_BUSINESS_UNIT_EDITORIAL_FEED_QUERY,
+    ]) {
+      expect(editorialContentTypeLists(operation.source)).toEqual([
+        ACCEPTED_EDITORIAL_CONTENT_TYPES,
+      ]);
+    }
 
     expect({
       group: getEditorialBusinessUnit("group"),

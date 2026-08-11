@@ -1,0 +1,37 @@
+query SiraNavigation {
+  primary: menus(first: 2, where: { location: PRIMARY }) {
+    ...SiraNavigationMenuCollection
+  }
+  footer: menus(first: 2, where: { location: FOOTER }) {
+    ...SiraNavigationMenuCollection
+  }
+  legal: menus(first: 2, where: { location: LEGAL }) {
+    ...SiraNavigationMenuCollection
+  }
+}
+
+fragment SiraNavigationMenuCollection on RootQueryToMenuConnection {
+  pageInfo {
+    hasNextPage
+  }
+  nodes {
+    databaseId
+    isRestricted
+    locations
+    menuItems(first: 200) {
+      pageInfo {
+        hasNextPage
+      }
+      nodes {
+        databaseId
+        isRestricted
+        label
+        order
+        parentDatabaseId
+        path
+        target
+        url
+      }
+    }
+  }
+}

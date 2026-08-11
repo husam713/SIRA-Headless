@@ -5,11 +5,11 @@ Last reconciled from repository and GitHub evidence: 2026-08-11
 ## Current execution state
 
 - **Current business stage:** Step 2C.3C — Typed Frontend Query Contracts
-- **Current substage:** B3 — Native Navigation + Footer/Legal Contracts
+- **Current substage:** B4 — Native Editorial / Newsroom Feed Contract
 - **Canonical integration/default branch:** `main`
-- **Business-code baseline:** `5efc1ef7b1a49418aaa4258ed250cc6f9541474c`
-- **Current governed integration head:** `5efc1ef7b1a49418aaa4258ed250cc6f9541474c`
-- **Latest approved business milestone:** Step 2C.3C-B2
+- **Business-code baseline:** `2653a66f8c6a469be9412e173abd4f6216725e9b`
+- **Current governed integration head:** `2653a66f8c6a469be9412e173abd4f6216725e9b`
+- **Latest approved business milestone:** Step 2C.3C-B3
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
@@ -20,6 +20,8 @@ G0-C — GitHub Governance + CI is complete and merged at `e2a0d425cd7fe43598142
 Step 2C.3C-B1 is owner accepted and merged through PR `#5` at `ace3d058a688dbe1a483b5a1f60f742bfe85cc5b`. Its implementation head is `d0b0d7fae5aa0870487335e066e51d56010e2137`, and Frontend CI run #5 passed.
 
 Step 2C.3C-B2 is owner accepted and merged through PR `#6` at `5efc1ef7b1a49418aaa4258ed250cc6f9541474c`. Its implementation head is `63d4bac028f6760bd57e522bd4a5f88622c797eb`, and Frontend CI run #7 passed.
+
+Step 2C.3C-B3 is owner accepted and merged through PR `#7` at `2653a66f8c6a469be9412e173abd4f6216725e9b`. Its implementation head is `0e35146a41941c3d400fb8aa55e4a19b6c6791dd`, and Frontend CI run #9 passed.
 
 ## GitHub governance status
 
@@ -55,6 +57,8 @@ The lack of platform enforcement is a documented GitHub-plan limitation, not a b
 - Step 2C.3C-B1 owner acceptance, Frontend CI, and merge through PR `#5` at `ace3d058`
 - Step 2C.3C-B2 canonical homepage contract/server adapter and typed brand banner server normalization
 - Step 2C.3C-B2 owner acceptance, Frontend CI, and merge through PR `#6` at `5efc1ef`
+- Step 2C.3C-B3 native WPGraphQL navigation and stable primary/footer/legal server contracts
+- Step 2C.3C-B3 owner acceptance, Frontend CI, and merge through PR `#7` at `2653a66`
 - G0 evidence-first AI engineering governance
 - G0-C GitHub governance and executable Frontend CI
 - canonical/default branch cutover to `main`
@@ -99,9 +103,9 @@ Before Step 2C.3C can be accepted, the typed frontend contract layer must cover:
 
 Production visual components remain out of scope for this stage.
 
-## Current B3 execution policy
+## Current B4 execution policy
 
-Step 2C.3C-B3 branches from governed `main` at the accepted B2 merge and implements only native WPGraphQL navigation plus stable primary/footer/legal server contracts. It must preserve the existing GraphQL clients, cache architecture, site registry, generated-contract ownership, and server-only boundaries. Missing or unassigned menus remain Step 2C.3D CMS-readiness results and must not be hidden with frontend hardcoding.
+Step 2C.3C-B4 branches from governed `main` at the accepted B3 merge and implements only the unfiltered native WPGraphQL editorial/newsroom feed contract. It must preserve the existing GraphQL clients, cache architecture, site registry, generated-contract ownership, and server-only boundaries. Business Unit filtering remains deferred to B5, and empty CMS content must not be hidden with frontend hardcoding.
 
 Required delivery flow:
 

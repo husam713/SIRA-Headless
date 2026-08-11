@@ -4,35 +4,28 @@
 
 G0-C — GitHub Governance + CI
 
-This document defines the target repository workflow. It does not by itself change GitHub repository settings.
+**Status: COMPLETE / MERGED**
+
+Merged integration commit:
+
+`e2a0d425cd7fe435981427d9be33a6e6f9d8f436`
+
+The repository default branch is now `main`, and `main` is the canonical integration branch.
 
 ## Canonical branch model
-
-Target model after G0-C acceptance:
 
 - `main` — canonical integration branch containing the latest approved integrated project state.
 - `feature/*` — scoped feature work.
 - `fix/*` — scoped defect correction.
 - `chore/*` — tooling, governance, documentation, and maintenance work.
 - approved tags — immutable milestone and rollback references.
-- historical `step-*` branches — retained during migration-history consolidation; do not delete them as part of G0-C.
+- historical `step-*` branches — retained during migration-history consolidation; do not delete them without a separately approved cleanup stage.
 
 A separate long-lived `develop` branch is not justified at the current project size and stage.
 
-## Current transitional state
-
-At the start of G0-C:
-
-- repository default branch: `step-2c2a-inventory`;
-- current integration/execution branch: `step-2c3c-typed-query-contracts`;
-- current execution head after G0: `c26b658b4dfafb82c04af42ca880e6894aefcf0d`;
-- latest approved business tag: `step-2c3b-approved` at `d59035d4ec2a97aa9524cf0b4788606745be245a`.
-
-The default branch must not be changed until G0-C is accepted.
-
 ## Pull request policy
 
-All normal changes to the canonical branch should arrive through a Pull Request.
+All normal changes to `main` should arrive through a Pull Request.
 
 Every PR must record:
 
@@ -47,22 +40,34 @@ Every PR must record:
 
 The repository PR template is the default evidence form.
 
-## Target branch protection
+## Branch protection status
 
-After `main` exists and becomes the repository default, configure protection/rules so that `main`:
+A branch protection rule is configured for `main`.
 
-- requires a Pull Request before merge;
-- requires the frontend CI check for frontend-impacting changes;
-- blocks force pushes;
-- blocks branch deletion;
-- keeps administrator bypass available only for deliberate recovery when required;
-- does not enable automatic production deployment merely because a PR merged.
+GitHub currently reports that the rule is **not enforced** for this private repository under the current plan. This is a platform/account-plan limitation and must not be represented as active enforcement.
 
-If GitHub plan/settings make a specific protection control unavailable, record that limitation rather than pretending it is active.
+Current status:
+
+- rule configured: YES;
+- rule enforced: NO;
+- reason: GitHub plan limitation for this private repository;
+- upgrade required for current SIRA development: NO.
+
+Compensating project controls:
+
+- use Pull Requests for normal changes to `main`;
+- require Frontend CI for frontend-impacting changes;
+- require owner approval before merge;
+- engineering agents must not directly merge to `main` without explicit owner approval;
+- do not force-push shared history;
+- do not delete `main`, approved tags, or rollback branches without explicit owner approval;
+- merging source code does not authorize production deployment.
+
+If the GitHub plan changes later, enforce equivalent repository rules at the platform level and record the change as governance evidence.
 
 ## CI policy
 
-`.github/workflows/frontend-ci.yml` is the initial executable evidence gate for the current frontend migration stage.
+`.github/workflows/frontend-ci.yml` is the executable evidence gate for the current frontend migration stage.
 
 It intentionally uses only checked-in/offline schema artifacts and does not perform live WordPress introspection or use WordPress credentials.
 
@@ -80,36 +85,50 @@ Required frontend CI sequence:
 
 No CI step may require a WordPress Application Password, schema authorization token, or other production credential.
 
+G0-C produced successful Frontend CI evidence before merge.
+
 ## Backend CI boundary
 
 SOT-001 remains open: the GitHub `backend/` tree is not yet proven to be the latest cumulative backend source. Do not add or interpret backend CI as production acceptance until that source is reconciled.
 
 Existing backend static validation remains useful historical/source evidence, but new backend runtime work is blocked by SOT-001.
 
-## G0-C cutover sequence
+## Completed G0-C cutover
 
-After this governance/CI PR is validated and explicitly approved:
+The approved cutover completed these governance changes:
 
-1. merge G0-C into `step-2c3c-typed-query-contracts`;
-2. create/move `main` to that accepted integrated commit;
-3. change the GitHub default branch from `step-2c2a-inventory` to `main`;
-4. configure branch protection/rules for `main`;
-5. synchronize `project-state.json` and `docs/PROJECT-STATE.md` so `main` is the canonical integration branch;
-6. branch Step 2C.3C-B1 implementation work from the governed `main` state;
-7. retain old stage branches/tags until migration cleanup is separately approved.
+1. G0-C was merged into the active integration history;
+2. `main` was established at the accepted integrated state;
+3. the repository default branch was changed to `main`;
+4. a `main` branch protection rule was configured;
+5. platform enforcement was found unavailable under the current GitHub plan and is documented as GOV-003;
+6. Frontend CI was installed and validated;
+7. historical stage branches and approved tags were retained.
+
+The remaining closeout action is to keep durable project-state files synchronized with this evidence.
+
+## Step 2C.3C working model
+
+New Step 2C.3C implementation work branches from `main` using focused branches such as:
+
+- `feature/2c3c-b1-brand-contract`;
+- later focused `feature/*` branches for homepage, navigation, editorial, and project contracts as approved.
+
+Expected flow:
+
+`main` -> feature branch -> implementation -> validation -> PR -> Frontend CI -> review -> owner approval -> merge.
 
 ## Protected operations
 
 Require explicit owner approval before:
 
-- merging G0-C or later feature PRs into the canonical integration branch;
+- merging feature/governance PRs into `main`;
 - force pushing or rewriting shared history;
 - deleting approved tags or historical rollback branches;
 - production deployment/cutover;
-- DNS or production secret changes.
+- DNS or production secret changes;
+- destructive WordPress/database operations.
 
 ## Rollback
 
-Before default-branch cutover, rollback is simply to close G0-C without merge.
-
-After cutover, the previous integration history remains reachable through the historical branches and approved tags. Never delete those rollback references during the same operation that establishes `main`.
+Historical stage branches and approved tags remain rollback evidence. Never delete rollback references during the same operation that changes integration governance or deploys a milestone.

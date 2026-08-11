@@ -21,16 +21,16 @@ A later verified artifact may temporarily supersede repository source for a spec
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Current governed frontend baseline/head: `a116fea3514af457a54a0df1d5f4e86e4badbeba`
-- Latest accepted increment: Step 2C.3C-B6
-- B6 PR / implementation / merge: `#10` / `f392cfbb022e1928011ff2b28f7955b9e9acb6b0` / `a116fea3514af457a54a0df1d5f4e86e4badbeba`
+- Current governed frontend baseline/head: `73f41e88a5d1016e2cdd586991765d992a513416`
+- Latest accepted increment: Step 2C.3C-B7
+- B7 PR / implementation / merge: `#11` / `851b85b3d685ae1304466dc5baecadc87bcd1b90` / `73f41e88a5d1016e2cdd586991765d992a513416`
 - Approved tag: `step-2c3b-approved`
 - Checked-in canonical live schema: `frontend/schema/wpgraphql.graphql`
 - Group audit schema: `frontend/schema/wpgraphql.group.graphql`
 - Metadata: `frontend/schema/wpgraphql.meta.json`
 - Compatibility evidence: `frontend/schema/wpgraphql.compatibility.json`
 
-The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. B6 Frontend CI run #15 and the full 20-file / 158-test regression passed before owner acceptance and merge.
+The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. B7 Frontend CI run #17 passed on implementation head `851b85b3d685ae1304466dc5baecadc87bcd1b90`, and the full 21-file / 174-test regression passed before owner acceptance and merge. The cumulative Step 2C.3C closure gate is validation-only and does not supersede the open backend conflict or authorize production.
 
 ## Current backend source status
 

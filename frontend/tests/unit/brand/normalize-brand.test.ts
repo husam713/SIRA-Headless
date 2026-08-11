@@ -27,6 +27,8 @@ function createBrand(
     socialProfiles: null,
     announcementBanner: null,
     emergencyBanner: null,
+    announcement: null,
+    emergency: null,
     ...overrides,
   };
 }

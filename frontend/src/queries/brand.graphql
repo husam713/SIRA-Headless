@@ -63,5 +63,33 @@ query SiraBrand {
 
     announcementBanner
     emergencyBanner
+
+    announcement {
+      message
+      severity
+      link {
+        label
+        url
+        target
+      }
+      startsAt
+      endsAt
+      dismissible
+      revisionKey
+    }
+
+    emergency {
+      message
+      severity
+      link {
+        label
+        url
+        target
+      }
+      startsAt
+      endsAt
+      dismissible
+      revisionKey
+    }
   }
 }

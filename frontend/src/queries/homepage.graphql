@@ -1,0 +1,31 @@
+query SiraHomepage($asPreview: Boolean = false) {
+  page(id: "/", idType: URI, asPreview: $asPreview) {
+    databaseId
+    uri
+    title
+
+    siraHomepage {
+      variant
+
+      groupHomepage {
+        hero {
+          headingBefore
+          headingHighlight
+          headingAfter
+          description
+        }
+      }
+
+      branchHomepage {
+        hero {
+          eyebrow
+          headingBefore
+          headingHighlight
+          headingAfter
+          description
+          region
+        }
+      }
+    }
+  }
+}

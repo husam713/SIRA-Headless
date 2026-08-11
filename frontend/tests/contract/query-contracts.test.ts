@@ -1,7 +1,20 @@
+import { readFileSync } from "node:fs";
+import { buildSchema, parse, validate } from "graphql";
 import { describe, expect, it } from "vitest";
-import { SiraBrandDocument } from "@/generated/graphql/graphql";
+import {
+  SiraBrandDocument,
+  SiraHomepageDocument,
+} from "@/generated/graphql/graphql";
 import { SIRA_BRAND_QUERY } from "@/queries/brand";
+import { SIRA_HOMEPAGE_QUERY } from "@/queries/homepage";
 import { SIRA_PROJECTS_QUERY } from "@/queries/projects";
+
+const canonicalSchema = buildSchema(
+  readFileSync(
+    new URL("../../schema/wpgraphql.graphql", import.meta.url),
+    "utf8",
+  ),
+);
 
 describe("approved SIRA GraphQL operation contracts", () => {
   it("derives the curated public brand operation from Codegen output", () => {
@@ -25,6 +38,31 @@ describe("approved SIRA GraphQL operation contracts", () => {
     expect(SIRA_BRAND_QUERY.source).not.toContain("analyticsId");
     expect(SIRA_BRAND_QUERY.source).not.toContain("rawOptions");
     expect(SIRA_BRAND_QUERY.source).not.toContain("_sira_");
+  });
+
+  it("derives the homepage operation from canonical Codegen output", () => {
+    expect(SIRA_HOMEPAGE_QUERY.operationName).toBe("SiraHomepage");
+    expect(SIRA_HOMEPAGE_QUERY.source).toBe(
+      SiraHomepageDocument.toString().trim(),
+    );
+    expect(
+      validate(canonicalSchema, parse(SIRA_HOMEPAGE_QUERY.source)),
+    ).toEqual([]);
+  });
+
+  it("uses only the approved root URI and canonical homepage variants", () => {
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain(
+      'page(id: "/", idType: URI, asPreview: $asPreview)',
+    );
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("siraHomepage");
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("groupHomepage");
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("branchHomepage");
+    expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("pages(");
+    expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("first:");
+    expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("/home");
+    expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("analyticsId");
+    expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("rawOptions");
+    expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("_sira_");
   });
 
   it("queries projects through the Step 1A GraphQL plural name", () => {

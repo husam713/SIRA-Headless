@@ -1,3 +1,4 @@
+import type { SiraBrandBannerSeverity } from "@/generated/graphql/graphql";
 import type { SiteKey } from "@/types/site";
 
 export type BrandResolutionSource =
@@ -73,6 +74,25 @@ export interface BrandSocialProfiles {
   readonly youtube: string | null;
 }
 
+export type BrandBannerSeverity = SiraBrandBannerSeverity;
+export type BrandBannerTarget = "_self" | "_blank";
+
+export interface BrandBannerLink {
+  readonly label: string;
+  readonly url: string;
+  readonly target: BrandBannerTarget | null;
+}
+
+export interface BrandBanner {
+  readonly message: string;
+  readonly severity: BrandBannerSeverity;
+  readonly link: BrandBannerLink | null;
+  readonly startsAt: string | null;
+  readonly endsAt: string | null;
+  readonly dismissible: boolean;
+  readonly revisionKey: string;
+}
+
 export interface ResolvedBrand {
   readonly siteKey: SiteKey;
   readonly key: SiteKey;
@@ -94,6 +114,8 @@ export interface ResolvedBrand {
   readonly socialProfiles: BrandSocialProfiles;
   readonly announcementBanner: string | null;
   readonly emergencyBanner: string | null;
+  readonly announcement: BrandBanner | null;
+  readonly emergency: BrandBanner | null;
   readonly source: BrandResolutionSource;
   readonly diagnostics: readonly string[];
 }

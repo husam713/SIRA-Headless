@@ -101,11 +101,13 @@ This register consolidates durable decisions that should not be re-litigated by 
 - **Status:** Approved
 - **Protected operations:** production deployment/cutover, destructive database changes, DNS, protected-branch merge policy changes, and production secret operations.
 
+## ADR-019 — `main` is the canonical integration and default branch
+
+- **Status:** Approved; supersedes `ADR-PENDING-001`.
+- **Evidence:** G0-C established the GitHub default branch as `main`; repository governance records PR workflow, Frontend CI, and owner approval as compensating controls where plan-level branch protection is not enforced.
+- **Rule:** Normal changes target `main` through Pull Requests and required CI. The engineering agent must not merge to `main` without explicit owner approval.
+
 ## Open decision records
-
-### ADR-PENDING-001 — Git integration/default branch policy
-
-The current repository default branch is `step-2c2a-inventory`. A durable protected integration/default-branch model must be chosen after governance bootstrap review. Do not change the default branch implicitly.
 
 ### ADR-PENDING-002 — Backend source reconciliation
 

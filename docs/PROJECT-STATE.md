@@ -1,21 +1,37 @@
 # SIRA Current Project State
 
-Last reconstructed from repository evidence: 2026-08-11
+Last reconciled from repository and GitHub evidence: 2026-08-11
 
 ## Current execution state
 
 - **Current business stage:** Step 2C.3C — Typed Frontend Query Contracts
 - **Current substage:** B1 — Generated Runtime Contract Bridge + Typed Brand Banners
-- **Temporary integration/execution branch:** `step-2c3c-typed-query-contracts`
+- **Canonical integration/default branch:** `main`
 - **Business-code baseline:** `d59035d4ec2a97aa9524cf0b4788606745be245a`
-- **Current execution head after governance bootstrap:** `c26b658b4dfafb82c04af42ca880e6894aefcf0d`
+- **Current governed integration head:** `e2a0d425cd7fe435981427d9be33a6e6f9d8f436`
 - **Latest approved business milestone:** Step 2C.3B
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
-G0 — AI Engineering Governance Bootstrap was approved and merged through PR #1. The repository now contains the durable evidence-first governance layer (`AGENTS.md`, machine project state, source-of-truth rules, decisions, handoff instructions, acceptance gates, and PR template).
+G0 — AI Engineering Governance Bootstrap is complete and merged at `c26b658b4dfafb82c04af42ca880e6894aefcf0d`.
 
-G0-C — GitHub Governance + CI is in progress on `chore/github-governance-ci`. Its purpose is to introduce real CI evidence and prepare a canonical `main` integration branch. No default-branch cutover has occurred yet.
+G0-C — GitHub Governance + CI is complete and merged at `e2a0d425cd7fe435981427d9be33a6e6f9d8f436`. The repository default branch is now `main`, and `main` is the canonical integration branch.
+
+## GitHub governance status
+
+- **GOV-001 — CLOSED:** repository default branch is `main`.
+- **GOV-002 — CLOSED:** frontend GitHub Actions CI is installed and successful workflow evidence exists from G0-C.
+- **GOV-003 — WARNING:** a `main` branch protection rule is configured, but GitHub reports it is **not enforced** for this private repository under the current plan.
+
+Compensating controls for GOV-003:
+
+- normal changes arrive through Pull Requests;
+- frontend-impacting changes must pass Frontend CI;
+- the engineering agent must not directly merge to `main`;
+- owner approval is required before merge;
+- force-push, branch deletion, production deployment, DNS, and destructive operations remain protected by project policy.
+
+The lack of platform enforcement is a documented GitHub-plan limitation, not a blocker for Step 2C.3C.
 
 ## Completed / established
 
@@ -28,11 +44,12 @@ G0-C — GitHub Governance + CI is in progress on `chore/github-governance-ci`. 
 - server-only published and preview GraphQL transports
 - Step 2C brand/design-token infrastructure
 - five-site live GraphQL inventory
-- Step 2C.3A schema compatibility tooling
-- Step 2C.3A approved tag at `d361272`
+- Step 2C.3A schema compatibility tooling and approved tag at `d361272`
 - Step 2C.3B verified live schema adoption and Codegen
 - Step 2C.3B approved tag at `d59035d`
-- G0 evidence-first AI engineering governance merged at `c26b658`
+- G0 evidence-first AI engineering governance
+- G0-C GitHub governance and executable Frontend CI
+- canonical/default branch cutover to `main`
 
 ## Verified live schema policy
 
@@ -74,18 +91,27 @@ Before Step 2C.3C can be accepted, the typed frontend contract layer must cover:
 
 Production visual components remain out of scope for this stage.
 
-## GitHub governance target
+## Current B1 execution policy
 
-G0-C proposes the following simple repository model:
+Step 2C.3C-B1 must branch from governed `main` and implement only the generated runtime contract bridge plus typed brand banner contract work. It must preserve the existing GraphQL client, cache architecture, site registry, and server-only boundaries.
 
-- `main` — canonical protected integration branch containing the latest approved integrated project state;
-- `feature/*`, `fix/*`, `chore/*` — focused implementation branches;
-- approved tags — immutable milestone/rollback references;
-- historical `step-*` branches — retained until the migration history is safely consolidated; do not delete them during G0-C.
+Required delivery flow:
 
-A separate long-lived `develop` branch is not currently justified.
+`main` -> focused feature branch -> implementation -> local validation -> PR -> Frontend CI -> architecture/security/diff review -> owner approval -> merge.
 
-The repository default branch remains `step-2c2a-inventory` until the G0-C acceptance gate is approved and the GitHub repository setting is explicitly changed.
+Do not merge automatically.
+
+## Open source-of-truth conflict
+
+### SOT-001 — backend repository freshness
+
+**Status: OPEN / BLOCKING FOR NEW BACKEND RUNTIME CHANGES**
+
+The current GitHub backend source contains Step 1-era material that is not yet proven to be the latest cumulative backend implementation, while the verified live schema adopted in Step 2C.3B contains later contract work.
+
+Do not modify backend runtime code until the latest verified cumulative backend source is reconciled into Git or an explicit evidence-backed decision establishes the correct backend source of truth.
+
+This conflict does **not** block frontend Step 2C.3C work that is based on the already verified checked-in live schema.
 
 ## Next stages
 
@@ -101,30 +127,12 @@ After Step 2C.3C approval:
 3. **Step 3 — Preview / SEO / Discovery**
 4. **Step 4 — Production Component Implementation**
 
-## Open source-of-truth conflict
-
-### SOT-001 — backend repository freshness
-
-**Status: OPEN / BLOCKING FOR NEW BACKEND RUNTIME CHANGES**
-
-The current GitHub backend source contains the Step 1-era `BrandSchema.php` with legacy string banner fields. The verified live schema adopted in Step 2C.3B contains newer typed brand banner objects and other later contract work. Therefore the backend folder in GitHub cannot yet be assumed to be the latest cumulative backend implementation.
-
-Do not modify backend runtime code until the latest verified cumulative backend source is reconciled into Git or an explicit decision establishes the correct backend source of truth.
-
-This conflict does **not** block frontend Step 2C.3C work that is based on the already verified checked-in live schema.
-
-## Open governance issues
-
-- **GOV-001 — OPEN:** GitHub default branch is `step-2c2a-inventory`. G0-C proposes `main`; cutover has not happened yet.
-- **GOV-002 — IN PROGRESS:** frontend GitHub Actions CI is being introduced. It remains unverified until a real workflow run completes.
-
 ## Owner/external decisions still protected
 
-- merge into the governed integration/default branch;
+- merge into `main`;
 - production merge/deployment;
 - destructive WordPress changes;
 - DNS/cutover;
 - production secrets;
-- branch protection/default-branch admin settings when not available to the engineering agent;
 - multilingual production model;
 - forms provider/storage/retention architecture.

@@ -5,11 +5,11 @@ Last reconciled from repository and GitHub evidence: 2026-08-11
 ## Current execution state
 
 - **Current business stage:** Step 2C.3C — Typed Frontend Query Contracts
-- **Current substage:** B6 — Project Archive Contract
+- **Current substage:** B7 — Project Single Contract
 - **Canonical integration/default branch:** `main`
-- **Business-code baseline:** `00022da346777ce67acc92b0c53c07627e1d85e3`
-- **Current governed integration head:** `00022da346777ce67acc92b0c53c07627e1d85e3`
-- **Latest approved business milestone:** Step 2C.3C-B5
+- **Business-code baseline:** `a116fea3514af457a54a0df1d5f4e86e4badbeba`
+- **Current governed integration head:** `a116fea3514af457a54a0df1d5f4e86e4badbeba`
+- **Latest approved business milestone:** Step 2C.3C-B6
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
@@ -26,6 +26,8 @@ Step 2C.3C-B3 is owner accepted and merged through PR `#7` at `2653a66f8c6a469be
 Step 2C.3C-B4 is owner accepted and merged through PR `#8` at `684bce5b51f977e078029870b085a15b2204ad60`. Its implementation head is `e31ce8e793601266be4ae8064ebb0f5fa74c2e81`, and Frontend CI run #11 passed.
 
 Step 2C.3C-B5 is owner accepted and merged through PR `#9` at `00022da346777ce67acc92b0c53c07627e1d85e3`. Its implementation head is `9fec2ea30c36cab62c1af4f576429bea3ea42628`, and Frontend CI run #13 passed.
+
+Step 2C.3C-B6 is owner accepted and merged through PR `#10` at `a116fea3514af457a54a0df1d5f4e86e4badbeba`. Its implementation head is `f392cfbb022e1928011ff2b28f7955b9e9acb6b0`, Frontend CI run #15 passed, and the accepted full regression was 20 files / 158 tests PASS.
 
 ## GitHub governance status
 
@@ -67,6 +69,8 @@ The lack of platform enforcement is a documented GitHub-plan limitation, not a b
 - Step 2C.3C-B4 owner acceptance, Frontend CI, and merge through PR `#8` at `684bce5`
 - Step 2C.3C-B5 site-aware server-side Business Unit filtering with stable cursor pagination
 - Step 2C.3C-B5 owner acceptance, Frontend CI, and merge through PR `#9` at `00022da`
+- Step 2C.3C-B6 generated project archive contract with safe site-isolated normalization
+- Step 2C.3C-B6 owner acceptance, Frontend CI, and merge through PR `#10` at `a116fea`
 - G0 evidence-first AI engineering governance
 - G0-C GitHub governance and executable Frontend CI
 - canonical/default branch cutover to `main`
@@ -111,9 +115,9 @@ Before Step 2C.3C can be accepted, the typed frontend contract layer must cover:
 
 Production visual components remain out of scope for this stage.
 
-## Current B6 execution policy
+## Current B7 execution policy
 
-Step 2C.3C-B6 branches from governed `main` at the accepted B5 merge and implements only the generated, server-only project archive contract. It must use canonical shared-schema project coordinates, preserve trusted site isolation and cursor pagination, remove project-single overfetch, and return explicit normalized result states without fabricated or cross-site fallback content.
+Step 2C.3C-B7 branches from governed `main` at the accepted B6 merge and implements only the generated, native single-project contract. It must use a canonical schema-backed route locator, preserve the lightweight B6 archive, bound detail connections, enforce trusted site isolation, and return explicit ready/not-found/invalid/remote-error states without restricted-data leakage or cross-site fallback.
 
 Required delivery flow:
 

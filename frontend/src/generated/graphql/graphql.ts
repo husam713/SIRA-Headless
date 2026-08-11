@@ -18,6 +18,13 @@ export type SiraBrandQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SiraBrandQuery = { readonly siraBrand: { readonly name: string, readonly key: string, readonly tagline: string | null, readonly primaryColor: string, readonly secondaryColor: string, readonly accentColor: string, readonly paperColor: string, readonly inkColor: string, readonly email: string | null, readonly phone: string | null, readonly address: string | null, readonly description: string | null, readonly mission: string | null, readonly vision: string | null, readonly announcementBanner: string | null, readonly emergencyBanner: string | null, readonly logo: { readonly databaseId: number, readonly sourceUrl: string, readonly altText: string | null, readonly width: number | null, readonly height: number | null, readonly mediaItem: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null } | null } | null, readonly mark: { readonly databaseId: number, readonly sourceUrl: string, readonly altText: string | null, readonly width: number | null, readonly height: number | null, readonly mediaItem: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null } | null } | null, readonly values: ReadonlyArray<{ readonly title: string, readonly description: string | null } | null> | null, readonly officeLocations: ReadonlyArray<{ readonly name: string, readonly address: string | null, readonly phone: string | null, readonly email: string | null } | null> | null, readonly socialProfiles: { readonly linkedin: string | null, readonly instagram: string | null, readonly x: string | null, readonly youtube: string | null } | null, readonly announcement: { readonly message: string, readonly severity: SiraBrandBannerSeverity, readonly startsAt: string | null, readonly endsAt: string | null, readonly dismissible: boolean, readonly revisionKey: string, readonly link: { readonly label: string, readonly url: string, readonly target: string | null } | null } | null, readonly emergency: { readonly message: string, readonly severity: SiraBrandBannerSeverity, readonly startsAt: string | null, readonly endsAt: string | null, readonly dismissible: boolean, readonly revisionKey: string, readonly link: { readonly label: string, readonly url: string, readonly target: string | null } | null } | null } };
 
+export type SiraHomepageQueryVariables = Exact<{
+  asPreview?: boolean | null | undefined;
+}>;
+
+
+export type SiraHomepageQuery = { readonly page: { readonly databaseId: number, readonly uri: string | null, readonly title: string | null, readonly siraHomepage: { readonly variant: string | null, readonly groupHomepage: { readonly hero: { readonly headingBefore: string | null, readonly headingHighlight: string | null, readonly headingAfter: string | null, readonly description: string | null } | null } | null, readonly branchHomepage: { readonly hero: { readonly eyebrow: string | null, readonly headingBefore: string | null, readonly headingHighlight: string | null, readonly headingAfter: string | null, readonly description: string | null, readonly region: string | null } | null } | null } | null } | null };
+
 export type SiraProjectsQueryVariables = Exact<{
   first: number;
   after?: string | null | undefined;
@@ -136,6 +143,36 @@ export const SiraBrandDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<SiraBrandQuery, SiraBrandQueryVariables>;
+export const SiraHomepageDocument = new TypedDocumentString(`
+    query SiraHomepage($asPreview: Boolean = false) {
+  page(id: "/", idType: URI, asPreview: $asPreview) {
+    databaseId
+    uri
+    title
+    siraHomepage {
+      variant
+      groupHomepage {
+        hero {
+          headingBefore
+          headingHighlight
+          headingAfter
+          description
+        }
+      }
+      branchHomepage {
+        hero {
+          eyebrow
+          headingBefore
+          headingHighlight
+          headingAfter
+          description
+          region
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SiraHomepageQuery, SiraHomepageQueryVariables>;
 export const SiraProjectsDocument = new TypedDocumentString(`
     query SiraProjects($first: Int!, $after: String) {
   siraProjects(first: $first, after: $after) {

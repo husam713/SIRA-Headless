@@ -1,5 +1,7 @@
 import type {
   BrandMedia,
+  SiraBrandBanner,
+  SiraBrandBannerSeverity,
   SiraBrandQueryData,
 } from "@/queries/brand";
 import {
@@ -8,6 +10,9 @@ import {
 } from "@/lib/brand/fallbacks";
 import { selectReadableForeground } from "@/lib/brand/contrast";
 import type {
+  BrandBanner,
+  BrandBannerLink,
+  BrandBannerTarget,
   BrandOffice,
   BrandSocialProfiles,
   BrandValue,
@@ -17,6 +22,12 @@ import type {
 import type { SiteKey } from "@/types/site";
 
 const HEX_COLOR_PATTERN = /^#[0-9a-f]{6}$/i;
+const PUBLIC_URL_BASE = "https://sira.invalid";
+const BANNER_SEVERITIES = Object.freeze([
+  "IMPORTANT",
+  "INFO",
+  "URGENT",
+] as const satisfies readonly SiraBrandBannerSeverity[]);
 
 function normalizeText(
   value: string | null | undefined,
@@ -45,6 +56,108 @@ function normalizeHexColor(
   }
 
   return normalized;
+}
+
+function normalizePublicUrl(value: string): string | null {
+  const normalized = normalizeText(value, 2048);
+
+  if (normalized === null) {
+    return null;
+  }
+
+  try {
+    if (normalized.startsWith("/") && !normalized.startsWith("//")) {
+      const url = new URL(normalized, PUBLIC_URL_BASE);
+
+      if (url.origin !== PUBLIC_URL_BASE) {
+        return null;
+      }
+
+      return `${url.pathname}${url.search}${url.hash}`;
+    }
+
+    const url = new URL(normalized);
+
+    if (
+      (url.protocol !== "http:" && url.protocol !== "https:") ||
+      url.username !== "" ||
+      url.password !== ""
+    ) {
+      return null;
+    }
+
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
+
+function normalizeBannerTarget(value: string | null): BrandBannerTarget | null {
+  return value === "_self" || value === "_blank" ? value : null;
+}
+
+function normalizeBannerLink(
+  value: SiraBrandBanner["link"],
+): BrandBannerLink | null {
+  if (value === null) {
+    return null;
+  }
+
+  const label = normalizeText(value.label, 160);
+  const url = normalizePublicUrl(value.url);
+
+  if (label === null || url === null) {
+    return null;
+  }
+
+  return Object.freeze({
+    label,
+    url,
+    target: normalizeBannerTarget(value.target),
+  });
+}
+
+function isBannerSeverity(value: unknown): value is SiraBrandBannerSeverity {
+  return (BANNER_SEVERITIES as readonly unknown[]).includes(value);
+}
+
+function normalizeBanner(
+  value: SiraBrandBanner | null,
+  fieldName: "announcement" | "emergency",
+  diagnostics: string[],
+): BrandBanner | null {
+  if (value === null) {
+    return null;
+  }
+
+  const message = normalizeText(value.message, 500);
+  const revisionKey = normalizeText(value.revisionKey, 160);
+
+  if (
+    message === null ||
+    revisionKey === null ||
+    !isBannerSeverity(value.severity) ||
+    typeof value.dismissible !== "boolean"
+  ) {
+    diagnostics.push(`invalid-${fieldName}`);
+    return null;
+  }
+
+  const link = normalizeBannerLink(value.link);
+
+  if (value.link !== null && link === null) {
+    diagnostics.push(`invalid-${fieldName}-link`);
+  }
+
+  return Object.freeze({
+    message,
+    severity: value.severity,
+    link,
+    startsAt: normalizeText(value.startsAt, 64),
+    endsAt: normalizeText(value.endsAt, 64),
+    dismissible: value.dismissible,
+    revisionKey,
+  });
 }
 
 function normalizeMedia(value: BrandMedia | null): RemoteBrandMedia | null {
@@ -242,6 +355,12 @@ export function normalizeWordPressBrand(
     socialProfiles: normalizeSocialProfiles(data.socialProfiles),
     announcementBanner: normalizeText(data.announcementBanner, 500),
     emergencyBanner: normalizeText(data.emergencyBanner, 500),
+    announcement: normalizeBanner(
+      data.announcement,
+      "announcement",
+      diagnostics,
+    ),
+    emergency: normalizeBanner(data.emergency, "emergency", diagnostics),
     source:
       diagnostics.length === 0 ? "wordpress" : "wordpress-normalized",
     diagnostics: Object.freeze(diagnostics),

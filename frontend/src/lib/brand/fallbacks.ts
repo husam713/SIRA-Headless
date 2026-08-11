@@ -231,6 +231,8 @@ export function createFallbackBrand(
     }),
     announcementBanner: null,
     emergencyBanner: null,
+    announcement: null,
+    emergency: null,
     source: "fallback",
     diagnostics: Object.freeze([...diagnostics]),
   });

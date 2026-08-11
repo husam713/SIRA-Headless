@@ -15,6 +15,10 @@ export { getBrand } from "@/lib/brand/get-brand";
 export { normalizeWordPressBrand } from "@/lib/brand/normalize-brand";
 export type {
   BrandAssetSet,
+  BrandBanner,
+  BrandBannerLink,
+  BrandBannerSeverity,
+  BrandBannerTarget,
   BrandIdentityTokens,
   BrandOffice,
   BrandPreset,

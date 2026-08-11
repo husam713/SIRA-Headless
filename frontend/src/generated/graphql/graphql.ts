@@ -132,10 +132,7 @@ export type SiraProjectsQueryVariables = Exact<{
 }>;
 
 
-export type SiraProjectsQuery = { readonly siraProjects: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly title: string | null, readonly slug: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null, readonly relatedCompany: { readonly nodes: ReadonlyArray<
-            | { readonly databaseId: number, readonly title: string | null, readonly slug: string | null, readonly uri: string | null }
-            | Record<PropertyKey, never>
-          > } | null, readonly gallery: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null }> } | null, readonly statistics: ReadonlyArray<{ readonly value: string | null, readonly label: string | null } | null> | null } | null }> } | null };
+export type SiraProjectsQuery = { readonly siraProjects: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null }> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -515,9 +512,9 @@ export const SiraProjectsDocument = new TypedDocumentString(`
     nodes {
       databaseId
       title
-      slug
       uri
       excerpt
+      isRestricted
       featuredImage {
         node {
           databaseId
@@ -533,31 +530,6 @@ export const SiraProjectsDocument = new TypedDocumentString(`
         subtitle
         location
         status
-        relatedCompany {
-          nodes {
-            ... on SiraCompany {
-              databaseId
-              title
-              slug
-              uri
-            }
-          }
-        }
-        gallery {
-          nodes {
-            databaseId
-            sourceUrl
-            altText
-            mediaDetails {
-              width
-              height
-            }
-          }
-        }
-        statistics {
-          value
-          label
-        }
       }
     }
   }

@@ -4,14 +4,12 @@ query SiraProjects($first: Int!, $after: String) {
       hasNextPage
       endCursor
     }
-
     nodes {
       databaseId
       title
-      slug
       uri
       excerpt
-
+      isRestricted
       featuredImage {
         node {
           databaseId
@@ -23,39 +21,10 @@ query SiraProjects($first: Int!, $after: String) {
           }
         }
       }
-
       projectDetails {
         subtitle
         location
         status
-
-        relatedCompany {
-          nodes {
-            ... on SiraCompany {
-              databaseId
-              title
-              slug
-              uri
-            }
-          }
-        }
-
-        gallery {
-          nodes {
-            databaseId
-            sourceUrl
-            altText
-            mediaDetails {
-              width
-              height
-            }
-          }
-        }
-
-        statistics {
-          value
-          label
-        }
       }
     }
   }

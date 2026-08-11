@@ -5,6 +5,7 @@ interface ProjectState {
   readonly currentStage: string;
   readonly currentSubstage: string;
   readonly executionBaseline: string;
+  readonly productionAuthorized: boolean;
   readonly latestAcceptedIncrement: {
     readonly stage: string;
     readonly status: string;
@@ -15,8 +16,8 @@ interface ProjectState {
   };
 }
 
-describe("B5 durable state baseline", () => {
-  it("records accepted and merged B4 before B5 runtime work", () => {
+describe("B6 durable state baseline", () => {
+  it("records accepted and merged B5 before B6 runtime work", () => {
     const state = JSON.parse(
       readFileSync(
         new URL("../../../project-state.json", import.meta.url),
@@ -26,14 +27,15 @@ describe("B5 durable state baseline", () => {
 
     expect(state).toMatchObject({
       currentStage: "2C.3C",
-      currentSubstage: "B5",
-      executionBaseline: "684bce5b51f977e078029870b085a15b2204ad60",
+      currentSubstage: "B6",
+      executionBaseline: "00022da346777ce67acc92b0c53c07627e1d85e3",
+      productionAuthorized: false,
       latestAcceptedIncrement: {
-        stage: "Step 2C.3C-B4",
+        stage: "Step 2C.3C-B5",
         status: "ACCEPTED_MERGED",
-        pullRequest: 8,
-        implementationHead: "e31ce8e793601266be4ae8064ebb0f5fa74c2e81",
-        mergeCommit: "684bce5b51f977e078029870b085a15b2204ad60",
+        pullRequest: 9,
+        implementationHead: "9fec2ea30c36cab62c1af4f576429bea3ea42628",
+        mergeCommit: "00022da346777ce67acc92b0c53c07627e1d85e3",
         frontendCi: "PASS",
       },
     });

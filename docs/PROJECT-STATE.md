@@ -4,15 +4,18 @@ Last reconstructed from repository evidence: 2026-08-11
 
 ## Current execution state
 
-- **Current stage:** Step 2C.3C — Typed Frontend Query Contracts
+- **Current business stage:** Step 2C.3C — Typed Frontend Query Contracts
 - **Current substage:** B1 — Generated Runtime Contract Bridge + Typed Brand Banners
-- **Execution branch:** `step-2c3c-typed-query-contracts`
-- **Execution baseline:** `d59035d4ec2a97aa9524cf0b4788606745be245a`
-- **Latest approved milestone:** Step 2C.3B
+- **Temporary integration/execution branch:** `step-2c3c-typed-query-contracts`
+- **Business-code baseline:** `d59035d4ec2a97aa9524cf0b4788606745be245a`
+- **Current execution head after governance bootstrap:** `c26b658b4dfafb82c04af42ca880e6894aefcf0d`
+- **Latest approved business milestone:** Step 2C.3B
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
-The current Step 2C.3C branch is identical to `d59035d`; B1 has not yet been committed to the execution branch.
+G0 — AI Engineering Governance Bootstrap was approved and merged through PR #1. The repository now contains the durable evidence-first governance layer (`AGENTS.md`, machine project state, source-of-truth rules, decisions, handoff instructions, acceptance gates, and PR template).
+
+G0-C — GitHub Governance + CI is in progress on `chore/github-governance-ci`. Its purpose is to introduce real CI evidence and prepare a canonical `main` integration branch. No default-branch cutover has occurred yet.
 
 ## Completed / established
 
@@ -29,6 +32,7 @@ The current Step 2C.3C branch is identical to `d59035d`; B1 has not yet been com
 - Step 2C.3A approved tag at `d361272`
 - Step 2C.3B verified live schema adoption and Codegen
 - Step 2C.3B approved tag at `d59035d`
+- G0 evidence-first AI engineering governance merged at `c26b658`
 
 ## Verified live schema policy
 
@@ -70,6 +74,19 @@ Before Step 2C.3C can be accepted, the typed frontend contract layer must cover:
 
 Production visual components remain out of scope for this stage.
 
+## GitHub governance target
+
+G0-C proposes the following simple repository model:
+
+- `main` — canonical protected integration branch containing the latest approved integrated project state;
+- `feature/*`, `fix/*`, `chore/*` — focused implementation branches;
+- approved tags — immutable milestone/rollback references;
+- historical `step-*` branches — retained until the migration history is safely consolidated; do not delete them during G0-C.
+
+A separate long-lived `develop` branch is not currently justified.
+
+The repository default branch remains `step-2c2a-inventory` until the G0-C acceptance gate is approved and the GitHub repository setting is explicitly changed.
+
 ## Next stages
 
 After Step 2C.3C approval:
@@ -98,16 +115,16 @@ This conflict does **not** block frontend Step 2C.3C work that is based on the a
 
 ## Open governance issues
 
-- **GOV-001:** GitHub default branch is currently `step-2c2a-inventory`. Do not change it until branch governance is approved.
-- **GOV-002:** No GitHub Actions workflow/status checks are currently attached to baseline `d59035d`.
-- **GOV-003:** repository-level governance documentation is being introduced on `chore/ai-engineering-governance` and should be reviewed before adoption.
+- **GOV-001 — OPEN:** GitHub default branch is `step-2c2a-inventory`. G0-C proposes `main`; cutover has not happened yet.
+- **GOV-002 — IN PROGRESS:** frontend GitHub Actions CI is being introduced. It remains unverified until a real workflow run completes.
 
 ## Owner/external decisions still protected
 
+- merge into the governed integration/default branch;
 - production merge/deployment;
 - destructive WordPress changes;
 - DNS/cutover;
 - production secrets;
-- canonical external-domain operations not already proven by live configuration;
+- branch protection/default-branch admin settings when not available to the engineering agent;
 - multilingual production model;
 - forms provider/storage/retention architecture.

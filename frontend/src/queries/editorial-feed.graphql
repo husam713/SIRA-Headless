@@ -1,0 +1,90 @@
+query SiraEditorialFeed($first: Int!, $after: String) {
+  contentNodes(
+    first: $first
+    after: $after
+    where: {
+      contentTypes: [
+        SIRA_NEWS
+        SIRA_INSIGHT
+        SIRA_ARTICLE
+        SIRA_PRESS_RELEASE
+      ]
+      orderby: [{ field: DATE, order: DESC }]
+    }
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      __typename
+      databaseId
+      contentTypeName
+      date
+      modified
+      uri
+      isRestricted
+
+      ... on SiraNewsItem {
+        title
+        excerpt
+        featuredImage {
+          node {
+            databaseId
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+      }
+      ... on SiraInsight {
+        title
+        excerpt
+        featuredImage {
+          node {
+            databaseId
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+      }
+      ... on SiraArticle {
+        title
+        excerpt
+        featuredImage {
+          node {
+            databaseId
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+      }
+      ... on SiraPressRelease {
+        title
+        excerpt
+        featuredImage {
+          node {
+            databaseId
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+}

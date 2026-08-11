@@ -3,10 +3,12 @@ import { buildSchema, parse, validate } from "graphql";
 import { describe, expect, it } from "vitest";
 import {
   SiraBrandDocument,
+  SiraEditorialFeedDocument,
   SiraHomepageDocument,
   SiraNavigationDocument,
 } from "@/generated/graphql/graphql";
 import { SIRA_BRAND_QUERY } from "@/queries/brand";
+import { SIRA_EDITORIAL_FEED_QUERY } from "@/queries/editorial-feed";
 import { SIRA_HOMEPAGE_QUERY } from "@/queries/homepage";
 import { SIRA_NAVIGATION_QUERY } from "@/queries/navigation";
 import { SIRA_PROJECTS_QUERY } from "@/queries/projects";
@@ -40,6 +42,51 @@ describe("approved SIRA GraphQL operation contracts", () => {
     expect(SIRA_BRAND_QUERY.source).not.toContain("analyticsId");
     expect(SIRA_BRAND_QUERY.source).not.toContain("rawOptions");
     expect(SIRA_BRAND_QUERY.source).not.toContain("_sira_");
+  });
+
+  it("derives the editorial operation from canonical Codegen output", () => {
+    expect(SIRA_EDITORIAL_FEED_QUERY.operationName).toBe(
+      "SiraEditorialFeed",
+    );
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).toBe(
+      SiraEditorialFeedDocument.toString().trim(),
+    );
+    expect(
+      validate(canonicalSchema, parse(SIRA_EDITORIAL_FEED_QUERY.source)),
+    ).toEqual([]);
+  });
+
+  it("uses the native paginated editorial connection and approved types", () => {
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).toMatch(
+      /contentNodes\s*\(\s*first:\s*\$first\s+after:\s*\$after/u,
+    );
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).toContain("hasNextPage");
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).toContain("endCursor");
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).toContain(
+      "orderby: [{field: DATE, order: DESC}]",
+    );
+
+    for (const type of [
+      "SIRA_NEWS",
+      "SIRA_INSIGHT",
+      "SIRA_ARTICLE",
+      "SIRA_PRESS_RELEASE",
+    ]) {
+      expect(SIRA_EDITORIAL_FEED_QUERY.source).toContain(type);
+    }
+
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toContain(
+      "siraEditorialFeed",
+    );
+  });
+
+  it("keeps the B4 editorial operation unfiltered by Business Unit", () => {
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toMatch(
+      /business.?unit/iu,
+    );
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toContain(
+      "siraBusinessUnits",
+    );
   });
 
   it("derives the homepage operation from canonical Codegen output", () => {

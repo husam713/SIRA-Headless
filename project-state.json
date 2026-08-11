@@ -1,0 +1,41 @@
+{
+  "project": "SIRA Headless Platform",
+  "updatedAt": "2026-08-11T06:55:00+03:00",
+  "status": "IN_PROGRESS",
+  "currentStage": "2C.3C",
+  "currentSubstage": "B1",
+  "executionBranch": "step-2c3c-typed-query-contracts",
+  "executionBaseline": "d59035d4ec2a97aa9524cf0b4788606745be245a",
+  "governanceBranch": "chore/ai-engineering-governance",
+  "latestApprovedMilestone": "Step 2C.3B",
+  "latestApprovedTag": "step-2c3b-approved",
+  "productionAuthorized": false,
+  "repositoryEvidencePolicy": "evidence-first",
+  "nextMajorStages": [
+    "2C.3C typed frontend query contracts",
+    "2C.3D WordPress content readiness",
+    "2C.4 production design and data contract audit",
+    "3 preview, SEO and discovery",
+    "4 production component implementation"
+  ],
+  "knownConflicts": [
+    {
+      "id": "SOT-001",
+      "subsystem": "backend",
+      "status": "OPEN",
+      "summary": "GitHub backend source appears older than the verified live GraphQL schema and later migration evidence; reconcile the latest cumulative backend source before modifying backend runtime code."
+    }
+  ],
+  "knownGovernanceIssues": [
+    {
+      "id": "GOV-001",
+      "status": "OPEN",
+      "summary": "Repository default branch is step-2c2a-inventory rather than an explicitly governed integration branch. Do not change it until branch policy is approved."
+    },
+    {
+      "id": "GOV-002",
+      "status": "OPEN",
+      "summary": "No GitHub Actions workflow/status evidence is currently attached to baseline d59035d."
+    }
+  ]
+}

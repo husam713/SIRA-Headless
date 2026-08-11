@@ -4,9 +4,11 @@ import { describe, expect, it } from "vitest";
 import {
   SiraBrandDocument,
   SiraHomepageDocument,
+  SiraNavigationDocument,
 } from "@/generated/graphql/graphql";
 import { SIRA_BRAND_QUERY } from "@/queries/brand";
 import { SIRA_HOMEPAGE_QUERY } from "@/queries/homepage";
+import { SIRA_NAVIGATION_QUERY } from "@/queries/navigation";
 import { SIRA_PROJECTS_QUERY } from "@/queries/projects";
 
 const canonicalSchema = buildSchema(
@@ -63,6 +65,35 @@ describe("approved SIRA GraphQL operation contracts", () => {
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("analyticsId");
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("rawOptions");
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("_sira_");
+  });
+
+  it("derives the native navigation operation from canonical Codegen output", () => {
+    expect(SIRA_NAVIGATION_QUERY.operationName).toBe("SiraNavigation");
+    expect(SIRA_NAVIGATION_QUERY.source).toBe(
+      SiraNavigationDocument.toString().trim(),
+    );
+    expect(
+      validate(canonicalSchema, parse(SIRA_NAVIGATION_QUERY.source)),
+    ).toEqual([]);
+  });
+
+  it("uses only evidence-backed native menu locations without a fallback menu", () => {
+    for (const [scope, location] of [
+      ["primary", "PRIMARY"],
+      ["footer", "FOOTER"],
+      ["legal", "LEGAL"],
+    ] as const) {
+      expect(SIRA_NAVIGATION_QUERY.source).toMatch(
+        new RegExp(
+          `${scope}: menus\\(first: 2, where: \\{location: ${location}\\}\\)`,
+        ),
+      );
+    }
+
+    expect(SIRA_NAVIGATION_QUERY.source).toContain("menuItems(first: 200)");
+    expect(SIRA_NAVIGATION_QUERY.source).not.toContain("siraNavigation");
+    expect(SIRA_NAVIGATION_QUERY.source).not.toMatch(/\bmenu\s*\(/u);
+    expect(SIRA_NAVIGATION_QUERY.source).not.toMatch(/\b(name|slug)\b/u);
   });
 
   it("queries projects through the Step 1A GraphQL plural name", () => {

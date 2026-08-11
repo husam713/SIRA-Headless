@@ -4,6 +4,19 @@ type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 import type { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
+/** Designated areas where navigation menus can be displayed. Represents the named regions in the interface where menus can be assigned. */
+export type MenuLocationEnum =
+  /** Put the menu in the footer location */
+  | 'FOOTER'
+  /** Put the menu in the languages location */
+  | 'LANGUAGES'
+  /** Put the menu in the legal location */
+  | 'LEGAL'
+  /** Put the menu in the primary location */
+  | 'PRIMARY'
+  /** Put the menu in the utility location */
+  | 'UTILITY';
+
 /** The semantic severity of a public SIRA banner. */
 export type SiraBrandBannerSeverity =
   /** Important information requiring attention. */
@@ -24,6 +37,13 @@ export type SiraHomepageQueryVariables = Exact<{
 
 
 export type SiraHomepageQuery = { readonly page: { readonly databaseId: number, readonly uri: string | null, readonly title: string | null, readonly siraHomepage: { readonly variant: string | null, readonly groupHomepage: { readonly hero: { readonly headingBefore: string | null, readonly headingHighlight: string | null, readonly headingAfter: string | null, readonly description: string | null } | null } | null, readonly branchHomepage: { readonly hero: { readonly eyebrow: string | null, readonly headingBefore: string | null, readonly headingHighlight: string | null, readonly headingAfter: string | null, readonly description: string | null, readonly region: string | null } | null } | null } | null } | null };
+
+export type SiraNavigationQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SiraNavigationQuery = { readonly primary: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly locations: ReadonlyArray<MenuLocationEnum | null> | null, readonly menuItems: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly label: string | null, readonly order: number | null, readonly parentDatabaseId: number | null, readonly path: string | null, readonly target: string | null, readonly url: string | null }> } | null }> } | null, readonly footer: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly locations: ReadonlyArray<MenuLocationEnum | null> | null, readonly menuItems: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly label: string | null, readonly order: number | null, readonly parentDatabaseId: number | null, readonly path: string | null, readonly target: string | null, readonly url: string | null }> } | null }> } | null, readonly legal: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly locations: ReadonlyArray<MenuLocationEnum | null> | null, readonly menuItems: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly label: string | null, readonly order: number | null, readonly parentDatabaseId: number | null, readonly path: string | null, readonly target: string | null, readonly url: string | null }> } | null }> } | null };
+
+export type SiraNavigationMenuCollectionFragment = { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly locations: ReadonlyArray<MenuLocationEnum | null> | null, readonly menuItems: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly label: string | null, readonly order: number | null, readonly parentDatabaseId: number | null, readonly path: string | null, readonly target: string | null, readonly url: string | null }> } | null }> };
 
 export type SiraProjectsQueryVariables = Exact<{
   first: number;
@@ -54,7 +74,33 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-
+export const SiraNavigationMenuCollectionFragmentDoc = new TypedDocumentString(`
+    fragment SiraNavigationMenuCollection on RootQueryToMenuConnection {
+  pageInfo {
+    hasNextPage
+  }
+  nodes {
+    databaseId
+    isRestricted
+    locations
+    menuItems(first: 200) {
+      pageInfo {
+        hasNextPage
+      }
+      nodes {
+        databaseId
+        isRestricted
+        label
+        order
+        parentDatabaseId
+        path
+        target
+        url
+      }
+    }
+  }
+}
+    `, {"fragmentName":"SiraNavigationMenuCollection"}) as unknown as TypedDocumentString<SiraNavigationMenuCollectionFragment, unknown>;
 export const SiraBrandDocument = new TypedDocumentString(`
     query SiraBrand {
   siraBrand {
@@ -173,6 +219,43 @@ export const SiraHomepageDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<SiraHomepageQuery, SiraHomepageQueryVariables>;
+export const SiraNavigationDocument = new TypedDocumentString(`
+    query SiraNavigation {
+  primary: menus(first: 2, where: {location: PRIMARY}) {
+    ...SiraNavigationMenuCollection
+  }
+  footer: menus(first: 2, where: {location: FOOTER}) {
+    ...SiraNavigationMenuCollection
+  }
+  legal: menus(first: 2, where: {location: LEGAL}) {
+    ...SiraNavigationMenuCollection
+  }
+}
+    fragment SiraNavigationMenuCollection on RootQueryToMenuConnection {
+  pageInfo {
+    hasNextPage
+  }
+  nodes {
+    databaseId
+    isRestricted
+    locations
+    menuItems(first: 200) {
+      pageInfo {
+        hasNextPage
+      }
+      nodes {
+        databaseId
+        isRestricted
+        label
+        order
+        parentDatabaseId
+        path
+        target
+        url
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<SiraNavigationQuery, SiraNavigationQueryVariables>;
 export const SiraProjectsDocument = new TypedDocumentString(`
     query SiraProjects($first: Int!, $after: String) {
   siraProjects(first: $first, after: $after) {

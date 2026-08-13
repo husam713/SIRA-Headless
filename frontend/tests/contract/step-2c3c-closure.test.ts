@@ -61,6 +61,11 @@ const ACCEPTED_EDITORIAL_CONTENT_TYPES = [
   "SIRA_PRESS_RELEASE",
 ] as const;
 
+const REJECTED_EDITORIAL_CONTENT_TYPES = [
+  "SIRA_PERSPECTIVE",
+  "SIRA_PUBLICATION",
+] as const;
+
 function editorialContentTypeLists(source: string): readonly string[][] {
   const contentTypeLists: string[][] = [];
 
@@ -163,9 +168,14 @@ describe("Step 2C.3C cumulative closure contract", () => {
       SIRA_EDITORIAL_FEED_QUERY,
       SIRA_BUSINESS_UNIT_EDITORIAL_FEED_QUERY,
     ]) {
-      expect(editorialContentTypeLists(operation.source)).toEqual([
+      const contentTypeLists = editorialContentTypeLists(operation.source);
+
+      expect(contentTypeLists).toEqual([
         ACCEPTED_EDITORIAL_CONTENT_TYPES,
       ]);
+      expect(contentTypeLists.flat()).not.toEqual(
+        expect.arrayContaining([...REJECTED_EDITORIAL_CONTENT_TYPES]),
+      );
     }
 
     expect({

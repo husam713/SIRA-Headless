@@ -89,7 +89,7 @@ Classification meanings are defined in `docs/tasks/step-2c3c-closure.md`. No `BL
 | Requirement | Classification | Repository evidence |
 | --- | --- | --- |
 | Native singular `siraProject` | PASS | Dedicated `frontend/src/queries/project-single.graphql`; no plural first-node lookup |
-| URI lookup | PASS | The operation hard-codes `idType: URI` for the `$uri: ID!` locator; `URI` is verified as a member of `SiraProjectIdType`, and locator validation precedes transport |
+| URI lookup | PASS | The operation hard-codes `idType: URI` for the `$uri: ID!` locator; `URI` is verified as a member of `SiraProjectIdType`. |
 | Complete `SiraProjectIdType` evidence | PASS | Checked-in schema and closure test verify `DATABASE_ID`, `ID`, `SLUG`, `URI` |
 | Published operation fixes `asPreview: false` | PASS | Generated operation call explicitly supplies `false`; authenticated preview is not introduced |
 | `ProjectDetails`, never `SiraProjectDetails` | PASS | Canonical field/type naming is asserted against operations and repository sources |

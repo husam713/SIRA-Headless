@@ -1,5 +1,9 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import {
+  buildFindings,
+  classifySite,
+} from "../../scripts/content-readiness-audit.mjs";
 
 const repositoryFile = (relativePath: string): string =>
   readFileSync(new URL(`../../../${relativePath}`, import.meta.url), "utf8");
@@ -29,10 +33,16 @@ type SiteKey =
   | "realestate";
 
 interface AuditedSite {
+  readonly siteName: string;
   readonly inspected: boolean;
-  readonly homepage: { readonly showOnFront: string };
+  readonly homepage: Readonly<Record<string, unknown>> & {
+    readonly showOnFront: string;
+  };
   readonly menus: Readonly<
-    Record<"primary" | "footer" | "legal", { readonly assignedCount: number }>
+    Record<
+      "primary" | "footer" | "legal",
+      Readonly<Record<string, unknown>> & { readonly assignedCount: number }
+    >
   >;
   readonly businessUnit: {
     readonly expectedSlug: string | null;
@@ -45,9 +55,18 @@ interface AuditedSite {
     }[];
   };
   readonly editorial: {
+    readonly root: Readonly<Record<string, unknown>> & {
+      readonly returnedCount: number;
+    };
     readonly branchFiltered: { readonly returnedCount: number } | null;
   };
+  readonly projects: Readonly<Record<string, unknown>>;
+  readonly brand: Readonly<Record<string, unknown>>;
 }
+
+type ReadinessMatrix = ReturnType<typeof classifySite>;
+
+const clone = <T>(value: T): T => structuredClone(value);
 
 describe("Step 2C.3D content readiness evidence", () => {
   const state = JSON.parse(repositoryFile("project-state.json")) as {
@@ -201,5 +220,180 @@ describe("Step 2C.3D content readiness evidence", () => {
     );
     expect(serialized).not.toMatch(/https?:\/\//u);
     expect(serialized).not.toMatch(/authorization|password|cookie/iu);
+  });
+
+  it("derives corrected branch homepage, menu, and Business Unit readiness from evidence", () => {
+    const consulting = clone(artifact.sites.consulting);
+    Object.assign(consulting.homepage, {
+      showOnFront: "page",
+      pageOnFront: 101,
+      resolvesRootUri: true,
+      databaseId: 101,
+      uri: "/",
+      status: "publish",
+      isFrontPage: true,
+      variant: "branch",
+      expectedVariant: "branch",
+      heroFieldPopulation: {
+        eyebrow: true,
+        headingBefore: true,
+        headingHighlight: true,
+        headingAfter: true,
+        description: true,
+        region: true,
+      },
+    });
+    Object.assign(consulting.menus.primary, {
+      assignedCount: 1,
+      truncated: false,
+      menus: [
+        {
+          databaseId: 201,
+          name: "Primary",
+          slug: "primary",
+          restricted: false,
+          locations: ["PRIMARY"],
+          itemCount: 1,
+          truncated: false,
+          unsafeUrlCount: 0,
+          restrictedItemCount: 0,
+          duplicateIdentityCount: 0,
+          orphanCount: 0,
+        },
+      ],
+    });
+    Object.assign(consulting.businessUnit, {
+      term: {
+        databaseId: 81,
+        name: "Consulting",
+        slug: "consulting",
+        totalAssignedObjectCount: 1,
+      },
+    });
+
+    const matrix = classifySite("consulting", consulting);
+    expect(matrix.frontPage).toBe("READY");
+    expect(matrix.primaryMenu).toBe("READY");
+    expect(matrix.businessUnit).toBe("READY");
+  });
+
+  it("compares every site brand against canonical identity evidence", () => {
+    const correctedGroup = clone(artifact.sites.group);
+    Object.assign(correctedGroup.brand, {
+      key: "group",
+      name: "SIRA GROUP",
+      tagline: "Shaping a smarter future.",
+      colors: {
+        primary: "#cca34b",
+        secondary: "#172232",
+        accent: "#cca34b",
+        paper: "#f7f4ed",
+        ink: "#20242b",
+      },
+    });
+    expect(classifySite("group", correctedGroup).brand).toBe("READY");
+
+    const corruptedConsulting = clone(artifact.sites.consulting);
+    Object.assign(corruptedConsulting.brand, { name: "Unexpected Consulting" });
+    expect(classifySite("consulting", corruptedConsulting).brand).toBe(
+      "DATA_CORRECTION_REQUIRED",
+    );
+  });
+
+  it("does not keep usable branch content and projects in owner-decision state", () => {
+    const consulting = clone(artifact.sites.consulting);
+    Object.assign(consulting.businessUnit, {
+      term: {
+        databaseId: 81,
+        name: "Consulting",
+        slug: "consulting",
+        totalAssignedObjectCount: 1,
+      },
+    });
+    const usableEditorial = clone(artifact.sites.group.editorial.root);
+    Object.assign(consulting.editorial, {
+      branchFiltered: usableEditorial,
+    });
+    const usableProjects = clone(artifact.sites.group.projects);
+    Object.assign(usableProjects, {
+      missingFeaturedImageCount: 0,
+      missingFeaturedAltCount: 0,
+      missingSubtitleCount: 0,
+    });
+    Object.assign(consulting, { projects: usableProjects });
+
+    const matrix = classifySite("consulting", consulting);
+    expect(matrix.editorial).toBe("READY");
+    expect(matrix.projects).toBe("READY");
+  });
+
+  it("derives banner and media corrections from current evidence", () => {
+    const consulting = clone(artifact.sites.consulting);
+    Object.assign(consulting.brand, {
+      announcement: {
+        state: "populated",
+        messagePresent: false,
+        severity: "INFO",
+        linkPresent: false,
+        linkSafe: null,
+        target: null,
+        startsAt: null,
+        endsAt: null,
+        dismissible: true,
+        revisionKeyPresent: true,
+        schedule: "active",
+      },
+      logo: {
+        populated: true,
+        databaseId: 91,
+        safeSourceUrl: false,
+        hasAltText: true,
+        width: 100,
+        height: 100,
+        restricted: false,
+      },
+    });
+
+    const matrix = classifySite("consulting", consulting);
+    expect(matrix.announcement).toBe("DATA_CORRECTION_REQUIRED");
+    expect(matrix.media).toBe("EDITORIAL_ACTION");
+  });
+
+  it("generates findings only for evidence-derived non-READY areas", () => {
+    const consulting = clone(artifact.sites.consulting);
+    Object.assign(consulting.menus.primary, {
+      assignedCount: 1,
+      truncated: false,
+      menus: [
+        {
+          databaseId: 201,
+          name: "Primary",
+          slug: "primary",
+          restricted: false,
+          locations: ["PRIMARY"],
+          itemCount: 1,
+          truncated: false,
+          unsafeUrlCount: 0,
+          restrictedItemCount: 0,
+          duplicateIdentityCount: 0,
+          orphanCount: 0,
+        },
+      ],
+    });
+    const matrix = classifySite("consulting", consulting);
+    const findings = buildFindings(
+      { consulting },
+      { consulting: matrix } satisfies Readonly<
+        Record<string, ReadinessMatrix>
+      >,
+    );
+
+    expect(matrix.primaryMenu).toBe("READY");
+    expect(findings.some((finding) => finding.area === "primaryMenu")).toBe(
+      false,
+    );
+    expect(
+      findings.every((finding) => finding.classification !== "READY"),
+    ).toBe(true);
   });
 });

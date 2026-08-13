@@ -1,6 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import process from "node:process";
+import { pathToFileURL } from "node:url";
 
 const SITE_CONFIG = Object.freeze({
   group: Object.freeze({
@@ -60,6 +61,83 @@ const READINESS_CLASSIFICATIONS = Object.freeze([
   "OWNER_DECISION",
   "BLOCKED",
 ]);
+
+// Approved canonical identity evidence mirrors frontend/src/lib/brand/fallbacks.ts.
+const CANONICAL_BRAND_IDENTITIES = Object.freeze({
+  group: Object.freeze({
+    key: "group",
+    name: "SIRA GROUP",
+    tagline: "Shaping a smarter future.",
+    colors: Object.freeze({
+      primary: "#cca34b",
+      secondary: "#172232",
+      accent: "#cca34b",
+      paper: "#f7f4ed",
+      ink: "#20242b",
+    }),
+  }),
+  consulting: Object.freeze({
+    key: "consulting",
+    name: "SIRA Consulting",
+    tagline: "Strategy for new markets.",
+    colors: Object.freeze({
+      primary: "#8b5aae",
+      secondary: "#2b1f36",
+      accent: "#8b5aae",
+      paper: "#f8f4fa",
+      ink: "#29232d",
+    }),
+  }),
+  healthcare: Object.freeze({
+    key: "healthcare",
+    name: "SIRA Healthcare",
+    tagline: "Advancing diagnostic and healthcare infrastructure.",
+    colors: Object.freeze({
+      primary: "#2c6dad",
+      secondary: "#12283f",
+      accent: "#2c6dad",
+      paper: "#f3f7fb",
+      ink: "#1f2932",
+    }),
+  }),
+  lifestyle: Object.freeze({
+    key: "lifestyle",
+    name: "SIRA Lifestyle",
+    tagline: "Creating destination-led hospitality and lifestyle experiences.",
+    colors: Object.freeze({
+      primary: "#2e8c72",
+      secondary: "#12382f",
+      accent: "#2e8c72",
+      paper: "#f2f8f5",
+      ink: "#1f2b27",
+    }),
+  }),
+  realestate: Object.freeze({
+    key: "realestate",
+    name: "SIRA Real Estate",
+    tagline: "Building enduring places across markets.",
+    colors: Object.freeze({
+      primary: "#b0733c",
+      secondary: "#2b1b14",
+      accent: "#b0733c",
+      paper: "#faf5ef",
+      ink: "#25201d",
+    }),
+  }),
+});
+
+const REQUIRED_BUSINESS_UNIT_SLUGS = Object.freeze([
+  "consulting",
+  "healthcare",
+  "lifestyle",
+  "real-estate",
+]);
+
+const MENU_AREAS = Object.freeze({
+  primaryMenu: "primary",
+  footerMenu: "footer",
+  legalMenu: "legal",
+});
 
 const QUERY = String.raw`
   query SiraContentReadinessAudit($businessUnit: ID!) {
@@ -455,7 +533,7 @@ function bannerSummary(banner, auditedAt) {
   const at = Date.parse(auditedAt);
   const validDates = (startsAt === null || Number.isFinite(startsAt)) && (endsAt === null || Number.isFinite(endsAt));
   let schedule = "active";
-  if (!validDates) schedule = "malformed";
+  if (!validDates || (startsAt !== null && endsAt !== null && startsAt >= endsAt)) schedule = "malformed";
   else if (startsAt !== null && at < startsAt) schedule = "scheduled";
   else if (endsAt !== null && at > endsAt) schedule = "expired";
   return {
@@ -521,29 +599,232 @@ function homepageSummary(data, siteKey) {
   };
 }
 
-function classifySite(siteKey, site) {
+function hasRequiredHomepageContent(homepage) {
+  const population = homepage.heroFieldPopulation;
+  if (population === null) return false;
+  const hasHeading =
+    population.headingBefore === true ||
+    population.headingHighlight === true ||
+    population.headingAfter === true;
+  return homepage.expectedVariant === "group"
+    ? hasHeading && population.description === true
+    : hasHeading &&
+        population.description === true &&
+        population.eyebrow === true &&
+        population.region === true;
+}
+
+function classifyHomepage(homepage) {
+  const configured =
+    homepage.showOnFront === "page" &&
+    Number.isSafeInteger(homepage.pageOnFront) &&
+    homepage.pageOnFront > 0 &&
+    homepage.resolvesRootUri === true &&
+    homepage.databaseId === homepage.pageOnFront &&
+    homepage.uri === "/" &&
+    homepage.status === "publish" &&
+    homepage.isFrontPage === true &&
+    homepage.variant === homepage.expectedVariant;
+
+  if (!configured) return "MISSING_CONFIGURATION";
+  return hasRequiredHomepageContent(homepage) ? "READY" : "MISSING_CONTENT";
+}
+
+function classifyMenu(menu, expectedLocation) {
+  if (menu.assignedCount === 0) return "MISSING_CONFIGURATION";
+  if (menu.assignedCount !== 1 || menu.truncated || menu.menus.length !== 1) {
+    return "DATA_CORRECTION_REQUIRED";
+  }
+
+  const assigned = menu.menus[0];
+  const usable =
+    assigned &&
+    Number.isSafeInteger(assigned.databaseId) &&
+    assigned.databaseId > 0 &&
+    isNonEmpty(assigned.name) &&
+    isNonEmpty(assigned.slug) &&
+    assigned.restricted === false &&
+    assigned.locations.includes(expectedLocation) &&
+    assigned.itemCount > 0 &&
+    assigned.truncated === false &&
+    assigned.unsafeUrlCount === 0 &&
+    assigned.restrictedItemCount === 0 &&
+    assigned.duplicateIdentityCount === 0 &&
+    assigned.orphanCount === 0;
+  return usable ? "READY" : "DATA_CORRECTION_REQUIRED";
+}
+
+function classifyBusinessUnit(siteKey, businessUnit) {
+  if (siteKey === "group") {
+    const terms = businessUnit.availableTerms;
+    return businessUnit.expectedSlug === null &&
+      businessUnit.term === null &&
+      businessUnit.availableTermsTruncated === false &&
+      REQUIRED_BUSINESS_UNIT_SLUGS.every(
+        (slug) => {
+          const matches = terms.filter((term) => term.slug === slug);
+          return (
+            matches.length === 1 &&
+            Number.isSafeInteger(matches[0].databaseId) &&
+            matches[0].databaseId > 0 &&
+            matches[0].acceptedEditorialAssignments.truncated === false
+          );
+        },
+      )
+      ? "READY"
+      : "DATA_CORRECTION_REQUIRED";
+  }
+
+  if (businessUnit.term === null) return "MISSING_CONFIGURATION";
+  return businessUnit.expectedSlug === SITE_CONFIG[siteKey]?.businessUnit &&
+    businessUnit.term.slug === businessUnit.expectedSlug &&
+    Number.isSafeInteger(businessUnit.term.databaseId) &&
+    businessUnit.term.databaseId > 0
+    ? "READY"
+    : "DATA_CORRECTION_REQUIRED";
+}
+
+function hasEditorialAnomalies(editorial) {
+  return (
+    editorial.truncated ||
+    editorial.missingTitleCount > 0 ||
+    editorial.unsafeUriCount > 0 ||
+    editorial.missingDateCount > 0 ||
+    editorial.missingExcerptCount > 0 ||
+    editorial.restrictedCount > 0 ||
+    editorial.featuredMedia.unsafeUrlCount > 0 ||
+    editorial.featuredMedia.invalidDimensionsCount > 0
+  );
+}
+
+function classifyEditorial(siteKey, editorial, businessUnitClassification) {
+  if (siteKey === "group") {
+    if (editorial.groupRootUnfiltered !== true) return "DATA_CORRECTION_REQUIRED";
+    if (hasEditorialAnomalies(editorial.root)) return "DATA_CORRECTION_REQUIRED";
+    return editorial.root.returnedCount > 0 ? "READY" : "OWNER_DECISION";
+  }
+
+  if (businessUnitClassification !== "READY") {
+    return editorial.root.returnedCount === 0
+      ? "OWNER_DECISION"
+      : "MISSING_CONFIGURATION";
+  }
+  if (editorial.branchFiltered === null) return "DATA_CORRECTION_REQUIRED";
+  if (hasEditorialAnomalies(editorial.branchFiltered)) {
+    return "DATA_CORRECTION_REQUIRED";
+  }
+  return editorial.branchFiltered.returnedCount > 0 ? "READY" : "OWNER_DECISION";
+}
+
+function hasProjectStructuralAnomalies(projects) {
+  return (
+    projects.truncated ||
+    projects.restrictedCount > 0 ||
+    projects.missingTitleCount > 0 ||
+    projects.unsafeUriCount > 0 ||
+    projects.missingExcerptCount > 0 ||
+    projects.missingLocationCount > 0 ||
+    projects.missingStatusCount > 0 ||
+    projects.missingRenderedContentCount > 0 ||
+    projects.gallery.truncatedProjectCount > 0 ||
+    projects.gallery.unsafeMediaCount > 0 ||
+    projects.gallery.restrictedMediaCount > 0 ||
+    projects.statistics.malformedEntryCount > 0 ||
+    projects.relatedCompanies.truncatedProjectCount > 0 ||
+    projects.relatedCompanies.restrictedCount > 0 ||
+    projects.relatedCompanies.malformedCount > 0
+  );
+}
+
+function classifyProjects(projects) {
+  if (projects.returnedPublishedCount === 0) return "OWNER_DECISION";
+  if (hasProjectStructuralAnomalies(projects)) {
+    return "DATA_CORRECTION_REQUIRED";
+  }
+  return projects.missingFeaturedImageCount > 0 ||
+    projects.missingFeaturedAltCount > 0 ||
+    projects.missingSubtitleCount > 0 ||
+    projects.gallery.missingAltCount > 0
+    ? "EDITORIAL_ACTION"
+    : "READY";
+}
+
+function classifyBrand(siteKey, brand) {
+  const expected = CANONICAL_BRAND_IDENTITIES[siteKey];
+  if (!expected) return "BLOCKED";
+  return brand.key === expected.key &&
+    brand.name === expected.name &&
+    brand.tagline === expected.tagline &&
+    Object.entries(expected.colors).every(
+      ([name, value]) => brand.colors[name]?.toLowerCase() === value,
+    )
+    ? "READY"
+    : "DATA_CORRECTION_REQUIRED";
+}
+
+function classifyBanner(banner) {
+  if (banner.state === "null") return "READY";
+  const structurallyValid =
+    banner.state === "populated" &&
+    banner.messagePresent === true &&
+    ["IMPORTANT", "INFO", "URGENT"].includes(banner.severity) &&
+    typeof banner.dismissible === "boolean" &&
+    banner.revisionKeyPresent === true &&
+    (!banner.linkPresent || banner.linkSafe === true) &&
+    [null, "_self", "_blank"].includes(banner.target) &&
+    banner.schedule !== "malformed";
+  if (!structurallyValid) return "DATA_CORRECTION_REQUIRED";
+  return banner.schedule === "expired" ? "EDITORIAL_ACTION" : "READY";
+}
+
+function hasMediaProblem(media) {
+  return (
+    media.populated === true &&
+    (media.safeSourceUrl !== true ||
+      media.hasAltText !== true ||
+      !(media.width > 0) ||
+      !(media.height > 0) ||
+      media.restricted === true)
+  );
+}
+
+function classifyMedia(site) {
+  const projectMediaProblem =
+    site.projects.returnedPublishedCount > 0 &&
+    (site.projects.missingFeaturedImageCount > 0 ||
+      site.projects.missingFeaturedAltCount > 0 ||
+      site.projects.gallery.unsafeMediaCount > 0 ||
+      site.projects.gallery.missingAltCount > 0 ||
+      site.projects.gallery.restrictedMediaCount > 0);
+  const editorialMediaProblem =
+    site.editorial.root.featuredMedia.missingAltCount > 0 ||
+    site.editorial.root.featuredMedia.unsafeUrlCount > 0 ||
+    site.editorial.root.featuredMedia.invalidDimensionsCount > 0;
+  return hasMediaProblem(site.brand.logo) ||
+    hasMediaProblem(site.brand.mark) ||
+    projectMediaProblem ||
+    editorialMediaProblem
+    ? "EDITORIAL_ACTION"
+    : "READY";
+}
+
+export function classifySite(siteKey, site) {
   if (!site.inspected) {
     return Object.fromEntries(MATRIX_AREAS.map((area) => [area, "BLOCKED"]));
   }
-  const branch = siteKey !== "group";
+  const businessUnit = classifyBusinessUnit(siteKey, site.businessUnit);
   return {
-    frontPage: branch ? "MISSING_CONFIGURATION" : "MISSING_CONTENT",
-    primaryMenu: "MISSING_CONFIGURATION",
-    footerMenu: "MISSING_CONFIGURATION",
-    legalMenu: "MISSING_CONFIGURATION",
-    businessUnit: branch ? "MISSING_CONFIGURATION" : "READY",
-    editorial: branch ? "OWNER_DECISION" : "READY",
-    projects: branch ? "OWNER_DECISION" : "EDITORIAL_ACTION",
-    brand:
-      siteKey === "group" || siteKey === "healthcare"
-        ? "DATA_CORRECTION_REQUIRED"
-        : "READY",
-    announcement: "READY",
-    emergency: "READY",
-    media:
-      siteKey === "group" || siteKey === "healthcare"
-        ? "EDITORIAL_ACTION"
-        : "READY",
+    frontPage: classifyHomepage(site.homepage),
+    primaryMenu: classifyMenu(site.menus.primary, "PRIMARY"),
+    footerMenu: classifyMenu(site.menus.footer, "FOOTER"),
+    legalMenu: classifyMenu(site.menus.legal, "LEGAL"),
+    businessUnit,
+    editorial: classifyEditorial(siteKey, site.editorial, businessUnit),
+    projects: classifyProjects(site.projects),
+    brand: classifyBrand(siteKey, site.brand),
+    announcement: classifyBanner(site.brand.announcement),
+    emergency: classifyBanner(site.brand.emergency),
+    media: classifyMedia(site),
   };
 }
 
@@ -562,67 +843,195 @@ function finding(site, area, classification, evidence, expected, owner, action, 
   };
 }
 
-function buildFindings(sites, matrix) {
+function formatBrandIdentity(identity) {
+  return `${identity.name}; ${identity.tagline}; ${Object.entries(identity.colors)
+    .map(([name, value]) => `${name} ${value}`)
+    .join("; ")}.`;
+}
+
+function createAreaFinding(siteKey, site, area, classification) {
+  if (classification === "BLOCKED") {
+    return finding(
+      site.siteName,
+      area,
+      classification,
+      site.blocker ?? "Required public evidence could not be inspected.",
+      "The accepted public contract coordinate is inspectable.",
+      "BLOCKED",
+      "Restore authorized read-only access or resolve the evidence conflict.",
+      "Rerun the read-only audit for this tenant and area.",
+    );
+  }
+
+  if (area === "frontPage") {
+    const homepage = site.homepage;
+    const missingFields = Object.entries(homepage.heroFieldPopulation ?? {})
+      .filter(([, populated]) => !populated)
+      .map(([name]) => name);
+    return finding(
+      site.siteName,
+      area,
+      classification,
+      classification === "MISSING_CONFIGURATION"
+        ? `showOnFront=${homepage.showOnFront}; pageOnFront=${homepage.pageOnFront}; resolvesRootUri=${homepage.resolvesRootUri}; databaseId=${homepage.databaseId}; uri=${homepage.uri}; status=${homepage.status}; isFrontPage=${homepage.isFrontPage}; variant=${homepage.variant}; expectedVariant=${homepage.expectedVariant}.`
+        : `Page ${homepage.databaseId} resolves at ${homepage.uri} with variant=${homepage.variant}; missing accepted hero fields=${missingFields.join(",") || "unknown"}.`,
+      `A published ${homepage.expectedVariant} homepage assigned as the static front page, resolving at URI /, with all accepted hero fields populated.`,
+      classification === "MISSING_CONFIGURATION"
+        ? "CMS_ADMIN_ACTION"
+        : "EDITORIAL_ACTION",
+      classification === "MISSING_CONFIGURATION"
+        ? "Create/select the approved homepage and assign it in Reading Settings after editorial approval."
+        : "Supply and approve the missing structured homepage content without changing the canonical / lookup.",
+      "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+    );
+  }
+
+  if (Object.hasOwn(MENU_AREAS, area)) {
+    const key = MENU_AREAS[area];
+    const menu = site.menus[key];
+    return finding(
+      site.siteName,
+      area,
+      classification,
+      `Native ${key.toUpperCase()} assignment count=${menu.assignedCount}; connectionTruncated=${menu.truncated}; menu summaries=${JSON.stringify(menu.menus)}.`,
+      `Exactly one unrestricted, untruncated native ${key.toUpperCase()} menu with the expected location, safe items, unique identities, and no orphans.`,
+      "CMS_ADMIN_ACTION",
+      menu.assignedCount === 0
+        ? `Create/approve and assign the ${key.toUpperCase()} menu using the native WordPress location.`
+        : `Correct the ambiguous or structurally unsafe ${key.toUpperCase()} native menu assignment.`,
+      "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+    );
+  }
+
+  if (area === "businessUnit") {
+    return finding(
+      site.siteName,
+      area,
+      classification,
+      `Expected slug=${site.businessUnit.expectedSlug}; term=${JSON.stringify(site.businessUnit.term)}; available slugs=${site.businessUnit.availableTerms.map((term) => term.slug).join(",")}; truncated=${site.businessUnit.availableTermsTruncated}.`,
+      siteKey === "group"
+        ? `An unfiltered Group contract plus exactly one evidence-backed term for each accepted slug: ${REQUIRED_BUSINESS_UNIT_SLUGS.join(", ")}.`
+        : `A canonical Business Unit term with exact slug ${site.businessUnit.expectedSlug}.`,
+      "CMS_ADMIN_ACTION",
+      classification === "MISSING_CONFIGURATION"
+        ? "Create the exact approved term and assign only relevant accepted editorial records; do not derive or rename slugs mechanically."
+        : "Correct the taxonomy slug, identity, duplication, or truncation anomaly without changing the approved mapping.",
+      "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection.",
+    );
+  }
+
+  if (area === "editorial") {
+    const filtered = site.editorial.branchFiltered;
+    return finding(
+      site.siteName,
+      area,
+      classification,
+      `Root accepted-family count=${site.editorial.root.returnedCount}; root anomalies=${hasEditorialAnomalies(site.editorial.root)}; groupRootUnfiltered=${site.editorial.groupRootUnfiltered}; filtered=${filtered ? JSON.stringify(filtered) : "unavailable"}.`,
+      siteKey === "group"
+        ? "The native unfiltered Group feed is structurally safe; an empty feed is explicitly owner-approved."
+        : "The exact Business Unit term exposes a structurally safe server-filtered accepted-family feed; an empty feed is explicitly owner-approved.",
+      classification === "OWNER_DECISION"
+        ? "OWNER_DECISION"
+        : classification === "MISSING_CONFIGURATION"
+          ? "CMS_ADMIN_ACTION"
+          : "EDITORIAL_ACTION",
+      classification === "OWNER_DECISION"
+        ? "Decide whether this tenant intentionally launches with an empty editorial feed; otherwise commission approved content."
+        : classification === "MISSING_CONFIGURATION"
+          ? "Restore the exact Business Unit term/filter configuration before treating existing branch content as ready."
+          : "Correct malformed, restricted, unsafe, or truncated accepted editorial records.",
+      "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+    );
+  }
+
+  if (area === "projects") {
+    const projects = site.projects;
+    const structuralAnomalies = hasProjectStructuralAnomalies(projects);
+    return finding(
+      site.siteName,
+      area,
+      classification,
+      `Published count=${projects.returnedPublishedCount}; structuralAnomalies=${hasProjectStructuralAnomalies(projects)}; missingFeaturedImages=${projects.missingFeaturedImageCount}; missingFeaturedAlt=${projects.missingFeaturedAltCount}; missingSubtitles=${projects.missingSubtitleCount}; galleryMissingAlt=${projects.gallery.missingAltCount}.`,
+      "Every public project is structurally safe and has approved archive presentation fields; an empty archive is explicitly owner-approved.",
+      classification === "OWNER_DECISION"
+        ? "OWNER_DECISION"
+        : structuralAnomalies
+          ? "CMS_ADMIN_ACTION"
+          : "EDITORIAL_ACTION",
+      classification === "OWNER_DECISION"
+        ? "Decide whether this tenant requires launch projects; if yes, commission public records rather than frontend fallbacks."
+        : classification === "EDITORIAL_ACTION"
+          ? "Supply approved missing archive presentation fields and media metadata."
+          : "Correct malformed, restricted, unsafe, duplicate, or truncated project data.",
+      "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+    );
+  }
+
+  if (area === "brand") {
+    const expected = CANONICAL_BRAND_IDENTITIES[siteKey];
+    return finding(
+      site.siteName,
+      area,
+      classification,
+      `Live key=${site.brand.key}; name=${site.brand.name}; tagline=${site.brand.tagline}; colors=${JSON.stringify(site.brand.colors)}.`,
+      expected ? formatBrandIdentity(expected) : "Approved canonical identity evidence for this tenant.",
+      classification === "BLOCKED" ? "BLOCKED" : "CMS_ADMIN_ACTION",
+      "Correct the canonical public brand fields in WordPress using approved repository identity evidence; do not normalize incorrect values in Next.js.",
+      "Re-query siraBrand and compare the exact effective key, name, tagline, and identity colors.",
+    );
+  }
+
+  if (area === "announcement" || area === "emergency") {
+    const banner = site.brand[area];
+    return finding(
+      site.siteName,
+      area,
+      classification,
+      `Typed ${area} summary=${JSON.stringify(banner)}.`,
+      "The typed banner is null or has valid message, severity, safe link/target, schedule, dismissibility, and revision identity.",
+      "EDITORIAL_ACTION",
+      classification === "EDITORIAL_ACTION"
+        ? `Review and remove or reschedule the expired ${area}.`
+        : `Correct the malformed typed ${area} fields without fabricating copy.`,
+      `Re-query siraBrand.${area} and re-evaluate structure, link safety, and schedule.`,
+    );
+  }
+
+  const brandMedia = { logo: site.brand.logo, mark: site.brand.mark };
+  const mediaEvidence = {
+    brand: brandMedia,
+    editorial: site.editorial.root.featuredMedia,
+    projects: {
+      published: site.projects.returnedPublishedCount,
+      missingFeaturedImages: site.projects.missingFeaturedImageCount,
+      missingFeaturedAlt: site.projects.missingFeaturedAltCount,
+      galleryUnsafe: site.projects.gallery.unsafeMediaCount,
+      galleryMissingAlt: site.projects.gallery.missingAltCount,
+      galleryRestricted: site.projects.gallery.restrictedMediaCount,
+    },
+  };
+  return finding(
+    site.siteName,
+    area,
+    classification,
+    `Required public media summary=${JSON.stringify(mediaEvidence)}.`,
+    "Media required by current public brand/content has safe URLs, useful alt text, usable dimensions, and no restricted asset leakage.",
+    "EDITORIAL_ACTION",
+    "Supply or correct required public media and accessibility metadata without fabricating assets.",
+    "Re-query public media metadata and verify source safety, alt text, dimensions, and restriction state.",
+  );
+}
+
+export function buildFindings(sites, matrix) {
   const findings = [];
   for (const [siteKey, site] of Object.entries(sites)) {
-    const siteName = site.siteName;
-    if (!site.inspected) {
-      findings.push(
-        finding(siteName, "all", "BLOCKED", site.blocker, "All public B1-B7 CMS coordinates inspectable.", "BLOCKED", "Restore authorized read-only endpoint access.", "Rerun the audit."),
-      );
-      continue;
-    }
-    if (matrix[siteKey].frontPage === "MISSING_CONFIGURATION") {
-      findings.push(
-        finding(siteName, "frontPage", "MISSING_CONFIGURATION", `showOnFront=${site.homepage.showOnFront}; pageOnFront=${site.homepage.pageOnFront}; page(id: \"/\", idType: URI)=null`, "A published Branch homepage assigned as the static front page and resolving at URI /.", "CMS_ADMIN_ACTION", "Create/select the approved branch homepage and assign it in Reading Settings after editorial approval.", "Re-query readingSettings and page(id: \"/\", idType: URI)."),
-      );
-    } else {
-      findings.push(
-        finding(siteName, "frontPage", "MISSING_CONTENT", `Page ${site.homepage.databaseId} resolves at / with variant=${site.homepage.variant}; all accepted Group hero fields are empty.`, "The configured Group front page contains approved structured Group homepage content.", "EDITORIAL_ACTION", "Supply and approve the Group structured homepage content without changing the canonical / lookup.", "Re-query the accepted SiraHomepage operation and verify populated Group fields."),
-      );
-    }
-    for (const [area, key] of [["primaryMenu", "primary"], ["footerMenu", "footer"], ["legalMenu", "legal"]]) {
-      findings.push(
-        finding(siteName, area, "MISSING_CONFIGURATION", `Native ${key.toUpperCase()} menu assignment count=${site.menus[key].assignedCount}.`, `Exactly one usable native ${key.toUpperCase()} menu assignment.`, "CMS_ADMIN_ACTION", `Create/approve and assign the ${key.toUpperCase()} menu using native WordPress menu locations.`, `Re-query the accepted SiraNavigation operation and validate hierarchy/URLs.`),
-      );
-    }
-    if (matrix[siteKey].businessUnit === "MISSING_CONFIGURATION") {
-      findings.push(
-        finding(siteName, "businessUnit", "MISSING_CONFIGURATION", `Expected slug=${site.businessUnit.expectedSlug}; term lookup=null; available term count=${site.businessUnit.availableTerms.length}.`, `A canonical Business Unit term with slug ${site.businessUnit.expectedSlug}.`, "CMS_ADMIN_ACTION", "Create the exact approved term and assign only relevant editorial content; do not derive or rename slugs mechanically.", "Re-query siraBusinessUnit by SLUG and its filtered contentNodes connection."),
-      );
-    }
-    if (matrix[siteKey].editorial === "OWNER_DECISION") {
-      const filteredEvidence = site.editorial.branchFiltered
-        ? `filtered accepted-family count=${site.editorial.branchFiltered.returnedCount}`
-        : "filtered connection unavailable because the exact Business Unit term is missing";
-      findings.push(
-        finding(siteName, "editorial", "OWNER_DECISION", `Published accepted-family root count=${site.editorial.root.returnedCount}; ${filteredEvidence}.`, "An owner-confirmed intentional empty state or an approved editorial publishing plan.", "OWNER_DECISION", "Decide whether this branch intentionally launches with an empty editorial feed; if not, assign editorial creation to an editor after the Business Unit term exists.", "After the exact term exists, re-query root and branch-filtered accepted editorial connections."),
-      );
-    }
-    if (matrix[siteKey].projects === "OWNER_DECISION") {
-      findings.push(
-        finding(siteName, "projects", "OWNER_DECISION", `Published project count=${site.projects.returnedPublishedCount}.`, "An owner-confirmed intentional empty archive or an approved project publishing plan.", "OWNER_DECISION", "Decide whether this branch requires launch projects; if yes, commission public project records rather than adding frontend fallbacks.", "Re-query siraProjects and native project-single URIs."),
-      );
-    } else {
-      findings.push(
-        finding(siteName, "projects", "EDITORIAL_ACTION", `${site.projects.returnedPublishedCount} published projects; ${site.projects.missingFeaturedImageCount} missing featured images; ${site.projects.missingSubtitleCount} missing subtitles.`, "Every launch-ready project card has approved archive presentation fields.", "EDITORIAL_ACTION", "Supply approved featured images/alt text and project subtitles for the three published projects.", "Re-query siraProjects and verify zero required archive-field gaps."),
-      );
-    }
-    if (matrix[siteKey].brand === "DATA_CORRECTION_REQUIRED") {
-      const expected = siteKey === "group"
-        ? "SIRA GROUP; primary #cca34b; secondary #172232; accent #cca34b; paper #f7f4ed; ink #20242b."
-        : "SIRA Healthcare; primary #2c6dad; secondary #12283f; accent #2c6dad; paper #f3f7fb; ink #1f2932.";
-      findings.push(
-        finding(siteName, "brand", "DATA_CORRECTION_REQUIRED", `Live name=${site.brand.name}; colors=${JSON.stringify(site.brand.colors)}.`, expected, "CMS_ADMIN_ACTION", "Correct the canonical public brand fields in WordPress using the approved repository identity evidence; do not normalize these values in Next.js.", "Re-query siraBrand and compare exact effective values."),
-      );
-    }
-    if (matrix[siteKey].media === "EDITORIAL_ACTION") {
-      const evidence = siteKey === "group"
-        ? `Brand logo alt missing=${site.brand.logo.populated && !site.brand.logo.hasAltText}; brand mark populated=${site.brand.mark.populated}; project featured images missing=${site.projects.missingFeaturedImageCount}.`
-        : `Brand mark alt missing=${site.brand.mark.populated && !site.brand.mark.hasAltText}.`;
-      findings.push(
-        finding(siteName, "media", "EDITORIAL_ACTION", evidence, "Public required media has useful alt text, safe URLs, and usable dimensions; launch project cards have approved images where required.", "EDITORIAL_ACTION", "Supply meaningful accessibility text and required project imagery without fabricating assets.", "Re-query public media metadata and verify alt/dimensions/source readiness."),
-      );
+    for (const area of MATRIX_AREAS) {
+      const classification = matrix[siteKey][area];
+      if (classification !== "READY") {
+        findings.push(
+          createAreaFinding(siteKey, site, area, classification),
+        );
+      }
     }
   }
   return findings;
@@ -767,4 +1176,6 @@ async function main() {
   await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
 }
 
-await main();
+if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
+  await main();
+}

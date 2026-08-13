@@ -21,16 +21,16 @@ A later verified artifact may temporarily supersede repository source for a spec
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Current governed frontend baseline/head: `73f41e88a5d1016e2cdd586991765d992a513416`
-- Latest accepted increment: Step 2C.3C-B7
-- B7 PR / implementation / merge: `#11` / `851b85b3d685ae1304466dc5baecadc87bcd1b90` / `73f41e88a5d1016e2cdd586991765d992a513416`
+- Current governed frontend baseline/head: `4f306733b3e45bee4244688186e5ecae570fcb8b`
+- Latest accepted increment: Step 2C.3C cumulative closure
+- Closure PR / implementation / merge: `#12` / `847b0c3f067d9af4f00591c3554a7a693a646017` / `4f306733b3e45bee4244688186e5ecae570fcb8b`
 - Approved tag: `step-2c3b-approved`
 - Checked-in canonical live schema: `frontend/schema/wpgraphql.graphql`
 - Group audit schema: `frontend/schema/wpgraphql.group.graphql`
 - Metadata: `frontend/schema/wpgraphql.meta.json`
 - Compatibility evidence: `frontend/schema/wpgraphql.compatibility.json`
 
-The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. B7 Frontend CI run #17 passed on implementation head `851b85b3d685ae1304466dc5baecadc87bcd1b90`, and the full 21-file / 174-test regression passed before owner acceptance and merge. The cumulative Step 2C.3C closure gate is validation-only and does not supersede the open backend conflict or authorize production.
+The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. Step 2C.3C closure Frontend CI run #21 passed on head `847b0c3f067d9af4f00591c3554a7a693a646017`, and the full 22-file / 183-test regression passed before owner acceptance and merge. Step 2C.3D is now a read-only CMS readiness audit; it does not supersede the open backend conflict or authorize production or CMS mutation.
 
 ## Current backend source status
 

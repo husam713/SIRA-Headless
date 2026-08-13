@@ -22,7 +22,7 @@ interface ProjectState {
 }
 
 describe("B7 durable state acceptance", () => {
-  it("records accepted and merged B7 before cumulative closure", () => {
+  it("records cumulative acceptance after merged B7", () => {
     const state = JSON.parse(
       readFileSync(
         new URL("../../../project-state.json", import.meta.url),
@@ -31,22 +31,22 @@ describe("B7 durable state acceptance", () => {
     ) as ProjectState;
 
     expect(state).toMatchObject({
-      currentStage: "2C.3C",
-      currentSubstage: "2C.3C-CLOSURE",
-      executionBaseline: "73f41e88a5d1016e2cdd586991765d992a513416",
+      currentStage: "2C.3D",
+      currentSubstage: "2C.3D-AUDIT",
+      executionBaseline: "4f306733b3e45bee4244688186e5ecae570fcb8b",
       productionAuthorized: false,
       governance: {
         canonicalBranch: "main",
         defaultBranch: "main",
       },
       latestAcceptedIncrement: {
-        stage: "Step 2C.3C-B7",
+        stage: "Step 2C.3C",
         status: "ACCEPTED_MERGED",
-        pullRequest: 11,
-        implementationHead: "851b85b3d685ae1304466dc5baecadc87bcd1b90",
-        mergeCommit: "73f41e88a5d1016e2cdd586991765d992a513416",
+        pullRequest: 12,
+        implementationHead: "847b0c3f067d9af4f00591c3554a7a693a646017",
+        mergeCommit: "4f306733b3e45bee4244688186e5ecae570fcb8b",
         frontendCi: "PASS",
-        fullRegression: "21 files / 174 tests PASS",
+        fullRegression: "22 files / 183 tests PASS",
       },
     });
   });

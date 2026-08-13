@@ -1,0 +1,1565 @@
+{
+  "schemaVersion": 2,
+  "audit": "Step 2C.3D WordPress Content Readiness",
+  "auditedAt": "2026-08-13T02:52:28.774Z",
+  "mode": "read-only public GraphQL metadata",
+  "querySource": "content-readiness-audit.mjs",
+  "security": {
+    "endpointValuesPersisted": false,
+    "credentialsPersisted": false,
+    "unpublishedBodiesPersisted": false,
+    "rawPayloadsPersisted": false,
+    "wordpressMutationOccurred": false,
+    "backendMutationOccurred": false,
+    "productionDeploymentOccurred": false
+  },
+  "limitations": [
+    "Public GraphQL proves published/anonymous contract readiness only.",
+    "Draft/private totals, WordPress admin provenance, and show_on_front mutation controls require authorized admin/WP-CLI evidence.",
+    "Counts are exact only when truncated=false."
+  ],
+  "readinessMatrix": {
+    "group": {
+      "frontPage": "EDITORIAL_ACTION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "READY",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "DATA_CORRECTION_REQUIRED",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "EDITORIAL_ACTION"
+    },
+    "consulting": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    },
+    "healthcare": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "DATA_CORRECTION_REQUIRED",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "EDITORIAL_ACTION"
+    },
+    "lifestyle": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    },
+    "realestate": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    }
+  },
+  "technicalReadinessMatrix": {
+    "group": {
+      "frontPage": "MISSING_CONTENT",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "READY",
+      "editorial": "READY",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "DATA_CORRECTION_REQUIRED",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "EDITORIAL_ACTION"
+    },
+    "consulting": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "OWNER_DECISION",
+      "projects": "OWNER_DECISION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    },
+    "healthcare": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "OWNER_DECISION",
+      "projects": "OWNER_DECISION",
+      "brand": "DATA_CORRECTION_REQUIRED",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "EDITORIAL_ACTION"
+    },
+    "lifestyle": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "OWNER_DECISION",
+      "projects": "OWNER_DECISION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    },
+    "realestate": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "OWNER_DECISION",
+      "projects": "OWNER_DECISION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    }
+  },
+  "contentAuthority": {
+    "vocabulary": [
+      "APPROVED_LAUNCH_CONTENT",
+      "UNAPPROVED_EXISTING_CONTENT",
+      "NO_CONTENT",
+      "NOT_APPLICABLE"
+    ],
+    "ownerClarification": "Existing WordPress business/editorial records are not approved as authoritative launch content unless explicit approval evidence exists.",
+    "matrix": {
+      "group": {
+        "frontPage": "UNAPPROVED_EXISTING_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "UNAPPROVED_EXISTING_CONTENT",
+        "projects": "UNAPPROVED_EXISTING_CONTENT",
+        "brand": "UNAPPROVED_EXISTING_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "consulting": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "APPROVED_LAUNCH_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "healthcare": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "UNAPPROVED_EXISTING_CONTENT",
+        "announcement": "UNAPPROVED_EXISTING_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "lifestyle": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "APPROVED_LAUNCH_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "realestate": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "APPROVED_LAUNCH_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      }
+    },
+    "destructiveCleanupAuthorized": false
+  },
+  "classificationCounts": {
+    "READY": 17,
+    "MISSING_CONTENT": 0,
+    "MISSING_CONFIGURATION": 23,
+    "DATA_CORRECTION_REQUIRED": 2,
+    "EDITORIAL_ACTION": 13,
+    "OWNER_DECISION": 0,
+    "BLOCKED": 0
+  },
+  "findings": [
+    {
+      "site": "Group",
+      "area": "frontPage",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Page 457 resolves at / with variant=group; missing accepted hero fields=headingBefore,headingHighlight,headingAfter,description.",
+      "expectedCanonicalState": "A published group homepage assigned as the static front page, resolving at URI /, with all accepted hero fields populated.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Supply and approve the missing structured homepage content without changing the canonical / lookup.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+      "technicalClassification": "MISSING_CONTENT",
+      "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
+    },
+    {
+      "site": "Group",
+      "area": "primaryMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native PRIMARY assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native PRIMARY menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the PRIMARY menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Group",
+      "area": "footerMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native FOOTER assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native FOOTER menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the FOOTER menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Group",
+      "area": "legalMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native LEGAL assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native LEGAL menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the LEGAL menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Group",
+      "area": "editorial",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Root accepted-family count=4; root anomalies=false; groupRootUnfiltered=true; filtered=unavailable.",
+      "expectedCanonicalState": "The native unfiltered Group feed is structurally safe and contains explicitly approved authoritative launch content.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Review existing technically valid records, retain or replace them editorially, and explicitly approve authoritative launch content; do not delete records in this increment.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+      "technicalClassification": "READY",
+      "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
+    },
+    {
+      "site": "Group",
+      "area": "projects",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Published count=3; structuralAnomalies=false; missingFeaturedImages=3; missingFeaturedAlt=0; missingSubtitles=3; galleryMissingAlt=0.",
+      "expectedCanonicalState": "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Review existing technically valid projects, retain or replace them editorially, explicitly approve launch records, and complete presentation gaps; do not delete records in this increment.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+      "technicalClassification": "EDITORIAL_ACTION",
+      "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
+    },
+    {
+      "site": "Group",
+      "area": "brand",
+      "classification": "DATA_CORRECTION_REQUIRED",
+      "evidence": "Live key=group; name=SIRA Global Logo; tagline=Shaping a smarter future.; colors={\"primary\":\"#cccccc\",\"secondary\":\"#5b5b5b\",\"accent\":\"#cca34b\",\"paper\":\"#f7f4ed\",\"ink\":\"#20242b\"}.",
+      "expectedCanonicalState": "SIRA GROUP; Shaping a smarter future.; primary #cca34b; secondary #172232; accent #cca34b; paper #f7f4ed; ink #20242b.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Correct the canonical public brand fields in WordPress using approved repository identity evidence; do not normalize incorrect values in Next.js.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query siraBrand and compare the exact effective key, name, tagline, and identity colors.",
+      "technicalClassification": "DATA_CORRECTION_REQUIRED",
+      "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
+    },
+    {
+      "site": "Group",
+      "area": "media",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Required public media summary={\"brand\":{\"logo\":{\"populated\":true,\"databaseId\":459,\"safeSourceUrl\":true,\"hasAltText\":false,\"width\":1626,\"height\":613,\"restricted\":false},\"mark\":{\"populated\":false}},\"editorial\":{\"populatedCount\":0,\"missingAltCount\":0,\"unsafeUrlCount\":0,\"invalidDimensionsCount\":0},\"projects\":{\"published\":3,\"missingFeaturedImages\":3,\"missingFeaturedAlt\":0,\"galleryUnsafe\":0,\"galleryMissingAlt\":0,\"galleryRestricted\":0}}.",
+      "expectedCanonicalState": "Media required by current public brand/content has safe URLs, useful alt text, usable dimensions, and no restricted asset leakage.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Supply or correct required public media and accessibility metadata without fabricating assets.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query public media metadata and verify source safety, alt text, dimensions, and restriction state.",
+      "technicalClassification": "EDITORIAL_ACTION",
+      "contentAuthority": "NOT_APPLICABLE"
+    },
+    {
+      "site": "Consulting",
+      "area": "frontPage",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "showOnFront=posts; pageOnFront=0; resolvesRootUri=false; databaseId=null; uri=null; status=null; isFrontPage=false; variant=null; expectedVariant=branch.",
+      "expectedCanonicalState": "A published branch homepage assigned as the static front page, resolving at URI /, with all accepted hero fields populated.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/select the approved homepage and assign it in Reading Settings after editorial approval.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Consulting",
+      "area": "primaryMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native PRIMARY assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native PRIMARY menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the PRIMARY menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Consulting",
+      "area": "footerMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native FOOTER assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native FOOTER menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the FOOTER menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Consulting",
+      "area": "legalMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native LEGAL assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native LEGAL menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the LEGAL menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Consulting",
+      "area": "businessUnit",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Expected slug=consulting; term=null; available slugs=; truncated=false.",
+      "expectedCanonicalState": "A canonical Business Unit term with exact slug consulting.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create the exact approved term and assign only relevant accepted editorial records; do not derive or rename slugs mechanically.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NOT_APPLICABLE"
+    },
+    {
+      "site": "Consulting",
+      "area": "editorial",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Root accepted-family count=0; root anomalies=false; groupRootUnfiltered=false; filtered=unavailable.",
+      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered feed containing explicitly approved authoritative launch content.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch editorial content after required taxonomy configuration; do not fabricate frontend fallbacks.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Consulting",
+      "area": "projects",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Published count=0; structuralAnomalies=false; missingFeaturedImages=0; missingFeaturedAlt=0; missingSubtitles=0; galleryMissingAlt=0.",
+      "expectedCanonicalState": "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch project records; do not fabricate frontend fallbacks.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Healthcare",
+      "area": "frontPage",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "showOnFront=posts; pageOnFront=0; resolvesRootUri=false; databaseId=null; uri=null; status=null; isFrontPage=false; variant=null; expectedVariant=branch.",
+      "expectedCanonicalState": "A published branch homepage assigned as the static front page, resolving at URI /, with all accepted hero fields populated.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/select the approved homepage and assign it in Reading Settings after editorial approval.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Healthcare",
+      "area": "primaryMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native PRIMARY assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native PRIMARY menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the PRIMARY menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Healthcare",
+      "area": "footerMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native FOOTER assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native FOOTER menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the FOOTER menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Healthcare",
+      "area": "legalMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native LEGAL assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native LEGAL menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the LEGAL menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Healthcare",
+      "area": "businessUnit",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Expected slug=healthcare; term=null; available slugs=; truncated=false.",
+      "expectedCanonicalState": "A canonical Business Unit term with exact slug healthcare.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create the exact approved term and assign only relevant accepted editorial records; do not derive or rename slugs mechanically.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NOT_APPLICABLE"
+    },
+    {
+      "site": "Healthcare",
+      "area": "editorial",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Root accepted-family count=0; root anomalies=false; groupRootUnfiltered=false; filtered=unavailable.",
+      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered feed containing explicitly approved authoritative launch content.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch editorial content after required taxonomy configuration; do not fabricate frontend fallbacks.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Healthcare",
+      "area": "projects",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Published count=0; structuralAnomalies=false; missingFeaturedImages=0; missingFeaturedAlt=0; missingSubtitles=0; galleryMissingAlt=0.",
+      "expectedCanonicalState": "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch project records; do not fabricate frontend fallbacks.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Healthcare",
+      "area": "brand",
+      "classification": "DATA_CORRECTION_REQUIRED",
+      "evidence": "Live key=healthcare; name=SIRA Health; tagline=Advancing diagnostic and healthcare infrastructure.; colors={\"primary\":\"#1e73be\",\"secondary\":\"#81d742\",\"accent\":\"#8224e3\",\"paper\":\"#f3f7fb\",\"ink\":\"#1f2932\"}.",
+      "expectedCanonicalState": "SIRA Healthcare; Advancing diagnostic and healthcare infrastructure.; primary #2c6dad; secondary #12283f; accent #2c6dad; paper #f3f7fb; ink #1f2932.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Correct the canonical public brand fields in WordPress using approved repository identity evidence; do not normalize incorrect values in Next.js.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query siraBrand and compare the exact effective key, name, tagline, and identity colors.",
+      "technicalClassification": "DATA_CORRECTION_REQUIRED",
+      "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
+    },
+    {
+      "site": "Healthcare",
+      "area": "media",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Required public media summary={\"brand\":{\"logo\":{\"populated\":true,\"databaseId\":15,\"safeSourceUrl\":true,\"hasAltText\":true,\"width\":768,\"height\":290,\"restricted\":false},\"mark\":{\"populated\":true,\"databaseId\":16,\"safeSourceUrl\":true,\"hasAltText\":false,\"width\":285,\"height\":274,\"restricted\":false}},\"editorial\":{\"populatedCount\":0,\"missingAltCount\":0,\"unsafeUrlCount\":0,\"invalidDimensionsCount\":0},\"projects\":{\"published\":0,\"missingFeaturedImages\":0,\"missingFeaturedAlt\":0,\"galleryUnsafe\":0,\"galleryMissingAlt\":0,\"galleryRestricted\":0}}.",
+      "expectedCanonicalState": "Media required by current public brand/content has safe URLs, useful alt text, usable dimensions, and no restricted asset leakage.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Supply or correct required public media and accessibility metadata without fabricating assets.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query public media metadata and verify source safety, alt text, dimensions, and restriction state.",
+      "technicalClassification": "EDITORIAL_ACTION",
+      "contentAuthority": "NOT_APPLICABLE"
+    },
+    {
+      "site": "Lifestyle",
+      "area": "frontPage",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "showOnFront=posts; pageOnFront=0; resolvesRootUri=false; databaseId=null; uri=null; status=null; isFrontPage=false; variant=null; expectedVariant=branch.",
+      "expectedCanonicalState": "A published branch homepage assigned as the static front page, resolving at URI /, with all accepted hero fields populated.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/select the approved homepage and assign it in Reading Settings after editorial approval.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Lifestyle",
+      "area": "primaryMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native PRIMARY assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native PRIMARY menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the PRIMARY menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Lifestyle",
+      "area": "footerMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native FOOTER assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native FOOTER menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the FOOTER menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Lifestyle",
+      "area": "legalMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native LEGAL assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native LEGAL menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the LEGAL menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Lifestyle",
+      "area": "businessUnit",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Expected slug=lifestyle; term=null; available slugs=; truncated=false.",
+      "expectedCanonicalState": "A canonical Business Unit term with exact slug lifestyle.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create the exact approved term and assign only relevant accepted editorial records; do not derive or rename slugs mechanically.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NOT_APPLICABLE"
+    },
+    {
+      "site": "Lifestyle",
+      "area": "editorial",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Root accepted-family count=0; root anomalies=false; groupRootUnfiltered=false; filtered=unavailable.",
+      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered feed containing explicitly approved authoritative launch content.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch editorial content after required taxonomy configuration; do not fabricate frontend fallbacks.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Lifestyle",
+      "area": "projects",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Published count=0; structuralAnomalies=false; missingFeaturedImages=0; missingFeaturedAlt=0; missingSubtitles=0; galleryMissingAlt=0.",
+      "expectedCanonicalState": "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch project records; do not fabricate frontend fallbacks.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Real Estate",
+      "area": "frontPage",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "showOnFront=posts; pageOnFront=0; resolvesRootUri=false; databaseId=null; uri=null; status=null; isFrontPage=false; variant=null; expectedVariant=branch.",
+      "expectedCanonicalState": "A published branch homepage assigned as the static front page, resolving at URI /, with all accepted hero fields populated.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/select the approved homepage and assign it in Reading Settings after editorial approval.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Real Estate",
+      "area": "primaryMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native PRIMARY assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native PRIMARY menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the PRIMARY menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Real Estate",
+      "area": "footerMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native FOOTER assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native FOOTER menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the FOOTER menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Real Estate",
+      "area": "legalMenu",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Native LEGAL assignment count=0; connectionTruncated=false; menu summaries=[].",
+      "expectedCanonicalState": "Exactly one unrestricted, untruncated native LEGAL menu with the expected location, safe items, unique identities, and no orphans.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create/approve and assign the LEGAL menu using the native WordPress location.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Real Estate",
+      "area": "businessUnit",
+      "classification": "MISSING_CONFIGURATION",
+      "evidence": "Expected slug=real-estate; term=null; available slugs=; truncated=false.",
+      "expectedCanonicalState": "A canonical Business Unit term with exact slug real-estate.",
+      "owner": "CMS_ADMIN_ACTION",
+      "recommendedAction": "Create the exact approved term and assign only relevant accepted editorial records; do not derive or rename slugs mechanically.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NOT_APPLICABLE"
+    },
+    {
+      "site": "Real Estate",
+      "area": "editorial",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Root accepted-family count=0; root anomalies=false; groupRootUnfiltered=false; filtered=unavailable.",
+      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered feed containing explicitly approved authoritative launch content.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch editorial content after required taxonomy configuration; do not fabricate frontend fallbacks.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Real Estate",
+      "area": "projects",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Published count=0; structuralAnomalies=false; missingFeaturedImages=0; missingFeaturedAlt=0; missingSubtitles=0; galleryMissingAlt=0.",
+      "expectedCanonicalState": "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch project records; do not fabricate frontend fallbacks.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
+    }
+  ],
+  "historicalRevalidation": {
+    "branchFrontPages": "UNCHANGED_MISSING",
+    "nativeMenus": "UNCHANGED_MISSING",
+    "groupBrand": "UNCORRECTED",
+    "healthcareBrand": "UNCORRECTED"
+  },
+  "sites": {
+    "group": {
+      "siteName": "Group",
+      "inspected": true,
+      "homepage": {
+        "showOnFront": "page",
+        "pageOnFront": 457,
+        "resolvesRootUri": true,
+        "databaseId": 457,
+        "uri": "/",
+        "title": "Home",
+        "status": "publish",
+        "isFrontPage": true,
+        "variant": "group",
+        "expectedVariant": "group",
+        "heroFieldPopulation": {
+          "headingBefore": false,
+          "headingHighlight": false,
+          "headingAfter": false,
+          "description": false
+        }
+      },
+      "menus": {
+        "primary": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        },
+        "footer": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        },
+        "legal": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        }
+      },
+      "businessUnit": {
+        "expectedSlug": null,
+        "term": null,
+        "availableTerms": [
+          {
+            "databaseId": 60,
+            "name": "Consulting",
+            "slug": "consulting",
+            "totalAssignedObjectCount": 1,
+            "acceptedEditorialAssignments": {
+              "returnedCount": 1,
+              "truncated": false,
+              "byType": {
+                "SiraNewsItem": 1,
+                "SiraInsight": 0,
+                "SiraArticle": 0,
+                "SiraPressRelease": 0
+              },
+              "missingTitleCount": 0,
+              "unsafeUriCount": 0,
+              "missingDateCount": 0,
+              "missingExcerptCount": 0,
+              "restrictedCount": 0,
+              "featuredMedia": {
+                "populatedCount": 0,
+                "missingAltCount": 0,
+                "unsafeUrlCount": 0,
+                "invalidDimensionsCount": 0
+              }
+            }
+          },
+          {
+            "databaseId": 62,
+            "name": "Healthcare",
+            "slug": "healthcare",
+            "totalAssignedObjectCount": 1,
+            "acceptedEditorialAssignments": {
+              "returnedCount": 1,
+              "truncated": false,
+              "byType": {
+                "SiraNewsItem": 1,
+                "SiraInsight": 0,
+                "SiraArticle": 0,
+                "SiraPressRelease": 0
+              },
+              "missingTitleCount": 0,
+              "unsafeUriCount": 0,
+              "missingDateCount": 0,
+              "missingExcerptCount": 0,
+              "restrictedCount": 0,
+              "featuredMedia": {
+                "populatedCount": 0,
+                "missingAltCount": 0,
+                "unsafeUrlCount": 0,
+                "invalidDimensionsCount": 0
+              }
+            }
+          },
+          {
+            "databaseId": 61,
+            "name": "Lifestyle",
+            "slug": "lifestyle",
+            "totalAssignedObjectCount": 1,
+            "acceptedEditorialAssignments": {
+              "returnedCount": 1,
+              "truncated": false,
+              "byType": {
+                "SiraNewsItem": 1,
+                "SiraInsight": 0,
+                "SiraArticle": 0,
+                "SiraPressRelease": 0
+              },
+              "missingTitleCount": 0,
+              "unsafeUriCount": 0,
+              "missingDateCount": 0,
+              "missingExcerptCount": 0,
+              "restrictedCount": 0,
+              "featuredMedia": {
+                "populatedCount": 0,
+                "missingAltCount": 0,
+                "unsafeUrlCount": 0,
+                "invalidDimensionsCount": 0
+              }
+            }
+          },
+          {
+            "databaseId": 59,
+            "name": "Real Estate",
+            "slug": "real-estate",
+            "totalAssignedObjectCount": 1,
+            "acceptedEditorialAssignments": {
+              "returnedCount": 1,
+              "truncated": false,
+              "byType": {
+                "SiraNewsItem": 1,
+                "SiraInsight": 0,
+                "SiraArticle": 0,
+                "SiraPressRelease": 0
+              },
+              "missingTitleCount": 0,
+              "unsafeUriCount": 0,
+              "missingDateCount": 0,
+              "missingExcerptCount": 0,
+              "restrictedCount": 0,
+              "featuredMedia": {
+                "populatedCount": 0,
+                "missingAltCount": 0,
+                "unsafeUrlCount": 0,
+                "invalidDimensionsCount": 0
+              }
+            }
+          }
+        ],
+        "availableTermsTruncated": false
+      },
+      "editorial": {
+        "groupRootUnfiltered": true,
+        "root": {
+          "returnedCount": 4,
+          "truncated": false,
+          "byType": {
+            "SiraNewsItem": 4,
+            "SiraInsight": 0,
+            "SiraArticle": 0,
+            "SiraPressRelease": 0
+          },
+          "missingTitleCount": 0,
+          "unsafeUriCount": 0,
+          "missingDateCount": 0,
+          "missingExcerptCount": 0,
+          "restrictedCount": 0,
+          "featuredMedia": {
+            "populatedCount": 0,
+            "missingAltCount": 0,
+            "unsafeUrlCount": 0,
+            "invalidDimensionsCount": 0
+          }
+        },
+        "branchFiltered": null
+      },
+      "projects": {
+        "returnedPublishedCount": 3,
+        "truncated": false,
+        "restrictedCount": 0,
+        "missingTitleCount": 0,
+        "unsafeUriCount": 0,
+        "missingExcerptCount": 0,
+        "missingFeaturedImageCount": 3,
+        "missingFeaturedAltCount": 0,
+        "missingSubtitleCount": 3,
+        "missingLocationCount": 0,
+        "missingStatusCount": 0,
+        "missingRenderedContentCount": 0,
+        "gallery": {
+          "populatedProjectCount": 0,
+          "truncatedProjectCount": 0,
+          "unsafeMediaCount": 0,
+          "missingAltCount": 0,
+          "restrictedMediaCount": 0
+        },
+        "statistics": {
+          "populatedProjectCount": 0,
+          "malformedEntryCount": 0
+        },
+        "relatedCompanies": {
+          "populatedProjectCount": 3,
+          "truncatedProjectCount": 0,
+          "restrictedCount": 0,
+          "malformedCount": 0
+        }
+      },
+      "brand": {
+        "key": "group",
+        "name": "SIRA Global Logo",
+        "tagline": "Shaping a smarter future.",
+        "colors": {
+          "primary": "#cccccc",
+          "secondary": "#5b5b5b",
+          "accent": "#cca34b",
+          "paper": "#f7f4ed",
+          "ink": "#20242b"
+        },
+        "logo": {
+          "populated": true,
+          "databaseId": 459,
+          "safeSourceUrl": true,
+          "hasAltText": false,
+          "width": 1626,
+          "height": 613,
+          "restricted": false
+        },
+        "mark": {
+          "populated": false
+        },
+        "publicIdentityPresence": {
+          "email": false,
+          "phone": false,
+          "address": false,
+          "description": false,
+          "mission": false,
+          "vision": false
+        },
+        "announcement": {
+          "state": "null"
+        },
+        "emergency": {
+          "state": "null"
+        }
+      }
+    },
+    "consulting": {
+      "siteName": "Consulting",
+      "inspected": true,
+      "homepage": {
+        "showOnFront": "posts",
+        "pageOnFront": 0,
+        "resolvesRootUri": false,
+        "databaseId": null,
+        "uri": null,
+        "title": null,
+        "status": null,
+        "isFrontPage": false,
+        "variant": null,
+        "expectedVariant": "branch",
+        "heroFieldPopulation": null
+      },
+      "menus": {
+        "primary": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        },
+        "footer": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        },
+        "legal": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        }
+      },
+      "businessUnit": {
+        "expectedSlug": "consulting",
+        "term": null,
+        "availableTerms": [],
+        "availableTermsTruncated": false
+      },
+      "editorial": {
+        "groupRootUnfiltered": false,
+        "root": {
+          "returnedCount": 0,
+          "truncated": false,
+          "byType": {
+            "SiraNewsItem": 0,
+            "SiraInsight": 0,
+            "SiraArticle": 0,
+            "SiraPressRelease": 0
+          },
+          "missingTitleCount": 0,
+          "unsafeUriCount": 0,
+          "missingDateCount": 0,
+          "missingExcerptCount": 0,
+          "restrictedCount": 0,
+          "featuredMedia": {
+            "populatedCount": 0,
+            "missingAltCount": 0,
+            "unsafeUrlCount": 0,
+            "invalidDimensionsCount": 0
+          }
+        },
+        "branchFiltered": null
+      },
+      "projects": {
+        "returnedPublishedCount": 0,
+        "truncated": false,
+        "restrictedCount": 0,
+        "missingTitleCount": 0,
+        "unsafeUriCount": 0,
+        "missingExcerptCount": 0,
+        "missingFeaturedImageCount": 0,
+        "missingFeaturedAltCount": 0,
+        "missingSubtitleCount": 0,
+        "missingLocationCount": 0,
+        "missingStatusCount": 0,
+        "missingRenderedContentCount": 0,
+        "gallery": {
+          "populatedProjectCount": 0,
+          "truncatedProjectCount": 0,
+          "unsafeMediaCount": 0,
+          "missingAltCount": 0,
+          "restrictedMediaCount": 0
+        },
+        "statistics": {
+          "populatedProjectCount": 0,
+          "malformedEntryCount": 0
+        },
+        "relatedCompanies": {
+          "populatedProjectCount": 0,
+          "truncatedProjectCount": 0,
+          "restrictedCount": 0,
+          "malformedCount": 0
+        }
+      },
+      "brand": {
+        "key": "consulting",
+        "name": "SIRA Consulting",
+        "tagline": "Strategy for new markets.",
+        "colors": {
+          "primary": "#8b5aae",
+          "secondary": "#2b1f36",
+          "accent": "#8b5aae",
+          "paper": "#f8f4fa",
+          "ink": "#29232d"
+        },
+        "logo": {
+          "populated": false
+        },
+        "mark": {
+          "populated": false
+        },
+        "publicIdentityPresence": {
+          "email": false,
+          "phone": false,
+          "address": false,
+          "description": false,
+          "mission": false,
+          "vision": false
+        },
+        "announcement": {
+          "state": "null"
+        },
+        "emergency": {
+          "state": "null"
+        }
+      }
+    },
+    "healthcare": {
+      "siteName": "Healthcare",
+      "inspected": true,
+      "homepage": {
+        "showOnFront": "posts",
+        "pageOnFront": 0,
+        "resolvesRootUri": false,
+        "databaseId": null,
+        "uri": null,
+        "title": null,
+        "status": null,
+        "isFrontPage": false,
+        "variant": null,
+        "expectedVariant": "branch",
+        "heroFieldPopulation": null
+      },
+      "menus": {
+        "primary": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        },
+        "footer": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        },
+        "legal": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        }
+      },
+      "businessUnit": {
+        "expectedSlug": "healthcare",
+        "term": null,
+        "availableTerms": [],
+        "availableTermsTruncated": false
+      },
+      "editorial": {
+        "groupRootUnfiltered": false,
+        "root": {
+          "returnedCount": 0,
+          "truncated": false,
+          "byType": {
+            "SiraNewsItem": 0,
+            "SiraInsight": 0,
+            "SiraArticle": 0,
+            "SiraPressRelease": 0
+          },
+          "missingTitleCount": 0,
+          "unsafeUriCount": 0,
+          "missingDateCount": 0,
+          "missingExcerptCount": 0,
+          "restrictedCount": 0,
+          "featuredMedia": {
+            "populatedCount": 0,
+            "missingAltCount": 0,
+            "unsafeUrlCount": 0,
+            "invalidDimensionsCount": 0
+          }
+        },
+        "branchFiltered": null
+      },
+      "projects": {
+        "returnedPublishedCount": 0,
+        "truncated": false,
+        "restrictedCount": 0,
+        "missingTitleCount": 0,
+        "unsafeUriCount": 0,
+        "missingExcerptCount": 0,
+        "missingFeaturedImageCount": 0,
+        "missingFeaturedAltCount": 0,
+        "missingSubtitleCount": 0,
+        "missingLocationCount": 0,
+        "missingStatusCount": 0,
+        "missingRenderedContentCount": 0,
+        "gallery": {
+          "populatedProjectCount": 0,
+          "truncatedProjectCount": 0,
+          "unsafeMediaCount": 0,
+          "missingAltCount": 0,
+          "restrictedMediaCount": 0
+        },
+        "statistics": {
+          "populatedProjectCount": 0,
+          "malformedEntryCount": 0
+        },
+        "relatedCompanies": {
+          "populatedProjectCount": 0,
+          "truncatedProjectCount": 0,
+          "restrictedCount": 0,
+          "malformedCount": 0
+        }
+      },
+      "brand": {
+        "key": "healthcare",
+        "name": "SIRA Health",
+        "tagline": "Advancing diagnostic and healthcare infrastructure.",
+        "colors": {
+          "primary": "#1e73be",
+          "secondary": "#81d742",
+          "accent": "#8224e3",
+          "paper": "#f3f7fb",
+          "ink": "#1f2932"
+        },
+        "logo": {
+          "populated": true,
+          "databaseId": 15,
+          "safeSourceUrl": true,
+          "hasAltText": true,
+          "width": 768,
+          "height": 290,
+          "restricted": false
+        },
+        "mark": {
+          "populated": true,
+          "databaseId": 16,
+          "safeSourceUrl": true,
+          "hasAltText": false,
+          "width": 285,
+          "height": 274,
+          "restricted": false
+        },
+        "publicIdentityPresence": {
+          "email": true,
+          "phone": true,
+          "address": true,
+          "description": true,
+          "mission": true,
+          "vision": true
+        },
+        "announcement": {
+          "state": "populated",
+          "messagePresent": true,
+          "severity": "INFO",
+          "linkPresent": true,
+          "linkSafe": true,
+          "target": null,
+          "startsAt": null,
+          "endsAt": null,
+          "dismissible": false,
+          "revisionKeyPresent": true,
+          "schedule": "active"
+        },
+        "emergency": {
+          "state": "null"
+        }
+      }
+    },
+    "lifestyle": {
+      "siteName": "Lifestyle",
+      "inspected": true,
+      "homepage": {
+        "showOnFront": "posts",
+        "pageOnFront": 0,
+        "resolvesRootUri": false,
+        "databaseId": null,
+        "uri": null,
+        "title": null,
+        "status": null,
+        "isFrontPage": false,
+        "variant": null,
+        "expectedVariant": "branch",
+        "heroFieldPopulation": null
+      },
+      "menus": {
+        "primary": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        },
+        "footer": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        },
+        "legal": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        }
+      },
+      "businessUnit": {
+        "expectedSlug": "lifestyle",
+        "term": null,
+        "availableTerms": [],
+        "availableTermsTruncated": false
+      },
+      "editorial": {
+        "groupRootUnfiltered": false,
+        "root": {
+          "returnedCount": 0,
+          "truncated": false,
+          "byType": {
+            "SiraNewsItem": 0,
+            "SiraInsight": 0,
+            "SiraArticle": 0,
+            "SiraPressRelease": 0
+          },
+          "missingTitleCount": 0,
+          "unsafeUriCount": 0,
+          "missingDateCount": 0,
+          "missingExcerptCount": 0,
+          "restrictedCount": 0,
+          "featuredMedia": {
+            "populatedCount": 0,
+            "missingAltCount": 0,
+            "unsafeUrlCount": 0,
+            "invalidDimensionsCount": 0
+          }
+        },
+        "branchFiltered": null
+      },
+      "projects": {
+        "returnedPublishedCount": 0,
+        "truncated": false,
+        "restrictedCount": 0,
+        "missingTitleCount": 0,
+        "unsafeUriCount": 0,
+        "missingExcerptCount": 0,
+        "missingFeaturedImageCount": 0,
+        "missingFeaturedAltCount": 0,
+        "missingSubtitleCount": 0,
+        "missingLocationCount": 0,
+        "missingStatusCount": 0,
+        "missingRenderedContentCount": 0,
+        "gallery": {
+          "populatedProjectCount": 0,
+          "truncatedProjectCount": 0,
+          "unsafeMediaCount": 0,
+          "missingAltCount": 0,
+          "restrictedMediaCount": 0
+        },
+        "statistics": {
+          "populatedProjectCount": 0,
+          "malformedEntryCount": 0
+        },
+        "relatedCompanies": {
+          "populatedProjectCount": 0,
+          "truncatedProjectCount": 0,
+          "restrictedCount": 0,
+          "malformedCount": 0
+        }
+      },
+      "brand": {
+        "key": "lifestyle",
+        "name": "SIRA Lifestyle",
+        "tagline": "Creating destination-led hospitality and lifestyle experiences.",
+        "colors": {
+          "primary": "#2e8c72",
+          "secondary": "#12382f",
+          "accent": "#2e8c72",
+          "paper": "#f2f8f5",
+          "ink": "#1f2b27"
+        },
+        "logo": {
+          "populated": false
+        },
+        "mark": {
+          "populated": false
+        },
+        "publicIdentityPresence": {
+          "email": false,
+          "phone": false,
+          "address": false,
+          "description": false,
+          "mission": false,
+          "vision": false
+        },
+        "announcement": {
+          "state": "null"
+        },
+        "emergency": {
+          "state": "null"
+        }
+      }
+    },
+    "realestate": {
+      "siteName": "Real Estate",
+      "inspected": true,
+      "homepage": {
+        "showOnFront": "posts",
+        "pageOnFront": 0,
+        "resolvesRootUri": false,
+        "databaseId": null,
+        "uri": null,
+        "title": null,
+        "status": null,
+        "isFrontPage": false,
+        "variant": null,
+        "expectedVariant": "branch",
+        "heroFieldPopulation": null
+      },
+      "menus": {
+        "primary": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        },
+        "footer": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        },
+        "legal": {
+          "assignedCount": 0,
+          "truncated": false,
+          "menus": []
+        }
+      },
+      "businessUnit": {
+        "expectedSlug": "real-estate",
+        "term": null,
+        "availableTerms": [],
+        "availableTermsTruncated": false
+      },
+      "editorial": {
+        "groupRootUnfiltered": false,
+        "root": {
+          "returnedCount": 0,
+          "truncated": false,
+          "byType": {
+            "SiraNewsItem": 0,
+            "SiraInsight": 0,
+            "SiraArticle": 0,
+            "SiraPressRelease": 0
+          },
+          "missingTitleCount": 0,
+          "unsafeUriCount": 0,
+          "missingDateCount": 0,
+          "missingExcerptCount": 0,
+          "restrictedCount": 0,
+          "featuredMedia": {
+            "populatedCount": 0,
+            "missingAltCount": 0,
+            "unsafeUrlCount": 0,
+            "invalidDimensionsCount": 0
+          }
+        },
+        "branchFiltered": null
+      },
+      "projects": {
+        "returnedPublishedCount": 0,
+        "truncated": false,
+        "restrictedCount": 0,
+        "missingTitleCount": 0,
+        "unsafeUriCount": 0,
+        "missingExcerptCount": 0,
+        "missingFeaturedImageCount": 0,
+        "missingFeaturedAltCount": 0,
+        "missingSubtitleCount": 0,
+        "missingLocationCount": 0,
+        "missingStatusCount": 0,
+        "missingRenderedContentCount": 0,
+        "gallery": {
+          "populatedProjectCount": 0,
+          "truncatedProjectCount": 0,
+          "unsafeMediaCount": 0,
+          "missingAltCount": 0,
+          "restrictedMediaCount": 0
+        },
+        "statistics": {
+          "populatedProjectCount": 0,
+          "malformedEntryCount": 0
+        },
+        "relatedCompanies": {
+          "populatedProjectCount": 0,
+          "truncatedProjectCount": 0,
+          "restrictedCount": 0,
+          "malformedCount": 0
+        }
+      },
+      "brand": {
+        "key": "realestate",
+        "name": "SIRA Real Estate",
+        "tagline": "Building enduring places across markets.",
+        "colors": {
+          "primary": "#b0733c",
+          "secondary": "#2b1b14",
+          "accent": "#b0733c",
+          "paper": "#faf5ef",
+          "ink": "#25201d"
+        },
+        "logo": {
+          "populated": false
+        },
+        "mark": {
+          "populated": false
+        },
+        "publicIdentityPresence": {
+          "email": false,
+          "phone": false,
+          "address": false,
+          "description": false,
+          "mission": false,
+          "vision": false
+        },
+        "announcement": {
+          "state": "null"
+        },
+        "emergency": {
+          "state": "null"
+        }
+      }
+    }
+  }
+}

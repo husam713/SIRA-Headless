@@ -1,15 +1,15 @@
 # SIRA Current Project State
 
-Last reconciled from repository and GitHub evidence: 2026-08-12
+Last reconciled from repository and GitHub evidence: 2026-08-13
 
 ## Current execution state
 
-- **Current business stage:** Step 2C.3C — Typed Frontend Query Contracts
-- **Current substage:** 2C.3C-CLOSURE — Cumulative Closure Gate
+- **Current business stage:** Step 2C.3D — WordPress Content Readiness
+- **Current substage:** 2C.3D-AUDIT — Read-Only CMS Readiness Audit
 - **Canonical integration/default branch:** `main`
-- **Business-code baseline:** `73f41e88a5d1016e2cdd586991765d992a513416`
-- **Current governed integration head:** `73f41e88a5d1016e2cdd586991765d992a513416`
-- **Latest approved business milestone:** Step 2C.3C-B7
+- **Business-code baseline:** `4f306733b3e45bee4244688186e5ecae570fcb8b`
+- **Current governed integration head:** `4f306733b3e45bee4244688186e5ecae570fcb8b`
+- **Latest approved business milestone:** Step 2C.3C
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
@@ -30,6 +30,8 @@ Step 2C.3C-B5 is owner accepted and merged through PR `#9` at `00022da346777ce67
 Step 2C.3C-B6 is owner accepted and merged through PR `#10` at `a116fea3514af457a54a0df1d5f4e86e4badbeba`. Its implementation head is `f392cfbb022e1928011ff2b28f7955b9e9acb6b0`, Frontend CI run #15 passed, and the accepted full regression was 20 files / 158 tests PASS.
 
 Step 2C.3C-B7 is owner accepted and merged through PR `#11` at `73f41e88a5d1016e2cdd586991765d992a513416`. Its implementation head is `851b85b3d685ae1304466dc5baecadc87bcd1b90`, Frontend CI run #17 passed on that exact head, and the accepted full regression was 21 files / 174 tests PASS. No production deployment or WordPress/backend change occurred.
+
+Step 2C.3C cumulative closure is owner accepted and merged through PR `#12` at `4f306733b3e45bee4244688186e5ecae570fcb8b` using a normal merge commit. Its accepted closure head is `847b0c3f067d9af4f00591c3554a7a693a646017`, Frontend CI run #21 passed on that exact head, and the accepted full regression was 22 files / 183 tests PASS. No production deployment or WordPress/backend change occurred.
 
 ## GitHub governance status
 
@@ -119,9 +121,9 @@ Before Step 2C.3C can be accepted, the typed frontend contract layer must cover:
 
 Production visual components remain out of scope for this stage.
 
-## Current Step 2C.3C closure policy
+## Current Step 2C.3D audit policy
 
-The cumulative closure gate branches from governed `main` at the accepted B7 merge and validates the complete B1–B7 typed frontend contract without adding product behavior. Step 2C.3C remains in progress until the closure PR passes local validation, Frontend CI, independent review, and explicit owner acceptance. CMS readiness, preview/SEO, production design/UI, backend reconciliation, and deployment remain later governed work.
+Step 2C.3C is accepted and merged. The first Step 2C.3D increment audits all five WordPress tenants read-only against the accepted B1–B7 contracts, classifies missing or incorrect CMS state, and produces a deterministic correction plan. It does not authorize CMS mutation, backend work, production UI, or deployment. `SOT-001` remains open.
 
 Required delivery flow:
 

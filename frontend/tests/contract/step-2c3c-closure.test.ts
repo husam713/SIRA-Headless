@@ -131,8 +131,8 @@ describe("Step 2C.3C cumulative closure contract", () => {
     expect(normalizer).toContain(
       "announcementBanner: normalizeText(data.announcementBanner, 500)",
     );
-    expect(normalizer).toContain(
-      'announcement: normalizeBanner(\n      data.announcement,\n      "announcement"',
+    expect(normalizer).toMatch(
+      /announcement:\s*normalizeBanner\(\s*data\.announcement,\s*"announcement"/u,
     );
     expect(fallbacks).toMatch(
       /announcementBanner:\s*null,[\s\S]*?emergencyBanner:\s*null,[\s\S]*?announcement:\s*null,[\s\S]*?emergency:\s*null/u,
@@ -246,7 +246,7 @@ describe("Step 2C.3C cumulative closure contract", () => {
     }
   });
 
-  it("records accepted B7 while closure, SOT-001, and production gates stay open", () => {
+  it("records accepted closure while SOT-001 and production gates stay open", () => {
     const state = JSON.parse(repositoryFile("project-state.json")) as {
       readonly status: string;
       readonly currentStage: string;
@@ -269,17 +269,17 @@ describe("Step 2C.3C cumulative closure contract", () => {
 
     expect(state).toMatchObject({
       status: "IN_PROGRESS",
-      currentStage: "2C.3C",
-      currentSubstage: "2C.3C-CLOSURE",
+      currentStage: "2C.3D",
+      currentSubstage: "2C.3D-AUDIT",
       productionAuthorized: false,
       latestAcceptedIncrement: {
-        stage: "Step 2C.3C-B7",
+        stage: "Step 2C.3C",
         status: "ACCEPTED_MERGED",
-        pullRequest: 11,
-        implementationHead: "851b85b3d685ae1304466dc5baecadc87bcd1b90",
-        mergeCommit: "73f41e88a5d1016e2cdd586991765d992a513416",
+        pullRequest: 12,
+        implementationHead: "847b0c3f067d9af4f00591c3554a7a693a646017",
+        mergeCommit: "4f306733b3e45bee4244688186e5ecae570fcb8b",
         frontendCi: "PASS",
-        fullRegression: "21 files / 174 tests PASS",
+        fullRegression: "22 files / 183 tests PASS",
       },
     });
     expect(state.knownConflicts).toContainEqual(

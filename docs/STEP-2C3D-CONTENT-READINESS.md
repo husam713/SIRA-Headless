@@ -2,129 +2,142 @@
 
 ## Executive summary
 
-All five SIRA tenants were inspected independently on 2026-08-13 through their already-configured, read-only public WPGraphQL endpoints. The audit used only coordinates supported by the accepted B1–B7 operations and checked-in canonical schema. It stored no raw payload, endpoint, credential, private body, or unpublished sensitive record.
+All five SIRA tenants were inspected independently on 2026-08-13 through already-configured, read-only public WPGraphQL endpoints. No raw payload, endpoint, credential, private body, or unpublished sensitive record was stored.
 
-The audit produced 55 site/area classifications:
+The public matrix represents launch readiness, not merely GraphQL validity. Owner clarification establishes that existing WordPress business/editorial records are not approved authoritative launch content. Published status and structurally valid data remain useful technical evidence, but do not establish editorial approval.
 
 | Classification | Count |
 | --- | ---: |
-| READY | 18 |
-| MISSING_CONTENT | 1 |
+| READY | 17 |
+| MISSING_CONTENT | 0 |
 | MISSING_CONFIGURATION | 23 |
 | DATA_CORRECTION_REQUIRED | 2 |
-| EDITORIAL_ACTION | 3 |
-| OWNER_DECISION | 8 |
+| EDITORIAL_ACTION | 13 |
+| OWNER_DECISION | 0 |
 | BLOCKED | 0 |
 
-The historical readiness findings remain materially current: Group is the only configured static front page, no tenant exposes an assigned PRIMARY/FOOTER/LEGAL menu, and the Group/Healthcare brand identity discrepancies remain uncorrected. Group has meaningful published editorial/project records, but its homepage structure and project-card media are incomplete. Branch editorial/project collections are valid-empty; owner decisions are required before treating those empty states as missing launch content.
+## Technical readiness and content authority
+
+The artifact preserves three separate layers:
+
+1. `technicalReadinessMatrix` derives contract/configuration quality from live summarized evidence.
+2. `contentAuthority.matrix` records `APPROVED_LAUNCH_CONTENT`, `UNAPPROVED_EXISTING_CONTENT`, `NO_CONTENT`, or `NOT_APPLICABLE`.
+3. `readinessMatrix` combines those layers into public launch readiness without erasing technical evidence.
+
+Canonical repository brand identity is authoritative independently of editorial records. Structurally valid typed banners remain technically READY, but populated banner copy is not described as owner-approved unless separate approval evidence exists. Missing configuration remains configuration work and is not collapsed into editorial work.
 
 ## Evidence and limits
 
 - Accepted baseline: `main@4f306733b3e45bee4244688186e5ecae570fcb8b`.
 - Safe machine evidence: `artifacts/step-2c3d/content-readiness.json`.
 - Audit mechanism: `frontend/scripts/content-readiness-audit.mjs`.
-- Mode: anonymous/public, read-only GraphQL metadata; no introspection.
-- Result-bearing content connections report `truncated=false`; native menu assignment queries returned zero and the relevant Business Unit term collection is also untruncated.
-- Public GraphQL proves published frontend readiness. Draft/private totals, private restriction counts, and WordPress-admin provenance remain unavailable without separate authorized admin/WP-CLI evidence. This does not prevent a deterministic correction plan for the public contracts.
+- Mode: anonymous/public read-only GraphQL metadata; no introspection.
+- Result-bearing connections report `truncated=false`.
+- Public GraphQL proves technical behavior seen by published frontend contracts. It does not prove editorial approval, draft/private totals, private restriction counts, or WordPress-admin provenance.
+- Existing records are described only as existing but not approved as authoritative launch content. The audit does not assert that every record is test/demo content.
 
-## Five-site readiness matrix
+## Five-site launch-readiness matrix
 
 | Site | Front page | Primary menu | Footer menu | Legal menu | Business Unit | Editorial | Projects | Brand | Announcement | Emergency | Media |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Group | MISSING_CONTENT | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | READY | READY | EDITORIAL_ACTION | DATA_CORRECTION_REQUIRED | READY | READY | EDITORIAL_ACTION |
-| Consulting | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | OWNER_DECISION | OWNER_DECISION | READY | READY | READY | READY |
-| Healthcare | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | OWNER_DECISION | OWNER_DECISION | DATA_CORRECTION_REQUIRED | READY | READY | EDITORIAL_ACTION |
-| Lifestyle | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | OWNER_DECISION | OWNER_DECISION | READY | READY | READY | READY |
-| Real Estate | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | OWNER_DECISION | OWNER_DECISION | READY | READY | READY | READY |
+| Group | EDITORIAL_ACTION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | READY | EDITORIAL_ACTION | EDITORIAL_ACTION | DATA_CORRECTION_REQUIRED | READY | READY | EDITORIAL_ACTION |
+| Consulting | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | EDITORIAL_ACTION | EDITORIAL_ACTION | READY | READY | READY | READY |
+| Healthcare | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | EDITORIAL_ACTION | EDITORIAL_ACTION | DATA_CORRECTION_REQUIRED | READY | READY | EDITORIAL_ACTION |
+| Lifestyle | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | EDITORIAL_ACTION | EDITORIAL_ACTION | READY | READY | READY | READY |
+| Real Estate | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | MISSING_CONFIGURATION | EDITORIAL_ACTION | EDITORIAL_ACTION | READY | READY | READY | READY |
 
 ## Detailed findings
 
-The machine-readable artifact contains one complete correction-manifest record per non-READY site/area cell. The following consolidates identical actions without losing tenant scope.
-
 ### Static front pages
 
-- **Group — MISSING_CONTENT:** `showOnFront=page`, `pageOnFront=457`; published Page 457 resolves at `/`, is the front page, and has variant `group`. All four accepted Group hero fields are empty. Expected: approved structured Group homepage content. Owner: `EDITORIAL_ACTION`. Destructive: no. Mutation authorized: no. Verify by rerunning the accepted Homepage query.
-- **Consulting, Healthcare, Lifestyle, Real Estate — MISSING_CONFIGURATION:** each reports `showOnFront=posts`, `pageOnFront=0`, and `page(id: "/", idType: URI)=null`. Expected: an approved published Branch homepage assigned as static front page. Owner: `CMS_ADMIN_ACTION` after editorial approval. Destructive: no. Mutation authorized: no. Verify through `readingSettings` and the accepted Homepage query.
+- **Group — EDITORIAL_ACTION:** technically, `showOnFront=page`, `pageOnFront=457`, and published Page 457 resolves correctly at `/` with variant `group`. Accepted hero content is absent and the existing page is not approved as authoritative launch content.
+- **Consulting, Healthcare, Lifestyle, Real Estate — MISSING_CONFIGURATION:** each reports `showOnFront=posts`, `pageOnFront=0`, and no canonical `/` page. Approved branch homepage content is also absent, but static-front-page configuration remains the primary matrix defect.
 
 ### Native menus
 
-- **All five sites — MISSING_CONFIGURATION:** PRIMARY, FOOTER, and LEGAL each return zero native assigned menus. Expected: exactly one approved usable native menu per logical location. Owner: `CMS_ADMIN_ACTION`, with editorial/owner approval of link structure and labels. Destructive: no. Mutation authorized: no. Verify using the accepted Navigation operation, including hierarchy and URL checks.
+- **All five sites — MISSING_CONFIGURATION:** PRIMARY, FOOTER, and LEGAL each return zero assigned native menus. Future menu labels/information architecture require approval in addition to technical assignment.
 
 ### Business Unit taxonomy
 
-- **Group — READY:** the unfiltered root contract remains correct. Group exposes exact terms `consulting` (ID 60), `healthcare` (62), `lifestyle` (61), and `real-estate` (59). Each term has exactly one accepted editorial assignment, each a `SiraNewsItem`; the four assignments collectively account for the four items in the unfiltered accepted feed. No `realestate` slug drift exists.
-- **Consulting, Healthcare, Lifestyle, Real Estate — MISSING_CONFIGURATION:** the exact mapped term lookup is null and the local term collection is empty on each branch. Expected exact slugs: `consulting`, `healthcare`, `lifestyle`, `real-estate`. Owner: `CMS_ADMIN_ACTION`. Destructive: no. Mutation authorized: no. Create exact terms and assign only relevant accepted editorial records; verify by querying the native term and its server-filtered `contentNodes` connection.
+- **Group — READY:** the unfiltered root contract is structurally satisfied. Exact terms `consulting`, `healthcare`, `lifestyle`, and `real-estate` exist and each currently has one technically valid accepted editorial assignment. This does not approve the assigned records as launch content.
+- **All branches — MISSING_CONFIGURATION:** the exact mapped local term is absent. Expected slugs remain `consulting`, `healthcare`, `lifestyle`, and `real-estate`.
 
 ### Editorial content
 
-- **Group — READY:** four published accepted-family items, all `SiraNewsItem`; titles, URIs, dates, and excerpts are usable; no restricted/unsafe item surfaced. The feed is correctly unfiltered. Featured media is absent on all four, but the accepted editorial contract treats it as optional.
-- **All four branches — OWNER_DECISION:** each native root accepted-family feed is empty and untruncated. The exact server-filtered connection is not yet available because its required Business Unit term is missing; this is separately classified as `MISSING_CONFIGURATION`. The root empty state is technically valid, so the owner must decide whether each branch intentionally launches empty. If not, owner: `EDITORIAL_ACTION` after canonical Business Unit term creation. Verify through the accepted root and server-filtered feed operations.
+- **Group — EDITORIAL_ACTION:** four published `SiraNewsItem` records are technically valid and prove the unfiltered contract works. They are existing but not approved as authoritative launch content. Review, retain or replace editorially, and explicitly approve launch records; do not delete records in this increment.
+- **All branches — EDITORIAL_ACTION:** native root feeds are technically valid-empty. Exact filtered connections remain unavailable until Business Unit terms exist. The owner resolved the previous decision: real launch editorial content has not been authored/approved.
 
 ### Projects
 
-- **Group — EDITORIAL_ACTION:** three published projects; titles, URIs, excerpts, locations, statuses, rendered content, and related companies are usable. All three lack featured images and subtitles. Gallery/statistics are empty; whether those optional detail sections are needed is a later editorial/design choice. Owner: `EDITORIAL_ACTION`. Destructive: no. Mutation authorized: no. Verify through accepted Archive and Single operations.
-- **All four branches — OWNER_DECISION:** zero public projects, untruncated. The empty archive is contract-valid. The owner must decide whether launch projects are required; if yes, commission editorial creation rather than frontend fallbacks. Mutation authorized: no.
+- **Group — EDITORIAL_ACTION:** three projects prove Archive/Single contract behavior. They are not approved authoritative launch content, and all three lack featured images and subtitles. Review, retain or replace editorially, explicitly approve launch projects, and complete presentation gaps.
+- **All branches — EDITORIAL_ACTION:** public project archives are technically valid-empty. Authoritative launch project content has not been authored/approved.
 
 ### Brand identity
 
-- **Group — DATA_CORRECTION_REQUIRED:** live `name="SIRA Global Logo"`, primary `#cccccc`, secondary `#5b5b5b`; approved repository identity is `SIRA GROUP`, primary/accent `#cca34b`, secondary `#172232`, paper `#f7f4ed`, ink `#20242b`. Owner: `CMS_ADMIN_ACTION`. Destructive: no. Mutation authorized: no. Verify exact `siraBrand` effective values.
-- **Healthcare — DATA_CORRECTION_REQUIRED:** live `name="SIRA Health"`, primary `#1e73be`, secondary `#81d742`, accent `#8224e3`; approved repository identity is `SIRA Healthcare`, primary/accent `#2c6dad`, secondary `#12283f`, paper `#f3f7fb`, ink `#1f2932`. Owner: `CMS_ADMIN_ACTION`. Destructive: no. Mutation authorized: no. Verify exact `siraBrand` effective values.
-- **Consulting, Lifestyle, Real Estate — READY:** key, name, tagline, and all five identity colors match the approved repository identity evidence. Missing remote logo/mark values are safely covered by accepted static presentation assets and are not classified as a CMS correctness failure.
+- **Group — DATA_CORRECTION_REQUIRED:** live identity differs from approved repository identity `SIRA GROUP` and approved colors.
+- **Healthcare — DATA_CORRECTION_REQUIRED:** live identity differs from approved repository identity `SIRA Healthcare` and approved colors.
+- **Consulting, Lifestyle, Real Estate — READY:** key, name, tagline, and identity colors match authoritative repository evidence.
 
 ### Announcement and emergency
 
-- **All sites — READY:** null typed banners are valid by contract. Group, Consulting, Lifestyle, and Real Estate have null announcement/emergency values.
-- **Healthcare — READY:** announcement is populated, structurally valid, `INFO`, has a safe link and revision key, and has no start/end bound (currently active). Emergency is null. No stale or malformed scheduled banner was found.
+- **All sites — technically READY:** null typed banners are contract-valid.
+- **Healthcare:** its announcement is structurally valid, active, `INFO`, and has a safe link/revision key. Its copy is separately recorded as `UNAPPROVED_EXISTING_CONTENT`; technical READY does not imply launch-message approval.
 
 ### Media
 
-- **Group — EDITORIAL_ACTION:** the brand logo has safe dimensions/URL but lacks alt text; the brand mark is absent; all three published project cards lack featured images. Owner: `EDITORIAL_ACTION`. Destructive: no. Mutation authorized: no.
-- **Healthcare — EDITORIAL_ACTION:** the brand mark has safe dimensions/URL but lacks alt text. Owner: `EDITORIAL_ACTION`. Destructive: no. Mutation authorized: no.
-- **Consulting, Lifestyle, Real Estate — READY:** no live content currently requires media through the accepted published data contracts; no unsafe/restricted media surfaced.
+- **Group — EDITORIAL_ACTION:** logo alt is missing, mark is absent, and all three existing projects lack featured images.
+- **Healthcare — EDITORIAL_ACTION:** brand mark alt is missing.
+- **Consulting, Lifestyle, Real Estate — READY:** no current public accepted-contract record requires additional remote media, and no unsafe/restricted media surfaced.
 
 ## Action ownership
 
 ### CMS_ADMIN_ACTION
 
 1. Correct Group and Healthcare canonical brand fields using approved repository evidence.
-2. Create/select and assign approved static front pages for Consulting, Healthcare, Lifestyle, and Real Estate.
-3. Create and assign PRIMARY, FOOTER, and LEGAL native menus on all five sites after link approval.
-4. Create exact branch Business Unit terms and assign relevant accepted editorial records.
+2. Configure approved static front pages for Consulting, Healthcare, Lifestyle, and Real Estate after content approval.
+3. Create and assign PRIMARY, FOOTER, and LEGAL menus after labels and information architecture are approved.
+4. Create exact branch Business Unit terms and assign only reviewed content.
 
 ### EDITORIAL_ACTION
 
-1. Supply and approve Group structured homepage content.
-2. Supply Group project featured images, useful alt text, and subtitles.
-3. Supply missing Group logo/mark accessibility/media data and Healthcare mark alt text.
-4. Create branch editorial/project content only where owner launch decisions require it.
+1. Author and explicitly approve Group structured homepage launch content.
+2. Review existing Group editorial/project records; retain or replace them editorially and explicitly approve authoritative launch records.
+3. Author and approve branch homepage, editorial, and project launch content.
+4. Complete required project/media presentation and accessibility metadata.
+5. Review populated banner copy separately from its typed technical validity.
 
 ### OWNER_DECISION
 
-1. Decide whether each branch intentionally launches with an empty editorial feed.
-2. Decide whether each branch requires projects at launch.
-3. Approve branch homepage content and native menu information architecture before CMS administration.
+- None for whether editorial/project launch content is required: the owner clarified that authoritative launch content is not yet populated/approved.
+- Subsequent approval of authored content and menu information architecture remains protected editorial/owner work.
 
 ### FUTURE_FRONTEND_STAGE
 
-- Gallery/statistics presentation requirements, rich HTML rendering/sanitization, image optimization, production design/components, preview, SEO, canonical-domain/redirect decisions, and deployment remain later governed stages.
+- Rich HTML rendering/sanitization, image optimization, production design/components, preview, SEO, canonical-domain/redirect decisions, and deployment remain later governed stages.
 
 ### BLOCKED
 
-- None for public CMS readiness planning.
-- Admin-only draft/private totals and provenance were not inspected; they require separately authorized WordPress admin/WP-CLI evidence if the owner later requires them.
+- None for public readiness planning.
+- Admin-only draft/private totals and provenance remain unavailable without separately authorized admin/WP-CLI evidence.
+
+## Cleanup boundary
+
+No cleanup is authorized. No existing record was modified, deleted, or labelled definitively as test data. Any future cleanup requires a separate record-level manifest with identity, evidence, retain/review/delete recommendation, destructive flag, and separate owner approval.
 
 ## Security and mutation record
 
 - WordPress mutations: none.
+- Content deletion/cleanup: none.
 - Backend changes: none.
 - Runtime GraphQL/generated/adapters/domain/UI changes: none.
 - Live introspection/schema fetch: none.
 - Credentials/endpoints/private bodies persisted: none.
 - Production deployment: none.
+- `productionAuthorized`: false.
 - `SOT-001`: OPEN.
 
 ## Audit conclusion
 
-All five required tenants and all required public contract areas were inspected. Missing/incorrect CMS state is classified with deterministic non-destructive follow-up actions, and no unresolved evidence gap prevents planning. Step 2C.3D remains in progress pending owner review and separately authorized CMS corrections.
+Technical GraphQL contracts are working, CMS configuration remains incomplete, and authoritative launch content is not yet populated/approved. Existing records remain preserved as technical evidence without being promoted to production authority. Step 2C.3D remains in progress pending independent review and separately authorized CMS/editorial work.
 
-STEP_2C3D_AUDIT_READY_FOR_OWNER_REVIEW
+STEP_2C3D_CONTENT_AUTHORITY_READY_FOR_INDEPENDENT_REVIEW

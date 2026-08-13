@@ -62,6 +62,15 @@ const READINESS_CLASSIFICATIONS = Object.freeze([
   "BLOCKED",
 ]);
 
+const CONTENT_AUTHORITY_STATES = Object.freeze([
+  "APPROVED_LAUNCH_CONTENT",
+  "UNAPPROVED_EXISTING_CONTENT",
+  "NO_CONTENT",
+  "NOT_APPLICABLE",
+]);
+
+const CONTENT_AUTHORITY_AREAS = MATRIX_AREAS;
+
 // Approved canonical identity evidence mirrors frontend/src/lib/brand/fallbacks.ts.
 const CANONICAL_BRAND_IDENTITIES = Object.freeze({
   group: Object.freeze({
@@ -828,6 +837,94 @@ export function classifySite(siteKey, site) {
   };
 }
 
+export function classifyContentAuthority(siteKey, site) {
+  if (!site.inspected) {
+    return Object.fromEntries(
+      CONTENT_AUTHORITY_AREAS.map((area) => [area, "NOT_APPLICABLE"]),
+    );
+  }
+
+  const homepageExists = site.homepage.resolvesRootUri === true;
+  const editorialCount = siteKey === "group"
+    ? site.editorial.root.returnedCount
+    : (site.editorial.branchFiltered?.returnedCount ?? site.editorial.root.returnedCount);
+  const projectCount = site.projects.returnedPublishedCount;
+
+  return {
+    frontPage: homepageExists
+      ? "UNAPPROVED_EXISTING_CONTENT"
+      : "NO_CONTENT",
+    primaryMenu: site.menus.primary.assignedCount > 0
+      ? "UNAPPROVED_EXISTING_CONTENT"
+      : "NO_CONTENT",
+    footerMenu: site.menus.footer.assignedCount > 0
+      ? "UNAPPROVED_EXISTING_CONTENT"
+      : "NO_CONTENT",
+    legalMenu: site.menus.legal.assignedCount > 0
+      ? "UNAPPROVED_EXISTING_CONTENT"
+      : "NO_CONTENT",
+    businessUnit: "NOT_APPLICABLE",
+    editorial: editorialCount > 0
+      ? "UNAPPROVED_EXISTING_CONTENT"
+      : "NO_CONTENT",
+    projects: projectCount > 0
+      ? "UNAPPROVED_EXISTING_CONTENT"
+      : "NO_CONTENT",
+    // Repository canonical brand identity is approved authority and is evaluated
+    // independently from unapproved editorial/business records.
+    brand: classifyBrand(siteKey, site.brand) === "READY"
+      ? "APPROVED_LAUNCH_CONTENT"
+      : "UNAPPROVED_EXISTING_CONTENT",
+    announcement: site.brand.announcement.state === "null"
+      ? "NO_CONTENT"
+      : "UNAPPROVED_EXISTING_CONTENT",
+    emergency: site.brand.emergency.state === "null"
+      ? "NO_CONTENT"
+      : "UNAPPROVED_EXISTING_CONTENT",
+    media: "NOT_APPLICABLE",
+  };
+}
+
+function canAuthorityOverride(classification) {
+  return ["READY", "MISSING_CONTENT", "OWNER_DECISION", "EDITORIAL_ACTION"].includes(
+    classification,
+  );
+}
+
+export function applyLaunchAuthority(
+  technicalMatrix,
+  contentAuthority,
+) {
+  const launchMatrix = { ...technicalMatrix };
+  if (
+    canAuthorityOverride(technicalMatrix.frontPage) &&
+    contentAuthority.frontPage !== "APPROVED_LAUNCH_CONTENT"
+  ) {
+    launchMatrix.frontPage = "EDITORIAL_ACTION";
+  }
+  for (const area of ["primaryMenu", "footerMenu", "legalMenu"]) {
+    if (
+      technicalMatrix[area] === "READY" &&
+      contentAuthority[area] !== "APPROVED_LAUNCH_CONTENT"
+    ) {
+      launchMatrix[area] = "EDITORIAL_ACTION";
+    }
+  }
+  if (
+    technicalMatrix.editorial !== "BLOCKED" &&
+    contentAuthority.editorial !== "APPROVED_LAUNCH_CONTENT"
+  ) {
+    launchMatrix.editorial = "EDITORIAL_ACTION";
+  }
+  if (
+    technicalMatrix.projects !== "BLOCKED" &&
+    contentAuthority.projects !== "APPROVED_LAUNCH_CONTENT"
+  ) {
+    launchMatrix.projects = "EDITORIAL_ACTION";
+  }
+  return launchMatrix;
+}
+
 function finding(site, area, classification, evidence, expected, owner, action, verification) {
   return {
     site,
@@ -849,7 +946,13 @@ function formatBrandIdentity(identity) {
     .join("; ")}.`;
 }
 
-function createAreaFinding(siteKey, site, area, classification) {
+function createAreaFinding(
+  siteKey,
+  site,
+  area,
+  classification,
+  contentAuthority,
+) {
   if (classification === "BLOCKED") {
     return finding(
       site.siteName,
@@ -922,21 +1025,29 @@ function createAreaFinding(siteKey, site, area, classification) {
 
   if (area === "editorial") {
     const filtered = site.editorial.branchFiltered;
+    const requiresAuthority =
+      contentAuthority !== "APPROVED_LAUNCH_CONTENT";
     return finding(
       site.siteName,
       area,
       classification,
       `Root accepted-family count=${site.editorial.root.returnedCount}; root anomalies=${hasEditorialAnomalies(site.editorial.root)}; groupRootUnfiltered=${site.editorial.groupRootUnfiltered}; filtered=${filtered ? JSON.stringify(filtered) : "unavailable"}.`,
       siteKey === "group"
-        ? "The native unfiltered Group feed is structurally safe; an empty feed is explicitly owner-approved."
-        : "The exact Business Unit term exposes a structurally safe server-filtered accepted-family feed; an empty feed is explicitly owner-approved.",
-      classification === "OWNER_DECISION"
-        ? "OWNER_DECISION"
+        ? "The native unfiltered Group feed is structurally safe and contains explicitly approved authoritative launch content."
+        : "The exact Business Unit term exposes a structurally safe server-filtered feed containing explicitly approved authoritative launch content.",
+      requiresAuthority
+        ? "EDITORIAL_ACTION"
+        : classification === "OWNER_DECISION"
+          ? "OWNER_DECISION"
         : classification === "MISSING_CONFIGURATION"
           ? "CMS_ADMIN_ACTION"
           : "EDITORIAL_ACTION",
-      classification === "OWNER_DECISION"
-        ? "Decide whether this tenant intentionally launches with an empty editorial feed; otherwise commission approved content."
+      requiresAuthority
+        ? contentAuthority === "NO_CONTENT"
+          ? "Author, review, and explicitly approve authoritative launch editorial content after required taxonomy configuration; do not fabricate frontend fallbacks."
+          : "Review existing technically valid records, retain or replace them editorially, and explicitly approve authoritative launch content; do not delete records in this increment."
+        : classification === "OWNER_DECISION"
+          ? "Decide whether this tenant intentionally launches with an empty editorial feed; otherwise commission approved content."
         : classification === "MISSING_CONFIGURATION"
           ? "Restore the exact Business Unit term/filter configuration before treating existing branch content as ready."
           : "Correct malformed, restricted, unsafe, or truncated accepted editorial records.",
@@ -947,19 +1058,27 @@ function createAreaFinding(siteKey, site, area, classification) {
   if (area === "projects") {
     const projects = site.projects;
     const structuralAnomalies = hasProjectStructuralAnomalies(projects);
+    const requiresAuthority =
+      contentAuthority !== "APPROVED_LAUNCH_CONTENT";
     return finding(
       site.siteName,
       area,
       classification,
       `Published count=${projects.returnedPublishedCount}; structuralAnomalies=${hasProjectStructuralAnomalies(projects)}; missingFeaturedImages=${projects.missingFeaturedImageCount}; missingFeaturedAlt=${projects.missingFeaturedAltCount}; missingSubtitles=${projects.missingSubtitleCount}; galleryMissingAlt=${projects.gallery.missingAltCount}.`,
-      "Every public project is structurally safe and has approved archive presentation fields; an empty archive is explicitly owner-approved.",
-      classification === "OWNER_DECISION"
-        ? "OWNER_DECISION"
+      "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
+      requiresAuthority
+        ? "EDITORIAL_ACTION"
+        : classification === "OWNER_DECISION"
+          ? "OWNER_DECISION"
         : structuralAnomalies
           ? "CMS_ADMIN_ACTION"
           : "EDITORIAL_ACTION",
-      classification === "OWNER_DECISION"
-        ? "Decide whether this tenant requires launch projects; if yes, commission public records rather than frontend fallbacks."
+      requiresAuthority
+        ? contentAuthority === "NO_CONTENT"
+          ? "Author, review, and explicitly approve authoritative launch project records; do not fabricate frontend fallbacks."
+          : "Review existing technically valid projects, retain or replace them editorially, explicitly approve launch records, and complete presentation gaps; do not delete records in this increment."
+        : classification === "OWNER_DECISION"
+          ? "Decide whether this tenant requires launch projects; if yes, commission public records rather than frontend fallbacks."
         : classification === "EDITORIAL_ACTION"
           ? "Supply approved missing archive presentation fields and media metadata."
           : "Correct malformed, restricted, unsafe, duplicate, or truncated project data.",
@@ -991,7 +1110,7 @@ function createAreaFinding(siteKey, site, area, classification) {
       "The typed banner is null or has valid message, severity, safe link/target, schedule, dismissibility, and revision identity.",
       "EDITORIAL_ACTION",
       classification === "EDITORIAL_ACTION"
-        ? `Review and remove or reschedule the expired ${area}.`
+        ? `Review the expired ${area} and separately approve deactivation or rescheduling.`
         : `Correct the malformed typed ${area} fields without fabricating copy.`,
       `Re-query siraBrand.${area} and re-evaluate structure, link safety, and schedule.`,
     );
@@ -1022,14 +1141,33 @@ function createAreaFinding(siteKey, site, area, classification) {
   );
 }
 
-export function buildFindings(sites, matrix) {
+export function buildFindings(
+  sites,
+  matrix,
+  technicalMatrix = matrix,
+  contentAuthorityMatrix = {},
+) {
   const findings = [];
   for (const [siteKey, site] of Object.entries(sites)) {
     for (const area of MATRIX_AREAS) {
       const classification = matrix[siteKey][area];
       if (classification !== "READY") {
+        const contentAuthority = CONTENT_AUTHORITY_AREAS.includes(area)
+          ? contentAuthorityMatrix[siteKey]?.[area] ?? "NOT_APPLICABLE"
+          : "NOT_APPLICABLE";
         findings.push(
-          createAreaFinding(siteKey, site, area, classification),
+          Object.freeze({
+            ...createAreaFinding(
+              siteKey,
+              site,
+              area,
+              classification,
+              contentAuthority,
+            ),
+            technicalClassification:
+              technicalMatrix[siteKey]?.[area] ?? classification,
+            contentAuthority,
+          }),
         );
       }
     }
@@ -1128,10 +1266,27 @@ async function main() {
     }
   }
 
-  const readinessMatrix = Object.fromEntries(
+  const technicalReadinessMatrix = Object.fromEntries(
     Object.entries(sites).map(([siteKey, site]) => [siteKey, classifySite(siteKey, site)]),
   );
-  const findings = buildFindings(sites, readinessMatrix);
+  const contentAuthorityMatrix = Object.fromEntries(
+    Object.entries(sites).map(([siteKey, site]) => [
+      siteKey,
+      classifyContentAuthority(siteKey, site),
+    ]),
+  );
+  const readinessMatrix = Object.fromEntries(
+    Object.entries(technicalReadinessMatrix).map(([siteKey, matrix]) => [
+      siteKey,
+      applyLaunchAuthority(matrix, contentAuthorityMatrix[siteKey]),
+    ]),
+  );
+  const findings = buildFindings(
+    sites,
+    readinessMatrix,
+    technicalReadinessMatrix,
+    contentAuthorityMatrix,
+  );
   const classificationCounts = Object.fromEntries(
     READINESS_CLASSIFICATIONS.map((classification) => [classification, 0]),
   );
@@ -1142,7 +1297,7 @@ async function main() {
   }
 
   const output = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     audit: "Step 2C.3D WordPress Content Readiness",
     auditedAt,
     mode: "read-only public GraphQL metadata",
@@ -1162,6 +1317,14 @@ async function main() {
       "Counts are exact only when truncated=false.",
     ],
     readinessMatrix,
+    technicalReadinessMatrix,
+    contentAuthority: {
+      vocabulary: CONTENT_AUTHORITY_STATES,
+      ownerClarification:
+        "Existing WordPress business/editorial records are not approved as authoritative launch content unless explicit approval evidence exists.",
+      matrix: contentAuthorityMatrix,
+      destructiveCleanupAuthorized: false,
+    },
     classificationCounts,
     findings,
     historicalRevalidation: {

@@ -11,6 +11,8 @@ export interface ReadinessFinding {
   readonly site: string;
   readonly area: string;
   readonly classification: ReadinessClassification;
+  readonly technicalClassification: ReadinessClassification;
+  readonly contentAuthority: ContentAuthorityState;
   readonly evidence: string;
   readonly expectedCanonicalState: string;
   readonly owner: string;
@@ -18,6 +20,26 @@ export interface ReadinessFinding {
   readonly destructive: false;
   readonly mutationAuthorized: false;
   readonly verificationMethod: string;
+}
+
+export type ContentAuthorityState =
+  | "APPROVED_LAUNCH_CONTENT"
+  | "UNAPPROVED_EXISTING_CONTENT"
+  | "NO_CONTENT"
+  | "NOT_APPLICABLE";
+
+export interface ContentAuthorityMatrix {
+  readonly frontPage: ContentAuthorityState;
+  readonly primaryMenu: ContentAuthorityState;
+  readonly footerMenu: ContentAuthorityState;
+  readonly legalMenu: ContentAuthorityState;
+  readonly businessUnit: ContentAuthorityState;
+  readonly editorial: ContentAuthorityState;
+  readonly projects: ContentAuthorityState;
+  readonly brand: ContentAuthorityState;
+  readonly announcement: ContentAuthorityState;
+  readonly emergency: ContentAuthorityState;
+  readonly media: ContentAuthorityState;
 }
 
 export interface SiteReadinessMatrix {
@@ -39,9 +61,21 @@ export function classifySite(
   site: unknown,
 ): SiteReadinessMatrix;
 
+export function classifyContentAuthority(
+  siteKey: string,
+  site: unknown,
+): ContentAuthorityMatrix;
+
+export function applyLaunchAuthority(
+  technicalMatrix: SiteReadinessMatrix,
+  contentAuthority: ContentAuthorityMatrix,
+): SiteReadinessMatrix;
+
 export function buildFindings(
   sites: Readonly<Record<string, unknown>>,
   matrix: Readonly<
     Record<string, SiteReadinessMatrix>
   >,
+  technicalMatrix?: Readonly<Record<string, SiteReadinessMatrix>>,
+  contentAuthorityMatrix?: Readonly<Record<string, ContentAuthorityMatrix>>,
 ): readonly ReadinessFinding[];

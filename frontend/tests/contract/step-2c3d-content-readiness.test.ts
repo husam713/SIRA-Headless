@@ -1,7 +1,9 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
+  applyLaunchAuthority,
   buildFindings,
+  classifyContentAuthority,
   classifySite,
 } from "../../scripts/content-readiness-audit.mjs";
 
@@ -15,9 +17,20 @@ interface ReadinessArtifact {
   readonly readinessMatrix: Readonly<
     Record<string, Readonly<Record<string, string>>>
   >;
+  readonly technicalReadinessMatrix: Readonly<
+    Record<string, Readonly<Record<string, string>>>
+  >;
+  readonly contentAuthority: {
+    readonly vocabulary: readonly string[];
+    readonly matrix: Readonly<Record<string, Readonly<Record<string, string>>>>;
+    readonly destructiveCleanupAuthorized: boolean;
+  };
   readonly classificationCounts: Readonly<Record<string, number>>;
   readonly findings: readonly {
+    readonly area: string;
     readonly classification: string;
+    readonly technicalClassification: string;
+    readonly contentAuthority: string;
     readonly owner: string;
     readonly destructive: boolean;
     readonly mutationAuthorized: boolean;
@@ -130,12 +143,12 @@ describe("Step 2C.3D content readiness evidence", () => {
       ),
     ).toBe(55);
     expect(artifact.classificationCounts).toEqual({
-      READY: 18,
-      MISSING_CONTENT: 1,
+      READY: 17,
+      MISSING_CONTENT: 0,
       MISSING_CONFIGURATION: 23,
       DATA_CORRECTION_REQUIRED: 2,
-      EDITORIAL_ACTION: 3,
-      OWNER_DECISION: 8,
+      EDITORIAL_ACTION: 13,
+      OWNER_DECISION: 0,
       BLOCKED: 0,
     });
   });
@@ -191,7 +204,7 @@ describe("Step 2C.3D content readiness evidence", () => {
   });
 
   it("keeps the artifact sanitized and every correction non-destructive", () => {
-    expect(artifact.schemaVersion).toBe(1);
+    expect(artifact.schemaVersion).toBe(2);
     expect(artifact.mode).toBe("read-only public GraphQL metadata");
     expect(artifact.security).toEqual({
       endpointValuesPersisted: false,
@@ -202,6 +215,22 @@ describe("Step 2C.3D content readiness evidence", () => {
       backendMutationOccurred: false,
       productionDeploymentOccurred: false,
     });
+    expect(artifact.contentAuthority).toMatchObject({
+      vocabulary: [
+        "APPROVED_LAUNCH_CONTENT",
+        "UNAPPROVED_EXISTING_CONTENT",
+        "NO_CONTENT",
+        "NOT_APPLICABLE",
+      ],
+      destructiveCleanupAuthorized: false,
+    });
+    expect(
+      Object.values(artifact.contentAuthority.matrix).every(
+        (authority) =>
+          authority["editorial"] !== "APPROVED_LAUNCH_CONTENT" &&
+          authority["projects"] !== "APPROVED_LAUNCH_CONTENT",
+      ),
+    ).toBe(true);
     for (const finding of artifact.findings) {
       expect(finding.classification).not.toBe("READY");
       expect(finding.destructive).toBe(false);
@@ -394,6 +423,83 @@ describe("Step 2C.3D content readiness evidence", () => {
     );
     expect(
       findings.every((finding) => finding.classification !== "READY"),
+    ).toBe(true);
+  });
+
+  it("separates technical validity from owner-approved launch authority", () => {
+    const group = artifact.sites.group;
+    const groupAuthority = classifyContentAuthority("group", group);
+    expect(groupAuthority.editorial).toBe("UNAPPROVED_EXISTING_CONTENT");
+    expect(groupAuthority.projects).toBe("UNAPPROVED_EXISTING_CONTENT");
+    expect(groupAuthority.frontPage).toBe("UNAPPROVED_EXISTING_CONTENT");
+    expect(groupAuthority.announcement).toBe("NO_CONTENT");
+
+    const groupLaunch = applyLaunchAuthority(
+      classifySite("group", group),
+      groupAuthority,
+    );
+    expect(groupLaunch.editorial).toBe("EDITORIAL_ACTION");
+    expect(groupLaunch.projects).toBe("EDITORIAL_ACTION");
+    expect(groupLaunch.frontPage).toBe("EDITORIAL_ACTION");
+
+    const groupEditorialFinding = artifact.findings.find(
+      (finding) =>
+        finding.area === "editorial" &&
+        finding.contentAuthority === "UNAPPROVED_EXISTING_CONTENT",
+    );
+    expect(groupEditorialFinding).toMatchObject({
+      classification: "EDITORIAL_ACTION",
+      technicalClassification: "READY",
+      contentAuthority: "UNAPPROVED_EXISTING_CONTENT",
+      destructive: false,
+      mutationAuthorized: false,
+    });
+
+    const healthcareAuthority = classifyContentAuthority(
+      "healthcare",
+      artifact.sites.healthcare,
+    );
+    expect(healthcareAuthority.announcement).toBe(
+      "UNAPPROVED_EXISTING_CONTENT",
+    );
+    expect(
+      applyLaunchAuthority(
+        classifySite("healthcare", artifact.sites.healthcare),
+        healthcareAuthority,
+      ).announcement,
+    ).toBe("READY");
+  });
+
+  it("resolves empty branch editorial and project owner decisions to editorial action", () => {
+    for (const siteKey of [
+      "consulting",
+      "healthcare",
+      "lifestyle",
+      "realestate",
+    ] satisfies readonly SiteKey[]) {
+      const authority = classifyContentAuthority(siteKey, artifact.sites[siteKey]);
+      const launch = applyLaunchAuthority(
+        classifySite(siteKey, artifact.sites[siteKey]),
+        authority,
+      );
+      expect(authority.editorial).toBe("NO_CONTENT");
+      expect(authority.projects).toBe("NO_CONTENT");
+      expect(launch.editorial).toBe("EDITORIAL_ACTION");
+      expect(launch.projects).toBe("EDITORIAL_ACTION");
+      expect(launch.frontPage).toBe("MISSING_CONFIGURATION");
+    }
+    const branchEditorialFindings = artifact.findings.filter(
+      (finding) =>
+        finding.area === "editorial" &&
+        finding.contentAuthority === "NO_CONTENT",
+    );
+    expect(branchEditorialFindings).toHaveLength(4);
+    expect(
+      branchEditorialFindings.every(
+        (finding) =>
+          finding.classification === "EDITORIAL_ACTION" &&
+          finding.technicalClassification === "OWNER_DECISION",
+      ),
     ).toBe(true);
   });
 });

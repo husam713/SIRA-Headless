@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "audit": "Step 2C.3D WordPress Content Readiness",
-  "auditedAt": "2026-08-13T02:29:51.031Z",
+  "auditedAt": "2026-08-13T02:52:28.774Z",
   "mode": "read-only public GraphQL metadata",
   "querySource": "content-readiness-audit.mjs",
   "security": {
@@ -19,6 +19,73 @@
     "Counts are exact only when truncated=false."
   ],
   "readinessMatrix": {
+    "group": {
+      "frontPage": "EDITORIAL_ACTION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "READY",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "DATA_CORRECTION_REQUIRED",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "EDITORIAL_ACTION"
+    },
+    "consulting": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    },
+    "healthcare": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "DATA_CORRECTION_REQUIRED",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "EDITORIAL_ACTION"
+    },
+    "lifestyle": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    },
+    "realestate": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    }
+  },
+  "technicalReadinessMatrix": {
     "group": {
       "frontPage": "MISSING_CONTENT",
       "primaryMenu": "MISSING_CONFIGURATION",
@@ -85,27 +152,106 @@
       "media": "READY"
     }
   },
+  "contentAuthority": {
+    "vocabulary": [
+      "APPROVED_LAUNCH_CONTENT",
+      "UNAPPROVED_EXISTING_CONTENT",
+      "NO_CONTENT",
+      "NOT_APPLICABLE"
+    ],
+    "ownerClarification": "Existing WordPress business/editorial records are not approved as authoritative launch content unless explicit approval evidence exists.",
+    "matrix": {
+      "group": {
+        "frontPage": "UNAPPROVED_EXISTING_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "UNAPPROVED_EXISTING_CONTENT",
+        "projects": "UNAPPROVED_EXISTING_CONTENT",
+        "brand": "UNAPPROVED_EXISTING_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "consulting": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "APPROVED_LAUNCH_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "healthcare": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "UNAPPROVED_EXISTING_CONTENT",
+        "announcement": "UNAPPROVED_EXISTING_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "lifestyle": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "APPROVED_LAUNCH_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "realestate": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "APPROVED_LAUNCH_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      }
+    },
+    "destructiveCleanupAuthorized": false
+  },
   "classificationCounts": {
-    "READY": 18,
-    "MISSING_CONTENT": 1,
+    "READY": 17,
+    "MISSING_CONTENT": 0,
     "MISSING_CONFIGURATION": 23,
     "DATA_CORRECTION_REQUIRED": 2,
-    "EDITORIAL_ACTION": 3,
-    "OWNER_DECISION": 8,
+    "EDITORIAL_ACTION": 13,
+    "OWNER_DECISION": 0,
     "BLOCKED": 0
   },
   "findings": [
     {
       "site": "Group",
       "area": "frontPage",
-      "classification": "MISSING_CONTENT",
+      "classification": "EDITORIAL_ACTION",
       "evidence": "Page 457 resolves at / with variant=group; missing accepted hero fields=headingBefore,headingHighlight,headingAfter,description.",
       "expectedCanonicalState": "A published group homepage assigned as the static front page, resolving at URI /, with all accepted hero fields populated.",
       "owner": "EDITORIAL_ACTION",
       "recommendedAction": "Supply and approve the missing structured homepage content without changing the canonical / lookup.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields."
+      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+      "technicalClassification": "MISSING_CONTENT",
+      "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
     },
     {
       "site": "Group",
@@ -117,7 +263,9 @@
       "recommendedAction": "Create/approve and assign the PRIMARY menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Group",
@@ -129,7 +277,9 @@
       "recommendedAction": "Create/approve and assign the FOOTER menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Group",
@@ -141,19 +291,37 @@
       "recommendedAction": "Create/approve and assign the LEGAL menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
+    },
+    {
+      "site": "Group",
+      "area": "editorial",
+      "classification": "EDITORIAL_ACTION",
+      "evidence": "Root accepted-family count=4; root anomalies=false; groupRootUnfiltered=true; filtered=unavailable.",
+      "expectedCanonicalState": "The native unfiltered Group feed is structurally safe and contains explicitly approved authoritative launch content.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Review existing technically valid records, retain or replace them editorially, and explicitly approve authoritative launch content; do not delete records in this increment.",
+      "destructive": false,
+      "mutationAuthorized": false,
+      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+      "technicalClassification": "READY",
+      "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
     },
     {
       "site": "Group",
       "area": "projects",
       "classification": "EDITORIAL_ACTION",
       "evidence": "Published count=3; structuralAnomalies=false; missingFeaturedImages=3; missingFeaturedAlt=0; missingSubtitles=3; galleryMissingAlt=0.",
-      "expectedCanonicalState": "Every public project is structurally safe and has approved archive presentation fields; an empty archive is explicitly owner-approved.",
+      "expectedCanonicalState": "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
       "owner": "EDITORIAL_ACTION",
-      "recommendedAction": "Supply approved missing archive presentation fields and media metadata.",
+      "recommendedAction": "Review existing technically valid projects, retain or replace them editorially, explicitly approve launch records, and complete presentation gaps; do not delete records in this increment.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies."
+      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+      "technicalClassification": "EDITORIAL_ACTION",
+      "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
     },
     {
       "site": "Group",
@@ -165,7 +333,9 @@
       "recommendedAction": "Correct the canonical public brand fields in WordPress using approved repository identity evidence; do not normalize incorrect values in Next.js.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query siraBrand and compare the exact effective key, name, tagline, and identity colors."
+      "verificationMethod": "Re-query siraBrand and compare the exact effective key, name, tagline, and identity colors.",
+      "technicalClassification": "DATA_CORRECTION_REQUIRED",
+      "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
     },
     {
       "site": "Group",
@@ -177,7 +347,9 @@
       "recommendedAction": "Supply or correct required public media and accessibility metadata without fabricating assets.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query public media metadata and verify source safety, alt text, dimensions, and restriction state."
+      "verificationMethod": "Re-query public media metadata and verify source safety, alt text, dimensions, and restriction state.",
+      "technicalClassification": "EDITORIAL_ACTION",
+      "contentAuthority": "NOT_APPLICABLE"
     },
     {
       "site": "Consulting",
@@ -189,7 +361,9 @@
       "recommendedAction": "Create/select the approved homepage and assign it in Reading Settings after editorial approval.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields."
+      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Consulting",
@@ -201,7 +375,9 @@
       "recommendedAction": "Create/approve and assign the PRIMARY menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Consulting",
@@ -213,7 +389,9 @@
       "recommendedAction": "Create/approve and assign the FOOTER menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Consulting",
@@ -225,7 +403,9 @@
       "recommendedAction": "Create/approve and assign the LEGAL menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Consulting",
@@ -237,31 +417,37 @@
       "recommendedAction": "Create the exact approved term and assign only relevant accepted editorial records; do not derive or rename slugs mechanically.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection."
+      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NOT_APPLICABLE"
     },
     {
       "site": "Consulting",
       "area": "editorial",
-      "classification": "OWNER_DECISION",
+      "classification": "EDITORIAL_ACTION",
       "evidence": "Root accepted-family count=0; root anomalies=false; groupRootUnfiltered=false; filtered=unavailable.",
-      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered accepted-family feed; an empty feed is explicitly owner-approved.",
-      "owner": "OWNER_DECISION",
-      "recommendedAction": "Decide whether this tenant intentionally launches with an empty editorial feed; otherwise commission approved content.",
+      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered feed containing explicitly approved authoritative launch content.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch editorial content after required taxonomy configuration; do not fabricate frontend fallbacks.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations."
+      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Consulting",
       "area": "projects",
-      "classification": "OWNER_DECISION",
+      "classification": "EDITORIAL_ACTION",
       "evidence": "Published count=0; structuralAnomalies=false; missingFeaturedImages=0; missingFeaturedAlt=0; missingSubtitles=0; galleryMissingAlt=0.",
-      "expectedCanonicalState": "Every public project is structurally safe and has approved archive presentation fields; an empty archive is explicitly owner-approved.",
-      "owner": "OWNER_DECISION",
-      "recommendedAction": "Decide whether this tenant requires launch projects; if yes, commission public records rather than frontend fallbacks.",
+      "expectedCanonicalState": "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch project records; do not fabricate frontend fallbacks.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies."
+      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Healthcare",
@@ -273,7 +459,9 @@
       "recommendedAction": "Create/select the approved homepage and assign it in Reading Settings after editorial approval.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields."
+      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Healthcare",
@@ -285,7 +473,9 @@
       "recommendedAction": "Create/approve and assign the PRIMARY menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Healthcare",
@@ -297,7 +487,9 @@
       "recommendedAction": "Create/approve and assign the FOOTER menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Healthcare",
@@ -309,7 +501,9 @@
       "recommendedAction": "Create/approve and assign the LEGAL menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Healthcare",
@@ -321,31 +515,37 @@
       "recommendedAction": "Create the exact approved term and assign only relevant accepted editorial records; do not derive or rename slugs mechanically.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection."
+      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NOT_APPLICABLE"
     },
     {
       "site": "Healthcare",
       "area": "editorial",
-      "classification": "OWNER_DECISION",
+      "classification": "EDITORIAL_ACTION",
       "evidence": "Root accepted-family count=0; root anomalies=false; groupRootUnfiltered=false; filtered=unavailable.",
-      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered accepted-family feed; an empty feed is explicitly owner-approved.",
-      "owner": "OWNER_DECISION",
-      "recommendedAction": "Decide whether this tenant intentionally launches with an empty editorial feed; otherwise commission approved content.",
+      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered feed containing explicitly approved authoritative launch content.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch editorial content after required taxonomy configuration; do not fabricate frontend fallbacks.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations."
+      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Healthcare",
       "area": "projects",
-      "classification": "OWNER_DECISION",
+      "classification": "EDITORIAL_ACTION",
       "evidence": "Published count=0; structuralAnomalies=false; missingFeaturedImages=0; missingFeaturedAlt=0; missingSubtitles=0; galleryMissingAlt=0.",
-      "expectedCanonicalState": "Every public project is structurally safe and has approved archive presentation fields; an empty archive is explicitly owner-approved.",
-      "owner": "OWNER_DECISION",
-      "recommendedAction": "Decide whether this tenant requires launch projects; if yes, commission public records rather than frontend fallbacks.",
+      "expectedCanonicalState": "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch project records; do not fabricate frontend fallbacks.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies."
+      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Healthcare",
@@ -357,7 +557,9 @@
       "recommendedAction": "Correct the canonical public brand fields in WordPress using approved repository identity evidence; do not normalize incorrect values in Next.js.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query siraBrand and compare the exact effective key, name, tagline, and identity colors."
+      "verificationMethod": "Re-query siraBrand and compare the exact effective key, name, tagline, and identity colors.",
+      "technicalClassification": "DATA_CORRECTION_REQUIRED",
+      "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
     },
     {
       "site": "Healthcare",
@@ -369,7 +571,9 @@
       "recommendedAction": "Supply or correct required public media and accessibility metadata without fabricating assets.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query public media metadata and verify source safety, alt text, dimensions, and restriction state."
+      "verificationMethod": "Re-query public media metadata and verify source safety, alt text, dimensions, and restriction state.",
+      "technicalClassification": "EDITORIAL_ACTION",
+      "contentAuthority": "NOT_APPLICABLE"
     },
     {
       "site": "Lifestyle",
@@ -381,7 +585,9 @@
       "recommendedAction": "Create/select the approved homepage and assign it in Reading Settings after editorial approval.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields."
+      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Lifestyle",
@@ -393,7 +599,9 @@
       "recommendedAction": "Create/approve and assign the PRIMARY menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Lifestyle",
@@ -405,7 +613,9 @@
       "recommendedAction": "Create/approve and assign the FOOTER menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Lifestyle",
@@ -417,7 +627,9 @@
       "recommendedAction": "Create/approve and assign the LEGAL menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Lifestyle",
@@ -429,31 +641,37 @@
       "recommendedAction": "Create the exact approved term and assign only relevant accepted editorial records; do not derive or rename slugs mechanically.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection."
+      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NOT_APPLICABLE"
     },
     {
       "site": "Lifestyle",
       "area": "editorial",
-      "classification": "OWNER_DECISION",
+      "classification": "EDITORIAL_ACTION",
       "evidence": "Root accepted-family count=0; root anomalies=false; groupRootUnfiltered=false; filtered=unavailable.",
-      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered accepted-family feed; an empty feed is explicitly owner-approved.",
-      "owner": "OWNER_DECISION",
-      "recommendedAction": "Decide whether this tenant intentionally launches with an empty editorial feed; otherwise commission approved content.",
+      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered feed containing explicitly approved authoritative launch content.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch editorial content after required taxonomy configuration; do not fabricate frontend fallbacks.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations."
+      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Lifestyle",
       "area": "projects",
-      "classification": "OWNER_DECISION",
+      "classification": "EDITORIAL_ACTION",
       "evidence": "Published count=0; structuralAnomalies=false; missingFeaturedImages=0; missingFeaturedAlt=0; missingSubtitles=0; galleryMissingAlt=0.",
-      "expectedCanonicalState": "Every public project is structurally safe and has approved archive presentation fields; an empty archive is explicitly owner-approved.",
-      "owner": "OWNER_DECISION",
-      "recommendedAction": "Decide whether this tenant requires launch projects; if yes, commission public records rather than frontend fallbacks.",
+      "expectedCanonicalState": "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch project records; do not fabricate frontend fallbacks.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies."
+      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Real Estate",
@@ -465,7 +683,9 @@
       "recommendedAction": "Create/select the approved homepage and assign it in Reading Settings after editorial approval.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields."
+      "verificationMethod": "Re-query readingSettings and page(id: \"/\", idType: URI), then verify configuration, variant, and accepted hero fields.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Real Estate",
@@ -477,7 +697,9 @@
       "recommendedAction": "Create/approve and assign the PRIMARY menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Real Estate",
@@ -489,7 +711,9 @@
       "recommendedAction": "Create/approve and assign the FOOTER menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Real Estate",
@@ -501,7 +725,9 @@
       "recommendedAction": "Create/approve and assign the LEGAL menu using the native WordPress location.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs."
+      "verificationMethod": "Re-query the accepted SiraNavigation operation and validate assignment, location, hierarchy, restrictions, and URLs.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Real Estate",
@@ -513,31 +739,37 @@
       "recommendedAction": "Create the exact approved term and assign only relevant accepted editorial records; do not derive or rename slugs mechanically.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection."
+      "verificationMethod": "Re-query siraBusinessUnit by SLUG and its server-filtered accepted contentNodes connection.",
+      "technicalClassification": "MISSING_CONFIGURATION",
+      "contentAuthority": "NOT_APPLICABLE"
     },
     {
       "site": "Real Estate",
       "area": "editorial",
-      "classification": "OWNER_DECISION",
+      "classification": "EDITORIAL_ACTION",
       "evidence": "Root accepted-family count=0; root anomalies=false; groupRootUnfiltered=false; filtered=unavailable.",
-      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered accepted-family feed; an empty feed is explicitly owner-approved.",
-      "owner": "OWNER_DECISION",
-      "recommendedAction": "Decide whether this tenant intentionally launches with an empty editorial feed; otherwise commission approved content.",
+      "expectedCanonicalState": "The exact Business Unit term exposes a structurally safe server-filtered feed containing explicitly approved authoritative launch content.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch editorial content after required taxonomy configuration; do not fabricate frontend fallbacks.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations."
+      "verificationMethod": "Re-query the accepted native root and, for branches, server-filtered editorial operations.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
     },
     {
       "site": "Real Estate",
       "area": "projects",
-      "classification": "OWNER_DECISION",
+      "classification": "EDITORIAL_ACTION",
       "evidence": "Published count=0; structuralAnomalies=false; missingFeaturedImages=0; missingFeaturedAlt=0; missingSubtitles=0; galleryMissingAlt=0.",
-      "expectedCanonicalState": "Every public project is structurally safe and has approved archive presentation fields; an empty archive is explicitly owner-approved.",
-      "owner": "OWNER_DECISION",
-      "recommendedAction": "Decide whether this tenant requires launch projects; if yes, commission public records rather than frontend fallbacks.",
+      "expectedCanonicalState": "Every launch project is explicitly approved as authoritative, structurally safe, and has approved archive presentation fields.",
+      "owner": "EDITORIAL_ACTION",
+      "recommendedAction": "Author, review, and explicitly approve authoritative launch project records; do not fabricate frontend fallbacks.",
       "destructive": false,
       "mutationAuthorized": false,
-      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies."
+      "verificationMethod": "Re-query the accepted Project Archive and native Project Single operations and verify zero relevant anomalies.",
+      "technicalClassification": "OWNER_DECISION",
+      "contentAuthority": "NO_CONTENT"
     }
   ],
   "historicalRevalidation": {

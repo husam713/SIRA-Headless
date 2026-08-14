@@ -110,14 +110,15 @@
     }
   },
   "drift": {
-    "status": "NONE_DETECTED_IN_PREVIOUSLY_OBSERVABLE_PUBLIC_COORDINATES",
+    "status": "NONE_DETECTED",
     "evidenceClassification": "CONFIRMED",
     "comparedTenantCount": 5,
     "comparedReadinessCoordinates": 55,
     "readinessMatrixMatches": true,
     "technicalReadinessMatrixMatches": true,
     "exactPublicSiteSummariesMatch": true,
-    "expandedGroupEntityCoordinates": "NOT_COMPARABLE_NEW_PUBLIC_BASELINE"
+    "expandedGroupEntityCoordinates": "NOT_COMPARABLE_NEW_PUBLIC_BASELINE",
+    "requiredEvidenceAvailable": true
   },
   "readinessMatrix": {
     "group": {
@@ -1652,6 +1653,12 @@
       "owner": "CMS_ADMIN_ACTION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "name": "SIRA Global Logo",
+        "primary": "#cccccc",
+        "secondary": "#5b5b5b"
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1662,6 +1669,13 @@
       "owner": "CMS_ADMIN_ACTION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "name": "SIRA Health",
+        "primary": "#1e73be",
+        "secondary": "#81d742",
+        "accent": "#8224e3"
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1672,6 +1686,11 @@
       "owner": "EDITORIAL_ACTION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "variant": "group",
+        "approvedHeroContentPresent": false
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1682,6 +1701,8 @@
       "owner": "CMS_ADMIN_ACTION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": [],
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1692,6 +1713,8 @@
       "owner": "CMS_ADMIN_ACTION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": [],
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1702,6 +1725,8 @@
       "owner": "CMS_ADMIN_ACTION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": [],
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1712,6 +1737,11 @@
       "owner": "EDITORIAL_ACTION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "returnedCount": 4,
+        "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1722,6 +1752,13 @@
       "owner": "EDITORIAL_ACTION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "returnedCount": 3,
+        "contentAuthority": "UNAPPROVED_EXISTING_CONTENT",
+        "missingFeaturedImageCount": 3,
+        "missingSubtitleCount": 3
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1732,6 +1769,11 @@
       "owner": "EDITORIAL_ACTION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "editorialTenants": [],
+        "projectTenants": []
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1741,7 +1783,17 @@
       "acceptedClassification": "BLOCKING",
       "owner": "EDITORIAL_ACTION",
       "evidenceClassification": "CONFIRMED",
-      "evidenceStatus": "EXPANDED_NEW_PUBLIC_BASELINE_NO_CLASSIFICATION_CHANGE",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "companiesPresent": true,
+        "servicesPresent": true,
+        "investmentsPresent": false,
+        "testimonialsPresent": false,
+        "partnersPresent": false,
+        "documentsPresent": false,
+        "authoritativeFamilies": []
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1752,6 +1804,11 @@
       "owner": "EDITORIAL_ACTION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "groupLogoHasAlt": false,
+        "healthcareMarkHasAlt": false
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1762,6 +1819,11 @@
       "owner": "OWNER_DECISION",
       "evidenceClassification": "CONFIRMED",
       "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "technicallyActive": true,
+        "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1771,7 +1833,12 @@
       "acceptedClassification": "DEFERRED",
       "owner": "OWNER_DECISION",
       "evidenceClassification": "CONFIRMED",
-      "evidenceStatus": "ACCEPTED_DEFERRED_EVIDENCE_UNCHANGED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "classification": "DEFERRED",
+        "mutationAuthorized": false
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1781,7 +1848,12 @@
       "acceptedClassification": "DEFERRED",
       "owner": "OWNER_DECISION",
       "evidenceClassification": "CONFIRMED",
-      "evidenceStatus": "ACCEPTED_DEFERRED_EVIDENCE_UNCHANGED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "classification": "DEFERRED",
+        "mutationAuthorized": false
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1791,7 +1863,12 @@
       "acceptedClassification": "DEFERRED",
       "owner": "FUTURE_STEP_3",
       "evidenceClassification": "CONFIRMED",
-      "evidenceStatus": "ACCEPTED_DEFERRED_EVIDENCE_UNCHANGED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "classification": "DEFERRED",
+        "mutationAuthorized": false
+      },
       "destructive": false,
       "mutationAuthorized": false,
       "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
@@ -1865,5 +1942,7 @@
     "deploymentAuthorized": false,
     "mergeAuthorized": false,
     "nextGate": "OWNER_ACCEPTANCE"
-  }
+  },
+  "derivationReconciledAt": "2026-08-14T21:25:06.842Z",
+  "derivationNote": "Derived classifications were recomputed from the reviewed sanitized evidence; auditedAt remains the live evidence timestamp."
 }

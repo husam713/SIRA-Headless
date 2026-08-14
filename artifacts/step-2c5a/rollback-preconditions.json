@@ -7,6 +7,7 @@
     "cmsMutationAuthorization": "NOT_GRANTED",
     "backupOrExportAuthorized": false,
     "restoreAuthorized": false,
+    "taxonomyDeletionAuthorized": false,
     "destructiveCleanupAuthorized": false
   },
   "currentEvidence": {
@@ -102,6 +103,7 @@
     "Never run a restore during Step 2C.5A.",
     "Prefer action-level reversal from captured before-state when safe; use full restore only under a separately authorized incident decision.",
     "Stop the mutation window if the backup cannot be identified, validated, or retained for the approved rollback period.",
-    "No record deletion is permitted by the accepted manifest."
+    "No record deletion is permitted by the accepted manifest.",
+    "Deleting even a newly created unassigned taxonomy term requires separate explicit rollback/deletion authorization, its exact created databaseId, proof that it was created by the same execution batch, and proof of zero unexpected assignments; existing terms must never be deleted."
   ]
 }

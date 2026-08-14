@@ -1,5 +1,10 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import {
+  classifyActionEvidence,
+  classifyDrift,
+  derivePreflightStatus,
+} from "../../scripts/cms-preflight-audit.mjs";
 
 function repositoryFile(relativePath: string): string {
   return readFileSync(
@@ -36,12 +41,15 @@ interface GroupEntityInventories {
 }
 
 interface ExecutionSpec {
+  readonly actionId: string;
   readonly destructive: boolean;
   readonly currentAuthorization: boolean;
+  readonly rollbackMethod: string;
   readonly [key: string]: unknown;
 }
 
 interface PreflightArtifact {
+  readonly stage: string;
   readonly status: string;
   readonly tenantsInspected: number;
   readonly auditedAt: string;
@@ -61,22 +69,33 @@ interface PreflightArtifact {
     readonly inventories: GroupEntityInventories;
   };
   readonly acceptedActionCounts: Readonly<Record<string, number>>;
-  readonly actionMapping: readonly { readonly actionId: string }[];
+  readonly actionMapping: readonly {
+    readonly actionId: string;
+    readonly evidenceStatus: string;
+    readonly evidenceClassification: string;
+  }[];
   readonly security: Readonly<Record<string, boolean | string>>;
   readonly authorization: Readonly<Record<string, boolean | string>>;
 }
 
 interface BatchesArtifact {
   readonly executionSpecs: readonly ExecutionSpec[];
-  readonly batches: readonly { readonly id: string }[];
+  readonly authorization: Readonly<Record<string, boolean | string>>;
+  readonly batches: readonly {
+    readonly id: string;
+    readonly excluded?: readonly string[];
+    readonly stopCondition: string;
+  }[];
   readonly ownerCategorySummary: {
     readonly deterministicCmsAdminAfterAuthorization: readonly string[];
   };
 }
 
 interface RollbackArtifact {
+  readonly authorization: Readonly<Record<string, boolean | string>>;
   readonly currentEvidence: Readonly<Record<string, boolean | string>>;
   readonly requirements: readonly { readonly status: string }[];
+  readonly restoreRules: readonly string[];
 }
 
 interface ProjectState {
@@ -125,6 +144,7 @@ describe("Step 2C.5A CMS preflight and remediation plan", () => {
 
   it("contains a timestamped fresh preflight for exactly five tenant websites", () => {
     expect(preflight).toMatchObject({
+      stage: "Step 2C.5A — CMS Preflight & Remediation Plan",
       status: "READY_FOR_INDEPENDENT_REVIEW",
       tenantsInspected: 5,
       baseline: {
@@ -152,8 +172,9 @@ describe("Step 2C.5A CMS preflight and remediation plan", () => {
 
   it("reports no drift in previously observable public coordinates", () => {
     expect(preflight.drift).toEqual({
-      status: "NONE_DETECTED_IN_PREVIOUSLY_OBSERVABLE_PUBLIC_COORDINATES",
+      status: "NONE_DETECTED",
       evidenceClassification: "CONFIRMED",
+      requiredEvidenceAvailable: true,
       comparedTenantCount: 5,
       comparedReadinessCoordinates: 55,
       readinessMatrixMatches: true,
@@ -254,6 +275,76 @@ describe("Step 2C.5A CMS preflight and remediation plan", () => {
     }
   });
 
+  it("records the exact four-field Healthcare identity correction", () => {
+    const action = batches.executionSpecs.find((item) => item.actionId === "CMS-2C4-002");
+    expect(action).toMatchObject({
+      currentEvidence: expect.stringContaining(
+        "name=SIRA Health, tagline=Advancing diagnostic and healthcare infrastructure., primary=#1e73be, secondary=#81d742, accent=#8224e3",
+      ),
+      expectedApprovedState: expect.stringContaining(
+        "name=SIRA Healthcare, tagline=Advancing diagnostic and healthcare infrastructure., primary=#2c6dad, secondary=#12283f, accent=#2c6dad",
+      ),
+      fieldsAffected: ["name", "primaryColor", "secondaryColor", "accentColor"],
+      fieldsExplicitlyNotAffected: expect.arrayContaining(["tagline"]),
+    });
+  });
+
+  it("classifies an intended correction as changed-as-expected, never unchanged", () => {
+    const result = classifyActionEvidence({
+      evidenceAvailable: true,
+      observedState: { name: "SIRA Healthcare", primary: "#2c6dad" },
+      acceptedCurrentState: { name: "SIRA Health", primary: "#1e73be" },
+      acceptedExpectedState: { name: "SIRA Healthcare", primary: "#2c6dad" },
+    });
+    expect(result).toEqual({
+      evidenceStatus: "CHANGED_AS_EXPECTED",
+      evidenceClassification: "CONFIRMED",
+    });
+    expect(result.evidenceStatus).not.toBe("VALIDATED_UNCHANGED");
+
+    expect(classifyActionEvidence({
+      evidenceAvailable: true,
+      observedState: { name: "Unexpected" },
+      acceptedCurrentState: { name: "Current" },
+      acceptedExpectedState: { name: "Expected" },
+    })).toMatchObject({ evidenceStatus: "DRIFT_DETECTED" });
+  });
+
+  it("uses UNKNOWN/BLOCKED semantics when required evidence is unavailable", () => {
+    expect(classifyActionEvidence({
+      evidenceAvailable: false,
+      observedState: null,
+      acceptedCurrentState: null,
+      acceptedExpectedState: null,
+    })).toEqual({
+      evidenceStatus: "EVIDENCE_UNKNOWN",
+      evidenceClassification: "UNKNOWN",
+    });
+    expect(classifyDrift({
+      requiredEvidenceAvailable: false,
+      comparisonsMatch: true,
+    })).toEqual({
+      status: "EVIDENCE_BLOCKED",
+      evidenceClassification: "UNKNOWN",
+    });
+  });
+
+  it("requires the expanded Group inventory before the stage can be READY", () => {
+    const common = {
+      tenantsInspected: 5,
+      requiredTenantCount: 5,
+      detailedTenantEvidenceAvailable: true,
+      actionEvidenceAvailable: true,
+    };
+    expect(derivePreflightStatus({ ...common, groupInventoryAvailable: false })).toBe("BLOCKED");
+    expect(derivePreflightStatus({ ...common, groupInventoryAvailable: true })).toBe(
+      "READY_FOR_INDEPENDENT_REVIEW",
+    );
+    expect(preflight.groupHomepageRelatedEntities).toMatchObject({
+      currentEvidenceClassification: "CONFIRMED",
+    });
+  });
+
   it("defines controlled batches and recoverable preconditions without executing them", () => {
     expect(batches.batches.map((batch) => batch.id)).toEqual([
       "BATCH-A",
@@ -276,6 +367,26 @@ describe("Step 2C.5A CMS preflight and remediation plan", () => {
     });
     expect(rollback.requirements).toHaveLength(9);
     expect(rollback.requirements.every((item) => item.status === "NOT_RUN")).toBe(true);
+  });
+
+  it("does not authorize taxonomy deletion in Step 2C.5A or Batch A", () => {
+    const batchA = batches.batches.find((batch) => batch.id === "BATCH-A");
+    const action = batches.executionSpecs.find((item) => item.actionId === "CMS-2C4-006");
+    expect(batches.authorization).toMatchObject({
+      taxonomyDeletionAuthorized: false,
+    });
+    expect(rollback.authorization).toMatchObject({
+      taxonomyDeletionAuthorized: false,
+    });
+    expect(batchA?.excluded).toContain(
+      "Taxonomy term deletion without separate explicit rollback/deletion authorization",
+    );
+    expect(batchA?.stopCondition).toContain("rollback/deletion authorization");
+    expect(action?.rollbackMethod).toEqual(expect.stringContaining("exact created databaseId"));
+    expect(action?.rollbackMethod).toEqual(expect.stringContaining("Never delete an existing term"));
+    expect(action?.rollbackMethod).toEqual(expect.stringContaining("unexpected assignments"));
+    expect(rollback.restoreRules.join(" ")).toContain("separate explicit rollback/deletion authorization");
+    expect(preflight.acceptedActionCounts).toMatchObject({ DESTRUCTIVE: 0, AUTHORIZED: 0 });
   });
 
   it("persists no endpoint or secret and records zero mutation/deployment", () => {
@@ -318,6 +429,8 @@ describe("Step 2C.5A CMS preflight and remediation plan", () => {
     expect(source).toContain("executeReadOnly");
     expect(source).toContain("MUTATION_DOCUMENT_REJECTED");
     expect(source).toContain("groupEntitySummary");
+    expect(source).toContain("classifyActionEvidence");
+    expect(source).not.toContain("function actionEvidenceStatus");
     expect(source).not.toMatch(/\bmutation\s+[A-Z]/);
     expect(source).not.toMatch(/headers\s*:\s*\{[^}]*authorization/iu);
     expect(source).not.toMatch(/headers\s*:\s*\{[^}]*cookie/iu);

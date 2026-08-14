@@ -38,7 +38,7 @@ The branch front-page failures remain configuration failures, separately classif
 
 ## Drift assessment
 
-**CONFIRMED: no drift detected in previously observable public coordinates.**
+**CONFIRMED: `NONE_DETECTED` in previously observable public coordinates.**
 
 - 5 tenants compared.
 - 55 readiness coordinates compared.
@@ -47,6 +47,8 @@ The branch front-page failures remain configuration failures, separately classif
 - Exact sanitized public site summaries match Step 2C.3D.
 - The expanded Group related-entity detail is a new public baseline and is therefore `NOT_COMPARABLE_NEW_PUBLIC_BASELINE`, not evidence of drift.
 - Draft/private totals, administrative provenance, and protected settings remain UNKNOWN because anonymous public GraphQL does not expose them.
+
+`READY_FOR_INDEPENDENT_REVIEW` requires all five base and structured-homepage inspections, the required Group homepage-related entity inventory, and action-level evidence availability. If any required evidence is unavailable, the stage is `BLOCKED`, drift status is `EVIDENCE_BLOCKED`, and evidence classification is `UNKNOWN`; an available mismatch is `DRIFT_DETECTED`. The reviewed live evidence retains its original `auditedAt`, while `derivationReconciledAt` records when these derived semantics were corrected without reclassifying a failed retry as fresh evidence.
 
 ## Current CMS readiness
 
@@ -88,10 +90,12 @@ This confirms the CMS-2C4-010 Services expectation without inventing a new Graph
 
 The accepted classifications remain unchanged: **12 BLOCKING, 3 DEFERRED, 0 DESTRUCTIVE, 0 AUTHORIZED**. Every item below is `currentAuthorization=false` and `destructive=false`. Full field-level targets, exclusions, before-state evidence, rollback, validation, failure, and stop conditions are normative in `remediation-batches.json`.
 
+Action evidence status is computed from the observed state against both the accepted current state and accepted expected state. It is not selected from an action ID. `VALIDATED_UNCHANGED` means the observed state still equals the accepted current state; `CHANGED_AS_EXPECTED` means it equals the approved target; every other available mismatch is `DRIFT_DETECTED`. Missing evidence is `EVIDENCE_UNKNOWN`, and an evidenced schema/runtime barrier is `BLOCKED_BY_SOT_001`.
+
 | Action | Fresh evidence / required future action | Owner | Prerequisite gate | Proposed batch |
 | --- | --- | --- | --- | --- |
 | CMS-2C4-001 | Group brand remains `SIRA Global Logo`, primary `#cccccc`, secondary `#5b5b5b`; later correct only the three accepted identity fields | CMS admin | Mutation authorization and rollback evidence | A |
-| CMS-2C4-002 | Healthcare name remains `SIRA HEALTH`; later correct only the accepted name field | CMS admin | Mutation authorization and rollback evidence | A |
+| CMS-2C4-002 | Healthcare remains name `SIRA Health`, primary `#1e73be`, secondary `#81d742`, accent `#8224e3`; later correct those four fields to `SIRA Healthcare`, `#2c6dad`, `#12283f`, `#2c6dad` while retaining tagline `Advancing diagnostic and healthcare infrastructure.` | CMS admin | Mutation authorization and rollback evidence | A |
 | CMS-2C4-003 | Group root exists but structured display copy is absent and no launch authority exists; later populate only approved homepage content | Editorial + CMS admin | Approved copy/media and record-level authority | C |
 | CMS-2C4-004 | Four branches remain posts mode with no root Page; later create/approve independent tenant-local homepages and configure Reading Settings | Editorial/owner + CMS admin | Four approved local records, content, and mutation window | B |
 | CMS-2C4-005 | All 15 native menu locations remain unassigned; later create/assign tenant-local PRIMARY, FOOTER, LEGAL menus | IA/owner + CMS admin | Approved labels, hierarchy, destinations, targets, legal links, locale policy | B |
@@ -112,7 +116,7 @@ If a future preflight discovers a backend/schema defect that existing accepted f
 
 ### Batch A — Deterministic CMS Configuration
 
-Proposed scope: CMS-2C4-001, CMS-2C4-002, and CMS-2C4-006 term creation only. These operations have exact current/expected values or exact tenant-local slugs. They still require separate batch-level mutation authorization, a named administrator and rollback operator, applicable RB-001–RB-009 evidence, and a same-window drift check. Record assignments and accessibility wording are excluded.
+Proposed scope: CMS-2C4-001, CMS-2C4-002, and CMS-2C4-006 term creation only. These operations have exact current/expected values or exact tenant-local slugs. They still require separate batch-level mutation authorization, a named administrator and rollback operator, applicable RB-001–RB-009 evidence, and a same-window drift check. Record assignments, accessibility wording, and taxonomy deletion are excluded. If rollback would require deleting a term created by the same execution batch, stop, record the exact created database ID, and obtain separate explicit rollback/deletion authorization. Never delete an existing term or a term with unexpected assignments.
 
 ### Batch B — Independent Front Page and Navigation Configuration
 
@@ -124,7 +128,7 @@ Proposed scope: CMS-2C4-003, CMS-2C4-006 reviewed assignments, and CMS-2C4-007 t
 
 ### Batch D — Post-remediation read-only verification
 
-After each separately authorized mutation batch, rerun the five-tenant preflight, compare every affected coordinate with captured before/expected state, require zero truncation and safe links/media, prove tenant isolation and exact term slugs, keep technical readiness separate from content authority, and detect any unplanned changes. Failure or UNKNOWN evidence stops advancement.
+After each separately authorized mutation batch, rerun the five-tenant preflight against the accepted pre-remediation Step 2C.5A evidence, compare every affected coordinate with both captured before-state and accepted expected state, and classify the result as `VALIDATED_UNCHANGED`, `CHANGED_AS_EXPECTED`, `DRIFT_DETECTED`, `EVIDENCE_UNKNOWN`, or `BLOCKED_BY_SOT_001`. An intended correction is `CHANGED_AS_EXPECTED`, never `VALIDATED_UNCHANGED`; any other baseline change is drift. Require zero truncation and safe links/media, prove tenant isolation and exact term slugs, and keep technical readiness separate from content authority. Failure or UNKNOWN evidence stops advancement.
 
 ### Batch E — Deferred architecture-dependent work
 
@@ -143,6 +147,8 @@ No export, backup, or restore was performed or claimed in Step 2C.5A. Before a f
 7. Capture attachment database IDs, alt text, dimensions, restriction state, and source-safety result.
 8. Maintain an execution ledger of all changed relationships and every created object database ID.
 9. Validate restore capability before production cutover using a documented host-appropriate restore check or rehearsal.
+
+Taxonomy deletion is not authorized by this plan or Batch A. If reversal would require deleting a term created during that same execution batch, the administrator must stop, identify the exact created database ID, prove it is not an existing term and has no unexpected assignments, and obtain separate explicit rollback/deletion authorization.
 
 Backup/export identifiers, timestamps, checksums, retention windows, responsible administrators, and restore eligibility may be recorded in a protected execution ledger. Private storage paths, credentials, tokens, cookies, and endpoints must not be committed.
 

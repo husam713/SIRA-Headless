@@ -2,7 +2,13 @@ import { readFile, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import process from "node:process";
 import { pathToFileURL } from "node:url";
-import { runContentReadinessAudit } from "./content-readiness-audit.mjs";
+import {
+  applyLaunchAuthority,
+  buildFindings,
+  classifyContentAuthority,
+  classifySite,
+  runContentReadinessAudit,
+} from "./content-readiness-audit.mjs";
 
 const SITE_CONFIG = Object.freeze({
   group: Object.freeze({ name: "Group", endpointKey: "SIRA_WP_GROUP_GRAPHQL_URL" }),
@@ -17,6 +23,16 @@ const CONTENT_AUTHORITY_VOCABULARY = Object.freeze([
   "UNAPPROVED_EXISTING_CONTENT",
   "NO_CONTENT",
   "NOT_APPLICABLE",
+]);
+
+const READINESS_CLASSIFICATIONS = Object.freeze([
+  "READY",
+  "MISSING_CONTENT",
+  "MISSING_CONFIGURATION",
+  "DATA_CORRECTION_REQUIRED",
+  "EDITORIAL_ACTION",
+  "OWNER_DECISION",
+  "BLOCKED",
 ]);
 
 export const HOMEPAGE_DETAIL_QUERY = String.raw`
@@ -352,20 +368,73 @@ function groupEntitySummary(data) {
   };
 }
 
-async function executeReadOnly(endpoint, query) {
+async function executeReadOnly(endpoint, query, maximumAttempts = 5) {
   if (/\bmutation\b/iu.test(query)) throw new Error("MUTATION_DOCUMENT_REJECTED");
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ query }),
-    signal: AbortSignal.timeout(30_000),
-  });
-  if (!response.ok) throw new Error(`HTTP_${response.status}`);
-  const payload = await response.json();
-  if (payload.errors?.length) {
-    throw new Error(`GRAPHQL_${payload.errors.map((error) => error.extensions?.code ?? "ERROR").join("_")}`);
+  let lastError;
+  for (let attempt = 1; attempt <= maximumAttempts; attempt += 1) {
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ query }),
+        signal: AbortSignal.timeout(30_000),
+      });
+      if (!response.ok) throw new Error(`HTTP_${response.status}`);
+      const payload = await response.json();
+      if (payload.errors?.length) {
+        throw new Error(`GRAPHQL_${payload.errors.map((error) => error.extensions?.code ?? "ERROR").join("_")}`);
+      }
+      return payload.data;
+    } catch (error) {
+      lastError = error;
+    }
   }
-  return payload.data;
+  throw lastError;
+}
+
+async function runBaseAuditWithRetries(environment, auditedAt, maximumAttempts = 5) {
+  let latest;
+  const confirmedSites = {};
+  for (let attempt = 1; attempt <= maximumAttempts; attempt += 1) {
+    latest = await runContentReadinessAudit(environment, auditedAt);
+    for (const [siteKey, site] of Object.entries(latest.sites)) {
+      if (site.inspected === true) confirmedSites[siteKey] = site;
+    }
+    if (Object.keys(confirmedSites).length === Object.keys(SITE_CONFIG).length) break;
+  }
+  const sites = Object.fromEntries(Object.keys(SITE_CONFIG).map((siteKey) => [
+    siteKey,
+    confirmedSites[siteKey] ?? latest.sites[siteKey],
+  ]));
+  const technicalReadinessMatrix = Object.fromEntries(
+    Object.entries(sites).map(([siteKey, site]) => [siteKey, classifySite(siteKey, site)]),
+  );
+  const contentAuthorityMatrix = Object.fromEntries(
+    Object.entries(sites).map(([siteKey, site]) => [siteKey, classifyContentAuthority(siteKey, site)]),
+  );
+  const readinessMatrix = Object.fromEntries(
+    Object.entries(technicalReadinessMatrix).map(([siteKey, matrix]) => [
+      siteKey,
+      applyLaunchAuthority(matrix, contentAuthorityMatrix[siteKey]),
+    ]),
+  );
+  const classificationCounts = Object.fromEntries(
+    READINESS_CLASSIFICATIONS.map((classification) => [classification, 0]),
+  );
+  for (const row of Object.values(readinessMatrix)) {
+    for (const classification of Object.values(row)) {
+      classificationCounts[classification] += 1;
+    }
+  }
+  return {
+    ...latest,
+    sites,
+    technicalReadinessMatrix,
+    contentAuthority: { ...latest.contentAuthority, matrix: contentAuthorityMatrix },
+    readinessMatrix,
+    classificationCounts,
+    findings: buildFindings(sites, readinessMatrix, technicalReadinessMatrix, contentAuthorityMatrix),
+  };
 }
 
 function parseEnvironment(source) {
@@ -377,16 +446,346 @@ function parseEnvironment(source) {
   );
 }
 
-function actionEvidenceStatus(actionId) {
-  if (actionId === "CMS-2C4-010") return "EXPANDED_NEW_PUBLIC_BASELINE_NO_CLASSIFICATION_CHANGE";
-  if (["CMS-2C4-013", "CMS-2C4-014", "CMS-2C4-015"].includes(actionId)) {
-    return "ACCEPTED_DEFERRED_EVIDENCE_UNCHANGED";
+async function readStandardInput() {
+  const chunks = [];
+  for await (const chunk of process.stdin) chunks.push(chunk);
+  return Buffer.concat(chunks).toString("utf8");
+}
+
+const BRANCH_KEYS = Object.freeze(["consulting", "healthcare", "lifestyle", "realestate"]);
+const MENU_SCOPES = Object.freeze(["primary", "footer", "legal"]);
+
+function sameEvidence(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+export function classifyActionEvidence({
+  evidenceAvailable,
+  observedState,
+  acceptedCurrentState,
+  acceptedExpectedState,
+  blockedBySot001 = false,
+}) {
+  if (blockedBySot001) {
+    return { evidenceStatus: "BLOCKED_BY_SOT_001", evidenceClassification: "CONFIRMED" };
   }
-  return "VALIDATED_UNCHANGED";
+  if (!evidenceAvailable) {
+    return { evidenceStatus: "EVIDENCE_UNKNOWN", evidenceClassification: "UNKNOWN" };
+  }
+  if (sameEvidence(observedState, acceptedExpectedState)) {
+    return { evidenceStatus: "CHANGED_AS_EXPECTED", evidenceClassification: "CONFIRMED" };
+  }
+  if (sameEvidence(observedState, acceptedCurrentState)) {
+    return { evidenceStatus: "VALIDATED_UNCHANGED", evidenceClassification: "CONFIRMED" };
+  }
+  return { evidenceStatus: "DRIFT_DETECTED", evidenceClassification: "CONFIRMED" };
+}
+
+export function classifyDrift({ requiredEvidenceAvailable, comparisonsMatch }) {
+  if (!requiredEvidenceAvailable) {
+    return { status: "EVIDENCE_BLOCKED", evidenceClassification: "UNKNOWN" };
+  }
+  if (comparisonsMatch) {
+    return { status: "NONE_DETECTED", evidenceClassification: "CONFIRMED" };
+  }
+  return { status: "DRIFT_DETECTED", evidenceClassification: "CONFIRMED" };
+}
+
+export function derivePreflightStatus({
+  tenantsInspected,
+  requiredTenantCount,
+  detailedTenantEvidenceAvailable,
+  groupInventoryAvailable,
+  actionEvidenceAvailable,
+}) {
+  return tenantsInspected === requiredTenantCount
+    && detailedTenantEvidenceAvailable
+    && groupInventoryAvailable
+    && actionEvidenceAvailable
+    ? "READY_FOR_INDEPENDENT_REVIEW"
+    : "BLOCKED";
+}
+
+function brandActionStates(action, site) {
+  const keys = Object.keys(action.currentEvidence ?? {});
+  const observedState = Object.fromEntries(keys.map((key) => [
+    key,
+    key === "name" ? site?.brand?.name : site?.brand?.colors?.[key],
+  ]));
+  return {
+    evidenceAvailable: site?.inspected === true && keys.every((key) => observedState[key] !== undefined),
+    observedState,
+    acceptedCurrentState: action.currentEvidence,
+    acceptedExpectedState: Object.fromEntries(keys.map((key) => [key, action.expected?.[key]])),
+  };
+}
+
+function allTrue(values) {
+  return values.every((value) => value === true);
+}
+
+function actionEvidenceStates(action, { base, sites, groupEntities }) {
+  const group = base.sites.group;
+  const healthcare = base.sites.healthcare;
+  const branchSites = BRANCH_KEYS.map((siteKey) => base.sites[siteKey]);
+  const actionId = action.id;
+
+  if (actionId === "CMS-2C4-001") return brandActionStates(action, group);
+  if (actionId === "CMS-2C4-002") return brandActionStates(action, healthcare);
+
+  if (actionId === "CMS-2C4-003") {
+    const heroFields = sites.group?.structuredHomepage?.groupHomepage?.hero?.fields;
+    const observedState = {
+      variant: group?.homepage?.variant ?? null,
+      approvedHeroContentPresent: heroFields ? allTrue(Object.values(heroFields)) : null,
+    };
+    return {
+      evidenceAvailable: sites.group?.inspected === true && heroFields !== undefined,
+      observedState,
+      acceptedCurrentState: { variant: "group", approvedHeroContentPresent: false },
+      acceptedExpectedState: { variant: "group", approvedHeroContentPresent: true },
+    };
+  }
+
+  if (actionId === "CMS-2C4-004") {
+    const configuredTenants = BRANCH_KEYS.filter((siteKey) => {
+      const current = base.sites[siteKey];
+      const detailed = sites[siteKey]?.structuredHomepage;
+      return current?.homepage?.showOnFront === "page"
+        && current.homepage.pageOnFront > 0
+        && current.homepage.resolvesRootUri === true
+        && detailed?.variant === "branch";
+    });
+    return {
+      evidenceAvailable: BRANCH_KEYS.every((siteKey) => sites[siteKey]?.inspected === true),
+      observedState: configuredTenants,
+      acceptedCurrentState: [],
+      acceptedExpectedState: [...BRANCH_KEYS],
+    };
+  }
+
+  if (actionId === "CMS-2C4-005") {
+    const assignedLocations = Object.keys(SITE_CONFIG).flatMap((siteKey) => MENU_SCOPES.flatMap((scope) => (
+      base.sites[siteKey]?.menus?.[scope]?.assignedCount === 1 ? [`${siteKey}:${scope}`] : []
+    )));
+    const expectedLocations = Object.keys(SITE_CONFIG).flatMap((siteKey) => (
+      MENU_SCOPES.map((scope) => `${siteKey}:${scope}`)
+    ));
+    return {
+      evidenceAvailable: Object.keys(SITE_CONFIG).every((siteKey) => base.sites[siteKey]?.inspected === true),
+      observedState: assignedLocations,
+      acceptedCurrentState: [],
+      acceptedExpectedState: expectedLocations,
+    };
+  }
+
+  if (actionId === "CMS-2C4-006") {
+    const exactTerms = BRANCH_KEYS.filter((siteKey) => {
+      const unit = base.sites[siteKey]?.businessUnit;
+      return unit?.term?.slug === unit?.expectedSlug && unit?.availableTermsTruncated === false;
+    });
+    return {
+      evidenceAvailable: branchSites.every((site) => site?.inspected === true),
+      observedState: exactTerms,
+      acceptedCurrentState: [],
+      acceptedExpectedState: [...BRANCH_KEYS],
+    };
+  }
+
+  if (actionId === "CMS-2C4-007") {
+    const observedState = {
+      returnedCount: group?.editorial?.root?.returnedCount ?? null,
+      contentAuthority: base.contentAuthority.matrix.group.editorial,
+    };
+    return {
+      evidenceAvailable: group?.inspected === true,
+      observedState,
+      acceptedCurrentState: { returnedCount: 4, contentAuthority: "UNAPPROVED_EXISTING_CONTENT" },
+      acceptedExpectedState: { returnedCount: 4, contentAuthority: "APPROVED_LAUNCH_CONTENT" },
+    };
+  }
+
+  if (actionId === "CMS-2C4-008") {
+    const observedState = {
+      returnedCount: group?.projects?.returnedPublishedCount ?? null,
+      contentAuthority: base.contentAuthority.matrix.group.projects,
+      missingFeaturedImageCount: group?.projects?.missingFeaturedImageCount ?? null,
+      missingSubtitleCount: group?.projects?.missingSubtitleCount ?? null,
+    };
+    return {
+      evidenceAvailable: group?.inspected === true,
+      observedState,
+      acceptedCurrentState: {
+        returnedCount: 3,
+        contentAuthority: "UNAPPROVED_EXISTING_CONTENT",
+        missingFeaturedImageCount: 3,
+        missingSubtitleCount: 3,
+      },
+      acceptedExpectedState: {
+        returnedCount: 3,
+        contentAuthority: "APPROVED_LAUNCH_CONTENT",
+        missingFeaturedImageCount: 0,
+        missingSubtitleCount: 0,
+      },
+    };
+  }
+
+  if (actionId === "CMS-2C4-009") {
+    const observedState = {
+      editorialTenants: BRANCH_KEYS.filter((siteKey) => base.sites[siteKey]?.editorial?.root?.returnedCount > 0),
+      projectTenants: BRANCH_KEYS.filter((siteKey) => base.sites[siteKey]?.projects?.returnedPublishedCount > 0),
+    };
+    return {
+      evidenceAvailable: branchSites.every((site) => site?.inspected === true),
+      observedState,
+      acceptedCurrentState: { editorialTenants: [], projectTenants: [] },
+      acceptedExpectedState: { editorialTenants: [...BRANCH_KEYS], projectTenants: [...BRANCH_KEYS] },
+    };
+  }
+
+  if (actionId === "CMS-2C4-010") {
+    const inventories = groupEntities?.inventories;
+    const observedState = inventories ? {
+      companiesPresent: inventories.companies.returnedPublishedCount > 0,
+      servicesPresent: inventories.services.returnedPublishedCount > 0,
+      investmentsPresent: inventories.investments.returnedPublishedCount > 0,
+      testimonialsPresent: inventories.testimonials.returnedPublishedCount > 0,
+      partnersPresent: inventories.partners.returnedPublishedCount > 0,
+      documentsPresent: inventories.documents.returnedPublishedCount > 0,
+      authoritativeFamilies: Object.entries(inventories)
+        .filter(([, inventory]) => inventory.contentAuthority === "APPROVED_LAUNCH_CONTENT")
+        .map(([family]) => family),
+    } : null;
+    const acceptedCurrentState = {
+      companiesPresent: true,
+      servicesPresent: true,
+      investmentsPresent: false,
+      testimonialsPresent: false,
+      partnersPresent: false,
+      documentsPresent: false,
+      authoritativeFamilies: [],
+    };
+    const acceptedExpectedState = {
+      companiesPresent: true,
+      servicesPresent: true,
+      investmentsPresent: true,
+      testimonialsPresent: true,
+      partnersPresent: true,
+      documentsPresent: true,
+      authoritativeFamilies: ["companies", "services", "investments", "testimonials", "partners", "documents"],
+    };
+    return {
+      evidenceAvailable: groupEntities?.currentEvidenceClassification === "CONFIRMED" && inventories !== undefined,
+      observedState,
+      acceptedCurrentState,
+      acceptedExpectedState,
+    };
+  }
+
+  if (actionId === "CMS-2C4-011") {
+    const observedState = {
+      groupLogoHasAlt: group?.brand?.logo?.hasAltText ?? null,
+      healthcareMarkHasAlt: healthcare?.brand?.mark?.hasAltText ?? null,
+    };
+    return {
+      evidenceAvailable: group?.inspected === true && healthcare?.inspected === true,
+      observedState,
+      acceptedCurrentState: { groupLogoHasAlt: false, healthcareMarkHasAlt: false },
+      acceptedExpectedState: { groupLogoHasAlt: true, healthcareMarkHasAlt: true },
+    };
+  }
+
+  if (actionId === "CMS-2C4-012") {
+    const observedState = {
+      technicallyActive: healthcare?.brand?.announcement?.schedule === "active",
+      contentAuthority: base.contentAuthority.matrix.healthcare.announcement,
+    };
+    return {
+      evidenceAvailable: healthcare?.inspected === true,
+      observedState,
+      acceptedCurrentState: { technicallyActive: true, contentAuthority: "UNAPPROVED_EXISTING_CONTENT" },
+      acceptedExpectedState: { technicallyActive: true, contentAuthority: "APPROVED_LAUNCH_CONTENT" },
+    };
+  }
+
+  const observedState = {
+    classification: action.classification,
+    mutationAuthorized: action.mutationAuthorized,
+  };
+  return {
+    evidenceAvailable: action.classification === "DEFERRED" && action.mutationAuthorized === false,
+    observedState,
+    acceptedCurrentState: { classification: "DEFERRED", mutationAuthorized: false },
+    acceptedExpectedState: { classification: "RESOLVED", mutationAuthorized: false },
+  };
+}
+
+function buildActionMapping(manifest, context) {
+  return manifest.actions.map((action) => {
+    const states = actionEvidenceStates(action, context);
+    const result = classifyActionEvidence(states);
+    return {
+      actionId: action.id,
+      acceptedClassification: action.classification,
+      owner: action.owner,
+      evidenceClassification: result.evidenceClassification,
+      evidenceStatus: result.evidenceStatus,
+      comparisonBasis: "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      observedState: states.observedState,
+      destructive: false,
+      mutationAuthorized: false,
+      detailArtifact: "artifacts/step-2c5a/remediation-batches.json",
+    };
+  });
+}
+
+export function reconcileExistingPreflight(existing, manifest, reconciledAt = new Date().toISOString()) {
+  const base = {
+    sites: Object.fromEntries(Object.entries(existing.sites).map(([siteKey, site]) => [siteKey, site.current])),
+    readinessMatrix: existing.readinessMatrix,
+    technicalReadinessMatrix: existing.technicalReadinessMatrix,
+    contentAuthority: existing.contentAuthority,
+  };
+  const actionMapping = buildActionMapping(manifest, {
+    base,
+    sites: existing.sites,
+    groupEntities: existing.groupHomepageRelatedEntities,
+  });
+  const groupInventoryAvailable = existing.groupHomepageRelatedEntities?.currentEvidenceClassification === "CONFIRMED";
+  const actionEvidenceAvailable = actionMapping.every((action) => action.evidenceStatus !== "EVIDENCE_UNKNOWN");
+  const detailedTenantEvidenceAvailable = Object.values(existing.sites).every((site) => site.inspected === true);
+  const requiredEvidenceAvailable = existing.tenantsInspected === Object.keys(SITE_CONFIG).length
+    && detailedTenantEvidenceAvailable
+    && groupInventoryAvailable
+    && actionEvidenceAvailable;
+  const comparisonsMatch = existing.drift.readinessMatrixMatches === true
+    && existing.drift.technicalReadinessMatrixMatches === true
+    && existing.drift.exactPublicSiteSummariesMatch === true;
+  const drift = classifyDrift({ requiredEvidenceAvailable, comparisonsMatch });
+  return {
+    ...existing,
+    stage: "Step 2C.5A — CMS Preflight & Remediation Plan",
+    status: derivePreflightStatus({
+      tenantsInspected: existing.tenantsInspected,
+      requiredTenantCount: Object.keys(SITE_CONFIG).length,
+      detailedTenantEvidenceAvailable,
+      groupInventoryAvailable,
+      actionEvidenceAvailable,
+    }),
+    derivationReconciledAt: reconciledAt,
+    derivationNote: "Derived classifications were recomputed from the reviewed sanitized evidence; auditedAt remains the live evidence timestamp.",
+    drift: {
+      ...existing.drift,
+      status: drift.status,
+      evidenceClassification: drift.evidenceClassification,
+      requiredEvidenceAvailable,
+    },
+    actionMapping,
+  };
 }
 
 export async function runCmsPreflight({ environment, previous, manifest, auditedAt }) {
-  const base = await runContentReadinessAudit(environment, auditedAt);
+  const base = await runBaseAuditWithRetries(environment, auditedAt);
   const sites = {};
   for (const [siteKey, config] of Object.entries(SITE_CONFIG)) {
     const endpoint = environment[config.endpointKey] ?? process.env[config.endpointKey];
@@ -444,11 +843,32 @@ export async function runCmsPreflight({ environment, previous, manifest, audited
   const allSiteEvidenceMatches = Object.values(sites).every(
     (site) => site.inspected && site.previousPublicEvidenceMatches,
   );
+  const groupInventoryAvailable = groupHomepageRelatedEntities.currentEvidenceClassification === "CONFIRMED";
+  const actionMapping = buildActionMapping(manifest, {
+    base,
+    sites,
+    groupEntities: groupHomepageRelatedEntities,
+  });
+  const actionEvidenceAvailable = actionMapping.every((action) => action.evidenceStatus !== "EVIDENCE_UNKNOWN");
+  const requiredEvidenceAvailable = inspectedCount === Object.keys(SITE_CONFIG).length
+    && Object.values(sites).every((site) => site.inspected)
+    && groupInventoryAvailable
+    && actionEvidenceAvailable;
+  const drift = classifyDrift({
+    requiredEvidenceAvailable,
+    comparisonsMatch: previousMatrixMatches && previousTechnicalMatrixMatches && allSiteEvidenceMatches,
+  });
 
   return {
     schemaVersion: 1,
     stage: "Step 2C.5A — CMS Preflight & Remediation Plan",
-    status: inspectedCount === 5 ? "READY_FOR_INDEPENDENT_REVIEW" : "BLOCKED",
+    status: derivePreflightStatus({
+      tenantsInspected: inspectedCount,
+      requiredTenantCount: Object.keys(SITE_CONFIG).length,
+      detailedTenantEvidenceAvailable: Object.values(sites).every((site) => site.inspected),
+      groupInventoryAvailable,
+      actionEvidenceAvailable,
+    }),
     auditedAt,
     baseline: {
       branch: "main",
@@ -476,10 +896,9 @@ export async function runCmsPreflight({ environment, previous, manifest, audited
       matrix: base.contentAuthority.matrix,
     },
     drift: {
-      status: previousMatrixMatches && previousTechnicalMatrixMatches && allSiteEvidenceMatches
-        ? "NONE_DETECTED_IN_PREVIOUSLY_OBSERVABLE_PUBLIC_COORDINATES"
-        : "DRIFT_DETECTED_OR_EVIDENCE_BLOCKED",
-      evidenceClassification: "CONFIRMED",
+      status: drift.status,
+      evidenceClassification: drift.evidenceClassification,
+      requiredEvidenceAvailable,
       comparedTenantCount: inspectedCount,
       comparedReadinessCoordinates: 55,
       readinessMatrixMatches: previousMatrixMatches,
@@ -492,16 +911,7 @@ export async function runCmsPreflight({ environment, previous, manifest, audited
     classificationCounts: base.classificationCounts,
     sites,
     groupHomepageRelatedEntities,
-    actionMapping: manifest.actions.map((action) => ({
-      actionId: action.id,
-      acceptedClassification: action.classification,
-      owner: action.owner,
-      evidenceClassification: "CONFIRMED",
-      evidenceStatus: actionEvidenceStatus(action.id),
-      destructive: false,
-      mutationAuthorized: false,
-      detailArtifact: "artifacts/step-2c5a/remediation-batches.json",
-    })),
+    actionMapping,
     acceptedActionCounts: manifest.actionCounts,
     blockers: [
       { id: "CMS_MUTATION_GATE", status: "BLOCKED", evidenceClassification: "CONFIRMED", summary: "No CMS mutation window or action authorization has been granted." },
@@ -554,20 +964,25 @@ async function main() {
   const previousPath = resolve(process.argv[3] ?? "../artifacts/step-2c3d/content-readiness.json");
   const manifestPath = resolve(process.argv[4] ?? "../artifacts/step-2c4/cms-correction-manifest.json");
   const outputPath = resolve(process.argv[5] ?? "../artifacts/step-2c5a/cms-preflight.json");
+  const reconcileStandardInput = process.argv.includes("--reconcile-stdin");
   const [environmentSource, previousSource, manifestSource] = await Promise.all([
-    readFile(envPath, "utf8"),
-    readFile(previousPath, "utf8"),
+    reconcileStandardInput ? Promise.resolve("") : readFile(envPath, "utf8"),
+    reconcileStandardInput ? readStandardInput() : readFile(previousPath, "utf8"),
     readFile(manifestPath, "utf8"),
   ]);
-  const output = await runCmsPreflight({
-    environment: parseEnvironment(environmentSource),
-    previous: JSON.parse(previousSource),
-    manifest: JSON.parse(manifestSource),
-    auditedAt: new Date().toISOString(),
-  });
+  const manifest = JSON.parse(manifestSource);
+  const output = reconcileStandardInput
+    ? reconcileExistingPreflight(JSON.parse(previousSource), manifest)
+    : await runCmsPreflight({
+      environment: parseEnvironment(environmentSource),
+      previous: JSON.parse(previousSource),
+      manifest,
+      auditedAt: new Date().toISOString(),
+    });
+  const replaceOutput = process.argv.includes("--replace");
   await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, {
     encoding: "utf8",
-    flag: "wx",
+    flag: replaceOutput ? "w" : "wx",
   });
 }
 

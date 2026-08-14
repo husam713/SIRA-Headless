@@ -1,15 +1,15 @@
 # SIRA Current Project State
 
-Last reconciled from repository and GitHub evidence: 2026-08-13
+Last reconciled from repository and GitHub evidence: 2026-08-14
 
 ## Current execution state
 
-- **Current business stage:** Step 2C.3D — WordPress Content Readiness
-- **Current substage:** 2C.3D-AUDIT — Read-Only CMS Readiness Audit
+- **Current business stage:** Step 2C.4 — Production Design & Data Contract Audit
+- **Current substage:** 2C.4-AUDIT — Read-Only Design and Architecture Audit
 - **Canonical integration/default branch:** `main`
-- **Business-code baseline:** `4f306733b3e45bee4244688186e5ecae570fcb8b`
-- **Current governed integration head:** `4f306733b3e45bee4244688186e5ecae570fcb8b`
-- **Latest approved business milestone:** Step 2C.3C
+- **Business-code baseline:** `1cfab49f113acca5a1866e225f8b5b64a5fcb926`
+- **Current governed integration head:** `1cfab49f113acca5a1866e225f8b5b64a5fcb926`
+- **Latest approved business milestone:** Step 2C.3D
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
@@ -32,6 +32,8 @@ Step 2C.3C-B6 is owner accepted and merged through PR `#10` at `a116fea3514af457
 Step 2C.3C-B7 is owner accepted and merged through PR `#11` at `73f41e88a5d1016e2cdd586991765d992a513416`. Its implementation head is `851b85b3d685ae1304466dc5baecadc87bcd1b90`, Frontend CI run #17 passed on that exact head, and the accepted full regression was 21 files / 174 tests PASS. No production deployment or WordPress/backend change occurred.
 
 Step 2C.3C cumulative closure is owner accepted and merged through PR `#12` at `4f306733b3e45bee4244688186e5ecae570fcb8b` using a normal merge commit. Its accepted closure head is `847b0c3f067d9af4f00591c3554a7a693a646017`, Frontend CI run #21 passed on that exact head, and the accepted full regression was 22 files / 183 tests PASS. No production deployment or WordPress/backend change occurred.
+
+Step 2C.3D Content Readiness is owner accepted and merged through PR `#13` at `1cfab49f113acca5a1866e225f8b5b64a5fcb926`. Its accepted correction/head is `73bec8e671a53c1abb5396ed945785162b71b5da`, Frontend CI run #25 passed on that exact head, and the accepted full regression was 23 files / 196 tests PASS. The audit inspected all five tenants read-only, kept existing editorial/project records non-authoritative without explicit approval, and recorded no WordPress mutation, deletion, backend change, production UI change, or deployment.
 
 ## GitHub governance status
 
@@ -121,9 +123,9 @@ Before Step 2C.3C can be accepted, the typed frontend contract layer must cover:
 
 Production visual components remain out of scope for this stage.
 
-## Current Step 2C.3D audit policy
+## Current Step 2C.4 audit policy
 
-Step 2C.3C is accepted and merged. The first Step 2C.3D increment audits all five WordPress tenants read-only against the accepted B1–B7 contracts, classifies missing or incorrect CMS state, and produces a deterministic correction plan. It does not authorize CMS mutation, backend work, production UI, or deployment. `SOT-001` remains open.
+Step 2C.3D is accepted and merged. Step 2C.4 audits the approved `.dc.html` sources as visual/interaction references only, maps the three page systems and every approved section to reusable Server-first React architecture and current generated contracts, classifies blocking/nonblocking gaps, and produces a non-destructive CMS correction manifest. The four branches use one `BranchHomepage` architecture. This stage does not authorize WordPress mutation, backend runtime work, production UI implementation, deployment, or merge. `SOT-001` remains open.
 
 Required delivery flow:
 
@@ -141,21 +143,17 @@ The current GitHub backend source contains Step 1-era material that is not yet p
 
 Do not modify backend runtime code until the latest verified cumulative backend source is reconciled into Git or an explicit evidence-backed decision establishes the correct backend source of truth.
 
-This conflict does **not** block frontend Step 2C.3C work that is based on the already verified checked-in live schema.
+This conflict does **not** block the read-only Step 2C.4 audit or future frontend planning based on the already verified checked-in live schema. It blocks any new backend runtime correction.
 
 ## Next stages
 
-After Step 2C.3C approval:
+After Step 2C.4 owner acceptance:
 
-1. **Step 2C.3D — WordPress Content Readiness**
-   - branch front pages;
-   - menus;
-   - Group/Healthcare brand correction;
-   - structured homepage content readiness.
-2. **Step 2C.4 — Production Design & Data Contract Audit**
-   - preserve and update the earlier approved Step 2C.1 audit using live schema evidence.
-3. **Step 3 — Preview / SEO / Discovery**
-4. **Step 4 — Production Component Implementation**
+1. **Separately authorized CMS correction execution**
+   - execute only the accepted non-destructive manifest after a fresh read-only preflight;
+   - preserve every existing record unless a separate destructive decision is approved.
+2. **Step 3 — Preview / SEO / Discovery**
+3. **Step 4 — Production Component Implementation**
 
 ## Owner/external decisions still protected
 

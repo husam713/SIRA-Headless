@@ -1,0 +1,431 @@
+{
+  "schemaVersion": 1,
+  "stage": "Step 2C.4 — Production Design & Data Contract Audit",
+  "status": "AUDIT_COMPLETE_PENDING_OWNER_ACCEPTANCE",
+  "mode": "read-only repository, generated-contract, and prototype-reference audit",
+  "baseline": {
+    "branch": "main",
+    "commit": "1cfab49f113acca5a1866e225f8b5b64a5fcb926",
+    "latestAcceptedStage": "Step 2C.3D",
+    "pullRequest": 13,
+    "correctionHead": "73bec8e671a53c1abb5396ed945785162b71b5da",
+    "frontendCiRun": 25,
+    "fullRegression": "23 files / 196 tests PASS"
+  },
+  "security": {
+    "wordpressMutationOccurred": false,
+    "backendRuntimeMutationOccurred": false,
+    "productionDeploymentOccurred": false,
+    "productionUiImplementationOccurred": false,
+    "contentDeletionOccurred": false,
+    "credentialsPersisted": false,
+    "endpointValuesPersisted": false,
+    "productionAuthorized": false,
+    "sot001Status": "OPEN"
+  },
+  "designSources": {
+    "duplicateSourceSetsMatch": true,
+    "runtimeRole": "visual-and-interaction-reference-only",
+    "files": [
+      {
+        "name": "SIRA Group Homepage.dc.html",
+        "sha256": "90d6b8268dc86a6f294d2d6ec4611a7712147b8c8d8915d37a593e6102c7b5df",
+        "role": "group-homepage-reference"
+      },
+      {
+        "name": "Sira Branch.dc.html",
+        "sha256": "f6f2b2ef2c10afbf230fc08ac635d4cb6aeb1585128cdfe4ada1999556b88bf4",
+        "role": "shared-branch-homepage-reference"
+      },
+      {
+        "name": "Sira Consulting.dc.html",
+        "sha256": "90c980f8d122624e4ad1806ccb526da1b1b76621989f6f2839fd603494716e6c",
+        "role": "branch-selector-only"
+      },
+      {
+        "name": "Sira Healthcare.dc.html",
+        "sha256": "ea6d964ccb62038d3f2464cf18648f57c88ef02c891aa218f9d9ad4904ca036f",
+        "role": "branch-selector-only"
+      },
+      {
+        "name": "Sira Lifestyle.dc.html",
+        "sha256": "670c2acd20ce0e54b1694f0e3c5d40242f179464b9f80d6114c9d98dc74181b0",
+        "role": "branch-selector-only"
+      },
+      {
+        "name": "Sira Real Estate.dc.html",
+        "sha256": "67f552700ae741168dacaac60ee34e30245db4cb31f79fdf3d0e2a4584af2078",
+        "role": "branch-selector-only"
+      },
+      {
+        "name": "Sira News.dc.html",
+        "sha256": "c49e5423f5921f85802a3df0012b5ef83e89fc0bc0f4acdfde84347d4aacc375",
+        "role": "newsroom-reference"
+      }
+    ],
+    "forbiddenProductionDependencies": [
+      ".dc.html",
+      "x-dc",
+      "dc-import",
+      "sc-for",
+      "sc-if",
+      "support.js",
+      "image-slot.js",
+      "deck-stage.js",
+      "DCLogic",
+      "style-hover",
+      "template-interpolation"
+    ]
+  },
+  "pageSystems": [
+    {
+      "id": "GROUP_HOMEPAGE",
+      "route": "/",
+      "sites": ["group"],
+      "orchestrator": "GroupHomepage",
+      "sharedImplementation": false,
+      "sections": [
+        "banner-stack",
+        "group-header",
+        "group-hero-carousel",
+        "ticker",
+        "latest-updates",
+        "companies",
+        "about-metrics",
+        "investor",
+        "services",
+        "projects",
+        "insights",
+        "testimonials",
+        "partners",
+        "contact",
+        "group-footer"
+      ],
+      "schemaStatus": "EXISTS",
+      "frontendContractStatus": "PARTIAL",
+      "contentAuthorityStatus": "UNAPPROVED_EXISTING_CONTENT"
+    },
+    {
+      "id": "BRANCH_HOMEPAGE",
+      "route": "/",
+      "sites": ["consulting", "healthcare", "lifestyle", "realestate"],
+      "orchestrator": "BranchHomepage",
+      "sharedImplementation": true,
+      "variantSelection": "trusted-site-data-only",
+      "sections": [
+        "banner-stack",
+        "branch-header",
+        "branch-hero",
+        "statistics",
+        "overview-focus-areas",
+        "projects",
+        "insights",
+        "contact",
+        "branch-footer"
+      ],
+      "schemaStatus": "EXISTS",
+      "frontendContractStatus": "PARTIAL",
+      "contentAuthorityStatus": "NO_CONTENT"
+    },
+    {
+      "id": "NEWSROOM",
+      "routes": ["/news/", "/news/[businessUnit]/"],
+      "sites": ["group", "consulting", "healthcare", "lifestyle", "realestate"],
+      "orchestrator": "NewsroomPage",
+      "sharedImplementation": true,
+      "sections": [
+        "site-header",
+        "newsroom-header",
+        "newsroom-filters",
+        "featured-article",
+        "editorial-archive-grid",
+        "pagination",
+        "empty-state",
+        "site-footer"
+      ],
+      "schemaStatus": "EXISTS_NATIVE_CONTENT_NODES",
+      "frontendContractStatus": "READY_FOR_RENDERER_INTEGRATION",
+      "contentAuthorityStatus": "NOT_APPROVED_FOR_LAUNCH"
+    }
+  ],
+  "componentArchitecture": {
+    "serverDefault": true,
+    "branchHomepageInvariant": "one BranchHomepage component and one data contract for all four branches",
+    "serverComponents": [
+      "GroupHomepage",
+      "BranchHomepage",
+      "NewsroomPage",
+      "SiteHeader",
+      "SiteFooter",
+      "BannerStack",
+      "BranchHero",
+      "LatestUpdatesSection",
+      "CompanyPortfolioSection",
+      "AboutMetricsSection",
+      "InvestorSection",
+      "ServiceGridSection",
+      "ProjectGridSection",
+      "EditorialGridSection",
+      "TestimonialsSection",
+      "PartnerLogoGrid",
+      "ContactSection",
+      "NewsroomFilters",
+      "FeaturedArticle",
+      "EditorialArchiveGrid"
+    ],
+    "clientIslands": [
+      {
+        "component": "MobileNavigation",
+        "reason": "dialog focus, Escape, scroll lock, and focus return"
+      },
+      {
+        "component": "HeroCarousel",
+        "reason": "manual navigation, autoplay state, pause, swipe, and direction-aware controls"
+      },
+      {
+        "component": "ContactForm",
+        "reason": "field state and accessible server-confirmed submission feedback"
+      },
+      {
+        "component": "InvestorInquiryForm",
+        "reason": "field state and private server-confirmed submission feedback"
+      },
+      {
+        "component": "TickerPauseControl",
+        "reason": "only when continuous movement is approved"
+      }
+    ],
+    "prohibitedBranchPatterns": [
+      "branch-specific homepage component trees",
+      "siteKey-hardcoded editorial copy",
+      "siteKey-selected GraphQL document variants",
+      "prototype runtime imports"
+    ]
+  },
+  "contractMap": [
+    {
+      "area": "brand",
+      "schema": "SiraBrand with typed announcement and emergency",
+      "frontend": "generated query, normalization, semantic tokens, and fallbacks",
+      "status": "READY_WITH_CMS_CORRECTIONS"
+    },
+    {
+      "area": "homepage",
+      "schema": "complete fixed SiraHomepage Group and Branch groups",
+      "frontend": "variant and hero text only",
+      "status": "BLOCKING_FRONTEND_CONTRACT_GAP"
+    },
+    {
+      "area": "navigation",
+      "schema": "native PRIMARY, FOOTER, and LEGAL menus",
+      "frontend": "bounded generated query and normalized hierarchy",
+      "status": "READY_CONTRACT_MISSING_CMS_CONFIGURATION"
+    },
+    {
+      "area": "editorial",
+      "schema": "native contentNodes and Business Unit contentNodes",
+      "frontend": "four-type cursor-paginated generated contract",
+      "status": "READY_CONTRACT_MISSING_AUTHORIZED_CONTENT"
+    },
+    {
+      "area": "projects",
+      "schema": "archive, single, ProjectDetails, media, and related company",
+      "frontend": "bounded generated archive and single contracts",
+      "status": "READY_CORE_CONTRACT_MISSING_FILTER_TERMS_AND_CONTENT"
+    },
+    {
+      "area": "homepage-related-entities",
+      "schema": "CompanyDetails, InvestmentDetails, TestimonialDetails, and PartnerDetails exist",
+      "frontend": "no generated homepage card fragments/adapters",
+      "status": "BLOCKING_FRONTEND_CONTRACT_GAP"
+    },
+    {
+      "area": "media",
+      "schema": "MediaItem URLs, alt text, and dimensions",
+      "frontend": "normalizers exist but Next remote media policy is absent",
+      "status": "BLOCKING_DELIVERY_POLICY_GAP"
+    },
+    {
+      "area": "forms",
+      "schema": "homepage formVariant and non-secret formContext only",
+      "frontend": "no approved private submission service",
+      "status": "BLOCKING_OWNER_AND_SECURITY_DECISION"
+    },
+    {
+      "area": "locale",
+      "schema": "no accepted translation ownership or relationships",
+      "frontend": "fonts and direction helper exist; route locale does not",
+      "status": "BLOCKING_ARABIC_LAUNCH_DECISION"
+    },
+    {
+      "area": "seo-preview",
+      "schema": "core title, excerpt, featured image, and previewable content",
+      "frontend": "preview transport exists; route metadata and preview entry are absent",
+      "status": "BLOCKING_RELEASE_GAP_DEFERRED_TO_STEP_3"
+    }
+  ],
+  "auditDimensions": [
+    "page-systems",
+    "approved-sections",
+    "component-architecture",
+    "server-client-boundaries",
+    "graphql-contract-mapping",
+    "cms-data-requirements",
+    "design-tokens",
+    "typography",
+    "responsive-behavior",
+    "ltr-rtl",
+    "accessibility",
+    "interactions-motion",
+    "reduced-motion",
+    "media",
+    "navigation-information-architecture",
+    "loading-empty-error-states",
+    "seo-preview",
+    "performance",
+    "cms-correction-manifest"
+  ],
+  "gaps": [
+    {
+      "id": "2C4-B01",
+      "severity": "BLOCKING",
+      "area": "homepage-contract",
+      "summary": "The live fixed homepage schema exists, but the generated frontend operation and adapter cover only variant and hero text.",
+      "blocks": "production homepage composition",
+      "owner": "FUTURE_FRONTEND_STAGE"
+    },
+    {
+      "id": "2C4-B02",
+      "severity": "BLOCKING",
+      "area": "content-authority",
+      "summary": "No existing editorial or project record is approved as authoritative launch content.",
+      "blocks": "launch-ready populated page systems",
+      "owner": "EDITORIAL_ACTION"
+    },
+    {
+      "id": "2C4-B03",
+      "severity": "BLOCKING",
+      "area": "front-page-configuration",
+      "summary": "All four branch tenants lack a configured static front page.",
+      "blocks": "branch homepage delivery",
+      "owner": "CMS_ADMIN_ACTION"
+    },
+    {
+      "id": "2C4-B04",
+      "severity": "BLOCKING",
+      "area": "navigation",
+      "summary": "PRIMARY, FOOTER, and LEGAL native menus are unassigned on all five tenants.",
+      "blocks": "production shell and information architecture",
+      "owner": "CMS_ADMIN_ACTION"
+    },
+    {
+      "id": "2C4-B05",
+      "severity": "BLOCKING",
+      "area": "business-unit",
+      "summary": "The exact mapped Business Unit term is absent on every branch tenant.",
+      "blocks": "branch-filtered editorial and content validation",
+      "owner": "CMS_ADMIN_ACTION"
+    },
+    {
+      "id": "2C4-B06",
+      "severity": "BLOCKING",
+      "area": "brand",
+      "summary": "Group and Healthcare live identity differs from approved repository identity.",
+      "blocks": "canonical production identity",
+      "owner": "CMS_ADMIN_ACTION"
+    },
+    {
+      "id": "2C4-B07",
+      "severity": "BLOCKING",
+      "area": "media",
+      "summary": "Remote CMS media host allowlisting and approved responsive delivery policy are absent.",
+      "blocks": "safe next/image production media",
+      "owner": "FUTURE_FRONTEND_STAGE"
+    },
+    {
+      "id": "2C4-B08",
+      "severity": "BLOCKING",
+      "area": "forms",
+      "summary": "Provider, private endpoint, storage, retention, consent, abuse protection, and operational ownership are undecided.",
+      "blocks": "functional contact and investor forms",
+      "owner": "OWNER_DECISION"
+    },
+    {
+      "id": "2C4-B09",
+      "severity": "BLOCKING",
+      "area": "localization",
+      "summary": "Arabic translation ownership, routes, relationships, localized menus, metadata, preview, and fallback are undecided.",
+      "blocks": "Arabic launch",
+      "owner": "OWNER_DECISION"
+    },
+    {
+      "id": "2C4-B10",
+      "severity": "BLOCKING",
+      "area": "seo-preview",
+      "summary": "Canonical route metadata, hreflang, social images, structured data, and preview entry are not implemented.",
+      "blocks": "production release, not this audit",
+      "owner": "FUTURE_STEP_3"
+    },
+    {
+      "id": "2C4-B11",
+      "severity": "BLOCKING",
+      "area": "backend-source-governance",
+      "summary": "SOT-001 remains open; no new backend runtime work may be based on the stale repository backend.",
+      "blocks": "any newly requested backend runtime correction",
+      "owner": "BLOCKED"
+    },
+    {
+      "id": "2C4-N01",
+      "severity": "NONBLOCKING",
+      "area": "motion",
+      "summary": "Scroll reveal, parallax, grain, and autoplay polish may be deferred without removing content or controls.",
+      "blocks": "nothing required for semantic production structure",
+      "owner": "FUTURE_FRONTEND_STAGE"
+    },
+    {
+      "id": "2C4-N02",
+      "severity": "NONBLOCKING",
+      "area": "navigation-enhancement",
+      "summary": "Scroll-linked active-section highlighting is optional progressive enhancement.",
+      "blocks": "nothing when route and anchor navigation works",
+      "owner": "FUTURE_FRONTEND_STAGE"
+    },
+    {
+      "id": "2C4-N03",
+      "severity": "NONBLOCKING",
+      "area": "filters-enhancement",
+      "summary": "Client-enhanced filter drawers and live counts may follow server-addressable links and GET forms.",
+      "blocks": "nothing when URL filters remain usable",
+      "owner": "FUTURE_FRONTEND_STAGE"
+    },
+    {
+      "id": "2C4-N04",
+      "severity": "NONBLOCKING",
+      "area": "localization-polish",
+      "summary": "Localized numerals and decorative RTL motion polish can follow the core translation model.",
+      "blocks": "nothing after semantic RTL is correct",
+      "owner": "FUTURE_FRONTEND_STAGE"
+    },
+    {
+      "id": "2C4-N05",
+      "severity": "NONBLOCKING",
+      "area": "archive-expansion",
+      "summary": "Non-homepage renderer families may be delivered incrementally after their route priority is approved.",
+      "blocks": "nothing for the three approved primary page systems",
+      "owner": "FUTURE_FRONTEND_STAGE"
+    }
+  ],
+  "gapCounts": {
+    "BLOCKING": 11,
+    "NONBLOCKING": 5
+  },
+  "cmsCorrectionManifest": "artifacts/step-2c4/cms-correction-manifest.json",
+  "authorization": {
+    "cmsMutationAuthorized": false,
+    "backendMutationAuthorized": false,
+    "productionComponentImplementationAuthorized": false,
+    "deploymentAuthorized": false,
+    "mergeAuthorized": false,
+    "nextGate": "OWNER_ACCEPTANCE"
+  }
+}

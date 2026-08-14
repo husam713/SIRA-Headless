@@ -110,12 +110,13 @@ Production requires explicit owner approval after:
 
 ## Current milestone sequence
 
-1. Step 2C.3C — typed frontend query contracts
-2. Step 2C.3D — WordPress content readiness
-3. Step 2C.4 — production design/data contract audit
-4. Step 3 — preview, SEO, discovery
-5. Step 4 — production components
-6. full QA/staging
-7. deployment/cutover/rollback
+1. Step 2C.3C — typed frontend query contracts — ACCEPTED
+2. Step 2C.3D — WordPress content readiness — ACCEPTED
+3. Step 2C.4 — production design/data contract audit — CURRENT / OWNER ACCEPTANCE REQUIRED
+4. separately authorized non-destructive CMS correction execution
+5. Step 3 — preview, SEO, discovery
+6. Step 4 — production components
+7. full QA/staging
+8. deployment/cutover/rollback
 
 Do not silently begin the next major milestone after an acceptance gate.

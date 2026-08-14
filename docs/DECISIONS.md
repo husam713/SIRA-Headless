@@ -107,6 +107,30 @@ This register consolidates durable decisions that should not be re-litigated by 
 - **Evidence:** G0-C established the GitHub default branch as `main`; repository governance records PR workflow, Frontend CI, and owner approval as compensating controls where plan-level branch protection is not enforced.
 - **Rule:** Normal changes target `main` through Pull Requests and required CI. The engineering agent must not merge to `main` without explicit owner approval.
 
+## ADR-020 — Production design uses three primary page systems
+
+- **Status:** Proposed; pending Step 2C.4 owner acceptance.
+- **Systems:** Group homepage, one shared Branch homepage, and one shared newsroom.
+- **Rule:** Consulting, Healthcare, Lifestyle, and Real Estate use one `BranchHomepage` component architecture and one data-contract shape. The trusted site key selects brand and content inputs only; it must not select duplicate component trees or hardcoded copy.
+- **Evidence:** The four branch `.dc.html` files are selector-only wrappers around the same `Sira Branch` reference, and the canonical live schema exposes one shared Branch homepage type.
+
+## ADR-021 — Step 2C.4 reuses the existing canonical live data types
+
+- **Status:** Proposed; pending Step 2C.4 owner acceptance.
+- **Decision:** Expand generated frontend operations and adapters over the existing fixed `SiraHomepage`, native menus, native content connections, `ProjectDetails`, `CompanyDetails`, `InvestmentDetails`, `TestimonialDetails`, `PartnerDetails`, and typed banner contracts.
+- **Rule:** Do not add `siraNavigation`, `siraEditorialFeed`, a flexible homepage builder, duplicate branch types, or site-key-specific GraphQL documents. If later evidence requires backend runtime work, SOT-001 must be reconciled first.
+
+## ADR-022 — Approved `.dc.html` sources remain reference-only
+
+- **Status:** Proposed; pending Step 2C.4 owner acceptance; reinforces ADR-007.
+- **Rule:** Production must not ship or depend on `.dc.html`, `x-dc`, `dc-import`, `sc-for`, `sc-if`, `support.js`, `image-slot.js`, `deck-stage.js`, `DCLogic`, `style-hover`, or prototype template interpolation.
+- **Reason:** Visual structure and interaction intent are portable; the prototype runtime is not a production headless dependency.
+
+## ADR-023 — The Step 2C.4 CMS correction manifest is non-destructive and separately gated
+
+- **Status:** Proposed; pending Step 2C.4 owner acceptance.
+- **Rule:** Every manifest action remains `mutationAuthorized=false` until a fresh read-only preflight, recoverable export, named approval, and separately authorized execution window exist. Existing records are preserved; publication and technical validity do not establish launch authority.
+
 ## Open decision records
 
 ### ADR-PENDING-002 — Backend source reconciliation

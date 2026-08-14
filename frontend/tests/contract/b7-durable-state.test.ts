@@ -31,22 +31,22 @@ describe("B7 durable state acceptance", () => {
     ) as ProjectState;
 
     expect(state).toMatchObject({
-      currentStage: "2C.3D",
-      currentSubstage: "2C.3D-AUDIT",
-      executionBaseline: "4f306733b3e45bee4244688186e5ecae570fcb8b",
+      currentStage: "2C.4",
+      currentSubstage: "2C.4-AUDIT",
+      executionBaseline: "1cfab49f113acca5a1866e225f8b5b64a5fcb926",
       productionAuthorized: false,
       governance: {
         canonicalBranch: "main",
         defaultBranch: "main",
       },
       latestAcceptedIncrement: {
-        stage: "Step 2C.3C",
+        stage: "Step 2C.3D",
         status: "ACCEPTED_MERGED",
-        pullRequest: 12,
-        implementationHead: "847b0c3f067d9af4f00591c3554a7a693a646017",
-        mergeCommit: "4f306733b3e45bee4244688186e5ecae570fcb8b",
+        pullRequest: 13,
+        implementationHead: "73bec8e671a53c1abb5396ed945785162b71b5da",
+        mergeCommit: "1cfab49f113acca5a1866e225f8b5b64a5fcb926",
         frontendCi: "PASS",
-        fullRegression: "22 files / 183 tests PASS",
+        fullRegression: "23 files / 196 tests PASS",
       },
     });
   });

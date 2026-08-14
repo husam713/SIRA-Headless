@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "stage": "Step 2C.4 — Production Design & Data Contract Audit",
+  "status": "PROPOSED_PENDING_DESIGN_AND_OWNER_APPROVAL",
+  "sourceAudit": "artifacts/step-2c4/design-data-contract-audit.json",
+  "sourceReadiness": "artifacts/step-2c3d/content-readiness.json",
+  "authorization": {
+    "wordpressMutationAuthorized": false,
+    "contentDeletionAuthorized": false,
+    "destructiveCleanupAuthorized": false,
+    "backendRuntimeMutationAuthorized": false,
+    "productionDeploymentAuthorized": false
+  },
+  "rules": [
+    "Preserve every existing record until a separately approved record-level disposition exists.",
+    "Never promote published or technically valid content to launch authority without explicit approval.",
+    "Use the fixed SiraHomepage Group or Branch field groups; do not create a flexible page builder.",
+    "Instantiate one tested BranchHomepage component architecture independently for Consulting, Healthcare, Lifestyle, and Real Estate tenant websites; never share or cross-resolve their CMS records.",
+    "Use native PRIMARY, FOOTER, and LEGAL menus.",
+    "Use exact Business Unit slugs from the allowlisted site mapping.",
+    "Record created database identifiers during execution; do not guess identifiers.",
+    "Run a read-only preflight and take a recoverable export before any separately authorized CMS action."
+  ],
+  "preconditions": [
+    {
+      "id": "PRE-001",
+      "status": "OWNER_DECISION",
+      "requirement": "Owner accepts the Step 2C.4 page systems, section order, component boundaries, and information architecture."
+    },
+    {
+      "id": "PRE-002",
+      "status": "EDITORIAL_ACTION",
+      "requirement": "Named editorial approvers are assigned for Group and each branch."
+    },
+    {
+      "id": "PRE-003",
+      "status": "CMS_ADMIN_ACTION",
+      "requirement": "A fresh read-only inventory confirms the Step 2C.3D evidence has not drifted."
+    },
+    {
+      "id": "PRE-004",
+      "status": "OWNER_DECISION",
+      "requirement": "A separately approved execution window and rollback/export location exist."
+    }
+  ],
+  "actions": [
+    {
+      "id": "CMS-2C4-001",
+      "priority": 1,
+      "classification": "BLOCKING",
+      "owner": "CMS_ADMIN_ACTION",
+      "tenant": "group",
+      "area": "brand",
+      "target": "siraBrand canonical identity",
+      "currentEvidence": {
+        "name": "SIRA Global Logo",
+        "primary": "#cccccc",
+        "secondary": "#5b5b5b"
+      },
+      "expected": {
+        "key": "group",
+        "name": "SIRA GROUP",
+        "tagline": "Shaping a smarter future.",
+        "primary": "#cca34b",
+        "secondary": "#172232",
+        "accent": "#cca34b",
+        "paper": "#f7f4ed",
+        "ink": "#20242b"
+      },
+      "operation": "Correct only the canonical identity fields after approval; retain unrelated brand content.",
+      "validation": "Re-run the typed brand query and identity comparison for Group.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-002",
+      "priority": 1,
+      "classification": "BLOCKING",
+      "owner": "CMS_ADMIN_ACTION",
+      "tenant": "healthcare",
+      "area": "brand",
+      "target": "siraBrand canonical identity",
+      "currentEvidence": {
+        "name": "SIRA Health",
+        "primary": "#1e73be",
+        "secondary": "#81d742",
+        "accent": "#8224e3"
+      },
+      "expected": {
+        "key": "healthcare",
+        "name": "SIRA Healthcare",
+        "tagline": "Advancing diagnostic and healthcare infrastructure.",
+        "primary": "#2c6dad",
+        "secondary": "#12283f",
+        "accent": "#2c6dad",
+        "paper": "#f3f7fb",
+        "ink": "#1f2932"
+      },
+      "operation": "Correct only the canonical identity fields after approval; retain unrelated brand content.",
+      "validation": "Re-run the typed brand query and identity comparison for Healthcare.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-003",
+      "priority": 1,
+      "classification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "tenant": "group",
+      "area": "homepage",
+      "target": "existing front Page databaseId 457 at root URI",
+      "currentEvidence": "variant group exists; approved hero content is absent; page content is not launch-authoritative",
+      "expected": {
+        "variant": "group",
+        "requiredGroups": [
+          "hero",
+          "ticker",
+          "latestUpdates",
+          "companies",
+          "about",
+          "investor",
+          "services",
+          "projects",
+          "insights",
+          "testimonials",
+          "partners",
+          "contact"
+        ]
+      },
+      "operation": "Author, review, and explicitly approve the fixed Group homepage fields and selected relationships; do not copy prototype text as launch content.",
+      "validation": "Query the complete future homepage operation, verify every selected record is approved, and confirm all bounded relations are untruncated.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-004",
+      "priority": 1,
+      "classification": "BLOCKING",
+      "owner": "CMS_ADMIN_ACTION",
+      "tenants": ["consulting", "healthcare", "lifestyle", "realestate"],
+      "area": "homepage",
+      "target": "one static front Page per branch tenant",
+      "currentEvidence": "showOnFront=posts, pageOnFront=0, and no root Page on every branch",
+      "expected": {
+        "showOnFront": "page",
+        "uri": "/",
+        "status": "publish only after editorial approval",
+        "variant": "branch",
+        "sharedRequiredGroups": [
+          "hero",
+          "statistics",
+          "overview",
+          "focusAreas",
+          "projects",
+          "insights",
+          "contact",
+          "footer"
+        ]
+      },
+      "operation": "Create or select an independent front Page in each branch tenant, populate the reusable BranchHomepage contract shape from that tenant's records, record its databaseId, and assign it in Reading Settings only after approval.",
+      "validation": "For each tenant, resolve root URI, verify expected variant branch, and run identical complete BranchHomepage contract checks.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-005",
+      "priority": 1,
+      "classification": "BLOCKING",
+      "owner": "CMS_ADMIN_ACTION",
+      "tenants": ["group", "consulting", "healthcare", "lifestyle", "realestate"],
+      "area": "navigation",
+      "target": "15 native menu assignments",
+      "currentEvidence": "zero PRIMARY, FOOTER, and LEGAL assignments on all five tenants",
+      "expected": {
+        "locationsPerTenant": ["PRIMARY", "FOOTER", "LEGAL"],
+        "totalAssignments": 15,
+        "contentRequirement": "owner-approved labels, hierarchy, destinations, target behavior, and locale"
+      },
+      "operation": "Create or reuse approved native menus and assign exactly one non-empty menu to each required location per tenant.",
+      "validation": "Run the bounded navigation query on all five tenants; require one menu per scope, safe links, valid hierarchy, and no truncation.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-006",
+      "priority": 1,
+      "classification": "BLOCKING",
+      "owner": "CMS_ADMIN_ACTION",
+      "area": "business-unit",
+      "targets": [
+        { "tenant": "consulting", "slug": "consulting" },
+        { "tenant": "healthcare", "slug": "healthcare" },
+        { "tenant": "lifestyle", "slug": "lifestyle" },
+        { "tenant": "realestate", "slug": "real-estate" }
+      ],
+      "currentEvidence": "the mapped term is absent on each branch tenant",
+      "expected": "one exact local Sira Business Unit term per branch; assignments only to reviewed records",
+      "operation": "Create the exact term where absent and assign only explicitly reviewed content.",
+      "validation": "Resolve every exact slug and re-run branch-filtered editorial connections.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-007",
+      "priority": 2,
+      "classification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "tenant": "group",
+      "area": "editorial",
+      "target": "four existing published accepted-family editorial records",
+      "currentEvidence": "technically valid but UNAPPROVED_EXISTING_CONTENT",
+      "expected": "a record-level retain/revise/replace recommendation and explicit launch approval for every selected item",
+      "operation": "Review records individually and select only approved items for homepage/newsroom relationships; do not delete or relabel them as test data.",
+      "validation": "Verify authority evidence and typed card requirements for every selected databaseId.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-008",
+      "priority": 2,
+      "classification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "tenant": "group",
+      "area": "projects",
+      "target": "three existing published project records",
+      "currentEvidence": "UNAPPROVED_EXISTING_CONTENT; all three lack featured images and subtitles",
+      "expected": "explicit launch approval plus complete project-card media, alt policy, subtitle, display location, and canonical status",
+      "operation": "Review, retain or replace editorially, and complete presentation fields for approved records; preserve all existing records.",
+      "validation": "Run archive and single contracts and verify media, alt text, subtitle, status, location, and bounded relationships.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-009",
+      "priority": 2,
+      "classification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "tenants": ["consulting", "healthcare", "lifestyle", "realestate"],
+      "area": "editorial-and-projects",
+      "target": "branch launch records",
+      "currentEvidence": "zero authoritative branch editorial and project records",
+      "expected": "approved tenant-local editorial and project records sufficient for each independent BranchHomepage and newsroom instance",
+      "operation": "Author and approve genuine branch records, then assign exact local Business Unit terms and curated homepage relationships.",
+      "validation": "Run root, branch-filtered, project archive, project single, and reusable BranchHomepage contract queries independently per tenant.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-010",
+      "priority": 2,
+      "classification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "tenant": "group",
+      "area": "homepage-related-entities",
+      "target": "Companies, Services, Investments, Testimonials, Partners, and approved Documents selected by the Group homepage",
+      "currentEvidence": "live field groups exist; record population and launch authority were not established by Step 2C.3D",
+      "expected": {
+        "companies": "approved Company records with CompanyDetails",
+        "services": "approved published Service records selected through the existing homepage services relationship, with stable identity, title, URI, card media and alt metadata, plus only the bounded existing Service.serviceItem fields required by the approved design",
+        "investments": "published records with publicDisplay=true and no private investor data",
+        "testimonials": "published records with consentApproved=true",
+        "partners": "approved logo, alt text, relationship label, and safe destination",
+        "documents": "approved public delivery policy and selected one-pager metadata"
+      },
+      "operation": "Perform a new read-only record inventory, obtain explicit authority, complete only existing live fields, and select bounded relationships.",
+      "validation": "Require correct typenames, approval flags, safe URLs, media metadata, and no private record exposure.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-011",
+      "priority": 2,
+      "classification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "tenants": ["group", "healthcare"],
+      "area": "media-accessibility",
+      "target": "Group logo and Healthcare mark",
+      "currentEvidence": "Group logo alt is absent; Healthcare mark alt is absent",
+      "expected": "context-appropriate meaningful alt text or an explicitly decorative presentation decision",
+      "operation": "Set Media Library alternative text when meaningful; do not duplicate adjacent accessible names.",
+      "validation": "Re-run brand media audit and inspect final accessible-name composition.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-012",
+      "priority": 2,
+      "classification": "BLOCKING",
+      "owner": "OWNER_DECISION",
+      "tenant": "healthcare",
+      "area": "announcement",
+      "target": "existing populated typed announcement",
+      "currentEvidence": "technically valid and active but UNAPPROVED_EXISTING_CONTENT",
+      "expected": "explicit approval, revision, scheduling decision, or non-destructive unpublishing decision",
+      "operation": "Review message, link, severity, schedule, dismissibility, and revision key without assuming launch authority.",
+      "validation": "Re-query typed announcement and retain separate technical and content-authority evidence.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-013",
+      "priority": 3,
+      "classification": "DEFERRED",
+      "owner": "OWNER_DECISION",
+      "tenants": ["group", "consulting", "healthcare", "lifestyle", "realestate"],
+      "area": "forms",
+      "target": "homepage formVariant and formContext",
+      "currentEvidence": "fields exist but no approved frontend form registry or private submission service exists",
+      "expected": "values selected from an approved non-secret registry after provider, storage, retention, consent, and abuse controls are approved",
+      "operation": "Do not populate routing context until the private form architecture is approved.",
+      "validation": "Validate registry membership and confirm no secret endpoint or credential is exposed through GraphQL.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-014",
+      "priority": 3,
+      "classification": "DEFERRED",
+      "owner": "OWNER_DECISION",
+      "tenants": ["group", "consulting", "healthcare", "lifestyle", "realestate"],
+      "area": "localization",
+      "target": "Arabic content, menus, routes, relationships, and metadata",
+      "currentEvidence": "frontend direction and fonts exist; production translation ownership/model does not",
+      "expected": "genuine approved Arabic records and relationships under the future accepted locale model",
+      "operation": "Do not copy prototype dictionaries or machine-invent translations into WordPress.",
+      "validation": "Validate locale-specific routes, menus, content authority, canonical/hreflang, preview, and fallback behavior.",
+      "destructive": false,
+      "mutationAuthorized": false
+    },
+    {
+      "id": "CMS-2C4-015",
+      "priority": 3,
+      "classification": "DEFERRED",
+      "owner": "FUTURE_STEP_3",
+      "tenants": ["group", "consulting", "healthcare", "lifestyle", "realestate"],
+      "area": "seo-preview",
+      "target": "route metadata and preview relationships",
+      "currentEvidence": "generic static frontend metadata only; no accepted canonical/hreflang/social/structured-data policy",
+      "expected": "approved locale-aware metadata populated only after Step 3 defines the contract",
+      "operation": "Do not invent SEO fields, canonical URLs, or translations during this audit.",
+      "validation": "Step 3 contract tests, preview validation, and rendered metadata inspection.",
+      "destructive": false,
+      "mutationAuthorized": false
+    }
+  ],
+  "actionCounts": {
+    "BLOCKING": 12,
+    "DEFERRED": 3,
+    "DESTRUCTIVE": 0,
+    "AUTHORIZED": 0
+  },
+  "rollback": {
+    "requiredBeforeExecution": true,
+    "method": "recoverable WordPress export plus per-record before-state manifest",
+    "recordDeletion": "not permitted",
+    "validation": "restore rehearsal or documented restore check before production cutover"
+  }
+}

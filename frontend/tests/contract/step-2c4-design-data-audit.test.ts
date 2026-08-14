@@ -15,6 +15,14 @@ interface DesignAuditArtifact {
   readonly status: string;
   readonly baseline: Readonly<Record<string, unknown>>;
   readonly security: Readonly<Record<string, boolean | string>>;
+  readonly canonicalPublicProductionTopology: {
+    readonly decisionStatus: string;
+    readonly apex: string;
+    readonly sites: Readonly<Record<string, string>>;
+    readonly scope: string;
+    readonly canonicalPublicDomainGapStatus: string;
+    readonly notInferred: readonly string[];
+  };
   readonly designSources: {
     readonly duplicateSourceSetsMatch: boolean;
     readonly runtimeRole: string;
@@ -30,6 +38,8 @@ interface DesignAuditArtifact {
     readonly sites: readonly string[];
     readonly orchestrator: string;
     readonly sharedImplementation: boolean;
+    readonly websiteModel?: string;
+    readonly instantiation?: string;
     readonly sections: readonly string[];
   }[];
   readonly componentArchitecture: {
@@ -92,6 +102,9 @@ const canonicalSchemaSource = repositoryFile(
   "frontend/schema/wpgraphql.graphql",
 );
 const canonicalSchema = buildSchema(canonicalSchemaSource);
+const groupSchema = buildSchema(
+  repositoryFile("frontend/schema/wpgraphql.group.graphql"),
+);
 
 describe("Step 2C.4 production design and data-contract audit", () => {
   it("starts from the accepted Step 2C.3D baseline with protected gates open", () => {
@@ -101,6 +114,9 @@ describe("Step 2C.4 production design and data-contract audit", () => {
       readonly executionBranch: string;
       readonly executionBaseline: string;
       readonly productionAuthorized: boolean;
+      readonly canonicalPublicProductionTopology: Readonly<
+        Record<string, unknown>
+      >;
       readonly latestAcceptedIncrement: Readonly<Record<string, unknown>>;
       readonly knownConflicts: readonly Readonly<Record<string, unknown>>[];
     };
@@ -111,6 +127,18 @@ describe("Step 2C.4 production design and data-contract audit", () => {
       executionBranch: "agent/step-2c4-design-data-audit",
       executionBaseline: "1cfab49f113acca5a1866e225f8b5b64a5fcb926",
       productionAuthorized: false,
+      canonicalPublicProductionTopology: {
+        status: "APPROVED_OWNER_DECISION",
+        apex: "siratrgroup.com",
+        sites: {
+          group: "siratrgroup.com",
+          consulting: "consulting.siratrgroup.com",
+          healthcare: "healthcare.siratrgroup.com",
+          lifestyle: "lifestyle.siratrgroup.com",
+          realestate: "realestate.siratrgroup.com",
+        },
+        scope: "public production hostnames only",
+      },
       latestAcceptedIncrement: {
         stage: "Step 2C.3D",
         status: "ACCEPTED_MERGED",
@@ -172,7 +200,7 @@ describe("Step 2C.4 production design and data-contract audit", () => {
     ]);
   });
 
-  it("locks three page systems and exactly one shared BranchHomepage", () => {
+  it("locks three page systems and one reusable BranchHomepage architecture", () => {
     expect(artifact.pageSystems.map((system) => system.id)).toEqual([
       "GROUP_HOMEPAGE",
       "BRANCH_HOMEPAGE",
@@ -185,6 +213,8 @@ describe("Step 2C.4 production design and data-contract audit", () => {
     expect(branch).toMatchObject({
       orchestrator: "BranchHomepage",
       sharedImplementation: true,
+      websiteModel: "independent-tenant-websites",
+      instantiation: "one-per-trusted-site-key-and-hostname",
       sites: ["consulting", "healthcare", "lifestyle", "realestate"],
     });
     expect(branch?.sections).toEqual([
@@ -206,11 +236,34 @@ describe("Step 2C.4 production design and data-contract audit", () => {
     expect(artifact.componentArchitecture).toMatchObject({
       serverDefault: true,
       branchHomepageInvariant:
-        "one BranchHomepage component and one data contract for all four branches",
+        "same tested BranchHomepage component architecture, independently instantiated with a different trusted SiteKey, tenant dataset, hostname, and CMS records for each of four branch websites",
     });
     expect(artifact.componentArchitecture.prohibitedBranchPatterns).toContain(
       "branch-specific homepage component trees",
     );
+    expect(artifact.canonicalPublicProductionTopology).toMatchObject({
+      decisionStatus: "APPROVED_OWNER_DECISION",
+      apex: "siratrgroup.com",
+      sites: {
+        group: "siratrgroup.com",
+        consulting: "consulting.siratrgroup.com",
+        healthcare: "healthcare.siratrgroup.com",
+        lifestyle: "lifestyle.siratrgroup.com",
+        realestate: "realestate.siratrgroup.com",
+      },
+      scope: "public-production-hostnames-only",
+      canonicalPublicDomainGapStatus: "RESOLVED",
+    });
+    expect(artifact.canonicalPublicProductionTopology.notInferred).toEqual([
+      "wordpress-backend-hostname",
+      "graphql-endpoint-hostname",
+      "media-origin-hostname",
+      "staging-hostname",
+      "vercel-preview-hostname",
+      "cookie-domain-requirements",
+      "cors-rules",
+      "revalidation-endpoint-origins",
+    ]);
   });
 
   it("limits Client Components to bounded interaction islands", () => {
@@ -324,6 +377,23 @@ describe("Step 2C.4 production design and data-contract audit", () => {
 
     expect(canonicalSchemaSource).not.toContain("siraNavigation:");
     expect(canonicalSchemaSource).not.toContain("siraEditorialFeed:");
+    const service = groupSchema.getType("Service");
+    const serviceItem = groupSchema.getType("ServiceItem");
+    expect(isObjectType(service)).toBe(true);
+    expect(isObjectType(serviceItem)).toBe(true);
+    if (isObjectType(service)) {
+      expect(service.getFields()).toHaveProperty("serviceItem");
+    }
+    if (isObjectType(serviceItem)) {
+      expect(Object.keys(serviceItem.getFields())).toEqual(
+        expect.arrayContaining([
+          "advisoryServices",
+          "impact",
+          "photos",
+          "serviceDetails",
+        ]),
+      );
+    }
     expect(artifact.contractMap.find((entry) => entry.area === "homepage"))
       .toMatchObject({
         status: "BLOCKING_FRONTEND_CONTRACT_GAP",
@@ -382,6 +452,19 @@ describe("Step 2C.4 production design and data-contract audit", () => {
       { tenant: "lifestyle", slug: "lifestyle" },
       { tenant: "realestate", slug: "real-estate" },
     ]);
+    const homepageEntities = manifest.actions.find(
+      (action) => action.id === "CMS-2C4-010",
+    );
+    expect(homepageEntities).toMatchObject({
+      target:
+        "Companies, Services, Investments, Testimonials, Partners, and approved Documents selected by the Group homepage",
+      expected: {
+        services:
+          "approved published Service records selected through the existing homepage services relationship, with stable identity, title, URI, card media and alt metadata, plus only the bounded existing Service.serviceItem fields required by the approved design",
+      },
+      destructive: false,
+      mutationAuthorized: false,
+    });
     expect(manifest.rollback).toMatchObject({
       requiredBeforeExecution: true,
       recordDeletion: "not permitted",

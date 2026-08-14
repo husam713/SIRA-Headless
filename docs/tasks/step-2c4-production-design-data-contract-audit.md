@@ -16,7 +16,7 @@ Reconcile the approved SIRA design references with the accepted live frontend co
 ## In scope
 
 - Direct inspection of the seven approved `.dc.html` references.
-- Group, shared BranchHomepage, newsroom, and secondary renderer-family mapping.
+- Group, reusable Branch Website System, newsroom, and secondary renderer-family mapping.
 - Approved section inventory.
 - Server/Client Component boundaries.
 - Canonical schema and current generated frontend contract mapping.
@@ -45,7 +45,8 @@ Reconcile the approved SIRA design references with the accepted live frontend co
 
 ## Acceptance
 
-- One BranchHomepage architecture covers all four branches.
+- One shared `BranchHomepage` component architecture is instantiated independently for four tenant websites; content, CMS records, hostname, and runtime/cache scope are not shared.
+- The canonical public production topology is Group at `siratrgroup.com` and the four branch tenants at their approved subdomains; non-public service origins remain evidence-gated.
 - The audit relies on current canonical schema evidence rather than stale Step 2C.1 assumptions.
 - Existing native menus, content connections, typed banners, homepage groups, and targeted details are reused.
 - Prototype runtime exclusions remain enforced.

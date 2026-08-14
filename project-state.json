@@ -10,6 +10,26 @@
   "latestApprovedMilestone": "Step 2C.3D",
   "latestApprovedTag": "step-2c3b-approved",
   "productionAuthorized": false,
+  "canonicalPublicProductionTopology": {
+    "status": "APPROVED_OWNER_DECISION",
+    "apex": "siratrgroup.com",
+    "sites": {
+      "group": "siratrgroup.com",
+      "consulting": "consulting.siratrgroup.com",
+      "healthcare": "healthcare.siratrgroup.com",
+      "lifestyle": "lifestyle.siratrgroup.com",
+      "realestate": "realestate.siratrgroup.com"
+    },
+    "scope": "public production hostnames only",
+    "unresolvedOrigins": [
+      "wordpress-backend",
+      "graphql-endpoint",
+      "media",
+      "staging",
+      "vercel-preview",
+      "revalidation"
+    ]
+  },
   "repositoryEvidencePolicy": "evidence-first",
   "latestAcceptedIncrement": {
     "stage": "Step 2C.3D",

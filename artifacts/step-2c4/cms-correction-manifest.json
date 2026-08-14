@@ -15,7 +15,7 @@
     "Preserve every existing record until a separately approved record-level disposition exists.",
     "Never promote published or technically valid content to launch authority without explicit approval.",
     "Use the fixed SiraHomepage Group or Branch field groups; do not create a flexible page builder.",
-    "Use one BranchHomepage content shape for Consulting, Healthcare, Lifestyle, and Real Estate.",
+    "Instantiate one tested BranchHomepage component architecture independently for Consulting, Healthcare, Lifestyle, and Real Estate tenant websites; never share or cross-resolve their CMS records.",
     "Use native PRIMARY, FOOTER, and LEGAL menus.",
     "Use exact Business Unit slugs from the allowlisted site mapping.",
     "Record created database identifiers during execution; do not guess identifiers.",
@@ -157,7 +157,7 @@
           "footer"
         ]
       },
-      "operation": "Create or select a branch front Page, populate the same BranchHomepage shape, record its databaseId, and assign it in Reading Settings only after approval.",
+      "operation": "Create or select an independent front Page in each branch tenant, populate the reusable BranchHomepage contract shape from that tenant's records, record its databaseId, and assign it in Reading Settings only after approval.",
       "validation": "For each tenant, resolve root URI, verify expected variant branch, and run identical complete BranchHomepage contract checks.",
       "destructive": false,
       "mutationAuthorized": false
@@ -239,9 +239,9 @@
       "area": "editorial-and-projects",
       "target": "branch launch records",
       "currentEvidence": "zero authoritative branch editorial and project records",
-      "expected": "approved editorial and project records sufficient for the shared BranchHomepage and newsroom states",
+      "expected": "approved tenant-local editorial and project records sufficient for each independent BranchHomepage and newsroom instance",
       "operation": "Author and approve genuine branch records, then assign exact local Business Unit terms and curated homepage relationships.",
-      "validation": "Run root, branch-filtered, project archive, project single, and shared BranchHomepage queries per tenant.",
+      "validation": "Run root, branch-filtered, project archive, project single, and reusable BranchHomepage contract queries independently per tenant.",
       "destructive": false,
       "mutationAuthorized": false
     },
@@ -256,6 +256,7 @@
       "currentEvidence": "live field groups exist; record population and launch authority were not established by Step 2C.3D",
       "expected": {
         "companies": "approved Company records with CompanyDetails",
+        "services": "approved published Service records selected through the existing homepage services relationship, with stable identity, title, URI, card media and alt metadata, plus only the bounded existing Service.serviceItem fields required by the approved design",
         "investments": "published records with publicDisplay=true and no private investor data",
         "testimonials": "published records with consentApproved=true",
         "partners": "approved logo, alt text, relationship label, and safe destination",

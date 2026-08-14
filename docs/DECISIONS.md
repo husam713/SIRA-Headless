@@ -110,9 +110,9 @@ This register consolidates durable decisions that should not be re-litigated by 
 ## ADR-020 — Production design uses three primary page systems
 
 - **Status:** Proposed; pending Step 2C.4 owner acceptance.
-- **Systems:** Group homepage, one shared Branch homepage, and one shared newsroom.
-- **Rule:** Consulting, Healthcare, Lifestyle, and Real Estate use one `BranchHomepage` component architecture and one data-contract shape. The trusted site key selects brand and content inputs only; it must not select duplicate component trees or hardcoded copy.
-- **Evidence:** The four branch `.dc.html` files are selector-only wrappers around the same `Sira Branch` reference, and the canonical live schema exposes one shared Branch homepage type.
+- **Systems:** Group homepage, one reusable Branch Website System, and one reusable newsroom implementation.
+- **Rule:** Consulting, Healthcare, Lifestyle, and Real Estate use one `BranchHomepage` component architecture and one data-contract shape, instantiated independently for four tenant websites. Each trusted site key resolves a distinct hostname, WordPress Multisite tenant, homepage record, menus, editorial content, projects, media, brand data, SEO/runtime state, and cache scope. It must not select duplicate component trees or hardcoded copy.
+- **Evidence:** The four branch `.dc.html` files are selector-only wrappers around the same `Sira Branch` reference, and the canonical live schema exposes one reusable Branch homepage type without sharing tenant records.
 
 ## ADR-021 — Step 2C.4 reuses the existing canonical live data types
 
@@ -130,6 +130,13 @@ This register consolidates durable decisions that should not be re-litigated by 
 
 - **Status:** Proposed; pending Step 2C.4 owner acceptance.
 - **Rule:** Every manifest action remains `mutationAuthorized=false` until a fresh read-only preflight, recoverable export, named approval, and separately authorized execution window exist. Existing records are preserved; publication and technical validity do not establish launch authority.
+
+## ADR-024 — Canonical public production domain topology
+
+- **Status:** Approved by owner during Step 2C.4.
+- **Decision:** The canonical public production apex is `siratrgroup.com`. Public site hostnames are `siratrgroup.com` for Group, `consulting.siratrgroup.com`, `healthcare.siratrgroup.com`, `lifestyle.siratrgroup.com`, and `realestate.siratrgroup.com`.
+- **Scope:** This resolves canonical public domain selection and creates no new Step 2C.4 blocking gap. It does not establish a WordPress backend hostname, GraphQL endpoint hostname, media origin, staging hostname, Vercel preview hostname, cookie-domain policy, CORS policy, or revalidation origin; those require later repository or live configuration evidence.
+- **Downstream rule:** Step 3 must use this public topology for canonical URL behavior while completing metadata, preview, `hreflang`, sitemap, redirect, and related SEO contracts. `2C4-B07` remains BLOCKING pending an approved media origin/delivery policy, and `2C4-B10` remains BLOCKING pending Step 3 implementation.
 
 ## Open decision records
 

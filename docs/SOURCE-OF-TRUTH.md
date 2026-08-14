@@ -32,6 +32,12 @@ A later verified artifact may temporarily supersede repository source for a spec
 
 The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. Step 2C.3D Frontend CI run #25 passed on correction/head `73bec8e671a53c1abb5396ed945785162b71b5da`, and the full 23-file / 196-test regression passed before owner acceptance and merge. The accepted audit records all five tenants, separates technical readiness from launch content authority, and confirms no WordPress mutation or deletion. Step 2C.4 is now a read-only production design and data-contract audit using the checked-in canonical live schema and approved `.dc.html` sources as reference-only evidence; it does not supersede SOT-001 or authorize backend, CMS, production UI, deployment, or merge actions.
 
+## Canonical public production topology
+
+The owner-approved public production apex is `siratrgroup.com`. The authoritative public hostname mapping is Group -> `siratrgroup.com`, Consulting -> `consulting.siratrgroup.com`, Healthcare -> `healthcare.siratrgroup.com`, Lifestyle -> `lifestyle.siratrgroup.com`, and Real Estate -> `realestate.siratrgroup.com`.
+
+This is public-domain evidence only. It must not be used to infer WordPress backend, GraphQL endpoint, media origin, staging, Vercel preview, cookie-domain, CORS, or revalidation configuration. Those remain UNKNOWN until repository or live configuration evidence establishes them. Each branch hostname represents an independent WordPress Multisite tenant website and independent content/runtime/cache scope; only the tested React/Next.js `BranchHomepage` architecture is shared.
+
 ## Current backend source status
 
 ### SOT-001 — OPEN CONFLICT

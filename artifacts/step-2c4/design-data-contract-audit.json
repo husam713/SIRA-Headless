@@ -23,6 +23,29 @@
     "productionAuthorized": false,
     "sot001Status": "OPEN"
   },
+  "canonicalPublicProductionTopology": {
+    "decisionStatus": "APPROVED_OWNER_DECISION",
+    "apex": "siratrgroup.com",
+    "sites": {
+      "group": "siratrgroup.com",
+      "consulting": "consulting.siratrgroup.com",
+      "healthcare": "healthcare.siratrgroup.com",
+      "lifestyle": "lifestyle.siratrgroup.com",
+      "realestate": "realestate.siratrgroup.com"
+    },
+    "scope": "public-production-hostnames-only",
+    "canonicalPublicDomainGapStatus": "RESOLVED",
+    "notInferred": [
+      "wordpress-backend-hostname",
+      "graphql-endpoint-hostname",
+      "media-origin-hostname",
+      "staging-hostname",
+      "vercel-preview-hostname",
+      "cookie-domain-requirements",
+      "cors-rules",
+      "revalidation-endpoint-origins"
+    ]
+  },
   "designSources": {
     "duplicateSourceSetsMatch": true,
     "runtimeRole": "visual-and-interaction-reference-only",
@@ -111,6 +134,8 @@
       "sites": ["consulting", "healthcare", "lifestyle", "realestate"],
       "orchestrator": "BranchHomepage",
       "sharedImplementation": true,
+      "websiteModel": "independent-tenant-websites",
+      "instantiation": "one-per-trusted-site-key-and-hostname",
       "variantSelection": "trusted-site-data-only",
       "sections": [
         "banner-stack",
@@ -150,7 +175,7 @@
   ],
   "componentArchitecture": {
     "serverDefault": true,
-    "branchHomepageInvariant": "one BranchHomepage component and one data contract for all four branches",
+    "branchHomepageInvariant": "same tested BranchHomepage component architecture, independently instantiated with a different trusted SiteKey, tenant dataset, hostname, and CMS records for each of four branch websites",
     "serverComponents": [
       "GroupHomepage",
       "BranchHomepage",
@@ -235,7 +260,7 @@
     },
     {
       "area": "homepage-related-entities",
-      "schema": "CompanyDetails, InvestmentDetails, TestimonialDetails, and PartnerDetails exist",
+      "schema": "Service with existing ServiceItem fields, CompanyDetails, InvestmentDetails, TestimonialDetails, and PartnerDetails exist",
       "frontend": "no generated homepage card fragments/adapters",
       "status": "BLOCKING_FRONTEND_CONTRACT_GAP"
     },

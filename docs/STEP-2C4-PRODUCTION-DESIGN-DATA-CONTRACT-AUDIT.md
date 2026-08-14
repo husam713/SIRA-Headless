@@ -8,6 +8,8 @@
 
 This is a read-only design and architecture checkpoint. It changes durable documentation, machine-readable audit evidence, and contract tests only. It does not modify WordPress, backend runtime GraphQL, generated GraphQL output, dependencies, production UI, deployment configuration, DNS, or production state. `SOT-001` remains OPEN and `productionAuthorized` remains false.
 
+The owner has approved `siratrgroup.com` as the canonical public production apex. The public topology is Group at `siratrgroup.com`, Consulting at `consulting.siratrgroup.com`, Healthcare at `healthcare.siratrgroup.com`, Lifestyle at `lifestyle.siratrgroup.com`, and Real Estate at `realestate.siratrgroup.com`. This resolves public-domain selection without creating a new gap. It does not establish WordPress backend, GraphQL endpoint, media origin, staging, Vercel preview, cookie-domain, CORS, or revalidation configuration; those remain evidence-gated.
+
 ## Evidence classification
 
 - **CONFIRMED:** Repository source, checked-in canonical schema, generated contracts, Step 2C.3D artifact, executable tests, directly inspected design-source files, Git history, and GitHub evidence.
@@ -21,11 +23,11 @@ The two discovered copies of the approved design set are byte-identical. The aud
 | Source | SHA-256 | Production role |
 | --- | --- | --- |
 | `SIRA Group Homepage.dc.html` | `90d6b8268dc86a6f294d2d6ec4611a7712147b8c8d8915d37a593e6102c7b5df` | Group homepage visual and interaction reference |
-| `Sira Branch.dc.html` | `f6f2b2ef2c10afbf230fc08ac635d4cb6aeb1585128cdfe4ada1999556b88bf4` | One shared branch homepage reference |
-| `Sira Consulting.dc.html` | `90c980f8d122624e4ad1806ccb526da1b1b76621989f6f2839fd603494716e6c` | Selector-only wrapper for the shared branch reference |
-| `Sira Healthcare.dc.html` | `ea6d964ccb62038d3f2464cf18648f57c88ef02c891aa218f9d9ad4904ca036f` | Selector-only wrapper for the shared branch reference |
-| `Sira Lifestyle.dc.html` | `670c2acd20ce0e54b1694f0e3c5d40242f179464b9f80d6114c9d98dc74181b0` | Selector-only wrapper for the shared branch reference |
-| `Sira Real Estate.dc.html` | `67f552700ae741168dacaac60ee34e30245db4cb31f79fdf3d0e2a4584af2078` | Selector-only wrapper for the shared branch reference |
+| `Sira Branch.dc.html` | `f6f2b2ef2c10afbf230fc08ac635d4cb6aeb1585128cdfe4ada1999556b88bf4` | Reusable Branch Website System reference |
+| `Sira Consulting.dc.html` | `90c980f8d122624e4ad1806ccb526da1b1b76621989f6f2839fd603494716e6c` | Selector-only wrapper demonstrating a Consulting tenant instance |
+| `Sira Healthcare.dc.html` | `ea6d964ccb62038d3f2464cf18648f57c88ef02c891aa218f9d9ad4904ca036f` | Selector-only wrapper demonstrating a Healthcare tenant instance |
+| `Sira Lifestyle.dc.html` | `670c2acd20ce0e54b1694f0e3c5d40242f179464b9f80d6114c9d98dc74181b0` | Selector-only wrapper demonstrating a Lifestyle tenant instance |
+| `Sira Real Estate.dc.html` | `67f552700ae741168dacaac60ee34e30245db4cb31f79fdf3d0e2a4584af2078` | Selector-only wrapper demonstrating a Real Estate tenant instance |
 | `Sira News.dc.html` | `c49e5423f5921f85802a3df0012b5ef83e89fc0bc0f4acdfde84347d4aacc375` | Newsroom visual and filter-state reference |
 
 The `.dc.html` runtime is prototype-only. Production must not ship or depend on `.dc.html`, `x-dc`, `dc-import`, `sc-for`, `sc-if`, `support.js`, `image-slot.js`, `deck-stage.js`, `DCLogic`, `style-hover`, or template interpolation.
@@ -35,8 +37,10 @@ The `.dc.html` runtime is prototype-only. Production must not ship or depend on 
 The approved design resolves into three primary page systems:
 
 1. `GroupHomepage` for the Group root.
-2. One `BranchHomepage` for Consulting, Healthcare, Lifestyle, and Real Estate.
-3. One shared `NewsroomPage` with site and Business Unit data variants.
+2. One reusable Branch Website System: a shared `BranchHomepage` component architecture independently instantiated for Consulting, Healthcare, Lifestyle, and Real Estate tenant websites.
+3. One reusable `NewsroomPage` implementation instantiated with independent tenant content and runtime scope.
+
+Shared implementation never means shared content or one physical webpage. The invariant is the same tested component architecture with a different trusted `SiteKey`, tenant dataset, hostname, and CMS records for each branch. Each branch owns its homepage, menus, editorial content, projects, media, brand data, SEO/runtime state, and cache scope.
 
 The canonical live schema is substantially more complete than the earlier Step 2C.1 audit could prove. It already contains the full fixed Group/Branch `SiraHomepage` hierarchy, `CompanyDetails`, `InvestmentDetails`, `TestimonialDetails`, `PartnerDetails`, typed announcement/emergency objects, native WPGraphQL menus, and a usable native `contentNodes` editorial feed. No new `siraNavigation`, `siraEditorialFeed`, alternate homepage builder, or branch-specific schema is justified.
 
@@ -54,12 +58,13 @@ The blocking gap is the bridge from those existing live types to full generated 
 - **Data:** one complete generated homepage operation composed from bounded fragments; `siraBrand`, native navigation, and page `siraHomepage.groupHomepage` remain separate typed inputs.
 - **Current state:** live schema exists; frontend operation is partial; Group Page 457 is configured but launch content is unapproved and hero fields are empty.
 
-## 1.2 Shared branch homepage
+## 1.2 Reusable Branch Website System
 
-- **Routes:** `/` on the Consulting, Healthcare, Lifestyle, and Real Estate hostnames.
-- **Orchestrator:** one Server Component `BranchHomepage`.
+- **Independent public sites:** Consulting at `consulting.siratrgroup.com`, Healthcare at `healthcare.siratrgroup.com`, Lifestyle at `lifestyle.siratrgroup.com`, and Real Estate at `realestate.siratrgroup.com`; each resolves its own `/` homepage.
+- **Orchestrator:** one shared Server Component architecture, `BranchHomepage`, instantiated independently per trusted tenant.
 - **Approved order:** banner stack, branch header, static branch hero, statistics, overview/focus areas, projects, insights, contact, branch footer.
-- **Invariant:** site key selects trusted brand/data inputs only. It must not select a separate component tree, GraphQL document, markup fork, or hardcoded copy.
+- **Invariant:** each trusted site key selects only that tenant's brand/data inputs. It must not select a separate component tree, GraphQL document, markup fork, hardcoded copy, or another tenant's CMS records.
+- **Isolation:** hostname, WordPress tenant, homepage record, menus, editorial content, projects, media, brand data, SEO/runtime state, and cache scope are independent for every branch site.
 - **Current state:** complete live Branch homepage schema exists; frontend operation is partial; all four static front pages and authoritative branch content are absent.
 
 Illustrative future component contract:
@@ -77,10 +82,10 @@ Illustrative future component contract:
 
 This is an architecture contract, not implementation in this stage.
 
-## 1.3 Shared newsroom
+## 1.3 Reusable newsroom system
 
 - **Routes:** `/news/` and an owner-approved Business Unit filter route such as `/news/[businessUnit]/`.
-- **Orchestrator:** Server Component `NewsroomPage` shared by Group and branches.
+- **Orchestrator:** reusable Server Component `NewsroomPage`, instantiated with the current trusted site's independent content and runtime scope.
 - **Approved sections:** site header, archive heading, filters, optional featured article, cursor-paginated grid, pagination, empty state, footer.
 - **Contract:** the accepted native `contentNodes` and Business Unit `contentNodes` operations already merge News, Insights, Articles, and Press Releases in date order with type discrimination and cursor pagination.
 - **Decision:** do not add `siraEditorialFeed`.
@@ -221,7 +226,7 @@ Scroll-reveal, active-section highlighting, filter drawers, and other polish rem
 
 The Step 4 homepage operation should:
 
-- query only the matching fixed Group/Branch shape required by the shared page system;
+- query only the matching fixed Group/Branch shape required by the reusable page system and current trusted tenant;
 - use fragments for link, media, company card, project card, editorial card, opportunity, testimonial, partner, and document metadata;
 - cap every relationship and include `pageInfo.hasNextPage` so silent truncation is invalid;
 - validate every returned typename and restriction signal;
@@ -416,13 +421,15 @@ Current metadata is generic static SIRA Enterprise copy. Preview transport exist
 
 Step 3 must define and validate:
 
-- canonical host and path generation;
+- canonical host and path generation from the approved `siratrgroup.com` public topology;
 - locale routes and `hreflang`;
 - title, description, Open Graph/Twitter images, robots, and pagination metadata;
 - Organization/WebSite and only evidence-valid Article, NewsArticle, Project, Service, Event, JobPosting, FAQ, Person, or LocalBusiness structured data;
 - draft preview entry, authentication, no-store behavior, preview banners, and exit flow;
 - branch filter canonical/noindex policy;
 - redirect and domain policy.
+
+The public hostname decision is resolved. Step 3 still owns canonical metadata, preview, `hreflang`, sitemap, redirect, and related SEO behavior, so `2C4-B10` remains BLOCKING. The approved public domains do not identify the WordPress backend, GraphQL endpoint, media origin, staging host, Vercel preview host, cookie-domain requirements, CORS rules, or revalidation endpoint origins. `2C4-B07` therefore also remains BLOCKING until the exact approved media delivery/origin policy is established.
 
 SEO/preview is BLOCKING for production release but does not authorize Step 3 implementation in this stage.
 
@@ -482,7 +489,7 @@ It contains:
 
 - exact Group and Healthcare approved brand identity values;
 - Group Page 457 fixed Group homepage population requirements;
-- one identical BranchHomepage shape for the four missing branch front pages;
+- one identical BranchHomepage contract shape independently populated in the four branch tenant front-page records;
 - 15 native menu assignments;
 - four exact branch Business Unit terms;
 - record-level editorial/project review without deletion;
@@ -522,6 +529,7 @@ This branch is documentation, machine evidence, and tests only. Rollback is a no
 - **Stage:** Step 2C.4 — Production Design & Data Contract Audit.
 - **Status:** AUDIT COMPLETE / PENDING OWNER ACCEPTANCE.
 - **Canonical accepted baseline:** `main@1cfab49f113acca5a1866e225f8b5b64a5fcb926`.
+- **Canonical public production apex:** `siratrgroup.com` (owner approved; public hostnames only).
 - **SOT-001:** OPEN.
 - **WordPress mutation:** none.
 - **Backend runtime change:** none.

@@ -21,16 +21,16 @@ A later verified artifact may temporarily supersede repository source for a spec
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Current governed frontend baseline/head: `1cfab49f113acca5a1866e225f8b5b64a5fcb926`
-- Latest accepted increment: Step 2C.3D Content Readiness Audit
-- Audit PR / correction head / merge: `#13` / `73bec8e671a53c1abb5396ed945785162b71b5da` / `1cfab49f113acca5a1866e225f8b5b64a5fcb926`
+- Current governed frontend baseline/head: `710eec3cf90e1a7d707860f9ee73d0abf283019c`
+- Latest accepted increment: Step 2C.4 Production Design & Data Contract Audit
+- Audit PR / correction head / merge: `#14` / `a4d8945bf5b83e304b1b0fb434eb7441ea243849` / `710eec3cf90e1a7d707860f9ee73d0abf283019c`
 - Approved tag: `step-2c3b-approved`
 - Checked-in canonical live schema: `frontend/schema/wpgraphql.graphql`
 - Group audit schema: `frontend/schema/wpgraphql.group.graphql`
 - Metadata: `frontend/schema/wpgraphql.meta.json`
 - Compatibility evidence: `frontend/schema/wpgraphql.compatibility.json`
 
-The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. Step 2C.3D Frontend CI run #25 passed on correction/head `73bec8e671a53c1abb5396ed945785162b71b5da`, and the full 23-file / 196-test regression passed before owner acceptance and merge. The accepted audit records all five tenants, separates technical readiness from launch content authority, and confirms no WordPress mutation or deletion. Step 2C.4 is now a read-only production design and data-contract audit using the checked-in canonical live schema and approved `.dc.html` sources as reference-only evidence; it does not supersede SOT-001 or authorize backend, CMS, production UI, deployment, or merge actions.
+The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. Step 2C.4 Frontend CI run #29 passed on correction/head `a4d8945bf5b83e304b1b0fb434eb7441ea243849`, and the full 24-file / 204-test regression passed before owner acceptance and merge. The accepted audit defines the reusable page architecture, independent branch tenant boundaries, eleven blocking and five nonblocking design/data gaps, and a non-destructive fifteen-action CMS correction manifest. Step 2C.5A now performs the required fresh read-only five-tenant preflight and remediation planning; it does not authorize CMS mutation, backend work, Step 3, production UI, deployment, or merge.
 
 ## Canonical public production topology
 

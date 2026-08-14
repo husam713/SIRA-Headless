@@ -109,26 +109,26 @@ This register consolidates durable decisions that should not be re-litigated by 
 
 ## ADR-020 — Production design uses three primary page systems
 
-- **Status:** Proposed; pending Step 2C.4 owner acceptance.
+- **Status:** Approved through Step 2C.4 owner acceptance and PR `#14` merge.
 - **Systems:** Group homepage, one reusable Branch Website System, and one reusable newsroom implementation.
 - **Rule:** Consulting, Healthcare, Lifestyle, and Real Estate use one `BranchHomepage` component architecture and one data-contract shape, instantiated independently for four tenant websites. Each trusted site key resolves a distinct hostname, WordPress Multisite tenant, homepage record, menus, editorial content, projects, media, brand data, SEO/runtime state, and cache scope. It must not select duplicate component trees or hardcoded copy.
 - **Evidence:** The four branch `.dc.html` files are selector-only wrappers around the same `Sira Branch` reference, and the canonical live schema exposes one reusable Branch homepage type without sharing tenant records.
 
 ## ADR-021 — Step 2C.4 reuses the existing canonical live data types
 
-- **Status:** Proposed; pending Step 2C.4 owner acceptance.
+- **Status:** Approved through Step 2C.4 owner acceptance and PR `#14` merge.
 - **Decision:** Expand generated frontend operations and adapters over the existing fixed `SiraHomepage`, native menus, native content connections, `ProjectDetails`, `CompanyDetails`, `InvestmentDetails`, `TestimonialDetails`, `PartnerDetails`, and typed banner contracts.
 - **Rule:** Do not add `siraNavigation`, `siraEditorialFeed`, a flexible homepage builder, duplicate branch types, or site-key-specific GraphQL documents. If later evidence requires backend runtime work, SOT-001 must be reconciled first.
 
 ## ADR-022 — Approved `.dc.html` sources remain reference-only
 
-- **Status:** Proposed; pending Step 2C.4 owner acceptance; reinforces ADR-007.
+- **Status:** Approved through Step 2C.4 owner acceptance and PR `#14` merge; reinforces ADR-007.
 - **Rule:** Production must not ship or depend on `.dc.html`, `x-dc`, `dc-import`, `sc-for`, `sc-if`, `support.js`, `image-slot.js`, `deck-stage.js`, `DCLogic`, `style-hover`, or prototype template interpolation.
 - **Reason:** Visual structure and interaction intent are portable; the prototype runtime is not a production headless dependency.
 
 ## ADR-023 — The Step 2C.4 CMS correction manifest is non-destructive and separately gated
 
-- **Status:** Proposed; pending Step 2C.4 owner acceptance.
+- **Status:** Approved through Step 2C.4 owner acceptance and PR `#14` merge.
 - **Rule:** Every manifest action remains `mutationAuthorized=false` until a fresh read-only preflight, recoverable export, named approval, and separately authorized execution window exist. Existing records are preserved; publication and technical validity do not establish launch authority.
 
 ## ADR-024 — Canonical public production domain topology

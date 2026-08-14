@@ -79,3 +79,8 @@ export function buildFindings(
   technicalMatrix?: Readonly<Record<string, SiteReadinessMatrix>>,
   contentAuthorityMatrix?: Readonly<Record<string, ContentAuthorityMatrix>>,
 ): readonly ReadinessFinding[];
+
+export function runContentReadinessAudit(
+  environment: Readonly<Record<string, string | undefined>>,
+  auditedAt?: string,
+): Promise<Readonly<Record<string, unknown>>>;

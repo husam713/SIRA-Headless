@@ -4,12 +4,12 @@ Last reconciled from repository and GitHub evidence: 2026-08-14
 
 ## Current execution state
 
-- **Current business stage:** Step 2C.4 — Production Design & Data Contract Audit
-- **Current substage:** 2C.4-AUDIT — Read-Only Design and Architecture Audit
+- **Current business stage:** Step 2C.5A — CMS Preflight & Remediation Plan
+- **Current substage:** 2C.5A-CMS-PREFLIGHT — Read-Only CMS Evidence and Repository Planning
 - **Canonical integration/default branch:** `main`
-- **Business-code baseline:** `1cfab49f113acca5a1866e225f8b5b64a5fcb926`
-- **Current governed integration head:** `1cfab49f113acca5a1866e225f8b5b64a5fcb926`
-- **Latest approved business milestone:** Step 2C.3D
+- **Business-code baseline:** `710eec3cf90e1a7d707860f9ee73d0abf283019c`
+- **Current governed integration head:** `710eec3cf90e1a7d707860f9ee73d0abf283019c`
+- **Latest approved business milestone:** Step 2C.4
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
@@ -34,6 +34,8 @@ Step 2C.3C-B7 is owner accepted and merged through PR `#11` at `73f41e88a5d1016e
 Step 2C.3C cumulative closure is owner accepted and merged through PR `#12` at `4f306733b3e45bee4244688186e5ecae570fcb8b` using a normal merge commit. Its accepted closure head is `847b0c3f067d9af4f00591c3554a7a693a646017`, Frontend CI run #21 passed on that exact head, and the accepted full regression was 22 files / 183 tests PASS. No production deployment or WordPress/backend change occurred.
 
 Step 2C.3D Content Readiness is owner accepted and merged through PR `#13` at `1cfab49f113acca5a1866e225f8b5b64a5fcb926`. Its accepted correction/head is `73bec8e671a53c1abb5396ed945785162b71b5da`, Frontend CI run #25 passed on that exact head, and the accepted full regression was 23 files / 196 tests PASS. The audit inspected all five tenants read-only, kept existing editorial/project records non-authoritative without explicit approval, and recorded no WordPress mutation, deletion, backend change, production UI change, or deployment.
+
+Step 2C.4 Production Design & Data Contract Audit is owner accepted and merged through PR `#14` at `710eec3cf90e1a7d707860f9ee73d0abf283019c`. Its accepted correction/head is `a4d8945bf5b83e304b1b0fb434eb7441ea243849`, Frontend CI run #29 passed on that exact head, and the accepted full regression was 24 files / 204 tests PASS. It approved the reusable page architecture, independent branch-tenant invariant, canonical public production topology, 11 BLOCKING / 5 NONBLOCKING design/data gaps, and a non-destructive 15-action CMS correction manifest. No WordPress mutation, deployment, backend runtime change, generated GraphQL change, or production UI implementation occurred.
 
 ## GitHub governance status
 
@@ -123,9 +125,13 @@ Before Step 2C.3C can be accepted, the typed frontend contract layer must cover:
 
 Production visual components remain out of scope for this stage.
 
-## Current Step 2C.4 audit policy
+## Current Step 2C.5A preflight policy
 
-Step 2C.3D is accepted and merged. Step 2C.4 audits the approved `.dc.html` sources as visual/interaction references only, maps the three page systems and every approved section to reusable Server-first React architecture and current generated contracts, classifies blocking/nonblocking gaps, and produces a non-destructive CMS correction manifest. The reusable Branch Website System is one shared `BranchHomepage` component architecture instantiated independently for Consulting, Healthcare, Lifestyle, and Real Estate. Each branch remains a separate tenant website with its own trusted site key, hostname, WordPress tenant, homepage record, menus, editorial content, projects, media, brand data, SEO/runtime state, and cache scope. This stage does not authorize WordPress mutation, backend runtime work, production UI implementation, deployment, or merge. `SOT-001` remains open.
+Step 2C.4 is accepted and merged. Step 2C.5A revalidates all five WordPress Multisite tenants through the trusted read-only SiteKey/endpoint registry, compares fresh public evidence with Step 2C.3D/2C.4, and converts the accepted fifteen-action CMS correction manifest into exact proposed execution batches and rollback preconditions. It does not perform or authorize WordPress mutation, export, restore, content deletion, backend runtime work, generated GraphQL work, production UI implementation, Step 3, deployment, or merge. `SOT-001` remains open.
+
+The fresh timestamped preflight inspected 5/5 tenants and found no drift in 55 previously observable public readiness coordinates. The accepted action classifications remain 12 BLOCKING / 3 DEFERRED / 0 DESTRUCTIVE / 0 AUTHORIZED. Group Companies (4) and Services (3) are existing but not approved as authoritative launch content; Investments, Testimonials, Partners, and Documents return no public records. Expanded Group related-entity evidence is a new baseline, not a historical drift assertion. Draft/private state and administrative provenance remain UNKNOWN.
+
+The proposed future batches are: A, deterministic brand corrections and tenant-local Business Unit term creation; B, independent branch front-page and navigation configuration after editorial/IA approval; C, authoritative content and accessibility after record-level approval; D, read-only post-remediation verification; and E, deferred forms/localization/SEO work. Every batch remains separately gated, and no backup/export has been claimed.
 
 The owner-approved canonical public production apex is `siratrgroup.com`; the branch public hostnames are `consulting.siratrgroup.com`, `healthcare.siratrgroup.com`, `lifestyle.siratrgroup.com`, and `realestate.siratrgroup.com`. This decision applies only to public production hostnames. WordPress backend, GraphQL, media, staging, Vercel preview, cookie-domain, CORS, and revalidation origins/policies remain UNKNOWN until repository or live configuration evidence establishes them. Public-domain selection is resolved without changing the Step 2C.4 gap counts: 11 BLOCKING and 5 NONBLOCKING. `2C4-B07` and `2C4-B10` remain BLOCKING.
 
@@ -145,14 +151,14 @@ The current GitHub backend source contains Step 1-era material that is not yet p
 
 Do not modify backend runtime code until the latest verified cumulative backend source is reconciled into Git or an explicit evidence-backed decision establishes the correct backend source of truth.
 
-This conflict does **not** block the read-only Step 2C.4 audit or future frontend planning based on the already verified checked-in live schema. It blocks any new backend runtime correction.
+This conflict does **not** block the read-only Step 2C.5A CMS preflight and repository planning based on the already verified checked-in live schema. It blocks any new backend runtime correction; newly discovered schema defects must be marked `BLOCKED_BY_SOT_001`.
 
 ## Next stages
 
-After Step 2C.4 owner acceptance:
+After Step 2C.5A owner acceptance:
 
-1. **Separately authorized CMS correction execution**
-   - execute only the accepted non-destructive manifest after a fresh read-only preflight;
+1. **Step 2C.5B — separately authorized CMS remediation**
+   - execute only owner-accepted, explicitly authorized non-destructive batches after another same-window read-only drift check;
    - preserve every existing record unless a separate destructive decision is approved.
 2. **Step 3 — Preview / SEO / Discovery**
 3. **Step 4 — Production Component Implementation**

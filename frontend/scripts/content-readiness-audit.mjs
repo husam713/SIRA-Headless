@@ -1190,17 +1190,10 @@ async function execute(endpoint, variables) {
   return payload.data;
 }
 
-async function main() {
-  const envPath = resolve(process.argv[2] ?? ".env.local");
-  const outputPath = resolve(process.argv[3] ?? "../artifacts/step-2c3d/content-readiness-live.json");
-  const auditedAt = new Date().toISOString();
-  const envText = await readFile(envPath, "utf8");
-  const environment = Object.fromEntries(
-    envText.split(/\r?\n/u).flatMap((line) => {
-      const match = /^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=(.*)$/u.exec(line);
-      return match ? [[match[1], match[2]]] : [];
-    }),
-  );
+export async function runContentReadinessAudit(
+  environment,
+  auditedAt = new Date().toISOString(),
+) {
   const sites = {};
 
   for (const [siteKey, config] of Object.entries(SITE_CONFIG)) {
@@ -1296,7 +1289,7 @@ async function main() {
     }
   }
 
-  const output = {
+  return {
     schemaVersion: 2,
     audit: "Step 2C.3D WordPress Content Readiness",
     auditedAt,
@@ -1335,6 +1328,19 @@ async function main() {
     },
     sites,
   };
+}
+
+async function main() {
+  const envPath = resolve(process.argv[2] ?? ".env.local");
+  const outputPath = resolve(process.argv[3] ?? "../artifacts/step-2c3d/content-readiness-live.json");
+  const envText = await readFile(envPath, "utf8");
+  const environment = Object.fromEntries(
+    envText.split(/\r?\n/u).flatMap((line) => {
+      const match = /^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=(.*)$/u.exec(line);
+      return match ? [[match[1], match[2]]] : [];
+    }),
+  );
+  const output = await runContentReadinessAudit(environment);
 
   await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
 }

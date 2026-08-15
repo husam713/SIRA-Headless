@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "stage": "Step 2C.5A — CMS Preflight & Remediation Plan",
+  "status": "PROPOSED_NOT_EXECUTED",
+  "baseline": "main@710eec3cf90e1a7d707860f9ee73d0abf283019c",
+  "authorization": {
+    "cmsMutationAuthorization": "NOT_GRANTED",
+    "backupOrExportAuthorized": false,
+    "restoreAuthorized": false,
+    "taxonomyDeletionAuthorized": false,
+    "destructiveCleanupAuthorized": false
+  },
+  "currentEvidence": {
+    "exportTaken": false,
+    "backupTaken": false,
+    "restoreCheckPerformed": false,
+    "evidenceClassification": "UNKNOWN",
+    "owner": "HUMAN_ADMIN_ACTION"
+  },
+  "requirements": [
+    {
+      "id": "RB-001",
+      "requirement": "A host-managed, recoverable WordPress Multisite database backup exists immediately before the mutation window.",
+      "scope": "NETWORK_LEVEL",
+      "reason": "Options, Reading Settings, menu-location assignments, taxonomy terms, ACF option values, and attachment metadata are not fully recoverable from a WXR content export.",
+      "owner": "HUMAN_ADMIN_ACTION",
+      "evidenceRequired": "backup identifier, creation timestamp, retention window, responsible administrator, and restore eligibility without persisting a private storage path",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "RB-002",
+      "requirement": "Each affected tenant has a supplemental tenant-level WordPress content export when records, terms, menus, or relationships are in scope.",
+      "scope": "TENANT_LEVEL_SUPPLEMENT",
+      "reason": "Provides portable record evidence but does not replace the network database backup.",
+      "owner": "HUMAN_ADMIN_ACTION",
+      "evidenceRequired": "tenant SiteKey, export timestamp, exported object families, export identifier, and checksum",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "RB-003",
+      "requirement": "Per-record before-state evidence is captured for every Page, editorial record, Project, Company, Service, Investment, Testimonial, Partner, Document, announcement, and media attachment that would be changed.",
+      "scope": "RECORD_LEVEL",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceRequired": "tenant, databaseId, typename/post type, status, modified timestamp where available, affected field values, relationship IDs, and content-authority decision reference",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "RB-004",
+      "requirement": "Option/settings before-state evidence is captured before brand, Reading Settings, or ACF option mutation.",
+      "scope": "OPTIONS_AND_SETTINGS",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceRequired": "tenant, option/field-group coordinate, current sanitized value, target value, and reversible mutation record",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "RB-005",
+      "requirement": "Menu before-state evidence records every existing menu, item hierarchy, item databaseId, safe destination summary, and PRIMARY/FOOTER/LEGAL assignment.",
+      "scope": "NAVIGATION",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceRequired": "tenant, menu databaseIds, item databaseIds, hierarchy, locations, and zero-truncation read-only query evidence",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "RB-006",
+      "requirement": "Taxonomy before-state evidence records exact term slugs, databaseIds, counts, and reviewed record assignments.",
+      "scope": "SIRA_BUSINESS_UNIT",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceRequired": "tenant, term databaseId, name, exact slug, assigned record databaseIds, and absence/duplication check",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "RB-007",
+      "requirement": "Media before-state evidence records attachment databaseId, alt text, dimensions, restriction state, and sanitized source-safety result before metadata changes.",
+      "scope": "MEDIA_METADATA",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceRequired": "tenant, attachment databaseId, alt text before/after, dimensions, and accessibility approval reference",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "RB-008",
+      "requirement": "Every created object databaseId and every changed relationship ID is captured during the future execution window.",
+      "scope": "EXECUTION_LEDGER",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceRequired": "batch ID, action ID, tenant, object type, before databaseId or CREATED marker, resulting databaseId, and validation outcome",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "RB-009",
+      "requirement": "Restore capability is validated before production cutover through a documented restore check or approved rehearsal appropriate to the host platform.",
+      "scope": "RESTORE_VALIDATION",
+      "owner": "HUMAN_ADMIN_ACTION",
+      "evidenceRequired": "responsible administrator, validation timestamp, recovery point objective confirmation, and outcome",
+      "status": "NOT_RUN"
+    }
+  ],
+  "storageOwnership": {
+    "owner": "INFRASTRUCTURE_OWNER_OR_WORDPRESS_ADMINISTRATOR",
+    "requirement": "Use an approved access-controlled and encrypted backup store with documented retention.",
+    "privatePathPersisted": false,
+    "credentialPersisted": false
+  },
+  "restoreRules": [
+    "Never run a restore during Step 2C.5A.",
+    "Prefer action-level reversal from captured before-state when safe; use full restore only under a separately authorized incident decision.",
+    "Stop the mutation window if the backup cannot be identified, validated, or retained for the approved rollback period.",
+    "No record deletion is permitted by the accepted manifest.",
+    "Deleting even a newly created unassigned taxonomy term requires separate explicit rollback/deletion authorization, its exact created databaseId, proof that it was created by the same execution batch, and proof of zero unexpected assignments; existing terms must never be deleted."
+  ]
+}

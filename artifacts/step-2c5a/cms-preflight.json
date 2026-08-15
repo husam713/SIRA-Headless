@@ -1,0 +1,1948 @@
+{
+  "schemaVersion": 1,
+  "stage": "Step 2C.5A — CMS Preflight & Remediation Plan",
+  "status": "READY_FOR_INDEPENDENT_REVIEW",
+  "auditedAt": "2026-08-14T13:14:26.743Z",
+  "baseline": {
+    "branch": "main",
+    "commit": "710eec3cf90e1a7d707860f9ee73d0abf283019c",
+    "latestAcceptedStage": "Step 2C.4",
+    "pullRequest": 14,
+    "approvedHead": "a4d8945bf5b83e304b1b0fb434eb7441ea243849",
+    "mergeCommit": "710eec3cf90e1a7d707860f9ee73d0abf283019c",
+    "frontendCiRun": 29,
+    "fullRegression": "24 files / 204 tests PASS"
+  },
+  "mode": "read-only public GraphQL metadata plus repository planning",
+  "querySource": "cms-preflight-audit.mjs",
+  "tenantKeys": [
+    "group",
+    "consulting",
+    "healthcare",
+    "lifestyle",
+    "realestate"
+  ],
+  "tenantsInspected": 5,
+  "previousEvidence": {
+    "contentReadiness": "artifacts/step-2c3d/content-readiness.json",
+    "designAudit": "artifacts/step-2c4/design-data-contract-audit.json",
+    "correctionManifest": "artifacts/step-2c4/cms-correction-manifest.json"
+  },
+  "evidenceVocabulary": [
+    "CONFIRMED",
+    "STRONGLY_INFERRED",
+    "UNKNOWN"
+  ],
+  "contentAuthority": {
+    "vocabulary": [
+      "APPROVED_LAUNCH_CONTENT",
+      "UNAPPROVED_EXISTING_CONTENT",
+      "NO_CONTENT",
+      "NOT_APPLICABLE"
+    ],
+    "rule": "Published or technically valid records remain unapproved unless explicit launch-authority evidence exists.",
+    "matrix": {
+      "group": {
+        "frontPage": "UNAPPROVED_EXISTING_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "UNAPPROVED_EXISTING_CONTENT",
+        "projects": "UNAPPROVED_EXISTING_CONTENT",
+        "brand": "UNAPPROVED_EXISTING_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "consulting": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "APPROVED_LAUNCH_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "healthcare": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "UNAPPROVED_EXISTING_CONTENT",
+        "announcement": "UNAPPROVED_EXISTING_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "lifestyle": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "APPROVED_LAUNCH_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      },
+      "realestate": {
+        "frontPage": "NO_CONTENT",
+        "primaryMenu": "NO_CONTENT",
+        "footerMenu": "NO_CONTENT",
+        "legalMenu": "NO_CONTENT",
+        "businessUnit": "NOT_APPLICABLE",
+        "editorial": "NO_CONTENT",
+        "projects": "NO_CONTENT",
+        "brand": "APPROVED_LAUNCH_CONTENT",
+        "announcement": "NO_CONTENT",
+        "emergency": "NO_CONTENT",
+        "media": "NOT_APPLICABLE"
+      }
+    }
+  },
+  "drift": {
+    "status": "NONE_DETECTED",
+    "evidenceClassification": "CONFIRMED",
+    "comparedTenantCount": 5,
+    "comparedReadinessCoordinates": 55,
+    "readinessMatrixMatches": true,
+    "technicalReadinessMatrixMatches": true,
+    "exactPublicSiteSummariesMatch": true,
+    "expandedGroupEntityCoordinates": "NOT_COMPARABLE_NEW_PUBLIC_BASELINE",
+    "requiredEvidenceAvailable": true
+  },
+  "readinessMatrix": {
+    "group": {
+      "frontPage": "EDITORIAL_ACTION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "READY",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "DATA_CORRECTION_REQUIRED",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "EDITORIAL_ACTION"
+    },
+    "consulting": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    },
+    "healthcare": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "DATA_CORRECTION_REQUIRED",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "EDITORIAL_ACTION"
+    },
+    "lifestyle": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    },
+    "realestate": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "EDITORIAL_ACTION",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    }
+  },
+  "technicalReadinessMatrix": {
+    "group": {
+      "frontPage": "MISSING_CONTENT",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "READY",
+      "editorial": "READY",
+      "projects": "EDITORIAL_ACTION",
+      "brand": "DATA_CORRECTION_REQUIRED",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "EDITORIAL_ACTION"
+    },
+    "consulting": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "OWNER_DECISION",
+      "projects": "OWNER_DECISION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    },
+    "healthcare": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "OWNER_DECISION",
+      "projects": "OWNER_DECISION",
+      "brand": "DATA_CORRECTION_REQUIRED",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "EDITORIAL_ACTION"
+    },
+    "lifestyle": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "OWNER_DECISION",
+      "projects": "OWNER_DECISION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    },
+    "realestate": {
+      "frontPage": "MISSING_CONFIGURATION",
+      "primaryMenu": "MISSING_CONFIGURATION",
+      "footerMenu": "MISSING_CONFIGURATION",
+      "legalMenu": "MISSING_CONFIGURATION",
+      "businessUnit": "MISSING_CONFIGURATION",
+      "editorial": "OWNER_DECISION",
+      "projects": "OWNER_DECISION",
+      "brand": "READY",
+      "announcement": "READY",
+      "emergency": "READY",
+      "media": "READY"
+    }
+  },
+  "classificationCounts": {
+    "READY": 17,
+    "MISSING_CONTENT": 0,
+    "MISSING_CONFIGURATION": 23,
+    "DATA_CORRECTION_REQUIRED": 2,
+    "EDITORIAL_ACTION": 13,
+    "OWNER_DECISION": 0,
+    "BLOCKED": 0
+  },
+  "sites": {
+    "group": {
+      "siteName": "Group",
+      "inspected": true,
+      "evidenceClassification": "CONFIRMED",
+      "previousPublicEvidenceMatches": true,
+      "current": {
+        "siteName": "Group",
+        "inspected": true,
+        "homepage": {
+          "showOnFront": "page",
+          "pageOnFront": 457,
+          "resolvesRootUri": true,
+          "databaseId": 457,
+          "uri": "/",
+          "title": "Home",
+          "status": "publish",
+          "isFrontPage": true,
+          "variant": "group",
+          "expectedVariant": "group",
+          "heroFieldPopulation": {
+            "headingBefore": false,
+            "headingHighlight": false,
+            "headingAfter": false,
+            "description": false
+          }
+        },
+        "menus": {
+          "primary": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          },
+          "footer": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          },
+          "legal": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          }
+        },
+        "businessUnit": {
+          "expectedSlug": null,
+          "term": null,
+          "availableTerms": [
+            {
+              "databaseId": 60,
+              "name": "Consulting",
+              "slug": "consulting",
+              "totalAssignedObjectCount": 1,
+              "acceptedEditorialAssignments": {
+                "returnedCount": 1,
+                "truncated": false,
+                "byType": {
+                  "SiraNewsItem": 1,
+                  "SiraInsight": 0,
+                  "SiraArticle": 0,
+                  "SiraPressRelease": 0
+                },
+                "missingTitleCount": 0,
+                "unsafeUriCount": 0,
+                "missingDateCount": 0,
+                "missingExcerptCount": 0,
+                "restrictedCount": 0,
+                "featuredMedia": {
+                  "populatedCount": 0,
+                  "missingAltCount": 0,
+                  "unsafeUrlCount": 0,
+                  "invalidDimensionsCount": 0
+                }
+              }
+            },
+            {
+              "databaseId": 62,
+              "name": "Healthcare",
+              "slug": "healthcare",
+              "totalAssignedObjectCount": 1,
+              "acceptedEditorialAssignments": {
+                "returnedCount": 1,
+                "truncated": false,
+                "byType": {
+                  "SiraNewsItem": 1,
+                  "SiraInsight": 0,
+                  "SiraArticle": 0,
+                  "SiraPressRelease": 0
+                },
+                "missingTitleCount": 0,
+                "unsafeUriCount": 0,
+                "missingDateCount": 0,
+                "missingExcerptCount": 0,
+                "restrictedCount": 0,
+                "featuredMedia": {
+                  "populatedCount": 0,
+                  "missingAltCount": 0,
+                  "unsafeUrlCount": 0,
+                  "invalidDimensionsCount": 0
+                }
+              }
+            },
+            {
+              "databaseId": 61,
+              "name": "Lifestyle",
+              "slug": "lifestyle",
+              "totalAssignedObjectCount": 1,
+              "acceptedEditorialAssignments": {
+                "returnedCount": 1,
+                "truncated": false,
+                "byType": {
+                  "SiraNewsItem": 1,
+                  "SiraInsight": 0,
+                  "SiraArticle": 0,
+                  "SiraPressRelease": 0
+                },
+                "missingTitleCount": 0,
+                "unsafeUriCount": 0,
+                "missingDateCount": 0,
+                "missingExcerptCount": 0,
+                "restrictedCount": 0,
+                "featuredMedia": {
+                  "populatedCount": 0,
+                  "missingAltCount": 0,
+                  "unsafeUrlCount": 0,
+                  "invalidDimensionsCount": 0
+                }
+              }
+            },
+            {
+              "databaseId": 59,
+              "name": "Real Estate",
+              "slug": "real-estate",
+              "totalAssignedObjectCount": 1,
+              "acceptedEditorialAssignments": {
+                "returnedCount": 1,
+                "truncated": false,
+                "byType": {
+                  "SiraNewsItem": 1,
+                  "SiraInsight": 0,
+                  "SiraArticle": 0,
+                  "SiraPressRelease": 0
+                },
+                "missingTitleCount": 0,
+                "unsafeUriCount": 0,
+                "missingDateCount": 0,
+                "missingExcerptCount": 0,
+                "restrictedCount": 0,
+                "featuredMedia": {
+                  "populatedCount": 0,
+                  "missingAltCount": 0,
+                  "unsafeUrlCount": 0,
+                  "invalidDimensionsCount": 0
+                }
+              }
+            }
+          ],
+          "availableTermsTruncated": false
+        },
+        "editorial": {
+          "groupRootUnfiltered": true,
+          "root": {
+            "returnedCount": 4,
+            "truncated": false,
+            "byType": {
+              "SiraNewsItem": 4,
+              "SiraInsight": 0,
+              "SiraArticle": 0,
+              "SiraPressRelease": 0
+            },
+            "missingTitleCount": 0,
+            "unsafeUriCount": 0,
+            "missingDateCount": 0,
+            "missingExcerptCount": 0,
+            "restrictedCount": 0,
+            "featuredMedia": {
+              "populatedCount": 0,
+              "missingAltCount": 0,
+              "unsafeUrlCount": 0,
+              "invalidDimensionsCount": 0
+            }
+          },
+          "branchFiltered": null
+        },
+        "projects": {
+          "returnedPublishedCount": 3,
+          "truncated": false,
+          "restrictedCount": 0,
+          "missingTitleCount": 0,
+          "unsafeUriCount": 0,
+          "missingExcerptCount": 0,
+          "missingFeaturedImageCount": 3,
+          "missingFeaturedAltCount": 0,
+          "missingSubtitleCount": 3,
+          "missingLocationCount": 0,
+          "missingStatusCount": 0,
+          "missingRenderedContentCount": 0,
+          "gallery": {
+            "populatedProjectCount": 0,
+            "truncatedProjectCount": 0,
+            "unsafeMediaCount": 0,
+            "missingAltCount": 0,
+            "restrictedMediaCount": 0
+          },
+          "statistics": {
+            "populatedProjectCount": 0,
+            "malformedEntryCount": 0
+          },
+          "relatedCompanies": {
+            "populatedProjectCount": 3,
+            "truncatedProjectCount": 0,
+            "restrictedCount": 0,
+            "malformedCount": 0
+          }
+        },
+        "brand": {
+          "key": "group",
+          "name": "SIRA Global Logo",
+          "tagline": "Shaping a smarter future.",
+          "colors": {
+            "primary": "#cccccc",
+            "secondary": "#5b5b5b",
+            "accent": "#cca34b",
+            "paper": "#f7f4ed",
+            "ink": "#20242b"
+          },
+          "logo": {
+            "populated": true,
+            "databaseId": 459,
+            "safeSourceUrl": true,
+            "hasAltText": false,
+            "width": 1626,
+            "height": 613,
+            "restricted": false
+          },
+          "mark": {
+            "populated": false
+          },
+          "publicIdentityPresence": {
+            "email": false,
+            "phone": false,
+            "address": false,
+            "description": false,
+            "mission": false,
+            "vision": false
+          },
+          "announcement": {
+            "state": "null"
+          },
+          "emergency": {
+            "state": "null"
+          }
+        }
+      },
+      "structuredHomepage": {
+        "rootPagePresent": true,
+        "databaseId": 457,
+        "variant": "group",
+        "groupHomepage": {
+          "present": true,
+          "hero": {
+            "present": true,
+            "fields": {
+              "headingBefore": false,
+              "headingHighlight": false,
+              "headingAfter": false,
+              "description": false
+            },
+            "primaryCta": {
+              "populated": false
+            },
+            "secondaryCta": {
+              "populated": false
+            },
+            "slideCount": 0,
+            "slides": []
+          },
+          "ticker": {
+            "present": true,
+            "enabled": true,
+            "itemCount": 0,
+            "completeLabelCount": 0,
+            "safeLinkCount": 0
+          },
+          "latestUpdates": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false,
+              "sourceMode": true
+            },
+            "link": {
+              "populated": false
+            },
+            "selection": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            },
+            "itemLimit": 3
+          },
+          "companies": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false
+            },
+            "link": {
+              "populated": false
+            },
+            "selection": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            }
+          },
+          "about": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false,
+              "body": false
+            },
+            "link": {
+              "populated": false
+            },
+            "metrics": {
+              "rowCount": 0,
+              "completeRowCount": 0,
+              "fields": [
+                "value",
+                "label"
+              ]
+            }
+          },
+          "investor": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false,
+              "body": false,
+              "formHeading": false,
+              "formDescription": false
+            },
+            "link": {
+              "populated": false
+            },
+            "selection": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            },
+            "metrics": {
+              "rowCount": 0,
+              "completeRowCount": 0,
+              "fields": [
+                "value",
+                "label"
+              ]
+            },
+            "onePagerDocument": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            }
+          },
+          "services": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false
+            },
+            "link": {
+              "populated": false
+            },
+            "selection": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            }
+          },
+          "projects": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false
+            },
+            "link": {
+              "populated": false
+            },
+            "selection": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            }
+          },
+          "insights": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false,
+              "sourceMode": true
+            },
+            "link": {
+              "populated": false
+            },
+            "selection": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            },
+            "itemLimit": 3
+          },
+          "testimonials": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false
+            },
+            "link": {
+              "populated": false
+            },
+            "selection": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            }
+          },
+          "partners": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false
+            },
+            "link": {
+              "populated": false
+            },
+            "selection": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            }
+          },
+          "contact": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false,
+              "formVariant": true,
+              "formContext": false
+            }
+          }
+        },
+        "branchHomepage": {
+          "present": true,
+          "hero": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "headingBefore": false,
+              "headingHighlight": false,
+              "headingAfter": false,
+              "description": false,
+              "region": false,
+              "imageAlt": false
+            },
+            "image": {
+              "populated": false
+            },
+            "mobileImage": {
+              "populated": false
+            },
+            "primaryCta": {
+              "populated": false
+            },
+            "secondaryCta": {
+              "populated": false
+            }
+          },
+          "statistics": {
+            "rowCount": 0,
+            "completeRowCount": 0,
+            "fields": [
+              "value",
+              "label"
+            ]
+          },
+          "overview": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false,
+              "body": false
+            },
+            "link": {
+              "populated": false
+            }
+          },
+          "focusAreas": {
+            "rowCount": 0,
+            "completeRowCount": 0,
+            "fields": [
+              "title",
+              "description"
+            ]
+          },
+          "projects": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false
+            },
+            "link": {
+              "populated": false
+            },
+            "selection": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            }
+          },
+          "insights": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false,
+              "sourceMode": true
+            },
+            "link": {
+              "populated": false
+            },
+            "selection": {
+              "returnedCount": 0,
+              "truncated": false,
+              "records": []
+            },
+            "itemLimit": 3
+          },
+          "contact": {
+            "present": true,
+            "fields": {
+              "eyebrow": false,
+              "heading": false,
+              "description": false,
+              "formVariant": true,
+              "formContext": false
+            }
+          },
+          "footer": {
+            "present": true,
+            "fields": {
+              "taglineOverride": false,
+              "groupLinkLabelOverride": false
+            }
+          }
+        }
+      }
+    },
+    "consulting": {
+      "siteName": "Consulting",
+      "inspected": true,
+      "evidenceClassification": "CONFIRMED",
+      "previousPublicEvidenceMatches": true,
+      "current": {
+        "siteName": "Consulting",
+        "inspected": true,
+        "homepage": {
+          "showOnFront": "posts",
+          "pageOnFront": 0,
+          "resolvesRootUri": false,
+          "databaseId": null,
+          "uri": null,
+          "title": null,
+          "status": null,
+          "isFrontPage": false,
+          "variant": null,
+          "expectedVariant": "branch",
+          "heroFieldPopulation": null
+        },
+        "menus": {
+          "primary": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          },
+          "footer": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          },
+          "legal": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          }
+        },
+        "businessUnit": {
+          "expectedSlug": "consulting",
+          "term": null,
+          "availableTerms": [],
+          "availableTermsTruncated": false
+        },
+        "editorial": {
+          "groupRootUnfiltered": false,
+          "root": {
+            "returnedCount": 0,
+            "truncated": false,
+            "byType": {
+              "SiraNewsItem": 0,
+              "SiraInsight": 0,
+              "SiraArticle": 0,
+              "SiraPressRelease": 0
+            },
+            "missingTitleCount": 0,
+            "unsafeUriCount": 0,
+            "missingDateCount": 0,
+            "missingExcerptCount": 0,
+            "restrictedCount": 0,
+            "featuredMedia": {
+              "populatedCount": 0,
+              "missingAltCount": 0,
+              "unsafeUrlCount": 0,
+              "invalidDimensionsCount": 0
+            }
+          },
+          "branchFiltered": null
+        },
+        "projects": {
+          "returnedPublishedCount": 0,
+          "truncated": false,
+          "restrictedCount": 0,
+          "missingTitleCount": 0,
+          "unsafeUriCount": 0,
+          "missingExcerptCount": 0,
+          "missingFeaturedImageCount": 0,
+          "missingFeaturedAltCount": 0,
+          "missingSubtitleCount": 0,
+          "missingLocationCount": 0,
+          "missingStatusCount": 0,
+          "missingRenderedContentCount": 0,
+          "gallery": {
+            "populatedProjectCount": 0,
+            "truncatedProjectCount": 0,
+            "unsafeMediaCount": 0,
+            "missingAltCount": 0,
+            "restrictedMediaCount": 0
+          },
+          "statistics": {
+            "populatedProjectCount": 0,
+            "malformedEntryCount": 0
+          },
+          "relatedCompanies": {
+            "populatedProjectCount": 0,
+            "truncatedProjectCount": 0,
+            "restrictedCount": 0,
+            "malformedCount": 0
+          }
+        },
+        "brand": {
+          "key": "consulting",
+          "name": "SIRA Consulting",
+          "tagline": "Strategy for new markets.",
+          "colors": {
+            "primary": "#8b5aae",
+            "secondary": "#2b1f36",
+            "accent": "#8b5aae",
+            "paper": "#f8f4fa",
+            "ink": "#29232d"
+          },
+          "logo": {
+            "populated": false
+          },
+          "mark": {
+            "populated": false
+          },
+          "publicIdentityPresence": {
+            "email": false,
+            "phone": false,
+            "address": false,
+            "description": false,
+            "mission": false,
+            "vision": false
+          },
+          "announcement": {
+            "state": "null"
+          },
+          "emergency": {
+            "state": "null"
+          }
+        }
+      },
+      "structuredHomepage": {
+        "rootPagePresent": false,
+        "databaseId": null,
+        "variant": null,
+        "groupHomepage": {
+          "present": false
+        },
+        "branchHomepage": {
+          "present": false
+        }
+      }
+    },
+    "healthcare": {
+      "siteName": "Healthcare",
+      "inspected": true,
+      "evidenceClassification": "CONFIRMED",
+      "previousPublicEvidenceMatches": true,
+      "current": {
+        "siteName": "Healthcare",
+        "inspected": true,
+        "homepage": {
+          "showOnFront": "posts",
+          "pageOnFront": 0,
+          "resolvesRootUri": false,
+          "databaseId": null,
+          "uri": null,
+          "title": null,
+          "status": null,
+          "isFrontPage": false,
+          "variant": null,
+          "expectedVariant": "branch",
+          "heroFieldPopulation": null
+        },
+        "menus": {
+          "primary": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          },
+          "footer": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          },
+          "legal": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          }
+        },
+        "businessUnit": {
+          "expectedSlug": "healthcare",
+          "term": null,
+          "availableTerms": [],
+          "availableTermsTruncated": false
+        },
+        "editorial": {
+          "groupRootUnfiltered": false,
+          "root": {
+            "returnedCount": 0,
+            "truncated": false,
+            "byType": {
+              "SiraNewsItem": 0,
+              "SiraInsight": 0,
+              "SiraArticle": 0,
+              "SiraPressRelease": 0
+            },
+            "missingTitleCount": 0,
+            "unsafeUriCount": 0,
+            "missingDateCount": 0,
+            "missingExcerptCount": 0,
+            "restrictedCount": 0,
+            "featuredMedia": {
+              "populatedCount": 0,
+              "missingAltCount": 0,
+              "unsafeUrlCount": 0,
+              "invalidDimensionsCount": 0
+            }
+          },
+          "branchFiltered": null
+        },
+        "projects": {
+          "returnedPublishedCount": 0,
+          "truncated": false,
+          "restrictedCount": 0,
+          "missingTitleCount": 0,
+          "unsafeUriCount": 0,
+          "missingExcerptCount": 0,
+          "missingFeaturedImageCount": 0,
+          "missingFeaturedAltCount": 0,
+          "missingSubtitleCount": 0,
+          "missingLocationCount": 0,
+          "missingStatusCount": 0,
+          "missingRenderedContentCount": 0,
+          "gallery": {
+            "populatedProjectCount": 0,
+            "truncatedProjectCount": 0,
+            "unsafeMediaCount": 0,
+            "missingAltCount": 0,
+            "restrictedMediaCount": 0
+          },
+          "statistics": {
+            "populatedProjectCount": 0,
+            "malformedEntryCount": 0
+          },
+          "relatedCompanies": {
+            "populatedProjectCount": 0,
+            "truncatedProjectCount": 0,
+            "restrictedCount": 0,
+            "malformedCount": 0
+          }
+        },
+        "brand": {
+          "key": "healthcare",
+          "name": "SIRA Health",
+          "tagline": "Advancing diagnostic and healthcare infrastructure.",
+          "colors": {
+            "primary": "#1e73be",
+            "secondary": "#81d742",
+            "accent": "#8224e3",
+            "paper": "#f3f7fb",
+            "ink": "#1f2932"
+          },
+          "logo": {
+            "populated": true,
+            "databaseId": 15,
+            "safeSourceUrl": true,
+            "hasAltText": true,
+            "width": 768,
+            "height": 290,
+            "restricted": false
+          },
+          "mark": {
+            "populated": true,
+            "databaseId": 16,
+            "safeSourceUrl": true,
+            "hasAltText": false,
+            "width": 285,
+            "height": 274,
+            "restricted": false
+          },
+          "publicIdentityPresence": {
+            "email": true,
+            "phone": true,
+            "address": true,
+            "description": true,
+            "mission": true,
+            "vision": true
+          },
+          "announcement": {
+            "state": "populated",
+            "messagePresent": true,
+            "severity": "INFO",
+            "linkPresent": true,
+            "linkSafe": true,
+            "target": null,
+            "startsAt": null,
+            "endsAt": null,
+            "dismissible": false,
+            "revisionKeyPresent": true,
+            "schedule": "active"
+          },
+          "emergency": {
+            "state": "null"
+          }
+        }
+      },
+      "structuredHomepage": {
+        "rootPagePresent": false,
+        "databaseId": null,
+        "variant": null,
+        "groupHomepage": {
+          "present": false
+        },
+        "branchHomepage": {
+          "present": false
+        }
+      }
+    },
+    "lifestyle": {
+      "siteName": "Lifestyle",
+      "inspected": true,
+      "evidenceClassification": "CONFIRMED",
+      "previousPublicEvidenceMatches": true,
+      "current": {
+        "siteName": "Lifestyle",
+        "inspected": true,
+        "homepage": {
+          "showOnFront": "posts",
+          "pageOnFront": 0,
+          "resolvesRootUri": false,
+          "databaseId": null,
+          "uri": null,
+          "title": null,
+          "status": null,
+          "isFrontPage": false,
+          "variant": null,
+          "expectedVariant": "branch",
+          "heroFieldPopulation": null
+        },
+        "menus": {
+          "primary": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          },
+          "footer": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          },
+          "legal": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          }
+        },
+        "businessUnit": {
+          "expectedSlug": "lifestyle",
+          "term": null,
+          "availableTerms": [],
+          "availableTermsTruncated": false
+        },
+        "editorial": {
+          "groupRootUnfiltered": false,
+          "root": {
+            "returnedCount": 0,
+            "truncated": false,
+            "byType": {
+              "SiraNewsItem": 0,
+              "SiraInsight": 0,
+              "SiraArticle": 0,
+              "SiraPressRelease": 0
+            },
+            "missingTitleCount": 0,
+            "unsafeUriCount": 0,
+            "missingDateCount": 0,
+            "missingExcerptCount": 0,
+            "restrictedCount": 0,
+            "featuredMedia": {
+              "populatedCount": 0,
+              "missingAltCount": 0,
+              "unsafeUrlCount": 0,
+              "invalidDimensionsCount": 0
+            }
+          },
+          "branchFiltered": null
+        },
+        "projects": {
+          "returnedPublishedCount": 0,
+          "truncated": false,
+          "restrictedCount": 0,
+          "missingTitleCount": 0,
+          "unsafeUriCount": 0,
+          "missingExcerptCount": 0,
+          "missingFeaturedImageCount": 0,
+          "missingFeaturedAltCount": 0,
+          "missingSubtitleCount": 0,
+          "missingLocationCount": 0,
+          "missingStatusCount": 0,
+          "missingRenderedContentCount": 0,
+          "gallery": {
+            "populatedProjectCount": 0,
+            "truncatedProjectCount": 0,
+            "unsafeMediaCount": 0,
+            "missingAltCount": 0,
+            "restrictedMediaCount": 0
+          },
+          "statistics": {
+            "populatedProjectCount": 0,
+            "malformedEntryCount": 0
+          },
+          "relatedCompanies": {
+            "populatedProjectCount": 0,
+            "truncatedProjectCount": 0,
+            "restrictedCount": 0,
+            "malformedCount": 0
+          }
+        },
+        "brand": {
+          "key": "lifestyle",
+          "name": "SIRA Lifestyle",
+          "tagline": "Creating destination-led hospitality and lifestyle experiences.",
+          "colors": {
+            "primary": "#2e8c72",
+            "secondary": "#12382f",
+            "accent": "#2e8c72",
+            "paper": "#f2f8f5",
+            "ink": "#1f2b27"
+          },
+          "logo": {
+            "populated": false
+          },
+          "mark": {
+            "populated": false
+          },
+          "publicIdentityPresence": {
+            "email": false,
+            "phone": false,
+            "address": false,
+            "description": false,
+            "mission": false,
+            "vision": false
+          },
+          "announcement": {
+            "state": "null"
+          },
+          "emergency": {
+            "state": "null"
+          }
+        }
+      },
+      "structuredHomepage": {
+        "rootPagePresent": false,
+        "databaseId": null,
+        "variant": null,
+        "groupHomepage": {
+          "present": false
+        },
+        "branchHomepage": {
+          "present": false
+        }
+      }
+    },
+    "realestate": {
+      "siteName": "Real Estate",
+      "inspected": true,
+      "evidenceClassification": "CONFIRMED",
+      "previousPublicEvidenceMatches": true,
+      "current": {
+        "siteName": "Real Estate",
+        "inspected": true,
+        "homepage": {
+          "showOnFront": "posts",
+          "pageOnFront": 0,
+          "resolvesRootUri": false,
+          "databaseId": null,
+          "uri": null,
+          "title": null,
+          "status": null,
+          "isFrontPage": false,
+          "variant": null,
+          "expectedVariant": "branch",
+          "heroFieldPopulation": null
+        },
+        "menus": {
+          "primary": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          },
+          "footer": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          },
+          "legal": {
+            "assignedCount": 0,
+            "truncated": false,
+            "menus": []
+          }
+        },
+        "businessUnit": {
+          "expectedSlug": "real-estate",
+          "term": null,
+          "availableTerms": [],
+          "availableTermsTruncated": false
+        },
+        "editorial": {
+          "groupRootUnfiltered": false,
+          "root": {
+            "returnedCount": 0,
+            "truncated": false,
+            "byType": {
+              "SiraNewsItem": 0,
+              "SiraInsight": 0,
+              "SiraArticle": 0,
+              "SiraPressRelease": 0
+            },
+            "missingTitleCount": 0,
+            "unsafeUriCount": 0,
+            "missingDateCount": 0,
+            "missingExcerptCount": 0,
+            "restrictedCount": 0,
+            "featuredMedia": {
+              "populatedCount": 0,
+              "missingAltCount": 0,
+              "unsafeUrlCount": 0,
+              "invalidDimensionsCount": 0
+            }
+          },
+          "branchFiltered": null
+        },
+        "projects": {
+          "returnedPublishedCount": 0,
+          "truncated": false,
+          "restrictedCount": 0,
+          "missingTitleCount": 0,
+          "unsafeUriCount": 0,
+          "missingExcerptCount": 0,
+          "missingFeaturedImageCount": 0,
+          "missingFeaturedAltCount": 0,
+          "missingSubtitleCount": 0,
+          "missingLocationCount": 0,
+          "missingStatusCount": 0,
+          "missingRenderedContentCount": 0,
+          "gallery": {
+            "populatedProjectCount": 0,
+            "truncatedProjectCount": 0,
+            "unsafeMediaCount": 0,
+            "missingAltCount": 0,
+            "restrictedMediaCount": 0
+          },
+          "statistics": {
+            "populatedProjectCount": 0,
+            "malformedEntryCount": 0
+          },
+          "relatedCompanies": {
+            "populatedProjectCount": 0,
+            "truncatedProjectCount": 0,
+            "restrictedCount": 0,
+            "malformedCount": 0
+          }
+        },
+        "brand": {
+          "key": "realestate",
+          "name": "SIRA Real Estate",
+          "tagline": "Building enduring places across markets.",
+          "colors": {
+            "primary": "#b0733c",
+            "secondary": "#2b1b14",
+            "accent": "#b0733c",
+            "paper": "#faf5ef",
+            "ink": "#25201d"
+          },
+          "logo": {
+            "populated": false
+          },
+          "mark": {
+            "populated": false
+          },
+          "publicIdentityPresence": {
+            "email": false,
+            "phone": false,
+            "address": false,
+            "description": false,
+            "mission": false,
+            "vision": false
+          },
+          "announcement": {
+            "state": "null"
+          },
+          "emergency": {
+            "state": "null"
+          }
+        }
+      },
+      "structuredHomepage": {
+        "rootPagePresent": false,
+        "databaseId": null,
+        "variant": null,
+        "groupHomepage": {
+          "present": false
+        },
+        "branchHomepage": {
+          "present": false
+        }
+      }
+    }
+  },
+  "groupHomepageRelatedEntities": {
+    "priorEvidenceClassification": "UNKNOWN",
+    "currentEvidenceClassification": "CONFIRMED",
+    "driftStatus": "NOT_COMPARABLE_NEW_PUBLIC_BASELINE",
+    "inventories": {
+      "companies": {
+        "evidenceClassification": "CONFIRMED",
+        "contentAuthority": "UNAPPROVED_EXISTING_CONTENT",
+        "returnedPublishedCount": 4,
+        "truncated": false,
+        "records": [
+          {
+            "databaseId": 1454,
+            "typename": "SiraCompany",
+            "publicationStatus": "publish",
+            "restricted": false,
+            "titlePresent": true,
+            "uriSafe": true,
+            "excerptPresent": true,
+            "featuredImage": {
+              "populated": false
+            },
+            "details": {
+              "shortDescriptorPresent": false,
+              "operatingStatusPresent": true,
+              "externalWebsiteSafe": null,
+              "cardImageOverride": {
+                "populated": false
+              }
+            }
+          },
+          {
+            "databaseId": 1453,
+            "typename": "SiraCompany",
+            "publicationStatus": "publish",
+            "restricted": false,
+            "titlePresent": true,
+            "uriSafe": true,
+            "excerptPresent": true,
+            "featuredImage": {
+              "populated": false
+            },
+            "details": {
+              "shortDescriptorPresent": false,
+              "operatingStatusPresent": true,
+              "externalWebsiteSafe": null,
+              "cardImageOverride": {
+                "populated": false
+              }
+            }
+          },
+          {
+            "databaseId": 1452,
+            "typename": "SiraCompany",
+            "publicationStatus": "publish",
+            "restricted": false,
+            "titlePresent": true,
+            "uriSafe": true,
+            "excerptPresent": true,
+            "featuredImage": {
+              "populated": false
+            },
+            "details": {
+              "shortDescriptorPresent": false,
+              "operatingStatusPresent": true,
+              "externalWebsiteSafe": null,
+              "cardImageOverride": {
+                "populated": false
+              }
+            }
+          },
+          {
+            "databaseId": 1451,
+            "typename": "SiraCompany",
+            "publicationStatus": "publish",
+            "restricted": false,
+            "titlePresent": true,
+            "uriSafe": true,
+            "excerptPresent": true,
+            "featuredImage": {
+              "populated": false
+            },
+            "details": {
+              "shortDescriptorPresent": false,
+              "operatingStatusPresent": true,
+              "externalWebsiteSafe": null,
+              "cardImageOverride": {
+                "populated": false
+              }
+            }
+          }
+        ]
+      },
+      "services": {
+        "evidenceClassification": "CONFIRMED",
+        "contentAuthority": "UNAPPROVED_EXISTING_CONTENT",
+        "returnedPublishedCount": 3,
+        "truncated": false,
+        "records": [
+          {
+            "databaseId": 1245,
+            "typename": "Service",
+            "publicationStatus": "publish",
+            "restricted": false,
+            "titlePresent": true,
+            "uriSafe": true,
+            "contentPresent": true,
+            "featuredImage": {
+              "populated": true,
+              "databaseId": 1246,
+              "sourceUrlSafe": true,
+              "altTextPresent": false,
+              "width": 1200,
+              "height": 675,
+              "restricted": false
+            },
+            "serviceItem": {
+              "impactPresent": true,
+              "advisoryRowCount": 0,
+              "photoCount": 1,
+              "photosTruncated": false,
+              "serviceDetailRowCount": 1,
+              "completeServiceDetailRowCount": 1
+            }
+          },
+          {
+            "databaseId": 1151,
+            "typename": "Service",
+            "publicationStatus": "publish",
+            "restricted": false,
+            "titlePresent": true,
+            "uriSafe": true,
+            "contentPresent": true,
+            "featuredImage": {
+              "populated": true,
+              "databaseId": 393,
+              "sourceUrlSafe": true,
+              "altTextPresent": false,
+              "width": 1280,
+              "height": 853,
+              "restricted": false
+            },
+            "serviceItem": {
+              "impactPresent": true,
+              "advisoryRowCount": 0,
+              "photoCount": 1,
+              "photosTruncated": false,
+              "serviceDetailRowCount": 1,
+              "completeServiceDetailRowCount": 1
+            }
+          },
+          {
+            "databaseId": 1081,
+            "typename": "Service",
+            "publicationStatus": "publish",
+            "restricted": false,
+            "titlePresent": true,
+            "uriSafe": true,
+            "contentPresent": true,
+            "featuredImage": {
+              "populated": true,
+              "databaseId": 840,
+              "sourceUrlSafe": true,
+              "altTextPresent": false,
+              "width": 910,
+              "height": 512,
+              "restricted": false
+            },
+            "serviceItem": {
+              "impactPresent": true,
+              "advisoryRowCount": 4,
+              "photoCount": 5,
+              "photosTruncated": false,
+              "serviceDetailRowCount": 2,
+              "completeServiceDetailRowCount": 2
+            }
+          }
+        ]
+      },
+      "investments": {
+        "evidenceClassification": "CONFIRMED",
+        "contentAuthority": "NO_CONTENT",
+        "returnedPublishedCount": 0,
+        "truncated": false,
+        "records": []
+      },
+      "testimonials": {
+        "evidenceClassification": "CONFIRMED",
+        "contentAuthority": "NO_CONTENT",
+        "returnedPublishedCount": 0,
+        "truncated": false,
+        "records": []
+      },
+      "partners": {
+        "evidenceClassification": "CONFIRMED",
+        "contentAuthority": "NO_CONTENT",
+        "returnedPublishedCount": 0,
+        "truncated": false,
+        "records": []
+      },
+      "documents": {
+        "evidenceClassification": "CONFIRMED",
+        "contentAuthority": "NO_CONTENT",
+        "returnedPublishedCount": 0,
+        "truncated": false,
+        "records": []
+      }
+    }
+  },
+  "actionMapping": [
+    {
+      "actionId": "CMS-2C4-001",
+      "acceptedClassification": "BLOCKING",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "name": "SIRA Global Logo",
+        "primary": "#cccccc",
+        "secondary": "#5b5b5b"
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-002",
+      "acceptedClassification": "BLOCKING",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "name": "SIRA Health",
+        "primary": "#1e73be",
+        "secondary": "#81d742",
+        "accent": "#8224e3"
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-003",
+      "acceptedClassification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "variant": "group",
+        "approvedHeroContentPresent": false
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-004",
+      "acceptedClassification": "BLOCKING",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": [],
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-005",
+      "acceptedClassification": "BLOCKING",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": [],
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-006",
+      "acceptedClassification": "BLOCKING",
+      "owner": "CMS_ADMIN_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": [],
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-007",
+      "acceptedClassification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "returnedCount": 4,
+        "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-008",
+      "acceptedClassification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "returnedCount": 3,
+        "contentAuthority": "UNAPPROVED_EXISTING_CONTENT",
+        "missingFeaturedImageCount": 3,
+        "missingSubtitleCount": 3
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-009",
+      "acceptedClassification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "editorialTenants": [],
+        "projectTenants": []
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-010",
+      "acceptedClassification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "companiesPresent": true,
+        "servicesPresent": true,
+        "investmentsPresent": false,
+        "testimonialsPresent": false,
+        "partnersPresent": false,
+        "documentsPresent": false,
+        "authoritativeFamilies": []
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-011",
+      "acceptedClassification": "BLOCKING",
+      "owner": "EDITORIAL_ACTION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "groupLogoHasAlt": false,
+        "healthcareMarkHasAlt": false
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-012",
+      "acceptedClassification": "BLOCKING",
+      "owner": "OWNER_DECISION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "technicallyActive": true,
+        "contentAuthority": "UNAPPROVED_EXISTING_CONTENT"
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-013",
+      "acceptedClassification": "DEFERRED",
+      "owner": "OWNER_DECISION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "classification": "DEFERRED",
+        "mutationAuthorized": false
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-014",
+      "acceptedClassification": "DEFERRED",
+      "owner": "OWNER_DECISION",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "classification": "DEFERRED",
+        "mutationAuthorized": false
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    },
+    {
+      "actionId": "CMS-2C4-015",
+      "acceptedClassification": "DEFERRED",
+      "owner": "FUTURE_STEP_3",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "comparisonBasis": "CURRENT_REQUIRED_EVIDENCE_VS_ACCEPTED_CURRENT_AND_EXPECTED_STATE",
+      "observedState": {
+        "classification": "DEFERRED",
+        "mutationAuthorized": false
+      },
+      "destructive": false,
+      "mutationAuthorized": false,
+      "detailArtifact": "artifacts/step-2c5a/remediation-batches.json"
+    }
+  ],
+  "acceptedActionCounts": {
+    "BLOCKING": 12,
+    "DEFERRED": 3,
+    "DESTRUCTIVE": 0,
+    "AUTHORIZED": 0
+  },
+  "blockers": [
+    {
+      "id": "CMS_MUTATION_GATE",
+      "status": "BLOCKED",
+      "evidenceClassification": "CONFIRMED",
+      "summary": "No CMS mutation window or action authorization has been granted."
+    },
+    {
+      "id": "CONTENT_AUTHORITY",
+      "status": "BLOCKED",
+      "evidenceClassification": "CONFIRMED",
+      "summary": "No editorial/project/homepage-related record has explicit authoritative launch approval."
+    },
+    {
+      "id": "SOT-001",
+      "status": "OPEN",
+      "evidenceClassification": "CONFIRMED",
+      "summary": "Any newly discovered backend/schema correction remains BLOCKED_BY_SOT_001."
+    },
+    {
+      "id": "ADMIN_PRIVATE_STATE",
+      "status": "UNKNOWN",
+      "evidenceClassification": "UNKNOWN",
+      "summary": "Draft/private totals and WordPress-admin provenance are not exposed by anonymous public GraphQL."
+    }
+  ],
+  "unknowns": [
+    "WordPress backend hostname and protected admin origin",
+    "GraphQL, media, staging, preview, and revalidation origins beyond configured runtime access",
+    "Cookie-domain and CORS policies",
+    "Draft/private totals and option-change provenance",
+    "Launch authority absent explicit approval records",
+    "Actual export/backup existence and storage location"
+  ],
+  "security": {
+    "queryDocumentsContainMutation": false,
+    "endpointValuesPersisted": false,
+    "credentialsPersisted": false,
+    "authorizationHeadersUsed": false,
+    "cookiesUsed": false,
+    "unpublishedBodiesPersisted": false,
+    "rawPayloadsPersisted": false,
+    "wordpressMutationOccurred": false,
+    "contentDeletionOccurred": false,
+    "backendRuntimeMutationOccurred": false,
+    "generatedGraphqlMutationOccurred": false,
+    "productionUiMutationOccurred": false,
+    "dependencyOrLockfileMutationOccurred": false,
+    "productionDeploymentOccurred": false,
+    "productionAuthorized": false,
+    "sot001Status": "OPEN"
+  },
+  "authorization": {
+    "cmsMutationAuthorization": "NOT_GRANTED",
+    "contentDeletionAuthorized": false,
+    "destructiveCleanupAuthorized": false,
+    "backendRuntimeMutationAuthorized": false,
+    "productionUiImplementationAuthorized": false,
+    "step3Authorized": false,
+    "deploymentAuthorized": false,
+    "mergeAuthorized": false,
+    "nextGate": "OWNER_ACCEPTANCE"
+  },
+  "derivationReconciledAt": "2026-08-14T21:25:06.842Z",
+  "derivationNote": "Derived classifications were recomputed from the reviewed sanitized evidence; auditedAt remains the live evidence timestamp."
+}

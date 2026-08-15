@@ -1,0 +1,287 @@
+[
+  {
+    "path": "README.md",
+    "sha256": "e560b2dbb04a1bd02c15e6099a8025a6539d1dde3ebe8a21e3c162ee2bca607a",
+    "bytes": 8644
+  },
+  {
+    "path": "STEP-2C2B-CHANGED-FILES.json",
+    "sha256": "e5e941b66b18b4decc99b6f356a2a25103a7302a018f209ff128b73b48ca7159",
+    "bytes": 573
+  },
+  {
+    "path": "STEP-2C2C-CHANGED-FILES.json",
+    "sha256": "9c372c865003cb076591599761d30d06ce90fe178d3f3d732dd9c1d60009af7c",
+    "bytes": 2748
+  },
+  {
+    "path": "STEP-2C2F-CHANGED-FILES.json",
+    "sha256": "938e33cd7a03e75fedbcfd988eb334ebc442178923ccfdb3d929ccaa55297366",
+    "bytes": 3772
+  },
+  {
+    "path": "assets/images/mark-consulting.png",
+    "sha256": "298f34acaa6c38d2bba6134eec813fae5b1d3b349a8c81a13327b28872d8585f",
+    "bytes": 26256
+  },
+  {
+    "path": "assets/images/mark-gold.png",
+    "sha256": "0c47c9242fefaab04e40f734f40241b93a16623a412b1f3883826094b8b406fb",
+    "bytes": 42293
+  },
+  {
+    "path": "assets/images/mark-healthcare.png",
+    "sha256": "5718a29a38990fd6a6a443615f29ef6a45b694990c24b1b1540ee4e94d04a9a4",
+    "bytes": 26401
+  },
+  {
+    "path": "assets/images/mark-lifestyle.png",
+    "sha256": "39abe8ea45ff206fe21ea427d2510f3f11e5141fdfcf5c8d0c07a6a0e9d3da6d",
+    "bytes": 26197
+  },
+  {
+    "path": "assets/images/mark-realestate.png",
+    "sha256": "27f8e3d0826571af6f492d16b15d16a6994fb1422c17399649c5f04456d3d703",
+    "bytes": 26469
+  },
+  {
+    "path": "assets/images/mark-white.png",
+    "sha256": "79af7243402b354d15f69af140438055a9657803509508ae1b7c1012f92e50b7",
+    "bytes": 21966
+  },
+  {
+    "path": "assets/images/sira-logo.png",
+    "sha256": "7a9ecf41c92ad2cef54c16524e45c2aa67384570fc2fec688ee012eb5f985f06",
+    "bytes": 89332
+  },
+  {
+    "path": "docs/BACKEND-QA-CHECKLIST.md",
+    "sha256": "aa5ee0b04cf005b48311627ba6d57294dd7ab539a83f440f42c30042ea622745",
+    "bytes": 4752
+  },
+  {
+    "path": "docs/GRAPHQL-SCHEMA.md",
+    "sha256": "0857994e7f46b2a9e7eb5f5fadb2b643b676e8800563a09dc8a9a87922fe4450",
+    "bytes": 9221
+  },
+  {
+    "path": "docs/MIGRATION-DECISION-LOG.md",
+    "sha256": "975e3740fcf95ce1a34461ecc35248bbd57dbc2893d22ef57f62a36a86d4350e",
+    "bytes": 5101
+  },
+  {
+    "path": "docs/PUBLIC-PRIVATE-VISIBILITY.md",
+    "sha256": "cd9a2050756c0fb8a522577ec88fcb10ae93daba2a106ce946477a02ffd367a0",
+    "bytes": 4071
+  },
+  {
+    "path": "docs/STEP-1-VALIDATION.md",
+    "sha256": "7d6e9c845fc71f0d1b7d8a6542fa71b2eee070c7e3a161e86b7a6688a8aa11cc",
+    "bytes": 5456
+  },
+  {
+    "path": "docs/STEP-1G-REPORT.md",
+    "sha256": "07a57e58f4685e96eb3301b5ec597750368be27749227e728beb8ab9af6d5c41",
+    "bytes": 2372
+  },
+  {
+    "path": "docs/STEP-2C2B-PRESENTATION-CONTRACT.md",
+    "sha256": "afcf306f6558a3a1c59bea65d4f7a3529c299c5eb159014e117cf9946de5b0a0",
+    "bytes": 4498
+  },
+  {
+    "path": "docs/STEP-2C2B-VALIDATION.md",
+    "sha256": "a2990e10d9208242d8cc944500c1e04f745c712fd1c7db7b9d1cc8d400b06e9f",
+    "bytes": 2517
+  },
+  {
+    "path": "docs/STEP-2C2C-LOCAL-VALIDATION.json",
+    "sha256": "fa119a1e41140abfa92866361a062db2f8ad0ea5ebdc97a7a4989731866d7eb0",
+    "bytes": 23734
+  },
+  {
+    "path": "docs/STEP-2C2C-VALIDATION.md",
+    "sha256": "ecd55cedff6b3a2c155e0936c8a7f72ca119566a0aa0ccb96ee37ac3031ce484",
+    "bytes": 1733
+  },
+  {
+    "path": "docs/STEP-2C2C-VISIBILITY.md",
+    "sha256": "fd842c6f6c782740e53a93b24b9e6d04cbe3d6c11cd4fba14b523e8692939d1a",
+    "bytes": 2661
+  },
+  {
+    "path": "docs/STEP-2C2F-BANNER-CONTRACT.md",
+    "sha256": "c55d0e949083930cc0373a7a278cdb136a6716574936d53d5b8cdfff824d68df",
+    "bytes": 2768
+  },
+  {
+    "path": "docs/STEP-2C2F-LOCAL-VALIDATION.json",
+    "sha256": "c49b3d1410a8acf26b465d28749022cdb2176990cf50cd350d734cb1f56c23ba",
+    "bytes": 29468
+  },
+  {
+    "path": "docs/STEP-2C2F-VALIDATION.md",
+    "sha256": "f962d5018d0b77e5952480edd4521477224332ba35333c5f9389ddd47d3e138d",
+    "bytes": 1617
+  },
+  {
+    "path": "docs/UPGRADE-ROLLBACK.md",
+    "sha256": "08b462c2d22c8163a85036bd30709b8c9c0a400f34c05533fd05de090fc831b3",
+    "bytes": 4179
+  },
+  {
+    "path": "phpcs.xml.dist",
+    "sha256": "1414493b89e960d54cbd4ba1e595a9c62d9de32143b6a2510137447bb62df2ab",
+    "bytes": 649
+  },
+  {
+    "path": "sira-core.php",
+    "sha256": "c51026d34926640b281b20af7931e7ba122dfd70d9542789619cb18d7e122cfb",
+    "bytes": 1547
+  },
+  {
+    "path": "src/Activator.php",
+    "sha256": "e6bde3bd6833f09c5f18095644000d914cffd9e92b01c2fe383a88fe404bfc69",
+    "bytes": 829
+  },
+  {
+    "path": "src/Admin/DemoImporter.php",
+    "sha256": "e3f4a2ed224845d6ff83a7cd49631c1dcd8f1ae490467e0bd3ac07800390fd42",
+    "bytes": 5887
+  },
+  {
+    "path": "src/Admin/NetworkSettings.php",
+    "sha256": "b44c9307873f53f6f310cc83c819ca55cf097a1973c0fd3dcf7a39c764a172b9",
+    "bytes": 3577
+  },
+  {
+    "path": "src/Admin/SiteSettings.php",
+    "sha256": "8c8143c8dfbe7e1434f5e5c999fa65e79c1e5069b17bf7a1a047ab76acbba65f",
+    "bytes": 4064
+  },
+  {
+    "path": "src/Autoloader.php",
+    "sha256": "1c80956ba58df3c359b6001d1cd2720718affe2e2d222d29a3630a8f32884599",
+    "bytes": 575
+  },
+  {
+    "path": "src/Brand/BannerContract.php",
+    "sha256": "924700b5bc131f3fd1eb476620c1b9abe70a622f5d01b104d5e217ef3705943b",
+    "bytes": 7953
+  },
+  {
+    "path": "src/Brand/BrandManager.php",
+    "sha256": "e7707953e557fc5dc791f38664f67f605471bef9cd0561597f6f34732967554f",
+    "bytes": 15244
+  },
+  {
+    "path": "src/Content/MetaFields.php",
+    "sha256": "8454b6fc7ff68f0beb6c7458f7be525b249e27078bc5e91feae613b907e3283d",
+    "bytes": 4251
+  },
+  {
+    "path": "src/Content/PostTypes.php",
+    "sha256": "31bc5cea3f881b8b5d9f0d6629775c29783a67933e3701b921d7e6656a58d846",
+    "bytes": 11625
+  },
+  {
+    "path": "src/Content/Taxonomies.php",
+    "sha256": "646ceb7e0db4f010c1b391c5c5696abfc34b26aeac408fbfaa486cd7f4ddabf1",
+    "bytes": 5311
+  },
+  {
+    "path": "src/Forms/LegacyContactForm.php",
+    "sha256": "be4addde38e62a6a1e8c73a7a55ccc72a5aac84d3aaf26045bd6dd0572fed3fe",
+    "bytes": 3750
+  },
+  {
+    "path": "src/GraphQL/BrandSchema.php",
+    "sha256": "b20f524c0af0ca9b1c095e1a9fd2590f6acb4b829565e2a7bac99c2f335d8ee2",
+    "bytes": 14709
+  },
+  {
+    "path": "src/GraphQL/PresentationVisibility.php",
+    "sha256": "9cf53656402e4b852f390f5010f868258aad624f00b960d51c0e26792e55ad6c",
+    "bytes": 3435
+  },
+  {
+    "path": "src/Integrations/AcfIntegration.php",
+    "sha256": "16c7e045f6ac9d7b90570862d00227fd4aeb8fe4e694831589eb605b0e4adff4",
+    "bytes": 15575
+  },
+  {
+    "path": "src/Integrations/BrandBannerFields.php",
+    "sha256": "ef68436694f08735f40eff8c7069f03c5bc51959e2801f5c3c66c99c435d9e98",
+    "bytes": 3163
+  },
+  {
+    "path": "src/Integrations/PresentationFields.php",
+    "sha256": "fb4a1fb8cc59e278f70c27263b01201b46036f30314cb711e0b4e184c8cf1600",
+    "bytes": 33920
+  },
+  {
+    "path": "src/Plugin.php",
+    "sha256": "7b46a7581eb19db0792b4cd4e4c5566cc51113707ae0f47046c963c016a47718",
+    "bytes": 1819
+  },
+  {
+    "path": "src/Rest/BrandRoute.php",
+    "sha256": "5e97882ecad26035067a9c40670ae4c1c308bebada47174fe004582e30241b55",
+    "bytes": 1612
+  },
+  {
+    "path": "src/Revalidation/RevalidationWebhook.php",
+    "sha256": "67835081ba9d28aa2a75d384748cb8de83fbb2da95af4d5957c3220a27476537",
+    "bytes": 37519
+  },
+  {
+    "path": "src/Schema/OrganizationSchema.php",
+    "sha256": "eeb93be10c2894a338d19175e820ab56f7ffc8bee61e30cb3452bbd5461e2ece",
+    "bytes": 1991
+  },
+  {
+    "path": "tools/validation/graphql-validation.graphql",
+    "sha256": "e0de8d29659740d9925093870cc8a0eb7bfc10cdf1937a43c20a2ccf12824a95",
+    "bytes": 16385
+  },
+  {
+    "path": "tools/validation/static-audit.sh",
+    "sha256": "16532af6aacbd34d44d963de1fb4f519c4c21609377f6c9853ba9939f046dea9",
+    "bytes": 1109
+  },
+  {
+    "path": "tools/validation/validate-brand-banner-static.php",
+    "sha256": "d79577d9e94e15aa4fe190d5b32c11209e6ade5b491cd8de4de6c0643e3dc6d1",
+    "bytes": 6616
+  },
+  {
+    "path": "tools/validation/validate-presentation-privacy-static.php",
+    "sha256": "9af463a9d1ccb37e12dd4bf6096785e9908aab676569d8f8e0c852c4cb98fb7a",
+    "bytes": 6055
+  },
+  {
+    "path": "tools/validation/validate-presentation-privacy.php",
+    "sha256": "382545416dfc17c2156f0b3b00c9396e684fdbc22c3d72fd4d141cb5be340b35",
+    "bytes": 15153
+  },
+  {
+    "path": "tools/validation/validate-revalidation.php",
+    "sha256": "a9ec014de1a878108ad674a586b620441402f7925da7a5670274598b0e6ac109",
+    "bytes": 10267
+  },
+  {
+    "path": "tools/validation/validate-runtime.php",
+    "sha256": "a1cba883165fc9a498256b6cd11d88a4769f963c42ab7d42e7606a1da50f06ca",
+    "bytes": 12231
+  },
+  {
+    "path": "tools/validation/validate-security.php",
+    "sha256": "72fe02ef88bd571ffc23ea0c6eb8bd96129579fd9d174220357a774e410ba60a",
+    "bytes": 6184
+  },
+  {
+    "path": "tools/validation/validate-static.php",
+    "sha256": "cb770c694449fe239a704fd1370d41a1bed415ae2f8aafee6cdf293ef13b3760",
+    "bytes": 13751
+  }
+]

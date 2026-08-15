@@ -458,3 +458,534 @@ query SiraStructuredFields($projectSlug: ID!, $personSlug: ID!, $documentSlug: I
     }
   }
 }
+
+# Step 2C.2B source-verified presentation contract.
+# Nested WPGraphQL-for-ACF generated type names remain subject to live schema
+# inventory. These operations validate field paths without naming those nested
+# object types directly.
+
+query SiraPresentationSchemaTypes {
+  homepage: __type(name: "SiraHomepage") {
+    fields {
+      name
+    }
+  }
+  company: __type(name: "SiraCompanyDetails") {
+    fields {
+      name
+    }
+  }
+  investment: __type(name: "SiraInvestmentDetails") {
+    fields {
+      name
+    }
+  }
+  testimonial: __type(name: "SiraTestimonialDetails") {
+    fields {
+      name
+    }
+  }
+  partner: __type(name: "SiraPartnerDetails") {
+    fields {
+      name
+    }
+  }
+}
+
+query SiraHomepageContract($frontPageId: ID!) {
+  page(id: $frontPageId, idType: DATABASE_ID) {
+    databaseId
+    status
+    siraHomepage {
+      variant
+
+      groupHomepage {
+        hero {
+          headingBefore
+          headingHighlight
+          headingAfter
+          description
+          primaryCta {
+            title
+            url
+            target
+          }
+          secondaryCta {
+            title
+            url
+            target
+          }
+          slides {
+            relatedProject {
+              nodes {
+                ... on SiraProject {
+                  databaseId
+                  title
+                  slug
+                }
+              }
+            }
+            relatedCompany {
+              nodes {
+                ... on SiraCompany {
+                  databaseId
+                  title
+                  slug
+                }
+              }
+            }
+            imageOverride {
+              node {
+                databaseId
+                sourceUrl
+                altText
+              }
+            }
+            mobileImageOverride {
+              node {
+                databaseId
+                sourceUrl
+                altText
+              }
+            }
+            businessUnit {
+              nodes {
+                databaseId
+                name
+                slug
+              }
+            }
+            eyebrowOverride
+            locationOverride
+            titleOverride
+            descriptionOverride
+            imageAltOverride
+          }
+        }
+
+        ticker {
+          enabled
+          items {
+            label
+            link {
+              title
+              url
+              target
+            }
+            businessUnit {
+              nodes {
+                databaseId
+                name
+                slug
+              }
+            }
+          }
+        }
+
+        latestUpdates {
+          eyebrow
+          heading
+          description
+          sourceMode
+          itemLimit
+          selectedItems {
+            nodes {
+              __typename
+              databaseId
+              ... on UniformResourceIdentifiable {
+                uri
+              }
+            }
+          }
+        }
+
+        companies {
+          eyebrow
+          heading
+          description
+          selectedCompanies {
+            nodes {
+              databaseId
+              title
+              slug
+            }
+          }
+        }
+
+        about {
+          eyebrow
+          heading
+          description
+          body
+          metrics {
+            value
+            label
+            supportingText
+          }
+        }
+
+        investor {
+          eyebrow
+          heading
+          description
+          body
+          metrics {
+            value
+            label
+            supportingText
+          }
+          selectedInvestments {
+            nodes {
+              databaseId
+              title
+              slug
+            }
+          }
+          onePagerDocument {
+            nodes {
+              __typename
+              databaseId
+            }
+          }
+          formHeading
+          formDescription
+        }
+
+        services {
+          eyebrow
+          heading
+          description
+          selectedServices {
+            nodes {
+              databaseId
+              title
+              slug
+            }
+          }
+        }
+
+        projects {
+          eyebrow
+          heading
+          description
+          selectedProjects {
+            nodes {
+              databaseId
+              title
+              slug
+            }
+          }
+        }
+
+        insights {
+          eyebrow
+          heading
+          description
+          sourceMode
+          itemLimit
+          selectedItems {
+            nodes {
+              __typename
+              databaseId
+            }
+          }
+        }
+
+        testimonials {
+          eyebrow
+          heading
+          description
+          selectedTestimonials {
+            nodes {
+              databaseId
+              title
+              slug
+            }
+          }
+        }
+
+        partners {
+          eyebrow
+          heading
+          description
+          selectedPartners {
+            nodes {
+              databaseId
+              title
+              slug
+            }
+          }
+        }
+
+        contact {
+          eyebrow
+          heading
+          description
+          formVariant
+          formContext
+        }
+      }
+
+      branchHomepage {
+        hero {
+          eyebrow
+          region
+          headingBefore
+          headingHighlight
+          headingAfter
+          description
+          image {
+            node {
+              databaseId
+              sourceUrl
+              altText
+            }
+          }
+          mobileImage {
+            node {
+              databaseId
+              sourceUrl
+              altText
+            }
+          }
+          imageAlt
+          primaryCta {
+            title
+            url
+            target
+          }
+          secondaryCta {
+            title
+            url
+            target
+          }
+        }
+
+        statistics {
+          value
+          label
+          supportingText
+        }
+
+        overview {
+          eyebrow
+          heading
+          description
+          body
+        }
+
+        focusAreas {
+          title
+          description
+        }
+
+        projects {
+          eyebrow
+          heading
+          description
+          selectedProjects {
+            nodes {
+              databaseId
+              title
+              slug
+            }
+          }
+        }
+
+        insights {
+          eyebrow
+          heading
+          description
+          sourceMode
+          itemLimit
+          selectedItems {
+            nodes {
+              __typename
+              databaseId
+            }
+          }
+        }
+
+        contact {
+          eyebrow
+          heading
+          description
+          formVariant
+          formContext
+        }
+
+        footer {
+          taglineOverride
+          groupLinkLabelOverride
+        }
+      }
+    }
+  }
+}
+
+query SiraPresentationEntityContract(
+  $companySlug: ID!
+  $investmentSlug: ID!
+  $testimonialSlug: ID!
+  $partnerSlug: ID!
+) {
+  company: siraCompany(id: $companySlug, idType: SLUG) {
+    databaseId
+    companyDetails {
+      operatingStatus
+      externalWebsiteUrl
+      shortDescriptor
+      cardImageOverride {
+        node {
+          databaseId
+          sourceUrl
+          altText
+        }
+      }
+    }
+    siraBusinessUnits(first: 10) {
+      nodes {
+        databaseId
+        name
+        slug
+      }
+    }
+  }
+
+  investment: siraInvestment(id: $investmentSlug, idType: SLUG) {
+    databaseId
+    investmentDetails {
+      publicDisplay
+      ticketSizeLabel
+      relatedCompany {
+        nodes {
+          databaseId
+          title
+          slug
+        }
+      }
+      relatedProject {
+        nodes {
+          databaseId
+          title
+          slug
+        }
+      }
+      onePagerDocument {
+        nodes {
+          __typename
+          databaseId
+        }
+      }
+    }
+  }
+
+  testimonial: siraTestimonial(id: $testimonialSlug, idType: SLUG) {
+    databaseId
+    testimonialDetails {
+      role
+      organization
+      consentApproved
+      sourceUrl
+    }
+  }
+
+  partner: siraPartner(id: $partnerSlug, idType: SLUG) {
+    databaseId
+    partnerDetails {
+      websiteUrl
+      relationshipLabel
+      logoAltOverride
+    }
+  }
+}
+
+
+
+# Step 2C.2C privacy checks.
+#
+# Supply database IDs for staging fixtures. Anonymous requests must return
+# null for unapproved IDs and a node for approved IDs. Repeat with an
+# authenticated editor who can edit each fixture.
+query SiraPresentationPrivacySingles(
+  $investmentId: ID!
+  $testimonialId: ID!
+) {
+  investment: siraInvestment(
+    id: $investmentId
+    idType: DATABASE_ID
+  ) {
+    id
+    databaseId
+    title
+  }
+
+  testimonial: siraTestimonial(
+    id: $testimonialId
+    idType: DATABASE_ID
+  ) {
+    id
+    databaseId
+    title
+  }
+}
+
+query SiraPresentationPrivacyCollections {
+  siraInvestments(first: 100) {
+    nodes {
+      databaseId
+      investmentDetails {
+        publicDisplay
+      }
+    }
+  }
+
+  siraTestimonials(first: 100) {
+    nodes {
+      databaseId
+      testimonialDetails {
+        consentApproved
+      }
+    }
+  }
+}
+
+
+# Step 2C.2F typed banner contract.
+#
+# Legacy string fields remain queryable. The typed fields are null when no
+# banner is active or when a configured schedule is invalid/outside its window.
+query SiraTypedBanners {
+  siraBrand {
+    announcementBanner
+    emergencyBanner
+
+    announcement {
+      message
+      severity
+      link {
+        label
+        url
+        target
+      }
+      startsAt
+      endsAt
+      dismissible
+      revisionKey
+    }
+
+    emergency {
+      message
+      severity
+      link {
+        label
+        url
+        target
+      }
+      startsAt
+      endsAt
+      dismissible
+      revisionKey
+    }
+  }
+}

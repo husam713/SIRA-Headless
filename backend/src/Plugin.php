@@ -16,6 +16,7 @@ use Sira\Core\Content\PostTypes;
 use Sira\Core\Content\Taxonomies;
 use Sira\Core\Forms\LegacyContactForm;
 use Sira\Core\GraphQL\BrandSchema;
+use Sira\Core\GraphQL\PresentationVisibility;
 use Sira\Core\Integrations\AcfIntegration;
 use Sira\Core\Rest\BrandRoute;
 use Sira\Core\Revalidation\RevalidationWebhook;
@@ -50,6 +51,7 @@ final class Plugin {
 		( new DemoImporter() )->hooks();
 		( new AcfIntegration() )->hooks();
 		( new BrandSchema() )->hooks();
+		( new PresentationVisibility() )->hooks();
 		( new BrandRoute() )->hooks();
 		( new RevalidationWebhook() )->hooks();
 		( new OrganizationSchema() )->hooks();

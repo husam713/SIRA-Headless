@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: SIRA Core Platform
- * Plugin URI: https://siragroup.com/
+ * Plugin URI: https://siratrgroup.com/
  * Description: Network-wide headless content model, multisite branding, WPGraphQL schema, REST fallback, and governance for SIRA Group.
- * Version: 1.2.1
+ * Version: 1.4.0
  * Requires at least: 6.6
  * Requires PHP: 8.3
  * Author: SIRA Group
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SIRA_CORE_VERSION', '1.2.1' );
+define( 'SIRA_CORE_VERSION', '1.4.0' );
 define( 'SIRA_CORE_FILE', __FILE__ );
 define( 'SIRA_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SIRA_CORE_URL', plugin_dir_url( __FILE__ ) );

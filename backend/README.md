@@ -110,6 +110,32 @@ It does not:
 - download third-party media;
 - overwrite existing records.
 
+## Step 2C.2B presentation contract
+
+Version 1.3.0 adds source-controlled ACF fields for:
+
+- the configured front-page Group or shared Branch homepage;
+- Company presentation details;
+- public Investment presentation details;
+- Testimonial consent/presentation details;
+- Partner presentation details.
+
+It also attaches the existing Business Unit taxonomy to Companies.
+
+The homepage uses a fixed structured contract rather than Flexible Content or
+page-builder JSON. Nested WPGraphQL-for-ACF type names remain provisional until
+the deferred live schema inventory runs.
+
+This version is an intermediate development artifact. Do not publicly deploy it
+without Step 2C.2C object-level visibility safeguards for Investments and
+Testimonials.
+
+See:
+
+```text
+docs/STEP-2C2B-PRESENTATION-CONTRACT.md
+```
+
 ## Optional integrations
 
 The plugin must continue to boot when optional integrations are unavailable.
@@ -158,9 +184,9 @@ define(
 
 ```json
 {
-  "1": "siragroup.com",
-  "2": "consulting.siragroup.com",
-  "healthcare": "healthcare.siragroup.com"
+  "1": "siratrgroup.com",
+  "2": "consulting.siratrgroup.com",
+  "healthcare": "healthcare.siratrgroup.com"
 }
 ```
 
@@ -267,3 +293,19 @@ See:
 
 Step 1 is not production-accepted until the runtime, security, GraphQL,
 revalidation, PHPCS, and Multisite checks pass on staging.
+
+
+## Step 2C.2F typed banners
+
+The curated `siraBrand` contract now includes typed `announcement` and
+`emergency` objects with severity, optional links, schedules, dismissal support
+and deterministic revision keys. Legacy string fields remain available.
+
+Raw ACF banner options are private and no generated WPGraphQL-for-ACF nested
+type name is fixed by this implementation.
+
+Source checks:
+
+```bash
+bash tools/validation/static-audit.sh
+```

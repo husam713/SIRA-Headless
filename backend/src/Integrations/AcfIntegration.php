@@ -52,7 +52,8 @@ final class AcfIntegration {
 				 * typed public schema.
 				 */
 				'show_in_graphql' => false,
-				'fields'          => array(
+				'fields'          => array_merge(
+					array(
 					array(
 						'key'   => 'field_sira_brand_name',
 						'label' => 'Brand Name',
@@ -204,6 +205,8 @@ final class AcfIntegration {
 							),
 						),
 					),
+					),
+					BrandBannerFields::definitions()
 				),
 				'location'        => array(
 					array(
@@ -223,6 +226,7 @@ final class AcfIntegration {
 		$this->register_project_group();
 		$this->register_people_group();
 		$this->register_document_group();
+		( new PresentationFields() )->register();
 	}
 
 	private function register_project_group(): void {

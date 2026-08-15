@@ -1,0 +1,181 @@
+{
+  "php_syntax": [
+    {
+      "path": "sira-core.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/sira-core.php"
+    },
+    {
+      "path": "src/Activator.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Activator.php"
+    },
+    {
+      "path": "src/Admin/DemoImporter.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Admin/DemoImporter.php"
+    },
+    {
+      "path": "src/Admin/NetworkSettings.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Admin/NetworkSettings.php"
+    },
+    {
+      "path": "src/Admin/SiteSettings.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Admin/SiteSettings.php"
+    },
+    {
+      "path": "src/Autoloader.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Autoloader.php"
+    },
+    {
+      "path": "src/Brand/BannerContract.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Brand/BannerContract.php"
+    },
+    {
+      "path": "src/Brand/BrandManager.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Brand/BrandManager.php"
+    },
+    {
+      "path": "src/Content/MetaFields.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Content/MetaFields.php"
+    },
+    {
+      "path": "src/Content/PostTypes.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Content/PostTypes.php"
+    },
+    {
+      "path": "src/Content/Taxonomies.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Content/Taxonomies.php"
+    },
+    {
+      "path": "src/Forms/LegacyContactForm.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Forms/LegacyContactForm.php"
+    },
+    {
+      "path": "src/GraphQL/BrandSchema.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/GraphQL/BrandSchema.php"
+    },
+    {
+      "path": "src/GraphQL/PresentationVisibility.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/GraphQL/PresentationVisibility.php"
+    },
+    {
+      "path": "src/Integrations/AcfIntegration.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Integrations/AcfIntegration.php"
+    },
+    {
+      "path": "src/Integrations/BrandBannerFields.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Integrations/BrandBannerFields.php"
+    },
+    {
+      "path": "src/Integrations/PresentationFields.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Integrations/PresentationFields.php"
+    },
+    {
+      "path": "src/Plugin.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Plugin.php"
+    },
+    {
+      "path": "src/Rest/BrandRoute.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Rest/BrandRoute.php"
+    },
+    {
+      "path": "src/Revalidation/RevalidationWebhook.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Revalidation/RevalidationWebhook.php"
+    },
+    {
+      "path": "src/Schema/OrganizationSchema.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Schema/OrganizationSchema.php"
+    },
+    {
+      "path": "tools/validation/validate-brand-banner-static.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-brand-banner-static.php"
+    },
+    {
+      "path": "tools/validation/validate-presentation-privacy-static.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-presentation-privacy-static.php"
+    },
+    {
+      "path": "tools/validation/validate-presentation-privacy.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-presentation-privacy.php"
+    },
+    {
+      "path": "tools/validation/validate-revalidation.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-revalidation.php"
+    },
+    {
+      "path": "tools/validation/validate-runtime.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-runtime.php"
+    },
+    {
+      "path": "tools/validation/validate-security.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-security.php"
+    },
+    {
+      "path": "tools/validation/validate-static.php",
+      "returncode": 0,
+      "output": "No syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-static.php"
+    }
+  ],
+  "static_audit": {
+    "returncode": 0,
+    "stdout": "SIRA Step 1 static audit\nPlugin: /mnt/data/sira-step2c2f-implementation/sira-core\n\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/sira-core.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Activator.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Admin/DemoImporter.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Admin/NetworkSettings.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Admin/SiteSettings.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Autoloader.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Brand/BannerContract.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Brand/BrandManager.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Content/MetaFields.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Content/PostTypes.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Content/Taxonomies.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Forms/LegacyContactForm.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/GraphQL/BrandSchema.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/GraphQL/PresentationVisibility.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Integrations/AcfIntegration.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Integrations/BrandBannerFields.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Integrations/PresentationFields.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Plugin.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Rest/BrandRoute.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Revalidation/RevalidationWebhook.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/src/Schema/OrganizationSchema.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-brand-banner-static.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-presentation-privacy-static.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-presentation-privacy.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-revalidation.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-runtime.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-security.php\nNo syntax errors detected in /mnt/data/sira-step2c2f-implementation/sira-core/tools/validation/validate-static.php\nSIRA Step 1 static validation\n================================\n\n[PASS] PHP syntax: sira-core.php\n[PASS] PHP syntax: src/Activator.php\n[PASS] PHP syntax: src/Admin/DemoImporter.php\n[PASS] PHP syntax: src/Admin/NetworkSettings.php\n[PASS] PHP syntax: src/Admin/SiteSettings.php\n[PASS] PHP syntax: src/Autoloader.php\n[PASS] PHP syntax: src/Brand/BannerContract.php\n[PASS] PHP syntax: src/Brand/BrandManager.php\n[PASS] PHP syntax: src/Content/MetaFields.php\n[PASS] PHP syntax: src/Content/PostTypes.php\n[PASS] PHP syntax: src/Content/Taxonomies.php\n[PASS] PHP syntax: src/Forms/LegacyContactForm.php\n[PASS] PHP syntax: src/GraphQL/BrandSchema.php\n[PASS] PHP syntax: src/GraphQL/PresentationVisibility.php\n[PASS] PHP syntax: src/Integrations/AcfIntegration.php\n[PASS] PHP syntax: src/Integrations/BrandBannerFields.php\n[PASS] PHP syntax: src/Integrations/PresentationFields.php\n[PASS] PHP syntax: src/Plugin.php\n[PASS] PHP syntax: src/Rest/BrandRoute.php\n[PASS] PHP syntax: src/Revalidation/RevalidationWebhook.php\n[PASS] PHP syntax: src/Schema/OrganizationSchema.php\n[PASS] PHP syntax: tools/validation/validate-brand-banner-static.php\n[PASS] PHP syntax: tools/validation/validate-presentation-privacy-static.php\n[PASS] PHP syntax: tools/validation/validate-presentation-privacy.php\n[PASS] PHP syntax: tools/validation/validate-revalidation.php\n[PASS] PHP syntax: tools/validation/validate-runtime.php\n[PASS] PHP syntax: tools/validation/validate-security.php\n[PASS] PHP syntax: tools/validation/validate-static.php\n[PASS] Exactly 28 custom post types are defined.\n[PASS] Exactly 10 custom taxonomies are defined.\n[PASS] Exactly 12 legacy native meta keys are defined.\n[PASS] Step 2C.2C approval rules cover only Investments and Testimonials.\n[PASS] Step 2C.2F exposes the approved banner severity values.\n[PASS] Exactly two typed banner ACF groups are defined.\n[PASS] Typed banner editor field is an ACF group.\n[PASS] Raw typed banner ACF options remain outside GraphQL.\n[PASS] Typed banner group contains the complete approved editor contract.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Typed banner editor field is an ACF group.\n[PASS] Raw typed banner ACF options remain outside GraphQL.\n[PASS] Typed banner group contains the complete approved editor contract.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Raw typed banner subfield remains outside GraphQL.\n[PASS] Typed banner ACF option names are stable.\n[PASS] Typed banner ACF keys are present and unique.\n[PASS] Exactly five Step 2C.2B presentation field groups are defined.\n[PASS] Presentation field group group_sira_homepage exists.\n[PASS] Presentation field group group_sira_homepage is GraphQL-enabled.\n[PASS] Presentation field group group_sira_homepage has the expected GraphQL field name.\n[PASS] Presentation field group group_sira_homepage has the expected GraphQL type name.\n[PASS] Presentation field group group_sira_homepage maps to the expected GraphQL parent type.\n[PASS] Presentation field group group_sira_homepage uses explicit GraphQL parent mapping.\n[PASS] Presentation field group group_sira_company_details exists.\n[PASS] Presentation field group group_sira_company_details is GraphQL-enabled.\n[PASS] Presentation field group group_sira_company_details has the expected GraphQL field name.\n[PASS] Presentation field group group_sira_company_details has the expected GraphQL type name.\n[PASS] Presentation field group group_sira_company_details maps to the expected GraphQL parent type.\n[PASS] Presentation field group group_sira_company_details uses explicit GraphQL parent mapping.\n[PASS] Presentation field group group_sira_investment_details exists.\n[PASS] Presentation field group group_sira_investment_details is GraphQL-enabled.\n[PASS] Presentation field group group_sira_investment_details has the expected GraphQL field name.\n[PASS] Presentation field group group_sira_investment_details has the expected GraphQL type name.\n[PASS] Presentation field group group_sira_investment_details maps to the expected GraphQL parent type.\n[PASS] Presentation field group group_sira_investment_details uses explicit GraphQL parent mapping.\n[PASS] Presentation field group group_sira_testimonial_details exists.\n[PASS] Presentation field group group_sira_testimonial_details is GraphQL-enabled.\n[PASS] Presentation field group group_sira_testimonial_details has the expected GraphQL field name.\n[PASS] Presentation field group group_sira_testimonial_details has the expected GraphQL type name.\n[PASS] Presentation field group group_sira_testimonial_details maps to the expected GraphQL parent type.\n[PASS] Presentation field group group_sira_testimonial_details uses explicit GraphQL parent mapping.\n[PASS] Presentation field group group_sira_partner_details exists.\n[PASS] Presentation field group group_sira_partner_details is GraphQL-enabled.\n[PASS] Presentation field group group_sira_partner_details has the expected GraphQL field name.\n[PASS] Presentation field group group_sira_partner_details has the expected GraphQL type name.\n[PASS] Presentation field group group_sira_partner_details maps to the expected GraphQL parent type.\n[PASS] Presentation field group group_sira_partner_details uses explicit GraphQL parent mapping.\n[PASS] Every Step 2C.2B ACF group and field has a source-controlled key.\n[PASS] Every Step 2C.2B ACF group and field key is unique.\n[PASS] Nested WPGraphQL-for-ACF type names remain live-schema generated and are not finalized in source.\n[PASS] SiraHomepage defines variant, groupHomepage and branchHomepage.\n[PASS] Business Unit taxonomy classifies SIRA companies.\n[PASS] Valid post-type GraphQL singular name: sira_company.\n[PASS] Valid post-type GraphQL plural name: sira_company.\n[PASS] Valid post-type GraphQL singular name: sira_project.\n[PASS] Valid post-type GraphQL plural name: sira_project.\n[PASS] Valid post-type GraphQL singular name: sira_investment.\n[PASS] Valid post-type GraphQL plural name: sira_investment.\n[PASS] Valid post-type GraphQL singular name: sira_portfolio.\n[PASS] Valid post-type GraphQL plural name: sira_portfolio.\n[PASS] Valid post-type GraphQL singular name: sira_news.\n[PASS] Valid post-type GraphQL plural name: sira_news.\n[PASS] Valid post-type GraphQL singular name: sira_insight.\n[PASS] Valid post-type GraphQL plural name: sira_insight.\n[PASS] Valid post-type GraphQL singular name: sira_article.\n[PASS] Valid post-type GraphQL plural name: sira_article.\n[PASS] Valid post-type GraphQL singular name: sira_event.\n[PASS] Valid post-type GraphQL plural name: sira_event.\n[PASS] Valid post-type GraphQL singular name: sira_leadership.\n[PASS] Valid post-type GraphQL plural name: sira_leadership.\n[PASS] Valid post-type GraphQL singular name: sira_executive.\n[PASS] Valid post-type GraphQL plural name: sira_executive.\n[PASS] Valid post-type GraphQL singular name: sira_board_member.\n[PASS] Valid post-type GraphQL plural name: sira_board_member.\n[PASS] Valid post-type GraphQL singular name: sira_partner.\n[PASS] Valid post-type GraphQL plural name: sira_partner.\n[PASS] Valid post-type GraphQL singular name: sira_investor.\n[PASS] Valid post-type GraphQL plural name: sira_investor.\n[PASS] Valid post-type GraphQL singular name: sira_download.\n[PASS] Valid post-type GraphQL plural name: sira_download.\n[PASS] Valid post-type GraphQL singular name: sira_media_item.\n[PASS] Valid post-type GraphQL plural name: sira_media_item.\n[PASS] Valid post-type GraphQL singular name: sira_case_study.\n[PASS] Valid post-type GraphQL plural name: sira_case_study.\n[PASS] Valid post-type GraphQL singular name: sira_service.\n[PASS] Valid post-type GraphQL plural name: sira_service.\n[PASS] Valid post-type GraphQL singular name: sira_office.\n[PASS] Valid post-type GraphQL plural name: sira_office.\n[PASS] Valid post-type GraphQL singular name: sira_testimonial.\n[PASS] Valid post-type GraphQL plural name: sira_testimonial.\n[PASS] Valid post-type GraphQL singular name: sira_career.\n[PASS] Valid post-type GraphQL plural name: sira_career.\n[PASS] Valid post-type GraphQL singular name: sira_job.\n[PASS] Valid post-type GraphQL plural name: sira_job.\n[PASS] Valid post-type GraphQL singular name: sira_csr.\n[PASS] Valid post-type GraphQL plural name: sira_csr.\n[PASS] Valid post-type GraphQL singular name: sira_award.\n[PASS] Valid post-type GraphQL plural name: sira_award.\n[PASS] Valid post-type GraphQL singular name: sira_faq.\n[PASS] Valid post-type GraphQL plural name: sira_faq.\n[PASS] Valid post-type GraphQL singular name: sira_resource.\n[PASS] Valid post-type GraphQL plural name: sira_resource.\n[PASS] Valid post-type GraphQL singular name: sira_document.\n[PASS] Valid post-type GraphQL plural name: sira_document.\n[PASS] Valid post-type GraphQL singular name: sira_press_release.\n[PASS] Valid post-type GraphQL plural name: sira_press_release.\n[PASS] Valid post-type GraphQL singular name: sira_whitepaper.\n[PASS] Valid post-type GraphQL plural name: sira_whitepaper.\n[PASS] Valid taxonomy GraphQL singular name: sira_industry.\n[PASS] Valid taxonomy GraphQL plural name: sira_industry.\n[PASS] Valid taxonomy GraphQL singular name: sira_country.\n[PASS] Valid taxonomy GraphQL plural name: sira_country.\n[PASS] Valid taxonomy GraphQL singular name: sira_business_unit.\n[PASS] Valid taxonomy GraphQL plural name: sira_business_unit.\n[PASS] Valid taxonomy GraphQL singular name: sira_investment_stage.\n[PASS] Valid taxonomy GraphQL plural name: sira_investment_stage.\n[PASS] Valid taxonomy GraphQL singular name: sira_sector.\n[PASS] Valid taxonomy GraphQL plural name: sira_sector.\n[PASS] Valid taxonomy GraphQL singular name: sira_project_status.\n[PASS] Valid taxonomy GraphQL plural name: sira_project_status.\n[PASS] Valid taxonomy GraphQL singular name: sira_office_region.\n[PASS] Valid taxonomy GraphQL plural name: sira_office_region.\n[PASS] Valid taxonomy GraphQL singular name: sira_department.\n[PASS] Valid taxonomy GraphQL plural name: sira_department.\n[PASS] Valid taxonomy GraphQL singular name: sira_region.\n[PASS] Valid taxonomy GraphQL plural name: sira_region.\n[PASS] Valid taxonomy GraphQL singular name: sira_resource_category.\n[PASS] Valid taxonomy GraphQL plural name: sira_resource_category.\n[PASS] All SIRA GraphQL type names are unique.\n[PASS] Investor records are not publicly queryable.\n[PASS] Investor records have no public archive.\n[PASS] Active PHP contains no forbidden dependency: BricksIntegration.\n[PASS] Active PHP contains no forbidden dependency: bricks/dynamic_tags_list.\n[PASS] Active PHP contains no forbidden dependency: bricks/dynamic_data/render_tag.\n[PASS] Active PHP contains no forbidden dependency: bricks/dynamic_data/render_content.\n[PASS] Active PHP contains no forbidden dependency: bricks/frontend/render_data.\n[PASS] Active PHP contains no forbidden dependency: bricks_is_builder.\n[PASS] Active PHP contains no forbidden dependency: [sira_home].\n[PASS] Active PHP contains no forbidden dependency: [sira_branch_home].\n[PASS] Active PHP contains no forbidden dependency: [sira_newsroom].\n[PASS] Active PHP contains no forbidden dependency: page-templates/sira-home.php.\n[PASS] Active PHP contains no forbidden dependency: page-templates/sira-newsroom.php.\n[PASS] Only the temporary sira_contact_form shortcode remains.\n[PASS] Plugin orchestrator registers PresentationVisibility.\n[PASS] Brand schema contains typed banner contract term: SiraBrandLink.\n[PASS] Brand schema contains typed banner contract term: SiraBrandBannerSeverity.\n[PASS] Brand schema contains typed banner contract term: SiraBrandBanner.\n[PASS] Brand schema contains typed banner contract term: 'announcement'.\n[PASS] Brand schema contains typed banner contract term: 'emergency'.\n[PASS] BrandManager resolves typed banners through BannerContract.\n[PASS] Legacy announcement and emergency strings remain in the public contract.\n[PASS] Active plugin code uses the WPGraphQL model-layer privacy filter.\n[PASS] Privacy is not implemented by post-processing GraphQL responses.\n[PASS] Plugin header and SIRA_CORE_VERSION are synchronized.\n[PASS] Plugin declares PHP 8.3 as the minimum.\n[PASS] Plugin declares network activation support.\n[PASS] No hardcoded revalidation secret was detected.\n\nSummary: 195 passed, 0 failed.\nSIRA Step 2C.2C static privacy validation\n=============================================\n\n[PASS] Only Investments and Testimonials are approval-gated.\n[PASS] Approved published Investment preserves public visibility.\n[PASS] Unapproved Investment is private anonymously.\n[PASS] Noncanonical truthy Testimonial consent remains private.\n[PASS] Explicitly consent-approved Testimonial preserves public visibility.\n[PASS] User who can edit an Investment retains authenticated editorial access.\n[PASS] User who can edit a Testimonial retains authenticated editorial access.\n[PASS] Authenticated user without edit capability cannot bypass Investment approval.\n[PASS] Authenticated user without edit capability cannot bypass Testimonial consent.\n[PASS] Approval does not override existing draft/private visibility.\n[PASS] PostObject numeric source data resolves through the same capability rule.\n[PASS] Numeric data from a non-post model is never treated as a post.\n[PASS] Unrelated post types retain their existing WPGraphQL visibility.\n\nSummary: 13 passed, 0 failed.\nSIRA Step 2C.2F static banner validation\n==============================================\n\n[PASS] Active typed announcement resolves.\n[PASS] Editor severity maps to the public enum value.\n[PASS] WordPress-site times are normalized to UTC RFC 3339.\n[PASS] Typed links expose only label, URL and approved target.\n[PASS] Explicit dismissible approval is preserved.\n[PASS] Revision key is a deterministic SHA-256 value.\n[PASS] A populated typed banner is null before its start and does not fall back to legacy text.\n[PASS] Banner end time is exclusive.\n[PASS] Invalid schedule ranges fail closed.\n[PASS] Malformed configured dates fail closed.\n[PASS] Legacy announcement text receives a typed backward-compatible payload.\n[PASS] An empty typed message preserves the channel-specific legacy fallback.\n[PASS] Unsafe banner protocols are omitted.\n[PASS] Invalid severity uses the channel default.\n[PASS] Public content changes produce a new revision key.\n\nSummary: 15 passed, 0 failed.\n\n[PASS] Static audit completed.\n",
+    "stderr": ""
+  },
+  "banner_static": {
+    "returncode": 0,
+    "stdout": "SIRA Step 2C.2F static banner validation\n==============================================\n\n[PASS] Active typed announcement resolves.\n[PASS] Editor severity maps to the public enum value.\n[PASS] WordPress-site times are normalized to UTC RFC 3339.\n[PASS] Typed links expose only label, URL and approved target.\n[PASS] Explicit dismissible approval is preserved.\n[PASS] Revision key is a deterministic SHA-256 value.\n[PASS] A populated typed banner is null before its start and does not fall back to legacy text.\n[PASS] Banner end time is exclusive.\n[PASS] Invalid schedule ranges fail closed.\n[PASS] Malformed configured dates fail closed.\n[PASS] Legacy announcement text receives a typed backward-compatible payload.\n[PASS] An empty typed message preserves the channel-specific legacy fallback.\n[PASS] Unsafe banner protocols are omitted.\n[PASS] Invalid severity uses the channel default.\n[PASS] Public content changes produce a new revision key.\n\nSummary: 15 passed, 0 failed.\n",
+    "stderr": ""
+  },
+  "privacy_static": {
+    "returncode": 0,
+    "stdout": "SIRA Step 2C.2C static privacy validation\n=============================================\n\n[PASS] Only Investments and Testimonials are approval-gated.\n[PASS] Approved published Investment preserves public visibility.\n[PASS] Unapproved Investment is private anonymously.\n[PASS] Noncanonical truthy Testimonial consent remains private.\n[PASS] Explicitly consent-approved Testimonial preserves public visibility.\n[PASS] User who can edit an Investment retains authenticated editorial access.\n[PASS] User who can edit a Testimonial retains authenticated editorial access.\n[PASS] Authenticated user without edit capability cannot bypass Investment approval.\n[PASS] Authenticated user without edit capability cannot bypass Testimonial consent.\n[PASS] Approval does not override existing draft/private visibility.\n[PASS] PostObject numeric source data resolves through the same capability rule.\n[PASS] Numeric data from a non-post model is never treated as a post.\n[PASS] Unrelated post types retain their existing WPGraphQL visibility.\n\nSummary: 13 passed, 0 failed.\n",
+    "stderr": ""
+  },
+  "patch_dry_run": {
+    "returncode": 0,
+    "stdout": "checking file sira-core/MANIFEST.json\nchecking file sira-core/README.md\nchecking file sira-core/STEP-2C2F-CHANGED-FILES.json\nchecking file sira-core/docs/BACKEND-QA-CHECKLIST.md\nchecking file sira-core/docs/GRAPHQL-SCHEMA.md\nchecking file sira-core/docs/MIGRATION-DECISION-LOG.md\nchecking file sira-core/docs/PUBLIC-PRIVATE-VISIBILITY.md\nchecking file sira-core/docs/STEP-2C2F-BANNER-CONTRACT.md\nchecking file sira-core/docs/STEP-2C2F-LOCAL-VALIDATION.json\nchecking file sira-core/docs/STEP-2C2F-VALIDATION.md\nchecking file sira-core/sira-core.php\nchecking file sira-core/src/Admin/SiteSettings.php\nchecking file sira-core/src/Brand/BannerContract.php\nchecking file sira-core/src/Brand/BrandManager.php\nchecking file sira-core/src/GraphQL/BrandSchema.php\nchecking file sira-core/src/Integrations/AcfIntegration.php\nchecking file sira-core/src/Integrations/BrandBannerFields.php\nchecking file sira-core/tools/validation/graphql-validation.graphql\nchecking file sira-core/tools/validation/static-audit.sh\nchecking file sira-core/tools/validation/validate-brand-banner-static.php\nchecking file sira-core/tools/validation/validate-static.php\n",
+    "stderr": ""
+  },
+  "patch_apply_compare": {
+    "apply_returncode": 0,
+    "apply_stdout": "patching file sira-core/MANIFEST.json\npatching file sira-core/README.md\npatching file sira-core/STEP-2C2F-CHANGED-FILES.json\npatching file sira-core/docs/BACKEND-QA-CHECKLIST.md\npatching file sira-core/docs/GRAPHQL-SCHEMA.md\npatching file sira-core/docs/MIGRATION-DECISION-LOG.md\npatching file sira-core/docs/PUBLIC-PRIVATE-VISIBILITY.md\npatching file sira-core/docs/STEP-2C2F-BANNER-CONTRACT.md\npatching file sira-core/docs/STEP-2C2F-LOCAL-VALIDATION.json\npatching file sira-core/docs/STEP-2C2F-VALIDATION.md\npatching file sira-core/sira-core.php\npatching file sira-core/src/Admin/SiteSettings.php\npatching file sira-core/src/Brand/BannerContract.php\npatching file sira-core/src/Brand/BrandManager.php\npatching file sira-core/src/GraphQL/BrandSchema.php\npatching file sira-core/src/Integrations/AcfIntegration.php\npatching file sira-core/src/Integrations/BrandBannerFields.php\npatching file sira-core/tools/validation/graphql-validation.graphql\npatching file sira-core/tools/validation/static-audit.sh\npatching file sira-core/tools/validation/validate-brand-banner-static.php\npatching file sira-core/tools/validation/validate-static.php\n",
+    "apply_stderr": "",
+    "exact_match_excluding_generated_reports": true,
+    "differences": []
+  },
+  "zip_test": {
+    "first_bad_file": null
+  },
+  "scope_checks": {
+    "presentation_visibility_preserved": true,
+    "navigation_schema_absent": true,
+    "editorial_feed_absent": true,
+    "raw_banner_acf_graphql_absent": true,
+    "no_nested_acf_type_names_added": true
+  }
+}

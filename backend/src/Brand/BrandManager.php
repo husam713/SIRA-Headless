@@ -139,6 +139,8 @@ final class BrandManager {
 				'analytics_id'       => '',
 				'emergency_banner'   => '',
 				'announcement_bar'   => '',
+				'announcement'       => array(),
+				'emergency'          => array(),
 			)
 		);
 	}
@@ -203,6 +205,24 @@ final class BrandManager {
 	public function get_public(): array {
 		$brand    = $this->get();
 		$defaults = $this->defaults();
+		$announcement_legacy = self::public_optional_textarea(
+			$brand['announcement_bar'] ?? null
+		);
+		$emergency_legacy = self::public_optional_textarea(
+			$brand['emergency_banner'] ?? null
+		);
+		$announcement = BannerContract::resolve(
+			'announcement',
+			$brand['announcement'] ?? array(),
+			$announcement_legacy,
+			BannerContract::SEVERITY_INFO
+		);
+		$emergency = BannerContract::resolve(
+			'emergency',
+			$brand['emergency'] ?? array(),
+			$emergency_legacy,
+			BannerContract::SEVERITY_URGENT
+		);
 
 		return array(
 			'brand_name'          => self::public_text(
@@ -250,12 +270,10 @@ final class BrandManager {
 				'x'        => self::public_optional_url( $brand['x_url'] ?? null ),
 				'youtube'  => self::public_optional_url( $brand['youtube_url'] ?? null ),
 			),
-			'announcement_banner' => self::public_optional_textarea(
-				$brand['announcement_bar'] ?? null
-			),
-			'emergency_banner'    => self::public_optional_textarea(
-				$brand['emergency_banner'] ?? null
-			),
+			'announcement_banner' => $announcement_legacy,
+			'emergency_banner'    => $emergency_legacy,
+			'announcement'        => $announcement,
+			'emergency'           => $emergency,
 		);
 	}
 
@@ -284,7 +302,9 @@ final class BrandManager {
 			'sira_brand_mission'     => 'mission',
 			'sira_brand_vision'      => 'vision',
 			'sira_brand_values'      => 'values',
-			'sira_office_locations'  => 'office_locations',
+			'sira_office_locations'          => 'office_locations',
+			'sira_announcement_banner_config' => 'announcement',
+			'sira_emergency_banner_config'    => 'emergency',
 		);
 		$out = array();
 

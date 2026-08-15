@@ -17,6 +17,7 @@ final class BrandSchema {
 	public function register(): void {
 		if (
 			! function_exists( 'register_graphql_object_type' )
+			|| ! function_exists( 'register_graphql_enum_type' )
 			|| ! function_exists( 'register_graphql_field' )
 		) {
 			return;
@@ -26,6 +27,9 @@ final class BrandSchema {
 		$this->register_value_type();
 		$this->register_office_type();
 		$this->register_social_profiles_type();
+		$this->register_banner_link_type();
+		$this->register_banner_severity_type();
+		$this->register_banner_type();
 		$this->register_brand_type();
 
 		register_graphql_field(
@@ -204,6 +208,103 @@ final class BrandSchema {
 		);
 	}
 
+
+	private function register_banner_link_type(): void {
+		register_graphql_object_type(
+			'SiraBrandLink',
+			array(
+				'description' => __(
+					'An approved public link associated with a SIRA banner.',
+					'sira-core'
+				),
+				'fields'      => array(
+					'label'  => array(
+						'type'        => array( 'non_null' => 'String' ),
+						'description' => __( 'The public link label.', 'sira-core' ),
+					),
+					'url'    => array(
+						'type'        => array( 'non_null' => 'String' ),
+						'description' => __( 'The approved HTTP(S) or site-relative URL.', 'sira-core' ),
+					),
+					'target' => array(
+						'type'        => 'String',
+						'description' => __( 'The optional _self or _blank target.', 'sira-core' ),
+					),
+				),
+			)
+		);
+	}
+
+	private function register_banner_severity_type(): void {
+		register_graphql_enum_type(
+			'SiraBrandBannerSeverity',
+			array(
+				'description' => __(
+					'The semantic severity of a public SIRA banner.',
+					'sira-core'
+				),
+				'values'      => array(
+					'INFO'      => array(
+						'value'       => 'INFO',
+						'description' => __( 'General information.', 'sira-core' ),
+					),
+					'IMPORTANT' => array(
+						'value'       => 'IMPORTANT',
+						'description' => __( 'Important information requiring attention.', 'sira-core' ),
+					),
+					'URGENT'    => array(
+						'value'       => 'URGENT',
+						'description' => __( 'Urgent or emergency information.', 'sira-core' ),
+					),
+				),
+			)
+		);
+	}
+
+	private function register_banner_type(): void {
+		register_graphql_object_type(
+			'SiraBrandBanner',
+			array(
+				'description' => __(
+					'An active, approved public SIRA announcement or emergency banner.',
+					'sira-core'
+				),
+				'fields'      => array(
+					'message'     => array(
+						'type'        => array( 'non_null' => 'String' ),
+						'description' => __( 'The public banner message.', 'sira-core' ),
+					),
+					'severity'    => array(
+						'type'        => array(
+							'non_null' => 'SiraBrandBannerSeverity',
+						),
+						'description' => __( 'The banner severity.', 'sira-core' ),
+					),
+					'link'        => array(
+						'type'        => 'SiraBrandLink',
+						'description' => __( 'An optional approved banner link.', 'sira-core' ),
+					),
+					'startsAt'    => array(
+						'type'        => 'String',
+						'description' => __( 'The optional UTC RFC 3339 start time.', 'sira-core' ),
+					),
+					'endsAt'      => array(
+						'type'        => 'String',
+						'description' => __( 'The optional UTC RFC 3339 end time.', 'sira-core' ),
+					),
+					'dismissible' => array(
+						'type'        => array( 'non_null' => 'Boolean' ),
+						'description' => __( 'Whether the frontend may persist dismissal.', 'sira-core' ),
+					),
+					'revisionKey' => array(
+						'type'        => array( 'non_null' => 'String' ),
+						'description' => __( 'A stable public content revision hash.', 'sira-core' ),
+					),
+				),
+			)
+		);
+	}
+
 	private function register_brand_type(): void {
 		register_graphql_object_type(
 			'SiraBrand',
@@ -291,11 +392,19 @@ final class BrandSchema {
 					),
 					'announcementBanner' => array(
 						'type'        => 'String',
-						'description' => __( 'The public announcement banner text.', 'sira-core' ),
+						'description' => __( 'The legacy public announcement banner text.', 'sira-core' ),
 					),
 					'emergencyBanner'    => array(
 						'type'        => 'String',
-						'description' => __( 'The public emergency banner text.', 'sira-core' ),
+						'description' => __( 'The legacy public emergency banner text.', 'sira-core' ),
+					),
+					'announcement'       => array(
+						'type'        => 'SiraBrandBanner',
+						'description' => __( 'The currently active typed announcement banner.', 'sira-core' ),
+					),
+					'emergency'          => array(
+						'type'        => 'SiraBrandBanner',
+						'description' => __( 'The currently active typed emergency banner.', 'sira-core' ),
 					),
 				),
 			)
@@ -334,6 +443,8 @@ final class BrandSchema {
 			'socialProfiles'     => $brand['social_profiles'],
 			'announcementBanner' => $brand['announcement_banner'],
 			'emergencyBanner'    => $brand['emergency_banner'],
+			'announcement'       => $brand['announcement'],
+			'emergency'          => $brand['emergency'],
 		);
 	}
 

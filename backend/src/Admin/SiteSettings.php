@@ -63,8 +63,8 @@ final class SiteSettings {
 			'x_url'          => 'X URL',
 			'youtube_url'    => 'YouTube URL',
 			'analytics_id'   => 'Analytics ID',
-			'announcement_bar' => 'Announcement bar',
-			'emergency_banner' => 'Emergency banner',
+			'announcement_bar' => 'Legacy announcement text fallback',
+			'emergency_banner' => 'Legacy emergency text fallback',
 		);
 		?>
 		<div class="wrap">
@@ -73,6 +73,14 @@ final class SiteSettings {
 				<?php
 				esc_html_e(
 					'These values override network defaults for this site. Approved public values are exposed through the SIRA brand API and GraphQL schema.',
+					'sira-core'
+				);
+				?>
+			</p>
+			<p>
+				<?php
+				esc_html_e(
+					'Use SIRA Options for typed, scheduled announcement and emergency banners. The legacy text fields below remain backward-compatible fallbacks.',
 					'sira-core'
 				);
 				?>

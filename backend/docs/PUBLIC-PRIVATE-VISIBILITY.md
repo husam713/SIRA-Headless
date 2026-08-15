@@ -35,3 +35,53 @@ Before production, approve:
 3. Whether testimonials need an explicit approval field.
 4. Whether leadership email can ever be public.
 5. The private system for form submissions and applicant documents.
+
+## Step 2C.2C object-level visibility enforcement
+
+The following approval fields default to false:
+
+- `SiraInvestment.investmentDetails.publicDisplay`
+- `SiraTestimonial.testimonialDetails.consentApproved`
+
+The Testimonial consent timestamp is not exposed through GraphQL.
+
+Step 2C.2C applies these rules through WPGraphQL's model-layer
+`graphql_data_is_private` filter:
+
+- Investments are private unless WordPress would otherwise expose them and
+  public display is explicitly approved.
+- Testimonials are private unless WordPress would otherwise expose them and
+  public consent is explicitly approved.
+- A user who can `edit_post` for the specific object retains authenticated
+  editorial access.
+- Logged-in users without that object capability cannot bypass approval.
+- Existing draft, private, ownership, and capability rules remain authoritative.
+
+Because the check is applied to each modeled post object, singular fields,
+collections, search, global nodes, content nodes, and homepage/ACF
+relationships share the same privacy boundary.
+
+
+
+## Step 2C.2F banner visibility
+
+Typed announcement and emergency banners are curated public brand data.
+
+Public:
+
+- active sanitized message;
+- semantic severity;
+- approved link;
+- UTC schedule boundaries;
+- dismissible flag;
+- public revision hash.
+
+Not public:
+
+- raw ACF option arrays;
+- inactive/future/expired typed banners;
+- malformed schedules;
+- visitor dismissal state;
+- operational secrets or analytics.
+
+Legacy banner strings remain temporarily public for backward compatibility.

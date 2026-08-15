@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "stage": "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
+  "status": "TEMPLATE_NOT_COMPLETED",
+  "purpose": "Human-admin evidence package required before any future Batch A mutation authorization.",
+  "sensitivityRule": "Record identifiers and validation facts only. Never store credentials, passwords, private storage URLs, SSH keys, database passwords, access tokens, cookies, or protected host paths.",
+  "networkBackup": {
+    "backupIdentifier": null,
+    "systemOrHostCategory": null,
+    "createdTimestamp": null,
+    "scope": "WORDPRESS_MULTISITE_NETWORK_DATABASE_AND_REQUIRED_CONFIGURATION",
+    "retentionWindow": null,
+    "responsibleAdministratorRole": null,
+    "restoreEligible": null,
+    "validationStatus": "UNKNOWN",
+    "optionalChecksumOrReferenceIdentifier": null
+  },
+  "restoreValidation": {
+    "evidenceIdentifier": null,
+    "validatedTimestamp": null,
+    "responsibleAdministratorRole": null,
+    "methodCategory": null,
+    "recoveryPointObjectiveConfirmed": null,
+    "outcome": "UNKNOWN",
+    "destructiveRehearsalPerformedByStep2c5b": false
+  },
+  "supplementalTenantEvidence": [
+    { "tenant": "group", "requiredForBatchA": true, "scope": "SANITIZED_BRAND_OPTION_BEFORE_STATE", "evidenceIdentifier": null, "status": "NOT_RUN" },
+    { "tenant": "healthcare", "requiredForBatchA": true, "scope": "SANITIZED_BRAND_OPTION_AND_TAXONOMY_BEFORE_STATE", "evidenceIdentifier": null, "status": "NOT_RUN" },
+    { "tenant": "consulting", "requiredForBatchA": true, "scope": "SANITIZED_TAXONOMY_BEFORE_STATE", "evidenceIdentifier": null, "status": "NOT_RUN" },
+    { "tenant": "lifestyle", "requiredForBatchA": true, "scope": "SANITIZED_TAXONOMY_BEFORE_STATE", "evidenceIdentifier": null, "status": "NOT_RUN" },
+    { "tenant": "realestate", "requiredForBatchA": true, "scope": "SANITIZED_TAXONOMY_BEFORE_STATE", "evidenceIdentifier": null, "status": "NOT_RUN" }
+  ],
+  "attestation": {
+    "evidenceComplete": false,
+    "privateInfrastructureLocationPersisted": false,
+    "credentialPersisted": false,
+    "mutationWindowIdentifier": null,
+    "sameWindowEvidenceRequired": true
+  },
+  "authorization": {
+    "backupCreationAuthorized": false,
+    "exportExecutionAuthorized": false,
+    "restoreExecutionAuthorized": false,
+    "cmsMutationAuthorization": "NOT_GRANTED"
+  }
+}

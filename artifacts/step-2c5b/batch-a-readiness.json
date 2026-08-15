@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 1,
+  "stage": "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
+  "status": "REQUIRES_HUMAN_ADMIN_ACTION",
+  "mutationReadiness": "BLOCKED_BY_BACKUP_EVIDENCE",
+  "generatedAt": "2026-08-15T01:48:56.405Z",
+  "evidenceCapturedAt": "2026-08-15T01:34:02.496Z",
+  "baseline": {
+    "branch": "main",
+    "commit": "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
+    "latestAcceptedMilestone": "Step 2C.5A — CMS Preflight & Remediation Plan",
+    "pullRequest": 15,
+    "approvedHead": "bb6cca02bd97524182e2d53628c5ea9567228ee4",
+    "mergeCommit": "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd"
+  },
+  "evidenceSources": {
+    "acceptedPreflight": "artifacts/step-2c5a/cms-preflight.json",
+    "acceptedRemediationPlan": "artifacts/step-2c5a/remediation-batches.json",
+    "acceptedRollbackRequirements": "artifacts/step-2c5a/rollback-preconditions.json",
+    "acceptedCorrectionManifest": "artifacts/step-2c4/cms-correction-manifest.json",
+    "freshQueryInfrastructure": "frontend/scripts/cms-preflight-audit.mjs",
+    "derivationSource": "frontend/scripts/batch-a-readiness-audit.mjs"
+  },
+  "mode": "READ_ONLY_PREFLIGHT_AND_MUTATION_READINESS_PLANNING",
+  "tenants": {
+    "required": [
+      "group",
+      "consulting",
+      "healthcare",
+      "lifestyle",
+      "realestate"
+    ],
+    "inspected": [
+      "group",
+      "consulting",
+      "healthcare",
+      "lifestyle",
+      "realestate"
+    ],
+    "inspectedCount": 5,
+    "allRequiredEvidenceAvailable": true
+  },
+  "drift": {
+    "status": "NONE_DETECTED",
+    "evidenceClassification": "CONFIRMED",
+    "unexpectedExpectedStateWithoutAuthorizedWindow": false,
+    "acceptedStep2c5aPublicEvidenceStillMatches": true
+  },
+  "batchAScope": {
+    "actions": [
+      "CMS-2C4-001",
+      "CMS-2C4-002",
+      "CMS-2C4-006:term-creation-only"
+    ],
+    "businessUnitAssignmentsIncluded": false,
+    "taxonomyDeletionIncluded": false,
+    "groupTaxonomyIncluded": false
+  },
+  "identities": {
+    "group": {
+      "actionId": "CMS-2C4-001",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "unexpectedExpectedStateWithoutAuthorization": false,
+      "current": {
+        "key": "group",
+        "name": "SIRA Global Logo",
+        "tagline": "Shaping a smarter future.",
+        "primary": "#cccccc",
+        "secondary": "#5b5b5b",
+        "accent": "#cca34b",
+        "paper": "#f7f4ed",
+        "ink": "#20242b"
+      },
+      "acceptedCurrent": {
+        "key": "group",
+        "name": "SIRA Global Logo",
+        "tagline": "Shaping a smarter future.",
+        "primary": "#cccccc",
+        "secondary": "#5b5b5b",
+        "accent": "#cca34b",
+        "paper": "#f7f4ed",
+        "ink": "#20242b"
+      },
+      "futureExpected": {
+        "key": "group",
+        "name": "SIRA GROUP",
+        "tagline": "Shaping a smarter future.",
+        "primary": "#cca34b",
+        "secondary": "#172232",
+        "accent": "#cca34b",
+        "paper": "#f7f4ed",
+        "ink": "#20242b"
+      },
+      "affectedFields": [
+        "name",
+        "primaryColor",
+        "secondaryColor"
+      ],
+      "fieldsExplicitlyNotAffected": [
+        "key",
+        "tagline",
+        "accentColor",
+        "paperColor",
+        "inkColor",
+        "logo",
+        "mark",
+        "contacts",
+        "values",
+        "offices",
+        "announcement",
+        "emergency"
+      ]
+    },
+    "healthcare": {
+      "actionId": "CMS-2C4-002",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "unexpectedExpectedStateWithoutAuthorization": false,
+      "current": {
+        "key": "healthcare",
+        "name": "SIRA Health",
+        "tagline": "Advancing diagnostic and healthcare infrastructure.",
+        "primary": "#1e73be",
+        "secondary": "#81d742",
+        "accent": "#8224e3",
+        "paper": "#f3f7fb",
+        "ink": "#1f2932"
+      },
+      "acceptedCurrent": {
+        "key": "healthcare",
+        "name": "SIRA Health",
+        "tagline": "Advancing diagnostic and healthcare infrastructure.",
+        "primary": "#1e73be",
+        "secondary": "#81d742",
+        "accent": "#8224e3",
+        "paper": "#f3f7fb",
+        "ink": "#1f2932"
+      },
+      "futureExpected": {
+        "key": "healthcare",
+        "name": "SIRA Healthcare",
+        "tagline": "Advancing diagnostic and healthcare infrastructure.",
+        "primary": "#2c6dad",
+        "secondary": "#12283f",
+        "accent": "#2c6dad",
+        "paper": "#f3f7fb",
+        "ink": "#1f2932"
+      },
+      "affectedFields": [
+        "name",
+        "primaryColor",
+        "secondaryColor",
+        "accentColor"
+      ],
+      "fieldsExplicitlyNotAffected": [
+        "key",
+        "tagline",
+        "paperColor",
+        "inkColor",
+        "logo",
+        "mark",
+        "contacts",
+        "values",
+        "offices",
+        "announcement",
+        "emergency"
+      ]
+    }
+  },
+  "businessUnitTerms": {
+    "consulting": {
+      "actionId": "CMS-2C4-006",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "unexpectedExpectedStateWithoutAuthorization": false,
+      "taxonomy": "sira_business_unit",
+      "expectedName": "Consulting",
+      "expectedSlug": "consulting",
+      "exactAbsenceConfirmed": true,
+      "exactMatchCount": 0,
+      "equivalentCollisionCount": 0,
+      "currentAssignedObjectCount": null,
+      "connectionTruncated": false,
+      "futureCreatedDatabaseId": null,
+      "recordAssignmentsAuthorized": false,
+      "deletionAuthorized": false
+    },
+    "healthcare": {
+      "actionId": "CMS-2C4-006",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "unexpectedExpectedStateWithoutAuthorization": false,
+      "taxonomy": "sira_business_unit",
+      "expectedName": "Healthcare",
+      "expectedSlug": "healthcare",
+      "exactAbsenceConfirmed": true,
+      "exactMatchCount": 0,
+      "equivalentCollisionCount": 0,
+      "currentAssignedObjectCount": null,
+      "connectionTruncated": false,
+      "futureCreatedDatabaseId": null,
+      "recordAssignmentsAuthorized": false,
+      "deletionAuthorized": false
+    },
+    "lifestyle": {
+      "actionId": "CMS-2C4-006",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "unexpectedExpectedStateWithoutAuthorization": false,
+      "taxonomy": "sira_business_unit",
+      "expectedName": "Lifestyle",
+      "expectedSlug": "lifestyle",
+      "exactAbsenceConfirmed": true,
+      "exactMatchCount": 0,
+      "equivalentCollisionCount": 0,
+      "currentAssignedObjectCount": null,
+      "connectionTruncated": false,
+      "futureCreatedDatabaseId": null,
+      "recordAssignmentsAuthorized": false,
+      "deletionAuthorized": false
+    },
+    "realestate": {
+      "actionId": "CMS-2C4-006",
+      "evidenceClassification": "CONFIRMED",
+      "evidenceStatus": "VALIDATED_UNCHANGED",
+      "unexpectedExpectedStateWithoutAuthorization": false,
+      "taxonomy": "sira_business_unit",
+      "expectedName": "Real Estate",
+      "expectedSlug": "real-estate",
+      "exactAbsenceConfirmed": true,
+      "exactMatchCount": 0,
+      "equivalentCollisionCount": 0,
+      "currentAssignedObjectCount": null,
+      "connectionTruncated": false,
+      "futureCreatedDatabaseId": null,
+      "recordAssignmentsAuthorized": false,
+      "deletionAuthorized": false
+    }
+  },
+  "groupBusinessUnitTerms": {
+    "mutationTarget": false,
+    "unchangedFromAcceptedStep2c5a": true,
+    "current": {
+      "truncated": false,
+      "terms": [
+        {
+          "databaseId": 60,
+          "name": "Consulting",
+          "slug": "consulting",
+          "totalAssignedObjectCount": 1
+        },
+        {
+          "databaseId": 62,
+          "name": "Healthcare",
+          "slug": "healthcare",
+          "totalAssignedObjectCount": 1
+        },
+        {
+          "databaseId": 61,
+          "name": "Lifestyle",
+          "slug": "lifestyle",
+          "totalAssignedObjectCount": 1
+        },
+        {
+          "databaseId": 59,
+          "name": "Real Estate",
+          "slug": "real-estate",
+          "totalAssignedObjectCount": 1
+        }
+      ]
+    }
+  },
+  "blockers": [
+    "RB-001_NETWORK_BACKUP_EVIDENCE_UNKNOWN",
+    "RB-009_RESTORE_VALIDATION_EVIDENCE_UNKNOWN",
+    "EXACT_LIVE_ADMIN_MUTATION_COORDINATES_UNCONFIRMED",
+    "CMS_MUTATION_AUTHORIZATION_NOT_GRANTED"
+  ],
+  "authorization": {
+    "step2c5bAccepted": false,
+    "cmsMutationAuthorization": "NOT_GRANTED",
+    "batchAMutationAuthorized": false,
+    "taxonomyDeletionAuthorized": false,
+    "backupCreationAuthorized": false,
+    "exportExecutionAuthorized": false,
+    "restoreExecutionAuthorized": false,
+    "productionAuthorized": false,
+    "nextGate": "OWNER_ACCEPTANCE_OF_READINESS_PLAN_ONLY"
+  },
+  "security": {
+    "endpointValuesPersisted": false,
+    "credentialsPersisted": false,
+    "authorizationHeadersUsed": false,
+    "cookiesUsed": false,
+    "rawProtectedPayloadsPersisted": false,
+    "wordpressMutationOccurred": false,
+    "graphqlMutationOccurred": false,
+    "databaseMutationOccurred": false,
+    "wpCliWriteOccurred": false,
+    "backupExecutionOccurred": false,
+    "exportExecutionOccurred": false,
+    "restoreExecutionOccurred": false,
+    "contentDeletionOccurred": false,
+    "taxonomyDeletionOccurred": false,
+    "backendRuntimeMutationOccurred": false,
+    "generatedGraphqlMutationOccurred": false,
+    "productionUiMutationOccurred": false,
+    "dependencyOrLockfileMutationOccurred": false,
+    "deploymentOccurred": false,
+    "step3Started": false,
+    "step2c5cStarted": false,
+    "sot001Status": "OPEN"
+  }
+}

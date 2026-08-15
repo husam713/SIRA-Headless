@@ -1,15 +1,15 @@
 # SIRA Current Project State
 
-Last reconciled from repository and GitHub evidence: 2026-08-14
+Last reconciled from repository, GitHub, and fresh read-only CMS evidence: 2026-08-15
 
 ## Current execution state
 
-- **Current business stage:** Step 2C.5A — CMS Preflight & Remediation Plan
-- **Current substage:** 2C.5A-CMS-PREFLIGHT — Read-Only CMS Evidence and Repository Planning
+- **Current business stage:** Step 2C.5B — CMS Mutation Readiness & Backup Gate
+- **Current substage:** 2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE — Read-Only Preflight and Exact Future Batch A Planning
 - **Canonical integration/default branch:** `main`
-- **Business-code baseline:** `710eec3cf90e1a7d707860f9ee73d0abf283019c`
-- **Current governed integration head:** `710eec3cf90e1a7d707860f9ee73d0abf283019c`
-- **Latest approved business milestone:** Step 2C.4
+- **Business-code baseline:** `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
+- **Current governed integration head:** `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
+- **Latest approved business milestone:** Step 2C.5A
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
@@ -36,6 +36,8 @@ Step 2C.3C cumulative closure is owner accepted and merged through PR `#12` at `
 Step 2C.3D Content Readiness is owner accepted and merged through PR `#13` at `1cfab49f113acca5a1866e225f8b5b64a5fcb926`. Its accepted correction/head is `73bec8e671a53c1abb5396ed945785162b71b5da`, Frontend CI run #25 passed on that exact head, and the accepted full regression was 23 files / 196 tests PASS. The audit inspected all five tenants read-only, kept existing editorial/project records non-authoritative without explicit approval, and recorded no WordPress mutation, deletion, backend change, production UI change, or deployment.
 
 Step 2C.4 Production Design & Data Contract Audit is owner accepted and merged through PR `#14` at `710eec3cf90e1a7d707860f9ee73d0abf283019c`. Its accepted correction/head is `a4d8945bf5b83e304b1b0fb434eb7441ea243849`, Frontend CI run #29 passed on that exact head, and the accepted full regression was 24 files / 204 tests PASS. It approved the reusable page architecture, independent branch-tenant invariant, canonical public production topology, 11 BLOCKING / 5 NONBLOCKING design/data gaps, and a non-destructive 15-action CMS correction manifest. No WordPress mutation, deployment, backend runtime change, generated GraphQL change, or production UI implementation occurred.
+
+Step 2C.5A CMS Preflight & Remediation Plan is owner accepted and merged through PR `#15` at `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd` using a normal two-parent merge. Its accepted correction/head is `bb6cca02bd97524182e2d53628c5ea9567228ee4`, Frontend CI run #32 passed on that exact head, and the accepted full regression was 25 files / 218 tests PASS. It revalidated all five tenants, retained 12 BLOCKING / 3 DEFERRED / 0 DESTRUCTIVE / 0 AUTHORIZED CMS actions, and defined non-executed remediation and rollback plans. No WordPress mutation, backup/export/restore execution, deletion, backend change, production UI work, Step 3, or deployment occurred.
 
 ## GitHub governance status
 
@@ -125,13 +127,13 @@ Before Step 2C.3C can be accepted, the typed frontend contract layer must cover:
 
 Production visual components remain out of scope for this stage.
 
-## Current Step 2C.5A preflight policy
+## Current Step 2C.5B readiness policy
 
-Step 2C.4 is accepted and merged. Step 2C.5A revalidates all five WordPress Multisite tenants through the trusted read-only SiteKey/endpoint registry, compares fresh public evidence with Step 2C.3D/2C.4, and converts the accepted fifteen-action CMS correction manifest into exact proposed execution batches and rollback preconditions. It does not perform or authorize WordPress mutation, export, restore, content deletion, backend runtime work, generated GraphQL work, production UI implementation, Step 3, deployment, or merge. `SOT-001` remains open.
+Step 2C.5A is accepted and merged. Step 2C.5B prepares—but does not authorize or execute—the first future mutation window. Its Batch A scope is only CMS-2C4-001 Group identity, CMS-2C4-002 Healthcare identity, and CMS-2C4-006 creation of four exact tenant-local Business Unit terms. Business Unit assignments, Group taxonomy mutation, taxonomy deletion, backup/export/restore execution, content mutation, backend work, production UI, Step 3, Step 2C.5C, and deployment are excluded.
 
-The fresh timestamped preflight inspected 5/5 tenants and found no drift in 55 previously observable public readiness coordinates. The accepted action classifications remain 12 BLOCKING / 3 DEFERRED / 0 DESTRUCTIVE / 0 AUTHORIZED. Group Companies (4) and Services (3) are existing but not approved as authoritative launch content; Investments, Testimonials, Partners, and Documents return no public records. Expanded Group related-entity evidence is a new baseline, not a historical drift assertion. Draft/private state and administrative provenance remain UNKNOWN.
+Fresh read-only evidence on 2026-08-15 inspected 5/5 tenants. Both identity actions and all four term scopes remain `VALIDATED_UNCHANGED`; the expected branch terms are absent with zero equivalent collisions and untruncated connections; Group terms match the accepted Step 2C.5A baseline and remain non-targets. No Batch A drift was detected.
 
-The proposed future batches are: A, deterministic brand corrections and tenant-local Business Unit term creation; B, independent branch front-page and navigation configuration after editorial/IA approval; C, authoritative content and accessibility after record-level approval; D, read-only post-remediation verification; and E, deferred forms/localization/SEO work. Every batch remains separately gated, and no backup/export has been claimed.
+Operational mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE` and requires human administrator action. RB-001 network backup evidence and RB-009 restore validation evidence are UNKNOWN, and the exact current live administrative coordinates are not independently confirmed. The repository backend provides only `STRONGLY_INFERRED` candidate WordPress Admin coordinates because SOT-001 keeps that runtime tree non-authoritative. Step 2C.5B plan acceptance and Batch A mutation authorization are separate gates: `step2c5bAccepted=false`, `batchAMutationAuthorized=false`, and CMS mutation authorization remains `NOT_GRANTED`.
 
 The owner-approved canonical public production apex is `siratrgroup.com`; the branch public hostnames are `consulting.siratrgroup.com`, `healthcare.siratrgroup.com`, `lifestyle.siratrgroup.com`, and `realestate.siratrgroup.com`. This decision applies only to public production hostnames. WordPress backend, GraphQL, media, staging, Vercel preview, cookie-domain, CORS, and revalidation origins/policies remain UNKNOWN until repository or live configuration evidence establishes them. Public-domain selection is resolved without changing the Step 2C.4 gap counts: 11 BLOCKING and 5 NONBLOCKING. `2C4-B07` and `2C4-B10` remain BLOCKING.
 
@@ -151,17 +153,20 @@ The current GitHub backend source contains Step 1-era material that is not yet p
 
 Do not modify backend runtime code until the latest verified cumulative backend source is reconciled into Git or an explicit evidence-backed decision establishes the correct backend source of truth.
 
-This conflict does **not** block the read-only Step 2C.5A CMS preflight and repository planning based on the already verified checked-in live schema. It blocks any new backend runtime correction; newly discovered schema defects must be marked `BLOCKED_BY_SOT_001`.
+This conflict does **not** block the read-only Step 2C.5B preflight and readiness planning based on verified live public evidence. It prevents candidate backend/admin registration coordinates from being treated as confirmed live mutation coordinates and blocks any new backend runtime correction; newly discovered schema defects must be marked `BLOCKED_BY_SOT_001`.
 
 ## Next stages
 
-After Step 2C.5A owner acceptance:
+After Step 2C.5B owner acceptance of the readiness plan:
 
-1. **Step 2C.5B — separately authorized CMS remediation**
-   - execute only owner-accepted, explicitly authorized non-destructive batches after another same-window read-only drift check;
-   - preserve every existing record unless a separate destructive decision is approved.
-2. **Step 3 — Preview / SEO / Discovery**
-3. **Step 4 — Production Component Implementation**
+1. **Human backup/admin evidence gate**
+   - provide RB-001/RB-002/RB-009 evidence and confirm exact live admin coordinates without saving;
+   - rerun the same-window read-only Batch A preflight and stop on drift.
+2. **Step 2C.5C — separately authorized Batch A execution**
+   - may begin only after a new explicit mutation authorization identifies the exact manifest, operator, evidence package, and window;
+   - preserve every existing record and prohibit taxonomy deletion unless separately authorized.
+3. **Step 3 — Preview / SEO / Discovery**
+4. **Step 4 — Production Component Implementation**
 
 ## Owner/external decisions still protected
 

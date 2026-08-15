@@ -21,22 +21,22 @@ A later verified artifact may temporarily supersede repository source for a spec
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Current governed frontend baseline/head: `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
-- Latest accepted increment: Step 2C.5A CMS Preflight & Remediation Plan
-- Audit PR / correction head / merge: `#15` / `bb6cca02bd97524182e2d53628c5ea9567228ee4` / `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
+- Current governed frontend baseline/head: `2bd4991f75a53ab9209e748499dcb8915769e3a6`
+- Latest accepted increment: Step 2C.5B CMS Mutation Readiness & Backup Gate
+- Audit PR / correction head / merge: `#16` / `4afad259dd4c184de5b61ca51f91fcde7222cbf2` / `2bd4991f75a53ab9209e748499dcb8915769e3a6`
 - Approved tag: `step-2c3b-approved`
 - Checked-in canonical live schema: `frontend/schema/wpgraphql.graphql`
 - Group audit schema: `frontend/schema/wpgraphql.group.graphql`
 - Metadata: `frontend/schema/wpgraphql.meta.json`
 - Compatibility evidence: `frontend/schema/wpgraphql.compatibility.json`
 
-The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. Step 2C.5A Frontend CI run #32 passed on correction/head `bb6cca02bd97524182e2d53628c5ea9567228ee4`, and the full 25-file / 218-test regression passed before owner acceptance and merge. The accepted preflight retains twelve blocking, three deferred, zero destructive, and zero authorized CMS actions and defines non-executed remediation and rollback plans.
+The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. Step 2C.5B Frontend CI run #35 passed on correction/head `4afad259dd4c184de5b61ca51f91fcde7222cbf2`, and the full 26-file / 252-test regression passed before owner acceptance and merge. The accepted readiness plan remains `BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`, Batch A mutation authorization is false, and no backup, export, restore, taxonomy deletion, CMS mutation, Step 2C.5C, Step 3, or deployment is authorized.
 
 ## Current Step 2C.5B evidence authority
 
 Step 2C.5B uses fresh read-only public GraphQL evidence derived through the trusted SiteKey registry, accepted Step 2C.5A artifacts, and repository evidence for planning only. The fresh 2026-08-15 preflight inspected all five tenants and found the bounded Batch A coordinates `VALIDATED_UNCHANGED`: Group and Healthcare identities retain their accepted current values; the four exact branch-local Business Unit terms remain absent without collision or truncation; Group terms remain non-targets and match the accepted baseline.
 
-Candidate WordPress Admin coordinates recorded in the stale backend tree are `STRONGLY_INFERRED`, not confirmed live administrative coordinates, because SOT-001 is OPEN. RB-001 backup evidence, RB-009 restore evidence, and exact protected live admin coordinates remain UNKNOWN. The Step 2C.5B readiness plan is owner accepted and pending merge, while the operational package status remains `REQUIRES_HUMAN_ADMIN_ACTION` and mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE`. `step2c5bAccepted=true` does not authorize Batch A: `batchAMutationAuthorized=false`, CMS mutation authorization is `NOT_GRANTED`, and no CMS mutation, backup/export/restore execution, deletion, backend change, production UI, Step 3, Step 2C.5C, or deployment is authorized.
+Candidate WordPress Admin coordinates recorded in the stale backend tree are `STRONGLY_INFERRED`, not confirmed live administrative coordinates, because SOT-001 is OPEN. RB-001 backup evidence, RB-009 restore evidence, and exact protected live admin coordinates remain UNKNOWN. The Step 2C.5B readiness plan is owner accepted and merged through PR `#16`, while the operational package status remains `REQUIRES_HUMAN_ADMIN_ACTION` and mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE`. `step2c5bAccepted=true` does not authorize Batch A: `batchAMutationAuthorized=false`, CMS mutation authorization is `NOT_GRANTED`, and no CMS mutation, backup/export/restore execution, deletion, backend change, production UI, Step 3, Step 2C.5C, or deployment is authorized.
 
 ## Canonical public production topology
 

@@ -1,14 +1,14 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-15T05:12:50+03:00",
+  "updatedAt": "2026-08-15T06:00:55+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
-  "currentStageStatus": "OWNER_ACCEPTED_PENDING_MERGE",
-  "executionBranch": "chore/2c5b-cms-mutation-readiness-gate",
-  "executionBaseline": "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
-  "executionHead": "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
-  "latestApprovedMilestone": "Step 2C.5A",
+  "currentStageStatus": "OWNER_ACCEPTED_MERGED",
+  "executionBranch": "main",
+  "executionBaseline": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
+  "executionHead": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
+  "latestApprovedMilestone": "Step 2C.5B",
   "latestApprovedTag": "step-2c3b-approved",
   "productionAuthorized": false,
   "authorization": {
@@ -42,14 +42,14 @@
   },
   "repositoryEvidencePolicy": "evidence-first",
   "latestAcceptedIncrement": {
-    "stage": "Step 2C.5A",
+    "stage": "Step 2C.5B",
     "status": "ACCEPTED_MERGED",
-    "pullRequest": 15,
-    "implementationHead": "bb6cca02bd97524182e2d53628c5ea9567228ee4",
-    "mergeCommit": "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
+    "pullRequest": 16,
+    "implementationHead": "4afad259dd4c184de5b61ca51f91fcde7222cbf2",
+    "mergeCommit": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
     "frontendCi": "PASS",
-    "frontendCiRun": 32,
-    "fullRegression": "25 files / 218 tests PASS"
+    "frontendCiRun": 35,
+    "fullRegression": "26 files / 252 tests PASS"
   },
   "governance": {
     "g0Bootstrap": "COMPLETE",
@@ -68,8 +68,7 @@
     ]
   },
   "nextMajorStages": [
-    "2C.5B CMS mutation readiness and backup gate",
-    "Step 2C.5B owner acceptance of the readiness plan",
+    "Human backup/admin evidence gate before any Batch A authorization",
     "2C.5C separately authorized Batch A execution only after a new explicit mutation authorization",
     "3 preview, SEO and discovery",
     "4 production component implementation"

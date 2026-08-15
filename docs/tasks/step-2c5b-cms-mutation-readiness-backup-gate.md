@@ -37,7 +37,7 @@ Record assignments, Group taxonomy changes, deletion, and every other CMS action
 - RB-001 and RB-009: UNKNOWN / NOT RUN.
 - Exact live protected admin coordinates: UNKNOWN; repository candidates only `STRONGLY_INFERRED` while SOT-001 is open.
 - Mutation readiness: `BLOCKED_BY_BACKUP_EVIDENCE`.
-- Plan status: `OWNER_ACCEPTED_PENDING_MERGE`.
+- Plan status: `OWNER_ACCEPTED_MERGED`.
 - Operational outcome: `REQUIRES_HUMAN_ADMIN_ACTION`.
 
 ## Acceptance checks

@@ -427,7 +427,7 @@ describe("Step 2C.5B CMS mutation readiness and backup gate", () => {
       batchAMutationAuthorized: false,
       cmsMutationAuthorization: "NOT_GRANTED",
     });
-    expect(projectState.currentStageStatus).toBe("OWNER_ACCEPTED_PENDING_MERGE");
+    expect(projectState.currentStageStatus).toBe("OWNER_ACCEPTED_MERGED");
     expect(readiness).toMatchObject({
       planStatus: "OWNER_ACCEPTED_PENDING_MERGE",
       mutationReadiness: "BLOCKED_BY_BACKUP_EVIDENCE",

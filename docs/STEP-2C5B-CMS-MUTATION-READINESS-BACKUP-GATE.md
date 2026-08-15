@@ -2,7 +2,7 @@
 
 ## Status
 
-**OWNER ACCEPTED / PENDING MERGE**
+**OWNER ACCEPTED / MERGED**
 
 The owner has accepted the Step 2C.5B readiness plan. Future Batch A mutation authorization is not granted or ready: mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE`, network backup and restore evidence are UNKNOWN, and exact live administrative mutation coordinates are not confirmed.
 
@@ -180,7 +180,7 @@ No long-lived preflight automatically authorizes a later mutation.
 ## CURRENT PROJECT STATE
 
 - **Stage:** Step 2C.5B — CMS Mutation Readiness & Backup Gate
-- **Plan status:** OWNER ACCEPTED / PENDING MERGE
+- **Plan status:** OWNER ACCEPTED / MERGED
 - **Mutation readiness:** BLOCKED BY BACKUP EVIDENCE
 - **Baseline:** `main@f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
 - **Tenants:** 5/5 fresh read-only evidence; no Batch A drift
@@ -193,4 +193,4 @@ No long-lived preflight automatically authorizes a later mutation.
 - **Step 2C.5C:** NOT STARTED
 - **Production authorization:** false
 - **SOT-001:** OPEN
-- **Next gate:** correction verification and separate merge authorization; human backup/admin evidence remains required before any separate mutation request
+- **Next gate:** human backup/admin evidence remains required before any separate mutation request

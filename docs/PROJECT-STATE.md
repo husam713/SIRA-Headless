@@ -6,11 +6,11 @@ Last reconciled from repository, GitHub, and fresh read-only CMS evidence: 2026-
 
 - **Current business stage:** Step 2C.5B — CMS Mutation Readiness & Backup Gate
 - **Current substage:** 2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE — Read-Only Preflight and Exact Future Batch A Planning
-- **Current stage status:** OWNER ACCEPTED / PENDING MERGE
+- **Current stage status:** OWNER ACCEPTED / MERGED
 - **Canonical integration/default branch:** `main`
-- **Business-code baseline:** `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
-- **Current governed integration head:** `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
-- **Latest approved business milestone:** Step 2C.5A
+- **Business-code baseline:** `2bd4991f75a53ab9209e748499dcb8915769e3a6`
+- **Current governed integration head:** `2bd4991f75a53ab9209e748499dcb8915769e3a6`
+- **Latest approved business milestone:** Step 2C.5B
 - **Latest approved tag:** `step-2c3b-approved`
 - **Production deployment:** NOT AUTHORIZED
 
@@ -39,6 +39,8 @@ Step 2C.3D Content Readiness is owner accepted and merged through PR `#13` at `1
 Step 2C.4 Production Design & Data Contract Audit is owner accepted and merged through PR `#14` at `710eec3cf90e1a7d707860f9ee73d0abf283019c`. Its accepted correction/head is `a4d8945bf5b83e304b1b0fb434eb7441ea243849`, Frontend CI run #29 passed on that exact head, and the accepted full regression was 24 files / 204 tests PASS. It approved the reusable page architecture, independent branch-tenant invariant, canonical public production topology, 11 BLOCKING / 5 NONBLOCKING design/data gaps, and a non-destructive 15-action CMS correction manifest. No WordPress mutation, deployment, backend runtime change, generated GraphQL change, or production UI implementation occurred.
 
 Step 2C.5A CMS Preflight & Remediation Plan is owner accepted and merged through PR `#15` at `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd` using a normal two-parent merge. Its accepted correction/head is `bb6cca02bd97524182e2d53628c5ea9567228ee4`, Frontend CI run #32 passed on that exact head, and the accepted full regression was 25 files / 218 tests PASS. It revalidated all five tenants, retained 12 BLOCKING / 3 DEFERRED / 0 DESTRUCTIVE / 0 AUTHORIZED CMS actions, and defined non-executed remediation and rollback plans. No WordPress mutation, backup/export/restore execution, deletion, backend change, production UI work, Step 3, or deployment occurred.
+
+Step 2C.5B CMS Mutation Readiness & Backup Gate is owner accepted and merged through PR `#16` at `2bd4991f75a53ab9209e748499dcb8915769e3a6` using a normal two-parent merge. Its accepted correction/head is `4afad259dd4c184de5b61ca51f91fcde7222cbf2`, Frontend CI run #35 passed on that exact head, and the accepted full regression was 26 files / 252 tests PASS. The plan remains operationally `BLOCKED_BY_BACKUP_EVIDENCE`; CMS and Batch A mutation authorization remain closed. No WordPress mutation, backup/export/restore execution, taxonomy deletion, backend change, production UI work, Step 2C.5C, Step 3, or deployment occurred.
 
 ## GitHub governance status
 
@@ -134,7 +136,7 @@ Step 2C.5A is accepted and merged. Step 2C.5B prepares—but does not authorize 
 
 Fresh read-only evidence on 2026-08-15 inspected 5/5 tenants. Both identity actions and all four term scopes remain `VALIDATED_UNCHANGED`; the expected branch terms are absent with zero equivalent collisions and untruncated connections; Group terms match the accepted Step 2C.5A baseline and remain non-targets. No Batch A drift was detected.
 
-The owner has accepted the Step 2C.5B readiness plan, which is pending merge. Operational mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE` and requires human administrator action. RB-001 network backup evidence and RB-009 restore validation evidence are UNKNOWN, and the exact current live administrative coordinates are not independently confirmed. The repository backend provides only `STRONGLY_INFERRED` candidate WordPress Admin coordinates because SOT-001 keeps that runtime tree non-authoritative. Plan acceptance and Batch A mutation authorization remain separate gates: `step2c5bAccepted=true`, `batchAMutationAuthorized=false`, and CMS mutation authorization remains `NOT_GRANTED`.
+The Step 2C.5B readiness plan is owner accepted and merged through PR `#16`. Operational mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE` and requires human administrator action. RB-001 network backup evidence and RB-009 restore validation evidence are UNKNOWN, and the exact current live administrative coordinates are not independently confirmed. The repository backend provides only `STRONGLY_INFERRED` candidate WordPress Admin coordinates because SOT-001 keeps that runtime tree non-authoritative. Plan acceptance and Batch A mutation authorization remain separate gates: `step2c5bAccepted=true`, `batchAMutationAuthorized=false`, and CMS mutation authorization remains `NOT_GRANTED`.
 
 The owner-approved canonical public production apex is `siratrgroup.com`; the branch public hostnames are `consulting.siratrgroup.com`, `healthcare.siratrgroup.com`, `lifestyle.siratrgroup.com`, and `realestate.siratrgroup.com`. This decision applies only to public production hostnames. WordPress backend, GraphQL, media, staging, Vercel preview, cookie-domain, CORS, and revalidation origins/policies remain UNKNOWN until repository or live configuration evidence establishes them. Public-domain selection is resolved without changing the Step 2C.4 gap counts: 11 BLOCKING and 5 NONBLOCKING. `2C4-B07` and `2C4-B10` remain BLOCKING.
 

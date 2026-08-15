@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "stage": "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
+  "status": "TEMPLATE_NOT_EXECUTED",
+  "planStatus": "OWNER_ACCEPTED_PENDING_MERGE",
+  "batchId": null,
+  "authorizedWindowReference": null,
+  "backupEvidenceIdentifier": null,
+  "operatorRole": null,
+  "startedAt": null,
+  "completedAt": null,
+  "entries": [
+    {
+      "batchId": null,
+      "actionId": null,
+      "operationId": null,
+      "tenant": null,
+      "operation": null,
+      "objectType": null,
+      "fieldCoordinate": null,
+      "beforeValue": null,
+      "expectedValue": null,
+      "resultValue": null,
+      "createdMarker": null,
+      "createdDatabaseId": null,
+      "timestamp": null,
+      "operatorRole": null,
+      "validationStatus": "NOT_RUN",
+      "rollbackStatus": "NOT_APPLICABLE"
+    }
+  ],
+  "taxonomyCreationRule": "Immediately record CREATED plus the new tenant-local databaseId. A created databaseId is never reusable across tenants and does not authorize deletion.",
+  "prohibitedData": [
+    "credentials",
+    "passwords",
+    "authorization headers",
+    "cookies",
+    "access tokens",
+    "private endpoint URLs",
+    "private host paths",
+    "raw protected payloads"
+  ],
+  "authorization": {
+    "step2c5bAccepted": true,
+    "templateAccepted": true,
+    "batchAMutationAuthorized": false,
+    "taxonomyDeletionAuthorized": false
+  }
+}

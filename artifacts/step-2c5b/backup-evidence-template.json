@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "stage": "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
+  "status": "TEMPLATE_NOT_COMPLETED",
+  "planStatus": "OWNER_ACCEPTED_PENDING_MERGE",
+  "purpose": "Human-admin evidence package required before any future Batch A mutation authorization.",
+  "sensitivityRule": "Record identifiers and validation facts only. Never store credentials, passwords, private storage URLs, SSH keys, database passwords, access tokens, cookies, or protected host paths.",
+  "networkBackup": {
+    "backupIdentifier": null,
+    "systemOrHostCategory": null,
+    "createdTimestamp": null,
+    "scope": "WORDPRESS_MULTISITE_NETWORK_DATABASE_AND_REQUIRED_CONFIGURATION",
+    "retentionWindow": null,
+    "responsibleAdministratorRole": null,
+    "restoreEligible": null,
+    "validationStatus": "UNKNOWN",
+    "optionalChecksumOrReferenceIdentifier": null
+  },
+  "canonicalSequencePosition": "Obtain and validate this recovery point before the same-window Batch A read-only preflight; keep it within the owner-approved maximum age through the mutation window.",
+  "restoreValidation": {
+    "evidenceIdentifier": null,
+    "validatedTimestamp": null,
+    "responsibleAdministratorRole": null,
+    "methodCategory": null,
+    "recoveryPointObjectiveConfirmed": null,
+    "outcome": "UNKNOWN",
+    "destructiveRehearsalPerformedByStep2c5b": false
+  },
+  "supplementalTenantEvidence": [
+    { "tenant": "group", "requiredForBatchA": true, "scope": "SANITIZED_BRAND_OPTION_BEFORE_STATE", "evidenceIdentifier": null, "status": "NOT_RUN" },
+    { "tenant": "healthcare", "requiredForBatchA": true, "scope": "SANITIZED_BRAND_OPTION_AND_TAXONOMY_BEFORE_STATE", "evidenceIdentifier": null, "status": "NOT_RUN" },
+    { "tenant": "consulting", "requiredForBatchA": true, "scope": "SANITIZED_TAXONOMY_BEFORE_STATE", "evidenceIdentifier": null, "status": "NOT_RUN" },
+    { "tenant": "lifestyle", "requiredForBatchA": true, "scope": "SANITIZED_TAXONOMY_BEFORE_STATE", "evidenceIdentifier": null, "status": "NOT_RUN" },
+    { "tenant": "realestate", "requiredForBatchA": true, "scope": "SANITIZED_TAXONOMY_BEFORE_STATE", "evidenceIdentifier": null, "status": "NOT_RUN" }
+  ],
+  "attestation": {
+    "evidenceComplete": false,
+    "privateInfrastructureLocationPersisted": false,
+    "credentialPersisted": false,
+    "mutationWindowIdentifier": null,
+    "sameWindowEvidenceRequired": true
+  },
+  "authorization": {
+    "step2c5bAccepted": true,
+    "backupCreationAuthorized": false,
+    "exportExecutionAuthorized": false,
+    "restoreExecutionAuthorized": false,
+    "cmsMutationAuthorization": "NOT_GRANTED"
+  }
+}

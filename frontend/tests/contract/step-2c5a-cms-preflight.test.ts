@@ -120,21 +120,21 @@ const rollback = JSON.parse(
 const state = JSON.parse(repositoryFile("project-state.json")) as ProjectState;
 
 describe("Step 2C.5A CMS preflight and remediation plan", () => {
-  it("records the accepted Step 2C.4 baseline and keeps every protected gate closed", () => {
+  it("records accepted Step 2C.5A continuity and keeps every protected gate closed", () => {
     expect(state).toMatchObject({
-      currentStage: "2C.5A",
-      currentSubstage: "2C.5A-CMS-PREFLIGHT",
-      executionBranch: "chore/2c5a-cms-preflight-remediation-plan",
-      executionBaseline: "710eec3cf90e1a7d707860f9ee73d0abf283019c",
+      currentStage: "2C.5B",
+      currentSubstage: "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
+      executionBranch: "chore/2c5b-cms-mutation-readiness-gate",
+      executionBaseline: "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
       productionAuthorized: false,
       latestAcceptedIncrement: {
-        stage: "Step 2C.4",
+        stage: "Step 2C.5A",
         status: "ACCEPTED_MERGED",
-        pullRequest: 14,
-        implementationHead: "a4d8945bf5b83e304b1b0fb434eb7441ea243849",
-        mergeCommit: "710eec3cf90e1a7d707860f9ee73d0abf283019c",
-        frontendCiRun: 29,
-        fullRegression: "24 files / 204 tests PASS",
+        pullRequest: 15,
+        implementationHead: "bb6cca02bd97524182e2d53628c5ea9567228ee4",
+        mergeCommit: "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
+        frontendCiRun: 32,
+        fullRegression: "25 files / 218 tests PASS",
       },
     });
     expect(state.knownConflicts).toContainEqual(

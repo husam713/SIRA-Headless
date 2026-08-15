@@ -21,16 +21,22 @@ A later verified artifact may temporarily supersede repository source for a spec
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Current governed frontend baseline/head: `710eec3cf90e1a7d707860f9ee73d0abf283019c`
-- Latest accepted increment: Step 2C.4 Production Design & Data Contract Audit
-- Audit PR / correction head / merge: `#14` / `a4d8945bf5b83e304b1b0fb434eb7441ea243849` / `710eec3cf90e1a7d707860f9ee73d0abf283019c`
+- Current governed frontend baseline/head: `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
+- Latest accepted increment: Step 2C.5A CMS Preflight & Remediation Plan
+- Audit PR / correction head / merge: `#15` / `bb6cca02bd97524182e2d53628c5ea9567228ee4` / `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
 - Approved tag: `step-2c3b-approved`
 - Checked-in canonical live schema: `frontend/schema/wpgraphql.graphql`
 - Group audit schema: `frontend/schema/wpgraphql.group.graphql`
 - Metadata: `frontend/schema/wpgraphql.meta.json`
 - Compatibility evidence: `frontend/schema/wpgraphql.compatibility.json`
 
-The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. Step 2C.4 Frontend CI run #29 passed on correction/head `a4d8945bf5b83e304b1b0fb434eb7441ea243849`, and the full 24-file / 204-test regression passed before owner acceptance and merge. The accepted audit defines the reusable page architecture, independent branch tenant boundaries, eleven blocking and five nonblocking design/data gaps, and a non-destructive fifteen-action CMS correction manifest. Step 2C.5A now performs the required fresh read-only five-tenant preflight and remediation planning; it does not authorize CMS mutation, backend work, Step 3, production UI, deployment, or merge.
+The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. Step 2C.5A Frontend CI run #32 passed on correction/head `bb6cca02bd97524182e2d53628c5ea9567228ee4`, and the full 25-file / 218-test regression passed before owner acceptance and merge. The accepted preflight retains twelve blocking, three deferred, zero destructive, and zero authorized CMS actions and defines non-executed remediation and rollback plans.
+
+## Current Step 2C.5B evidence authority
+
+Step 2C.5B uses fresh read-only public GraphQL evidence derived through the trusted SiteKey registry, accepted Step 2C.5A artifacts, and repository evidence for planning only. The fresh 2026-08-15 preflight inspected all five tenants and found the bounded Batch A coordinates `VALIDATED_UNCHANGED`: Group and Healthcare identities retain their accepted current values; the four exact branch-local Business Unit terms remain absent without collision or truncation; Group terms remain non-targets and match the accepted baseline.
+
+Candidate WordPress Admin coordinates recorded in the stale backend tree are `STRONGLY_INFERRED`, not confirmed live administrative coordinates, because SOT-001 is OPEN. RB-001 backup evidence, RB-009 restore evidence, and exact protected live admin coordinates remain UNKNOWN. The Step 2C.5B readiness plan is owner accepted and pending merge, while the operational package status remains `REQUIRES_HUMAN_ADMIN_ACTION` and mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE`. `step2c5bAccepted=true` does not authorize Batch A: `batchAMutationAuthorized=false`, CMS mutation authorization is `NOT_GRANTED`, and no CMS mutation, backup/export/restore execution, deletion, backend change, production UI, Step 3, Step 2C.5C, or deployment is authorized.
 
 ## Canonical public production topology
 

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "stage": "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
+  "status": "BLOCKED_BY_BACKUP_EVIDENCE",
+  "planStatus": "OWNER_ACCEPTED_PENDING_MERGE",
+  "source": "artifacts/step-2c5a/rollback-preconditions.json",
+  "batch": "BATCH-A",
+  "requirements": [
+    {
+      "id": "RB-001",
+      "name": "Network-level Multisite database backup",
+      "batchAStatus": "UNKNOWN",
+      "owner": "HUMAN_ADMIN_ACTION",
+      "required": true,
+      "controlPlaneCategory": "APPROVED_WORDPRESS_HOSTING_OR_INFRASTRUCTURE_BACKUP_CONTROL_PLANE",
+      "timing": "Obtain and validate the approved network-level recovery point before the same-window read-only preflight; it must remain within the owner-approved maximum age when the mutation window begins.",
+      "minimumEvidence": ["backup identifier", "system/host category", "created timestamp", "network scope", "retention window", "responsible administrator role", "restore eligibility", "validation status"],
+      "retentionRequirement": "Retain through Batch A validation and the owner-approved rollback period.",
+      "step2c5bExecution": "NOT_RUN",
+      "blocking": true
+    },
+    {
+      "id": "RB-002",
+      "name": "Tenant-level supplemental evidence/export",
+      "batchAStatus": "REQUIRED_AS_SANITIZED_BEFORE_STATE; EXPORT_MECHANISM_UNDECIDED",
+      "owner": "HUMAN_ADMIN_ACTION",
+      "required": true,
+      "tenants": ["group", "consulting", "healthcare", "lifestyle", "realestate"],
+      "decision": "Capture tenant-specific option/taxonomy evidence. A WXR export may be supplemental if the administrator confirms it is useful, but it does not fully protect option values or replace RB-001.",
+      "step2c5bExecution": "NOT_RUN",
+      "blocking": true
+    },
+    {
+      "id": "RB-003",
+      "name": "Per-record before state",
+      "batchAStatus": "NOT_APPLICABLE_TO_BATCH_A_RECORD_MUTATION",
+      "owner": "CMS_ADMIN_ACTION",
+      "required": false,
+      "decision": "Batch A changes no pages, editorial records, projects, or taxonomy assignments. Before execution, reconfirm zero assignments for any newly targeted exact branch term; do not fabricate record IDs.",
+      "step2c5bExecution": "NOT_APPLICABLE"
+    },
+    {
+      "id": "RB-004",
+      "name": "Option/settings before state",
+      "batchAStatus": "READ_ONLY_PUBLIC_VALUES_CAPTURED; PROTECTED_ADMIN_COORDINATES_UNKNOWN",
+      "owner": "CMS_ADMIN_ACTION",
+      "required": true,
+      "tenants": ["group", "healthcare"],
+      "minimumEvidence": ["tenant", "confirmed live option/field coordinate", "sanitized current value", "approved future value", "capture timestamp", "rollback coordinate", "backup identifier"],
+      "publicBeforeStateArtifact": "artifacts/step-2c5b/batch-a-readiness.json",
+      "blocking": true
+    },
+    {
+      "id": "RB-005",
+      "name": "Menu before state",
+      "batchAStatus": "NOT_APPLICABLE_TO_BATCH_A",
+      "owner": "CMS_ADMIN_ACTION",
+      "required": false,
+      "globalRequirementRetained": true,
+      "step2c5bExecution": "NOT_APPLICABLE"
+    },
+    {
+      "id": "RB-006",
+      "name": "Taxonomy before state",
+      "batchAStatus": "PUBLIC_ABSENCE_AND_COLLISION_EVIDENCE_CAPTURED; SAME_WINDOW_RECHECK_REQUIRED",
+      "owner": "CMS_ADMIN_ACTION",
+      "required": true,
+      "tenants": ["consulting", "healthcare", "lifestyle", "realestate"],
+      "minimumEvidence": ["tenant", "taxonomy identity", "expected name", "expected slug", "exact absence", "equivalent collision count", "current assigned object count where applicable", "connection truncation", "future created databaseId placeholder"],
+      "source": "artifacts/step-2c5b/batch-a-readiness.json",
+      "deletionRule": "No deletion is authorized. If reversal would require taxonomy deletion, stop; capture the exact created databaseId; prove same-batch provenance and zero unexpected assignments; obtain separate explicit rollback/deletion authorization. Never delete an existing term.",
+      "blocking": false
+    },
+    {
+      "id": "RB-007",
+      "name": "Media before state",
+      "batchAStatus": "NOT_APPLICABLE_TO_BATCH_A",
+      "owner": "CMS_ADMIN_ACTION",
+      "required": false,
+      "globalRequirementRetained": true,
+      "step2c5bExecution": "NOT_APPLICABLE"
+    },
+    {
+      "id": "RB-008",
+      "name": "Execution ledger",
+      "batchAStatus": "TEMPLATE_DEFINED_NOT_EXECUTED",
+      "owner": "CMS_ADMIN_ACTION",
+      "required": true,
+      "template": "artifacts/step-2c5b/execution-ledger-template.json",
+      "taxonomyRule": "Record CREATED and the new databaseId immediately after each authorized term creation.",
+      "blocking": false
+    },
+    {
+      "id": "RB-009",
+      "name": "Restore validation",
+      "batchAStatus": "UNKNOWN",
+      "owner": "HUMAN_ADMIN_ACTION",
+      "required": true,
+      "minimumEvidence": ["evidence identifier", "responsible administrator role", "validation timestamp", "method category", "restore eligibility", "recovery point objective confirmation", "outcome"],
+      "rule": "No restore or destructive rehearsal occurs in Step 2C.5B. UNKNOWN blocks mutation authorization.",
+      "step2c5bExecution": "NOT_RUN",
+      "blocking": true
+    }
+  ],
+  "summary": {
+    "ready": ["RB-006 public evidence", "RB-008 ledger template"],
+    "notApplicableToBatchA": ["RB-003 record mutation", "RB-005 menus", "RB-007 media"],
+    "humanEvidenceRequired": ["RB-001", "RB-002", "RB-009"],
+    "adminCoordinateConfirmationRequired": ["RB-004"],
+    "backupEvidenceStatus": "UNKNOWN",
+    "restoreEvidenceStatus": "UNKNOWN",
+    "readyForMutationAuthorization": false
+  },
+  "authorization": {
+    "step2c5bAccepted": true,
+    "backupCreationAuthorized": false,
+    "exportExecutionAuthorized": false,
+    "restoreExecutionAuthorized": false,
+    "taxonomyDeletionAuthorized": false,
+    "cmsMutationAuthorization": "NOT_GRANTED",
+    "batchAMutationAuthorized": false
+  }
+}

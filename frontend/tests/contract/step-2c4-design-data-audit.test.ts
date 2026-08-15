@@ -122,10 +122,10 @@ describe("Step 2C.4 production design and data-contract audit", () => {
     };
 
     expect(state).toMatchObject({
-      currentStage: "2C.5A",
-      currentSubstage: "2C.5A-CMS-PREFLIGHT",
-      executionBranch: "chore/2c5a-cms-preflight-remediation-plan",
-      executionBaseline: "710eec3cf90e1a7d707860f9ee73d0abf283019c",
+      currentStage: "2C.5B",
+      currentSubstage: "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
+      executionBranch: "chore/2c5b-cms-mutation-readiness-gate",
+      executionBaseline: "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
       productionAuthorized: false,
       canonicalPublicProductionTopology: {
         status: "APPROVED_OWNER_DECISION",
@@ -140,14 +140,14 @@ describe("Step 2C.4 production design and data-contract audit", () => {
         scope: "public production hostnames only",
       },
       latestAcceptedIncrement: {
-        stage: "Step 2C.4",
+        stage: "Step 2C.5A",
         status: "ACCEPTED_MERGED",
-        pullRequest: 14,
-        implementationHead: "a4d8945bf5b83e304b1b0fb434eb7441ea243849",
-        mergeCommit: "710eec3cf90e1a7d707860f9ee73d0abf283019c",
+        pullRequest: 15,
+        implementationHead: "bb6cca02bd97524182e2d53628c5ea9567228ee4",
+        mergeCommit: "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
         frontendCi: "PASS",
-        frontendCiRun: 29,
-        fullRegression: "24 files / 204 tests PASS",
+        frontendCiRun: 32,
+        fullRegression: "25 files / 218 tests PASS",
       },
     });
     expect(state.knownConflicts).toContainEqual(

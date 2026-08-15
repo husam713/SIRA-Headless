@@ -1,15 +1,25 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-14T16:15:00+03:00",
+  "updatedAt": "2026-08-15T05:12:50+03:00",
   "status": "IN_PROGRESS",
-  "currentStage": "2C.5A",
-  "currentSubstage": "2C.5A-CMS-PREFLIGHT",
-  "executionBranch": "chore/2c5a-cms-preflight-remediation-plan",
-  "executionBaseline": "710eec3cf90e1a7d707860f9ee73d0abf283019c",
-  "executionHead": "710eec3cf90e1a7d707860f9ee73d0abf283019c",
-  "latestApprovedMilestone": "Step 2C.4",
+  "currentStage": "2C.5B",
+  "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
+  "currentStageStatus": "OWNER_ACCEPTED_PENDING_MERGE",
+  "executionBranch": "chore/2c5b-cms-mutation-readiness-gate",
+  "executionBaseline": "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
+  "executionHead": "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
+  "latestApprovedMilestone": "Step 2C.5A",
   "latestApprovedTag": "step-2c3b-approved",
   "productionAuthorized": false,
+  "authorization": {
+    "step2c5bAccepted": true,
+    "cmsMutationAuthorization": "NOT_GRANTED",
+    "batchAMutationAuthorized": false,
+    "taxonomyDeletionAuthorized": false,
+    "backupCreationAuthorized": false,
+    "exportExecutionAuthorized": false,
+    "restoreExecutionAuthorized": false
+  },
   "canonicalPublicProductionTopology": {
     "status": "APPROVED_OWNER_DECISION",
     "apex": "siratrgroup.com",
@@ -32,14 +42,14 @@
   },
   "repositoryEvidencePolicy": "evidence-first",
   "latestAcceptedIncrement": {
-    "stage": "Step 2C.4",
+    "stage": "Step 2C.5A",
     "status": "ACCEPTED_MERGED",
-    "pullRequest": 14,
-    "implementationHead": "a4d8945bf5b83e304b1b0fb434eb7441ea243849",
-    "mergeCommit": "710eec3cf90e1a7d707860f9ee73d0abf283019c",
+    "pullRequest": 15,
+    "implementationHead": "bb6cca02bd97524182e2d53628c5ea9567228ee4",
+    "mergeCommit": "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
     "frontendCi": "PASS",
-    "frontendCiRun": 29,
-    "fullRegression": "24 files / 204 tests PASS"
+    "frontendCiRun": 32,
+    "fullRegression": "25 files / 218 tests PASS"
   },
   "governance": {
     "g0Bootstrap": "COMPLETE",
@@ -58,9 +68,9 @@
     ]
   },
   "nextMajorStages": [
-    "2C.5A CMS preflight and remediation plan",
-    "Step 2C.5A owner acceptance",
-    "2C.5B separately authorized CMS remediation",
+    "2C.5B CMS mutation readiness and backup gate",
+    "Step 2C.5B owner acceptance of the readiness plan",
+    "2C.5C separately authorized Batch A execution only after a new explicit mutation authorization",
     "3 preview, SEO and discovery",
     "4 production component implementation"
   ],

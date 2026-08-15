@@ -61,3 +61,58 @@
 
 Step 1 is accepted only when every required check above passes on staging and
 the results are recorded in the release decision log.
+
+## Step 2C.2B presentation contract
+
+- [ ] `Page.siraHomepage` exists.
+- [ ] `SiraHomepage` exposes `variant`, `groupHomepage`, and `branchHomepage`.
+- [ ] Nested ACF-generated type names are recorded from live introspection
+      before frontend code generation.
+- [ ] Group front page uses the Group variant.
+- [ ] Four branch front pages use the Branch variant.
+- [ ] Business Unit taxonomy connects to Company.
+- [ ] `SiraCompany.companyDetails` exists.
+- [ ] `SiraInvestment.investmentDetails` exists.
+- [ ] `SiraTestimonial.testimonialDetails` exists.
+- [ ] Testimonial consent timestamp is absent from GraphQL.
+- [ ] `SiraPartner.partnerDetails` exists.
+- [ ] Homepage relationships preserve editor order.
+- [ ] All five Multisite schemas remain compatible.
+- [ ] Step 2C.2C visibility safeguards pass before public deployment.
+
+
+
+## Step 2C.2C presentation privacy
+
+- [ ] Approved published Investment is visible anonymously.
+- [ ] Unapproved published Investment is null through its singular root field.
+- [ ] Unapproved Investment is null through `contentNode`.
+- [ ] Unapproved Investment is null through Relay `node`.
+- [ ] Unapproved Investment is absent from collections and search.
+- [ ] Unapproved Investment is absent from homepage relationships.
+- [ ] Consent-approved published Testimonial is visible anonymously.
+- [ ] Unapproved Testimonial is absent through every equivalent path.
+- [ ] Subscriber cannot access either unapproved object.
+- [ ] Author who can edit the fixture retains access.
+- [ ] Administrator retains access.
+- [ ] Approval does not expose drafts or private posts.
+- [ ] Runtime fixtures are removed after validation.
+
+
+## Step 2C.2F typed banners
+
+- [ ] Raw typed banner ACF options are absent from GraphQL.
+- [ ] Legacy banner strings remain queryable.
+- [ ] Active typed announcement is returned.
+- [ ] Active typed emergency is returned.
+- [ ] Future banner returns null.
+- [ ] Ended banner returns null.
+- [ ] Invalid schedule returns null.
+- [ ] Start is inclusive and end is exclusive.
+- [ ] WordPress timezone is normalized to UTC.
+- [ ] Announcement default severity is INFO.
+- [ ] Emergency default severity is URGENT.
+- [ ] Unsafe links are omitted.
+- [ ] Dismissible is false unless explicitly enabled.
+- [ ] Revision key changes when public content changes.
+- [ ] Investment/Testimonial privacy regression tests still pass.

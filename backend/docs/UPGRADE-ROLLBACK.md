@@ -105,3 +105,36 @@ Code rollback restores the previous plugin behavior. It does not remove:
 
 Keep the previous Bricks frontend deployable until the headless release has
 passed acceptance and the rollback window has expired.
+
+## Step 2C.2B intermediate upgrade
+
+Step 2C.2B adds PHP-registered ACF fields and one taxonomy relationship. It
+does not migrate or delete existing values.
+
+Deploy this intermediate package only to a protected development or staging
+environment. Public production deployment is blocked until Step 2C.2C
+visibility safeguards are included.
+
+After deployment:
+
+```bash
+bash wp-content/plugins/sira-core/tools/validation/static-audit.sh
+
+wp eval-file \
+  wp-content/plugins/sira-core/tools/validation/validate-runtime.php
+```
+
+Flush rewrite rules is not required because no rewrite slug changes. Rebuild
+the WPGraphQL schema and rerun the five-site inventory after the complete
+2C.2B/2C.2C backend package is installed.
+
+### Step 2C.2B rollback
+
+Code rollback removes the field registrations and the Company ↔ Business Unit
+registration. Stored ACF post meta and assigned terms remain in the database
+and are not deleted.
+
+Do not delete field values or term relationships during rollback. Restoring
+the Step 1 plugin hides the new editor fields while preserving data for a
+future redeployment.
+

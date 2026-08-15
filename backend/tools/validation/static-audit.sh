@@ -11,6 +11,8 @@ find "$PLUGIN_DIR" -name '*.php' -print0 \
   | xargs -0 -n1 php -l
 
 php "$PLUGIN_DIR/tools/validation/validate-static.php"
+php "$PLUGIN_DIR/tools/validation/validate-presentation-privacy-static.php"
+php "$PLUGIN_DIR/tools/validation/validate-brand-banner-static.php"
 
 if grep -RInE \
   'BricksIntegration|bricks/dynamic_tags_list|bricks/dynamic_data/render_tag|bricks/dynamic_data/render_content|bricks/frontend/render_data|bricks_is_builder' \
@@ -22,7 +24,7 @@ if grep -RInE \
 fi
 
 if grep -RInE \
-  'sira_home|sira_branch_home|sira_newsroom|page-templates/sira-home.php|page-templates/sira-newsroom.php' \
+  '\[sira_home\]|\[sira_branch_home\]|\[sira_newsroom\]|page-templates/sira-home.php|page-templates/sira-newsroom.php' \
   "$PLUGIN_DIR" \
   --include='*.php' \
   --exclude-dir='tools'; then

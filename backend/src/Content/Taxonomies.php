@@ -51,6 +51,7 @@ final class Taxonomies {
 				'plural'               => 'Business Units',
 				'slug'                 => 'business-unit',
 				'types'                => array(
+					'sira_company',
 					'sira_project',
 					'sira_news',
 					'sira_insight',

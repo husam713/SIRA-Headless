@@ -1,0 +1,128 @@
+[
+  {
+    "path": "MANIFEST.json",
+    "change": "modified",
+    "sha256": "7497f9373966192b00385bef31b5df617f3f10398de2ff114a0e46afe17821cb",
+    "bytes": 8866
+  },
+  {
+    "path": "README.md",
+    "change": "modified",
+    "sha256": "e560b2dbb04a1bd02c15e6099a8025a6539d1dde3ebe8a21e3c162ee2bca607a",
+    "bytes": 8644
+  },
+  {
+    "path": "STEP-2C2F-CHANGED-FILES.json",
+    "change": "added",
+    "sha256": "f7aa9ebaf3c190508397653da3b356490c1deb59d927bc458b48b06d9ac30690",
+    "bytes": 3247
+  },
+  {
+    "path": "docs/BACKEND-QA-CHECKLIST.md",
+    "change": "modified",
+    "sha256": "aa5ee0b04cf005b48311627ba6d57294dd7ab539a83f440f42c30042ea622745",
+    "bytes": 4752
+  },
+  {
+    "path": "docs/GRAPHQL-SCHEMA.md",
+    "change": "modified",
+    "sha256": "0857994e7f46b2a9e7eb5f5fadb2b643b676e8800563a09dc8a9a87922fe4450",
+    "bytes": 9221
+  },
+  {
+    "path": "docs/MIGRATION-DECISION-LOG.md",
+    "change": "modified",
+    "sha256": "975e3740fcf95ce1a34461ecc35248bbd57dbc2893d22ef57f62a36a86d4350e",
+    "bytes": 5101
+  },
+  {
+    "path": "docs/PUBLIC-PRIVATE-VISIBILITY.md",
+    "change": "modified",
+    "sha256": "cd9a2050756c0fb8a522577ec88fcb10ae93daba2a106ce946477a02ffd367a0",
+    "bytes": 4071
+  },
+  {
+    "path": "docs/STEP-2C2F-BANNER-CONTRACT.md",
+    "change": "added",
+    "sha256": "c55d0e949083930cc0373a7a278cdb136a6716574936d53d5b8cdfff824d68df",
+    "bytes": 2768
+  },
+  {
+    "path": "docs/STEP-2C2F-LOCAL-VALIDATION.json",
+    "change": "added",
+    "sha256": "cd27205319f4a6b6f83a596ce62baf1528dabb6402e598d29f36998be1062598",
+    "bytes": 13123
+  },
+  {
+    "path": "docs/STEP-2C2F-VALIDATION.md",
+    "change": "added",
+    "sha256": "f962d5018d0b77e5952480edd4521477224332ba35333c5f9389ddd47d3e138d",
+    "bytes": 1617
+  },
+  {
+    "path": "sira-core.php",
+    "change": "modified",
+    "sha256": "c51026d34926640b281b20af7931e7ba122dfd70d9542789619cb18d7e122cfb",
+    "bytes": 1547
+  },
+  {
+    "path": "src/Admin/SiteSettings.php",
+    "change": "modified",
+    "sha256": "8c8143c8dfbe7e1434f5e5c999fa65e79c1e5069b17bf7a1a047ab76acbba65f",
+    "bytes": 4064
+  },
+  {
+    "path": "src/Brand/BannerContract.php",
+    "change": "added",
+    "sha256": "924700b5bc131f3fd1eb476620c1b9abe70a622f5d01b104d5e217ef3705943b",
+    "bytes": 7953
+  },
+  {
+    "path": "src/Brand/BrandManager.php",
+    "change": "modified",
+    "sha256": "e7707953e557fc5dc791f38664f67f605471bef9cd0561597f6f34732967554f",
+    "bytes": 15244
+  },
+  {
+    "path": "src/GraphQL/BrandSchema.php",
+    "change": "modified",
+    "sha256": "b20f524c0af0ca9b1c095e1a9fd2590f6acb4b829565e2a7bac99c2f335d8ee2",
+    "bytes": 14709
+  },
+  {
+    "path": "src/Integrations/AcfIntegration.php",
+    "change": "modified",
+    "sha256": "16c7e045f6ac9d7b90570862d00227fd4aeb8fe4e694831589eb605b0e4adff4",
+    "bytes": 15575
+  },
+  {
+    "path": "src/Integrations/BrandBannerFields.php",
+    "change": "added",
+    "sha256": "ef68436694f08735f40eff8c7069f03c5bc51959e2801f5c3c66c99c435d9e98",
+    "bytes": 3163
+  },
+  {
+    "path": "tools/validation/graphql-validation.graphql",
+    "change": "modified",
+    "sha256": "e0de8d29659740d9925093870cc8a0eb7bfc10cdf1937a43c20a2ccf12824a95",
+    "bytes": 16385
+  },
+  {
+    "path": "tools/validation/static-audit.sh",
+    "change": "modified",
+    "sha256": "16532af6aacbd34d44d963de1fb4f519c4c21609377f6c9853ba9939f046dea9",
+    "bytes": 1109
+  },
+  {
+    "path": "tools/validation/validate-brand-banner-static.php",
+    "change": "added",
+    "sha256": "d79577d9e94e15aa4fe190d5b32c11209e6ade5b491cd8de4de6c0643e3dc6d1",
+    "bytes": 6616
+  },
+  {
+    "path": "tools/validation/validate-static.php",
+    "change": "modified",
+    "sha256": "cb770c694449fe239a704fd1370d41a1bed415ae2f8aafee6cdf293ef13b3760",
+    "bytes": 13751
+  }
+]

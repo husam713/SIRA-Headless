@@ -240,6 +240,11 @@ if ( function_exists( 'graphql' ) ) {
 			'SiraProjectDetails',
 			'SiraPersonDetails',
 			'SiraDocumentDetails',
+			'SiraHomepage',
+			'SiraCompanyDetails',
+			'SiraInvestmentDetails',
+			'SiraTestimonialDetails',
+			'SiraPartnerDetails',
 		)
 	);
 
@@ -309,6 +314,81 @@ if ( function_exists( 'graphql' ) ) {
 			"GraphQL type {$type_name} exists."
 		);
 	}
+
+	$presentation_type_result = graphql(
+		array(
+			'query' => 'query {
+				homepage: __type(name: "SiraHomepage") { fields { name } }
+				company: __type(name: "SiraCompanyDetails") { fields { name } }
+				investment: __type(name: "SiraInvestmentDetails") { fields { name } }
+				testimonial: __type(name: "SiraTestimonialDetails") { fields { name } }
+				partner: __type(name: "SiraPartnerDetails") { fields { name } }
+			}',
+		)
+	);
+
+	$record(
+		empty( $presentation_type_result['errors'] ),
+		'Presentation contract type introspection completes without GraphQL errors.'
+	);
+
+	$expected_presentation_fields = array(
+		'homepage' => array( 'variant', 'groupHomepage', 'branchHomepage' ),
+		'company' => array(
+			'operatingStatus',
+			'externalWebsiteUrl',
+			'shortDescriptor',
+			'cardImageOverride',
+		),
+		'investment' => array(
+			'publicDisplay',
+			'ticketSizeLabel',
+			'relatedCompany',
+			'relatedProject',
+			'onePagerDocument',
+		),
+		'testimonial' => array(
+			'role',
+			'organization',
+			'consentApproved',
+			'sourceUrl',
+		),
+		'partner' => array(
+			'websiteUrl',
+			'relationshipLabel',
+			'logoAltOverride',
+		),
+	);
+
+	foreach ( $expected_presentation_fields as $alias => $expected_fields ) {
+		$actual_fields = array_column(
+			(array) (
+				$presentation_type_result['data'][ $alias ]['fields']
+				?? array()
+			),
+			'name'
+		);
+
+		foreach ( $expected_fields as $expected_field ) {
+			$record(
+				in_array( $expected_field, $actual_fields, true ),
+				"Presentation GraphQL type {$alias} contains {$expected_field}."
+			);
+		}
+	}
+
+	$testimonial_fields = array_column(
+		(array) (
+			$presentation_type_result['data']['testimonial']['fields']
+			?? array()
+		),
+		'name'
+	);
+
+	$record(
+		! in_array( 'consentRecordedAt', $testimonial_fields, true ),
+		'Testimonial consent timestamp is not exposed through GraphQL.'
+	);
 
 	$brand_type = graphql(
 		array(
@@ -394,10 +474,15 @@ $record(
 if ( $acf_available ) {
 	foreach (
 		array(
-			'group_sira_brand'    => false,
-			'group_sira_project'  => true,
-			'group_sira_people'   => true,
-			'group_sira_document' => true,
+			'group_sira_brand'              => false,
+			'group_sira_project'            => true,
+			'group_sira_people'             => true,
+			'group_sira_document'           => true,
+			'group_sira_homepage'           => true,
+			'group_sira_company_details'    => true,
+			'group_sira_investment_details' => true,
+			'group_sira_testimonial_details' => true,
+			'group_sira_partner_details'    => true,
 		) as $group_key => $expected_graphql
 	) {
 		$group = acf_get_field_group( $group_key );

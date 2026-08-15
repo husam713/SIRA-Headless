@@ -1,0 +1,18 @@
+[
+  "README.md",
+  "sira-core.php",
+  "src/Content/Taxonomies.php",
+  "src/Integrations/AcfIntegration.php",
+  "src/Integrations/PresentationFields.php",
+  "docs/GRAPHQL-SCHEMA.md",
+  "docs/PUBLIC-PRIVATE-VISIBILITY.md",
+  "docs/MIGRATION-DECISION-LOG.md",
+  "docs/UPGRADE-ROLLBACK.md",
+  "docs/BACKEND-QA-CHECKLIST.md",
+  "docs/STEP-2C2B-PRESENTATION-CONTRACT.md",
+  "docs/STEP-2C2B-VALIDATION.md",
+  "tools/validation/validate-static.php",
+  "tools/validation/validate-runtime.php",
+  "tools/validation/graphql-validation.graphql",
+  "tools/validation/static-audit.sh"
+]

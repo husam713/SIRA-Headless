@@ -43,7 +43,7 @@ Next.js application adopts them without a planned breaking-schema migration.
 |---|---|---|---|---:|---|
 | `sira_industry` | `SiraIndustry` | `SiraIndustries` | `industry` | Yes | `sira_company`, `sira_project`, `sira_investment`, `sira_case_study` |
 | `sira_country` | `SiraCountry` | `SiraCountries` | `country` | Yes | `sira_company`, `sira_project`, `sira_investment`, `sira_office`, `sira_event` |
-| `sira_business_unit` | `SiraBusinessUnit` | `SiraBusinessUnits` | `business-unit` | Yes | `sira_project`, `sira_news`, `sira_insight`, `sira_article`, `sira_service`, `sira_job`, `sira_press_release` |
+| `sira_business_unit` | `SiraBusinessUnit` | `SiraBusinessUnits` | `business-unit` | Yes | `sira_company`, `sira_project`, `sira_news`, `sira_insight`, `sira_article`, `sira_service`, `sira_job`, `sira_press_release` |
 | `sira_investment_stage` | `SiraInvestmentStage` | `SiraInvestmentStages` | `investment-stage` | Yes | `sira_investment`, `sira_portfolio` |
 | `sira_sector` | `SiraSector` | `SiraSectors` | `sector` | Yes | `sira_project`, `sira_investment`, `sira_portfolio`, `sira_insight` |
 | `sira_project_status` | `SiraProjectStatus` | `SiraProjectStatuses` | `project-status` | Yes | `sira_project` |
@@ -107,3 +107,114 @@ tools/validation/graphql-validation.graphql
 ```
 
 against every Multisite site's GraphQL endpoint.
+
+## Step 2C.2B presentation field groups
+
+The source-controlled contract reserves these explicit top-level ACF field
+group types:
+
+```graphql
+type Page {
+  siraHomepage: SiraHomepage
+}
+
+type SiraCompany {
+  companyDetails: SiraCompanyDetails
+}
+
+type SiraInvestment {
+  investmentDetails: SiraInvestmentDetails
+}
+
+type SiraTestimonial {
+  testimonialDetails: SiraTestimonialDetails
+}
+
+type SiraPartner {
+  partnerDetails: SiraPartnerDetails
+}
+```
+
+`SiraHomepage` contains:
+
+```graphql
+type SiraHomepage {
+  variant: String
+  groupHomepage: <live-generated nested ACF type>
+  branchHomepage: <live-generated nested ACF type>
+}
+```
+
+The nested WPGraphQL-for-ACF type names are intentionally not documented as
+stable until the deferred live schema inventory is run. Frontend code
+generation must use the checked-in live schema, not inferred nested names.
+
+The homepage contract is attached to the WordPress front-page `Page`, uses
+fixed Group and Branch groups, and contains typed ACF links, media,
+relationships, taxonomy connections, repeaters, and scalar copy fields.
+
+`sira_business_unit` also classifies `SiraCompany` records beginning with
+Step 2C.2B.
+
+See `docs/STEP-2C2B-PRESENTATION-CONTRACT.md`.
+
+
+
+## Step 2C.2C model-layer privacy
+
+`SiraInvestment` and `SiraTestimonial` remain schema-visible types, but each
+node is filtered at the WPGraphQL model layer.
+
+Public Investment rule:
+
+```text
+normal WordPress/WPGraphQL public visibility
+AND sira_investment_public_display = 1
+```
+
+Public Testimonial rule:
+
+```text
+normal WordPress/WPGraphQL public visibility
+AND sira_testimonial_consent_approved = 1
+```
+
+Authenticated editorial access is allowed only when the request user can
+`edit_post` for the specific object. This prevents a generic logged-in account
+from bypassing approval while preserving normal editorial previews.
+
+The enforcement does not depend on nested WPGraphQL-for-ACF type names and
+does not add or rename any GraphQL schema field.
+
+
+## Step 2C.2F typed brand banners
+
+`SiraBrand` retains the legacy fields:
+
+```graphql
+announcementBanner: String
+emergencyBanner: String
+```
+
+and adds:
+
+```graphql
+announcement: SiraBrandBanner
+emergency: SiraBrandBanner
+```
+
+The typed banner fields return only currently active banners. Scheduling is
+evaluated in WordPress and public timestamps are UTC RFC 3339 strings.
+
+Raw ACF banner options are not exposed. The public contract is resolved through
+`BrandManager` and `BannerContract`.
+
+Stable custom types:
+
+```text
+SiraBrandLink
+SiraBrandBannerSeverity
+SiraBrandBanner
+```
+
+This stage does not add or finalize any WPGraphQL-for-ACF generated nested type.

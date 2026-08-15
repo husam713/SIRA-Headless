@@ -1,0 +1,92 @@
+[
+  {
+    "path": "docs/BACKEND-QA-CHECKLIST.md",
+    "change": "modified",
+    "sha256": "fdb7555668f654a32d2bc341320024a2b488e8767ff5b7329addd72e90cfae28",
+    "bytes": 4033
+  },
+  {
+    "path": "docs/GRAPHQL-SCHEMA.md",
+    "change": "modified",
+    "sha256": "38b2db3f4c7f03d5bc559ded1524de47d6af3ffa77b37469616f01376603403b",
+    "bytes": 8557
+  },
+  {
+    "path": "docs/MIGRATION-DECISION-LOG.md",
+    "change": "modified",
+    "sha256": "2d8271098eaff8547a0d27f3104bba7b1e9a9e721828a77ace0fbeacc7f303d5",
+    "bytes": 4232
+  },
+  {
+    "path": "docs/PUBLIC-PRIVATE-VISIBILITY.md",
+    "change": "modified",
+    "sha256": "c54aca8850f63c69cd6b071e70822304bd74fd55e32af51a1e31c99216f0a257",
+    "bytes": 3574
+  },
+  {
+    "path": "docs/STEP-2C2C-VALIDATION.md",
+    "change": "added",
+    "sha256": "ecd55cedff6b3a2c155e0936c8a7f72ca119566a0aa0ccb96ee37ac3031ce484",
+    "bytes": 1733
+  },
+  {
+    "path": "docs/STEP-2C2C-VISIBILITY.md",
+    "change": "added",
+    "sha256": "fd842c6f6c782740e53a93b24b9e6d04cbe3d6c11cd4fba14b523e8692939d1a",
+    "bytes": 2661
+  },
+  {
+    "path": "sira-core.php",
+    "change": "modified",
+    "sha256": "6bca46f6f26d99147211d72cacf380a9395592a11d4c873572fb2af4459ef2ef",
+    "bytes": 1547
+  },
+  {
+    "path": "src/GraphQL/PresentationVisibility.php",
+    "change": "added",
+    "sha256": "9cf53656402e4b852f390f5010f868258aad624f00b960d51c0e26792e55ad6c",
+    "bytes": 3435
+  },
+  {
+    "path": "src/Integrations/PresentationFields.php",
+    "change": "modified",
+    "sha256": "fb4a1fb8cc59e278f70c27263b01201b46036f30314cb711e0b4e184c8cf1600",
+    "bytes": 33920
+  },
+  {
+    "path": "src/Plugin.php",
+    "change": "modified",
+    "sha256": "7b46a7581eb19db0792b4cd4e4c5566cc51113707ae0f47046c963c016a47718",
+    "bytes": 1819
+  },
+  {
+    "path": "tools/validation/graphql-validation.graphql",
+    "change": "modified",
+    "sha256": "a758b424632e29b2a9f11861da77fa2cbf8c372640e0e1f3f24ceb6073ae3d4a",
+    "bytes": 15743
+  },
+  {
+    "path": "tools/validation/static-audit.sh",
+    "change": "modified",
+    "sha256": "8884d5b5d57f9ae94f95521713c87095ab7310d30db92fdb78ec1a529c98268d",
+    "bytes": 1041
+  },
+  {
+    "path": "tools/validation/validate-presentation-privacy-static.php",
+    "change": "added",
+    "sha256": "9af463a9d1ccb37e12dd4bf6096785e9908aab676569d8f8e0c852c4cb98fb7a",
+    "bytes": 6055
+  },
+  {
+    "path": "tools/validation/validate-presentation-privacy.php",
+    "change": "added",
+    "sha256": "382545416dfc17c2156f0b3b00c9396e684fdbc22c3d72fd4d141cb5be340b35",
+    "bytes": 15153
+  },
+  {
+    "path": "tools/validation/validate-static.php",
+    "change": "modified",
+    "sha256": "40fea850b4d09d37edf30d333f1c1dee53cef877c344576f2b74ea8582db4429",
+    "bytes": 10770
+  }
+]

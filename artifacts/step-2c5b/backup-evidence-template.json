@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "stage": "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
   "status": "TEMPLATE_NOT_COMPLETED",
+  "planStatus": "OWNER_ACCEPTED_PENDING_MERGE",
   "purpose": "Human-admin evidence package required before any future Batch A mutation authorization.",
   "sensitivityRule": "Record identifiers and validation facts only. Never store credentials, passwords, private storage URLs, SSH keys, database passwords, access tokens, cookies, or protected host paths.",
   "networkBackup": {
@@ -15,6 +16,7 @@
     "validationStatus": "UNKNOWN",
     "optionalChecksumOrReferenceIdentifier": null
   },
+  "canonicalSequencePosition": "Obtain and validate this recovery point before the same-window Batch A read-only preflight; keep it within the owner-approved maximum age through the mutation window.",
   "restoreValidation": {
     "evidenceIdentifier": null,
     "validatedTimestamp": null,
@@ -39,6 +41,7 @@
     "sameWindowEvidenceRequired": true
   },
   "authorization": {
+    "step2c5bAccepted": true,
     "backupCreationAuthorized": false,
     "exportExecutionAuthorized": false,
     "restoreExecutionAuthorized": false,

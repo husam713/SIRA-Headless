@@ -6,6 +6,7 @@ Last reconciled from repository, GitHub, and fresh read-only CMS evidence: 2026-
 
 - **Current business stage:** Step 2C.5B — CMS Mutation Readiness & Backup Gate
 - **Current substage:** 2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE — Read-Only Preflight and Exact Future Batch A Planning
+- **Current stage status:** OWNER ACCEPTED / PENDING MERGE
 - **Canonical integration/default branch:** `main`
 - **Business-code baseline:** `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
 - **Current governed integration head:** `f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
@@ -133,7 +134,7 @@ Step 2C.5A is accepted and merged. Step 2C.5B prepares—but does not authorize 
 
 Fresh read-only evidence on 2026-08-15 inspected 5/5 tenants. Both identity actions and all four term scopes remain `VALIDATED_UNCHANGED`; the expected branch terms are absent with zero equivalent collisions and untruncated connections; Group terms match the accepted Step 2C.5A baseline and remain non-targets. No Batch A drift was detected.
 
-Operational mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE` and requires human administrator action. RB-001 network backup evidence and RB-009 restore validation evidence are UNKNOWN, and the exact current live administrative coordinates are not independently confirmed. The repository backend provides only `STRONGLY_INFERRED` candidate WordPress Admin coordinates because SOT-001 keeps that runtime tree non-authoritative. Step 2C.5B plan acceptance and Batch A mutation authorization are separate gates: `step2c5bAccepted=false`, `batchAMutationAuthorized=false`, and CMS mutation authorization remains `NOT_GRANTED`.
+The owner has accepted the Step 2C.5B readiness plan, which is pending merge. Operational mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE` and requires human administrator action. RB-001 network backup evidence and RB-009 restore validation evidence are UNKNOWN, and the exact current live administrative coordinates are not independently confirmed. The repository backend provides only `STRONGLY_INFERRED` candidate WordPress Admin coordinates because SOT-001 keeps that runtime tree non-authoritative. Plan acceptance and Batch A mutation authorization remain separate gates: `step2c5bAccepted=true`, `batchAMutationAuthorized=false`, and CMS mutation authorization remains `NOT_GRANTED`.
 
 The owner-approved canonical public production apex is `siratrgroup.com`; the branch public hostnames are `consulting.siratrgroup.com`, `healthcare.siratrgroup.com`, `lifestyle.siratrgroup.com`, and `realestate.siratrgroup.com`. This decision applies only to public production hostnames. WordPress backend, GraphQL, media, staging, Vercel preview, cookie-domain, CORS, and revalidation origins/policies remain UNKNOWN until repository or live configuration evidence establishes them. Public-domain selection is resolved without changing the Step 2C.4 gap counts: 11 BLOCKING and 5 NONBLOCKING. `2C4-B07` and `2C4-B10` remain BLOCKING.
 

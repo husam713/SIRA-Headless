@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "stage": "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
   "status": "BLOCKED_BY_BACKUP_EVIDENCE",
+  "planStatus": "OWNER_ACCEPTED_PENDING_MERGE",
   "source": "artifacts/step-2c5a/rollback-preconditions.json",
   "batch": "BATCH-A",
   "requirements": [
@@ -12,7 +13,7 @@
       "owner": "HUMAN_ADMIN_ACTION",
       "required": true,
       "controlPlaneCategory": "APPROVED_WORDPRESS_HOSTING_OR_INFRASTRUCTURE_BACKUP_CONTROL_PLANE",
-      "timing": "Create and validate immediately before the authorized mutation window, after the same-window preflight and within the owner-approved maximum age.",
+      "timing": "Obtain and validate the approved network-level recovery point before the same-window read-only preflight; it must remain within the owner-approved maximum age when the mutation window begins.",
       "minimumEvidence": ["backup identifier", "system/host category", "created timestamp", "network scope", "retention window", "responsible administrator role", "restore eligibility", "validation status"],
       "retentionRequirement": "Retain through Batch A validation and the owner-approved rollback period.",
       "step2c5bExecution": "NOT_RUN",
@@ -111,6 +112,7 @@
     "readyForMutationAuthorization": false
   },
   "authorization": {
+    "step2c5bAccepted": true,
     "backupCreationAuthorized": false,
     "exportExecutionAuthorized": false,
     "restoreExecutionAuthorized": false,

@@ -2,9 +2,9 @@
 
 ## Status
 
-**REQUIRES HUMAN ADMIN ACTION**
+**OWNER ACCEPTED / PENDING MERGE**
 
-The Step 2C.5B readiness plan is ready for independent review. Future Batch A mutation authorization is not ready: network backup and restore evidence are UNKNOWN, and exact live administrative mutation coordinates are not confirmed.
+The owner has accepted the Step 2C.5B readiness plan. Future Batch A mutation authorization is not granted or ready: mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE`, network backup and restore evidence are UNKNOWN, and exact live administrative mutation coordinates are not confirmed.
 
 ## Scope and authority
 
@@ -13,11 +13,12 @@ The Step 2C.5B readiness plan is ready for independent review. Future Batch A mu
 - Mode: read-only five-tenant CMS preflight, rollback/backup readiness verification, and exact future Batch A planning.
 - CMS mutation authorization: `NOT_GRANTED`.
 - Batch A mutation authorization: `false`.
+- Step 2C.5B plan accepted: `true`.
 - Taxonomy deletion authorization: `false`.
 - Production authorization: `false`.
 - SOT-001: `OPEN`.
 
-Owner acceptance of this readiness plan, if later granted, changes only `step2c5bAccepted`. It cannot set `batchAMutationAuthorized`; a new explicit authorization for a named manifest and same-window evidence package is required.
+Owner acceptance changes only `step2c5bAccepted=true`. It does not set `batchAMutationAuthorized`; a new explicit authorization for a named manifest and same-window evidence package is required.
 
 ## Future Batch A boundary
 
@@ -43,7 +44,7 @@ The established read-only audit ran on `2026-08-15T01:34:02.496Z` through the tr
 | Real Estate term | `real-estate` absent; 0 equivalent collisions; untruncated | CONFIRMED / `VALIDATED_UNCHANGED` | None |
 | Group terms | Four accepted baseline terms unchanged and untruncated | CONFIRMED / non-target | None |
 
-An observed approved target state without a recorded authorized mutation window is not treated as success. It is recorded as `CHANGED_AS_EXPECTED`, flagged as unexpected, and makes the gate `BLOCKED_BY_DRIFT` pending investigation. Missing required evidence produces `EVIDENCE_UNKNOWN` / `EVIDENCE_BLOCKED`, never readiness.
+An observed approved target state without a recorded authorized mutation window is not treated as success. It is recorded as `CHANGED_AS_EXPECTED`, flagged as unexpected, and makes the gate `BLOCKED_BY_DRIFT` pending investigation. For a tenant-local term, `CHANGED_AS_EXPECTED` additionally requires exactly one exact-name/exact-slug term with `totalAssignedObjectCount=0`; any assignment is `DRIFT_DETECTED` and blocks Batch A. Missing required evidence produces `EVIDENCE_UNKNOWN` / `EVIDENCE_BLOCKED`, never readiness.
 
 ## Identity before and future expected state
 
@@ -108,14 +109,16 @@ A WXR export cannot replace the network-level recovery point because option valu
 
 ## Future execution sequence
 
-The non-executable manifest defines A1 through A15:
+The non-executable manifest defines A1 through A15 under one canonical gate order:
 
-1. same-window pre-mutation verification;
-2. Group identity correction, then immediate read-only verification;
-3. Healthcare identity correction, then immediate read-only verification;
-4. Consulting, Healthcare, Lifestyle, and Real Estate term creation, each followed immediately by tenant-local read-only verification;
-5. full five-tenant Batch A verification;
-6. execution-ledger finalization and stop.
+1. obtain and validate the approved network recovery point within the owner-approved maximum age;
+2. validate applicable RB evidence;
+3. run the fresh same-window Batch A preflight and compare exact values;
+4. stop on drift, UNKNOWN, collision, or truncation;
+5. obtain explicit owner Batch A mutation authorization for that exact manifest/window;
+6. begin the first write, with immediate read-only verification after every write;
+7. complete full five-tenant Batch A verification;
+8. finalize the execution ledger and stop.
 
 Each future mutation operation records exact affected and excluded fields, required RB evidence, success/failure predicates, stop conditions, rollback rules, and ledger fields. The manifest status is `NOT_AUTHORIZED`.
 
@@ -131,12 +134,14 @@ Each future mutation operation records exact affected and excluded fields, requi
 
 Immediately before any future authorized Batch A mutation:
 
-1. obtain approved backup evidence;
+1. obtain and validate the approved network-level recovery point and backup evidence within the owner-approved maximum age for the mutation window;
 2. validate every applicable RB requirement;
-3. rerun the Batch-A-specific five-tenant read-only audit;
+3. run fresh Batch-A-specific five-tenant read-only evidence in the same window;
 4. compare exact current values with this accepted baseline;
 5. stop on drift, UNKNOWN evidence, collision, truncation, or an unexplained approved target state;
-6. start only after explicit owner authorization for that exact window and manifest.
+6. obtain explicit owner Batch A mutation authorization for that exact window and manifest;
+7. begin the first write only after authorization is recorded;
+8. perform immediate read-only verification after every write.
 
 No long-lived preflight automatically authorizes a later mutation.
 
@@ -175,11 +180,11 @@ No long-lived preflight automatically authorizes a later mutation.
 ## CURRENT PROJECT STATE
 
 - **Stage:** Step 2C.5B — CMS Mutation Readiness & Backup Gate
-- **Plan review status:** REQUIRES HUMAN ADMIN ACTION / ready for independent review
+- **Plan status:** OWNER ACCEPTED / PENDING MERGE
 - **Mutation readiness:** BLOCKED BY BACKUP EVIDENCE
 - **Baseline:** `main@f0d0974a75ac49a9c4fd88f0f229fa28a209acfd`
 - **Tenants:** 5/5 fresh read-only evidence; no Batch A drift
-- **Step 2C.5B accepted:** false
+- **Step 2C.5B accepted:** true
 - **CMS mutation authorization:** NOT GRANTED
 - **Batch A mutation authorization:** false
 - **Taxonomy deletion authorization:** false
@@ -188,4 +193,4 @@ No long-lived preflight automatically authorizes a later mutation.
 - **Step 2C.5C:** NOT STARTED
 - **Production authorization:** false
 - **SOT-001:** OPEN
-- **Next gate:** independent review and owner acceptance of the readiness plan; human backup/admin evidence remains required before any separate mutation request
+- **Next gate:** correction verification and separate merge authorization; human backup/admin evidence remains required before any separate mutation request

@@ -37,7 +37,8 @@ Record assignments, Group taxonomy changes, deletion, and every other CMS action
 - RB-001 and RB-009: UNKNOWN / NOT RUN.
 - Exact live protected admin coordinates: UNKNOWN; repository candidates only `STRONGLY_INFERRED` while SOT-001 is open.
 - Mutation readiness: `BLOCKED_BY_BACKUP_EVIDENCE`.
-- Stage outcome: `REQUIRES_HUMAN_ADMIN_ACTION`.
+- Plan status: `OWNER_ACCEPTED_PENDING_MERGE`.
+- Operational outcome: `REQUIRES_HUMAN_ADMIN_ACTION`.
 
 ## Acceptance checks
 
@@ -50,9 +51,10 @@ Record assignments, Group taxonomy changes, deletion, and every other CMS action
 - [x] A1 through A15 defined but not executed.
 - [x] Taxonomy rollback never implies automatic deletion.
 - [x] Step 2C.5B acceptance and Batch A authorization remain separate.
-- [x] Local validation complete: JSON, focused 26 tests, full 26 files / 244 tests, lint, typecheck, build, diff/security/scope checks.
-- [ ] Draft PR open and exact-head Frontend CI complete.
-- [ ] Independent review / owner acceptance of readiness plan.
+- [x] Local validation complete: JSON, focused 34 tests, full 26 files / 252 tests, lint, typecheck, build, diff/security/scope checks.
+- [x] Draft PR open.
+- [ ] Corrected exact-head Frontend CI complete.
+- [x] Owner acceptance of readiness plan granted without Batch A authorization.
 
 ## Hard stop
 

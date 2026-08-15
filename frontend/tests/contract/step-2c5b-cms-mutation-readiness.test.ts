@@ -24,10 +24,12 @@ interface TermReadiness {
   exactAbsenceConfirmed: boolean;
   equivalentCollisionCount: number;
   connectionTruncated: boolean;
+  currentAssignedObjectCount: number | null;
   recordAssignmentsAuthorized: boolean;
 }
 
 interface ReadinessArtifact {
+  planStatus: string;
   baseline: Record<string, unknown> & { commit: string };
   mutationReadiness: string;
   batchAScope: {
@@ -58,6 +60,9 @@ interface Operation {
   notAffected?: string[];
   rollbackAuthorizationRequirement?: string;
   rollbackStrategy?: string;
+  preconditions?: string[];
+  preconditionChecks?: string[];
+  authorizationGateAfterSuccess?: string;
 }
 
 interface Mechanism {
@@ -67,11 +72,13 @@ interface Mechanism {
 }
 
 interface ExecutionManifest {
+  planStatus: string;
   scope: string[];
   status: string;
   operations: Operation[];
   sameWindowGate: string[];
   futureMutationMechanisms: Mechanism[];
+  authorization: Record<string, boolean | string>;
 }
 
 interface BackupTemplate {
@@ -81,12 +88,13 @@ interface BackupTemplate {
 
 interface RollbackReadiness {
   summary: { backupEvidenceStatus: string; readyForMutationAuthorization: boolean };
-  requirements: Array<{ id: string }>;
+  requirements: Array<{ id: string; timing?: string }>;
+  authorization: Record<string, boolean | string>;
 }
 
 interface LedgerTemplate {
   taxonomyCreationRule: string;
-  authorization: { taxonomyDeletionAuthorized: boolean };
+  authorization: { step2c5bAccepted: boolean; taxonomyDeletionAuthorized: boolean };
 }
 
 interface BrandState {
@@ -107,6 +115,7 @@ interface AcceptedPreflight extends Record<string, unknown> {
 }
 
 interface ProjectState {
+  currentStageStatus: string;
   authorization: Record<string, unknown>;
   productionAuthorized: boolean;
 }
@@ -118,6 +127,43 @@ const rollback = readJson<RollbackReadiness>("artifacts/step-2c5b/rollback-readi
 const ledger = readJson<LedgerTemplate>("artifacts/step-2c5b/execution-ledger-template.json");
 const accepted = readJson<AcceptedPreflight>("artifacts/step-2c5a/cms-preflight.json");
 const projectState = readJson<ProjectState>("project-state.json");
+const report = fs.readFileSync(
+  path.join(root, "docs/STEP-2C5B-CMS-MUTATION-READINESS-BACKUP-GATE.md"),
+  "utf8",
+);
+
+const branchTermContracts = {
+  consulting: { name: "Consulting", slug: "consulting" },
+  healthcare: { name: "Healthcare", slug: "healthcare" },
+  lifestyle: { name: "Lifestyle", slug: "lifestyle" },
+  realestate: { name: "Real Estate", slug: "real-estate" },
+} as const;
+
+type BranchTenant = keyof typeof branchTermContracts;
+
+function deriveWithExactBranchTerm(tenant: BranchTenant, totalAssignedObjectCount: number) {
+  const fresh = structuredClone(accepted);
+  const site = fresh.sites[tenant];
+  if (!site?.current) throw new Error(`Missing accepted current evidence for ${tenant}`);
+  const expected = branchTermContracts[tenant];
+  site.current.businessUnit = {
+    expectedSlug: expected.slug,
+    term: {
+      databaseId: 900,
+      name: expected.name,
+      slug: expected.slug,
+      totalAssignedObjectCount,
+    },
+    availableTerms: [{
+      databaseId: 900,
+      name: expected.name,
+      slug: expected.slug,
+      totalAssignedObjectCount,
+    }],
+    availableTermsTruncated: false,
+  };
+  return deriveBatchAReadiness(fresh, accepted, "2026-08-15T00:00:00.000Z") as unknown as ReadinessArtifact;
+}
 
 describe("Step 2C.5B CMS mutation readiness and backup gate", () => {
   it("pins the canonical baseline", () => {
@@ -244,10 +290,49 @@ describe("Step 2C.5B CMS mutation readiness and backup gate", () => {
   });
 
   it("requires a same-window drift gate before future mutation", () => {
-    expect(manifest.sameWindowGate).toHaveLength(6);
-    expect(manifest.sameWindowGate.join(" ")).toContain("Stop on drift");
+    expect(manifest.sameWindowGate).toEqual([
+      "Obtain and validate the approved network-level recovery point and backup evidence within the owner-approved maximum age for the mutation window.",
+      "Validate every applicable RB requirement.",
+      "Run fresh Batch-A-specific five-tenant read-only evidence in the same window.",
+      "Compare exact current values with the accepted Step 2C.5B baseline.",
+      "Stop on drift, UNKNOWN evidence, collision, truncation, or an unexpected CHANGED_AS_EXPECTED result.",
+      "Obtain explicit owner Batch A mutation authorization for the identified window and exact manifest head.",
+      "Begin the first write only after that authorization is recorded.",
+      "Perform immediate read-only verification after every write.",
+    ]);
     expect(manifest.operations[0]?.operationId).toBe("A1");
+    expect(manifest.operations[0]?.preconditions?.join(" ")).not.toContain("owner mutation authorization");
+    expect(manifest.operations[0]?.authorizationGateAfterSuccess).toContain("before A2");
+    expect(manifest.operations
+      .filter((operation) => operation.operationType === "PROPOSED_NOT_AUTHORIZED_MUTATION")
+      .every((operation) => operation.preconditionChecks?.some((check) => check.startsWith("Explicit owner Batch A mutation authorization")) === true))
+      .toBe(true);
+    expect(rollback.requirements.find((item) => item.id === "RB-001")?.timing).toContain("before the same-window read-only preflight");
+    expect(report).not.toContain("after the same-window preflight");
   });
+
+  it.each(Object.keys(branchTermContracts) as BranchTenant[])(
+    "classifies a correct unassigned %s term as CHANGED_AS_EXPECTED",
+    (tenant) => {
+      const derived = deriveWithExactBranchTerm(tenant, 0);
+      expect(derived.businessUnitTerms[tenant]).toMatchObject({
+        evidenceStatus: "CHANGED_AS_EXPECTED",
+        currentAssignedObjectCount: 0,
+      });
+    },
+  );
+
+  it.each(Object.keys(branchTermContracts) as BranchTenant[])(
+    "classifies an assigned exact %s term as drift and blocks Batch A",
+    (tenant) => {
+      const derived = deriveWithExactBranchTerm(tenant, 1);
+      expect(derived.businessUnitTerms[tenant]).toMatchObject({
+        evidenceStatus: "DRIFT_DETECTED",
+        currentAssignedObjectCount: 1,
+      });
+      expect(derived.mutationReadiness).toBe("BLOCKED_BY_DRIFT");
+    },
+  );
 
   it("does not report an intentionally corrected action as VALIDATED_UNCHANGED", () => {
     const changed = structuredClone(accepted);
@@ -338,10 +423,28 @@ describe("Step 2C.5B CMS mutation readiness and backup gate", () => {
 
   it("separates Step 2C.5B plan acceptance from Batch A mutation authorization", () => {
     expect(projectState.authorization).toMatchObject({
-      step2c5bAccepted: false,
+      step2c5bAccepted: true,
       batchAMutationAuthorized: false,
       cmsMutationAuthorization: "NOT_GRANTED",
     });
+    expect(projectState.currentStageStatus).toBe("OWNER_ACCEPTED_PENDING_MERGE");
+    expect(readiness).toMatchObject({
+      planStatus: "OWNER_ACCEPTED_PENDING_MERGE",
+      mutationReadiness: "BLOCKED_BY_BACKUP_EVIDENCE",
+      authorization: {
+        step2c5bAccepted: true,
+        batchAMutationAuthorized: false,
+        cmsMutationAuthorization: "NOT_GRANTED",
+      },
+    });
+    expect(manifest).toMatchObject({
+      planStatus: "OWNER_ACCEPTED_PENDING_MERGE",
+      status: "NOT_AUTHORIZED",
+      authorization: { step2c5bAccepted: true, batchAMutationAuthorized: false },
+    });
+    expect(backup.authorization["step2c5bAccepted"]).toBe(true);
+    expect(rollback.authorization["step2c5bAccepted"]).toBe(true);
+    expect(ledger.authorization.step2c5bAccepted).toBe(true);
   });
 
   it("keeps production authorization false", () => {

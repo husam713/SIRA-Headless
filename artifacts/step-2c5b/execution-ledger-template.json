@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "stage": "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
   "status": "TEMPLATE_NOT_EXECUTED",
+  "planStatus": "OWNER_ACCEPTED_PENDING_MERGE",
   "batchId": null,
   "authorizedWindowReference": null,
   "backupEvidenceIdentifier": null,
@@ -40,7 +41,8 @@
     "raw protected payloads"
   ],
   "authorization": {
-    "templateAccepted": false,
+    "step2c5bAccepted": true,
+    "templateAccepted": true,
     "batchAMutationAuthorized": false,
     "taxonomyDeletionAuthorized": false
   }

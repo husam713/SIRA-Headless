@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "stage": "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
   "status": "NOT_AUTHORIZED",
+  "planStatus": "OWNER_ACCEPTED_PENDING_MERGE",
   "batchId": "BATCH-A",
   "scope": ["CMS-2C4-001", "CMS-2C4-002", "CMS-2C4-006:term-creation-only"],
   "scopeExclusions": [
@@ -23,12 +24,14 @@
     ]
   },
   "sameWindowGate": [
-    "Obtain approved backup evidence.",
+    "Obtain and validate the approved network-level recovery point and backup evidence within the owner-approved maximum age for the mutation window.",
     "Validate every applicable RB requirement.",
-    "Rerun the Batch-A-specific five-tenant read-only evidence.",
+    "Run fresh Batch-A-specific five-tenant read-only evidence in the same window.",
     "Compare exact current values with the accepted Step 2C.5B baseline.",
     "Stop on drift, UNKNOWN evidence, collision, truncation, or an unexpected CHANGED_AS_EXPECTED result.",
-    "Start mutation only after explicit owner authorization for the identified window and exact manifest head."
+    "Obtain explicit owner Batch A mutation authorization for the identified window and exact manifest head.",
+    "Begin the first write only after that authorization is recorded.",
+    "Perform immediate read-only verification after every write."
   ],
   "futureMutationMechanisms": [
     {
@@ -61,10 +64,11 @@
       "operationType": "READ_ONLY_GATE",
       "mutationAuthorized": false,
       "destructive": false,
-      "preconditions": ["RB-001, RB-002, RB-004, RB-006, RB-008, and RB-009 evidence complete", "exact admin coordinates confirmed", "explicit owner mutation authorization references this manifest and window"],
+      "preconditions": ["Approved network recovery point obtained and validated", "RB-001, RB-002, RB-004, RB-006, RB-008, and RB-009 evidence complete", "exact admin coordinates confirmed"],
       "successPredicate": "Fresh evidence is complete and all six mutation scopes are VALIDATED_UNCHANGED with no collision or truncation.",
       "failurePredicate": "Any evidence is UNKNOWN, DRIFT_DETECTED, unexpectedly CHANGED_AS_EXPECTED, truncated, or inconsistent with tenant isolation.",
       "stopCondition": "Stop before the first write on any failure.",
+      "authorizationGateAfterSuccess": "Obtain explicit owner Batch A mutation authorization for this exact manifest and window before A2.",
       "rollbackStrategy": "NOT_APPLICABLE_READ_ONLY",
       "rollbackAuthorizationRequirement": "NOT_APPLICABLE"
     },
@@ -80,7 +84,7 @@
       "exactExpectedResult": { "name": "SIRA GROUP", "primaryColor": "#cca34b", "secondaryColor": "#172232" },
       "affected": ["name", "primaryColor", "secondaryColor"],
       "notAffected": ["key", "tagline", "accentColor", "paperColor", "inkColor", "logo", "mark", "contacts", "values", "offices", "announcement", "emergency", "all non-Group tenants"],
-      "preconditionChecks": ["A1 PASS", "Group exact public identity remains VALIDATED_UNCHANGED", "confirmed Group-only admin coordinate", "RB-001/RB-004/RB-009 evidence complete"],
+      "preconditionChecks": ["A1 PASS", "Explicit owner Batch A mutation authorization for this exact manifest/window recorded", "Group exact public identity remains VALIDATED_UNCHANGED", "confirmed Group-only admin coordinate", "RB-001/RB-004/RB-009 evidence complete"],
       "requiredRbEvidence": ["RB-001", "RB-004", "RB-008", "RB-009"],
       "futureMutationMechanismCategory": "WORDPRESS_ADMIN_UI_STRONGLY_INFERRED_COORDINATE_UNKNOWN",
       "postMutationReadOnlyQuery": "Existing typed SIRA brand query for trusted SiteKey group",
@@ -117,7 +121,7 @@
       "exactExpectedResult": { "name": "SIRA Healthcare", "primaryColor": "#2c6dad", "secondaryColor": "#12283f", "accentColor": "#2c6dad" },
       "affected": ["name", "primaryColor", "secondaryColor", "accentColor"],
       "notAffected": ["key", "tagline=Advancing diagnostic and healthcare infrastructure.", "paperColor", "inkColor", "logo", "mark", "contacts", "values", "offices", "announcement", "emergency", "all non-Healthcare tenants"],
-      "preconditionChecks": ["A3 PASS", "Healthcare exact public identity remains VALIDATED_UNCHANGED", "confirmed Healthcare-only admin coordinate", "RB-001/RB-004/RB-009 evidence complete"],
+      "preconditionChecks": ["A3 PASS", "Explicit owner Batch A mutation authorization for this exact manifest/window recorded", "Healthcare exact public identity remains VALIDATED_UNCHANGED", "confirmed Healthcare-only admin coordinate", "RB-001/RB-004/RB-009 evidence complete"],
       "requiredRbEvidence": ["RB-001", "RB-004", "RB-008", "RB-009"],
       "futureMutationMechanismCategory": "WORDPRESS_ADMIN_UI_STRONGLY_INFERRED_COORDINATE_UNKNOWN",
       "postMutationReadOnlyQuery": "Existing typed SIRA brand query for trusted SiteKey healthcare",
@@ -154,7 +158,7 @@
       "exactExpectedResult": { "name": "Consulting", "slug": "consulting", "uniqueTenantLocalDatabaseId": "CAPTURE_IMMEDIATELY" },
       "affected": ["Consulting tenant-local sira_business_unit term name/slug only"],
       "notAffected": ["record assignments", "Group terms", "other tenants", "existing terms", "backend taxonomy registration"],
-      "preconditionChecks": ["A5 PASS", "exact slug absent", "zero equivalent collisions", "connection untruncated", "confirmed Consulting taxonomy admin coordinate", "RB-001/RB-002/RB-006/RB-009 complete"],
+      "preconditionChecks": ["A5 PASS", "Explicit owner Batch A mutation authorization for this exact manifest/window recorded", "exact slug absent", "zero equivalent collisions", "connection untruncated", "confirmed Consulting taxonomy admin coordinate", "RB-001/RB-002/RB-006/RB-009 complete"],
       "requiredRbEvidence": ["RB-001", "RB-002", "RB-006", "RB-008", "RB-009"],
       "futureMutationMechanismCategory": "WORDPRESS_ADMIN_UI_STRONGLY_INFERRED_COORDINATE_UNKNOWN",
       "postMutationReadOnlyQuery": "Existing bounded SiraBusinessUnit connection for trusted SiteKey consulting",
@@ -191,7 +195,7 @@
       "exactExpectedResult": { "name": "Healthcare", "slug": "healthcare", "uniqueTenantLocalDatabaseId": "CAPTURE_IMMEDIATELY" },
       "affected": ["Healthcare tenant-local sira_business_unit term name/slug only"],
       "notAffected": ["record assignments", "Group terms", "other tenants", "existing terms", "backend taxonomy registration", "Healthcare identity fields"],
-      "preconditionChecks": ["A7 PASS", "exact slug absent", "zero equivalent collisions", "connection untruncated", "confirmed Healthcare taxonomy admin coordinate", "RB-001/RB-002/RB-006/RB-009 complete"],
+      "preconditionChecks": ["A7 PASS", "Explicit owner Batch A mutation authorization for this exact manifest/window recorded", "exact slug absent", "zero equivalent collisions", "connection untruncated", "confirmed Healthcare taxonomy admin coordinate", "RB-001/RB-002/RB-006/RB-009 complete"],
       "requiredRbEvidence": ["RB-001", "RB-002", "RB-006", "RB-008", "RB-009"],
       "futureMutationMechanismCategory": "WORDPRESS_ADMIN_UI_STRONGLY_INFERRED_COORDINATE_UNKNOWN",
       "postMutationReadOnlyQuery": "Existing bounded SiraBusinessUnit connection for trusted SiteKey healthcare",
@@ -228,7 +232,7 @@
       "exactExpectedResult": { "name": "Lifestyle", "slug": "lifestyle", "uniqueTenantLocalDatabaseId": "CAPTURE_IMMEDIATELY" },
       "affected": ["Lifestyle tenant-local sira_business_unit term name/slug only"],
       "notAffected": ["record assignments", "Group terms", "other tenants", "existing terms", "backend taxonomy registration"],
-      "preconditionChecks": ["A9 PASS", "exact slug absent", "zero equivalent collisions", "connection untruncated", "confirmed Lifestyle taxonomy admin coordinate", "RB-001/RB-002/RB-006/RB-009 complete"],
+      "preconditionChecks": ["A9 PASS", "Explicit owner Batch A mutation authorization for this exact manifest/window recorded", "exact slug absent", "zero equivalent collisions", "connection untruncated", "confirmed Lifestyle taxonomy admin coordinate", "RB-001/RB-002/RB-006/RB-009 complete"],
       "requiredRbEvidence": ["RB-001", "RB-002", "RB-006", "RB-008", "RB-009"],
       "futureMutationMechanismCategory": "WORDPRESS_ADMIN_UI_STRONGLY_INFERRED_COORDINATE_UNKNOWN",
       "postMutationReadOnlyQuery": "Existing bounded SiraBusinessUnit connection for trusted SiteKey lifestyle",
@@ -265,7 +269,7 @@
       "exactExpectedResult": { "name": "Real Estate", "slug": "real-estate", "uniqueTenantLocalDatabaseId": "CAPTURE_IMMEDIATELY" },
       "affected": ["Real Estate tenant-local sira_business_unit term name/slug only"],
       "notAffected": ["record assignments", "Group terms", "other tenants", "existing terms", "backend taxonomy registration"],
-      "preconditionChecks": ["A11 PASS", "exact slug absent", "zero equivalent collisions", "connection untruncated", "confirmed Real Estate taxonomy admin coordinate", "RB-001/RB-002/RB-006/RB-009 complete"],
+      "preconditionChecks": ["A11 PASS", "Explicit owner Batch A mutation authorization for this exact manifest/window recorded", "exact slug absent", "zero equivalent collisions", "connection untruncated", "confirmed Real Estate taxonomy admin coordinate", "RB-001/RB-002/RB-006/RB-009 complete"],
       "requiredRbEvidence": ["RB-001", "RB-002", "RB-006", "RB-008", "RB-009"],
       "futureMutationMechanismCategory": "WORDPRESS_ADMIN_UI_STRONGLY_INFERRED_COORDINATE_UNKNOWN",
       "postMutationReadOnlyQuery": "Existing bounded SiraBusinessUnit connection for trusted SiteKey realestate",
@@ -320,7 +324,7 @@
     }
   ],
   "authorization": {
-    "step2c5bAccepted": false,
+    "step2c5bAccepted": true,
     "cmsMutationAuthorization": "NOT_GRANTED",
     "batchAMutationAuthorized": false,
     "taxonomyDeletionAuthorized": false,

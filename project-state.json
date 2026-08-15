@@ -1,9 +1,10 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-15T04:50:00+03:00",
+  "updatedAt": "2026-08-15T05:12:50+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
+  "currentStageStatus": "OWNER_ACCEPTED_PENDING_MERGE",
   "executionBranch": "chore/2c5b-cms-mutation-readiness-gate",
   "executionBaseline": "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
   "executionHead": "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
@@ -11,7 +12,7 @@
   "latestApprovedTag": "step-2c3b-approved",
   "productionAuthorized": false,
   "authorization": {
-    "step2c5bAccepted": false,
+    "step2c5bAccepted": true,
     "cmsMutationAuthorization": "NOT_GRANTED",
     "batchAMutationAuthorized": false,
     "taxonomyDeletionAuthorized": false,

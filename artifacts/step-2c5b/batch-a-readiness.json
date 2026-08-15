@@ -2,8 +2,9 @@
   "schemaVersion": 1,
   "stage": "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
   "status": "REQUIRES_HUMAN_ADMIN_ACTION",
+  "planStatus": "OWNER_ACCEPTED_PENDING_MERGE",
   "mutationReadiness": "BLOCKED_BY_BACKUP_EVIDENCE",
-  "generatedAt": "2026-08-15T01:48:56.405Z",
+  "generatedAt": "2026-08-15T02:12:06.446Z",
   "evidenceCapturedAt": "2026-08-15T01:34:02.496Z",
   "baseline": {
     "branch": "main",
@@ -278,7 +279,7 @@
     "CMS_MUTATION_AUTHORIZATION_NOT_GRANTED"
   ],
   "authorization": {
-    "step2c5bAccepted": false,
+    "step2c5bAccepted": true,
     "cmsMutationAuthorization": "NOT_GRANTED",
     "batchAMutationAuthorized": false,
     "taxonomyDeletionAuthorized": false,
@@ -286,7 +287,7 @@
     "exportExecutionAuthorized": false,
     "restoreExecutionAuthorized": false,
     "productionAuthorized": false,
-    "nextGate": "OWNER_ACCEPTANCE_OF_READINESS_PLAN_ONLY"
+    "nextGate": "MERGE_REQUIRES_SEPARATE_OWNER_AUTHORIZATION"
   },
   "security": {
     "endpointValuesPersisted": false,

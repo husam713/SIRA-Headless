@@ -115,16 +115,36 @@ function branchTermState(site, expected) {
     term.slug !== expected.slug
     && (normalized(term.slug) === normalized(expected.slug) || normalized(term.name) === normalized(expected.name))
   ));
+  const exactAssignmentCount = exactMatches.length === 1
+    ? exactMatches[0].totalAssignedObjectCount
+    : null;
+  if (exactMatches.length === 1 && !Number.isInteger(exactAssignmentCount)) {
+    return { available: false, observed: null, exactMatches, collisions };
+  }
   const observed = exactMatches.length === 0 && collisions.length === 0
-    ? { state: "ABSENT", exactMatchCount: 0, collisionCount: 0, truncated: false }
+    ? {
+        state: "ABSENT",
+        exactMatchCount: 0,
+        collisionCount: 0,
+        totalAssignedObjectCount: null,
+        truncated: false,
+      }
     : exactMatches.length === 1
       && exactMatches[0].name === expected.name
       && collisions.length === 0
-      ? { state: "PRESENT_AS_EXPECTED", exactMatchCount: 1, collisionCount: 0, truncated: false }
+      && exactAssignmentCount === 0
+      ? {
+          state: "PRESENT_AS_EXPECTED",
+          exactMatchCount: 1,
+          collisionCount: 0,
+          totalAssignedObjectCount: 0,
+          truncated: false,
+        }
       : {
           state: "COLLISION_OR_UNEXPECTED_TERM",
           exactMatchCount: exactMatches.length,
           collisionCount: collisions.length,
+          totalAssignedObjectCount: exactAssignmentCount,
           truncated: false,
         };
   return { available, observed, exactMatches, collisions };
@@ -172,8 +192,20 @@ export function deriveBatchAReadiness(fresh, accepted, generatedAt = new Date().
     const result = classifyEvidence({
       available: state.available,
       observed: state.observed,
-      acceptedCurrent: { state: "ABSENT", exactMatchCount: 0, collisionCount: 0, truncated: false },
-      acceptedExpected: { state: "PRESENT_AS_EXPECTED", exactMatchCount: 1, collisionCount: 0, truncated: false },
+      acceptedCurrent: {
+        state: "ABSENT",
+        exactMatchCount: 0,
+        collisionCount: 0,
+        totalAssignedObjectCount: null,
+        truncated: false,
+      },
+      acceptedExpected: {
+        state: "PRESENT_AS_EXPECTED",
+        exactMatchCount: 1,
+        collisionCount: 0,
+        totalAssignedObjectCount: 0,
+        truncated: false,
+      },
     });
     return [tenant, {
       actionId: "CMS-2C4-006",
@@ -210,6 +242,7 @@ export function deriveBatchAReadiness(fresh, accepted, generatedAt = new Date().
     schemaVersion: 1,
     stage: "Step 2C.5B — CMS Mutation Readiness & Backup Gate",
     status: evidenceUnknown ? "UNKNOWN" : driftDetected ? "BLOCKED_BY_DRIFT" : "REQUIRES_HUMAN_ADMIN_ACTION",
+    planStatus: "OWNER_ACCEPTED_PENDING_MERGE",
     mutationReadiness: evidenceUnknown
       ? "UNKNOWN"
       : driftDetected
@@ -266,7 +299,7 @@ export function deriveBatchAReadiness(fresh, accepted, generatedAt = new Date().
       "CMS_MUTATION_AUTHORIZATION_NOT_GRANTED",
     ],
     authorization: {
-      step2c5bAccepted: false,
+      step2c5bAccepted: true,
       cmsMutationAuthorization: "NOT_GRANTED",
       batchAMutationAuthorized: false,
       taxonomyDeletionAuthorized: false,
@@ -274,7 +307,7 @@ export function deriveBatchAReadiness(fresh, accepted, generatedAt = new Date().
       exportExecutionAuthorized: false,
       restoreExecutionAuthorized: false,
       productionAuthorized: false,
-      nextGate: "OWNER_ACCEPTANCE_OF_READINESS_PLAN_ONLY",
+      nextGate: "MERGE_REQUIRES_SEPARATE_OWNER_AUTHORIZATION",
     },
     security: {
       endpointValuesPersisted: false,

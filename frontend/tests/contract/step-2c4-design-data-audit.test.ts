@@ -124,8 +124,8 @@ describe("Step 2C.4 production design and data-contract audit", () => {
     expect(state).toMatchObject({
       currentStage: "2C.5B",
       currentSubstage: "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
-      executionBranch: "chore/2c5b-cms-mutation-readiness-gate",
-      executionBaseline: "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
+      executionBranch: "main",
+      executionBaseline: "2bd4991f75a53ab9209e748499dcb8915769e3a6",
       productionAuthorized: false,
       canonicalPublicProductionTopology: {
         status: "APPROVED_OWNER_DECISION",
@@ -140,14 +140,14 @@ describe("Step 2C.4 production design and data-contract audit", () => {
         scope: "public production hostnames only",
       },
       latestAcceptedIncrement: {
-        stage: "Step 2C.5A",
+        stage: "Step 2C.5B",
         status: "ACCEPTED_MERGED",
-        pullRequest: 15,
-        implementationHead: "bb6cca02bd97524182e2d53628c5ea9567228ee4",
-        mergeCommit: "f0d0974a75ac49a9c4fd88f0f229fa28a209acfd",
+        pullRequest: 16,
+        implementationHead: "4afad259dd4c184de5b61ca51f91fcde7222cbf2",
+        mergeCommit: "2bd4991f75a53ab9209e748499dcb8915769e3a6",
         frontendCi: "PASS",
-        frontendCiRun: 32,
-        fullRegression: "25 files / 218 tests PASS",
+        frontendCiRun: 35,
+        fullRegression: "26 files / 252 tests PASS",
       },
     });
     expect(state.knownConflicts).toContainEqual(

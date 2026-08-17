@@ -138,7 +138,7 @@ describe("Step 2C.5A CMS preflight and remediation plan", () => {
       },
     });
     expect(state.knownConflicts).toContainEqual(
-      expect.objectContaining({ id: "SOT-001", status: "OPEN" }),
+      expect.objectContaining({ id: "SOT-001", status: "CLOSED" }),
     );
   });
 

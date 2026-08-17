@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-15T06:00:55+03:00",
+  "updatedAt": "2026-08-17T10:37:47+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -77,8 +77,18 @@
     {
       "id": "SOT-001",
       "subsystem": "backend",
-      "status": "OPEN",
-      "summary": "GitHub backend source appears older than the verified live GraphQL schema and later migration evidence; reconcile the latest cumulative backend source before modifying backend runtime code."
+      "status": "CLOSED",
+      "summary": "Repository backend source was reconciled to the independently verified LIVE Step 2C.2F sira-core source in PR #18. This closes only the backend source-freshness conflict and does not authorize backend, CMS, Batch A, backup, restore, production, Step 2C.5C, or Step 3 changes.",
+      "resolution": {
+        "pullRequest": 18,
+        "implementationHead": "7869ae3530a8349980b01f31e3d749b292d2f63c",
+        "mergeCommit": "5a2d7855590de6fe0b12d5cf48777d7856c9f491",
+        "artifactZipSha256": "571bae5eb39032755dd1c9fe1cacc4113ee409da07826c008cd152698987c76f",
+        "normalizedTreeSha256": "cb029a935d6d022ab2d6067e8951b04ba57562d9ff5f1609cc1e547622c826f4",
+        "previousClassification": "REPOSITORY_BACKEND_OLDER",
+        "wordpressMutationOccurred": false,
+        "knownSeparateObservation": "Backend source declares SiraProjectDetails while the accepted frontend/live GraphQL schema exposes ProjectDetails; the mechanism remains UNKNOWN."
+      }
     }
   ],
   "knownGovernanceIssues": [

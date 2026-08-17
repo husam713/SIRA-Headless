@@ -109,7 +109,7 @@ describe("Step 2C.3D content readiness evidence", () => {
       },
     });
     expect(state.knownConflicts).toContainEqual(
-      expect.objectContaining({ id: "SOT-001", status: "OPEN" }),
+      expect.objectContaining({ id: "SOT-001", status: "CLOSED" }),
     );
   });
 

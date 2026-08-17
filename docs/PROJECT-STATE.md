@@ -136,7 +136,7 @@ Step 2C.5A is accepted and merged. Step 2C.5B prepares—but does not authorize 
 
 Fresh read-only evidence on 2026-08-15 inspected 5/5 tenants. Both identity actions and all four term scopes remain `VALIDATED_UNCHANGED`; the expected branch terms are absent with zero equivalent collisions and untruncated connections; Group terms match the accepted Step 2C.5A baseline and remain non-targets. No Batch A drift was detected.
 
-The Step 2C.5B readiness plan is owner accepted and merged through PR `#16`. Operational mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE` and requires human administrator action. RB-001 network backup evidence and RB-009 restore validation evidence are UNKNOWN, and the exact current live administrative coordinates are not independently confirmed. The repository backend provides only `STRONGLY_INFERRED` candidate WordPress Admin coordinates because SOT-001 keeps that runtime tree non-authoritative. Plan acceptance and Batch A mutation authorization remain separate gates: `step2c5bAccepted=true`, `batchAMutationAuthorized=false`, and CMS mutation authorization remains `NOT_GRANTED`.
+The Step 2C.5B readiness plan is owner accepted and merged through PR #16. Operational mutation readiness remains BLOCKED_BY_BACKUP_EVIDENCE and requires human administrator action. RB-001 network backup evidence and RB-009 restore validation evidence are UNKNOWN, and the exact current live administrative coordinates are not independently confirmed. PR #18 reconciled the repository backend to the independently verified LIVE Step 2C.2F source, so SOT-001 no longer makes the repository backend stale. However, repository source registration alone does not prove the effective live WordPress Admin route, capability, field coordinates, or taxonomy screen coordinates; those remain subject to human read-only confirmation. Plan acceptance and Batch A mutation authorization remain separate gates: step2c5bAccepted=true, batchAMutationAuthorized=false, and CMS mutation authorization remains NOT_GRANTED.
 
 The owner-approved canonical public production apex is `siratrgroup.com`; the branch public hostnames are `consulting.siratrgroup.com`, `healthcare.siratrgroup.com`, `lifestyle.siratrgroup.com`, and `realestate.siratrgroup.com`. This decision applies only to public production hostnames. WordPress backend, GraphQL, media, staging, Vercel preview, cookie-domain, CORS, and revalidation origins/policies remain UNKNOWN until repository or live configuration evidence establishes them. Public-domain selection is resolved without changing the Step 2C.4 gap counts: 11 BLOCKING and 5 NONBLOCKING. `2C4-B07` and `2C4-B10` remain BLOCKING.
 
@@ -146,18 +146,19 @@ Required delivery flow:
 
 Do not merge automatically.
 
-## Open source-of-truth conflict
+## Resolved source-of-truth conflict
 
 ### SOT-001 — backend repository freshness
 
-**Status: OPEN / BLOCKING FOR NEW BACKEND RUNTIME CHANGES**
+**Status: CLOSED**
 
-The current GitHub backend source contains Step 1-era material that is not yet proven to be the latest cumulative backend implementation, while the verified live schema adopted in Step 2C.3B contains later contract work.
+The repository backend was independently audited against the immutable LIVE / Step 2C.2F sira-core artifact. The audit classified the Git repository backend as REPOSITORY_BACKEND_OLDER, with no repository-only newer runtime implementation.
 
-Do not modify backend runtime code until the latest verified cumulative backend source is reconciled into Git or an explicit evidence-backed decision establishes the correct backend source of truth.
+PR #18 reconciled backend/ to that verified source. Implementation head 7869ae3530a8349980b01f31e3d749b292d2f63c was merged normally to main as 5a2d7855590de6fe0b12d5cf48777d7856c9f491. The verified artifact ZIP SHA-256 is 571bae5eb39032755dd1c9fe1cacc4113ee409da07826c008cd152698987c76f and its normalized source-tree SHA-256 is cb029a935d6d022ab2d6067e8951b04ba57562d9ff5f1609cc1e547622c826f4.
 
-This conflict does **not** block the read-only Step 2C.5B preflight and readiness planning based on verified live public evidence. It prevents candidate backend/admin registration coordinates from being treated as confirmed live mutation coordinates and blocks any new backend runtime correction; newly discovered schema defects must be marked `BLOCKED_BY_SOT_001`.
+SOT-001 closure means only that the Git repository now contains the independently verified LIVE / Step 2C.2F backend source. It does not confirm current live WordPress Admin coordinates, backup readiness, restore readiness, CMS mutation authorization, Batch A authorization, production authorization, Step 2C.5C, Step 3, or deployment.
 
+Known separate observation: backend source declares SiraProjectDetails while the accepted frontend/live GraphQL schema exposes ProjectDetails. The mechanism remains UNKNOWN and is not silently changed by this reconciliation.
 ## Next stages
 
 After Step 2C.5B owner acceptance of the readiness plan:

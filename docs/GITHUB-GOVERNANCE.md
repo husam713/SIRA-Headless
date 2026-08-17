@@ -89,10 +89,11 @@ G0-C produced successful Frontend CI evidence before merge.
 
 ## Backend CI boundary
 
-SOT-001 remains open: the GitHub `backend/` tree is not yet proven to be the latest cumulative backend source. Do not add or interpret backend CI as production acceptance until that source is reconciled.
+SOT-001 is closed. PR #18 reconciled the GitHub backend tree to the independently verified LIVE / Step 2C.2F sira-core source.
 
-Existing backend static validation remains useful historical/source evidence, but new backend runtime work is blocked by SOT-001.
+Backend static/runtime validation may now be used as repository source and contract evidence for that reconciled baseline. It must not be interpreted as production acceptance, live administrative-coordinate confirmation, CMS mutation authorization, or deployment authorization.
 
+Any future backend runtime change still requires the normal branch, validation, PR, CI, independent review, and owner-authorization workflow.
 ## Completed G0-C cutover
 
 The approved cutover completed these governance changes:

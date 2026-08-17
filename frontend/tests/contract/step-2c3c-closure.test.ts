@@ -246,7 +246,7 @@ describe("Step 2C.3C cumulative closure contract", () => {
     }
   });
 
-  it("records accepted closure while SOT-001 and production gates stay open", () => {
+  it("records accepted closure with SOT-001 closed and production unauthorized", () => {
     const state = JSON.parse(repositoryFile("project-state.json")) as {
       readonly status: string;
       readonly currentStage: string;
@@ -283,7 +283,7 @@ describe("Step 2C.3C cumulative closure contract", () => {
       },
     });
     expect(state.knownConflicts).toContainEqual(
-      expect.objectContaining({ id: "SOT-001", status: "OPEN" }),
+      expect.objectContaining({ id: "SOT-001", status: "CLOSED" }),
     );
   });
 });

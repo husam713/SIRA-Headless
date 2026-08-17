@@ -36,7 +36,7 @@ The canonical live metadata records Consulting as canonical, four exact branch p
 
 Step 2C.5B uses fresh read-only public GraphQL evidence derived through the trusted SiteKey registry, accepted Step 2C.5A artifacts, and repository evidence for planning only. The fresh 2026-08-15 preflight inspected all five tenants and found the bounded Batch A coordinates `VALIDATED_UNCHANGED`: Group and Healthcare identities retain their accepted current values; the four exact branch-local Business Unit terms remain absent without collision or truncation; Group terms remain non-targets and match the accepted baseline.
 
-Candidate WordPress Admin coordinates recorded in the stale backend tree are `STRONGLY_INFERRED`, not confirmed live administrative coordinates, because SOT-001 is OPEN. RB-001 backup evidence, RB-009 restore evidence, and exact protected live admin coordinates remain UNKNOWN. The Step 2C.5B readiness plan is owner accepted and merged through PR `#16`, while the operational package status remains `REQUIRES_HUMAN_ADMIN_ACTION` and mutation readiness remains `BLOCKED_BY_BACKUP_EVIDENCE`. `step2c5bAccepted=true` does not authorize Batch A: `batchAMutationAuthorized=false`, CMS mutation authorization is `NOT_GRANTED`, and no CMS mutation, backup/export/restore execution, deletion, backend change, production UI, Step 3, Step 2C.5C, or deployment is authorized.
+Candidate WordPress Admin coordinates recorded in the repository backend are now based on the reconciled verified LIVE / Step 2C.2F source after PR #18. They remain source-derived candidates rather than independently confirmed effective live administrative coordinates: exact protected live routes, capabilities, field coordinates, and taxonomy-screen coordinates remain UNKNOWN until human read-only confirmation. RB-001 backup evidence and RB-009 restore evidence also remain UNKNOWN. The Step 2C.5B readiness plan is owner accepted and merged through PR #16, while the operational package status remains REQUIRES_HUMAN_ADMIN_ACTION and mutation readiness remains BLOCKED_BY_BACKUP_EVIDENCE. step2c5bAccepted=true does not authorize Batch A: batchAMutationAuthorized=false, CMS mutation authorization is NOT_GRANTED, and no CMS mutation, backup/export/restore execution, deletion, production UI, Step 3, Step 2C.5C, or deployment is authorized.
 
 ## Canonical public production topology
 
@@ -46,23 +46,25 @@ This is public-domain evidence only. It must not be used to infer WordPress back
 
 ## Current backend source status
 
-### SOT-001 — OPEN CONFLICT
+### SOT-001 — CLOSED
 
-The `backend/` tree in GitHub is not yet proven to be the latest cumulative backend implementation.
+The backend source-of-truth conflict has been resolved.
 
-Evidence of conflict:
+Independent reconciliation evidence established that the previously checked-in backend was REPOSITORY_BACKEND_OLDER than the currently installed LIVE sira-core source. The owner-exported LIVE plugin was an exact content match for the preserved Step 2C.2F artifact.
 
-- GitHub `backend/src/GraphQL/BrandSchema.php` exposes legacy `announcementBanner` and `emergencyBanner` string fields.
-- The verified live schema adopted by the frontend contains newer typed announcement/emergency banner objects.
-- Project recovery evidence records later Step 2C.2 backend work after the Step 1 baseline.
+PR #18 reconciled backend/ to the verified source:
 
-Policy until reconciled:
+- implementation head: 7869ae3530a8349980b01f31e3d749b292d2f63c
+- merge commit: 5a2d7855590de6fe0b12d5cf48777d7856c9f491
+- artifact ZIP SHA-256: 571bae5eb39032755dd1c9fe1cacc4113ee409da07826c008cd152698987c76f
+- normalized tree SHA-256: cb029a935d6d022ab2d6067e8951b04ba57562d9ff5f1609cc1e547622c826f4
+- WordPress mutation during reconciliation: false
 
-- **Do not make new backend runtime changes from the current GitHub backend tree.**
-- Use the checked-in verified live schema as authoritative for frontend Step 2C.3C contracts.
-- Recover/identify the latest cumulative backend source and compare it against `backend/` before any backend implementation stage.
-- Never silently merge historical `sira-core.zip` or the original enterprise bundle over newer verified code.
+The repository backend is therefore authoritative for the verified LIVE / Step 2C.2F source baseline.
 
+This closure removes only the SOT-001 backend-freshness blocker. Backend work still requires normal stage authorization and review. This closure does not establish exact effective live WordPress Admin coordinates and does not change mutationReadiness=BLOCKED_BY_BACKUP_EVIDENCE, CMS mutation authorization, Batch A authorization, backup/export/restore authorization, production authorization, Step 2C.5C status, Step 3 status, or deployment status.
+
+Known separate observation: backend source declares SiraProjectDetails while the accepted frontend/live GraphQL schema exposes ProjectDetails. The mechanism remains UNKNOWN; no speculative backend change is authorized by this closure.
 ## Historical / reference-only sources
 
 The following are migration archaeology/reference material unless explicitly re-promoted after verification:

@@ -151,7 +151,7 @@ describe("Step 2C.4 production design and data-contract audit", () => {
       },
     });
     expect(state.knownConflicts).toContainEqual(
-      expect.objectContaining({ id: "SOT-001", status: "OPEN" }),
+      expect.objectContaining({ id: "SOT-001", status: "CLOSED" }),
     );
     expect(artifact.baseline).toMatchObject({
       branch: "main",

@@ -50,12 +50,17 @@ Do not restart or redesign without new evidence:
 - no Bricks/prototype runtime in production;
 - no hardcoded CMS content to hide readiness defects.
 
-## Blocking source conflict
+## Backend source-of-truth status
 
-`SOT-001` is open: the GitHub `backend/` tree appears older than the verified live GraphQL/later backend contract. Do not make backend runtime changes until it is reconciled.
+SOT-001 is CLOSED. The repository backend was reconciled in PR #18 to the independently verified LIVE / Step 2C.2F sira-core source.
 
-Frontend Step 2C.3C may continue against the verified checked-in live schema.
+The previous source-freshness blocker no longer prevents separately authorized backend work. This does not itself authorize any new backend runtime change, CMS mutation, Batch A execution, backup/export/restore action, production change, Step 2C.5C, Step 3, or deployment.
 
+Exact effective live WordPress Admin coordinates remain UNKNOWN pending human read-only confirmation.
+
+Known separate observation: backend source declares SiraProjectDetails while the accepted frontend/live GraphQL schema exposes ProjectDetails; the mechanism remains UNKNOWN.
+
+Frontend work continues against the accepted checked-in GraphQL contract.
 ## Expected Step 2C.3C validation
 
 Use the repository's actual package scripts. At minimum for affected frontend work:

@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-17T10:37:47+03:00",
+  "updatedAt": "2026-08-18T20:21:00+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -18,7 +18,39 @@
     "taxonomyDeletionAuthorized": false,
     "backupCreationAuthorized": false,
     "exportExecutionAuthorized": false,
-    "restoreExecutionAuthorized": false
+    "restoreExecutionAuthorized": false,
+    "groupProductionCutoverAuthorized": false,
+    "productionDnsChangeAuthorized": false,
+    "legacyGroupDestructionAuthorized": false
+  },
+  "parallelTracks": {
+    "cmsMutation": {
+      "stage": "2C.5B",
+      "status": "BLOCKED_BY_BACKUP_EVIDENCE",
+      "next": "Human backup/admin evidence gate before any separately authorized Step 2C.5C Batch A execution"
+    },
+    "repositoryFrontend": {
+      "status": "READY_TO_PROCEED_WITHOUT_PRODUCTION_WORDPRESS_MUTATION",
+      "nextStage": "3 — Preview / SEO / Discovery",
+      "launchStrategy": "GROUP_STAGING_FIRST"
+    }
+  },
+  "groupStagingStrategy": {
+    "status": "APPROVED_OWNER_DECISION",
+    "scope": "GROUP_PUBLIC_FRONTEND_ONLY",
+    "stagingHostname": "GROUP_STAGING_HOST",
+    "stagingHostnameStatus": "HUMAN_CONFIRMATION_REQUIRED",
+    "productionHostname": "siratrgroup.com",
+    "sameApplicationAndCommit": true,
+    "separateReactImplementationForStaging": false,
+    "legacyGroupRemainsLiveDuringBuild": true,
+    "legacyGroupIsImmediateRollbackTarget": true,
+    "legacyGroupPreservationRequiredThroughStabilization": true,
+    "separateStagingCmsAssumed": false,
+    "branchSitesUnchanged": true,
+    "dnsChangeAuthorized": false,
+    "productionDeploymentAuthorized": false,
+    "externalStagingProvisioningAuthorized": false
   },
   "canonicalPublicProductionTopology": {
     "status": "APPROVED_OWNER_DECISION",
@@ -51,6 +83,11 @@
     "frontendCiRun": 35,
     "fullRegression": "26 files / 252 tests PASS"
   },
+  "latestRepositoryReconciliation": {
+    "pullRequest": 19,
+    "mergeCommit": "e20858b055e556065e96623205fa0d5774ad81d6",
+    "purpose": "SOT-001 post-merge durable-state reconciliation"
+  },
   "governance": {
     "g0Bootstrap": "COMPLETE",
     "g0MergeCommit": "c26b658b4dfafb82c04af42ca880e6894aefcf0d",
@@ -68,10 +105,11 @@
     ]
   },
   "nextMajorStages": [
-    "Human backup/admin evidence gate before any Batch A authorization",
-    "2C.5C separately authorized Batch A execution only after a new explicit mutation authorization",
-    "3 preview, SEO and discovery",
-    "4 production component implementation"
+    "Repository/frontend: Step 3 Preview / SEO / Discovery using Group staging-first strategy without production WordPress mutation",
+    "Repository/frontend: Step 4 production component implementation and Group staging QA after Step 3 acceptance",
+    "CMS mutation track: human backup/admin evidence gate before any Batch A authorization",
+    "CMS mutation track: 2C.5C separately authorized Batch A execution only after a new explicit mutation authorization",
+    "Group production cutover only after staging acceptance and explicit production authorization"
   ],
   "knownConflicts": [
     {

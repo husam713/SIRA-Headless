@@ -11,12 +11,15 @@ const UNTRUSTED_INTERNAL_HEADERS = [
   "x-sira-brand-key",
 ] as const;
 
+const NO_INDEX_HEADER = "noindex, nofollow, noarchive";
+
 function rejectUnknownHostname(): NextResponse {
   return new NextResponse("Misdirected Request", {
     status: 421,
     headers: {
       "Cache-Control": "no-store",
       "Content-Type": "text/plain; charset=utf-8",
+      "X-Robots-Tag": NO_INDEX_HEADER,
     },
   });
 }
@@ -27,6 +30,7 @@ function rejectInternalPath(): NextResponse {
     headers: {
       "Cache-Control": "no-store",
       "Content-Type": "text/plain; charset=utf-8",
+      "X-Robots-Tag": NO_INDEX_HEADER,
     },
   });
 }
@@ -61,11 +65,17 @@ export function proxy(request: NextRequest): NextResponse {
     requestHeaders.delete(headerName);
   }
 
-  return NextResponse.rewrite(rewriteUrl, {
+  const response = NextResponse.rewrite(rewriteUrl, {
     request: {
       headers: requestHeaders,
     },
   });
+
+  if (resolution.hostnameRole === "deployment") {
+    response.headers.set("X-Robots-Tag", NO_INDEX_HEADER);
+  }
+
+  return response;
 }
 
 export const config = {

@@ -18,7 +18,7 @@ describe("hostname proxy boundary", () => {
     );
   });
 
-  it("serves an allowlisted deployment host without redirecting it to production", () => {
+  it("serves an allowlisted deployment host without redirecting it to production and marks it noindex", () => {
     vi.stubEnv(
       "SIRA_EXTRA_HOSTS_JSON",
       JSON.stringify({ group: ["group.localhost"] }),
@@ -33,6 +33,9 @@ describe("hostname proxy boundary", () => {
     expect(response.headers.get("x-middleware-rewrite")).toBe(
       "http://group.localhost:3000/group/projects/example",
     );
+    expect(response.headers.get("x-robots-tag")).toBe(
+      "noindex, nofollow, noarchive",
+    );
   });
 
   it("rejects unknown hostnames instead of selecting a tenant", () => {
@@ -40,6 +43,9 @@ describe("hostname proxy boundary", () => {
 
     expect(response.status).toBe(421);
     expect(response.headers.get("cache-control")).toBe("no-store");
+    expect(response.headers.get("x-robots-tag")).toBe(
+      "noindex, nofollow, noarchive",
+    );
   });
 
   it("keeps internal tenant paths inaccessible on deployment hosts", () => {
@@ -54,5 +60,8 @@ describe("hostname proxy boundary", () => {
 
     expect(response.status).toBe(404);
     expect(response.headers.get("cache-control")).toBe("no-store");
+    expect(response.headers.get("x-robots-tag")).toBe(
+      "noindex, nofollow, noarchive",
+    );
   });
 });

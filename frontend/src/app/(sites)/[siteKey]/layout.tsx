@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
+import { BrandDocument } from "@/components/brand/brand-document";
+import { getBrand } from "@/lib/brand";
+import { getSiteDefinition } from "@/lib/host/resolve-site";
 import {
-  BrandDocument,
-} from "@/components/brand/brand-document";
+  buildSiteMetadata,
+} from "@/lib/seo/metadata";
 import {
-  getBrand,
-} from "@/lib/brand";
-import {
-  getSiteDefinition,
-} from "@/lib/host/resolve-site";
-import {
-  SITE_KEYS,
-} from "@/types/site";
+  resolveSiteDiscoveryContext,
+} from "@/lib/seo/discovery";
+import { SITE_KEYS } from "@/types/site";
 import "@/styles/globals.css";
 
 interface SiteLayoutProps {
@@ -26,13 +25,25 @@ export function generateStaticParams(): Array<{ siteKey: string }> {
   return SITE_KEYS.map((siteKey) => ({ siteKey }));
 }
 
-export const metadata: Metadata = {
-  title: {
-    default: "SIRA Enterprise",
-    template: "%s | SIRA Enterprise",
-  },
-  description: "SIRA Enterprise headless platform.",
-};
+export async function generateMetadata({
+  params,
+}: Pick<SiteLayoutProps, "params">): Promise<Metadata> {
+  const { siteKey } = await params;
+  const site = getSiteDefinition(siteKey);
+
+  if (site === null) {
+    notFound();
+  }
+
+  const [brand, requestHeaders] = await Promise.all([
+    getBrand(site.key),
+    headers(),
+  ]);
+  const hostname = requestHeaders.get("host") ?? "";
+  const discovery = resolveSiteDiscoveryContext(site.key, hostname);
+
+  return buildSiteMetadata(discovery, brand, "/");
+}
 
 export default async function SiteLayout({
   children,

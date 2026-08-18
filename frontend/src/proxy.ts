@@ -44,7 +44,7 @@ export function proxy(request: NextRequest): NextResponse {
     return rejectUnknownHostname();
   }
 
-  if (!resolution.isCanonical) {
+  if (resolution.shouldRedirectToCanonical) {
     const canonicalUrl = request.nextUrl.clone();
     canonicalUrl.hostname = resolution.site.canonicalHostname;
     canonicalUrl.port = "";

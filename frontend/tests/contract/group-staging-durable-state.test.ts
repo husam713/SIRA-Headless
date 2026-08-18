@@ -15,6 +15,11 @@ const state = JSON.parse(repositoryFile("project-state.json")) as {
     readonly repositoryFrontend: Readonly<Record<string, string>>;
   };
   readonly groupStagingStrategy: Readonly<Record<string, boolean | string>>;
+  readonly latestRepositoryReconciliation: {
+    readonly pullRequest: number;
+    readonly mergeCommit: string;
+    readonly purpose: string;
+  };
 };
 
 const handoff = repositoryFile("docs/HANDOFF.md");
@@ -22,13 +27,21 @@ const adr = repositoryFile("docs/adr/ADR-025-GROUP-STAGING-FIRST.md");
 const stagingSot = repositoryFile("docs/GROUP-STAGING-SOURCE-OF-TRUTH.md");
 
 describe("Group staging-first durable state", () => {
-  it("records the actual post-SOT reconciliation main baseline", () => {
+  it("distinguishes accepted business execution coordinates from canonical main", () => {
     expect(state.executionBaseline).toBe(
-      "e20858b055e556065e96623205fa0d5774ad81d6",
+      "2bd4991f75a53ab9209e748499dcb8915769e3a6",
     );
     expect(state.executionHead).toBe(state.executionBaseline);
+    expect(state.latestRepositoryReconciliation).toMatchObject({
+      pullRequest: 19,
+      mergeCommit: "e20858b055e556065e96623205fa0d5774ad81d6",
+      purpose: "SOT-001 post-merge durable-state reconciliation",
+    });
     expect(stagingSot).toContain(state.executionBaseline);
-    expect(handoff).toContain(state.executionBaseline);
+    expect(stagingSot).toContain(
+      state.latestRepositoryReconciliation.mergeCommit,
+    );
+    expect(handoff).toContain(state.latestRepositoryReconciliation.mergeCommit);
   });
 
   it("keeps the CMS mutation track closed while allowing repository frontend work", () => {
@@ -41,8 +54,8 @@ describe("Group staging-first durable state", () => {
       nextStage: "3 — Preview / SEO / Discovery",
       launchStrategy: "GROUP_STAGING_FIRST",
     });
-    expect(state.authorization.cmsMutationAuthorization).toBe("NOT_GRANTED");
-    expect(state.authorization.batchAMutationAuthorized).toBe(false);
+    expect(state.authorization["cmsMutationAuthorization"]).toBe("NOT_GRANTED");
+    expect(state.authorization["batchAMutationAuthorized"]).toBe(false);
   });
 
   it("uses an unresolved placeholder for Group staging and never authorizes production", () => {
@@ -63,9 +76,9 @@ describe("Group staging-first durable state", () => {
       externalStagingProvisioningAuthorized: false,
     });
     expect(state.productionAuthorized).toBe(false);
-    expect(state.authorization.groupProductionCutoverAuthorized).toBe(false);
-    expect(state.authorization.productionDnsChangeAuthorized).toBe(false);
-    expect(state.authorization.legacyGroupDestructionAuthorized).toBe(false);
+    expect(state.authorization["groupProductionCutoverAuthorized"]).toBe(false);
+    expect(state.authorization["productionDnsChangeAuthorized"]).toBe(false);
+    expect(state.authorization["legacyGroupDestructionAuthorized"]).toBe(false);
   });
 
   it("preserves the staging-first decision in human-readable durable records", () => {

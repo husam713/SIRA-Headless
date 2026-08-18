@@ -23,41 +23,62 @@ describe("SIRA site registry", () => {
     expect(resolveSiteFromHostname(hostname)?.site.key).toBe(expectedKey);
   });
 
-  it("marks www as an alias requiring canonicalization", () => {
-    const resolution = resolveSiteFromHostname("www.siratrgroup.com");
-
-    expect(resolution?.site.key).toBe("group");
-    expect(resolution?.isCanonical).toBe(false);
-    expect(resolution?.site.canonicalHostname).toBe("siratrgroup.com");
+  it("classifies canonical production hosts without redirecting", () => {
+    expect(resolveSiteFromHostname("siratrgroup.com")).toMatchObject({
+      hostnameRole: "canonical",
+      isCanonical: true,
+      shouldRedirectToCanonical: false,
+      site: { key: "group", canonicalHostname: "siratrgroup.com" },
+    });
   });
 
-  it("supports allowlisted local and staging aliases", () => {
+  it("classifies www as a redirect alias requiring production canonicalization", () => {
+    expect(resolveSiteFromHostname("www.siratrgroup.com")).toMatchObject({
+      hostnameRole: "redirect-alias",
+      isCanonical: false,
+      shouldRedirectToCanonical: true,
+      site: { key: "group", canonicalHostname: "siratrgroup.com" },
+    });
+  });
+
+  it("supports allowlisted deployment hosts without treating them as redirect aliases", () => {
     const registry = buildSiteRegistry({
-      group: ["group.localhost", "group.staging.siratrgroup.com"],
+      group: ["group.localhost"],
       consulting: ["consulting.localhost"],
     });
 
     expect(
-      resolveSiteFromHostname("group.localhost:3000", registry)?.site.key,
-    ).toBe("group");
+      resolveSiteFromHostname("group.localhost:3000", registry),
+    ).toMatchObject({
+      hostnameRole: "deployment",
+      isCanonical: false,
+      shouldRedirectToCanonical: false,
+      site: { key: "group", canonicalHostname: "siratrgroup.com" },
+    });
 
     expect(
-      resolveSiteFromHostname(
-        "group.staging.siratrgroup.com",
-        registry,
-      )?.site.key,
-    ).toBe("group");
-
-    expect(
-      resolveSiteFromHostname("consulting.localhost:3000", registry)?.site.key,
-    ).toBe("consulting");
+      resolveSiteFromHostname("consulting.localhost:3000", registry),
+    ).toMatchObject({
+      hostnameRole: "deployment",
+      shouldRedirectToCanonical: false,
+      site: {
+        key: "consulting",
+        canonicalHostname: "consulting.siratrgroup.com",
+      },
+    });
   });
 
   it("rejects unknown hostnames instead of falling back to Group", () => {
     expect(resolveSiteFromHostname("attacker.example")).toBeNull();
   });
 
-  it("rejects duplicate hostnames across sites", () => {
+  it("rejects duplicate hostnames across site or hostname roles", () => {
+    expect(() =>
+      buildSiteRegistry({
+        group: ["siratrgroup.com"],
+      }),
+    ).toThrow(SiteRegistryError);
+
     expect(() =>
       buildSiteRegistry({
         consulting: ["shared.localhost"],

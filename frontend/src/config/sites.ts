@@ -1,5 +1,6 @@
 import {
   SITE_KEYS,
+  type HostnameRole,
   type SiteDefinition,
   type SiteKey,
 } from "@/types/site";
@@ -49,13 +50,18 @@ const BASE_SITES = {
     defaultLocale: "en",
     supportedLocales: ["en", "ar"],
   },
-} as const satisfies Record<SiteKey, SiteDefinition>;
+} as const satisfies Record<SiteKey, Omit<SiteDefinition, "deploymentHostnames">>;
 
 type ExtraHosts = Partial<Record<SiteKey, readonly string[]>>;
 
+interface HostnameRegistration {
+  readonly site: SiteDefinition;
+  readonly role: HostnameRole;
+}
+
 export interface SiteRegistry {
   readonly sites: Readonly<Record<SiteKey, SiteDefinition>>;
-  readonly byHostname: ReadonlyMap<string, SiteDefinition>;
+  readonly byHostname: ReadonlyMap<string, HostnameRegistration>;
 }
 
 export class SiteRegistryError extends Error {
@@ -110,49 +116,73 @@ export function parseExtraHosts(rawValue: string | undefined): ExtraHosts {
   return result;
 }
 
+function normalizeSiteHostname(siteKey: SiteKey, hostname: string): string {
+  try {
+    return normalizeHostname(hostname);
+  } catch (error) {
+    const message =
+      error instanceof InvalidHostnameError
+        ? error.message
+        : "Unknown hostname validation error.";
+
+    throw new SiteRegistryError(
+      `Invalid hostname for ${siteKey}: ${hostname}. ${message}`,
+    );
+  }
+}
+
 export function buildSiteRegistry(extraHosts: ExtraHosts = {}): SiteRegistry {
   const mutableSites = {} as Record<SiteKey, SiteDefinition>;
-  const byHostname = new Map<string, SiteDefinition>();
+  const byHostname = new Map<string, HostnameRegistration>();
+
+  const register = (
+    hostname: string,
+    site: SiteDefinition,
+    role: HostnameRole,
+  ): void => {
+    const existing = byHostname.get(hostname);
+
+    if (existing !== undefined) {
+      throw new SiteRegistryError(
+        `Hostname ${hostname} is registered more than once (${existing.site.key}/${existing.role}, ${site.key}/${role}).`,
+      );
+    }
+
+    byHostname.set(hostname, Object.freeze({ site, role }));
+  };
 
   for (const key of SITE_KEYS) {
     const base = BASE_SITES[key];
-    const aliases = [
-      ...base.aliases,
-      ...(extraHosts[key] ?? []),
-    ].map((hostname) => {
-      try {
-        return normalizeHostname(hostname);
-      } catch (error) {
-        const message =
-          error instanceof InvalidHostnameError
-            ? error.message
-            : "Unknown hostname validation error.";
-
-        throw new SiteRegistryError(
-          `Invalid hostname for ${key}: ${hostname}. ${message}`,
-        );
-      }
-    });
+    const canonicalHostname = normalizeSiteHostname(key, base.canonicalHostname);
+    const aliases = base.aliases.map((hostname) =>
+      normalizeSiteHostname(key, hostname),
+    );
+    const deploymentHostnames = Array.from(
+      new Set(
+        (extraHosts[key] ?? []).map((hostname) =>
+          normalizeSiteHostname(key, hostname),
+        ),
+      ),
+    );
 
     const site: SiteDefinition = Object.freeze({
       ...base,
-      canonicalHostname: normalizeHostname(base.canonicalHostname),
-      aliases: Object.freeze(Array.from(new Set(aliases))),
+      canonicalHostname,
+      aliases: Object.freeze([...aliases]),
+      deploymentHostnames: Object.freeze(deploymentHostnames),
       supportedLocales: Object.freeze([...base.supportedLocales]),
     });
 
     mutableSites[key] = site;
 
-    for (const hostname of [site.canonicalHostname, ...site.aliases]) {
-      const existing = byHostname.get(hostname);
+    register(site.canonicalHostname, site, "canonical");
 
-      if (existing !== undefined) {
-        throw new SiteRegistryError(
-          `Hostname ${hostname} is assigned to both ${existing.key} and ${key}.`,
-        );
-      }
+    for (const hostname of site.aliases) {
+      register(hostname, site, "redirect-alias");
+    }
 
-      byHostname.set(hostname, site);
+    for (const hostname of site.deploymentHostnames) {
+      register(hostname, site, "deployment");
     }
   }
 

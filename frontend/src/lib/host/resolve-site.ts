@@ -22,16 +22,18 @@ export function resolveSiteFromHostname(
     return null;
   }
 
-  const site = registry.byHostname.get(normalized);
+  const registration = registry.byHostname.get(normalized);
 
-  if (site === undefined) {
+  if (registration === undefined) {
     return null;
   }
 
   return {
-    site,
+    site: registration.site,
     requestedHostname: normalized,
-    isCanonical: normalized === site.canonicalHostname,
+    hostnameRole: registration.role,
+    isCanonical: registration.role === "canonical",
+    shouldRedirectToCanonical: registration.role === "redirect-alias",
   };
 }
 

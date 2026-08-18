@@ -7,6 +7,45 @@ afterEach(() => {
 });
 
 describe("hostname proxy boundary", () => {
+  it("resolves a production Host when the framework URL is localhost", () => {
+    const response = proxy(
+      new NextRequest("http://localhost:3000/", {
+        headers: { host: "siratrgroup.com" },
+      }),
+    );
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("x-middleware-rewrite")).toBe(
+      "http://localhost:3000/group",
+    );
+  });
+
+  it("redirects a runtime alias Host to the HTTPS production canonical URL", () => {
+    const response = proxy(
+      new NextRequest("http://localhost:3000/projects/example?ref=test", {
+        headers: { host: "www.siratrgroup.com" },
+      }),
+    );
+
+    expect(response.status).toBe(308);
+    expect(response.headers.get("location")).toBe(
+      "https://siratrgroup.com/projects/example?ref=test",
+    );
+  });
+
+  it("does not let a forwarded host override an unknown direct Host", () => {
+    const response = proxy(
+      new NextRequest("http://localhost:3000/", {
+        headers: {
+          host: "unknown.localhost",
+          "x-forwarded-host": "siratrgroup.com",
+        },
+      }),
+    );
+
+    expect(response.status).toBe(421);
+  });
+
   it("redirects only permanent redirect aliases to the production canonical host", () => {
     const response = proxy(
       new NextRequest("https://www.siratrgroup.com/projects/example?ref=test"),

@@ -4,6 +4,7 @@ import {
   isInternalSitePath,
   resolveSiteFromHostname,
 } from "@/lib/host/resolve-site";
+import { getEffectiveRequestHostname } from "@/lib/host/effective-host";
 
 const UNTRUSTED_INTERNAL_HEADERS = [
   "x-sira-site-key",
@@ -42,7 +43,11 @@ export function proxy(request: NextRequest): NextResponse {
     return rejectInternalPath();
   }
 
-  const resolution = resolveSiteFromHostname(request.nextUrl.hostname);
+  const effectiveHostname = getEffectiveRequestHostname(request);
+  const resolution =
+    effectiveHostname === null
+      ? null
+      : resolveSiteFromHostname(effectiveHostname);
 
   if (resolution === null) {
     return rejectUnknownHostname();
@@ -50,6 +55,7 @@ export function proxy(request: NextRequest): NextResponse {
 
   if (resolution.shouldRedirectToCanonical) {
     const canonicalUrl = request.nextUrl.clone();
+    canonicalUrl.protocol = "https:";
     canonicalUrl.hostname = resolution.site.canonicalHostname;
     canonicalUrl.port = "";
 

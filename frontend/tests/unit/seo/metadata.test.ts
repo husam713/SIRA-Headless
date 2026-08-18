@@ -40,10 +40,10 @@ describe("tenant-aware metadata", () => {
       createFallbackBrand("healthcare"),
     );
 
-    expect(consulting.metadataBase?.hostname).toBe(
+    expect(new URL(consulting.metadataBase?.toString() ?? "").hostname).toBe(
       "consulting.siratrgroup.com",
     );
-    expect(healthcare.metadataBase?.hostname).toBe(
+    expect(new URL(healthcare.metadataBase?.toString() ?? "").hostname).toBe(
       "healthcare.siratrgroup.com",
     );
     expect(consulting.openGraph).toMatchObject({

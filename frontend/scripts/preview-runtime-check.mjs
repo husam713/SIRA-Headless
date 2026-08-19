@@ -164,8 +164,15 @@ mockServer.listen(mockPort, "127.0.0.1");
 await once(mockServer, "listening");
 
 const app = spawn(
-  process.platform === "win32" ? "pnpm.cmd" : "pnpm",
-  ["exec", "next", "start", "-p", String(appPort), "-H", "127.0.0.1"],
+  process.execPath,
+  [
+    "node_modules/next/dist/bin/next",
+    "start",
+    "-p",
+    String(appPort),
+    "--hostname",
+    "127.0.0.1",
+  ],
   {
     cwd: process.cwd(),
     env: {
@@ -191,16 +198,28 @@ app.stderr.on("data", (chunk) => {
 
 try {
   const deadline = Date.now() + 20_000;
+  let ready = false;
+  let lastProbe = null;
   while (Date.now() < deadline) {
     try {
-      const probe = await request(appPort, "/api/health", { host: HOST });
-      if (probe.status === 200) break;
+      lastProbe = await request(appPort, "/api/health", { host: HOST });
+      if (lastProbe.status === 200) {
+        ready = true;
+        break;
+      }
     } catch {}
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
+  assert(
+    ready,
+    `Next server did not become ready. Probe=${JSON.stringify(lastProbe)} Logs=${logs}`,
+  );
 
   const published = await request(appPort, "/");
-  assert(published.status === 200, "Published homepage did not return 200.");
+  assert(
+    published.status === 200,
+    `Published homepage status=${published.status}; body=${published.body.slice(0, 1000)}; logs=${logs}`,
+  );
   assert(published.body.includes("Published Home"), "Published data was not used.");
   assert(!published.body.includes("Preview Mode"), "Preview banner leaked into public mode.");
 

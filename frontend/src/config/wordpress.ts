@@ -1,11 +1,17 @@
 import "server-only";
 
+import { Buffer } from "node:buffer";
 import { isSiteKey } from "@/config/sites";
 import type { SiteKey } from "@/types/site";
 
 interface WordPressEnvironmentKeys {
   readonly endpoint: string;
   readonly blogId: string;
+}
+
+interface WordPressPreviewEnvironmentKeys {
+  readonly username: string;
+  readonly applicationPassword: string;
 }
 
 export type WordPressEnvironment = Readonly<
@@ -40,6 +46,31 @@ const WORDPRESS_ENVIRONMENT_KEYS: Readonly<
   realestate: {
     endpoint: "SIRA_WP_REALESTATE_GRAPHQL_URL",
     blogId: "SIRA_WP_REALESTATE_BLOG_ID",
+  },
+};
+
+const WORDPRESS_PREVIEW_ENVIRONMENT_KEYS: Readonly<
+  Record<SiteKey, WordPressPreviewEnvironmentKeys>
+> = {
+  group: {
+    username: "SIRA_WP_GROUP_PREVIEW_USERNAME",
+    applicationPassword: "SIRA_WP_GROUP_PREVIEW_APPLICATION_PASSWORD",
+  },
+  consulting: {
+    username: "SIRA_WP_CONSULTING_PREVIEW_USERNAME",
+    applicationPassword: "SIRA_WP_CONSULTING_PREVIEW_APPLICATION_PASSWORD",
+  },
+  healthcare: {
+    username: "SIRA_WP_HEALTHCARE_PREVIEW_USERNAME",
+    applicationPassword: "SIRA_WP_HEALTHCARE_PREVIEW_APPLICATION_PASSWORD",
+  },
+  lifestyle: {
+    username: "SIRA_WP_LIFESTYLE_PREVIEW_USERNAME",
+    applicationPassword: "SIRA_WP_LIFESTYLE_PREVIEW_APPLICATION_PASSWORD",
+  },
+  realestate: {
+    username: "SIRA_WP_REALESTATE_PREVIEW_USERNAME",
+    applicationPassword: "SIRA_WP_REALESTATE_PREVIEW_APPLICATION_PASSWORD",
   },
 };
 
@@ -118,6 +149,50 @@ function parseGraphQLEndpoint(
   return endpoint;
 }
 
+function parsePreviewUsername(
+  rawValue: string | undefined,
+  environmentKey: string,
+): string {
+  if (rawValue === undefined || rawValue === "") {
+    throw new WordPressConfigurationError(`${environmentKey} is required.`);
+  }
+
+  if (
+    rawValue !== rawValue.trim() ||
+    rawValue.length > 128 ||
+    rawValue.includes(":") ||
+    /[\u0000-\u001f\u007f]/.test(rawValue)
+  ) {
+    throw new WordPressConfigurationError(
+      `${environmentKey} is not a valid preview username.`,
+    );
+  }
+
+  return rawValue;
+}
+
+function parseApplicationPassword(
+  rawValue: string | undefined,
+  environmentKey: string,
+): string {
+  if (rawValue === undefined || rawValue === "") {
+    throw new WordPressConfigurationError(`${environmentKey} is required.`);
+  }
+
+  if (
+    rawValue !== rawValue.trim() ||
+    rawValue.length < 20 ||
+    rawValue.length > 255 ||
+    /[\u0000-\u001f\u007f]/.test(rawValue)
+  ) {
+    throw new WordPressConfigurationError(
+      `${environmentKey} is not a valid Application Password value.`,
+    );
+  }
+
+  return rawValue;
+}
+
 export function getWordPressSiteConfig(
   siteKey: SiteKey,
   environment: WordPressEnvironment = process.env,
@@ -145,6 +220,27 @@ export function getWordPressSiteConfigFromUnknown(
   }
 
   return getWordPressSiteConfig(value, environment);
+}
+
+export function getWordPressPreviewAuthorization(
+  siteKey: SiteKey,
+  environment: WordPressEnvironment = process.env,
+): string {
+  const keys = WORDPRESS_PREVIEW_ENVIRONMENT_KEYS[siteKey];
+  const username = parsePreviewUsername(
+    environment[keys.username],
+    keys.username,
+  );
+  const applicationPassword = parseApplicationPassword(
+    environment[keys.applicationPassword],
+    keys.applicationPassword,
+  );
+  const encodedCredential = Buffer.from(
+    `${username}:${applicationPassword}`,
+    "utf8",
+  ).toString("base64");
+
+  return `Basic ${encodedCredential}`;
 }
 
 export function getGraphQLTimeoutMs(

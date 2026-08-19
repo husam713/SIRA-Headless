@@ -1,5 +1,6 @@
 import "server-only";
 
+import { draftMode } from "next/headers";
 import { cache } from "react";
 import { normalizeHomepage } from "@/lib/homepage/normalize-homepage";
 import type { HomepageResolution } from "@/lib/homepage/types";
@@ -84,4 +85,14 @@ export async function getPreviewHomepage(
         { asPreview: true },
       ),
   );
+}
+
+export async function getHomepageForRequest(
+  siteKey: SiteKey,
+): Promise<HomepageResolution> {
+  const draft = await draftMode();
+
+  return draft.isEnabled
+    ? getPreviewHomepage(siteKey)
+    : getHomepage(siteKey);
 }

@@ -77,3 +77,6 @@ jobs:
 
       - name: Production build
         run: pnpm build
+
+      - name: Run local Draft Mode runtime verification
+        run: pnpm test:runtime-preview

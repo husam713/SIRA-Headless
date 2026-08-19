@@ -15,6 +15,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "test:run": "vitest run",
+    "test:runtime-preview": "node scripts/preview-runtime-check.mjs",
     "check": "pnpm check:source",
     "schema:fetch": "node scripts/fetch-schema.mjs",
     "schema:check": "node scripts/check-schema.mjs",

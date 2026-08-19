@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
+import { draftMode, headers } from "next/headers";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { BrandDocument } from "@/components/brand/brand-document";
 import { getBrand } from "@/lib/brand";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
-import {
-  buildSiteMetadata,
-} from "@/lib/seo/metadata";
-import {
-  resolveSiteDiscoveryContext,
-} from "@/lib/seo/discovery";
+import { buildSiteMetadata } from "@/lib/seo/metadata";
+import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { SITE_KEYS } from "@/types/site";
 import "@/styles/globals.css";
 
@@ -35,14 +31,17 @@ export async function generateMetadata({
     notFound();
   }
 
-  const [brand, requestHeaders] = await Promise.all([
+  const [brand, requestHeaders, draft] = await Promise.all([
     getBrand(site.key),
     headers(),
+    draftMode(),
   ]);
   const hostname = requestHeaders.get("host") ?? "";
   const discovery = resolveSiteDiscoveryContext(site.key, hostname);
 
-  return buildSiteMetadata(discovery, brand, "/");
+  return buildSiteMetadata(discovery, brand, "/", {
+    forceNoIndex: draft.isEnabled,
+  });
 }
 
 export default async function SiteLayout({
@@ -56,7 +55,10 @@ export default async function SiteLayout({
     notFound();
   }
 
-  const brand = await getBrand(site.key);
+  const [brand, draft] = await Promise.all([
+    getBrand(site.key),
+    draftMode(),
+  ]);
 
   return (
     <BrandDocument site={site} brand={brand}>
@@ -66,6 +68,20 @@ export default async function SiteLayout({
       >
         Skip to main content
       </a>
+
+      {draft.isEnabled ? (
+        <aside
+          aria-label="Preview Mode"
+          className="border-b border-brand-border bg-brand-tint px-6 py-3 text-sm"
+        >
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
+            <strong>Preview Mode</strong>
+            <a className="underline" href="/api/preview/exit?destination=/">
+              Exit Preview
+            </a>
+          </div>
+        </aside>
+      ) : null}
 
       <header className="border-b border-brand-border bg-brand-paper-glass backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">

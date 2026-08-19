@@ -9,6 +9,10 @@ const PREVIEW_SECRET =
 const PREVIEW_USERNAME = "runtime-preview-editor";
 const PREVIEW_PASSWORD = "runtime-test-application-password-0001";
 const HOST = "siratrgroup.com";
+const REDIRECT_ALIAS_HOST = "www.siratrgroup.com";
+const DEPLOYMENT_HOST = "group-deploy.localhost";
+const UNKNOWN_HOST = "unknown.localhost";
+const APP_HOSTNAME = "localhost";
 
 function freePort() {
   return new Promise((resolve, reject) => {
@@ -69,7 +73,7 @@ function request(port, path, { cookie, host = HOST } = {}) {
   return new Promise((resolve, reject) => {
     const req = httpRequest(
       {
-        hostname: "127.0.0.1",
+        hostname: APP_HOSTNAME,
         port,
         path,
         method: "GET",
@@ -107,6 +111,15 @@ function cookieFrom(response) {
     .join("; ");
 }
 
+function setCookieValues(response) {
+  const setCookie = response.headers["set-cookie"] ?? [];
+  return Array.isArray(setCookie) ? setCookie : [setCookie];
+}
+
+function hasDraftModeCookie(response) {
+  return cookieFrom(response).includes("__prerender_bypass");
+}
+
 function assert(condition, message) {
   if (!condition) {
     throw new Error(message);
@@ -114,6 +127,7 @@ function assert(condition, message) {
 }
 
 const graphqlEvents = [];
+let previewHomepageRequestCount = 0;
 const mockPort = await freePort();
 const appPort = await freePort();
 
@@ -125,10 +139,16 @@ const mockServer = createServer((req, res) => {
   req.on("end", () => {
     const parsed = JSON.parse(body || "{}");
     const authorization = req.headers.authorization ?? null;
+    const previewRequest = parsed.variables?.asPreview === true;
+    const previewSequence =
+      parsed.operationName === "SiraHomepage" && previewRequest
+        ? ++previewHomepageRequestCount
+        : null;
     graphqlEvents.push({
       operationName: parsed.operationName,
       asPreview: parsed.variables?.asPreview ?? null,
       authorization,
+      previewSequence,
     });
 
     const data =
@@ -137,8 +157,8 @@ const mockServer = createServer((req, res) => {
             page: {
               databaseId: 7,
               uri: "/",
-              title: parsed.variables?.asPreview
-                ? "Draft Home"
+              title: previewRequest
+                ? `Draft Home ${previewSequence}`
                 : "Published Home",
               siraHomepage: {
                 variant: "group",
@@ -171,7 +191,7 @@ const app = spawn(
     "-p",
     String(appPort),
     "--hostname",
-    "127.0.0.1",
+    APP_HOSTNAME,
   ],
   {
     cwd: process.cwd(),
@@ -179,6 +199,9 @@ const app = spawn(
       ...process.env,
       NEXT_TELEMETRY_DISABLED: "1",
       SIRA_PREVIEW_ENTRY_SECRET: PREVIEW_SECRET,
+      SIRA_EXTRA_HOSTS_JSON: JSON.stringify({
+        group: [DEPLOYMENT_HOST],
+      }),
       SIRA_WP_GROUP_GRAPHQL_URL: `http://127.0.0.1:${mockPort}/graphql`,
       SIRA_WP_GROUP_BLOG_ID: "1",
       SIRA_WP_GROUP_PREVIEW_USERNAME: PREVIEW_USERNAME,
@@ -222,41 +245,150 @@ try {
   );
   assert(published.body.includes("Published Home"), "Published data was not used.");
   assert(!published.body.includes("Preview Mode"), "Preview banner leaked into public mode.");
+  assert(!hasDraftModeCookie(published), "Public mode issued a Draft Mode cookie.");
+
+  const unauthorized = await request(appPort, "/api/preview/");
+  assert(unauthorized.status === 401, "Unsigned preview entry was not rejected.");
+  assert(!hasDraftModeCookie(unauthorized), "Unsigned preview entry enabled Draft Mode.");
 
   const bad = signedPreviewPath();
   const badUrl = new URL(`http://local${bad}`);
   badUrl.searchParams.set("signature", "A".repeat(43));
   const badResponse = await request(appPort, `${badUrl.pathname}?${badUrl.searchParams}`);
   assert(badResponse.status === 401, "Bad signature was not rejected.");
-  assert(!cookieFrom(badResponse).includes("__prerender_bypass"), "Bad signature enabled Draft Mode.");
+  assert(!hasDraftModeCookie(badResponse), "Bad signature enabled Draft Mode.");
 
+  const now = Math.floor(Date.now() / 1000);
   const expired = await request(
     appPort,
     signedPreviewPath({
-      issuedAt: Math.floor(Date.now() / 1000) - 600,
-      expiresAt: Math.floor(Date.now() / 1000) - 300,
+      issuedAt: now - 600,
+      expiresAt: now - 300,
     }),
   );
   assert(expired.status === 401, "Expired preview request was not rejected.");
+  assert(!hasDraftModeCookie(expired), "Expired preview request enabled Draft Mode.");
+
+  const future = await request(
+    appPort,
+    signedPreviewPath({
+      issuedAt: now + 60,
+      expiresAt: now + 180,
+    }),
+  );
+  assert(future.status === 401, "Future preview request was not rejected.");
+  assert(!hasDraftModeCookie(future), "Future preview request enabled Draft Mode.");
 
   const malicious = await request(
     appPort,
     signedPreviewPath({ destination: "//evil.example" }),
   );
   assert(malicious.status === 401, "Unsafe destination was not rejected.");
+  assert(!hasDraftModeCookie(malicious), "Unsafe destination enabled Draft Mode.");
+
+  const tenantMismatch = await request(
+    appPort,
+    signedPreviewPath({ siteKey: "consulting" }),
+  );
+  assert(tenantMismatch.status === 401, "Tenant-mismatched preview entry was not rejected.");
+  assert(!hasDraftModeCookie(tenantMismatch), "Tenant mismatch enabled Draft Mode.");
+
+  const unknownPublic = await request(appPort, "/", { host: UNKNOWN_HOST });
+  assert(unknownPublic.status === 421, "Unknown public Host did not fail closed.");
+
+  const unknownEntry = await request(appPort, signedPreviewPath(), {
+    host: UNKNOWN_HOST,
+  });
+  assert(unknownEntry.status === 401, "Unknown preview Host was not rejected.");
+  assert(!hasDraftModeCookie(unknownEntry), "Unknown Host enabled Draft Mode.");
+
+  const aliasEntry = await request(appPort, signedPreviewPath(), {
+    host: REDIRECT_ALIAS_HOST,
+  });
+  assert(aliasEntry.status === 401, "Redirect-alias preview entry was not rejected.");
+  assert(!hasDraftModeCookie(aliasEntry), "Redirect alias enabled Draft Mode.");
+
+  const deploymentEntry = await request(appPort, signedPreviewPath(), {
+    host: DEPLOYMENT_HOST,
+  });
+  assert(
+    [307, 308].includes(deploymentEntry.status),
+    "Allowlisted deployment-host preview entry did not redirect.",
+  );
+  assert(
+    typeof deploymentEntry.headers.location === "string",
+    "Deployment-host preview entry did not return a redirect destination.",
+  );
+  const deploymentLocation = new URL(
+    deploymentEntry.headers.location,
+    `http://${DEPLOYMENT_HOST}`,
+  );
+  assert(
+    deploymentLocation.hostname === DEPLOYMENT_HOST,
+    "Deployment-host preview entry redirected to production.",
+  );
+  const deploymentDraftCookie = cookieFrom(deploymentEntry);
+  assert(
+    deploymentDraftCookie.includes("__prerender_bypass"),
+    "Deployment-host preview entry did not issue Draft Mode state.",
+  );
+
+  const deploymentDraft = await request(appPort, "/", {
+    cookie: deploymentDraftCookie,
+    host: DEPLOYMENT_HOST,
+  });
+  assert(deploymentDraft.status === 200, "Deployment-host preview did not render.");
+  assert(
+    deploymentDraft.body.includes("Draft Home 1"),
+    "Deployment host did not remain on the Group preview data flow.",
+  );
+  assert(
+    deploymentDraft.headers["x-robots-tag"] === "noindex, nofollow, noarchive",
+    "Deployment-host preview was not marked noindex at the proxy boundary.",
+  );
 
   const entry = await request(appPort, signedPreviewPath());
   assert([307, 308].includes(entry.status), "Valid preview entry did not redirect.");
+  assert(
+    typeof entry.headers.location === "string",
+    "Valid preview entry did not return a redirect destination.",
+  );
+  const entryLocation = new URL(entry.headers.location, `http://${HOST}`);
+  assert(
+    entryLocation.hostname === HOST &&
+      entryLocation.pathname === "/" &&
+      entryLocation.search === "",
+    "Valid preview entry did not retain its safe same-host destination.",
+  );
   const draftCookie = cookieFrom(entry);
   assert(draftCookie.includes("__prerender_bypass"), "Draft Mode cookie was not issued.");
 
   const draft = await request(appPort, "/", { cookie: draftCookie });
   assert(draft.status === 200, "Draft homepage did not return 200.");
-  assert(draft.body.includes("Draft Home"), "Draft data was not used.");
+  assert(draft.body.includes("Draft Home 2"), "Draft data was not used.");
   assert(draft.body.includes("Preview Mode"), "Preview Mode banner was not rendered.");
   assert(
     /name="robots"[^>]+noindex|noindex[^>]+name="robots"/i.test(draft.body),
     "Draft response did not contain robots noindex metadata.",
+  );
+  assert(
+    /<link[^>]+rel="canonical"[^>]+href="https:\/\/siratrgroup\.com\/"|<link[^>]+href="https:\/\/siratrgroup\.com\/"[^>]+rel="canonical"/i.test(
+      draft.body,
+    ),
+    "Draft response did not retain the production canonical URL.",
+  );
+  assert(
+    !draft.body.includes(PREVIEW_SECRET) &&
+      !draft.body.includes(PREVIEW_USERNAME) &&
+      !draft.body.includes(PREVIEW_PASSWORD),
+    "Server-only preview material leaked into rendered HTML.",
+  );
+
+  const secondDraft = await request(appPort, "/", { cookie: draftCookie });
+  assert(secondDraft.status === 200, "Second Draft Mode request did not render.");
+  assert(
+    secondDraft.body.includes("Draft Home 3"),
+    "Preview GraphQL data was cached instead of making a no-store transport request.",
   );
 
   const unsafeExit = await request(
@@ -270,27 +402,52 @@ try {
     cookie: draftCookie,
   });
   assert([307, 308].includes(exit.status), "Preview exit did not redirect.");
+  assert(
+    typeof exit.headers.location === "string",
+    "Preview exit did not return a redirect destination.",
+  );
+  const exitLocation = new URL(exit.headers.location, `http://${HOST}`);
+  assert(
+    exitLocation.hostname === HOST &&
+      exitLocation.pathname === "/" &&
+      exitLocation.search === "",
+    "Preview exit did not retain its safe same-host destination.",
+  );
   const clearCookie = cookieFrom(exit);
   assert(clearCookie.includes("__prerender_bypass"), "Preview exit did not clear Draft Mode state.");
+  assert(
+    setCookieValues(exit).some(
+      (value) =>
+        value.startsWith("__prerender_bypass=;") &&
+        (/max-age=0/i.test(value) || /expires=Thu, 01 Jan 1970/i.test(value)),
+    ),
+    "Preview exit did not expire the Draft Mode cookie.",
+  );
 
-  const restored = await request(appPort, "/");
+  const restored = await request(appPort, "/", { cookie: clearCookie });
+  assert(restored.status === 200, "Public mode was not restored to a 200 response.");
   assert(restored.body.includes("Published Home"), "Public mode was not restored after exit.");
   assert(!restored.body.includes("Preview Mode"), "Preview banner remained after exit.");
 
   const publishedGraphql = graphqlEvents.find(
     (event) => event.operationName === "SiraHomepage" && event.asPreview === false,
   );
-  const previewGraphql = graphqlEvents.find(
+  const previewGraphql = graphqlEvents.filter(
     (event) => event.operationName === "SiraHomepage" && event.asPreview === true,
   );
   assert(publishedGraphql?.authorization === null, "Public GraphQL was authenticated.");
   assert(
-    previewGraphql?.authorization?.startsWith("Basic "),
-    "Preview GraphQL did not use Basic authentication.",
+    previewGraphql.length >= 3 &&
+      previewGraphql.every((event) => event.authorization?.startsWith("Basic ")),
+    "Preview GraphQL requests did not use server-only Basic authentication.",
+  );
+  assert(
+    previewGraphql.slice(0, 3).every((event, index) => event.previewSequence === index + 1),
+    "Preview GraphQL no-store requests did not cross the real HTTP boundary independently.",
   );
 
   console.log(
-    "Step 3C.2 local runtime verification PASS: entry, rejection paths, Draft Mode cookie, preview data, banner, noindex, exit, and public restoration.",
+    "Step 3C.2 local runtime verification PASS: public Group, unsigned/bad/expired/future/unsafe/tenant/unknown/alias rejection, deployment host, signed entry, Draft Mode cookie, no-store preview data, banner, noindex/canonical, exit, and public restoration.",
   );
 } finally {
   app.kill("SIGTERM");

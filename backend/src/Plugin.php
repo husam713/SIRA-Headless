@@ -15,6 +15,7 @@ use Sira\Core\Content\MetaFields;
 use Sira\Core\Content\PostTypes;
 use Sira\Core\Content\Taxonomies;
 use Sira\Core\Forms\LegacyContactForm;
+use Sira\Core\GraphQL\ApplicationPasswordAuthentication;
 use Sira\Core\GraphQL\BrandSchema;
 use Sira\Core\GraphQL\PresentationVisibility;
 use Sira\Core\Integrations\AcfIntegration;
@@ -50,6 +51,7 @@ final class Plugin {
 		( new SiteSettings() )->hooks();
 		( new DemoImporter() )->hooks();
 		( new AcfIntegration() )->hooks();
+		( new ApplicationPasswordAuthentication() )->hooks();
 		( new BrandSchema() )->hooks();
 		( new PresentationVisibility() )->hooks();
 		( new BrandRoute() )->hooks();

@@ -62,7 +62,7 @@ function signedPreviewPath(overrides = {}) {
     expiresAt: String(payload.expiresAt),
     signature,
   });
-  return `/api/preview?${params}`;
+  return `/api/preview/?${params}`;
 }
 
 function request(port, path, { cookie, host = HOST } = {}) {
@@ -202,7 +202,7 @@ try {
   let lastProbe = null;
   while (Date.now() < deadline) {
     try {
-      lastProbe = await request(appPort, "/api/health", { host: HOST });
+      lastProbe = await request(appPort, "/api/health/", { host: HOST });
       if (lastProbe.status === 200) {
         ready = true;
         break;
@@ -261,12 +261,12 @@ try {
 
   const unsafeExit = await request(
     appPort,
-    "/api/preview/exit?destination=https://evil.example",
+    "/api/preview/exit/?destination=https://evil.example",
     { cookie: draftCookie },
   );
   assert(unsafeExit.status === 400, "Unsafe exit destination was not rejected.");
 
-  const exit = await request(appPort, "/api/preview/exit?destination=/", {
+  const exit = await request(appPort, "/api/preview/exit/?destination=/", {
     cookie: draftCookie,
   });
   assert([307, 308].includes(exit.status), "Preview exit did not redirect.");

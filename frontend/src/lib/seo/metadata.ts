@@ -7,15 +7,21 @@ function getDescription(brand: ResolvedBrand): string | undefined {
   return brand.description ?? brand.tagline ?? undefined;
 }
 
+export interface SiteMetadataOptions {
+  readonly forceNoIndex?: boolean;
+}
+
 export function buildSiteMetadata(
   context: SiteDiscoveryContext,
   brand: ResolvedBrand,
   pathname = "/",
+  options: SiteMetadataOptions = {},
 ): Metadata {
   const canonicalUrl = buildCanonicalUrl(context.site.key, pathname);
   const metadataBase = buildCanonicalUrl(context.site.key, "/");
   const description = getDescription(brand);
-  const isIndexable = context.isProductionCanonical;
+  const isIndexable =
+    context.isProductionCanonical && options.forceNoIndex !== true;
 
   return {
     metadataBase,

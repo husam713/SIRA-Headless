@@ -40,6 +40,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Verify patch whitespace
+        working-directory: .
+        run: git diff --check HEAD^1 HEAD
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -77,3 +83,6 @@ jobs:
 
       - name: Production build
         run: pnpm build
+
+      - name: Run local Draft Mode runtime verification
+        run: pnpm test:runtime-preview

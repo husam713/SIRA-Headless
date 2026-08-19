@@ -1,9 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { createFallbackBrand } from "@/lib/brand";
 import { buildSiteRegistry } from "@/config/sites";
-import {
-  resolveSiteDiscoveryContext,
-} from "@/lib/seo/discovery";
+import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
 describe("tenant-aware metadata", () => {
@@ -74,6 +72,24 @@ describe("tenant-aware metadata", () => {
         follow: false,
         noimageindex: true,
       },
+    });
+  });
+
+  it("forces noindex in Draft Mode without changing the production canonical URL", () => {
+    const metadata = buildSiteMetadata(
+      resolveSiteDiscoveryContext("group", "siratrgroup.com"),
+      createFallbackBrand("group"),
+      "/",
+      { forceNoIndex: true },
+    );
+
+    expect(metadata.alternates?.canonical?.toString()).toBe(
+      "https://siratrgroup.com/",
+    );
+    expect(metadata.robots).toMatchObject({
+      index: false,
+      follow: false,
+      nocache: true,
     });
   });
 

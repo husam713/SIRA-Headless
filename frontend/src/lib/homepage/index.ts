@@ -2,6 +2,7 @@ import "server-only";
 
 export {
   getHomepage,
+  getHomepageForRequest,
   getPreviewHomepage,
 } from "@/lib/homepage/get-homepage";
 export type {

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getBrand } from "@/lib/brand";
+import { getHomepageForRequest } from "@/lib/homepage";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 
 interface SiteHomePageProps {
@@ -18,16 +19,24 @@ export default async function SiteHomePage({
     notFound();
   }
 
-  const brand = await getBrand(site.key);
+  const [brand, homepage] = await Promise.all([
+    getBrand(site.key),
+    getHomepageForRequest(site.key),
+  ]);
+  const homepageTitle =
+    homepage.status === "ready" ? homepage.homepage.title : brand.name;
 
   return (
     <section className="mx-auto grid min-h-[60svh] max-w-7xl content-center gap-6 px-6 py-20 lg:px-8">
       <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-accent">
-        Step 2C
+        Step 3
       </p>
 
-      <h1 className="max-w-4xl text-balance font-display text-4xl font-medium tracking-tight sm:text-6xl">
-        {brand.name} is using the approved SIRA brand foundation.
+      <h1
+        className="max-w-4xl text-balance font-display text-4xl font-medium tracking-tight sm:text-6xl"
+        data-sira-homepage-title
+      >
+        {homepageTitle}
       </h1>
 
       <p className="max-w-2xl text-pretty text-lg leading-8 text-brand-ink-soft">

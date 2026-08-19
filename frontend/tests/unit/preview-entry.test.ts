@@ -74,7 +74,7 @@ describe("preview entry signing", () => {
       ["contentType", "project"],
       ["contentId", "42"],
       ["v", "2"],
-    ]) {
+    ] as const) {
       const params = buildPreviewEntrySearchParams(payload(), environment);
       params.set(key, value);
       expect(() =>

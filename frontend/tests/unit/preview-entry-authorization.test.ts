@@ -1,3 +1,4 @@
+import { NextRequest } from "next/server";
 import { describe, expect, it } from "vitest";
 import {
   authorizePreviewEntryRequest,
@@ -31,11 +32,10 @@ function signed(siteKey: PreviewEntryPayload["siteKey"] = "group") {
   );
 }
 
-function request(host: string) {
-  return {
-    headers: new Headers({ host }),
-    nextUrl: new URL(`https://${host}/api/preview`),
-  };
+function request(host: string): NextRequest {
+  return new NextRequest(`https://${host}/api/preview`, {
+    headers: { host },
+  });
 }
 
 describe("preview entry tenant authorization", () => {
@@ -51,8 +51,8 @@ describe("preview entry tenant authorization", () => {
   });
 
   it("accepts an explicitly allowlisted deployment host for the same tenant", () => {
-    const previous = process.env.SIRA_EXTRA_HOSTS_JSON;
-    process.env.SIRA_EXTRA_HOSTS_JSON = JSON.stringify({
+    const previous = process.env["SIRA_EXTRA_HOSTS_JSON"];
+    process.env["SIRA_EXTRA_HOSTS_JSON"] = JSON.stringify({
       group: ["group-preview.example.test"],
     });
 
@@ -67,9 +67,9 @@ describe("preview entry tenant authorization", () => {
       ).toBe("group");
     } finally {
       if (previous === undefined) {
-        delete process.env.SIRA_EXTRA_HOSTS_JSON;
+        delete process.env["SIRA_EXTRA_HOSTS_JSON"];
       } else {
-        process.env.SIRA_EXTRA_HOSTS_JSON = previous;
+        process.env["SIRA_EXTRA_HOSTS_JSON"] = previous;
       }
     }
   });

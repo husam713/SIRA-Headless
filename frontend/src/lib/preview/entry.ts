@@ -261,5 +261,8 @@ export function authorizePreviewEntryRequest(
 
   void getWordPressPreviewAuthorization(payload.siteKey, environment);
 
-  return Object.freeze({ payload, hostname });
+  return Object.freeze({
+    payload,
+    hostname: resolution.requestedHostname,
+  });
 }

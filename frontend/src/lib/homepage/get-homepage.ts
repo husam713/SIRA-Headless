@@ -74,7 +74,6 @@ export const getHomepage = cache(resolvePublishedHomepage);
 
 export async function getPreviewHomepage(
   siteKey: SiteKey,
-  bearerToken: string,
 ): Promise<HomepageResolution> {
   return resolveHomepage(
     siteKey,
@@ -83,7 +82,6 @@ export async function getPreviewHomepage(
         siteKey,
         SIRA_HOMEPAGE_QUERY,
         { asPreview: true },
-        { bearerToken },
       ),
   );
 }

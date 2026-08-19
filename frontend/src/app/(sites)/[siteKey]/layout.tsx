@@ -77,7 +77,7 @@ export default async function SiteLayout({
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
             <strong>Preview Mode</strong>
-            <Link className="underline" href="/api/preview/exit?destination=/">
+            <Link className="underline" href="/api/preview/exit/?destination=/">
               Exit Preview
             </Link>
           </div>

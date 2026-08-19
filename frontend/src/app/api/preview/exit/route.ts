@@ -1,6 +1,6 @@
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { validateSafeInternalDestination } from "@/lib/preview/entry";
 
 const SECURITY_HEADERS = {

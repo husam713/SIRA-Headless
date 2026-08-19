@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { draftMode, headers } from "next/headers";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { BrandDocument } from "@/components/brand/brand-document";
@@ -76,9 +77,9 @@ export default async function SiteLayout({
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
             <strong>Preview Mode</strong>
-            <a className="underline" href="/api/preview/exit?destination=/">
+            <Link className="underline" href="/api/preview/exit?destination=/">
               Exit Preview
-            </a>
+            </Link>
           </div>
         </aside>
       ) : null}

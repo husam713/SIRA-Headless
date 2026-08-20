@@ -14,12 +14,25 @@ $class_file = $plugin_dir . '/src/GraphQL/ApplicationPasswordAuthentication.php'
 if ( '--case' === ( $argv[1] ?? '' ) ) {
 	$graphql_state = (string) ( $argv[2] ?? 'undefined' );
 	$incoming      = 'true' === ( $argv[3] ?? '' );
-	$expected      = 'true' === ( $argv[4] ?? '' );
+	$request_uri   = (string) ( $argv[4] ?? '__MISSING__' );
+	$expected      = 'true' === ( $argv[5] ?? '' );
 
 	if ( 'true' === $graphql_state ) {
 		define( 'GRAPHQL_HTTP_REQUEST', true );
 	} elseif ( 'false' === $graphql_state ) {
 		define( 'GRAPHQL_HTTP_REQUEST', false );
+	}
+
+	if ( '__MISSING__' === $request_uri ) {
+		unset( $_SERVER['REQUEST_URI'] );
+	} else {
+		$_SERVER['REQUEST_URI'] = $request_uri;
+	}
+
+	if ( ! function_exists( 'wp_parse_url' ) ) {
+		function wp_parse_url( string $url, int $component = -1 ) {
+			return parse_url( $url, $component );
+		}
 	}
 
 	require_once $class_file;
@@ -47,11 +60,17 @@ $check = static function ( bool $condition, string $message ) use (
 };
 
 $cases = array(
-	array( 'undefined', 'true', 'true', 'Existing true value remains true.' ),
-	array( 'undefined', 'false', 'false', 'Non-GraphQL false remains false.' ),
-	array( 'false', 'true', 'true', 'Explicit non-GraphQL preserves true.' ),
-	array( 'false', 'false', 'false', 'Unrelated requests remain unchanged.' ),
-	array( 'true', 'false', 'true', 'GraphQL HTTP changes false to true.' ),
+	array( 'undefined', 'true', '/', 'true', 'Existing true value remains true for an unrelated path.' ),
+	array( 'true', 'false', '/', 'true', 'GraphQL HTTP constant changes false to true.' ),
+	array( 'false', 'false', '/graphql', 'true', 'Exact GraphQL endpoint changes false to true.' ),
+	array( 'false', 'false', '/graphql/', 'true', 'GraphQL endpoint permits one trailing slash.' ),
+	array( 'false', 'false', '/graphql?query=%7Bviewer%7D', 'true', 'GraphQL endpoint ignores its query string.' ),
+	array( 'false', 'false', '/', 'false', 'Site root remains unchanged.' ),
+	array( 'false', 'false', '/foo/graphql', 'false', 'Nested GraphQL-looking path remains unchanged.' ),
+	array( 'false', 'false', '/graphql-attacker', 'false', 'GraphQL prefix collision remains unchanged.' ),
+	array( 'false', 'false', '/graphql/anything', 'false', 'GraphQL child path remains unchanged.' ),
+	array( 'false', 'false', '', 'false', 'Empty request URI remains unchanged.' ),
+	array( 'false', 'false', '__MISSING__', 'false', 'Missing request URI remains unchanged.' ),
 );
 
 foreach ( $cases as $case ) {
@@ -67,12 +86,14 @@ foreach ( $cases as $case ) {
 			. ' '
 			. escapeshellarg( $case[1] )
 			. ' '
-			. escapeshellarg( $case[2] ),
+			. escapeshellarg( $case[2] )
+			. ' '
+			. escapeshellarg( $case[3] ),
 		$output,
 		$code
 	);
 
-	$check( 0 === $code, $case[3] );
+	$check( 0 === $code, $case[4] );
 }
 
 $registered_filters = array();
@@ -127,6 +148,12 @@ $check(
 
 $plugin_source = (string) file_get_contents( $plugin_dir . '/src/Plugin.php' );
 $class_source  = (string) file_get_contents( $class_file );
+$main_source   = (string) file_get_contents( $plugin_dir . '/sira-core.php' );
+
+$check(
+	1 === substr_count( $main_source, "'plugins_loaded'" ),
+	'Plugin entrypoint schedules orchestrator boot on plugins_loaded.'
+);
 
 $check(
 	1 === substr_count(
@@ -138,6 +165,18 @@ $check(
 $check(
 	false === stripos( $class_source, 'jwt' ),
 	'Application Password integration introduces no JWT dependency.'
+);
+
+if ( ! defined( 'SIRA_CORE_DIR' ) ) {
+	define( 'SIRA_CORE_DIR', $plugin_dir . '/' );
+}
+
+require_once $plugin_dir . '/src/Autoloader.php';
+\Sira\Core\Autoloader::register();
+
+$check(
+	class_exists( \Sira\Core\GraphQL\BrandSchema::class ),
+	'SIRA autoloader resolves an unchanged GraphQL integration.'
 );
 
 echo "SIRA WPGraphQL Application Password validation\n";

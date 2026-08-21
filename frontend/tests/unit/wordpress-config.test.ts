@@ -13,6 +13,15 @@ const validEnvironment = {
   SIRA_WP_CONSULTING_GRAPHQL_URL:
     "https://cms.example.test/consulting/graphql",
   SIRA_WP_CONSULTING_BLOG_ID: "2",
+  SIRA_WP_HEALTHCARE_GRAPHQL_URL:
+    "https://cms.example.test/healthcare/graphql",
+  SIRA_WP_HEALTHCARE_BLOG_ID: "3",
+  SIRA_WP_LIFESTYLE_GRAPHQL_URL:
+    "https://cms.example.test/lifestyle/graphql",
+  SIRA_WP_LIFESTYLE_BLOG_ID: "4",
+  SIRA_WP_REALESTATE_GRAPHQL_URL:
+    "https://cms.example.test/realestate/graphql",
+  SIRA_WP_REALESTATE_BLOG_ID: "5",
 } satisfies WordPressEnvironment;
 
 describe("WordPress server configuration", () => {
@@ -24,6 +33,20 @@ describe("WordPress server configuration", () => {
     expect(config.graphqlEndpoint.toString()).toBe(
       "https://cms.example.test/consulting/graphql",
     );
+  });
+
+  it("keeps every canonical site key aligned to its own GraphQL mapping", () => {
+    for (const [siteKey, blogId, path] of [
+      ["group", 1, "/graphql"],
+      ["consulting", 2, "/consulting/graphql"],
+      ["healthcare", 3, "/healthcare/graphql"],
+      ["lifestyle", 4, "/lifestyle/graphql"],
+      ["realestate", 5, "/realestate/graphql"],
+    ] as const) {
+      const config = getWordPressSiteConfig(siteKey, validEnvironment);
+      expect(config).toMatchObject({ siteKey, blogId });
+      expect(config.graphqlEndpoint.pathname).toBe(path);
+    }
   });
 
   it("rejects credentials embedded in endpoint URLs", () => {

@@ -1,10 +1,14 @@
 import { readFileSync } from "node:fs";
 import {
   buildSchema,
+  getNamedType,
   isEnumType,
   isObjectType,
   parse,
+  TypeInfo,
   validate,
+  visit,
+  visitWithTypeInfo,
 } from "graphql";
 import { describe, expect, it } from "vitest";
 import {
@@ -161,11 +165,68 @@ describe("approved SIRA GraphQL operation contracts", () => {
     expect(SIRA_HOMEPAGE_QUERY.source).toContain("groupHomepage");
     expect(SIRA_HOMEPAGE_QUERY.source).toContain("branchHomepage");
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("pages(");
-    expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("first:");
+    for (const bound of [1, 6, 8, 12, 24]) {
+      expect(SIRA_HOMEPAGE_QUERY.source).toContain(`first: ${bound}`);
+    }
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("pageInfo");
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("hasNextPage");
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("publicDisplay");
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("consentApproved");
+    expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("SiraInvestor");
+    expect(SIRA_HOMEPAGE_QUERY.source).not.toMatch(/\b(file|filePath|mediaItemUrl)\b/u);
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("/home");
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("analyticsId");
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("rawOptions");
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("_sira_");
+  });
+
+  it("bounds every homepage relationship and requests truncation evidence", () => {
+    const document = parse(SIRA_HOMEPAGE_QUERY.source);
+    const typeInfo = new TypeInfo(canonicalSchema);
+    const relationshipBounds: number[] = [];
+
+    visit(
+      document,
+      visitWithTypeInfo(typeInfo, {
+        Field(node) {
+          const fieldType = typeInfo.getType();
+          if (fieldType === undefined) return;
+          const namedType = getNamedType(fieldType);
+          if (namedType === undefined) return;
+          if (
+            namedType.name !== "AcfContentNodeConnection" &&
+            namedType.name !== "AcfTermNodeConnection"
+          ) return;
+
+          const first = node.arguments?.find((argument) => argument.name.value === "first");
+          expect(first?.value.kind).toBe("IntValue");
+          if (first?.value.kind === "IntValue") {
+            relationshipBounds.push(Number(first.value.value));
+          }
+
+          const pageInfo = node.selectionSet?.selections.find(
+            (selection) => selection.kind === "Field" && selection.name.value === "pageInfo",
+          );
+          expect(pageInfo?.kind).toBe("Field");
+          if (pageInfo?.kind === "Field") {
+            expect(
+              pageInfo.selectionSet?.selections.some(
+                (selection) => selection.kind === "Field" && selection.name.value === "hasNextPage",
+              ),
+            ).toBe(true);
+          }
+        },
+      }),
+    );
+
+    expect(relationshipBounds).toHaveLength(15);
+    expect([...new Set(relationshipBounds)].sort((left, right) => left - right)).toEqual([
+      1,
+      6,
+      8,
+      12,
+      24,
+    ]);
   });
 
   it("derives the native navigation operation from canonical Codegen output", () => {

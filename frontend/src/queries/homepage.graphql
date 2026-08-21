@@ -1,30 +1,266 @@
+fragment HomepageLink on AcfLink {
+  title
+  url
+  target
+}
+
+fragment HomepageMedia on MediaItem {
+  databaseId
+  sourceUrl
+  altText
+  isRestricted
+  mediaDetails {
+    width
+    height
+  }
+}
+
+fragment HomepageFeaturedImage on NodeWithFeaturedImageToMediaItemConnectionEdge {
+  node {
+    ...HomepageMedia
+  }
+}
+
+fragment HomepageProjectNode on SiraProject {
+  databaseId
+  contentTypeName
+  title
+  uri
+  excerpt
+  isRestricted
+  featuredImage { ...HomepageFeaturedImage }
+  projectDetails { subtitle location status }
+}
+
+fragment HomepageCompanyNode on SiraCompany {
+  databaseId
+  contentTypeName
+  title
+  uri
+  excerpt
+  isRestricted
+  featuredImage { ...HomepageFeaturedImage }
+  companyDetails {
+    shortDescriptor
+    operatingStatus
+    externalWebsiteUrl
+    cardImageOverride { node { ...HomepageMedia } }
+  }
+}
+
+fragment HomepageEditorialNode on ContentNode {
+  __typename
+  ... on SiraArticle {
+    databaseId contentTypeName date modified title uri excerpt isRestricted
+    featuredImage { ...HomepageFeaturedImage }
+  }
+  ... on SiraInsight {
+    databaseId contentTypeName date modified title uri excerpt isRestricted
+    featuredImage { ...HomepageFeaturedImage }
+  }
+  ... on SiraNewsItem {
+    databaseId contentTypeName date modified title uri excerpt isRestricted
+    featuredImage { ...HomepageFeaturedImage }
+  }
+  ... on SiraPressRelease {
+    databaseId contentTypeName date modified title uri excerpt isRestricted
+    featuredImage { ...HomepageFeaturedImage }
+  }
+}
+
+fragment HomepageInvestmentNode on SiraInvestment {
+  databaseId contentTypeName title uri excerpt isRestricted
+  featuredImage { ...HomepageFeaturedImage }
+  investmentDetails { publicDisplay ticketSizeLabel }
+}
+
+fragment HomepageServiceNode on SiraService {
+  databaseId contentTypeName title uri excerpt isRestricted
+  featuredImage { ...HomepageFeaturedImage }
+}
+
+fragment HomepageTestimonialNode on SiraTestimonial {
+  databaseId contentTypeName title uri excerpt isRestricted
+  featuredImage { ...HomepageFeaturedImage }
+  testimonialDetails { consentApproved role organization sourceUrl }
+}
+
+fragment HomepagePartnerNode on SiraPartner {
+  databaseId contentTypeName title uri excerpt isRestricted
+  featuredImage { ...HomepageFeaturedImage }
+  partnerDetails { logoAltOverride relationshipLabel websiteUrl }
+}
+
+fragment HomepageDocumentNode on ContentNode {
+  __typename
+  ... on SiraDocument {
+    databaseId contentTypeName title uri isRestricted
+    documentDetails { publicationDate version }
+  }
+  ... on SiraDownload {
+    databaseId contentTypeName title uri isRestricted
+    documentDetails { publicationDate version }
+  }
+  ... on SiraWhitepaper {
+    databaseId contentTypeName title uri isRestricted
+    documentDetails { publicationDate version }
+  }
+}
+
 query SiraHomepage($asPreview: Boolean = false) {
   page(id: "/", idType: URI, asPreview: $asPreview) {
     databaseId
     uri
     title
-
     siraHomepage {
       variant
-
       groupHomepage {
         hero {
-          headingBefore
-          headingHighlight
-          headingAfter
-          description
+          headingBefore headingHighlight headingAfter description
+          primaryCta { ...HomepageLink }
+          secondaryCta { ...HomepageLink }
+          slides {
+            titleOverride eyebrowOverride descriptionOverride locationOverride
+            imageAltOverride
+            imageOverride { node { ...HomepageMedia } }
+            mobileImageOverride { node { ...HomepageMedia } }
+            primaryCtaOverride { ...HomepageLink }
+            secondaryCtaOverride { ...HomepageLink }
+            businessUnit(first: 1) {
+              nodes { ... on SiraBusinessUnit { databaseId name slug } }
+              pageInfo { hasNextPage }
+            }
+            relatedProject(first: 1) {
+              nodes { ...HomepageProjectNode }
+              pageInfo { hasNextPage }
+            }
+            relatedCompany(first: 1) {
+              nodes { ...HomepageCompanyNode }
+              pageInfo { hasNextPage }
+            }
+          }
         }
+        ticker {
+          enabled
+          items {
+            label
+            link { ...HomepageLink }
+            businessUnit(first: 1) {
+              nodes { ... on SiraBusinessUnit { databaseId name slug } }
+              pageInfo { hasNextPage }
+            }
+          }
+        }
+        latestUpdates {
+          eyebrow heading description sourceMode itemLimit
+          link { ...HomepageLink }
+          selectedItems(first: 12) {
+            nodes { ...HomepageEditorialNode }
+            pageInfo { hasNextPage }
+          }
+        }
+        companies {
+          eyebrow heading description
+          link { ...HomepageLink }
+          selectedCompanies(first: 12) {
+            nodes { ...HomepageCompanyNode }
+            pageInfo { hasNextPage }
+          }
+        }
+        about {
+          eyebrow heading description body
+          link { ...HomepageLink }
+          metrics { value label supportingText }
+        }
+        investor {
+          eyebrow heading description body
+          link { ...HomepageLink }
+          metrics { value label supportingText }
+          formHeading formDescription
+          selectedInvestments(first: 6) {
+            nodes { ...HomepageInvestmentNode }
+            pageInfo { hasNextPage }
+          }
+          onePagerDocument(first: 1) {
+            nodes { ...HomepageDocumentNode }
+            pageInfo { hasNextPage }
+          }
+        }
+        services {
+          eyebrow heading description
+          link { ...HomepageLink }
+          selectedServices(first: 12) {
+            nodes { ...HomepageServiceNode }
+            pageInfo { hasNextPage }
+          }
+        }
+        projects {
+          eyebrow heading description
+          link { ...HomepageLink }
+          selectedProjects(first: 12) {
+            nodes { ...HomepageProjectNode }
+            pageInfo { hasNextPage }
+          }
+        }
+        insights {
+          eyebrow heading description sourceMode itemLimit
+          link { ...HomepageLink }
+          selectedItems(first: 12) {
+            nodes { ...HomepageEditorialNode }
+            pageInfo { hasNextPage }
+          }
+        }
+        testimonials {
+          eyebrow heading description
+          link { ...HomepageLink }
+          selectedTestimonials(first: 8) {
+            nodes { ...HomepageTestimonialNode }
+            pageInfo { hasNextPage }
+          }
+        }
+        partners {
+          eyebrow heading description
+          link { ...HomepageLink }
+          selectedPartners(first: 24) {
+            nodes { ...HomepagePartnerNode }
+            pageInfo { hasNextPage }
+          }
+        }
+        contact { eyebrow heading description formVariant formContext }
       }
-
       branchHomepage {
         hero {
-          eyebrow
-          headingBefore
-          headingHighlight
-          headingAfter
-          description
-          region
+          eyebrow headingBefore headingHighlight headingAfter description region
+          imageAlt
+          image { node { ...HomepageMedia } }
+          mobileImage { node { ...HomepageMedia } }
+          primaryCta { ...HomepageLink }
+          secondaryCta { ...HomepageLink }
         }
+        statistics { value label supportingText }
+        overview {
+          eyebrow heading description body
+          link { ...HomepageLink }
+        }
+        focusAreas { title description }
+        projects {
+          eyebrow heading description
+          link { ...HomepageLink }
+          selectedProjects(first: 12) {
+            nodes { ...HomepageProjectNode }
+            pageInfo { hasNextPage }
+          }
+        }
+        insights {
+          eyebrow heading description sourceMode itemLimit
+          link { ...HomepageLink }
+          selectedItems(first: 12) {
+            nodes { ...HomepageEditorialNode }
+            pageInfo { hasNextPage }
+          }
+        }
+        contact { eyebrow heading description formVariant formContext }
+        footer { taglineOverride groupLinkLabelOverride }
       }
     }
   }

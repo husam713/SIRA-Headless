@@ -11,16 +11,26 @@ not itself authorize application code, WordPress, staging, deployment, DNS,
 production cutover, or merge operations.
 
 Current gate at the canonical baseline
-`main@269a28cd1db15666aebc9cbe2f73c8718997fc30`:
+`main@54b301f64687e59aa01dbe2695aaed6ce45db4c9`:
 
 - Step 3D.1: OWNER ACCEPTED / MERGED;
 - Step 3D.2: NOT STARTED;
 - Step 3D.3: GATED by unresolved `2C4-B09`;
 - `PREVIEW-AUTH-001`: DEFERRED;
 - Step 4 scope discovery: COMPLETE;
-- Step 4 production component implementation: NOT STARTED on this baseline;
-- first separately authorized/proposed implementation increment: Homepage
-  Production Data Contract Expansion.
+- Homepage Production Data Contract Expansion: OWNER ACCEPTED / MERGED via
+  PR `#28`;
+- `2C4-B01`: CLOSED only to the extent proven by accepted PR `#28`;
+- Step 4 visual implementation: NOT STARTED;
+- Shared Production Shell: NOT STARTED;
+- `GroupHomepage` visual composition: NOT STARTED;
+- `BranchHomepage` visual composition: NOT STARTED;
+- `NewsroomPage` route implementation: NOT STARTED;
+- `2C4-B07` media-origin policy: UNRESOLVED;
+- `2C4-B08` forms architecture: UNRESOLVED;
+- `2C4-B09` multilingual architecture: UNRESOLVED;
+- external Group staging: NOT PROVISIONED / NOT AUTHORIZED;
+- production cutover: NOT AUTHORIZED.
 
 Future Step 4 PRs may cite this file as their governing charter, but every
 increment still requires its own explicit scope and owner authorization.

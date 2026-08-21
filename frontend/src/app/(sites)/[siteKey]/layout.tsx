@@ -8,6 +8,7 @@ import { getBrand } from "@/lib/brand";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
+import { SiteStructuredDataScripts } from "@/lib/seo/structured-data";
 import { SITE_KEYS } from "@/types/site";
 import "@/styles/globals.css";
 
@@ -63,6 +64,8 @@ export default async function SiteLayout({
 
   return (
     <BrandDocument site={site} brand={brand}>
+      <SiteStructuredDataScripts siteKey={site.key} brand={brand} />
+
       <a
         href="#main-content"
         className="fixed start-4 top-4 z-50 -translate-y-24 rounded-md bg-brand-ink px-4 py-3 text-brand-paper transition-transform focus:translate-y-0"

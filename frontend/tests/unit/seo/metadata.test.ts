@@ -93,6 +93,18 @@ describe("tenant-aware metadata", () => {
     });
   });
 
+  it("keeps canonical identity but fails closed for an unknown request host", () => {
+    const metadata = buildSiteMetadata(
+      resolveSiteDiscoveryContext("group", "attacker.example"),
+      createFallbackBrand("group"),
+    );
+
+    expect(metadata.alternates?.canonical?.toString()).toBe(
+      "https://siratrgroup.com/",
+    );
+    expect(metadata.robots).toMatchObject({ index: false, follow: false });
+  });
+
   it("fails closed if the request hostname belongs to a different tenant", () => {
     const metadata = buildSiteMetadata(
       resolveSiteDiscoveryContext(
@@ -106,5 +118,14 @@ describe("tenant-aware metadata", () => {
       "https://healthcare.siratrgroup.com/",
     );
     expect(metadata.robots).toMatchObject({ index: false, follow: false });
+  });
+
+  it("does not emit hreflang without an approved localized route", () => {
+    const metadata = buildSiteMetadata(
+      resolveSiteDiscoveryContext("group", "siratrgroup.com"),
+      createFallbackBrand("group"),
+    );
+
+    expect(metadata.alternates).not.toHaveProperty("languages");
   });
 });

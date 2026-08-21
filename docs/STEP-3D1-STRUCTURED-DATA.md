@@ -2,7 +2,7 @@
 
 ## Status
 
-**IMPLEMENTED / LOCAL VALIDATION PASS / PENDING DRAFT PR AND OWNER REVIEW**
+**IMPLEMENTED / LOCAL VALIDATION PASS / DRAFT PR #27 / PENDING OWNER REVIEW**
 
 Authorized baseline:
 `main@024e58d679e94e655945c1a07e5bed07d9a62800`.
@@ -76,7 +76,8 @@ Production build emitted expected WordPress configuration fallback warnings
 because external WordPress runtime configuration was unavailable. It still
 compiled, typechecked, generated every route, and completed successfully.
 
-Exact-head CI remains pending until the Draft PR is opened.
+Draft PR #27 is the review gate. GitHub's Frontend CI check on the current PR
+head is the authoritative exact-head CI evidence.
 
 ## Rollback
 
@@ -85,7 +86,7 @@ staging, or production rollback is required because none is modified.
 
 ## CURRENT PROJECT STATE
 
-- **Step 3D.1:** IMPLEMENTED / LOCAL VALIDATION PASS / PENDING DRAFT PR AND
+- **Step 3D.1:** IMPLEMENTED / LOCAL VALIDATION PASS / DRAFT PR #27 / PENDING
   OWNER REVIEW.
 - **Step 3D.2:** NOT STARTED; no legacy redirect inventory or map implemented.
 - **Step 3D.3:** GATED by unresolved multilingual route model `2C4-B09`; no

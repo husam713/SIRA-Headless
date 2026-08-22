@@ -138,9 +138,9 @@ This register consolidates durable decisions that should not be re-litigated by 
 - **Scope:** This resolves canonical public domain selection and creates no new Step 2C.4 blocking gap. It does not establish a WordPress backend hostname, GraphQL endpoint hostname, media origin, staging hostname, Vercel preview hostname, cookie-domain policy, CORS policy, or revalidation origin; those require later repository or live configuration evidence.
 - **Downstream rule:** Step 3 must use this public topology for canonical URL behavior while completing metadata, preview, `hreflang`, sitemap, redirect, and related SEO contracts. `2C4-B07` remains BLOCKING pending an approved media origin/delivery policy, and `2C4-B10` remains BLOCKING pending Step 3 implementation.
 
-## ADR-025 — Step 4 art direction evolves through SIRA Editorial Architecture
+## ADR-028 — Step 4 art direction evolves through SIRA Editorial Architecture
 
-- **Status:** Proposed in `docs/step-4-editorial-architecture-reconciliation`; requires owner acceptance and merge before becoming Approved.
+- **Status:** Proposed on branch `docs/step-4-editorial-architecture-reconciliation`; requires owner acceptance and merge before becoming Approved.
 - **Decision:** Preserve the approved `.dc.html` design DNA and content/interaction intent while elevating production composition through `docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md`: Editorial Fluidity + Architectural Modernism + Adaptive Modular Components + Modern Web Platform First.
 - **Rule:** If approved, this ADR supersedes only conflicting visual-fidelity clauses that require immutable pixel/composition reproduction or prohibit all approved visual evolution. It does not supersede the Step 4 charter's architecture, data-contract, CMS ownership, accessibility, media, forms, SEO/preview, staging, validation, or production-authorization rules.
 - **Branch invariant:** Consulting, Healthcare, Lifestyle, and Real Estate continue to use one shared `BranchHomepage` architecture; approved visual variation must occur through tokens, content, media, container-aware composition, and bounded component variants rather than duplicate React trees.

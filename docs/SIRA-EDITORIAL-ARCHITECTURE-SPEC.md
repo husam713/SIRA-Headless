@@ -4,7 +4,7 @@
 
 **Status:** PROPOSED — requires owner acceptance and merge before it governs production UI implementation.
 
-**Scope:** Presentation architecture only. This specification does not authorize WordPress mutation, backend changes, production deployment, DNS changes, staging provisioning, media-origin changes, multilingual routing, form submission architecture, or protected-branch merge.
+**Scope:** Presentation architecture governance only. This specification does not authorize prototype work, application or production UI implementation, WordPress mutation, backend changes, production deployment, DNS changes, staging provisioning, media-origin changes, multilingual routing, form submission architecture, or protected-branch merge. Every prototype or implementation increment requires separate explicit owner authorization.
 
 **Repository baseline audited:** `main@e522c6c58cd57e2a757652adb740c9d1f154c81c`.
 
@@ -351,6 +351,8 @@ Before broad component/page implementation, create and review three focused brow
 3. one representative Branch or Newsroom editorial composition.
 
 Prototype using the real production architecture where practical, but keep scope bounded and reversible.
+
+This section defines the next review gate only. It does not authorize prototype creation; that work requires a separately scoped and explicitly owner-authorized increment.
 
 Validate the three archetypes at mobile, tablet, desktop, RTL shell/content sample, keyboard navigation, and reduced motion.
 

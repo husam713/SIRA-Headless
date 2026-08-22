@@ -5,38 +5,86 @@ This file defines which evidence wins when project sources disagree.
 ## Trust order
 
 1. **Executable/live evidence** relevant to the claim: runtime checks, live GraphQL/schema evidence, CI/test output.
-2. **Current versioned repository source** for a subsystem, provided it has been reconciled with newer approved artifacts.
-3. **Approved Git commits and tags.**
+2. **Current versioned repository source on accepted canonical Git state**, provided it has been reconciled with newer approved artifacts.
+3. **Accepted merged commits, Pull Requests, exact SHAs, tags, and CI evidence.**
 4. **Generated contracts** such as GraphQL schema snapshots and generated TypeScript types.
 5. **Machine-readable validation artifacts** and approved decision records.
 6. **Project-state documentation.**
-7. **Approved specifications/design references.**
-8. **Historical migration bundles and legacy source.**
+7. **Verified external reference artifacts and approved design references.**
+8. **Historical migration bundles, reports, and legacy source.**
 9. **Conversation history.**
 10. **Model inference** — never authoritative.
 
 A later verified artifact may temporarily supersede repository source for a specific subsystem when Git is demonstrably stale. Such a discrepancy must be recorded here and reconciled before new changes are made to that subsystem.
 
-## Current authoritative frontend baseline
+## Current authoritative repository baseline
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Current governed frontend baseline/head: `2bd4991f75a53ab9209e748499dcb8915769e3a6`
-- Latest accepted increment: Step 2C.5B CMS Mutation Readiness & Backup Gate
-- Audit PR / correction head / merge: `#16` / `4afad259dd4c184de5b61ca51f91fcde7222cbf2` / `2bd4991f75a53ab9209e748499dcb8915769e3a6`
+- Canonical main at this reconciliation: `aaa88631c862d213f890d2991aa63fd26ce925e3`
+- Latest accepted governance milestone: Step 4 Editorial Architecture / ADR-028
+- Accepted PR / candidate head / merge: `#30` / `e37570f8e7a2b28eb0d55a903f79eb19687be9a3` / `aaa88631c862d213f890d2991aa63fd26ce925e3`
+- Historical CMS mutation-readiness baseline: Step 2C.5B at `2bd4991f75a53ab9209e748499dcb8915769e3a6`
 - Approved tag: `step-2c3b-approved`
 - Checked-in canonical live schema: `frontend/schema/wpgraphql.graphql`
 - Group audit schema: `frontend/schema/wpgraphql.group.graphql`
 - Metadata: `frontend/schema/wpgraphql.meta.json`
 - Compatibility evidence: `frontend/schema/wpgraphql.compatibility.json`
 
-The canonical live metadata records Consulting as canonical, four exact branch peers, and Group as a structural superset. Step 2C.5B Frontend CI run #35 passed on correction/head `4afad259dd4c184de5b61ca51f91fcde7222cbf2`, and the full 26-file / 252-test regression passed before owner acceptance and merge. The accepted readiness plan remains `BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`, Batch A mutation authorization is false, and no backup, export, restore, taxonomy deletion, CMS mutation, Step 2C.5C, Step 3, or deployment is authorized.
+The canonical live metadata records Consulting as canonical, four exact branch
+peers, and Group as a structural superset. Repository history after the
+Step 2C.5B business baseline proves accepted Step 3A, Step 3B, Step 3C.1,
+Step 3C.2, Step 3D.1, the Homepage Production Data Contract, the Step 4 Exact
+Design Fidelity Charter, and ADR-028. Step 3D.2 is NOT STARTED, Step 3D.3 is
+gated by `2C4-B09`, and full Step 3D closure must not be claimed. Step 4 visual
+implementation is NOT STARTED and no prototype or production UI increment is
+authorized.
 
-## Current Step 2C.5B evidence authority
+The separate Step 2C.5B CMS readiness plan remains
+`BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`,
+Batch A mutation authorization is false, and no backup, export, restore,
+taxonomy deletion, CMS mutation, Step 2C.5C, or deployment is authorized.
+
+## Current CMS mutation-track evidence authority
 
 Step 2C.5B uses fresh read-only public GraphQL evidence derived through the trusted SiteKey registry, accepted Step 2C.5A artifacts, and repository evidence for planning only. The fresh 2026-08-15 preflight inspected all five tenants and found the bounded Batch A coordinates `VALIDATED_UNCHANGED`: Group and Healthcare identities retain their accepted current values; the four exact branch-local Business Unit terms remain absent without collision or truncation; Group terms remain non-targets and match the accepted baseline.
 
-Candidate WordPress Admin coordinates recorded in the repository backend are now based on the reconciled verified LIVE / Step 2C.2F source after PR #18. They remain source-derived candidates rather than independently confirmed effective live administrative coordinates: exact protected live routes, capabilities, field coordinates, and taxonomy-screen coordinates remain UNKNOWN until human read-only confirmation. RB-001 backup evidence and RB-009 restore evidence also remain UNKNOWN. The Step 2C.5B readiness plan is owner accepted and merged through PR #16, while the operational package status remains REQUIRES_HUMAN_ADMIN_ACTION and mutation readiness remains BLOCKED_BY_BACKUP_EVIDENCE. step2c5bAccepted=true does not authorize Batch A: batchAMutationAuthorized=false, CMS mutation authorization is NOT_GRANTED, and no CMS mutation, backup/export/restore execution, deletion, production UI, Step 3, Step 2C.5C, or deployment is authorized.
+Candidate WordPress Admin coordinates recorded in the repository backend are now based on the reconciled verified LIVE / Step 2C.2F source after PR #18. They remain source-derived candidates rather than independently confirmed effective live administrative coordinates: exact protected live routes, capabilities, field coordinates, and taxonomy-screen coordinates remain UNKNOWN until human read-only confirmation. RB-001 backup evidence and RB-009 restore evidence also remain UNKNOWN. The Step 2C.5B readiness plan is owner accepted and merged through PR #16, while the operational package status remains REQUIRES_HUMAN_ADMIN_ACTION and mutation readiness remains BLOCKED_BY_BACKUP_EVIDENCE. step2c5bAccepted=true does not authorize Batch A: batchAMutationAuthorized=false, CMS mutation authorization is NOT_GRANTED, and no CMS mutation, backup/export/restore execution, deletion, Step 2C.5C, production UI, or deployment is authorized.
+
+## Current Step 4 design governance
+
+PR `#29` and merge `e522c6c58cd57e2a757652adb740c9d1f154c81c`
+established the owner-accepted Step 4 Exact Design Fidelity Charter. PR `#30`
+and merge `aaa88631c862d213f890d2991aa63fd26ce925e3` then approved ADR-028 and the
+SIRA Editorial Architecture specification.
+
+The charter remains authoritative for application architecture, CMS and data
+ownership, tenant isolation, Server/Client boundaries, accessibility, RTL,
+media, forms, SEO/preview, staging, validation, production authorization, and
+incremental owner gates. ADR-028 supersedes only conflicting visual,
+art-direction, composition, and literal-fidelity constraints. The seven
+approved `.dc.html` files remain design evidence, SIRA design DNA, and
+visual/interaction references; they are not production runtime dependencies.
+
+Current presentation direction is approved `.dc` design DNA plus Editorial
+Fluidity, stronger Architectural Modernism, Adaptive Modular Components, and
+Modern Web Platform First. This governance acceptance does not authorize a
+prototype, production UI implementation, staging, deployment, DNS, or cutover.
+
+## Current unresolved gates
+
+- `2C4-B07` media origin/delivery: UNRESOLVED / DEFERRED.
+- `2C4-B08` forms architecture: UNRESOLVED.
+- `2C4-B09` multilingual architecture: UNRESOLVED.
+- `PREVIEW-AUTH-001`: DEFERRED.
+- External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
+- Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
+- CMS mutation and Step 2C.5C: NOT AUTHORIZED.
+
+The immediate owner gate is independent verification and acceptance of the
+current-state reconciliation candidate. The SIRA AI Engineering Operating
+System is the next planned governance task only after that acceptance; it is
+not implemented or authorized by this record.
 
 ## Canonical public production topology
 

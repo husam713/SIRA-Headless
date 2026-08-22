@@ -1,14 +1,17 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-18T20:21:00+03:00",
+  "updatedAt": "2026-08-22T08:55:56+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
+  "currentStageScope": "CMS_MUTATION_TRACK",
   "currentStageStatus": "OWNER_ACCEPTED_MERGED",
   "executionBranch": "main",
   "executionBaseline": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
   "executionHead": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
-  "latestApprovedMilestone": "Step 2C.5B",
+  "executionCoordinateScope": "HISTORICAL_ACCEPTED_CMS_MUTATION_READINESS_BASELINE_NOT_CURRENT_GIT_HEAD",
+  "canonicalMainAtReconciliation": "aaa88631c862d213f890d2991aa63fd26ce925e3",
+  "latestApprovedMilestone": "Step 4 Editorial Architecture Governance (ADR-028)",
   "latestApprovedTag": "step-2c3b-approved",
   "productionAuthorized": false,
   "authorization": {
@@ -19,6 +22,9 @@
     "backupCreationAuthorized": false,
     "exportExecutionAuthorized": false,
     "restoreExecutionAuthorized": false,
+    "prototypeImplementationAuthorized": false,
+    "productionUiImplementationAuthorized": false,
+    "externalStagingProvisioningAuthorized": false,
     "groupProductionCutoverAuthorized": false,
     "productionDnsChangeAuthorized": false,
     "legacyGroupDestructionAuthorized": false
@@ -32,6 +38,9 @@
     "repositoryFrontend": {
       "status": "READY_TO_PROCEED_WITHOUT_PRODUCTION_WORDPRESS_MUTATION",
       "nextStage": "3 — Preview / SEO / Discovery",
+      "nextStageStatus": "HISTORICAL_ROADMAP_ENTRY_POINT_ALREADY_PROGRESSING_THROUGH_ACCEPTED_STEP_3D1",
+      "currentState": "STEP_4_GOVERNANCE_ACCEPTED_IMPLEMENTATION_NOT_STARTED",
+      "nextAuthorizedImplementation": "NONE",
       "launchStrategy": "GROUP_STAGING_FIRST"
     }
   },
@@ -76,6 +85,7 @@
   "latestAcceptedIncrement": {
     "stage": "Step 2C.5B",
     "status": "ACCEPTED_MERGED",
+    "scope": "CMS_MUTATION_READINESS_TRACK_HISTORICAL_ACCEPTED_BASELINE",
     "pullRequest": 16,
     "implementationHead": "4afad259dd4c184de5b61ca51f91fcde7222cbf2",
     "mergeCommit": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
@@ -86,7 +96,62 @@
   "latestRepositoryReconciliation": {
     "pullRequest": 19,
     "mergeCommit": "e20858b055e556065e96623205fa0d5774ad81d6",
-    "purpose": "SOT-001 post-merge durable-state reconciliation"
+    "purpose": "SOT-001 post-merge durable-state reconciliation",
+    "scope": "HISTORICAL_SOT_001_RECONCILIATION"
+  },
+  "acceptedRepositoryMilestones": {
+    "step3d1": {
+      "status": "OWNER_ACCEPTED_MERGED",
+      "pullRequest": 27,
+      "implementationHead": "9423ba38546f67ebbf1ed3b5c9f3328ed39fbb19",
+      "mergeCommit": "269a28cd1db15666aebc9cbe2f73c8718997fc30",
+      "step3d2": "NOT_STARTED",
+      "step3d3": "GATED_BY_2C4_B09",
+      "fullStep3dClosed": false
+    },
+    "homepageProductionDataContract": {
+      "status": "OWNER_ACCEPTED_MERGED",
+      "pullRequest": 28,
+      "implementationHead": "ed0bf65b3da3862d2a16c16fd62061344c83d802",
+      "mergeCommit": "54b301f64687e59aa01dbe2695aaed6ce45db4c9"
+    },
+    "step4ExactDesignFidelityCharter": {
+      "status": "OWNER_ACCEPTED_MERGED",
+      "pullRequest": 29,
+      "implementationHead": "18ada36bd180ca8d088e411851b83d242ff4c7c9",
+      "mergeCommit": "e522c6c58cd57e2a757652adb740c9d1f154c81c"
+    },
+    "step4EditorialArchitecture": {
+      "status": "OWNER_ACCEPTED_MERGED_CANONICAL",
+      "decision": "ADR-028",
+      "pullRequest": 30,
+      "implementationHead": "e37570f8e7a2b28eb0d55a903f79eb19687be9a3",
+      "mergeCommit": "aaa88631c862d213f890d2991aa63fd26ce925e3"
+    }
+  },
+  "currentImplementationState": {
+    "step4VisualProductionImplementation": "NOT_STARTED",
+    "sharedProductionShell": "NOT_STARTED",
+    "groupHomepageVisualComposition": "NOT_STARTED",
+    "branchHomepageVisualComposition": "NOT_STARTED",
+    "newsroomVisualRouteWork": "NOT_STARTED",
+    "prototypeImplementation": "NOT_AUTHORIZED"
+  },
+  "openGates": {
+    "mediaOriginB07": "UNRESOLVED_DEFERRED",
+    "formsArchitectureB08": "UNRESOLVED",
+    "multilingualArchitectureB09": "UNRESOLVED",
+    "previewAuth001": "DEFERRED",
+    "externalGroupStaging": "NOT_PROVISIONED_NOT_AUTHORIZED",
+    "productionDeployment": "NOT_AUTHORIZED",
+    "productionDns": "NOT_AUTHORIZED",
+    "groupProductionCutover": "NOT_AUTHORIZED",
+    "legacyGroupDestruction": "NOT_AUTHORIZED"
+  },
+  "nextOwnerGate": {
+    "current": "INDEPENDENT_REVIEW_AND_OWNER_ACCEPTANCE_OF_CURRENT_STATE_RECONCILIATION",
+    "afterAcceptance": "SIRA_AI_ENGINEERING_OPERATING_SYSTEM",
+    "implementationAuthorized": false
   },
   "governance": {
     "g0Bootstrap": "COMPLETE",
@@ -105,8 +170,9 @@
     ]
   },
   "nextMajorStages": [
-    "Repository/frontend: Step 3 Preview / SEO / Discovery using Group staging-first strategy without production WordPress mutation",
-    "Repository/frontend: Step 4 production component implementation and Group staging QA after Step 3 acceptance",
+    "Governance: independent review and owner acceptance of the post-PR30 durable-state reconciliation",
+    "Governance after reconciliation acceptance: SIRA AI Engineering Operating System",
+    "Repository/frontend implementation: no prototype or production UI increment is currently authorized",
     "CMS mutation track: human backup/admin evidence gate before any Batch A authorization",
     "CMS mutation track: 2C.5C separately authorized Batch A execution only after a new explicit mutation authorization",
     "Group production cutover only after staging acceptance and explicit production authorization"

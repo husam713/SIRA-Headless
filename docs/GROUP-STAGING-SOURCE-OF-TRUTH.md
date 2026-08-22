@@ -1,6 +1,9 @@
 # Group Staging Source of Truth
 
-This record supplements `docs/SOURCE-OF-TRUTH.md` for the owner decision approved on 2026-08-18. If older current-state prose conflicts with this record after commit, use `project-state.json`, ADR-025, and Git evidence until the older prose is reconciled.
+This record preserves the Group staging-first owner decision approved on
+2026-08-18. Its repository-baseline section is historical. For current project
+state use `project-state.json`, `docs/PROJECT-STATE.md`,
+`docs/SOURCE-OF-TRUTH.md`, ADR-025, and canonical Git evidence.
 
 ## Repository baseline
 
@@ -13,7 +16,11 @@ This record supplements `docs/SOURCE-OF-TRUTH.md` for the owner decision approve
 
 Step 2C.5B remains the latest accepted **business/CMS mutation-readiness milestone**. Its accepted merge is `2bd4991f75a53ab9209e748499dcb8915769e3a6`.
 
-That SHA is not the current Git `main` head. Later repository reconciliation work merged PR #18 and PR #19, producing the current reconciliation baseline `e20858b055e556065e96623205fa0d5774ad81d6` without authorizing CMS mutation or production deployment.
+That SHA was not the Git `main` head at this decision's reconciliation. Later
+repository work merged PR #18 and PR #19, producing the then-current
+reconciliation baseline `e20858b055e556065e96623205fa0d5774ad81d6`
+without authorizing CMS mutation or production deployment. The current
+post-PR30 baseline is recorded in the primary current-state files.
 
 Therefore do not treat `2bd4991...` as the current repository HEAD.
 
@@ -31,9 +38,13 @@ Therefore do not treat `2bd4991...` as the current repository HEAD.
 
 May proceed without production WordPress mutation.
 
-Next existing-roadmap stage: **Step 3 — Preview / SEO / Discovery**.
+Step 3A, Step 3B, Step 3C.1, Step 3C.2, and Step 3D.1 are accepted and
+merged. Step 3D.2 is NOT STARTED and Step 3D.3 remains gated by `2C4-B09`.
 
-After Step 3 acceptance, Step 4 production component implementation may proceed and the Group frontend must target staging first.
+Step 4 design governance and its homepage data contract are accepted. Visual
+implementation is NOT STARTED and no prototype or production UI increment is
+authorized. Any later authorized Group frontend implementation must still
+target staging first.
 
 ## Group staging decision
 

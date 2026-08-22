@@ -1,21 +1,20 @@
 # SIRA Source of Truth
 
-This file defines which evidence wins when project sources disagree.
+This file is the SIRA project-specific source, state, and conflict registry. It
+identifies authoritative source locations, durable state carriers, historical
+evidence, and known conflict coordinates.
 
-## Trust order
+Evidence precedence between source types is governed exclusively by the
+[SIRA AI Engineering Operating Protocol](./AI-ENGINEERING-OPERATING-PROTOCOL.md).
+If this file and the Operating Protocol appear to disagree about evidence
+precedence, the Operating Protocol governs the precedence model. This registry
+applies that model to SIRA-specific evidence; it does not define a separate
+hierarchy.
 
-1. **Executable/live evidence** relevant to the claim: runtime checks, live GraphQL/schema evidence, CI/test output.
-2. **Current versioned repository source on accepted canonical Git state**, provided it has been reconciled with newer approved artifacts.
-3. **Accepted merged commits, Pull Requests, exact SHAs, tags, and CI evidence.**
-4. **Generated contracts** such as GraphQL schema snapshots and generated TypeScript types.
-5. **Machine-readable validation artifacts** and approved decision records.
-6. **Project-state documentation.**
-7. **Verified external reference artifacts and approved design references.**
-8. **Historical migration bundles, reports, and legacy source.**
-9. **Conversation history.**
-10. **Model inference** — never authoritative.
-
-A later verified artifact may temporarily supersede repository source for a specific subsystem when Git is demonstrably stale. Such a discrepancy must be recorded here and reconciled before new changes are made to that subsystem.
+A later verified artifact may temporarily supersede repository source for a
+specific subsystem only as permitted by the Operating Protocol. Such a
+discrepancy must be recorded here and reconciled before new changes are made
+to that subsystem.
 
 ## Current authoritative repository baseline
 
@@ -139,7 +138,7 @@ When sources conflict:
 1. stop changes to the affected subsystem;
 2. identify both sources and their stage/timestamp/evidence level;
 3. classify each claim as CONFIRMED, STRONGLY INFERRED, or UNKNOWN;
-4. prefer the latest verified authoritative source;
+4. apply the Operating Protocol's normative evidence-authority hierarchy;
 5. record the decision in `docs/DECISIONS.md` if architectural;
 6. update this file and `PROJECT-STATE.md` after reconciliation;
 7. preserve rollback evidence.

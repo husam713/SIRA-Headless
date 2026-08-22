@@ -79,10 +79,22 @@
       "type": "array",
       "items": { "type": "string", "minLength": 1 }
     },
-    "independentlyVerified": { "type": "boolean" },
-    "ownerAccepted": { "type": "boolean" },
-    "mergedCanonicalMain": { "type": "boolean" },
-    "runtimeOrProductionProven": { "type": "boolean" },
+    "independentlyVerified": {
+      "type": ["boolean", "null"],
+      "description": "Observation state: true means independently verified is established true; false means it is established false; null means unknown, not observed, not applicable to the current evidence source, or not yet independently established."
+    },
+    "ownerAccepted": {
+      "type": ["boolean", "null"],
+      "description": "Observation state: true means owner acceptance is established true; false means it is established false; null means unknown, not observed, not applicable to the current evidence source, or not yet independently established."
+    },
+    "mergedCanonicalMain": {
+      "type": ["boolean", "null"],
+      "description": "Observation state: true means merge to canonical main is established true; false means it is established false; null means unknown, not observed, not applicable to the current evidence source, or not yet independently established."
+    },
+    "runtimeOrProductionProven": {
+      "type": ["boolean", "null"],
+      "description": "Observation state: true means runtime or production proof is established true; false means it is established false; null means unknown, not observed, not applicable to the current evidence source, or not yet independently established."
+    },
     "nextGate": { "type": ["string", "null"] },
     "notes": {
       "type": "array",

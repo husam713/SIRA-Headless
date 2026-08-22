@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-22T08:55:56+03:00",
+  "updatedAt": "2026-08-22T09:44:00+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -10,7 +10,15 @@
   "executionBaseline": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
   "executionHead": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
   "executionCoordinateScope": "HISTORICAL_ACCEPTED_CMS_MUTATION_READINESS_BASELINE_NOT_CURRENT_GIT_HEAD",
-  "canonicalMainAtReconciliation": "aaa88631c862d213f890d2991aa63fd26ce925e3",
+  "repositoryHeadPolicy": "DISCOVER_CURRENT_HEAD_FROM_GIT_DO_NOT_TREAT_SNAPSHOT_COORDINATES_AS_ETERNALLY_CURRENT",
+  "currentStateReconciliation": {
+    "status": "OWNER_ACCEPTED_MERGED",
+    "pullRequest": 31,
+    "reconciliationStartingBaseline": "aaa88631c862d213f890d2991aa63fd26ce925e3",
+    "acceptedCandidateHead": "daf7479114f4faba3fa736ee957e03a8d207d49e",
+    "reconciliationMergeCommit": "85b749da5a7769a48e67b22685db904607e0a388",
+    "stateVerifiedThrough": "85b749da5a7769a48e67b22685db904607e0a388"
+  },
   "latestApprovedMilestone": "Step 4 Editorial Architecture Governance (ADR-028)",
   "latestApprovedTag": "step-2c3b-approved",
   "productionAuthorized": false,
@@ -24,6 +32,7 @@
     "restoreExecutionAuthorized": false,
     "prototypeImplementationAuthorized": false,
     "productionUiImplementationAuthorized": false,
+    "aiEngineeringOperatingSystemAuthorized": false,
     "externalStagingProvisioningAuthorized": false,
     "groupProductionCutoverAuthorized": false,
     "productionDnsChangeAuthorized": false,
@@ -149,8 +158,9 @@
     "legacyGroupDestruction": "NOT_AUTHORIZED"
   },
   "nextOwnerGate": {
-    "current": "INDEPENDENT_REVIEW_AND_OWNER_ACCEPTANCE_OF_CURRENT_STATE_RECONCILIATION",
-    "afterAcceptance": "SIRA_AI_ENGINEERING_OPERATING_SYSTEM",
+    "status": "NO_SUBSEQUENT_TASK_AUTHORIZED",
+    "requirement": "SEPARATELY_ISSUED_PROGRAM_CONTROL_OR_OWNER_AUTHORIZATION",
+    "plannedButNotAuthorized": "SIRA_AI_ENGINEERING_OPERATING_SYSTEM",
     "implementationAuthorized": false
   },
   "governance": {
@@ -170,8 +180,9 @@
     ]
   },
   "nextMajorStages": [
-    "Governance: independent review and owner acceptance of the post-PR30 durable-state reconciliation",
-    "Governance after reconciliation acceptance: SIRA AI Engineering Operating System",
+    "Governance: PR31 current-state reconciliation is owner accepted and merged; its state snapshot is verified through the recorded PR31 merge coordinate",
+    "Governance: no subsequent task is authorized without a separately issued Program Control or owner authorization",
+    "Planned but not authorized: SIRA AI Engineering Operating System",
     "Repository/frontend implementation: no prototype or production UI increment is currently authorized",
     "CMS mutation track: human backup/admin evidence gate before any Batch A authorization",
     "CMS mutation track: 2C.5C separately authorized Batch A execution only after a new explicit mutation authorization",

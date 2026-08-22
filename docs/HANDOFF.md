@@ -18,7 +18,11 @@ Then reconcile them against Git before editing.
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Canonical main at the post-PR30 reconciliation baseline: `aaa88631c862d213f890d2991aa63fd26ce925e3`
+- Current repository HEAD: verify from Git; do not infer it from a recorded state snapshot
+- PR `#31` reconciliation starting baseline: `aaa88631c862d213f890d2991aa63fd26ce925e3`
+- PR `#31` accepted candidate: `daf7479114f4faba3fa736ee957e03a8d207d49e`
+- PR `#31` merge / state verified-through coordinate: `85b749da5a7769a48e67b22685db904607e0a388`
+- PR `#31` reconciliation status: OWNER ACCEPTED / MERGED
 - Latest accepted governance milestone: Step 4 Editorial Architecture / ADR-028 through PR `#30`
 - Historical SOT-001 state-reconciliation merge: `e20858b055e556065e96623205fa0d5774ad81d6`
 - Latest accepted CMS mutation-readiness milestone: Step 2C.5B
@@ -111,11 +115,13 @@ Do not without explicit owner authorization:
 
 ## Current next gate
 
-The immediate gate is independent verification and owner acceptance of the
-post-PR30 durable-state reconciliation candidate. After that acceptance, the
-next planned governance task is the SIRA AI Engineering Operating System.
-Neither task authorizes prototypes, production UI, WordPress mutation,
-external staging, deployment, DNS, or production cutover.
+PR `#31` reconciliation was owner accepted and merged. Independent post-merge
+verification proved the merge and identified the durable-state wording issue
+corrected by this governance maintenance. No substantive next-stage task is
+automatically authorized; Program Control or the owner must issue separate
+authorization. The SIRA AI Engineering Operating System, prototypes, and
+production UI remain NOT AUTHORIZED, as do WordPress mutation, external
+staging, deployment, DNS, and production cutover.
 
 ## Handoff completion format
 

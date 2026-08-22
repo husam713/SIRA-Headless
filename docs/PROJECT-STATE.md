@@ -1,18 +1,44 @@
 # SIRA Current Project State
 
-Last reconciled from repository, GitHub, and fresh read-only CMS evidence: 2026-08-15
+Last reconciled from canonical Git and repository evidence: 2026-08-22
 
-## Current execution state
+## Current authoritative state
 
-- **Current business stage:** Step 2C.5B — CMS Mutation Readiness & Backup Gate
-- **Current substage:** 2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE — Read-Only Preflight and Exact Future Batch A Planning
-- **Current stage status:** OWNER ACCEPTED / MERGED
 - **Canonical integration/default branch:** `main`
-- **Business-code baseline:** `2bd4991f75a53ab9209e748499dcb8915769e3a6`
-- **Current governed integration head:** `2bd4991f75a53ab9209e748499dcb8915769e3a6`
-- **Latest approved business milestone:** Step 2C.5B
+- **Canonical main at this reconciliation:** `aaa88631c862d213f890d2991aa63fd26ce925e3`
+- **Latest accepted governance milestone:** Step 4 Editorial Architecture / ADR-028, owner accepted and merged through PR `#30`
+- **Repository/frontend state:** Step 4 governance accepted; production visual implementation NOT STARTED
+- **CMS mutation track:** Step 2C.5B remains the accepted readiness milestone and is `BLOCKED_BY_BACKUP_EVIDENCE`
+- **Current owner gate:** independent review and owner acceptance of this durable-state reconciliation candidate
+- **Next planned governance task after reconciliation acceptance:** SIRA AI Engineering Operating System
 - **Latest approved tag:** `step-2c3b-approved`
+- **Prototype implementation:** NOT AUTHORIZED
 - **Production deployment:** NOT AUTHORIZED
+
+The historical Step 2C.5B business/CMS execution baseline is
+`2bd4991f75a53ab9209e748499dcb8915769e3a6`. It is not the current Git `main`
+head. The CMS mutation and repository/frontend tracks remain deliberately
+separate.
+
+## Accepted repository milestones after Step 2C.5B
+
+| Milestone | Status | PR | Accepted head / merge |
+| --- | --- | ---: | --- |
+| Group staging-first governance (ADR-025) | OWNER ACCEPTED / MERGED | `#20` | `0e4cfc4c518e1ef002cdceb82cc264e907f50192` / `54b6c6696347a03217134af18bc50c675435e42d` |
+| Step 3A host/discovery boundary | OWNER ACCEPTED / MERGED | `#21` | `279b7343be923c72452e8724722e91dd9c318912` / `05c2cccc298f0a89a11181d9c49230bd10dfd9e1` |
+| Step 3B metadata/robots/sitemap | OWNER ACCEPTED / MERGED | `#22` | `1273542d475a60510d020fbca80654349cd2217b` / `bf986e9ac04733789ee0d0c4c675a9215ad59380` |
+| Step 3C.1 preview authentication foundation | OWNER ACCEPTED / MERGED | `#23` | `83404dc2832038577e8e391007758d408b0138d5` / `ceea65c865d0bcaa107d11dc5a0a55f84d392f06` |
+| Step 3C.2 signed Preview Entry / Draft Mode | OWNER ACCEPTED / MERGED | `#24` | `bd7a111ade17717412d8d57c9faf41581d735bc3` / `1c89dd7931f0c2d0876a69f08e2d000bf3913563` |
+| WPGraphQL Application Password fixes | MERGED | `#25`, `#26` | `1c28511eaf64404ce7670bb2bc4b8a3912b3b2a2`, `024e58d679e94e655945c1a07e5bed07d9a62800` |
+| Step 3D.1 structured-data ownership | OWNER ACCEPTED / MERGED | `#27` | `9423ba38546f67ebbf1ed3b5c9f3328ed39fbb19` / `269a28cd1db15666aebc9cbe2f73c8718997fc30` |
+| Homepage Production Data Contract | OWNER ACCEPTED / MERGED | `#28` | `ed0bf65b3da3862d2a16c16fd62061344c83d802` / `54b301f64687e59aa01dbe2695aaed6ce45db4c9` |
+| Step 4 Exact Design Fidelity Charter | OWNER ACCEPTED / MERGED | `#29` | `18ada36bd180ca8d088e411851b83d242ff4c7c9` / `e522c6c58cd57e2a757652adb740c9d1f154c81c` |
+| Step 4 Editorial Architecture / ADR-028 | OWNER ACCEPTED / MERGED / CANONICAL | `#30` | `e37570f8e7a2b28eb0d55a903f79eb19687be9a3` / `aaa88631c862d213f890d2991aa63fd26ce925e3` |
+
+Step 3D.2 is NOT STARTED. Step 3D.3 remains gated by unresolved `2C4-B09`.
+Full Step 3D closure must not be claimed. `PREVIEW-AUTH-001` remains DEFERRED.
+
+## Historical accepted milestones through Step 2C.5B
 
 G0 — AI Engineering Governance Bootstrap is complete and merged at `c26b658b4dfafb82c04af42ca880e6894aefcf0d`.
 
@@ -159,18 +185,22 @@ PR #18 reconciled backend/ to that verified source. Implementation head 7869ae35
 SOT-001 closure means only that the Git repository now contains the independently verified LIVE / Step 2C.2F backend source. It does not confirm current live WordPress Admin coordinates, backup readiness, restore readiness, CMS mutation authorization, Batch A authorization, production authorization, Step 2C.5C, Step 3, or deployment.
 
 Known separate observation: backend source declares SiraProjectDetails while the accepted frontend/live GraphQL schema exposes ProjectDetails. The mechanism remains UNKNOWN and is not silently changed by this reconciliation.
-## Next stages
+## Current open gates and next owner gate
 
-After Step 2C.5B owner acceptance of the readiness plan:
+- `2C4-B07` media-origin policy: UNRESOLVED / DEFERRED.
+- `2C4-B08` forms architecture: UNRESOLVED.
+- `2C4-B09` multilingual architecture: UNRESOLVED.
+- `PREVIEW-AUTH-001`: DEFERRED.
+- External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
+- CMS mutation and Step 2C.5C: NOT AUTHORIZED; the human backup/admin evidence gate remains required.
+- Step 4 prototype and production UI implementation: NOT AUTHORIZED / NOT STARTED.
+- Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 
-1. **Human backup/admin evidence gate**
-   - provide RB-001/RB-002/RB-009 evidence and confirm exact live admin coordinates without saving;
-   - rerun the same-window read-only Batch A preflight and stop on drift.
-2. **Step 2C.5C — separately authorized Batch A execution**
-   - may begin only after a new explicit mutation authorization identifies the exact manifest, operator, evidence package, and window;
-   - preserve every existing record and prohibit taxonomy deletion unless separately authorized.
-3. **Step 3 — Preview / SEO / Discovery**
-4. **Step 4 — Production Component Implementation**
+The immediate owner gate is independent verification and owner acceptance of
+this current-state reconciliation candidate. After that reconciliation is
+accepted and merged, the next planned governance task is the SIRA AI
+Engineering Operating System. This record does not authorize that future task
+or any implementation increment.
 
 ## Owner/external decisions still protected
 

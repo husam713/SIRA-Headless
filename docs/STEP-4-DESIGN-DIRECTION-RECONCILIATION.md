@@ -1,6 +1,8 @@
 # Step 4 — Design Direction Reconciliation
 
-**Status:** PROPOSED — owner review required before merge.
+**Status:** OWNER ACCEPTED / MERGED through PR `#30` at `aaa88631c862d213f890d2991aa63fd26ce925e3`.
+
+**Previous candidate status:** PROPOSED before owner acceptance and merge.
 
 **Branch:** `docs/step-4-editorial-architecture-reconciliation`
 

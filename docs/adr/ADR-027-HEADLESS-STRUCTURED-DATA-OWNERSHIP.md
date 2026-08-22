@@ -1,6 +1,7 @@
 # ADR-027 — Headless Structured Data Ownership
 
-- **Status:** Owner-authorized and implemented for Step 3D.1; pending PR review
+- **Status:** Approved through owner acceptance and merge of PR `#27` at `269a28cd1db15666aebc9cbe2f73c8718997fc30`
+- **Previous candidate status:** Owner-authorized and implemented for Step 3D.1; pending PR review
 - **Date:** 2026-08-21
 - **Scope:** Current executable tenant homepage route only
 

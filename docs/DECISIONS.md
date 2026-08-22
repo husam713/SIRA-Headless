@@ -140,15 +140,18 @@ This register consolidates durable decisions that should not be re-litigated by 
 
 ## ADR-028 — Step 4 art direction evolves through SIRA Editorial Architecture
 
-- **Status:** Proposed on branch `docs/step-4-editorial-architecture-reconciliation`; requires owner acceptance and merge before becoming Approved.
+- **Status:** Approved through explicit owner acceptance and merge of PR `#30` at `aaa88631c862d213f890d2991aa63fd26ce925e3`.
+- **Previous candidate status:** Proposed on branch `docs/step-4-editorial-architecture-reconciliation` before owner acceptance and merge.
 - **Decision:** Preserve the approved `.dc.html` design DNA and content/interaction intent while elevating production composition through `docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md`: Editorial Fluidity + Architectural Modernism + Adaptive Modular Components + Modern Web Platform First.
-- **Rule:** If approved, this ADR supersedes only conflicting visual-fidelity clauses that require immutable pixel/composition reproduction or prohibit all approved visual evolution. It does not supersede the Step 4 charter's architecture, data-contract, CMS ownership, accessibility, media, forms, SEO/preview, staging, validation, or production-authorization rules.
+- **Rule:** This ADR supersedes only conflicting visual-fidelity clauses that require immutable pixel/composition reproduction or prohibit all approved visual evolution. It does not supersede the Step 4 charter's architecture, data-contract, CMS ownership, accessibility, media, forms, SEO/preview, staging, validation, or production-authorization rules.
 - **Branch invariant:** Consulting, Healthcare, Lifestyle, and Real Estate continue to use one shared `BranchHomepage` architecture; approved visual variation must occur through tokens, content, media, container-aware composition, and bounded component variants rather than duplicate React trees.
 - **Platform policy:** Mature semantic HTML/CSS and native browser capabilities form the production foundation; evolving features such as View Transitions, scroll-driven animation, and Grid-Lanes/Masonry are progressive enhancement only; WebGL/Three.js/Canvas-primary UI and similarly heavy effects require explicit separate justification.
 - **Reason:** The approved reference design is already strong, but the later audit identified material presentational gains from stronger master-grid architecture, Subgrid alignment, responsive art direction, and less repetitive equal-card composition. Broad Step 4 visual implementation has not yet started, making this the lowest-risk point for controlled reconciliation.
 
-## Open decision records
+## Resolved decision records
 
 ### ADR-PENDING-002 — Backend source reconciliation
 
-GitHub backend source appears older than later verified live/backend evidence. Resolve SOT-001 before new backend runtime implementation.
+- **Status:** Resolved through PR `#18` and the PR `#19` post-merge state reconciliation.
+- **Historical issue:** GitHub backend source appeared older than later verified live/backend evidence, so SOT-001 blocked new backend runtime implementation until reconciliation.
+- **Current rule:** SOT-001 is CLOSED. New backend work still requires a separately authorized stage and current evidence; this closure does not authorize WordPress or CMS mutation.

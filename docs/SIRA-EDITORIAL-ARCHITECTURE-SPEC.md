@@ -2,7 +2,9 @@
 
 ## Step 4 Art-Direction and Modern Web Platform Specification
 
-**Status:** PROPOSED — requires owner acceptance and merge before it governs production UI implementation.
+**Status:** APPROVED — owner accepted and merged through PR `#30` at `aaa88631c862d213f890d2991aa63fd26ce925e3`.
+
+**Previous candidate status:** PROPOSED before PR `#30` owner acceptance and merge.
 
 **Scope:** Presentation architecture governance only. This specification does not authorize prototype work, application or production UI implementation, WordPress mutation, backend changes, production deployment, DNS changes, staging provisioning, media-origin changes, multilingual routing, form submission architecture, or protected-branch merge. Every prototype or implementation increment requires separate explicit owner authorization.
 

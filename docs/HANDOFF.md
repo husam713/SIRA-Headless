@@ -10,6 +10,7 @@ Use this file when opening a new ChatGPT/Codex session or handing the project to
 4. `/docs/SOURCE-OF-TRUTH.md`
 5. relevant entries in `/docs/DECISIONS.md`
 6. `/docs/adr/ADR-025-GROUP-STAGING-FIRST.md`
+7. `/docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md`
 
 Then reconcile them against Git before editing.
 
@@ -17,8 +18,10 @@ Then reconcile them against Git before editing.
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Canonical main at this reconciliation: `e20858b055e556065e96623205fa0d5774ad81d6`
-- Latest approved business milestone: Step 2C.5B
+- Canonical main at the post-PR30 reconciliation baseline: `aaa88631c862d213f890d2991aa63fd26ce925e3`
+- Latest accepted governance milestone: Step 4 Editorial Architecture / ADR-028 through PR `#30`
+- Historical SOT-001 state-reconciliation merge: `e20858b055e556065e96623205fa0d5774ad81d6`
+- Latest accepted CMS mutation-readiness milestone: Step 2C.5B
 - Latest approved tag: `step-2c3b-approved`
 - SOT-001 backend source conflict: CLOSED through PR #18/#19 reconciliation
 
@@ -26,7 +29,16 @@ Then reconcile them against Git before editing.
 
 Step 2C.5B is owner accepted and merged. Its CMS mutation track remains operationally `BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`, Batch A mutation authorization is false, and RB-001/RB-009 execution evidence remains unavailable.
 
-The repository/frontend track may proceed without production WordPress mutation. The next existing-roadmap engineering stage is **Step 3 — Preview / SEO / Discovery**.
+The repository/frontend track has accepted Step 3A, Step 3B, Step 3C.1,
+Step 3C.2, and Step 3D.1. Step 3D.2 is NOT STARTED, Step 3D.3 remains gated
+by `2C4-B09`, `PREVIEW-AUTH-001` remains DEFERRED, and full Step 3D closure
+must not be claimed.
+
+The Homepage Production Data Contract, Step 4 Exact Design Fidelity Charter,
+and ADR-028 Editorial Architecture are owner accepted and merged. Step 4
+visual implementation, the shared production shell, Group/Branch homepage
+composition, and Newsroom visual/route work are NOT STARTED. Prototype and
+production UI implementation are NOT AUTHORIZED.
 
 ## New owner decision — Group staging first
 
@@ -97,9 +109,13 @@ Do not without explicit owner authorization:
 - delete taxonomy terms;
 - rotate production secrets.
 
-## Safe work now
+## Current next gate
 
-Repository-only Step 3 engineering may proceed. Step 4 production component implementation may follow its normal acceptance gate and target Group staging first. Production WordPress mutation is not implied or authorized by either stage.
+The immediate gate is independent verification and owner acceptance of the
+post-PR30 durable-state reconciliation candidate. After that acceptance, the
+next planned governance task is the SIRA AI Engineering Operating System.
+Neither task authorizes prototypes, production UI, WordPress mutation,
+external staging, deployment, DNS, or production cutover.
 
 ## Handoff completion format
 

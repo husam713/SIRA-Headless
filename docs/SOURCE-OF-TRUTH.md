@@ -21,7 +21,11 @@ A later verified artifact may temporarily supersede repository source for a spec
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Canonical main at this reconciliation: `aaa88631c862d213f890d2991aa63fd26ce925e3`
+- Repository HEAD rule: obtain the current commit from Git; recorded snapshot coordinates are provenance, not an eternally current HEAD
+- PR `#31` reconciliation status: OWNER ACCEPTED / MERGED
+- PR `#31` reconciliation starting baseline: `aaa88631c862d213f890d2991aa63fd26ce925e3`
+- PR `#31` accepted candidate: `daf7479114f4faba3fa736ee957e03a8d207d49e`
+- PR `#31` merge / state verified-through coordinate: `85b749da5a7769a48e67b22685db904607e0a388`
 - Latest accepted governance milestone: Step 4 Editorial Architecture / ADR-028
 - Accepted PR / candidate head / merge: `#30` / `e37570f8e7a2b28eb0d55a903f79eb19687be9a3` / `aaa88631c862d213f890d2991aa63fd26ce925e3`
 - Historical CMS mutation-readiness baseline: Step 2C.5B at `2bd4991f75a53ab9209e748499dcb8915769e3a6`
@@ -81,10 +85,11 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED.
 
-The immediate owner gate is independent verification and acceptance of the
-current-state reconciliation candidate. The SIRA AI Engineering Operating
-System is the next planned governance task only after that acceptance; it is
-not implemented or authorized by this record.
+PR `#31` current-state reconciliation is owner accepted and merged. No
+subsequent governance or implementation task is authorized by this record;
+Program Control or the owner must issue separate authorization. The SIRA AI
+Engineering Operating System remains planned but NOT AUTHORIZED. Prototype and
+production UI implementation also remain NOT AUTHORIZED.
 
 ## Canonical public production topology
 

@@ -1,19 +1,27 @@
 # SIRA Current Project State
 
-Last reconciled from canonical Git and repository evidence: 2026-08-22
+State snapshot last verified through canonical Git evidence: 2026-08-22
 
 ## Current authoritative state
 
 - **Canonical integration/default branch:** `main`
-- **Canonical main at this reconciliation:** `aaa88631c862d213f890d2991aa63fd26ce925e3`
+- **Repository HEAD rule:** discover the current commit from Git; snapshot coordinates below are provenance and must not be treated as an eternally current HEAD
+- **PR #31 reconciliation status:** OWNER ACCEPTED / MERGED
 - **Latest accepted governance milestone:** Step 4 Editorial Architecture / ADR-028, owner accepted and merged through PR `#30`
 - **Repository/frontend state:** Step 4 governance accepted; production visual implementation NOT STARTED
 - **CMS mutation track:** Step 2C.5B remains the accepted readiness milestone and is `BLOCKED_BY_BACKUP_EVIDENCE`
-- **Current owner gate:** independent review and owner acceptance of this durable-state reconciliation candidate
-- **Next planned governance task after reconciliation acceptance:** SIRA AI Engineering Operating System
+- **Current authorization boundary:** no subsequent task is authorized without a separately issued Program Control or owner authorization
+- **Planned but not authorized:** SIRA AI Engineering Operating System
 - **Latest approved tag:** `step-2c3b-approved`
 - **Prototype implementation:** NOT AUTHORIZED
 - **Production deployment:** NOT AUTHORIZED
+
+PR `#31` preserves three distinct coordinates: reconciliation starting
+baseline `aaa88631c862d213f890d2991aa63fd26ce925e3`, accepted candidate
+`daf7479114f4faba3fa736ee957e03a8d207d49e`, and reconciliation merge / state
+verified-through coordinate `85b749da5a7769a48e67b22685db904607e0a388`.
+These are immutable provenance facts; the current repository HEAD may advance
+and must be verified from Git.
 
 The historical Step 2C.5B business/CMS execution baseline is
 `2bd4991f75a53ab9209e748499dcb8915769e3a6`. It is not the current Git `main`
@@ -34,6 +42,7 @@ separate.
 | Homepage Production Data Contract | OWNER ACCEPTED / MERGED | `#28` | `ed0bf65b3da3862d2a16c16fd62061344c83d802` / `54b301f64687e59aa01dbe2695aaed6ce45db4c9` |
 | Step 4 Exact Design Fidelity Charter | OWNER ACCEPTED / MERGED | `#29` | `18ada36bd180ca8d088e411851b83d242ff4c7c9` / `e522c6c58cd57e2a757652adb740c9d1f154c81c` |
 | Step 4 Editorial Architecture / ADR-028 | OWNER ACCEPTED / MERGED / CANONICAL | `#30` | `e37570f8e7a2b28eb0d55a903f79eb19687be9a3` / `aaa88631c862d213f890d2991aa63fd26ce925e3` |
+| Post-PR30 durable-state reconciliation | OWNER ACCEPTED / MERGED | `#31` | `daf7479114f4faba3fa736ee957e03a8d207d49e` / `85b749da5a7769a48e67b22685db904607e0a388` |
 
 Step 3D.2 is NOT STARTED. Step 3D.3 remains gated by unresolved `2C4-B09`.
 Full Step 3D closure must not be claimed. `PREVIEW-AUTH-001` remains DEFERRED.
@@ -196,11 +205,12 @@ Known separate observation: backend source declares SiraProjectDetails while the
 - Step 4 prototype and production UI implementation: NOT AUTHORIZED / NOT STARTED.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 
-The immediate owner gate is independent verification and owner acceptance of
-this current-state reconciliation candidate. After that reconciliation is
-accepted and merged, the next planned governance task is the SIRA AI
-Engineering Operating System. This record does not authorize that future task
-or any implementation increment.
+PR `#31` current-state reconciliation is owner accepted and merged. The
+post-merge wording correction is governance maintenance and grants no product
+or implementation authority. No subsequent task is authorized by this record;
+Program Control or the owner must issue separate authorization. The SIRA AI
+Engineering Operating System remains planned but NOT AUTHORIZED, as do all
+prototype and production UI increments.
 
 ## Owner/external decisions still protected
 

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://siratrgroup.com/schemas/ai/artifact-manifest.schema.json",
+  "title": "SIRA Artifact Manifest",
+  "description": "Manifest for an evidence-carrying package. Artifact existence does not establish Canonicality.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactId",
+    "taskId",
+    "producer",
+    "repository",
+    "baseline",
+    "candidateHead",
+    "createdAt",
+    "files",
+    "validation",
+    "evidenceClass",
+    "acceptanceState",
+    "canonical",
+    "notes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "artifactId": { "type": "string", "minLength": 1 },
+    "taskId": { "type": "string", "minLength": 1 },
+    "producer": { "type": "string", "minLength": 1 },
+    "repository": { "type": "string", "minLength": 1 },
+    "baseline": {
+      "type": ["string", "null"],
+      "description": "Declared baseline coordinate, not an eternally current HEAD."
+    },
+    "candidateHead": { "type": ["string", "null"] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[A-Fa-f0-9]{64}$"
+          },
+          "size": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "validation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["check", "status"],
+        "properties": {
+          "check": { "type": "string", "minLength": 1 },
+          "status": { "type": "string", "minLength": 1 },
+          "evidence": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "evidenceClass": { "type": "string", "minLength": 1 },
+    "acceptanceState": { "type": "string", "minLength": 1 },
+    "canonical": {
+      "type": "boolean",
+      "description": "Must be explicit; artifact existence cannot imply true."
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

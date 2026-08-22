@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://siratrgroup.com/schemas/ai/task-packet.schema.json",
+  "title": "SIRA Task Packet",
+  "description": "Bounded authorization and result contract for substantial controlled work. Authorization must be explicit; an absent or false grant does not permit mutation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "taskId",
+    "issuedBy",
+    "targetRole",
+    "taskType",
+    "repository",
+    "purpose",
+    "inputEvidence",
+    "expectedBaseline",
+    "authorization",
+    "scope",
+    "scopeExclusions",
+    "stopConditions",
+    "validationRequirements",
+    "candidateRequirements",
+    "resultContract",
+    "nextGate"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "taskId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parentTaskId": {
+      "type": ["string", "null"]
+    },
+    "relatedTaskIds": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "issuedBy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "targetRole": {
+      "type": "string",
+      "minLength": 1
+    },
+    "taskType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repository": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inputEvidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source", "evidenceClass"],
+        "properties": {
+          "source": { "type": "string", "minLength": 1 },
+          "evidenceClass": { "type": "string", "minLength": 1 },
+          "coordinates": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "notes": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "expectedBaseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["branch", "commit", "workingTree"],
+      "properties": {
+        "branch": { "type": "string", "minLength": 1 },
+        "commit": {
+          "type": ["string", "null"],
+          "description": "Expected baseline coordinate. Current HEAD must still be discovered from Git."
+        },
+        "workingTree": { "type": "string", "minLength": 1 }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["explicitlyGranted", "allowedActions", "protectedActions"],
+      "properties": {
+        "explicitlyGranted": {
+          "type": "boolean",
+          "description": "Must be true before mutation. Missing authorization never implies permission."
+        },
+        "authorizationText": { "type": ["string", "null"] },
+        "allowedActions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "protectedActions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["included", "deliverables"],
+      "properties": {
+        "included": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "deliverables": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "scopeExclusions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "stopConditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["classification", "condition"],
+        "properties": {
+          "classification": { "type": "string", "minLength": 1 },
+          "condition": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "validationRequirements": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "candidateRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "branch": { "type": ["string", "null"] },
+        "commit": { "type": "boolean" },
+        "push": { "type": "boolean" },
+        "pullRequest": { "type": "boolean" },
+        "draft": { "type": "boolean" },
+        "merge": { "type": "boolean" }
+      }
+    },
+    "resultContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidenceEnvelope", "handoffPacket", "finalClassifications"],
+      "properties": {
+        "evidenceEnvelope": { "type": "boolean" },
+        "handoffPacket": { "type": "boolean" },
+        "finalClassifications": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        }
+      }
+    },
+    "nextGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ownerGate", "recommendedNextRole"],
+      "properties": {
+        "ownerGate": { "type": ["string", "null"] },
+        "recommendedNextRole": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

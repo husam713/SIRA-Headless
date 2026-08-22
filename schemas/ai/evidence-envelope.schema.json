@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://siratrgroup.com/schemas/ai/evidence-envelope.schema.json",
+  "title": "SIRA Evidence Envelope",
+  "description": "Structured evidence transfer. Evidence Class, Acceptance State, and boolean Canonicality are independent and must not be inferred from one another.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "taskId",
+    "sourceAgent",
+    "role",
+    "repository",
+    "evidenceClass",
+    "acceptanceState",
+    "canonical",
+    "baseline",
+    "candidate",
+    "sourceResult",
+    "validationAuthority",
+    "independentlyVerified",
+    "ownerAccepted",
+    "mergedCanonicalMain",
+    "runtimeOrProductionProven",
+    "nextGate",
+    "notes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "taskId": { "type": "string", "minLength": 1 },
+    "parentTaskId": { "type": ["string", "null"] },
+    "relatedTaskIds": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "sourceAgent": { "type": "string", "minLength": 1 },
+    "role": { "type": "string", "minLength": 1 },
+    "repository": { "type": "string", "minLength": 1 },
+    "evidenceClass": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Extensible evidence class. Standard values include TRANSFERRED_EVIDENCE, REPOSITORY_PROVEN, RUNTIME_PROVEN, and UNKNOWN."
+    },
+    "acceptanceState": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Extensible workflow lifecycle state; it does not establish Canonicality."
+    },
+    "canonical": {
+      "type": "boolean",
+      "description": "Explicit Canonicality. Local success, CI, a Draft PR, or independent review cannot imply true."
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expected", "verified", "status"],
+      "properties": {
+        "expected": { "type": ["string", "null"] },
+        "verified": { "type": ["string", "null"] },
+        "status": { "type": "string", "minLength": 1 }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["branch", "head", "pr"],
+      "properties": {
+        "branch": { "type": ["string", "null"] },
+        "head": { "type": ["string", "null"] },
+        "pr": { "type": ["integer", "string", "null"] }
+      }
+    },
+    "sourceResult": { "type": "string", "minLength": 1 },
+    "validationAuthority": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "independentlyVerified": {
+      "type": ["boolean", "null"],
+      "description": "Observation state: true means independently verified is established true; false means it is established false; null means unknown, not observed, not applicable to the current evidence source, or not yet independently established."
+    },
+    "ownerAccepted": {
+      "type": ["boolean", "null"],
+      "description": "Observation state: true means owner acceptance is established true; false means it is established false; null means unknown, not observed, not applicable to the current evidence source, or not yet independently established."
+    },
+    "mergedCanonicalMain": {
+      "type": ["boolean", "null"],
+      "description": "Observation state: true means merge to canonical main is established true; false means it is established false; null means unknown, not observed, not applicable to the current evidence source, or not yet independently established."
+    },
+    "runtimeOrProductionProven": {
+      "type": ["boolean", "null"],
+      "description": "Observation state: true means runtime or production proof is established true; false means it is established false; null means unknown, not observed, not applicable to the current evidence source, or not yet independently established."
+    },
+    "nextGate": { "type": ["string", "null"] },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

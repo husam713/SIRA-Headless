@@ -8,13 +8,14 @@ Conversation history is supporting context only and must never override reposito
 At the beginning of every engineering session:
 
 1. Read this file.
-2. Read `project-state.json`.
-3. Read `docs/PROJECT-STATE.md`.
-4. Read `docs/SOURCE-OF-TRUTH.md`.
-5. Read relevant entries in `docs/DECISIONS.md`.
-6. Inspect Git state, current branch, recent commits, and approved tags.
-7. Inspect relevant generated contracts and tests.
-8. Reconcile discrepancies before modifying code.
+2. Read `docs/AI-ENGINEERING-OS.md` and the normative protocol it identifies.
+3. Read `project-state.json`.
+4. Read `docs/PROJECT-STATE.md`.
+5. Read `docs/SOURCE-OF-TRUTH.md`.
+6. Read relevant entries in `docs/DECISIONS.md`.
+7. Inspect Git state, current branch, recent commits, and approved tags.
+8. Inspect relevant generated contracts and tests.
+9. Reconcile discrepancies before modifying code.
 
 Never determine current project state from conversation memory alone.
 
@@ -24,6 +25,7 @@ Every material engineering claim must be classified mentally as one of:
 
 - **CONFIRMED** — supported by inspectable repository, generated-contract, test, CI, or live evidence.
 - **STRONGLY INFERRED** — supported by evidence but not directly proven; identify the evidence and limitation.
+- **TRANSFERRED EVIDENCE** — reported by another session or agent and not yet independently verified in the current evidence context.
 - **UNKNOWN** — not verified. Unknown is an acceptable engineering result and must not be converted into a guess.
 
 Never claim a test passed, a stage was approved, a field exists, a deployment occurred, or a production setting is active without evidence.
@@ -32,15 +34,16 @@ Never claim a test passed, a stage was approved, a field exists, a deployment oc
 
 Use this order when sources conflict:
 
-1. executable/live evidence relevant to the claim;
-2. current versioned repository source;
-3. approved Git commits and tags;
-4. generated schemas and machine-readable contracts;
-5. recorded architecture decisions and validation artifacts;
-6. project state and source-of-truth records;
-7. approved specifications and design documents;
-8. conversation history;
-9. model inference — never authoritative.
+1. relevant executable/runtime/live evidence;
+2. current Git repository state;
+3. accepted merged commits and Pull Requests;
+4. exact commit SHAs, ancestry, and CI evidence;
+5. checked-in schemas, contracts, and generated artifacts;
+6. approved ADRs and durable repository documentation;
+7. verified external design/reference artifacts;
+8. transferred reports from another AI conversation or agent;
+9. conversation memory;
+10. model inference — never authoritative.
 
 A later verified artifact may supersede repository source for a subsystem when the repository has demonstrably not yet been reconciled. Such a conflict must be recorded explicitly in `docs/SOURCE-OF-TRUTH.md` and resolved before modifying that subsystem.
 
@@ -74,17 +77,29 @@ Within an approved stage, work autonomously until the stage is complete or a rea
 
 Do not turn the owner into the implementation agent when the repository, terminal, tests, or Git tools can perform the work directly.
 
+## Task Packet Authority and Scope
+
+- A substantial controlled mutation requires an explicit Task Packet or equivalent owner-authorized scope.
+- Authorization is bounded. Absence of authorization means do not mutate.
+- Before mutation, record the expected baseline, verified baseline, current branch, and working-tree status.
+- If the baseline, approved candidate, or scope has drifted, stop unless adaptation is explicitly authorized.
+- Report unrelated defects; do not silently repair them. Stop with `BLOCKED_SCOPE_EXPANSION_REQUIRED` when required work exceeds the authorized scope.
+- Never self-approve a candidate or declare it canonical. Local success, CI, a Draft PR, and independent review are distinct from owner acceptance and canonical merge state.
+
 ## Git Rules
 
 - Work on focused feature/fix/chore branches.
 - Inspect the complete diff before commit.
 - Run `git diff --check` locally when available.
 - Never commit secrets or temporary authorization material.
+- Never expose credentials in Task Packets, Evidence Envelopes, Handoff Packets, logs, or artifacts; reference security-sensitive values symbolically.
 - Generated files must be regenerated from their source contracts, not hand-edited.
 - Feature branches may be committed and pushed by the engineering agent.
 - Pull requests may be created/updated by the engineering agent.
 - Do not merge the protected integration/default branch without explicit owner approval.
 - Never force-push shared history or delete approved tags without explicit owner approval.
+- Treat `.local-reference/` as reference-only unless a Task Packet explicitly authorizes a different use.
+- Preserve task-identified protected local evidence: do not edit, stage, rename, delete, normalize, or commit it.
 
 ## Protected Operations
 
@@ -129,3 +144,5 @@ Do not report PASS unless the relevant command/check actually ran against the st
 A stage is not complete merely because code compiles. Acceptance requires the scoped implementation, required tests/builds, warning classification, security review, diff review, understood Git state, rollback definition, and documented remaining work.
 
 End each substantial stage report with a `CURRENT PROJECT STATE` block.
+
+When a Task Packet requires formal transfer, return both an Evidence Envelope and a Handoff Packet using the repository templates. The normative terminology, role boundaries, and evidence workflow are defined in `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`.

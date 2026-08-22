@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://siratrgroup.com/schemas/ai/handoff-packet.schema.json",
+  "title": "SIRA Handoff Packet",
+  "description": "Operational transfer record for the next role or replaceable session.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "taskId",
+    "role",
+    "baseline",
+    "inputEvidence",
+    "actionsPerformed",
+    "filesChanged",
+    "candidate",
+    "validation",
+    "confirmedFindings",
+    "stronglyInferredFindings",
+    "reportOnlyFindings",
+    "unknown",
+    "unresolvedGates",
+    "scopeExclusions",
+    "artifacts",
+    "nextOwnerGate",
+    "recommendedNextAgent",
+    "finalClassification"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "taskId": { "type": "string", "minLength": 1 },
+    "role": { "type": "string", "minLength": 1 },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expected", "verified", "status"],
+      "properties": {
+        "expected": { "type": ["string", "null"] },
+        "verified": { "type": ["string", "null"] },
+        "status": { "type": "string", "minLength": 1 }
+      }
+    },
+    "inputEvidence": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "actionsPerformed": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "filesChanged": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["branch", "head", "pr"],
+      "properties": {
+        "branch": { "type": ["string", "null"] },
+        "head": { "type": ["string", "null"] },
+        "pr": { "type": ["integer", "string", "null"] }
+      }
+    },
+    "validation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["check", "status"],
+        "properties": {
+          "check": { "type": "string", "minLength": 1 },
+          "status": {
+            "type": "string",
+            "description": "Use PASS, FAIL, WARNING, DEFERRED, NOT RUN, BLOCKED, or NOT APPLICABLE."
+          },
+          "evidence": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "confirmedFindings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "stronglyInferredFindings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "reportOnlyFindings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "unknown": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "unresolvedGates": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "scopeExclusions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "location"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "location": { "type": "string", "minLength": 1 },
+          "sha256": {
+            "type": ["string", "null"],
+            "pattern": "^[A-Fa-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "nextOwnerGate": { "type": ["string", "null"] },
+    "recommendedNextAgent": { "type": ["string", "null"] },
+    "finalClassification": { "type": "string", "minLength": 1 }
+  }
+}

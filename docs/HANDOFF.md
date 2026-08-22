@@ -117,11 +117,13 @@ Do not without explicit owner authorization:
 
 PR `#31` reconciliation was owner accepted and merged. Independent post-merge
 verification proved the merge and identified the durable-state wording issue
-corrected by this governance maintenance. No substantive next-stage task is
+corrected by governance maintenance. The owner has separately authorized the
+SIRA AI Engineering OS governance foundation: documentation, templates, and
+JSON Schemas only. Validator or CI enforcement, product/runtime work,
+prototypes, and production UI remain NOT AUTHORIZED. No later task is
 automatically authorized; Program Control or the owner must issue separate
-authorization. The SIRA AI Engineering Operating System, prototypes, and
-production UI remain NOT AUTHORIZED, as do WordPress mutation, external
-staging, deployment, DNS, and production cutover.
+authorization. WordPress mutation, external staging, deployment, DNS, and
+production cutover remain NOT AUTHORIZED.
 
 ## Handoff completion format
 

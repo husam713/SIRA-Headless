@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-22T09:44:00+03:00",
+  "updatedAt": "2026-08-22T10:53:15+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -32,7 +32,11 @@
     "restoreExecutionAuthorized": false,
     "prototypeImplementationAuthorized": false,
     "productionUiImplementationAuthorized": false,
-    "aiEngineeringOperatingSystemAuthorized": false,
+    "aiEngineeringOperatingSystem": {
+      "governanceFoundationTask": "OWNER_AUTHORIZED",
+      "validatorCiEnforcement": "NOT_AUTHORIZED",
+      "productRuntimeWork": "NOT_AUTHORIZED"
+    },
     "externalStagingProvisioningAuthorized": false,
     "groupProductionCutoverAuthorized": false,
     "productionDnsChangeAuthorized": false,
@@ -158,10 +162,10 @@
     "legacyGroupDestruction": "NOT_AUTHORIZED"
   },
   "nextOwnerGate": {
-    "status": "NO_SUBSEQUENT_TASK_AUTHORIZED",
-    "requirement": "SEPARATELY_ISSUED_PROGRAM_CONTROL_OR_OWNER_AUTHORIZATION",
-    "plannedButNotAuthorized": "SIRA_AI_ENGINEERING_OPERATING_SYSTEM",
-    "implementationAuthorized": false
+    "currentAuthorizedTask": "SIRA_AI_ENGINEERING_OS_GOVERNANCE_FOUNDATION",
+    "authorizationScope": "GOVERNANCE_DOCUMENTATION_TEMPLATES_AND_JSON_SCHEMAS_ONLY",
+    "subsequentTaskRequirement": "SEPARATELY_ISSUED_PROGRAM_CONTROL_OR_OWNER_AUTHORIZATION",
+    "subsequentImplementationAuthorized": false
   },
   "governance": {
     "g0Bootstrap": "COMPLETE",
@@ -181,8 +185,9 @@
   },
   "nextMajorStages": [
     "Governance: PR31 current-state reconciliation is owner accepted and merged; its state snapshot is verified through the recorded PR31 merge coordinate",
+    "Owner-authorized governance task: establish the SIRA AI Engineering OS documentation, templates, and JSON Schema foundation",
+    "Not authorized: AI Engineering OS validator or CI enforcement, product/runtime work, prototypes, and production UI",
     "Governance: no subsequent task is authorized without a separately issued Program Control or owner authorization",
-    "Planned but not authorized: SIRA AI Engineering Operating System",
     "Repository/frontend implementation: no prototype or production UI increment is currently authorized",
     "CMS mutation track: human backup/admin evidence gate before any Batch A authorization",
     "CMS mutation track: 2C.5C separately authorized Batch A execution only after a new explicit mutation authorization",

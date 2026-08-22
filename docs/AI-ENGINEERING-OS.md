@@ -1,8 +1,30 @@
-# SIRA AI Engineering Execution Architecture
+# SIRA AI Engineering Operating System
 
 ## Purpose
 
 Make the repository sufficient for another qualified AI agent or engineer to reconstruct the project without relying on the original conversation.
+
+## Authority and information architecture
+
+This file is the concise entry point and index. The single normative source
+for terminology, evidence authority, roles, lifecycle gates, security, and
+artifact policy is
+[`AI-ENGINEERING-OPERATING-PROTOCOL.md`](./AI-ENGINEERING-OPERATING-PROTOCOL.md).
+If this overview conflicts with that protocol, the protocol governs.
+
+Reusable resources:
+
+- common project instructions: [`../templates/ai/PROJECT-INSTRUCTIONS.md`](../templates/ai/PROJECT-INSTRUCTIONS.md);
+- boot/recovery: [`../templates/ai/BOOT-PROTOCOL.md`](../templates/ai/BOOT-PROTOCOL.md);
+- Task Packet: [`../templates/ai/TASK-PACKET.md`](../templates/ai/TASK-PACKET.md);
+- Evidence Envelope: [`../templates/ai/EVIDENCE-ENVELOPE.md`](../templates/ai/EVIDENCE-ENVELOPE.md);
+- Handoff Packet: [`../templates/ai/HANDOFF-PACKET.md`](../templates/ai/HANDOFF-PACKET.md);
+- role overlays: [`../templates/ai/ROLE-OVERLAYS/`](../templates/ai/ROLE-OVERLAYS/);
+- machine-readable contracts: [`../schemas/ai/`](../schemas/ai/).
+
+The current repository HEAD is always discovered from Git. Recorded commit
+coordinates are baselines, candidates, accepted merges, state snapshots, or
+historical provenance; they are never implicitly an eternally current HEAD.
 
 ## Operating model
 
@@ -72,9 +94,15 @@ Return the minimum exact human action, then validate programmatically afterward.
 
 Conversation history is never the canonical project database.
 
+Chats are replaceable working sessions. Task IDs belong to the project
+workflow and survive chat replacement.
+
 ## Autonomy level
 
 Default engineering autonomy is **L3 — Engineering Agent**.
+
+L3 autonomy operates only inside the explicit scope of the current Task Packet
+or equivalent owner authorization; it does not create its own authority.
 
 Allowed without per-command approval inside an approved stage:
 
@@ -125,3 +153,9 @@ Every substantial implementation stage should return:
 14. CURRENT PROJECT STATE
 
 Only give step-by-step commands when a human action is genuinely required.
+
+## Enforcement boundary
+
+This governance foundation defines human- and agent-readable contracts only.
+Validator scripts, CI enforcement, pre-commit hooks, package scripts, and
+automated merge gates require a future separately authorized task.

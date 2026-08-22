@@ -86,10 +86,12 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED.
 
 PR `#31` current-state reconciliation is owner accepted and merged. No
-subsequent governance or implementation task is authorized by this record;
-Program Control or the owner must issue separate authorization. The SIRA AI
-Engineering Operating System remains planned but NOT AUTHORIZED. Prototype and
-production UI implementation also remain NOT AUTHORIZED.
+subsequent governance or implementation task is authorized by that merge. The
+owner has separately authorized the SIRA AI Engineering OS governance
+foundation limited to documentation, reusable templates, and JSON Schemas.
+Validator or CI enforcement and product/runtime work remain NOT AUTHORIZED.
+Program Control or the owner must separately authorize any later task.
+Prototype and production UI implementation also remain NOT AUTHORIZED.
 
 ## Canonical public production topology
 

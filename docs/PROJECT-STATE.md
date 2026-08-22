@@ -10,8 +10,9 @@ State snapshot last verified through canonical Git evidence: 2026-08-22
 - **Latest accepted governance milestone:** Step 4 Editorial Architecture / ADR-028, owner accepted and merged through PR `#30`
 - **Repository/frontend state:** Step 4 governance accepted; production visual implementation NOT STARTED
 - **CMS mutation track:** Step 2C.5B remains the accepted readiness milestone and is `BLOCKED_BY_BACKUP_EVIDENCE`
-- **Current authorization boundary:** no subsequent task is authorized without a separately issued Program Control or owner authorization
-- **Planned but not authorized:** SIRA AI Engineering Operating System
+- **Current owner-authorized task:** SIRA AI Engineering OS governance foundation (documentation, templates, and JSON Schemas only)
+- **AI Engineering OS enforcement/product boundary:** validator and CI enforcement, product/runtime work, prototypes, and production UI are NOT AUTHORIZED
+- **Subsequent authorization boundary:** no later task is authorized without a separately issued Program Control or owner authorization
 - **Latest approved tag:** `step-2c3b-approved`
 - **Prototype implementation:** NOT AUTHORIZED
 - **Production deployment:** NOT AUTHORIZED
@@ -207,10 +208,12 @@ Known separate observation: backend source declares SiraProjectDetails while the
 
 PR `#31` current-state reconciliation is owner accepted and merged. The
 post-merge wording correction is governance maintenance and grants no product
-or implementation authority. No subsequent task is authorized by this record;
-Program Control or the owner must issue separate authorization. The SIRA AI
-Engineering Operating System remains planned but NOT AUTHORIZED, as do all
-prototype and production UI increments.
+or implementation authority. The owner has separately authorized the SIRA AI
+Engineering OS governance foundation limited to documentation, reusable
+templates, and JSON Schemas. Validator or CI enforcement and product/runtime
+work remain NOT AUTHORIZED. No subsequent task is authorized by this record;
+Program Control or the owner must issue separate authorization. Prototype and
+production UI increments remain NOT AUTHORIZED.
 
 ## Owner/external decisions still protected
 

@@ -138,6 +138,15 @@ This register consolidates durable decisions that should not be re-litigated by 
 - **Scope:** This resolves canonical public domain selection and creates no new Step 2C.4 blocking gap. It does not establish a WordPress backend hostname, GraphQL endpoint hostname, media origin, staging hostname, Vercel preview hostname, cookie-domain policy, CORS policy, or revalidation origin; those require later repository or live configuration evidence.
 - **Downstream rule:** Step 3 must use this public topology for canonical URL behavior while completing metadata, preview, `hreflang`, sitemap, redirect, and related SEO contracts. `2C4-B07` remains BLOCKING pending an approved media origin/delivery policy, and `2C4-B10` remains BLOCKING pending Step 3 implementation.
 
+## ADR-025 — Step 4 art direction evolves through SIRA Editorial Architecture
+
+- **Status:** Proposed in `docs/step-4-editorial-architecture-reconciliation`; requires owner acceptance and merge before becoming Approved.
+- **Decision:** Preserve the approved `.dc.html` design DNA and content/interaction intent while elevating production composition through `docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md`: Editorial Fluidity + Architectural Modernism + Adaptive Modular Components + Modern Web Platform First.
+- **Rule:** If approved, this ADR supersedes only conflicting visual-fidelity clauses that require immutable pixel/composition reproduction or prohibit all approved visual evolution. It does not supersede the Step 4 charter's architecture, data-contract, CMS ownership, accessibility, media, forms, SEO/preview, staging, validation, or production-authorization rules.
+- **Branch invariant:** Consulting, Healthcare, Lifestyle, and Real Estate continue to use one shared `BranchHomepage` architecture; approved visual variation must occur through tokens, content, media, container-aware composition, and bounded component variants rather than duplicate React trees.
+- **Platform policy:** Mature semantic HTML/CSS and native browser capabilities form the production foundation; evolving features such as View Transitions, scroll-driven animation, and Grid-Lanes/Masonry are progressive enhancement only; WebGL/Three.js/Canvas-primary UI and similarly heavy effects require explicit separate justification.
+- **Reason:** The approved reference design is already strong, but the later audit identified material presentational gains from stronger master-grid architecture, Subgrid alignment, responsive art direction, and less repetitive equal-card composition. Broad Step 4 visual implementation has not yet started, making this the lowest-risk point for controlled reconciliation.
+
 ## Open decision records
 
 ### ADR-PENDING-002 — Backend source reconciliation

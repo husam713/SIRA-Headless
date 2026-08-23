@@ -25,14 +25,22 @@ to that subsystem.
 - PR `#31` reconciliation starting baseline: `aaa88631c862d213f890d2991aa63fd26ce925e3`
 - PR `#31` accepted candidate: `daf7479114f4faba3fa736ee957e03a8d207d49e`
 - PR `#31` merge / state verified-through coordinate: `85b749da5a7769a48e67b22685db904607e0a388`
-- Latest accepted governance milestone: Step 4 Editorial Architecture / ADR-028
+- Latest accepted product/design governance milestone: Step 4 Editorial Architecture / ADR-028
 - Accepted PR / candidate head / merge: `#30` / `e37570f8e7a2b28eb0d55a903f79eb19687be9a3` / `aaa88631c862d213f890d2991aa63fd26ce925e3`
+- AI Engineering OS Governance Foundation: PR `#33`, authorization `OWNER_AUTHORIZED`, implementation complete, independent verification passed, merge complete, post-merge verified, canonical
+- Governance Foundation candidate / canonical merge provenance: `4c695a0e3c9950b5ec6ede35ca836c5532814cc1` / `009bbfdb64cb38b2ddacbb1e7b8884eb614c47aa`
+- Acceptance-Gates current-state maintenance: PR `#34`, closed / post-merge verified / canonical
+- Acceptance-Gates candidate / canonical merge provenance: `3ca656a3eaa84fc076d1cd6fe4677a2e461cca68` / `86581d46b07a7b971cd2de44b476e1ac0b25bfee`
 - Historical CMS mutation-readiness baseline: Step 2C.5B at `2bd4991f75a53ab9209e748499dcb8915769e3a6`
 - Approved tag: `step-2c3b-approved`
 - Checked-in canonical live schema: `frontend/schema/wpgraphql.graphql`
 - Group audit schema: `frontend/schema/wpgraphql.group.graphql`
 - Metadata: `frontend/schema/wpgraphql.meta.json`
 - Compatibility evidence: `frontend/schema/wpgraphql.compatibility.json`
+
+The PR `#33` and PR `#34` SHAs above are historical/provenance coordinates.
+They do not represent an eternally current repository HEAD. Current HEAD is
+always discovered from Git.
 
 The canonical live metadata records Consulting as canonical, four exact branch
 peers, and Group as a structural superset. Repository history after the
@@ -47,6 +55,32 @@ The separate Step 2C.5B CMS readiness plan remains
 `BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`,
 Batch A mutation authorization is false, and no backup, export, restore,
 taxonomy deletion, CMS mutation, Step 2C.5C, or deployment is authorized.
+
+## Current AI Engineering OS governance state
+
+The AI Engineering OS Governance Foundation is canonical governance history.
+Its dimensions are intentionally separate:
+
+- authorization state: `OWNER_AUTHORIZED`;
+- implementation state: completed;
+- independent verification: passed;
+- merge state: merged;
+- post-merge verification: passed;
+- Canonicality: true.
+
+Authorization is preserved as a distinct fact and must not be used as shorthand
+for the Foundation's full current lifecycle state.
+
+The canonical implementation model is one logical role, `IMPLEMENTATION`, with
+execution profile `LOCAL` or `CLOUD_GITHUB`. Program Control selects the
+least-complex profile that can satisfy the task's required evidence,
+validation, security, and mutation requirements. Profile names do not create a
+second authority hierarchy; the normative evidence and role semantics remain
+exclusively in `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`.
+
+Validator/CI enforcement and AI Engineering OS product/runtime work remain
+`NOT_AUTHORIZED`. No accepted governance merge automatically authorizes a
+subsequent task.
 
 ## Current CMS mutation-track evidence authority
 
@@ -84,13 +118,12 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED.
 
-PR `#31` current-state reconciliation is owner accepted and merged. No
-subsequent governance or implementation task is authorized by that merge. The
-owner has separately authorized the SIRA AI Engineering OS governance
-foundation limited to documentation, reusable templates, and JSON Schemas.
-Validator or CI enforcement and product/runtime work remain NOT AUTHORIZED.
-Program Control or the owner must separately authorize any later task.
-Prototype and production UI implementation also remain NOT AUTHORIZED.
+PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance
+Foundation, and PR `#34` Acceptance-Gates maintenance are accepted canonical
+governance history. None of those merges grants authority for a later task.
+Program Control or the owner must separately authorize subsequent mutation,
+validator/CI enforcement, product/runtime work, prototype or production UI,
+WordPress mutation, external staging, deployment, DNS, or production cutover.
 
 ## Canonical public production topology
 
@@ -119,6 +152,7 @@ The repository backend is therefore authoritative for the verified LIVE / Step 2
 This closure removes only the SOT-001 backend-freshness blocker. Backend work still requires normal stage authorization and review. This closure does not establish exact effective live WordPress Admin coordinates and does not change mutationReadiness=BLOCKED_BY_BACKUP_EVIDENCE, CMS mutation authorization, Batch A authorization, backup/export/restore authorization, production authorization, Step 2C.5C status, Step 3 status, or deployment status.
 
 Known separate observation: backend source declares SiraProjectDetails while the accepted frontend/live GraphQL schema exposes ProjectDetails. The mechanism remains UNKNOWN; no speculative backend change is authorized by this closure.
+
 ## Historical / reference-only sources
 
 The following are migration archaeology/reference material unless explicitly re-promoted after verification:

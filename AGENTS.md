@@ -13,7 +13,7 @@ At the beginning of every engineering session:
 4. Read `docs/PROJECT-STATE.md`.
 5. Read `docs/SOURCE-OF-TRUTH.md`.
 6. Read relevant entries in `docs/DECISIONS.md`.
-7. Inspect Git state, current branch, recent commits, and approved tags.
+7. Inspect Git/GitHub state appropriate to the active execution profile.
 8. Inspect relevant generated contracts and tests.
 9. Reconcile discrepancies before modifying code.
 
@@ -30,22 +30,12 @@ Every material engineering claim must be classified mentally as one of:
 
 Never claim a test passed, a stage was approved, a field exists, a deployment occurred, or a production setting is active without evidence.
 
-## Trust Hierarchy
+## Evidence Authority
 
-Use this order when sources conflict:
-
-1. relevant executable/runtime/live evidence;
-2. current Git repository state;
-3. accepted merged commits and Pull Requests;
-4. exact commit SHAs, ancestry, and CI evidence;
-5. checked-in schemas, contracts, and generated artifacts;
-6. approved ADRs and durable repository documentation;
-7. verified external design/reference artifacts;
-8. transferred reports from another AI conversation or agent;
-9. conversation memory;
-10. model inference — never authoritative.
-
-A later verified artifact may supersede repository source for a subsystem when the repository has demonstrably not yet been reconciled. Such a conflict must be recorded explicitly in `docs/SOURCE-OF-TRUTH.md` and resolved before modifying that subsystem.
+Evidence precedence between source types is governed exclusively by
+`docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`. This file does not define a
+second hierarchy. Apply the protocol to the claim being evaluated and use
+`docs/SOURCE-OF-TRUTH.md` for SIRA-specific source/state/conflict mapping.
 
 ## Architecture Locks
 
@@ -73,24 +63,38 @@ Use:
 
 DISCOVER -> AUDIT -> PLAN -> IMPLEMENT -> VALIDATE -> REVIEW -> COMMIT -> PUSH -> PR -> ACCEPTANCE GATE
 
+There is one logical mutation-capable role: **IMPLEMENTATION**. Its execution
+profile is either `LOCAL` or `CLOUD_GITHUB`. The profile changes available
+capabilities and evidence visibility; it does not change authorization or
+acceptance authority.
+
+Program Control selects the least-complex profile that can satisfy the task's
+required evidence, validation, security, and mutation requirements. Ask the
+owner about execution environment only when the correct profile cannot be
+determined from those requirements or when environment availability/preference
+materially affects execution.
+
 Within an approved stage, work autonomously until the stage is complete or a real owner/external/protected decision is required.
 
-Do not turn the owner into the implementation agent when the repository, terminal, tests, or Git tools can perform the work directly.
+Do not turn the owner into the implementation agent when the active execution profile can perform the work directly.
 
 ## Task Packet Authority and Scope
 
 - A substantial controlled mutation requires an explicit Task Packet or equivalent owner-authorized scope.
 - Authorization is bounded. Absence of authorization means do not mutate.
-- Before mutation, record the expected baseline, verified baseline, current branch, and working-tree status.
+- Every implementation Task Packet identifies the execution profile and whether local evidence is required.
+- `LOCAL` must verify the local repository/filesystem evidence required by the task, including working-tree/protected local evidence when relevant.
+- `CLOUD_GITHUB` must verify the repository/GitHub baseline and must classify local-only facts as `REPORT_ONLY` or `NOT_VERIFIED_BY_THIS_AGENT`.
+- Additional local evidence that is irrelevant to task correctness is not by itself a reason to require `LOCAL`.
 - If the baseline, approved candidate, or scope has drifted, stop unless adaptation is explicitly authorized.
 - Report unrelated defects; do not silently repair them. Stop with `BLOCKED_SCOPE_EXPANSION_REQUIRED` when required work exceeds the authorized scope.
-- Never self-approve a candidate or declare it canonical. Local success, CI, a Draft PR, and independent review are distinct from owner acceptance and canonical merge state.
+- Never self-approve a candidate or declare it canonical. Local success, repository-visible implementation evidence, CI, a Draft PR, and independent review are distinct from owner acceptance and canonical merge state.
 
 ## Git Rules
 
 - Work on focused feature/fix/chore branches.
 - Inspect the complete diff before commit.
-- Run `git diff --check` locally when available.
+- Run `git diff --check` locally when available; cloud-only profiles perform the closest repository-visible equivalent and report local command execution as not verified.
 - Never commit secrets or temporary authorization material.
 - Never expose credentials in Task Packets, Evidence Envelopes, Handoff Packets, logs, or artifacts; reference security-sensitive values symbolically.
 - Generated files must be regenerated from their source contracts, not hand-edited.
@@ -145,4 +149,4 @@ A stage is not complete merely because code compiles. Acceptance requires the sc
 
 End each substantial stage report with a `CURRENT PROJECT STATE` block.
 
-When a Task Packet requires formal transfer, return both an Evidence Envelope and a Handoff Packet using the repository templates. The normative terminology, role boundaries, and evidence workflow are defined in `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`.
+When a Task Packet requires formal transfer, return both an Evidence Envelope and a Handoff Packet using the repository templates. The normative terminology, role boundaries, execution-profile semantics, and evidence workflow are defined in `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`.

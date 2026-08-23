@@ -7,8 +7,8 @@ Make the repository sufficient for another qualified AI agent or engineer to rec
 ## Authority and information architecture
 
 This file is the concise entry point and index. The single normative source
-for terminology, evidence authority, roles, lifecycle gates, security, and
-artifact policy is
+for terminology, evidence authority, roles, lifecycle gates, execution-profile
+semantics, security, and artifact policy is
 [`AI-ENGINEERING-OPERATING-PROTOCOL.md`](./AI-ENGINEERING-OPERATING-PROTOCOL.md).
 If this overview conflicts with that protocol, the protocol governs.
 
@@ -38,10 +38,17 @@ Repository boot protocol
 Evidence audit + baseline verification
         |
         v
+Program Control selects IMPLEMENTATION profile
+        |
+        +--> LOCAL
+        |
+        +--> CLOUD_GITHUB
+        |
+        v
 Agent implementation
         |
         v
-Local validation + generated contracts
+Profile-appropriate validation + generated contracts
         |
         v
 Diff/security review
@@ -53,44 +60,85 @@ Commit + push + pull request
 CI / runtime evidence where applicable
         |
         v
-Acceptance gate
+Independent verification / owner gate
         |
-        +--> approved -> update durable project state -> next stage
+        +--> approved -> update durable project state -> next separately authorized stage
         |
         +--> failed -> diagnose root cause -> smallest safe fix -> revalidate
 ```
 
-## Execution modes
+## Implementation role and execution profiles
 
-### Mode A — Agentic repository mode
+SIRA has one logical mutation-capable role: **IMPLEMENTATION**.
 
-Use when the agent has repository/IDE/terminal/Git access.
+The role uses one of two execution profiles:
 
-The agent should inspect, edit, generate, test, review, commit, push, and create/update PRs without turning the owner into the manual implementation agent.
+### `LOCAL`
 
-### Mode B — Artifact delivery mode
+Use when task correctness materially depends on local-only capabilities or
+evidence such as the owner's/local repository filesystem state, working tree,
+untracked or protected local evidence, `.local-reference/` assets, local
+build/generation tooling not reproduced elsewhere, browser/runtime testing,
+local debugging, filesystem-level inspection, or local WordPress/dev
+interaction.
 
-Use only when direct repository modification is unavailable.
+`LOCAL` is not a higher-authority role. Local evidence that is irrelevant to
+task correctness is not itself a reason to require this profile.
 
-Produce a complete patch/package/manifest/validation/merge guide rather than asking the owner to reconstruct code manually.
+### `CLOUD_GITHUB`
 
-### Mode C — External admin mode
+Use when the required implementation, evidence, validation, and mutation are
+fully repository/GitHub-visible, such as bounded governance/documentation
+changes or other repository-only work supported by available GitHub
+capabilities.
 
-Use for WordPress Admin, Hostinger, DNS, Vercel account settings, MFA, production secrets, or other protected interfaces unavailable to the agent.
+A `CLOUD_GITHUB` implementation agent must classify local-only claims as
+`REPORT_ONLY` or `NOT_VERIFIED_BY_THIS_AGENT`; it must never invent local
+filesystem evidence.
 
-Return the minimum exact human action, then validate programmatically afterward.
+### Selection policy
+
+Program Control selects the least-complex execution profile that can satisfy
+the task's required evidence, validation, security, and mutation requirements.
+Do not ask the owner to choose an environment on every task. Ask only when both
+profiles are materially viable and availability/preference matters, required
+environment availability is unknown, or the task requirements do not determine
+the correct profile.
+
+The execution profile changes capabilities and evidence visibility, not
+mutation authority, independent-review requirements, owner gates, or
+canonicality.
+
+## Fallback delivery and external-admin patterns
+
+### Artifact delivery
+
+If no direct mutation-capable implementation environment is available, produce
+a complete patch/package/manifest/validation/merge guide rather than asking the
+owner to reconstruct changes manually. Artifact delivery is a handoff pattern,
+not a second implementation authority.
+
+### External admin
+
+For WordPress Admin, Hostinger, DNS, Vercel account settings, MFA, production
+secrets, or other protected interfaces unavailable to the implementation
+profile, return the minimum exact human action, then validate programmatically
+afterward where possible.
 
 ## Durable memory model
 
 - `AGENTS.md` — permanent AI operating rules.
 - `project-state.json` — machine-readable current state.
 - `docs/PROJECT-STATE.md` — human-readable current state.
-- `docs/SOURCE-OF-TRUTH.md` — conflict-resolution hierarchy and active source conflicts.
+- `docs/SOURCE-OF-TRUTH.md` — SIRA-specific source/state/history/conflict registry.
 - `docs/DECISIONS.md` — approved ADRs and pending decisions.
 - `docs/HANDOFF.md` — short entry point for a new session.
-- `docs/ACCEPTANCE-GATES.md` — evidence required for acceptance.
+- `docs/ACCEPTANCE-GATES.md` — durable acceptance-gate policy and historical gate context, not the volatile current-state tracker.
 - Git commits/tags/PRs — versioned implementation history.
 - generated schemas/tests/CI — executable evidence.
+
+Evidence precedence between these source types is governed exclusively by the
+normative Operating Protocol.
 
 Conversation history is never the canonical project database.
 
@@ -109,7 +157,7 @@ Allowed without per-command approval inside an approved stage:
 - inspect source/history;
 - create focused feature branches;
 - edit files;
-- run generators/tests/builds;
+- run generators/tests/builds available to the selected profile;
 - diagnose and fix failures within scope;
 - review diffs;
 - commit and push feature branches;

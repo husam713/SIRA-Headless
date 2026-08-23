@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-22T10:53:15+03:00",
+  "updatedAt": "2026-08-23T08:55:00+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -33,7 +33,7 @@
     "prototypeImplementationAuthorized": false,
     "productionUiImplementationAuthorized": false,
     "aiEngineeringOperatingSystem": {
-      "governanceFoundationTask": "OWNER_AUTHORIZED",
+      "governanceFoundationAuthorizationState": "OWNER_AUTHORIZED",
       "validatorCiEnforcement": "NOT_AUTHORIZED",
       "productRuntimeWork": "NOT_AUTHORIZED"
     },
@@ -162,8 +162,7 @@
     "legacyGroupDestruction": "NOT_AUTHORIZED"
   },
   "nextOwnerGate": {
-    "currentAuthorizedTask": "SIRA_AI_ENGINEERING_OS_GOVERNANCE_FOUNDATION",
-    "authorizationScope": "GOVERNANCE_DOCUMENTATION_TEMPLATES_AND_JSON_SCHEMAS_ONLY",
+    "authorizationBoundary": "NO_SUBSEQUENT_TASK_INHERITS_AUTHORITY_FROM_CANONICAL_GOVERNANCE_WORK",
     "subsequentTaskRequirement": "SEPARATELY_ISSUED_PROGRAM_CONTROL_OR_OWNER_AUTHORIZATION",
     "subsequentImplementationAuthorized": false
   },
@@ -181,11 +180,38 @@
       "frontend CI",
       "owner approval before merge",
       "no direct agent merge to main"
-    ]
+    ],
+    "aiEngineeringOperatingSystem": {
+      "governanceFoundation": {
+        "authorizationState": "OWNER_AUTHORIZED",
+        "implementationState": "COMPLETED",
+        "independentVerification": "PASSED",
+        "acceptanceState": "POST_MERGE_VERIFIED",
+        "mergeState": "MERGED",
+        "canonical": true,
+        "pullRequest": 33,
+        "acceptedCandidateHead": "4c695a0e3c9950b5ec6ede35ca836c5532814cc1",
+        "canonicalMergeCommit": "009bbfdb64cb38b2ddacbb1e7b8884eb614c47aa",
+        "coordinateScope": "HISTORICAL_PROVENANCE_NOT_CURRENT_GIT_HEAD"
+      },
+      "acceptanceGatesMaintenance": {
+        "authorizationState": "OWNER_AUTHORIZED",
+        "acceptanceState": "POST_MERGE_VERIFIED",
+        "mergeState": "MERGED",
+        "canonical": true,
+        "pullRequest": 34,
+        "acceptedCandidateHead": "3ca656a3eaa84fc076d1cd6fe4677a2e461cca68",
+        "canonicalMergeCommit": "86581d46b07a7b971cd2de44b476e1ac0b25bfee",
+        "coordinateScope": "HISTORICAL_PROVENANCE_NOT_CURRENT_GIT_HEAD"
+      },
+      "validatorCiEnforcement": "NOT_AUTHORIZED",
+      "productRuntimeWork": "NOT_AUTHORIZED"
+    }
   },
   "nextMajorStages": [
     "Governance: PR31 current-state reconciliation is owner accepted and merged; its state snapshot is verified through the recorded PR31 merge coordinate",
-    "Owner-authorized governance task: establish the SIRA AI Engineering OS documentation, templates, and JSON Schema foundation",
+    "AI Engineering OS Governance Foundation: OWNER_AUTHORIZED / COMPLETED / INDEPENDENT_VERIFICATION_PASSED / MERGED / POST_MERGE_VERIFIED / CANONICAL through PR33 provenance",
+    "Acceptance-Gates current-state maintenance: CLOSED / POST_MERGE_VERIFIED / CANONICAL through PR34 provenance",
     "Not authorized: AI Engineering OS validator or CI enforcement, product/runtime work, prototypes, and production UI",
     "Governance: no subsequent task is authorized without a separately issued Program Control or owner authorization",
     "Repository/frontend implementation: no prototype or production UI increment is currently authorized",

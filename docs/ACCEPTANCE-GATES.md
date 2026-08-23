@@ -2,6 +2,24 @@
 
 These gates separate implementation progress from actual acceptance.
 
+This document defines durable acceptance mechanics, gate definitions, and
+historical gate context. It is not the canonical volatile current-project-state
+tracker.
+
+For current project state:
+
+- discover the actual current repository HEAD from Git;
+- use `project-state.json` for machine-readable current project state;
+- use `docs/PROJECT-STATE.md` for human-readable current-state interpretation;
+- use `docs/SOURCE-OF-TRUTH.md` for SIRA-specific source, state, history, and
+  conflict mapping;
+- use `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md` as the exclusive normative
+  authority for evidence precedence between source types.
+
+Recorded milestone SHAs and gate outcomes in this document are provenance and
+historical context unless current canonical evidence establishes that they are
+also current. No recorded SHA implicitly means eternally current `main`.
+
 ## Status vocabulary
 
 Use only:
@@ -108,15 +126,35 @@ Production requires explicit owner approval after:
 - monitoring/observability is ready;
 - owner explicitly authorizes production.
 
-## Current milestone sequence
-
-1. Step 2C.3C — typed frontend query contracts — ACCEPTED
-2. Step 2C.3D — WordPress content readiness — ACCEPTED
-3. Step 2C.4 — production design/data contract audit — CURRENT / OWNER ACCEPTANCE REQUIRED
-4. separately authorized non-destructive CMS correction execution
-5. Step 3 — preview, SEO, discovery
-6. Step 4 — production components
-7. full QA/staging
-8. deployment/cutover/rollback
+## Gate progression policy
 
 Do not silently begin the next major milestone after an acceptance gate.
+
+An implementation result, passing local validation, CI PASS, or a Draft PR does
+not by itself establish owner acceptance or canonical project state. Protected
+transitions remain subject to the owner-gate rules defined by the SIRA AI
+Engineering Operating Protocol.
+
+The exact current milestone, current authorization, unresolved gates, and next
+owner gate must be read from the canonical current-state carriers listed at the
+top of this document rather than duplicated here.
+
+## Historical milestone context
+
+The following sequence is retained only as historical roadmap provenance from an
+earlier project state:
+
+1. Step 2C.3C — typed frontend query contracts — accepted.
+2. Step 2C.3D — WordPress content readiness — accepted.
+3. Step 2C.4 — production design/data contract audit — was previously the next
+   owner-acceptance gate at the time this sequence was written.
+4. Separately authorized non-destructive CMS correction execution.
+5. Step 3 — preview, SEO, discovery.
+6. Step 4 — production components.
+7. Full QA/staging.
+8. Deployment/cutover/rollback.
+
+This historical sequence must not be interpreted as the current project state
+or current authorization. Later accepted repository evidence supersedes its
+former "current" designation while preserving the historical fact that Step
+2C.4 once occupied that position in the roadmap.

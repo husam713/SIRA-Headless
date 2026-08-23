@@ -1,6 +1,6 @@
 # SIRA Current Project State
 
-State snapshot last verified through canonical Git evidence: 2026-08-22
+State snapshot last verified through canonical Git evidence: 2026-08-23
 
 ## Current authoritative state
 
@@ -10,12 +10,26 @@ State snapshot last verified through canonical Git evidence: 2026-08-22
 - **Latest accepted governance milestone:** Step 4 Editorial Architecture / ADR-028, owner accepted and merged through PR `#30`
 - **Repository/frontend state:** Step 4 governance accepted; production visual implementation NOT STARTED
 - **CMS mutation track:** Step 2C.5B remains the accepted readiness milestone and is `BLOCKED_BY_BACKUP_EVIDENCE`
-- **Current owner-authorized task:** SIRA AI Engineering OS governance foundation (documentation, templates, and JSON Schemas only)
+- **AI Engineering OS Governance Foundation:** OWNER AUTHORIZED / IMPLEMENTED / INDEPENDENTLY VERIFIED / MERGED / POST-MERGE VERIFIED / CANONICAL through PR `#33`
+- **Acceptance-Gates current-state maintenance:** CLOSED / POST-MERGE VERIFIED / CANONICAL through PR `#34`
 - **AI Engineering OS enforcement/product boundary:** validator and CI enforcement, product/runtime work, prototypes, and production UI are NOT AUTHORIZED
-- **Subsequent authorization boundary:** no later task is authorized without a separately issued Program Control or owner authorization
+- **Subsequent authorization boundary:** no later task inherits authority from the accepted governance work; Program Control or the owner must issue separate authorization
 - **Latest approved tag:** `step-2c3b-approved`
 - **Prototype implementation:** NOT AUTHORIZED
 - **Production deployment:** NOT AUTHORIZED
+
+Authorization, implementation, independent verification, acceptance, merge
+state, and Canonicality are separate dimensions. The Governance Foundation's
+owner authorization remains a preserved authorization fact; it is not used as
+a shorthand for the Foundation's current lifecycle state.
+
+Governance Foundation provenance is PR `#33`, accepted candidate
+`4c695a0e3c9950b5ec6ede35ca836c5532814cc1`, and canonical merge
+`009bbfdb64cb38b2ddacbb1e7b8884eb614c47aa`. Acceptance-Gates maintenance
+provenance is PR `#34`, accepted candidate
+`3ca656a3eaa84fc076d1cd6fe4677a2e461cca68`, and canonical merge
+`86581d46b07a7b971cd2de44b476e1ac0b25bfee`. These coordinates are historical
+provenance, not eternally current Git HEAD values.
 
 PR `#31` preserves three distinct coordinates: reconciliation starting
 baseline `aaa88631c862d213f890d2991aa63fd26ce925e3`, accepted candidate
@@ -44,6 +58,8 @@ separate.
 | Step 4 Exact Design Fidelity Charter | OWNER ACCEPTED / MERGED | `#29` | `18ada36bd180ca8d088e411851b83d242ff4c7c9` / `e522c6c58cd57e2a757652adb740c9d1f154c81c` |
 | Step 4 Editorial Architecture / ADR-028 | OWNER ACCEPTED / MERGED / CANONICAL | `#30` | `e37570f8e7a2b28eb0d55a903f79eb19687be9a3` / `aaa88631c862d213f890d2991aa63fd26ce925e3` |
 | Post-PR30 durable-state reconciliation | OWNER ACCEPTED / MERGED | `#31` | `daf7479114f4faba3fa736ee957e03a8d207d49e` / `85b749da5a7769a48e67b22685db904607e0a388` |
+| AI Engineering OS Governance Foundation | OWNER AUTHORIZED / POST-MERGE VERIFIED / CANONICAL | `#33` | `4c695a0e3c9950b5ec6ede35ca836c5532814cc1` / `009bbfdb64cb38b2ddacbb1e7b8884eb614c47aa` |
+| Acceptance-Gates current-state maintenance | POST-MERGE VERIFIED / CANONICAL | `#34` | `3ca656a3eaa84fc076d1cd6fe4677a2e461cca68` / `86581d46b07a7b971cd2de44b476e1ac0b25bfee` |
 
 Step 3D.2 is NOT STARTED. Step 3D.3 remains gated by unresolved `2C4-B09`.
 Full Step 3D closure must not be claimed. `PREVIEW-AUTH-001` remains DEFERRED.
@@ -125,6 +141,8 @@ The lack of platform enforcement is a documented GitHub-plan limitation, not a b
 - G0 evidence-first AI engineering governance
 - G0-C GitHub governance and executable Frontend CI
 - canonical/default branch cutover to `main`
+- AI Engineering OS Governance Foundation through PR `#33`: owner authorization preserved as a distinct dimension; implementation complete; independent verification passed; merged; post-merge verified; canonical
+- Acceptance-Gates current-state maintenance through PR `#34`: closed, post-merge verified, canonical
 
 ## Verified live schema policy
 
@@ -178,7 +196,7 @@ The owner-approved canonical public production apex is `siratrgroup.com`; the br
 
 Required delivery flow:
 
-`main` -> focused feature branch -> implementation -> local validation -> PR -> Frontend CI -> architecture/security/diff review -> owner approval -> merge.
+`main` -> focused feature branch -> implementation -> profile-appropriate validation -> PR -> Frontend CI where applicable -> architecture/security/diff review -> owner approval -> merge.
 
 Do not merge automatically.
 
@@ -195,6 +213,7 @@ PR #18 reconciled backend/ to that verified source. Implementation head 7869ae35
 SOT-001 closure means only that the Git repository now contains the independently verified LIVE / Step 2C.2F backend source. It does not confirm current live WordPress Admin coordinates, backup readiness, restore readiness, CMS mutation authorization, Batch A authorization, production authorization, Step 2C.5C, Step 3, or deployment.
 
 Known separate observation: backend source declares SiraProjectDetails while the accepted frontend/live GraphQL schema exposes ProjectDetails. The mechanism remains UNKNOWN and is not silently changed by this reconciliation.
+
 ## Current open gates and next owner gate
 
 - `2C4-B07` media-origin policy: UNRESOLVED / DEFERRED.
@@ -206,14 +225,15 @@ Known separate observation: backend source declares SiraProjectDetails while the
 - Step 4 prototype and production UI implementation: NOT AUTHORIZED / NOT STARTED.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 
-PR `#31` current-state reconciliation is owner accepted and merged. The
-post-merge wording correction is governance maintenance and grants no product
-or implementation authority. The owner has separately authorized the SIRA AI
-Engineering OS governance foundation limited to documentation, reusable
-templates, and JSON Schemas. Validator or CI enforcement and product/runtime
-work remain NOT AUTHORIZED. No subsequent task is authorized by this record;
-Program Control or the owner must issue separate authorization. Prototype and
-production UI increments remain NOT AUTHORIZED.
+PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance
+Foundation, and PR `#34` Acceptance-Gates maintenance are accepted canonical
+governance history. For the Governance Foundation, authorization remains
+`OWNER_AUTHORIZED` as its authorization dimension, while lifecycle state is
+post-merge verified and Canonicality is true. No subsequent task is authorized
+by those accepted records; Program Control or the owner must issue separate
+authorization. Validator/CI enforcement, AI Engineering OS product/runtime
+work, prototypes, production UI, WordPress mutation, external staging,
+deployment, DNS, and production cutover remain NOT AUTHORIZED.
 
 ## Owner/external decisions still protected
 

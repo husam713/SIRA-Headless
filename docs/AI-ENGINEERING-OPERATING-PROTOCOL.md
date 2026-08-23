@@ -18,13 +18,17 @@ requires separate owner authorization.
 2. Authorization is explicit and bounded. Absence of authorization means do
    not mutate.
 3. Evidence Class, Acceptance State, and Canonicality are separate dimensions.
-4. Current repository HEAD is discovered from Git.
-5. Unknown is preferable to invented certainty.
-6. Normalize the present and preserve the past.
-7. An implementation agent cannot approve itself or declare its own candidate
+4. Authorization State is distinct from implementation, independent
+   verification, acceptance, merge state, and Canonicality.
+5. Current repository HEAD is discovered from Git.
+6. Unknown is preferable to invented certainty.
+7. Normalize the present and preserve the past.
+8. There is one logical mutation-capable role, `IMPLEMENTATION`; its execution
+   profile changes capabilities/evidence visibility but not authority.
+9. An implementation agent cannot approve itself or declare its own candidate
    canonical.
-8. Security-sensitive values are referenced symbolically and never embedded in
-   governance evidence.
+10. Security-sensitive values are referenced symbolically and never embedded
+    in governance evidence.
 
 ## Normative terminology
 
@@ -37,9 +41,13 @@ requires separate owner authorization.
 - **Artifact Manifest:** the machine-readable inventory and hashes for an
   evidence-carrying package.
 - **Evidence Class:** how directly a claim has been proven.
+- **Authorization State:** whether the owner/Program Control has granted the
+  bounded authority needed for a task or protected transition.
 - **Acceptance State:** where work is in its review/approval lifecycle.
 - **Canonical:** a separate boolean indicating whether the result belongs to
   accepted canonical repository state.
+- **Execution Profile:** the environment/capability context used by the logical
+  `IMPLEMENTATION` role. Canonical profiles are `LOCAL` and `CLOUD_GITHUB`.
 - **Owner Gate:** the explicit decision required before a protected transition.
 - **Baseline:** the exact state against which work or review is authorized.
 - **Candidate Head:** the exact proposed commit under review.
@@ -70,6 +78,11 @@ Higher authority overrides lower authority. A lower source can identify a
 question but cannot overrule stronger evidence. Cross-conversation claims are
 not automatically trusted.
 
+Execution-profile names do not change this hierarchy. `LOCAL` is not inherently
+higher-authority than `CLOUD_GITHUB`, and `CLOUD_GITHUB` is not inherently
+higher-authority than `LOCAL`. Evidence quality depends on the claim and the
+source that proves it.
+
 ## Claim and evidence classification
 
 Working claims use:
@@ -85,16 +98,27 @@ Working claims use:
 Formal Evidence Envelopes use an extensible `evidenceClass` string. Standard
 classes are:
 
-- `TRANSFERRED_EVIDENCE` for a Local Implementation Agent report, including one
-  with passing local checks;
+- `TRANSFERRED_EVIDENCE` for evidence reported from another execution context
+  that the receiving role has not independently inspected, including typical
+  LOCAL implementation reports;
+- `REPOSITORY_PROVEN_FOR_IMPLEMENTATION` for repository/GitHub facts directly
+  observed by a `CLOUD_GITHUB` implementation agent while producing its own
+  candidate. This class does **not** mean independent verification, owner
+  acceptance, merge, or canonicality;
 - `REPOSITORY_PROVEN` after independent repository/GitHub verification;
 - `RUNTIME_PROVEN` after relevant live or runtime verification;
 - `UNKNOWN` when the evidence cannot establish the result.
 
 Passing tests do not by themselves promote transferred evidence to repository
-or runtime proof.
+or runtime proof. An implementation agent's direct repository observations do
+not substitute for the separate Independent GitHub Verification role when that
+gate is required.
 
-## Acceptance, evidence, and canonicality
+## Authorization, acceptance, merge state, and canonicality
+
+Authorization State is not Acceptance State. Owner authorization permits a
+bounded task or transition; it does not say the implementation is complete,
+reviewed, accepted, merged, post-merge verified, or canonical.
 
 Acceptance State is intentionally extensible. Common lifecycle concepts
 include `PROPOSED`, `AUTHORIZED_NOT_STARTED`,
@@ -102,13 +126,20 @@ include `PROPOSED`, `AUTHORIZED_NOT_STARTED`,
 `MERGE_EXECUTED_PENDING_POST_MERGE_VERIFICATION`, `POST_MERGE_VERIFIED`,
 `MERGED_CANONICAL`, `REJECTED`, and `BLOCKED`.
 
+Merge state and post-merge verification may be represented separately when a
+durable state carrier needs that precision. `canonical` remains an explicit
+boolean and is never inferred from authorization, implementation, CI,
+acceptance, or merge state.
+
 Core invariants:
 
+- Owner authorization does not mean implementation completed.
 - Draft PR does not mean accepted.
 - CI PASS does not mean owner accepted.
 - Proposed ADR does not mean approved.
 - Implementation output does not mean canonical repository state.
 - Independent review does not grant owner merge authorization.
+- Merge does not by itself prove required post-merge verification.
 - A required post-merge verification gate must complete before claiming the
   corresponding fully verified state.
 - `canonical` remains an explicit boolean; it is never inferred from another
@@ -126,11 +157,18 @@ Responsibilities:
 - normalize transferred evidence;
 - choose the next gate;
 - preserve scope and authorization boundaries;
+- select the least-complex `IMPLEMENTATION` execution profile that can satisfy
+  the task's required evidence, validation, security, and mutation needs;
+- request owner environment input only when both profiles are materially viable
+  and availability/preference matters, required environment availability is
+  unknown, or the task requirements do not determine the correct profile;
 - request independent verification and owner decisions;
 - advance durable canonical state only after required evidence.
 
 It must not assume another conversation is canonical, bypass required
-verification, or silently grant implementation/deployment authority.
+verification, silently grant implementation/deployment authority, or ask the
+owner to choose an execution environment when the task requirements already
+determine the appropriate profile.
 
 ### Independent GitHub Verification
 
@@ -161,21 +199,66 @@ It must not silently implement application code, declare proposals canonical,
 or override accepted architecture without authorization. A SIRA example is
 `SIRA — Editorial Architecture & Design Governance`.
 
-### Local Implementation Agent
+### Implementation Agent
 
-Responsibilities:
+Logical role: `IMPLEMENTATION`.
 
-- mutate the repository only within explicit authorization;
+Responsibilities shared by both execution profiles:
+
+- mutate only within explicit Task Packet authority;
 - baseline-lock before change;
 - preserve scope and protected evidence;
-- validate, review, commit, push, and create/update a PR as authorized;
-- return an Evidence Envelope and Handoff Packet.
+- validate using the evidence/capabilities available to the selected profile;
+- review, commit, push, and create/update a PR as authorized;
+- return an Evidence Envelope and Handoff Packet;
+- stop on unapproved baseline drift, required scope expansion, or missing
+  protected authority;
+- never perform independent verification of its own candidate;
+- never self-approve or self-declare canonicality.
 
-It must not exceed the Task Packet, self-approve, self-declare canonicality,
-silently fix unrelated defects, or expose credentials.
+It must not exceed the Task Packet, silently fix unrelated defects, expose
+credentials, or treat execution-profile capabilities as additional authority.
+
+#### Execution profiles and selection
+
+An implementation Task Packet identifies:
+
+- `executionProfile`: `LOCAL` or `CLOUD_GITHUB`;
+- `localEvidenceRequired`: Boolean.
+
+Program Control selects the least-complex profile capable of satisfying the
+task's evidence, validation, security, and mutation requirements. Additional
+evidence that is irrelevant to task correctness is not itself a reason to
+require `LOCAL`.
+
+`LOCAL` is appropriate or required when task correctness materially depends on
+capabilities such as:
+
+- owner's/local repository filesystem state;
+- local tracked/untracked working-tree state;
+- protected local evidence or `.local-reference/` assets;
+- local generation/build tooling not reproduced by GitHub CI;
+- browser/runtime testing or local debugging;
+- filesystem-level inspection;
+- local WordPress/dev environment interaction;
+- another task-specific local-only evidence source.
+
+`CLOUD_GITHUB` is sufficient when all required implementation and evidence are
+repository/GitHub-visible, including bounded documentation/governance work,
+repository-only configuration changes where separately authorized, branch /
+commit / PR work, and other tasks whose required validation is available
+through GitHub.
+
+A `CLOUD_GITHUB` implementation agent must explicitly classify local-only facts
+as `REPORT_ONLY` or `NOT_VERIFIED_BY_THIS_AGENT`. It must never fabricate local
+filesystem state, local SHA-256 values, local command execution, or protected
+local evidence.
 
 Role-specific overlays live under `templates/ai/ROLE-OVERLAYS/` and compose
-with the common Project Instructions.
+with the common Project Instructions. The existing
+`templates/ai/ROLE-OVERLAYS/LOCAL-IMPLEMENTATION.md` filename is retained as a
+compatibility path, but its canonical semantics cover the single
+`IMPLEMENTATION` role and both execution profiles.
 
 ## Controlled workflow
 
@@ -206,6 +289,10 @@ owner instruction. The packet records identity, purpose, input evidence,
 expected baseline, allowed scope, exclusions, stop conditions, validation,
 candidate requirements, result contract, and next gate.
 
+For `IMPLEMENTATION` tasks it also records the execution profile and whether
+local evidence is required. The profile selects the environment/capabilities;
+it does not grant mutation authority or alter owner/independent-review gates.
+
 Rules:
 
 - authorization must be affirmative and specific;
@@ -220,12 +307,22 @@ Use `templates/ai/TASK-PACKET.md` and
 
 ## Baseline and drift policy
 
-Before mutation, record:
+Before mutation, every implementation profile records:
 
 - expected baseline;
 - verified baseline;
-- current branch;
-- tracked and untracked working-tree status.
+- selected execution profile;
+- task branch / candidate state relevant to the environment.
+
+`LOCAL` additionally records the local current branch and the tracked,
+untracked, and protected working-tree/evidence state required by the task.
+
+`CLOUD_GITHUB` verifies the GitHub repository/default branch, exact baseline,
+expected task branch/PR state, and repository-visible candidate state. Local
+branch, working tree, untracked files, protected local evidence, local SHA-256
+values, and local-only command execution are `REPORT_ONLY` or
+`NOT_VERIFIED_BY_THIS_AGENT` unless independently established by a source the
+profile can actually inspect.
 
 If expected and actual baseline differ, stop with a classification such as
 `BLOCKED_BASELINE_DRIFT` unless adaptation is explicitly authorized. Do not
@@ -265,16 +362,19 @@ it does not reconstruct authority from memory.
 
 At minimum inspect, as applicable:
 
-1. current Git branch, HEAD, status, remotes, recent commits, and tags;
-2. `AGENTS.md` and this protocol;
-3. `project-state.json`;
-4. `docs/PROJECT-STATE.md`;
-5. `docs/SOURCE-OF-TRUTH.md`;
-6. `docs/DECISIONS.md` and relevant ADRs;
-7. `docs/HANDOFF.md`;
-8. open PRs and exact-head CI;
-9. the exact current Task Packet;
-10. accepted prior evidence coordinates.
+1. active role, execution profile, and `localEvidenceRequired` value;
+2. current Git/GitHub baseline, branch/candidate state, and local working-tree
+   state only when available/required by the selected profile;
+3. `AGENTS.md` and this protocol;
+4. `project-state.json`;
+5. `docs/PROJECT-STATE.md`;
+6. `docs/SOURCE-OF-TRUTH.md`;
+7. `docs/DECISIONS.md` and relevant ADRs;
+8. `docs/HANDOFF.md`;
+9. open PRs and exact-head CI;
+10. the exact current Task Packet;
+11. accepted prior evidence coordinates;
+12. relevant source, contracts, tests, and runtime evidence.
 
 Use `templates/ai/BOOT-PROTOCOL.md`.
 
@@ -305,8 +405,9 @@ it covers, its Evidence Class, Acceptance State, Canonicality, baseline,
 candidate, validation authority, verification/acceptance/merge state, source
 result, next gate, and notes.
 
-Canonicality is never inferred from local success, CI, Draft PR, or independent
-review. Use `templates/ai/EVIDENCE-ENVELOPE.md` and
+Canonicality is never inferred from local success, repository-visible
+implementation evidence, CI, Draft PR, or independent review. Use
+`templates/ai/EVIDENCE-ENVELOPE.md` and
 `schemas/ai/evidence-envelope.schema.json`.
 
 ## Handoff Packet

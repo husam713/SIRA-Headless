@@ -5,12 +5,14 @@ Use this file when opening a new ChatGPT/Codex session or handing the project to
 ## Read first
 
 1. `/AGENTS.md`
-2. `/project-state.json`
-3. `/docs/PROJECT-STATE.md`
-4. `/docs/SOURCE-OF-TRUTH.md`
-5. relevant entries in `/docs/DECISIONS.md`
-6. `/docs/adr/ADR-025-GROUP-STAGING-FIRST.md`
-7. `/docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md`
+2. `/docs/AI-ENGINEERING-OS.md`
+3. `/docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`
+4. `/project-state.json`
+5. `/docs/PROJECT-STATE.md`
+6. `/docs/SOURCE-OF-TRUTH.md`
+7. relevant entries in `/docs/DECISIONS.md`
+8. `/docs/adr/ADR-025-GROUP-STAGING-FIRST.md`
+9. `/docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md`
 
 Then reconcile them against Git before editing.
 
@@ -23,11 +25,46 @@ Then reconcile them against Git before editing.
 - PR `#31` accepted candidate: `daf7479114f4faba3fa736ee957e03a8d207d49e`
 - PR `#31` merge / state verified-through coordinate: `85b749da5a7769a48e67b22685db904607e0a388`
 - PR `#31` reconciliation status: OWNER ACCEPTED / MERGED
-- Latest accepted governance milestone: Step 4 Editorial Architecture / ADR-028 through PR `#30`
+- Latest accepted product/design governance milestone: Step 4 Editorial Architecture / ADR-028 through PR `#30`
+- AI Engineering OS Governance Foundation: PR `#33`, owner authorized, implementation completed, independently verified, merged, post-merge verified, canonical
+- Governance Foundation candidate / merge provenance: `4c695a0e3c9950b5ec6ede35ca836c5532814cc1` / `009bbfdb64cb38b2ddacbb1e7b8884eb614c47aa`
+- Acceptance-Gates current-state maintenance: PR `#34`, closed / post-merge verified / canonical
+- Acceptance-Gates candidate / merge provenance: `3ca656a3eaa84fc076d1cd6fe4677a2e461cca68` / `86581d46b07a7b971cd2de44b476e1ac0b25bfee`
 - Historical SOT-001 state-reconciliation merge: `e20858b055e556065e96623205fa0d5774ad81d6`
 - Latest accepted CMS mutation-readiness milestone: Step 2C.5B
 - Latest approved tag: `step-2c3b-approved`
 - SOT-001 backend source conflict: CLOSED through PR #18/#19 reconciliation
+
+All recorded merge SHAs above are historical/provenance coordinates. Discover
+current HEAD from Git.
+
+## AI Engineering OS execution model
+
+There is one logical mutation-capable role:
+
+`IMPLEMENTATION`
+
+It uses one execution profile:
+
+- `LOCAL`
+- `CLOUD_GITHUB`
+
+Program Control selects the least-complex profile that can satisfy the task's
+required evidence, validation, security, and mutation requirements. Do not ask
+the owner to choose an environment when those requirements already determine
+the profile.
+
+`LOCAL` is used when task correctness materially depends on local-only
+filesystem/working-tree/protected evidence, local generation/debugging,
+browser/runtime testing, or local dev-environment interaction.
+
+`CLOUD_GITHUB` is sufficient when required implementation/evidence is fully
+repository/GitHub-visible. A cloud implementation agent must classify local-only
+facts as `REPORT_ONLY` or `NOT_VERIFIED_BY_THIS_AGENT` and must never fabricate
+local state.
+
+Execution profile does not change Task Packet authority, independent-review
+requirements, owner gates, or Canonicality.
 
 ## Current state
 
@@ -43,6 +80,12 @@ and ADR-028 Editorial Architecture are owner accepted and merged. Step 4
 visual implementation, the shared production shell, Group/Branch homepage
 composition, and Newsroom visual/route work are NOT STARTED. Prototype and
 production UI implementation are NOT AUTHORIZED.
+
+The AI Engineering OS Governance Foundation is already canonical. Preserve its
+owner authorization as the authorization dimension, while representing its
+lifecycle separately as implementation completed, independent verification
+passed, merged, post-merge verified, and canonical. Validator/CI enforcement
+and AI Engineering OS product/runtime work remain NOT AUTHORIZED.
 
 ## New owner decision — Group staging first
 
@@ -115,25 +158,27 @@ Do not without explicit owner authorization:
 
 ## Current next gate
 
-PR `#31` reconciliation was owner accepted and merged. Independent post-merge
-verification proved the merge and identified the durable-state wording issue
-corrected by governance maintenance. The owner has separately authorized the
-SIRA AI Engineering OS governance foundation: documentation, templates, and
-JSON Schemas only. Validator or CI enforcement, product/runtime work,
-prototypes, and production UI remain NOT AUTHORIZED. No later task is
-automatically authorized; Program Control or the owner must issue separate
-authorization. WordPress mutation, external staging, deployment, DNS, and
+PR `#31` reconciliation, PR `#33` AI Engineering OS Governance Foundation, and
+PR `#34` Acceptance-Gates maintenance are accepted canonical governance
+history. Their completion does not grant authority for a subsequent task.
+Program Control or the owner must issue a new bounded authorization for any
+later implementation or protected transition.
+
+Validator/CI enforcement, AI Engineering OS product/runtime work, prototypes,
+production UI, WordPress mutation, external staging, deployment, DNS, and
 production cutover remain NOT AUTHORIZED.
 
 ## Handoff completion format
 
 Return:
 
+- role and execution profile;
 - branch;
 - baseline;
 - commit SHA;
 - files changed;
 - validations actually run and their results;
+- local evidence limitations when using `CLOUD_GITHUB`;
 - warnings/deferred checks;
 - rollback point;
 - unresolved source conflicts;

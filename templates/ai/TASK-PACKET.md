@@ -13,8 +13,22 @@ is required.
 - Related Task IDs: []
 - Issued by:
 - Target role:
+- Execution profile: null
+- Local evidence required: false
 - Task type:
 - Repository:
+
+For mutation-capable work, the canonical logical role is `IMPLEMENTATION`,
+even when `Target role` names a profile-specific agent. Set `executionProfile`
+to `LOCAL` or `CLOUD_GITHUB`. The profile selects the execution
+environment/capabilities; it does not change authorization, independent-review
+requirements, owner gates, or Canonicality. For non-implementation tasks,
+`executionProfile` may be null.
+
+Program Control selects the least-complex implementation profile that can
+satisfy the task's required evidence, validation, security, and mutation
+requirements. Ask the owner about environment only when requirements or
+availability do not determine the correct profile.
 
 ## Purpose
 
@@ -30,7 +44,8 @@ State the bounded outcome.
 
 - Branch:
 - Commit:
-- Working-tree expectation:
+- Environment-appropriate state expectation:
+- Local working-tree expectation: `NOT APPLICABLE` when `localEvidenceRequired=false` and the selected profile does not expose local state
 
 ## Authorization
 
@@ -38,6 +53,9 @@ State the bounded outcome.
 - Authorization text:
 - Allowed actions:
 - Protected actions separately authorized:
+
+Authorization remains distinct from implementation, independent verification,
+acceptance, merge state, and Canonicality.
 
 ## Scope
 
@@ -55,10 +73,15 @@ State the bounded outcome.
 - Candidate drift:
 - Scope expansion required:
 - Missing authority/external dependency:
+- Required local evidence unavailable:
 
 ## Validation requirements
 
 -
+
+State validation requirements in terms of evidence required for task
+correctness. Do not require `LOCAL` merely because extra local evidence exists
+if that evidence is irrelevant to the task.
 
 ## Result contract
 

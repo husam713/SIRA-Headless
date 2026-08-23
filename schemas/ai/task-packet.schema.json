@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://siratrgroup.com/schemas/ai/task-packet.schema.json",
   "title": "SIRA Task Packet",
-  "description": "Bounded authorization and result contract for substantial controlled work. Authorization must be explicit; an absent or false grant does not permit mutation.",
+  "description": "Bounded authorization and result contract for substantial controlled work. Authorization must be explicit; an absent or false grant does not permit mutation. Implementation tasks use the logical IMPLEMENTATION role with executionProfile LOCAL or CLOUD_GITHUB.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -10,6 +10,8 @@
     "taskId",
     "issuedBy",
     "targetRole",
+    "executionProfile",
+    "localEvidenceRequired",
     "taskType",
     "repository",
     "purpose",
@@ -47,7 +49,17 @@
     },
     "targetRole": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "Target role or agent label. For mutation-capable tasks the canonical logical role is IMPLEMENTATION even when a profile-specific agent name is used here; execution environment is selected separately by executionProfile."
+    },
+    "executionProfile": {
+      "type": ["string", "null"],
+      "enum": ["LOCAL", "CLOUD_GITHUB", null],
+      "description": "Execution environment/capability profile. Required as LOCAL or CLOUD_GITHUB for IMPLEMENTATION tasks; null is permitted for non-implementation roles. The profile does not alter authorization or acceptance authority."
+    },
+    "localEvidenceRequired": {
+      "type": "boolean",
+      "description": "True only when task correctness materially depends on local-only evidence/capabilities. Extra local evidence that is irrelevant to correctness does not require the LOCAL profile."
     },
     "taskType": {
       "type": "string",
@@ -91,7 +103,11 @@
           "type": ["string", "null"],
           "description": "Expected baseline coordinate. Current HEAD must still be discovered from Git."
         },
-        "workingTree": { "type": "string", "minLength": 1 }
+        "workingTree": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Expected local working-tree state when relevant. Use a clear NOT_APPLICABLE/NOT_VERIFIED marker for profiles/tasks where local working-tree evidence is not required or unavailable."
+        }
       }
     },
     "authorization": {
@@ -101,7 +117,7 @@
       "properties": {
         "explicitlyGranted": {
           "type": "boolean",
-          "description": "Must be true before mutation. Missing authorization never implies permission."
+          "description": "Must be true before mutation. Missing authorization never implies permission; authorization does not imply acceptance, merge, or Canonicality."
         },
         "authorizationText": { "type": ["string", "null"] },
         "allowedActions": {

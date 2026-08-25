@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { GroupHero } from "@/components/homepage/group-hero";
 import { getBrand } from "@/lib/brand";
 import { getHomepageForRequest } from "@/lib/homepage";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
@@ -23,6 +24,24 @@ export default async function SiteHomePage({
     getBrand(site.key),
     getHomepageForRequest(site.key),
   ]);
+
+  if (homepage.status === "ready" && homepage.homepage.variant === "group") {
+    return (
+      <>
+        {/*
+          Hidden, not decorative: carries the resolved WordPress page title so
+          published-vs-draft data selection stays independently verifiable in
+          rendered output (see scripts/preview-runtime-check.mjs), without
+          duplicating the hero's own <h1> for screen-reader users.
+        */}
+        <span className="sr-only" data-sira-homepage-title>
+          {homepage.homepage.title}
+        </span>
+        <GroupHero hero={homepage.homepage.hero} />
+      </>
+    );
+  }
+
   const homepageTitle =
     homepage.status === "ready" ? homepage.homepage.title : brand.name;
 

@@ -26,7 +26,20 @@ export default async function SiteHomePage({
   ]);
 
   if (homepage.status === "ready" && homepage.homepage.variant === "group") {
-    return <GroupHero hero={homepage.homepage.hero} />;
+    return (
+      <>
+        {/*
+          Hidden, not decorative: carries the resolved WordPress page title so
+          published-vs-draft data selection stays independently verifiable in
+          rendered output (see scripts/preview-runtime-check.mjs), without
+          duplicating the hero's own <h1> for screen-reader users.
+        */}
+        <span className="sr-only" data-sira-homepage-title>
+          {homepage.homepage.title}
+        </span>
+        <GroupHero hero={homepage.homepage.hero} />
+      </>
+    );
   }
 
   const homepageTitle =

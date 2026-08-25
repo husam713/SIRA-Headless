@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { GroupHero } from "@/components/homepage/group-hero";
 import { getBrand } from "@/lib/brand";
 import { getHomepageForRequest } from "@/lib/homepage";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
@@ -23,6 +24,11 @@ export default async function SiteHomePage({
     getBrand(site.key),
     getHomepageForRequest(site.key),
   ]);
+
+  if (homepage.status === "ready" && homepage.homepage.variant === "group") {
+    return <GroupHero hero={homepage.homepage.hero} />;
+  }
+
   const homepageTitle =
     homepage.status === "ready" ? homepage.homepage.title : brand.name;
 

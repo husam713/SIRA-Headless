@@ -1,7 +1,7 @@
 import { getBrandPreset } from "@/lib/brand";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import type { GroupHomepageHero } from "@/lib/homepage/types";
-import { HeroCtaLink } from "@/components/homepage/hero-cta-link";
+import { CtaLink } from "@/components/homepage/cta-link";
 import {
   GroupHeroCarousel,
   type PreparedGroupHeroSlide,
@@ -68,10 +68,10 @@ export function GroupHero({ hero }: GroupHeroProps) {
       {hero.primaryCta !== null || hero.secondaryCta !== null ? (
         <div className="flex flex-wrap items-center gap-4 pt-2">
           {hero.primaryCta !== null ? (
-            <HeroCtaLink link={hero.primaryCta} variant="solid" />
+            <CtaLink link={hero.primaryCta} variant="solid" />
           ) : null}
           {hero.secondaryCta !== null ? (
-            <HeroCtaLink link={hero.secondaryCta} variant="outline" />
+            <CtaLink link={hero.secondaryCta} variant="outline" />
           ) : null}
         </div>
       ) : null}

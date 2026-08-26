@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { GroupAbout } from "@/components/homepage/group-about";
 import { GroupCompanies } from "@/components/homepage/group-companies";
 import { GroupHero } from "@/components/homepage/group-hero";
 import { GroupLatestUpdates } from "@/components/homepage/group-latest-updates";
@@ -42,6 +43,7 @@ export default async function SiteHomePage({
         <GroupHero hero={homepage.homepage.hero} />
         <GroupLatestUpdates section={homepage.homepage.latestUpdates} />
         <GroupCompanies section={homepage.homepage.companies} />
+        <GroupAbout section={homepage.homepage.about} />
       </>
     );
   }

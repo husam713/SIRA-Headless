@@ -42,3 +42,5 @@ Thumbs.db
 # Temporary archives
 *.tmp
 *.bak
+.vercel
+.env*

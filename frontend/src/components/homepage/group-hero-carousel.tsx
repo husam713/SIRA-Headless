@@ -7,7 +7,7 @@ import {
   useSyncExternalStore,
   type ReactNode,
 } from "react";
-import { HeroCtaLink } from "@/components/homepage/hero-cta-link";
+import { CtaLink } from "@/components/homepage/cta-link";
 import type { HomepageLink, HomepageMedia } from "@/lib/homepage/types";
 
 export interface PreparedGroupHeroSlide {
@@ -191,7 +191,7 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
 
                     {isActive && slide.cta !== null ? (
                       <div className="mt-2">
-                        <HeroCtaLink link={slide.cta} variant="ghost" accentColor={slide.accentColor} />
+                        <CtaLink link={slide.cta} variant="ghost-dark" accentColor={slide.accentColor} />
                       </div>
                     ) : null}
 

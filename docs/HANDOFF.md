@@ -1,186 +1,53 @@
 # SIRA Engineering Handoff
 
-Use this file when opening a new ChatGPT/Codex session or handing the project to another engineer.
+Use this file when opening a new session — Claude, ChatGPT/Codex, or a human engineer — to continue this project.
 
-## Read first
+## Read first, in order
 
-1. `/AGENTS.md`
-2. `/docs/AI-ENGINEERING-OS.md`
-3. `/docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`
-4. `/project-state.json`
-5. `/docs/PROJECT-STATE.md`
-6. `/docs/SOURCE-OF-TRUTH.md`
-7. relevant entries in `/docs/DECISIONS.md`
-8. `/docs/adr/ADR-025-GROUP-STAGING-FIRST.md`
-9. `/docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md`
+1. `/AGENTS.md` — operating rules, protected-actions list, architecture locks.
+2. `/project-state.json` — the only hand-maintained current-state file. Read `currentTask` and `protectedGates`.
+3. Run `git log -1` and `git status` — confirm the actual current HEAD/branch. `project-state.json`'s `repositoryHead` is a snapshot, not a live value; if it's stale, that's expected — verify from Git, don't treat the mismatch as an error to fix before doing anything else.
+4. `/docs/DECISIONS.md` — the ADR register. Skim headers; read in full only the ADRs relevant to the task at hand.
+5. `/docs/SOURCE-OF-TRUTH.md` — only if you suspect a source conflict (repo vs. live vs. a prior claim).
 
-Then reconcile them against Git before editing.
+Do not read every file in `docs/` every session — most of it is historical (`docs/STEP-*.md`) and only needs opening when a task specifically references that step.
 
 ## Repository
 
 - Repository: `husam713/SIRA-Headless`
 - Canonical integration/default branch: `main`
-- Current repository HEAD: verify from Git; do not infer it from a recorded state snapshot
-- PR `#31` reconciliation starting baseline: `aaa88631c862d213f890d2991aa63fd26ce925e3`
-- PR `#31` accepted candidate: `daf7479114f4faba3fa736ee957e03a8d207d49e`
-- PR `#31` merge / state verified-through coordinate: `85b749da5a7769a48e67b22685db904607e0a388`
-- PR `#31` reconciliation status: OWNER ACCEPTED / MERGED
-- Latest accepted product/design governance milestone: Step 4 Editorial Architecture / ADR-028 through PR `#30`
-- AI Engineering OS Governance Foundation: PR `#33`, owner authorized, implementation completed, independently verified, merged, post-merge verified, canonical
-- Governance Foundation candidate / merge provenance: `4c695a0e3c9950b5ec6ede35ca836c5532814cc1` / `009bbfdb64cb38b2ddacbb1e7b8884eb614c47aa`
-- Acceptance-Gates current-state maintenance: PR `#34`, closed / post-merge verified / canonical
-- Acceptance-Gates candidate / merge provenance: `3ca656a3eaa84fc076d1cd6fe4677a2e461cca68` / `86581d46b07a7b971cd2de44b476e1ac0b25bfee`
-- Historical SOT-001 state-reconciliation merge: `e20858b055e556065e96623205fa0d5774ad81d6`
-- Latest accepted CMS mutation-readiness milestone: Step 2C.5B
-- Latest approved tag: `step-2c3b-approved`
-- SOT-001 backend source conflict: CLOSED through PR #18/#19 reconciliation
+- Current HEAD: verify from Git, always — never infer from a doc snapshot.
 
-All recorded merge SHAs above are historical/provenance coordinates. Discover
-current HEAD from Git.
+## Execution model
 
-## AI Engineering OS execution model
+One mutation-capable role, **IMPLEMENTATION**, in one of two execution profiles:
 
-There is one logical mutation-capable role:
+- `LOCAL` — task correctness depends on local filesystem/working-tree/runtime evidence.
+- `CLOUD_GITHUB` — required evidence is fully repository/GitHub-visible; local-only claims must be classified `REPORT_ONLY` or `NOT_VERIFIED_BY_THIS_AGENT`.
 
-`IMPLEMENTATION`
+Program Control picks the least-complex profile that satisfies the task's evidence/validation/security/mutation needs. Execution profile changes capabilities, not authorization.
 
-It uses one execution profile:
+## What actually needs owner approval
 
-- `LOCAL`
-- `CLOUD_GITHUB`
+The exhaustive list is `project-state.json` → `protectedGates`. Everything else — branching, implementing, testing, committing, pushing a feature branch, opening a PR — is default-authorized ordinary engineering work under AGENTS.md and does not need a fresh per-task authorization ritual. Do not invent additional gates beyond that list; if a new kind of irreversible/high-risk action comes up, add it to `protectedGates` explicitly rather than blocking work on an implicit one.
 
-Program Control selects the least-complex profile that can satisfy the task's
-required evidence, validation, security, and mutation requirements. Do not ask
-the owner to choose an environment when those requirements already determine
-the profile.
+## Do not restart without new evidence
 
-`LOCAL` is used when task correctness materially depends on local-only
-filesystem/working-tree/protected evidence, local generation/debugging,
-browser/runtime testing, or local dev-environment interaction.
+- WordPress Multisite architecture; `sira-core` backend ownership; WPGraphQL as primary API; the Next.js App Router multi-brand foundation; the hostname/site registry; tenant isolation; caching/revalidation architecture; the generated frontend contract layer.
 
-`CLOUD_GITHUB` is sufficient when required implementation/evidence is fully
-repository/GitHub-visible. A cloud implementation agent must classify local-only
-facts as `REPORT_ONLY` or `NOT_VERIFIED_BY_THIS_AGENT` and must never fabricate
-local state.
-
-Execution profile does not change Task Packet authority, independent-review
-requirements, owner gates, or Canonicality.
-
-## Current state
-
-Step 2C.5B is owner accepted and merged. Its CMS mutation track remains operationally `BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`, Batch A mutation authorization is false, and RB-001/RB-009 execution evidence remains unavailable.
-
-The repository/frontend track has accepted Step 3A, Step 3B, Step 3C.1,
-Step 3C.2, and Step 3D.1. Step 3D.2 is NOT STARTED, Step 3D.3 remains gated
-by `2C4-B09`, `PREVIEW-AUTH-001` remains DEFERRED, and full Step 3D closure
-must not be claimed.
-
-The Homepage Production Data Contract, Step 4 Exact Design Fidelity Charter,
-and ADR-028 Editorial Architecture are owner accepted and merged. Step 4
-visual implementation, the shared production shell, Group/Branch homepage
-composition, and Newsroom visual/route work are NOT STARTED. Prototype and
-production UI implementation are NOT AUTHORIZED.
-
-The AI Engineering OS Governance Foundation is already canonical. Preserve its
-owner authorization as the authorization dimension, while representing its
-lifecycle separately as implementation completed, independent verification
-passed, merged, post-merge verified, and canonical. Validator/CI enforcement
-and AI Engineering OS product/runtime work remain NOT AUTHORIZED.
-
-## New owner decision — Group staging first
-
-The replacement public Group frontend for `siratrgroup.com` must be developed, integrated, QA'd, and owner-accepted on staging before production cutover.
-
-Until a real staging hostname is human-confirmed, use only the placeholder `GROUP_STAGING_HOST`.
-
-The accepted deployment model is the same Git commit and same Next.js application/site identity for staging and later production, with environment-specific hostname/configuration. Do not create a separate React implementation for staging.
-
-The existing public Group site remains live during replacement development and remains the immediate rollback target through an owner-approved stabilization period. Do not destroy or uninstall it as a launch prerequisite.
-
-This decision changes only Group public frontend implementation/cutover strategy. It does not rebuild WordPress Multisite, create a new database, redesign the four branch tenants, or authorize a separate staging CMS copy.
-
-## Branch sites remain unchanged
-
-Consulting, Healthcare, Lifestyle, and Real Estate remain independent WordPress Multisite tenants using the established shared React/Next.js implementation architecture. Group staging does not merge their pages, menus, content, media, SEO state, cache state, or editorial authority.
-
-## Do not restart
-
-Do not restart or redesign without newer repository evidence:
-
-- WordPress Multisite architecture;
-- `sira-core` backend ownership;
-- WPGraphQL primary API;
-- generated frontend contracts;
-- Next.js App Router multi-brand foundation;
-- hostname/site registry;
-- tenant isolation;
-- caching/revalidation architecture;
-- Step 2C.3A/2C.3B schema compatibility/adoption;
-- Step 2C.3C typed frontend contracts;
-- Step 2C.3D content-readiness audit;
-- Step 2C.4 production design/data-contract audit;
-- Step 2C.5A/2C.5B historical CMS readiness evidence.
-
-Historical Step 2C.5A/2C.5B artifacts remain historical and must not be rewritten to pretend the new staging decision existed when they were created.
-
-## Architecture locks
-
-- Consulting is the canonical branch GraphQL schema.
-- Group may remain a structural superset.
-- Frontend/shared GraphQL uses `ProjectDetails`.
-- Use native WPGraphQL menus; do not create `siraNavigation`.
-- Use native content connections; do not create `siraEditorialFeed` without a new evidence-backed ADR.
-- Server Components by default.
-- No Bricks or `.dc.html` runtime in production.
-- Missing CMS data must not be hidden with frontend hardcoding.
-
-Known separate observation: reconciled backend source declares `SiraProjectDetails` while the accepted frontend/live GraphQL schema exposes `ProjectDetails`; the mechanism remains UNKNOWN and must not be speculatively changed.
-
-## RB-001 / RB-009 interpretation
-
-Historical RB-001/RB-009 controls remain truthful evidence for direct production CMS/database mutation. They do not block repository engineering, Next.js implementation, Group frontend staging development, or staging QA.
-
-Before final Group cutover, establish appropriate recovery controls for the actual cutover, including preservation of the legacy Group environment and an appropriate final recovery point where applicable. Do not mark historical RB requirements complete unless they actually occurred.
-
-## Protected actions
-
-Do not without explicit owner authorization:
-
-- merge into `main`;
-- provision external staging infrastructure;
-- change production DNS/routing;
-- replace `siratrgroup.com`;
-- deploy production;
-- destroy the legacy Group site;
-- perform CMS/database mutations or destructive cleanup;
-- delete taxonomy terms;
-- rotate production secrets.
-
-## Current next gate
-
-PR `#31` reconciliation, PR `#33` AI Engineering OS Governance Foundation, and
-PR `#34` Acceptance-Gates maintenance are accepted canonical governance
-history. Their completion does not grant authority for a subsequent task.
-Program Control or the owner must issue a new bounded authorization for any
-later implementation or protected transition.
-
-Validator/CI enforcement, AI Engineering OS product/runtime work, prototypes,
-production UI, WordPress mutation, external staging, deployment, DNS, and
-production cutover remain NOT AUTHORIZED.
+Full rationale for each of these is in `docs/DECISIONS.md`.
 
 ## Handoff completion format
 
-Return:
+When closing out a substantial piece of work, report:
 
 - role and execution profile;
-- branch;
-- baseline;
-- commit SHA;
+- branch and commit SHA;
 - files changed;
 - validations actually run and their results;
 - local evidence limitations when using `CLOUD_GITHUB`;
 - warnings/deferred checks;
 - rollback point;
-- unresolved source conflicts;
-- next proposed stage;
-- `CURRENT PROJECT STATE`.
+- next proposed step.
+
+Then update `project-state.json` (`currentTask`, and `milestoneHistory` if a milestone closed) in the same commit.

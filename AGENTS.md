@@ -80,8 +80,9 @@ Do not turn the owner into the implementation agent when the active execution pr
 
 ## Task Packet Authority and Scope
 
-- A substantial controlled mutation requires an explicit Task Packet or equivalent owner-authorized scope.
-- Authorization is bounded. Absence of authorization means do not mutate.
+The exhaustive list of actions requiring explicit owner approval is `project-state.json` → `protectedGates` (mirrored in Protected Operations below). Absence of authorization blocks only items on that list. Ordinary reversible engineering work on a feature branch — implementing, testing, committing, pushing, opening a PR — is default-authorized and must not be gated behind an invented per-feature authorization flag. If a new kind of genuinely irreversible or high-risk action comes up, add it to `protectedGates` explicitly rather than blocking work on an implicit one.
+
+- A mutation that touches a `protectedGates` item requires an explicit Task Packet or equivalent owner-authorized scope.
 - Every implementation Task Packet identifies the execution profile and whether local evidence is required.
 - `LOCAL` must verify the local repository/filesystem evidence required by the task, including working-tree/protected local evidence when relevant.
 - `CLOUD_GITHUB` must verify the repository/GitHub baseline and must classify local-only facts as `REPORT_ONLY` or `NOT_VERIFIED_BY_THIS_AGENT`.

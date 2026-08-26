@@ -1,81 +1,58 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-23T08:55:00+03:00",
-  "status": "IN_PROGRESS",
-  "currentStage": "2C.5B",
-  "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
-  "currentStageScope": "CMS_MUTATION_TRACK",
-  "currentStageStatus": "OWNER_ACCEPTED_MERGED",
-  "executionBranch": "main",
-  "executionBaseline": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
-  "executionHead": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
-  "executionCoordinateScope": "HISTORICAL_ACCEPTED_CMS_MUTATION_READINESS_BASELINE_NOT_CURRENT_GIT_HEAD",
-  "repositoryHeadPolicy": "DISCOVER_CURRENT_HEAD_FROM_GIT_DO_NOT_TREAT_SNAPSHOT_COORDINATES_AS_ETERNALLY_CURRENT",
-  "currentStateReconciliation": {
-    "status": "OWNER_ACCEPTED_MERGED",
-    "pullRequest": 31,
-    "reconciliationStartingBaseline": "aaa88631c862d213f890d2991aa63fd26ce925e3",
-    "acceptedCandidateHead": "daf7479114f4faba3fa736ee957e03a8d207d49e",
-    "reconciliationMergeCommit": "85b749da5a7769a48e67b22685db904607e0a388",
-    "stateVerifiedThrough": "85b749da5a7769a48e67b22685db904607e0a388"
+  "schemaVersion": 2,
+  "updatedAt": "2026-08-27T00:00:00+03:00",
+  "howToUse": "This file is the ONLY hand-maintained current-state tracker. docs/PROJECT-STATE.md, docs/SOURCE-OF-TRUTH.md, and docs/HANDOFF.md must not restate these facts in prose — they point here. Update this file in the SAME commit as any change that makes it stale. repositoryHead below is a snapshot; always confirm with `git log -1` before trusting it across a session gap.",
+
+  "repository": {
+    "name": "husam713/SIRA-Headless",
+    "defaultBranch": "main",
+    "repositoryHead": "ce8c22925127e51a036a19ef469ff06db88ee62e",
+    "repositoryHeadVerifiedAt": "2026-08-27T00:00:00+03:00",
+    "repositoryHeadPolicy": "Always re-verify with `git log -1` at the start of a session. Do not trust this snapshot beyond that check."
   },
-  "latestApprovedMilestone": "Step 4 Editorial Architecture Governance (ADR-028)",
-  "latestApprovedTag": "step-2c3b-approved",
-  "productionAuthorized": false,
-  "authorization": {
-    "step2c5bAccepted": true,
-    "cmsMutationAuthorization": "NOT_GRANTED",
-    "batchAMutationAuthorized": false,
-    "taxonomyDeletionAuthorized": false,
-    "backupCreationAuthorized": false,
-    "exportExecutionAuthorized": false,
-    "restoreExecutionAuthorized": false,
-    "prototypeImplementationAuthorized": false,
-    "productionUiImplementationAuthorized": false,
-    "aiEngineeringOperatingSystem": {
-      "governanceFoundationAuthorizationState": "OWNER_AUTHORIZED",
-      "validatorCiEnforcement": "NOT_AUTHORIZED",
-      "productRuntimeWork": "NOT_AUTHORIZED"
-    },
-    "externalStagingProvisioningAuthorized": false,
-    "groupProductionCutoverAuthorized": false,
-    "productionDnsChangeAuthorized": false,
-    "legacyGroupDestructionAuthorized": false
+
+  "currentTask": {
+    "description": "Step 4 production visual implementation of the Group homepage (Next.js App Router, WPGraphQL-backed, on main).",
+    "status": "IN_PROGRESS",
+    "scope": "GROUP_HOMEPAGE_SECTIONS",
+    "completedSectionsMergedToMain": ["hero (PR #36)", "about/companies/latest-updates/investor-relations (PR #41)"],
+    "remainingKnownSections": "not yet enumerated — check frontend homepage component tree before assuming completeness",
+    "governanceBasis": "Step 4 Exact Design Fidelity Charter (PR #29) + ADR-028 Editorial Architecture (PR #30)",
+    "notWithinScope": ["branch homepage visual composition (Consulting/Healthcare/Lifestyle/Real Estate)", "newsroom visual/route work", "shared production shell beyond what Group currently uses"]
   },
-  "parallelTracks": {
-    "cmsMutation": {
-      "stage": "2C.5B",
-      "status": "BLOCKED_BY_BACKUP_EVIDENCE",
-      "next": "Human backup/admin evidence gate before any separately authorized Step 2C.5C Batch A execution"
-    },
-    "repositoryFrontend": {
-      "status": "READY_TO_PROCEED_WITHOUT_PRODUCTION_WORDPRESS_MUTATION",
-      "nextStage": "3 — Preview / SEO / Discovery",
-      "nextStageStatus": "HISTORICAL_ROADMAP_ENTRY_POINT_ALREADY_PROGRESSING_THROUGH_ACCEPTED_STEP_3D1",
-      "currentState": "STEP_4_GOVERNANCE_ACCEPTED_IMPLEMENTATION_NOT_STARTED",
-      "nextAuthorizedImplementation": "NONE",
-      "launchStrategy": "GROUP_STAGING_FIRST"
-    }
+
+  "protectedGates": {
+    "description": "The exhaustive list of actions that require explicit owner approval before proceeding. Everything not on this list is default-authorized ordinary engineering work (branch, implement, test, PR) under AGENTS.md's execution model. Do not invent additional per-feature authorization flags outside this list.",
+    "gates": [
+      { "action": "merge into main", "status": "OWNER_APPROVAL_REQUIRED_PER_PR" },
+      { "action": "production deployment / cutover", "status": "NOT_AUTHORIZED" },
+      { "action": "destructive database / CMS mutation operations", "status": "NOT_AUTHORIZED", "note": "blocked on RB-001/RB-009 backup+restore evidence, see cmsMutationTrack" },
+      { "action": "DNS changes", "status": "NOT_AUTHORIZED" },
+      { "action": "production secret rotation/configuration", "status": "NOT_AUTHORIZED" },
+      { "action": "deleting rollback assets or legacy production releases", "status": "NOT_AUTHORIZED" },
+      { "action": "external Group staging infrastructure provisioning", "status": "NOT_AUTHORIZED" },
+      { "action": "destroying the legacy Group production site", "status": "NOT_AUTHORIZED" }
+    ]
   },
-  "groupStagingStrategy": {
-    "status": "APPROVED_OWNER_DECISION",
-    "scope": "GROUP_PUBLIC_FRONTEND_ONLY",
-    "stagingHostname": "GROUP_STAGING_HOST",
-    "stagingHostnameStatus": "HUMAN_CONFIRMATION_REQUIRED",
-    "productionHostname": "siratrgroup.com",
-    "sameApplicationAndCommit": true,
-    "separateReactImplementationForStaging": false,
-    "legacyGroupRemainsLiveDuringBuild": true,
-    "legacyGroupIsImmediateRollbackTarget": true,
-    "legacyGroupPreservationRequiredThroughStabilization": true,
-    "separateStagingCmsAssumed": false,
-    "branchSitesUnchanged": true,
-    "dnsChangeAuthorized": false,
-    "productionDeploymentAuthorized": false,
-    "externalStagingProvisioningAuthorized": false
+
+  "cmsMutationTrack": {
+    "stage": "2C.5B",
+    "status": "BLOCKED_BY_BACKUP_EVIDENCE",
+    "blocker": "RB-001 (backup evidence) and RB-009 (restore validation evidence) are UNKNOWN and require human administrator action",
+    "next": "Human confirms backup/restore evidence, then a new explicit mutation authorization is required before Batch A execution"
   },
+
+  "openGates": {
+    "mediaOriginB07": "UNRESOLVED_DEFERRED",
+    "formsArchitectureB08": "UNRESOLVED",
+    "multilingualArchitectureB09": "UNRESOLVED",
+    "previewAuth001": "DEFERRED"
+  },
+
+  "architectureLocks": "See AGENTS.md > Architecture Locks and docs/DECISIONS.md for the full ADR register. Do not duplicate that list here.",
+
   "canonicalPublicProductionTopology": {
-    "status": "APPROVED_OWNER_DECISION",
     "apex": "siratrgroup.com",
     "sites": {
       "group": "siratrgroup.com",
@@ -85,173 +62,56 @@
       "realestate": "realestate.siratrgroup.com"
     },
     "scope": "public production hostnames only",
-    "unresolvedOrigins": [
-      "wordpress-backend",
-      "graphql-endpoint",
-      "media",
-      "staging",
-      "vercel-preview",
-      "revalidation"
+    "unresolvedOrigins": ["wordpress-backend", "graphql-endpoint", "media", "staging", "vercel-preview", "revalidation"]
+  },
+
+  "milestoneHistory": {
+    "note": "Compact provenance only. Full narrative detail lives in individual docs/STEP-*.md files and PR descriptions — not duplicated here.",
+    "accepted": [
+      { "milestone": "Step 2C.3C typed frontend contracts", "pr": 12 },
+      { "milestone": "Step 2C.3D content readiness audit", "pr": 13 },
+      { "milestone": "Step 2C.4 production design/data contract audit", "pr": 14 },
+      { "milestone": "Step 2C.5A CMS preflight & remediation plan", "pr": 15 },
+      { "milestone": "Step 2C.5B CMS mutation readiness & backup gate", "pr": 16 },
+      { "milestone": "Backend source reconciliation (SOT-001 closure)", "pr": 18 },
+      { "milestone": "Group staging-first governance (ADR-025)", "pr": 20 },
+      { "milestone": "Step 3A host/discovery boundary", "pr": 21 },
+      { "milestone": "Step 3B metadata/robots/sitemap", "pr": 22 },
+      { "milestone": "Step 3C.1 preview auth foundation", "pr": 23 },
+      { "milestone": "Step 3C.2 signed preview entry/draft mode", "pr": 24 },
+      { "milestone": "Step 3D.1 structured-data ownership", "pr": 27 },
+      { "milestone": "Homepage production data contract", "pr": 28 },
+      { "milestone": "Step 4 exact design fidelity charter", "pr": 29 },
+      { "milestone": "Step 4 editorial architecture (ADR-028)", "pr": 30 },
+      { "milestone": "Post-PR30 durable-state reconciliation", "pr": 31 },
+      { "milestone": "AI Engineering OS governance foundation", "pr": 33 },
+      { "milestone": "Acceptance-gates maintenance", "pr": 34 },
+      { "milestone": "Group homepage hero", "pr": 36 },
+      { "milestone": "Group homepage About/Companies/Latest-Updates/Investor-Relations sections", "pr": 41 }
+    ],
+    "notStarted": [
+      "Step 3D.2",
+      "Branch homepage visual composition (Consulting/Healthcare/Lifestyle/Real Estate)",
+      "Newsroom visual/route work"
+    ],
+    "gatedOrDeferred": [
+      "Step 3D.3 (gated by 2C4-B09 multilingual architecture)",
+      "PREVIEW-AUTH-001 (deferred)"
     ]
   },
-  "repositoryEvidencePolicy": "evidence-first",
-  "latestAcceptedIncrement": {
-    "stage": "Step 2C.5B",
-    "status": "ACCEPTED_MERGED",
-    "scope": "CMS_MUTATION_READINESS_TRACK_HISTORICAL_ACCEPTED_BASELINE",
-    "pullRequest": 16,
-    "implementationHead": "4afad259dd4c184de5b61ca51f91fcde7222cbf2",
-    "mergeCommit": "2bd4991f75a53ab9209e748499dcb8915769e3a6",
-    "frontendCi": "PASS",
-    "frontendCiRun": 35,
-    "fullRegression": "26 files / 252 tests PASS"
-  },
-  "latestRepositoryReconciliation": {
-    "pullRequest": 19,
-    "mergeCommit": "e20858b055e556065e96623205fa0d5774ad81d6",
-    "purpose": "SOT-001 post-merge durable-state reconciliation",
-    "scope": "HISTORICAL_SOT_001_RECONCILIATION"
-  },
-  "acceptedRepositoryMilestones": {
-    "step3d1": {
-      "status": "OWNER_ACCEPTED_MERGED",
-      "pullRequest": 27,
-      "implementationHead": "9423ba38546f67ebbf1ed3b5c9f3328ed39fbb19",
-      "mergeCommit": "269a28cd1db15666aebc9cbe2f73c8718997fc30",
-      "step3d2": "NOT_STARTED",
-      "step3d3": "GATED_BY_2C4_B09",
-      "fullStep3dClosed": false
-    },
-    "homepageProductionDataContract": {
-      "status": "OWNER_ACCEPTED_MERGED",
-      "pullRequest": 28,
-      "implementationHead": "ed0bf65b3da3862d2a16c16fd62061344c83d802",
-      "mergeCommit": "54b301f64687e59aa01dbe2695aaed6ce45db4c9"
-    },
-    "step4ExactDesignFidelityCharter": {
-      "status": "OWNER_ACCEPTED_MERGED",
-      "pullRequest": 29,
-      "implementationHead": "18ada36bd180ca8d088e411851b83d242ff4c7c9",
-      "mergeCommit": "e522c6c58cd57e2a757652adb740c9d1f154c81c"
-    },
-    "step4EditorialArchitecture": {
-      "status": "OWNER_ACCEPTED_MERGED_CANONICAL",
-      "decision": "ADR-028",
-      "pullRequest": 30,
-      "implementationHead": "e37570f8e7a2b28eb0d55a903f79eb19687be9a3",
-      "mergeCommit": "aaa88631c862d213f890d2991aa63fd26ce925e3"
-    }
-  },
-  "currentImplementationState": {
-    "step4VisualProductionImplementation": "NOT_STARTED",
-    "sharedProductionShell": "NOT_STARTED",
-    "groupHomepageVisualComposition": "NOT_STARTED",
-    "branchHomepageVisualComposition": "NOT_STARTED",
-    "newsroomVisualRouteWork": "NOT_STARTED",
-    "prototypeImplementation": "NOT_AUTHORIZED"
-  },
-  "openGates": {
-    "mediaOriginB07": "UNRESOLVED_DEFERRED",
-    "formsArchitectureB08": "UNRESOLVED",
-    "multilingualArchitectureB09": "UNRESOLVED",
-    "previewAuth001": "DEFERRED",
-    "externalGroupStaging": "NOT_PROVISIONED_NOT_AUTHORIZED",
-    "productionDeployment": "NOT_AUTHORIZED",
-    "productionDns": "NOT_AUTHORIZED",
-    "groupProductionCutover": "NOT_AUTHORIZED",
-    "legacyGroupDestruction": "NOT_AUTHORIZED"
-  },
-  "nextOwnerGate": {
-    "authorizationBoundary": "NO_SUBSEQUENT_TASK_INHERITS_AUTHORITY_FROM_CANONICAL_GOVERNANCE_WORK",
-    "subsequentTaskRequirement": "SEPARATELY_ISSUED_PROGRAM_CONTROL_OR_OWNER_AUTHORIZATION",
-    "subsequentImplementationAuthorized": false
-  },
-  "governance": {
-    "g0Bootstrap": "COMPLETE",
-    "g0MergeCommit": "c26b658b4dfafb82c04af42ca880e6894aefcf0d",
-    "g0cGitHubGovernance": "COMPLETE",
-    "g0cMergeCommit": "e2a0d425cd7fe435981427d9be33a6e6f9d8f436",
-    "canonicalBranch": "main",
-    "defaultBranch": "main",
-    "branchProtection": "CONFIGURED_NOT_ENFORCED",
-    "branchProtectionReason": "GitHub plan limitation for this private repository",
-    "compensatingControls": [
-      "pull-request workflow",
-      "frontend CI",
-      "owner approval before merge",
-      "no direct agent merge to main"
-    ],
-    "aiEngineeringOperatingSystem": {
-      "governanceFoundation": {
-        "authorizationState": "OWNER_AUTHORIZED",
-        "implementationState": "COMPLETED",
-        "independentVerification": "PASSED",
-        "acceptanceState": "POST_MERGE_VERIFIED",
-        "mergeState": "MERGED",
-        "canonical": true,
-        "pullRequest": 33,
-        "acceptedCandidateHead": "4c695a0e3c9950b5ec6ede35ca836c5532814cc1",
-        "canonicalMergeCommit": "009bbfdb64cb38b2ddacbb1e7b8884eb614c47aa",
-        "coordinateScope": "HISTORICAL_PROVENANCE_NOT_CURRENT_GIT_HEAD"
-      },
-      "acceptanceGatesMaintenance": {
-        "authorizationState": "OWNER_AUTHORIZED",
-        "acceptanceState": "POST_MERGE_VERIFIED",
-        "mergeState": "MERGED",
-        "canonical": true,
-        "pullRequest": 34,
-        "acceptedCandidateHead": "3ca656a3eaa84fc076d1cd6fe4677a2e461cca68",
-        "canonicalMergeCommit": "86581d46b07a7b971cd2de44b476e1ac0b25bfee",
-        "coordinateScope": "HISTORICAL_PROVENANCE_NOT_CURRENT_GIT_HEAD"
-      },
-      "validatorCiEnforcement": "NOT_AUTHORIZED",
-      "productRuntimeWork": "NOT_AUTHORIZED"
-    }
-  },
-  "nextMajorStages": [
-    "Governance: PR31 current-state reconciliation is owner accepted and merged; its state snapshot is verified through the recorded PR31 merge coordinate",
-    "AI Engineering OS Governance Foundation: OWNER_AUTHORIZED / COMPLETED / INDEPENDENT_VERIFICATION_PASSED / MERGED / POST_MERGE_VERIFIED / CANONICAL through PR33 provenance",
-    "Acceptance-Gates current-state maintenance: CLOSED / POST_MERGE_VERIFIED / CANONICAL through PR34 provenance",
-    "Not authorized: AI Engineering OS validator or CI enforcement, product/runtime work, prototypes, and production UI",
-    "Governance: no subsequent task is authorized without a separately issued Program Control or owner authorization",
-    "Repository/frontend implementation: no prototype or production UI increment is currently authorized",
-    "CMS mutation track: human backup/admin evidence gate before any Batch A authorization",
-    "CMS mutation track: 2C.5C separately authorized Batch A execution only after a new explicit mutation authorization",
-    "Group production cutover only after staging acceptance and explicit production authorization"
-  ],
+
   "knownConflicts": [
     {
       "id": "SOT-001",
-      "subsystem": "backend",
       "status": "CLOSED",
-      "summary": "Repository backend source was reconciled to the independently verified LIVE Step 2C.2F sira-core source in PR #18. This closes only the backend source-freshness conflict and does not authorize backend, CMS, Batch A, backup, restore, production, Step 2C.5C, or Step 3 changes.",
-      "resolution": {
-        "pullRequest": 18,
-        "implementationHead": "7869ae3530a8349980b01f31e3d749b292d2f63c",
-        "mergeCommit": "5a2d7855590de6fe0b12d5cf48777d7856c9f491",
-        "artifactZipSha256": "571bae5eb39032755dd1c9fe1cacc4113ee409da07826c008cd152698987c76f",
-        "normalizedTreeSha256": "cb029a935d6d022ab2d6067e8951b04ba57562d9ff5f1609cc1e547622c826f4",
-        "previousClassification": "REPOSITORY_BACKEND_OLDER",
-        "wordpressMutationOccurred": false,
-        "knownSeparateObservation": "Backend source declares SiraProjectDetails while the accepted frontend/live GraphQL schema exposes ProjectDetails; the mechanism remains UNKNOWN."
-      }
+      "summary": "Repository backend reconciled to verified LIVE Step 2C.2F sira-core source via PR #18.",
+      "openObservation": "Backend source declares SiraProjectDetails while live GraphQL schema exposes ProjectDetails; mechanism UNKNOWN, not to be speculatively changed."
     }
   ],
-  "knownGovernanceIssues": [
-    {
-      "id": "GOV-001",
-      "status": "CLOSED",
-      "summary": "Repository default branch is main."
-    },
-    {
-      "id": "GOV-002",
-      "status": "CLOSED",
-      "summary": "Frontend GitHub Actions CI is installed and has successful workflow evidence from G0-C."
-    },
-    {
-      "id": "GOV-003",
-      "status": "WARNING",
-      "summary": "A main branch protection rule is configured but GitHub reports it is not enforced for this private repository under the current plan; PR + CI + owner approval remain compensating controls."
-    }
-  ]
+
+  "githubGovernance": {
+    "GOV-001": "CLOSED — default branch is main",
+    "GOV-002": "CLOSED — Frontend CI installed with passing history",
+    "GOV-003": "WARNING — branch protection configured but not plan-enforced; compensating controls: PR workflow, required CI, owner approval before merge, no direct agent merge to main"
+  }
 }

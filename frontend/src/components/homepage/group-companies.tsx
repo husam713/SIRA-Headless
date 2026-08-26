@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
   HomepageContentItem,
@@ -26,10 +25,14 @@ function CompanyItem({ item, index, reversed }: CompanyItemProps) {
 
   return (
     <article className="grid grid-cols-1 items-end gap-8 sm:grid-cols-12 sm:gap-6 lg:gap-8">
-      <Link
-        href={item.href}
-        aria-label={item.title}
-        className={`group relative block aspect-[16/10] overflow-hidden bg-brand-deep ${imageClasses}`}
+      {/*
+        Plain <div>, not a link: item.href is the company content node's own
+        uri, but this app has no company detail route yet — only the
+        homepage is implemented under (sites)/[siteKey]. Restore as a link
+        once a detail route exists.
+      */}
+      <div
+        className={`relative aspect-[16/10] overflow-hidden bg-brand-deep ${imageClasses}`}
       >
         {item.featuredImage !== null ? (
           // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a plain
@@ -38,12 +41,12 @@ function CompanyItem({ item, index, reversed }: CompanyItemProps) {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={item.featuredImage.sourceUrl}
-            alt=""
+            alt={item.featuredImage.altText ?? item.title}
             width={item.featuredImage.width ?? undefined}
             height={item.featuredImage.height ?? undefined}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="h-full w-full object-cover"
           />
         ) : null}
         {item.status !== null ? (
@@ -54,7 +57,7 @@ function CompanyItem({ item, index, reversed }: CompanyItemProps) {
             {item.status}
           </span>
         ) : null}
-      </Link>
+      </div>
 
       <div className={`flex flex-col gap-6 sm:pb-6 ${textClasses}`}>
         <div className="flex items-baseline gap-4">
@@ -75,12 +78,6 @@ function CompanyItem({ item, index, reversed }: CompanyItemProps) {
             {copy}
           </p>
         ) : null}
-        <Link
-          href={item.href}
-          className="w-fit text-[11px] font-bold uppercase tracking-[0.1em] text-brand-accent underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current"
-        >
-          View {item.title}
-        </Link>
       </div>
     </article>
   );

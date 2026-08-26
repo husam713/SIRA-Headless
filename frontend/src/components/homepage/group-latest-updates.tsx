@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
   HomepageContentItem,
@@ -67,12 +66,13 @@ function UpdateBody({ item, headingClassName }: UpdateBodyProps) {
           {item.excerpt}
         </p>
       ) : null}
-      <Link
-        href={item.href}
-        className="w-fit text-[11px] font-bold uppercase tracking-[0.1em] underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current"
-      >
-        Read More
-      </Link>
+      {/*
+        No "Read More" link: item.href is the CMS content node's own uri
+        (e.g. /insights/some-article/), but this app has no article/insight
+        detail route yet — only the homepage is implemented under
+        (sites)/[siteKey]. Linking it would 404. Restore this once a detail
+        route exists for the relevant content kinds.
+      */}
     </div>
   );
 }

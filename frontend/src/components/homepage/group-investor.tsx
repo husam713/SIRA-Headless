@@ -36,11 +36,12 @@ interface InvestmentCardProps {
 }
 
 function InvestmentCard({ item }: InvestmentCardProps) {
+  // Plain <div>, not a link: item.href is the investment content node's own
+  // uri, but this app has no investment detail route yet — only the
+  // homepage is implemented under (sites)/[siteKey]. Restore as a link
+  // once a detail route exists.
   return (
-    <a
-      href={item.href}
-      className="flex flex-col gap-4 border-t-2 border-brand-accent pt-6"
-    >
+    <div className="flex flex-col gap-4 border-t-2 border-brand-accent pt-6">
       <h4 className="font-display text-2xl font-normal leading-tight">
         {item.title}
       </h4>
@@ -55,7 +56,7 @@ function InvestmentCard({ item }: InvestmentCardProps) {
           <span>{item.ticketSizeLabel}</span>
         </div>
       ) : null}
-    </a>
+    </div>
   );
 }
 
@@ -63,8 +64,16 @@ function InvestmentCard({ item }: InvestmentCardProps) {
  * The request-pack submission itself is intentionally NOT wired up: the
  * forms backend/provider decision (2C4-B08) remains unresolved, so every
  * field and the submit control render as an inert visual shell only, per
- * the Step 4 charter's forms policy. The one-pager download below it is a
- * real, working link — it's a static document fetch, not a form submission.
+ * the Step 4 charter's forms policy.
+ *
+ * The one-pager is informational only, not a working download: the
+ * approved GraphQL contract exposes document metadata only — the backend's
+ * ACF file field is deliberately excluded from GraphQL
+ * (`show_in_graphql: false` in AcfIntegration.php) pending a document
+ * access/gating policy decision, and `onePager.href` is the document's own
+ * content-node uri, not a file URL, with no detail route implemented
+ * either. Advertising this as a working "Download" link would promise
+ * something that cannot exist yet on two independent counts.
  */
 interface InvestorPackShellProps {
   readonly formHeading: string | null;
@@ -140,12 +149,12 @@ function InvestorPackShell({
 
       {onePager !== null ? (
         <div className="mt-8 border-t border-brand-border pt-8">
-          <a
-            href={onePager.href}
-            className="inline-flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-[0.1em] text-brand-accent underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current"
-          >
-            Download {onePager.title}
-          </a>
+          <p className="text-xs font-bold uppercase tracking-[0.1em] text-brand-ink-faint">
+            {onePager.title}
+          </p>
+          <p className="mt-2 text-xs text-brand-ink-faint">
+            Document downloads aren&apos;t available online yet.
+          </p>
         </div>
       ) : null}
     </div>

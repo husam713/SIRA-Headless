@@ -7,8 +7,8 @@ Use this file when opening a new session — Claude, ChatGPT/Codex, or a human e
 1. `/AGENTS.md` — operating rules, protected-actions list, architecture locks.
 2. `/project-state.json` — the only hand-maintained current-state file. Read `currentTask` and `protectedGates`.
 3. Run `git log -1` and `git status` — confirm the actual current HEAD/branch. `project-state.json`'s `repositoryHead` is a snapshot, not a live value; if it's stale, that's expected — verify from Git, don't treat the mismatch as an error to fix before doing anything else.
-4. `/docs/DECISIONS.md` — the ADR register. Skim headers; read in full only the ADRs relevant to the task at hand.
-5. `/docs/SOURCE-OF-TRUTH.md` — only if you suspect a source conflict (repo vs. live vs. a prior claim).
+4. `/docs/SOURCE-OF-TRUTH.md` — the conflict registry and precedence rules. Required as part of minimum recovery inspection, not conditional on suspecting a conflict — it's short by design now, so reading it every session is cheap.
+5. `/docs/DECISIONS.md` — the ADR register. Skim headers; read in full only the ADRs relevant to the task at hand.
 
 Do not read every file in `docs/` every session — most of it is historical (`docs/STEP-*.md`) and only needs opening when a task specifically references that step.
 

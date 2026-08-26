@@ -15,8 +15,12 @@ requires separate owner authorization.
 ## Core principles
 
 1. Repository evidence, not chat memory, carries durable project state.
-2. Authorization is explicit and bounded. Absence of authorization means do
-   not mutate.
+2. Authorization is explicit and bounded for protected actions. The
+   exhaustive list of protected actions is `project-state.json` ->
+   `protectedGates`; absence of authorization there means do not perform that
+   action. Ordinary reversible engineering work outside that list (branch,
+   implement, test, commit, push, open a PR) is default-authorized and must
+   not be gated behind an invented action-specific authorization flag.
 3. Evidence Class, Acceptance State, and Canonicality are separate dimensions.
 4. Authorization State is distinct from implementation, independent
    verification, acceptance, merge state, and Canonicality.
@@ -205,7 +209,8 @@ Logical role: `IMPLEMENTATION`.
 
 Responsibilities shared by both execution profiles:
 
-- mutate only within explicit Task Packet authority;
+- mutate freely within ordinary non-protected engineering scope; for any
+  `protectedGates` action, mutate only within explicit Task Packet authority;
 - baseline-lock before change;
 - preserve scope and protected evidence;
 - validate using the evidence/capabilities available to the selected profile;
@@ -284,23 +289,33 @@ The merge action itself does not authorize the next task.
 
 ## Task Packet authority
 
-Substantial controlled work requires a Task Packet or an equivalent explicit
-owner instruction. The packet records identity, purpose, input evidence,
-expected baseline, allowed scope, exclusions, stop conditions, validation,
-candidate requirements, result contract, and next gate.
+A Task Packet (or equivalent explicit owner instruction) is required only for
+work that touches a `protectedGates` action from `project-state.json`. For
+that work, the packet records identity, purpose, input evidence, expected
+baseline, allowed scope, exclusions, stop conditions, validation, candidate
+requirements, result contract, and next gate.
 
-For `IMPLEMENTATION` tasks it also records the execution profile and whether
-local evidence is required. The profile selects the environment/capabilities;
-it does not grant mutation authority or alter owner/independent-review gates.
+Ordinary engineering work that stays off the `protectedGates` list — branch
+creation, implementation, tests, builds, commits, pushes to a feature branch,
+opening/updating a PR — proceeds without a Task Packet under the standing
+authorization in `AGENTS.md`'s execution model. Do not require a packet for
+work just because it is nontrivial; require one because it touches a
+specific protected action.
+
+For `IMPLEMENTATION` tasks that do require a Task Packet, it also records the
+execution profile and whether local evidence is required. The profile selects
+the environment/capabilities; it does not grant mutation authority or alter
+owner/independent-review gates.
 
 Rules:
 
-- authorization must be affirmative and specific;
-- absence of authorization means do not mutate;
-- protected actions require explicit owner language;
-- a changed base, head, or scope invalidates candidate-specific authorization;
+- authorization for a protected action must be affirmative and specific;
+- absence of authorization for a protected action means do not perform it;
+- a changed base, head, or scope invalidates candidate-specific authorization
+  for the protected action in question;
 - Task IDs belong to project workflow, not to chat lifetime;
-- trivial read-only Q&A does not require a Task Packet.
+- trivial read-only Q&A, and ordinary non-protected engineering work, does
+  not require a Task Packet.
 
 Use `templates/ai/TASK-PACKET.md` and
 `schemas/ai/task-packet.schema.json`.

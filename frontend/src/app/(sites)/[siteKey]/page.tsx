@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { GroupAbout } from "@/components/homepage/group-about";
 import { GroupCompanies } from "@/components/homepage/group-companies";
 import { GroupHero } from "@/components/homepage/group-hero";
+import { GroupInvestor } from "@/components/homepage/group-investor";
 import { GroupLatestUpdates } from "@/components/homepage/group-latest-updates";
 import { getBrand } from "@/lib/brand";
 import { getHomepageForRequest } from "@/lib/homepage";
@@ -44,6 +45,7 @@ export default async function SiteHomePage({
         <GroupLatestUpdates section={homepage.homepage.latestUpdates} />
         <GroupCompanies section={homepage.homepage.companies} />
         <GroupAbout section={homepage.homepage.about} />
+        <GroupInvestor section={homepage.homepage.investor} />
       </>
     );
   }

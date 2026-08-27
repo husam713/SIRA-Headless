@@ -134,6 +134,19 @@ final class PresentationFields {
 	}
 
 	/**
+	 * Every non-repeater ACF sub-field nested (at any depth) under
+	 * `group_sira_homepage` shares ONE flat postmeta namespace — ACF's
+	 * `group` field type does NOT prefix its sub-fields' storage by the
+	 * parent group's name (unlike `repeater`, which prefixes by
+	 * `{repeater_name}_{row}_{sub_field_name}`). Two sub-fields anywhere in
+	 * this tree that share the same raw `name` silently overwrite each
+	 * other's stored value the moment both are populated — the GraphQL
+	 * field name (4th argument to each field helper below) is unaffected
+	 * and stays exactly what the frontend already expects; only the raw
+	 * storage name needs to be unique. Every helper below therefore takes
+	 * a $prefix/$key_suffix and folds it into the storage name, the same
+	 * way it already folds into the field KEY.
+	 *
 	 * @return array<int,array<string,mixed>>
 	 */
 	private static function group_homepage_fields(): array {
@@ -147,44 +160,44 @@ final class PresentationFields {
 					self::text(
 						'field_sira_group_hero_heading_before',
 						'Heading Before Highlight',
-						'heading_before',
+						'hero_heading_before',
 						'headingBefore'
 					),
 					self::text(
 						'field_sira_group_hero_heading_highlight',
 						'Highlighted Heading',
-						'heading_highlight',
+						'hero_heading_highlight',
 						'headingHighlight'
 					),
 					self::text(
 						'field_sira_group_hero_heading_after',
 						'Heading After Highlight',
-						'heading_after',
+						'hero_heading_after',
 						'headingAfter'
 					),
 					self::textarea(
 						'field_sira_group_hero_description',
 						'Description',
-						'description',
+						'hero_description',
 						'description',
 						array( 'rows' => 4 )
 					),
 					self::link_field(
 						'field_sira_group_hero_primary_cta',
 						'Primary CTA',
-						'primary_cta',
+						'hero_primary_cta',
 						'primaryCta'
 					),
 					self::link_field(
 						'field_sira_group_hero_secondary_cta',
 						'Secondary CTA',
-						'secondary_cta',
+						'hero_secondary_cta',
 						'secondaryCta'
 					),
 					self::repeater(
 						'field_sira_group_hero_slides',
 						'Hero Slides',
-						'slides',
+						'hero_slides',
 						'slides',
 						self::group_hero_slide_fields(),
 						array(
@@ -205,14 +218,14 @@ final class PresentationFields {
 					self::true_false(
 						'field_sira_group_ticker_enabled',
 						'Enabled',
-						'enabled',
+						'ticker_enabled',
 						'enabled',
 						array( 'default_value' => 1 )
 					),
 					self::repeater(
 						'field_sira_group_ticker_items',
 						'Ticker Items',
-						'items',
+						'ticker_items',
 						'items',
 						array(
 							self::text(
@@ -262,20 +275,20 @@ final class PresentationFields {
 				'about',
 				'about',
 				array_merge(
-					self::section_header_sub_fields( 'group_about' ),
+					self::section_header_sub_fields( 'about' ),
 					array(
 						self::wysiwyg(
 							'field_sira_group_about_body',
 							'Body',
-							'body',
+							'about_body',
 							'body'
 						),
 						self::repeater(
 							'field_sira_group_about_metrics',
 							'Metrics',
+							'about_metrics',
 							'metrics',
-							'metrics',
-							self::metric_fields( 'group_about_metric' ),
+							self::metric_fields( 'about_metric' ),
 							array(
 								'layout'       => 'table',
 								'button_label' => 'Add metric',
@@ -291,20 +304,20 @@ final class PresentationFields {
 				'investor',
 				'investor',
 				array_merge(
-					self::section_header_sub_fields( 'group_investor' ),
+					self::section_header_sub_fields( 'investor' ),
 					array(
 						self::wysiwyg(
 							'field_sira_group_investor_body',
 							'Body',
-							'body',
+							'investor_body',
 							'body'
 						),
 						self::repeater(
 							'field_sira_group_investor_metrics',
 							'Investor Metrics',
+							'investor_metrics',
 							'metrics',
-							'metrics',
-							self::metric_fields( 'group_investor_metric' ),
+							self::metric_fields( 'investor_metric' ),
 							array(
 								'layout'       => 'table',
 								'button_label' => 'Add investor metric',
@@ -314,7 +327,7 @@ final class PresentationFields {
 						self::relationship(
 							'field_sira_group_investor_items',
 							'Selected Public Investments',
-							'selected_investments',
+							'investor_selected_investments',
 							'selectedInvestments',
 							array( 'sira_investment' ),
 							array( 'max' => 6 )
@@ -322,7 +335,7 @@ final class PresentationFields {
 						self::relationship(
 							'field_sira_group_investor_one_pager',
 							'One-pager Document',
-							'one_pager_document',
+							'investor_one_pager_document',
 							'onePagerDocument',
 							array(
 								'sira_document',
@@ -334,13 +347,13 @@ final class PresentationFields {
 						self::text(
 							'field_sira_group_investor_form_heading',
 							'Form Heading',
-							'form_heading',
+							'investor_form_heading',
 							'formHeading'
 						),
 						self::textarea(
 							'field_sira_group_investor_form_description',
 							'Form Description',
-							'form_description',
+							'investor_form_description',
 							'formDescription',
 							array( 'rows' => 3 )
 						),
@@ -491,39 +504,39 @@ final class PresentationFields {
 					self::text(
 						'field_sira_branch_hero_eyebrow',
 						'Eyebrow',
-						'eyebrow',
+						'branch_hero_eyebrow',
 						'eyebrow'
 					),
 					self::text(
 						'field_sira_branch_hero_region',
 						'Region',
-						'region',
+						'branch_hero_region',
 						'region'
 					),
 					self::text(
 						'field_sira_branch_hero_heading_before',
 						'Heading Before Highlight',
-						'heading_before',
+						'branch_hero_heading_before',
 						'headingBefore',
 						array( 'required' => 1 )
 					),
 					self::text(
 						'field_sira_branch_hero_heading_highlight',
 						'Highlighted Heading',
-						'heading_highlight',
+						'branch_hero_heading_highlight',
 						'headingHighlight',
 						array( 'required' => 1 )
 					),
 					self::text(
 						'field_sira_branch_hero_heading_after',
 						'Heading After Highlight',
-						'heading_after',
+						'branch_hero_heading_after',
 						'headingAfter'
 					),
 					self::textarea(
 						'field_sira_branch_hero_description',
 						'Description',
-						'description',
+						'branch_hero_description',
 						'description',
 						array(
 							'rows'     => 4,
@@ -533,32 +546,32 @@ final class PresentationFields {
 					self::image(
 						'field_sira_branch_hero_image',
 						'Hero Image',
-						'image',
+						'branch_hero_image',
 						'image',
 						array( 'required' => 1 )
 					),
 					self::image(
 						'field_sira_branch_hero_mobile_image',
 						'Mobile Hero Image',
-						'mobile_image',
+						'branch_hero_mobile_image',
 						'mobileImage'
 					),
 					self::text(
 						'field_sira_branch_hero_alt',
 						'Image Alt Override',
-						'image_alt',
+						'branch_hero_image_alt',
 						'imageAlt'
 					),
 					self::link_field(
 						'field_sira_branch_hero_primary_cta',
 						'Primary CTA',
-						'primary_cta',
+						'branch_hero_primary_cta',
 						'primaryCta'
 					),
 					self::link_field(
 						'field_sira_branch_hero_secondary_cta',
 						'Secondary CTA',
-						'secondary_cta',
+						'branch_hero_secondary_cta',
 						'secondaryCta'
 					),
 				)
@@ -566,7 +579,7 @@ final class PresentationFields {
 			self::repeater(
 				'field_sira_branch_statistics',
 				'Statistics',
-				'statistics',
+				'branch_statistics',
 				'statistics',
 				self::metric_fields( 'branch_statistic' ),
 				array(
@@ -586,7 +599,7 @@ final class PresentationFields {
 						self::wysiwyg(
 							'field_sira_branch_overview_body',
 							'Body',
-							'body',
+							'branch_overview_body',
 							'body'
 						),
 					)
@@ -595,7 +608,7 @@ final class PresentationFields {
 			self::repeater(
 				'field_sira_branch_focus_areas',
 				'Focus Areas',
-				'focus_areas',
+				'branch_focus_areas',
 				'focusAreas',
 				array(
 					self::text(
@@ -648,13 +661,13 @@ final class PresentationFields {
 					self::text(
 						'field_sira_branch_footer_tagline',
 						'Tagline Override',
-						'tagline_override',
+						'branch_footer_tagline',
 						'taglineOverride'
 					),
 					self::text(
 						'field_sira_branch_footer_group_label',
 						'Group Link Label Override',
-						'group_link_label_override',
+						'branch_footer_group_link_label',
 						'groupLinkLabelOverride'
 					),
 				)
@@ -909,6 +922,9 @@ final class PresentationFields {
 	}
 
 	/**
+	 * $prefix must be globally unique across every call site in this file —
+	 * see the note on group_homepage_fields() above for why.
+	 *
 	 * @return array<string,mixed>
 	 */
 	private static function editorial_section(
@@ -929,7 +945,7 @@ final class PresentationFields {
 					self::radio(
 						'field_sira_' . $key_suffix . '_source_mode',
 						'Source Mode',
-						'source_mode',
+						$key_suffix . '_source_mode',
 						'sourceMode',
 						array(
 							'latest'  => 'Latest published items',
@@ -944,7 +960,7 @@ final class PresentationFields {
 					self::relationship(
 						'field_sira_' . $key_suffix . '_items',
 						'Selected Editorial Items',
-						'selected_items',
+						$key_suffix . '_selected_items',
 						'selectedItems',
 						array(
 							'sira_news',
@@ -968,7 +984,7 @@ final class PresentationFields {
 					self::number(
 						'field_sira_' . $key_suffix . '_limit',
 						'Item Limit',
-						'item_limit',
+						$key_suffix . '_item_limit',
 						'itemLimit',
 						array(
 							'default_value' => 3,
@@ -983,6 +999,9 @@ final class PresentationFields {
 	}
 
 	/**
+	 * $key_suffix must be globally unique across every call site in this
+	 * file — see the note on group_homepage_fields() above for why.
+	 *
 	 * @param array<int,string> $post_types Post types.
 	 * @return array<string,mixed>
 	 */
@@ -1005,7 +1024,7 @@ final class PresentationFields {
 					self::relationship(
 						'field_sira_' . $key_suffix . '_items',
 						'Selected Items',
-						'selected_items',
+						$key_suffix . '_selected_items',
 						$relationship_graphql_field,
 						$post_types,
 						array( 'max' => $maximum )
@@ -1016,6 +1035,9 @@ final class PresentationFields {
 	}
 
 	/**
+	 * $context must be globally unique across every call site in this file
+	 * — see the note on group_homepage_fields() above for why.
+	 *
 	 * @return array<string,mixed>
 	 */
 	private static function contact_section(
@@ -1031,26 +1053,26 @@ final class PresentationFields {
 				self::text(
 					'field_sira_' . $context . '_contact_eyebrow',
 					'Eyebrow',
-					'eyebrow',
+					$context . '_contact_eyebrow',
 					'eyebrow'
 				),
 				self::text(
 					'field_sira_' . $context . '_contact_heading',
 					'Heading',
-					'heading',
+					$context . '_contact_heading',
 					'heading'
 				),
 				self::textarea(
 					'field_sira_' . $context . '_contact_description',
 					'Description',
-					'description',
+					$context . '_contact_description',
 					'description',
 					array( 'rows' => 4 )
 				),
 				self::radio(
 					'field_sira_' . $context . '_contact_form_variant',
 					'Form Variant',
-					'form_variant',
+					$context . '_contact_form_variant',
 					'formVariant',
 					array(
 						'contact'     => 'General contact',
@@ -1063,7 +1085,7 @@ final class PresentationFields {
 				self::text(
 					'field_sira_' . $context . '_contact_form_context',
 					'Form Context',
-					'form_context',
+					$context . '_contact_form_context',
 					'formContext',
 					array(
 						'maxlength'    => 100,
@@ -1075,6 +1097,9 @@ final class PresentationFields {
 	}
 
 	/**
+	 * $prefix must be globally unique across every call site in this file —
+	 * see the note on group_homepage_fields() above for why.
+	 *
 	 * @return array<int,array<string,mixed>>
 	 */
 	private static function section_header_sub_fields( string $prefix ): array {
@@ -1082,32 +1107,40 @@ final class PresentationFields {
 			self::text(
 				'field_sira_' . $prefix . '_eyebrow',
 				'Eyebrow',
-				'eyebrow',
+				$prefix . '_eyebrow',
 				'eyebrow'
 			),
 			self::text(
 				'field_sira_' . $prefix . '_heading',
 				'Heading',
-				'heading',
+				$prefix . '_heading',
 				'heading'
 			),
 			self::textarea(
 				'field_sira_' . $prefix . '_description',
 				'Description',
-				'description',
+				$prefix . '_description',
 				'description',
 				array( 'rows' => 3 )
 			),
 			self::link_field(
 				'field_sira_' . $prefix . '_link',
 				'Section Link',
-				'link',
+				$prefix . '_link',
 				'link'
 			),
 		);
 	}
 
 	/**
+	 * $prefix must be globally unique across every call site in this file —
+	 * see the note on group_homepage_fields() above for why. Note this is
+	 * the prefix for the SUB-FIELD names; the enclosing repeater's own
+	 * name (passed to self::repeater() at each call site) must independently
+	 * be unique too, since ACF repeaters DO namespace their row storage by
+	 * their own name but two repeaters sharing one name still collide with
+	 * each other.
+	 *
 	 * @return array<int,array<string,mixed>>
 	 */
 	private static function metric_fields( string $prefix ): array {
@@ -1115,21 +1148,21 @@ final class PresentationFields {
 			self::text(
 				'field_sira_' . $prefix . '_value',
 				'Value',
-				'value',
+				$prefix . '_value',
 				'value',
 				array( 'required' => 1 )
 			),
 			self::text(
 				'field_sira_' . $prefix . '_label',
 				'Label',
-				'label',
+				$prefix . '_label',
 				'label',
 				array( 'required' => 1 )
 			),
 			self::text(
 				'field_sira_' . $prefix . '_supporting_text',
 				'Supporting Text',
-				'supporting_text',
+				$prefix . '_supporting_text',
 				'supportingText'
 			),
 		);

@@ -4,13 +4,37 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { BrandDocument } from "@/components/brand/brand-document";
+import { SiteFooter } from "@/components/shell/site-footer";
+import { SiteHeader } from "@/components/shell/site-header";
 import { getBrand } from "@/lib/brand";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { getNavigation } from "@/lib/navigation";
+import type { NavigationItem, NavigationResolution } from "@/lib/navigation";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { SiteStructuredDataScripts } from "@/lib/seo/structured-data";
-import { SITE_KEYS } from "@/types/site";
+import { SITE_KEYS, type SiteKey } from "@/types/site";
 import "@/styles/globals.css";
+
+function scopeItems(
+  navigation: NavigationResolution,
+  scope: "primary" | "footer",
+): readonly NavigationItem[] {
+  if (navigation.status !== "resolved") return [];
+  const resolution = navigation[scope];
+  return resolution.status === "ready" ? resolution.menu.items : [];
+}
+
+/** Present on branch sites only — SIRA GROUP has no cross-link to itself. */
+function resolveGroupCrossLink(
+  siteKey: SiteKey,
+): { readonly name: string; readonly canonicalHostname: string } | null {
+  if (siteKey === "group") return null;
+  const groupSite = getSiteDefinition("group");
+  return groupSite === null
+    ? null
+    : { name: groupSite.name, canonicalHostname: groupSite.canonicalHostname };
+}
 
 interface SiteLayoutProps {
   readonly children: ReactNode;
@@ -57,10 +81,19 @@ export default async function SiteLayout({
     notFound();
   }
 
-  const [brand, draft] = await Promise.all([
+  const [brand, draft, navigation] = await Promise.all([
     getBrand(site.key),
     draftMode(),
+    getNavigation(site.key),
   ]);
+
+  const groupSite = resolveGroupCrossLink(site.key);
+  const groupHeaderLink = groupSite === null
+    ? null
+    : { label: `${groupSite.name} ↗`, href: `https://${groupSite.canonicalHostname}/` };
+  const groupFooterLink = groupSite === null
+    ? null
+    : { label: `A ${groupSite.name} Company ↗`, href: `https://${groupSite.canonicalHostname}/` };
 
   return (
     <BrandDocument site={site} brand={brand}>
@@ -87,24 +120,19 @@ export default async function SiteLayout({
         </aside>
       ) : null}
 
-      <header className="border-b border-brand-border bg-brand-paper-glass backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
-          <p className="font-display text-xl font-semibold tracking-wide">
-            {brand.name}
-          </p>
-          <p className="text-sm text-brand-ink-faint">
-            {site.canonicalHostname}
-          </p>
-        </div>
-      </header>
+      <SiteHeader
+        brand={brand}
+        items={scopeItems(navigation, "primary")}
+        groupLink={groupHeaderLink}
+      />
 
       <main id="main-content">{children}</main>
 
-      <footer className="border-t border-brand-deep-border bg-brand-footer text-brand-paper">
-        <div className="mx-auto max-w-7xl px-6 py-8 text-sm text-brand-paper/70 lg:px-8">
-          SIRA Enterprise headless frontend scaffold
-        </div>
-      </footer>
+      <SiteFooter
+        brand={brand}
+        items={scopeItems(navigation, "footer")}
+        groupLink={groupFooterLink}
+      />
     </BrandDocument>
   );
 }

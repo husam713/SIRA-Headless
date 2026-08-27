@@ -1133,13 +1133,17 @@ final class PresentationFields {
 	}
 
 	/**
-	 * $prefix must be globally unique across every call site in this file —
-	 * see the note on group_homepage_fields() above for why. Note this is
-	 * the prefix for the SUB-FIELD names; the enclosing repeater's own
-	 * name (passed to self::repeater() at each call site) must independently
-	 * be unique too, since ACF repeaters DO namespace their row storage by
-	 * their own name but two repeaters sharing one name still collide with
-	 * each other.
+	 * $prefix must be globally unique across every call site in this file so
+	 * each sub-field's ACF KEY is unique — but unlike section_header_sub_fields()
+	 * etc., the raw storage NAME here is deliberately left bare ('value',
+	 * 'label', 'supporting_text'). These sub-fields only ever live inside a
+	 * repeater, and repeaters already namespace their row storage by their
+	 * own name (the name passed to self::repeater() at each call site, which
+	 * independently must be unique — see group_homepage_fields() above), so
+	 * prefixing the sub-field names too would be redundant. It also has to
+	 * stay bare: the starter importer writes repeater rows as plain
+	 * ['value' => ..., 'label' => ..., 'supporting_text' => ...] arrays keyed
+	 * by these raw names.
 	 *
 	 * @return array<int,array<string,mixed>>
 	 */
@@ -1148,21 +1152,21 @@ final class PresentationFields {
 			self::text(
 				'field_sira_' . $prefix . '_value',
 				'Value',
-				$prefix . '_value',
+				'value',
 				'value',
 				array( 'required' => 1 )
 			),
 			self::text(
 				'field_sira_' . $prefix . '_label',
 				'Label',
-				$prefix . '_label',
+				'label',
 				'label',
 				array( 'required' => 1 )
 			),
 			self::text(
 				'field_sira_' . $prefix . '_supporting_text',
 				'Supporting Text',
-				$prefix . '_supporting_text',
+				'supporting_text',
 				'supportingText'
 			),
 		);

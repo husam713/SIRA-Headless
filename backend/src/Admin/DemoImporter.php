@@ -595,11 +595,11 @@ final class DemoImporter {
 		$this->set_acf( $page_id, 'field_sira_companies_items', array_values( $company_ids ) );
 
 		// About.
-		$this->set_acf( $page_id, 'field_sira_group_about_eyebrow', 'About SIRA GROUP' );
-		$this->set_acf( $page_id, 'field_sira_group_about_heading', 'Bridging Continents Through Smart Investment' );
+		$this->set_acf( $page_id, 'field_sira_about_eyebrow', 'About SIRA GROUP' );
+		$this->set_acf( $page_id, 'field_sira_about_heading', 'Bridging Continents Through Smart Investment' );
 		$this->set_acf(
 			$page_id,
-			'field_sira_group_about_description',
+			'field_sira_about_description',
 			'Headquartered between Istanbul and Paris, SIRA GROUP invests in and operates ventures across real estate, healthcare, hospitality and energy — building infrastructure for the next generation of growth in Africa and the Middle East.'
 		);
 		$this->set_acf(
@@ -614,11 +614,11 @@ final class DemoImporter {
 		);
 
 		// Investor Relations.
-		$this->set_acf( $page_id, 'field_sira_group_investor_eyebrow', 'Investor Relations' );
-		$this->set_acf( $page_id, 'field_sira_group_investor_heading', 'Invest Alongside SIRA GROUP' );
+		$this->set_acf( $page_id, 'field_sira_investor_eyebrow', 'Investor Relations' );
+		$this->set_acf( $page_id, 'field_sira_investor_heading', 'Invest Alongside SIRA GROUP' );
 		$this->set_acf(
 			$page_id,
-			'field_sira_group_investor_description',
+			'field_sira_investor_description',
 			'We partner with institutional and private investors seeking exposure to high-growth real estate and healthcare across Africa, Europe and the Middle East.'
 		);
 		$this->set_acf(

@@ -4,6 +4,7 @@ import { GroupCompanies } from "@/components/homepage/group-companies";
 import { GroupHero } from "@/components/homepage/group-hero";
 import { GroupInvestor } from "@/components/homepage/group-investor";
 import { GroupLatestUpdates } from "@/components/homepage/group-latest-updates";
+import { GroupServices } from "@/components/homepage/group-services";
 import { getBrand } from "@/lib/brand";
 import { getHomepageForRequest } from "@/lib/homepage";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
@@ -46,6 +47,7 @@ export default async function SiteHomePage({
         <GroupCompanies section={homepage.homepage.companies} />
         <GroupAbout section={homepage.homepage.about} />
         <GroupInvestor section={homepage.homepage.investor} />
+        <GroupServices section={homepage.homepage.services} />
       </>
     );
   }

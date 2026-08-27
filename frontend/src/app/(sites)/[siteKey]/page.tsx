@@ -1,9 +1,15 @@
 import { notFound } from "next/navigation";
 import { GroupAbout } from "@/components/homepage/group-about";
 import { GroupCompanies } from "@/components/homepage/group-companies";
+import { GroupContact } from "@/components/homepage/group-contact";
 import { GroupHero } from "@/components/homepage/group-hero";
+import { GroupInsights } from "@/components/homepage/group-insights";
 import { GroupInvestor } from "@/components/homepage/group-investor";
 import { GroupLatestUpdates } from "@/components/homepage/group-latest-updates";
+import { GroupPartners } from "@/components/homepage/group-partners";
+import { GroupProjects } from "@/components/homepage/group-projects";
+import { GroupTestimonials } from "@/components/homepage/group-testimonials";
+import { GroupTicker } from "@/components/homepage/group-ticker";
 import { getBrand } from "@/lib/brand";
 import { getHomepageForRequest } from "@/lib/homepage";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
@@ -42,10 +48,20 @@ export default async function SiteHomePage({
           {homepage.homepage.title}
         </span>
         <GroupHero hero={homepage.homepage.hero} />
+        <GroupTicker ticker={homepage.homepage.ticker} />
         <GroupLatestUpdates section={homepage.homepage.latestUpdates} />
         <GroupCompanies section={homepage.homepage.companies} />
         <GroupAbout section={homepage.homepage.about} />
         <GroupInvestor section={homepage.homepage.investor} />
+        <GroupProjects section={homepage.homepage.projects} />
+        <GroupInsights section={homepage.homepage.insights} />
+        <GroupTestimonials section={homepage.homepage.testimonials} />
+        <GroupPartners section={homepage.homepage.partners} />
+        <GroupContact
+          section={homepage.homepage.contact}
+          email={brand.email}
+          address={brand.address}
+        />
       </>
     );
   }

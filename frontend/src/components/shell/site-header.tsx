@@ -22,7 +22,7 @@ interface SiteHeaderProps {
 export function SiteHeader({ brand, items, groupLink }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-brand-border bg-brand-paper-glass backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-8">
+      <div className="mx-auto flex max-w-[82.5rem] items-center justify-between gap-6 px-6 py-4 lg:px-8">
         <Link href="/" className="flex flex-shrink-0 items-center gap-3">
           {brand.assets.logo !== null ? (
             // Local static asset (not remote WordPress media, so 2C4-B07 does

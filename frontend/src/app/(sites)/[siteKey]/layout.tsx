@@ -111,7 +111,7 @@ export default async function SiteLayout({
           aria-label="Preview Mode"
           className="border-b border-brand-border bg-brand-tint px-6 py-3 text-sm"
         >
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
+          <div className="mx-auto flex max-w-[82.5rem] items-center justify-between gap-4">
             <strong>Preview Mode</strong>
             <Link className="underline" href="/api/preview/exit/?destination=/">
               Exit Preview

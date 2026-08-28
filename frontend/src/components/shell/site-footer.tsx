@@ -19,7 +19,7 @@ export function SiteFooter({ brand, items, groupLink }: SiteFooterProps) {
 
   return (
     <footer className="border-t border-brand-deep-border bg-brand-footer text-brand-paper/70">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div className="mx-auto max-w-[82.5rem] px-6 py-16 lg:px-8">
         <div className="flex flex-wrap items-start justify-between gap-12 border-b border-brand-paper/10 pb-10">
           <div className="max-w-xs">
             <div className="flex items-center gap-3">

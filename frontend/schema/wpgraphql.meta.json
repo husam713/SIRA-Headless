@@ -1,7 +1,7 @@
 {
   "canonicalSha256": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c",
   "canonicalSite": "consulting",
-  "fetchedAt": "2026-08-28T05:00:53.981Z",
+  "fetchedAt": "2026-08-28T19:44:30.838Z",
   "groupAuditSite": "group",
   "groupSha256": "7cf2a36102b239a45f0dc7b893d4a1b6a5f3de5a03d1d1675d4d50b09e0bad5f",
   "policy": "four-branch-exact-group-structural-superset",

@@ -315,30 +315,36 @@ describe("Step 2C.4 production design and data-contract audit", () => {
 
   it("maps the current canonical live types instead of proposing duplicates", () => {
     const expectedFields = {
-      SiraHomepage: ["branchHomepage", "groupHomepage", "variant"],
-      SiraHomepageBranchHomepage: [
-        "contact",
-        "focusAreas",
-        "footer",
-        "hero",
-        "insights",
-        "overview",
-        "projects",
-        "statistics",
-      ],
-      SiraHomepageGroupHomepage: [
-        "about",
-        "companies",
-        "contact",
-        "hero",
-        "insights",
-        "investor",
-        "latestUpdates",
-        "partners",
-        "projects",
-        "services",
-        "testimonials",
+      // Flat by design, not nested under groupHomepage/branchHomepage
+      // wrapper types (those no longer exist) — see the note on
+      // PresentationFields.php's group_homepage_fields() for why: WPGraphQL
+      // for ACF silently failed to resolve several field types three
+      // `group` levels deep, so every section is now a direct sibling of
+      // `variant`. `hero`, `projects`, `insights`, and `contact` are the
+      // only names both variants used, so those four are prefixed
+      // (groupHero/branchHero, etc.) to stay unique as siblings.
+      SiraHomepage: [
+        "variant",
+        "groupHero",
         "ticker",
+        "latestUpdates",
+        "companies",
+        "about",
+        "investor",
+        "services",
+        "groupProjects",
+        "groupInsights",
+        "testimonials",
+        "partners",
+        "groupContact",
+        "branchHero",
+        "statistics",
+        "overview",
+        "focusAreas",
+        "branchProjects",
+        "branchInsights",
+        "branchContact",
+        "footer",
       ],
       CompanyDetails: [
         "cardImageOverride",

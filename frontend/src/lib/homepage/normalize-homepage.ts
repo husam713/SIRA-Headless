@@ -482,33 +482,37 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
   const databaseId = Number(page["databaseId"]);
   const title = normalizePlainText(page["title"], 240);
   if (siteKey === "group") {
-    const group = fields["groupHomepage"];
-    if (!isRecord(group) || !isRecord(group["hero"])) return invalid(siteKey, "missing-variant-data");
+    // Sections live directly on `fields` (siraHomepage), not nested under a
+    // `groupHomepage` wrapper — see the note on PresentationFields.php's
+    // group_homepage_fields() for why that wrapper was removed (WPGraphQL
+    // for ACF silently failed to resolve text/textarea/repeater/relationship
+    // fields three `group` levels deep; two levels resolves correctly).
+    if (!isRecord(fields["groupHero"])) return invalid(siteKey, "missing-variant-data");
     const homepage: GroupHomepage = Object.freeze({
       siteKey,
       databaseId,
       uri: "/",
       title,
       variant: "group",
-      hero: normalizeGroupHero(group["hero"]),
-      ticker: normalizeTicker(group["ticker"]),
-      latestUpdates: normalizeEditorialSection(group["latestUpdates"]),
-      companies: normalizeContentSection(group["companies"], "selectedCompanies", "SiraCompany"),
-      about: normalizeMetricsSection(group["about"], 8),
-      investor: normalizeInvestor(group["investor"]),
-      services: normalizeContentSection(group["services"], "selectedServices", "SiraService"),
-      projects: normalizeContentSection(group["projects"], "selectedProjects", "SiraProject"),
-      insights: normalizeEditorialSection(group["insights"]),
-      testimonials: normalizeContentSection(group["testimonials"], "selectedTestimonials", "SiraTestimonial"),
-      partners: normalizeContentSection(group["partners"], "selectedPartners", "SiraPartner"),
-      contact: normalizeContact(group["contact"]),
+      hero: normalizeGroupHero(fields["groupHero"]),
+      ticker: normalizeTicker(fields["ticker"]),
+      latestUpdates: normalizeEditorialSection(fields["latestUpdates"]),
+      companies: normalizeContentSection(fields["companies"], "selectedCompanies", "SiraCompany"),
+      about: normalizeMetricsSection(fields["about"], 8),
+      investor: normalizeInvestor(fields["investor"]),
+      services: normalizeContentSection(fields["services"], "selectedServices", "SiraService"),
+      projects: normalizeContentSection(fields["groupProjects"], "selectedProjects", "SiraProject"),
+      insights: normalizeEditorialSection(fields["groupInsights"]),
+      testimonials: normalizeContentSection(fields["testimonials"], "selectedTestimonials", "SiraTestimonial"),
+      partners: normalizeContentSection(fields["partners"], "selectedPartners", "SiraPartner"),
+      contact: normalizeContact(fields["groupContact"]),
     });
     return Object.freeze({ status: "ready", homepage });
   }
 
-  const branch = fields["branchHomepage"];
-  if (!isRecord(branch) || !isRecord(branch["hero"])) return invalid(siteKey, "missing-variant-data");
-  const hero = branch["hero"];
+  // Same flattening applies to the branch variant's sections.
+  if (!isRecord(fields["branchHero"])) return invalid(siteKey, "missing-variant-data");
+  const hero = fields["branchHero"];
   const branchHero: BranchHomepageHero = Object.freeze({
     ...normalizeHero(hero),
     eyebrow: normalizePlainText(hero["eyebrow"], 160),
@@ -517,16 +521,16 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
     image: normalizeMedia(hero["image"]),
     mobileImage: normalizeMedia(hero["mobileImage"]),
   });
-  const focusAreas = Array.isArray(branch["focusAreas"])
-    ? branch["focusAreas"].slice(0, 12).filter(isRecord).map((item): HomepageFocusArea => Object.freeze({
+  const focusAreas = Array.isArray(fields["focusAreas"])
+    ? fields["focusAreas"].slice(0, 12).filter(isRecord).map((item): HomepageFocusArea => Object.freeze({
         title: normalizePlainText(item["title"], 240),
         description: normalizePlainText(item["description"], 1_000),
       }))
     : Object.freeze([]);
-  const footer = isRecord(branch["footer"])
+  const footer = isRecord(fields["footer"])
     ? Object.freeze({
-        taglineOverride: normalizePlainText(branch["footer"]["taglineOverride"], 500),
-        groupLinkLabelOverride: normalizePlainText(branch["footer"]["groupLinkLabelOverride"], 240),
+        taglineOverride: normalizePlainText(fields["footer"]["taglineOverride"], 500),
+        groupLinkLabelOverride: normalizePlainText(fields["footer"]["groupLinkLabelOverride"], 240),
       })
     : null;
   const homepage: BranchHomepage = Object.freeze({
@@ -536,12 +540,12 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
     title,
     variant: "branch",
     hero: branchHero,
-    statistics: normalizeMetrics(branch["statistics"], 8),
-    overview: normalizeRichTextSection(branch["overview"]),
+    statistics: normalizeMetrics(fields["statistics"], 8),
+    overview: normalizeRichTextSection(fields["overview"]),
     focusAreas: Object.freeze(focusAreas),
-    projects: normalizeContentSection(branch["projects"], "selectedProjects", "SiraProject"),
-    insights: normalizeEditorialSection(branch["insights"]),
-    contact: normalizeContact(branch["contact"]),
+    projects: normalizeContentSection(fields["branchProjects"], "selectedProjects", "SiraProject"),
+    insights: normalizeEditorialSection(fields["branchInsights"]),
+    contact: normalizeContact(fields["branchContact"]),
     footer,
   });
   return Object.freeze({ status: "ready", homepage });

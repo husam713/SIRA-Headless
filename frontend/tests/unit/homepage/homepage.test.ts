@@ -6,34 +6,42 @@ import type { BranchSiteKey } from "@/lib/homepage/types";
 
 type HomepagePage = NonNullable<SiraHomepageQueryData["page"]>;
 type HomepageFields = NonNullable<HomepagePage["siraHomepage"]>;
-type BranchFields = NonNullable<HomepageFields["branchHomepage"]>;
-type GroupFields = NonNullable<HomepageFields["groupHomepage"]>;
 
+// Every section lives directly on `siraHomepage` (no `groupHomepage`/
+// `branchHomepage` wrapper) — see the note on PresentationFields.php's
+// group_homepage_fields() and normalize-homepage.ts for why: WPGraphQL for
+// ACF silently failed to resolve text/textarea/repeater/relationship fields
+// three `group` levels deep, so that wrapper was removed. `hero`, `projects`,
+// `insights`, and `contact` are the only names both variants used, so those
+// four are now prefixed (groupHero/branchHero, etc.) to stay unique as
+// siblings; every other section name is unchanged.
 function emptyBranchFields() {
   return {
+    branchHero: null,
     statistics: null,
     overview: null,
     focusAreas: null,
-    projects: null,
-    insights: null,
-    contact: null,
+    branchProjects: null,
+    branchInsights: null,
+    branchContact: null,
     footer: null,
   };
 }
 
 function emptyGroupFields() {
   return {
+    groupHero: null,
     ticker: null,
     latestUpdates: null,
     companies: null,
     about: null,
     investor: null,
     services: null,
-    projects: null,
-    insights: null,
+    groupProjects: null,
+    groupInsights: null,
     testimonials: null,
     partners: null,
-    contact: null,
+    groupContact: null,
   };
 }
 
@@ -45,22 +53,20 @@ function createBranchHomepage(title = "Consulting"): SiraHomepageQueryData {
       title,
       siraHomepage: {
         variant: "branch",
-        groupHomepage: null,
-        branchHomepage: {
-          ...emptyBranchFields(),
-          hero: {
-            eyebrow: "  Consulting  ",
-            headingBefore: "Strategy for",
-            headingHighlight: "new markets",
-            headingAfter: null,
-            description: "  Deliberate   growth. ",
-            region: "Riyadh",
-            imageAlt: null,
-            image: null,
-            mobileImage: null,
-            primaryCta: null,
-            secondaryCta: null,
-          },
+        ...emptyGroupFields(),
+        ...emptyBranchFields(),
+        branchHero: {
+          eyebrow: "  Consulting  ",
+          headingBefore: "Strategy for",
+          headingHighlight: "new markets",
+          headingAfter: null,
+          description: "  Deliberate   growth. ",
+          region: "Riyadh",
+          imageAlt: null,
+          image: null,
+          mobileImage: null,
+          primaryCta: null,
+          secondaryCta: null,
         },
       },
     },
@@ -75,52 +81,42 @@ function createGroupHomepage(): SiraHomepageQueryData {
       title: "SIRA Group",
       siraHomepage: {
         variant: "group",
-        branchHomepage: null,
-        groupHomepage: {
-          ...emptyGroupFields(),
-          hero: {
-            headingBefore: "Shaping a",
-            headingHighlight: "smarter",
-            headingAfter: "future",
-            description: "Long-term enterprise value.",
-            primaryCta: null,
-            secondaryCta: null,
-            slides: null,
-          },
+        ...emptyGroupFields(),
+        ...emptyBranchFields(),
+        groupHero: {
+          headingBefore: "Shaping a",
+          headingHighlight: "smarter",
+          headingAfter: "future",
+          description: "Long-term enterprise value.",
+          primaryCta: null,
+          secondaryCta: null,
+          slides: null,
         },
       },
     },
   };
 }
 
-function withBranchFields(overrides: Partial<BranchFields>): SiraHomepageQueryData {
+function withBranchFields(overrides: Partial<HomepageFields>): SiraHomepageQueryData {
   const data = createBranchHomepage();
   const page = data.page as HomepagePage;
   const fields = page.siraHomepage as HomepageFields;
-  const branch = fields.branchHomepage as BranchFields;
   return {
     page: {
       ...page,
-      siraHomepage: {
-        ...fields,
-        branchHomepage: { ...branch, ...overrides },
-      },
+      siraHomepage: { ...fields, ...overrides },
     },
   };
 }
 
-function withGroupFields(overrides: Partial<GroupFields>): SiraHomepageQueryData {
+function withGroupFields(overrides: Partial<HomepageFields>): SiraHomepageQueryData {
   const data = createGroupHomepage();
   const page = data.page as HomepagePage;
   const fields = page.siraHomepage as HomepageFields;
-  const group = fields.groupHomepage as GroupFields;
   return {
     page: {
       ...page,
-      siraHomepage: {
-        ...fields,
-        groupHomepage: { ...group, ...overrides },
-      },
+      siraHomepage: { ...fields, ...overrides },
     },
   };
 }
@@ -172,7 +168,7 @@ function createEditorial(databaseId: number) {
 function createCompleteGroupHomepage(): SiraHomepageQueryData {
   const emptyConnection = { nodes: [], pageInfo: { hasNextPage: false } };
   return withGroupFields({
-    hero: {
+    groupHero: {
       headingBefore: "Shaping a",
       headingHighlight: "smarter",
       headingAfter: "future",
@@ -291,14 +287,14 @@ function createCompleteGroupHomepage(): SiraHomepageQueryData {
         }],
       },
     },
-    projects: {
+    groupProjects: {
       eyebrow: "Projects",
       heading: "Selected work",
       description: null,
       link: null,
       selectedProjects: { nodes: [createProject(605)], pageInfo: { hasNextPage: false } },
     },
-    insights: {
+    groupInsights: {
       eyebrow: "Insights",
       heading: "Perspectives",
       description: null,
@@ -345,13 +341,13 @@ function createCompleteGroupHomepage(): SiraHomepageQueryData {
         }],
       },
     },
-    contact: { eyebrow: "Contact", heading: "Talk to SIRA", description: null, formVariant: "contact", formContext: "group-homepage" },
+    groupContact: { eyebrow: "Contact", heading: "Talk to SIRA", description: null, formVariant: "contact", formContext: "group-homepage" },
   });
 }
 
 function createCompleteBranchHomepage(): SiraHomepageQueryData {
   return withBranchFields({
-    hero: {
+    branchHero: {
       eyebrow: "Healthcare",
       headingBefore: "Care for",
       headingHighlight: "tomorrow",
@@ -367,14 +363,14 @@ function createCompleteBranchHomepage(): SiraHomepageQueryData {
     statistics: [{ value: "12", label: "Facilities", supportingText: null }],
     overview: { eyebrow: "Overview", heading: "Our focus", description: null, body: "<p>Overview</p>", link: null },
     focusAreas: [{ title: "Delivery", description: "Integrated care" }],
-    projects: {
+    branchProjects: {
       eyebrow: "Projects",
       heading: "Selected work",
       description: null,
       link: null,
       selectedProjects: { nodes: [createProject(702)], pageInfo: { hasNextPage: false } },
     },
-    insights: {
+    branchInsights: {
       eyebrow: "Insights",
       heading: "Latest thinking",
       description: null,
@@ -383,7 +379,7 @@ function createCompleteBranchHomepage(): SiraHomepageQueryData {
       link: null,
       selectedItems: { nodes: [createEditorial(703)], pageInfo: { hasNextPage: false } },
     },
-    contact: { eyebrow: "Contact", heading: "Talk to us", description: null, formVariant: "contact", formContext: "healthcare-homepage" },
+    branchContact: { eyebrow: "Contact", heading: "Talk to us", description: null, formVariant: "contact", formContext: "healthcare-homepage" },
     footer: { taglineOverride: "Care that advances", groupLinkLabelOverride: "SIRA Group" },
   });
 }
@@ -486,7 +482,7 @@ describe("homepage server adapter", () => {
   });
 
   it("normalizes bounded project relationships and strips markup", () => {
-    const data = withBranchFields({ projects: {
+    const data = withBranchFields({ branchProjects: {
       eyebrow: "Work",
       heading: "Projects",
       description: null,
@@ -513,7 +509,7 @@ describe("homepage server adapter", () => {
   });
 
   it("fails a curated relationship closed when the bounded result is truncated", () => {
-    const data = withBranchFields({ projects: {
+    const data = withBranchFields({ branchProjects: {
       eyebrow: null,
       heading: "Projects",
       description: null,
@@ -540,7 +536,7 @@ describe("homepage server adapter", () => {
   });
 
   it("never exposes restricted relationship nodes", () => {
-    const data = withBranchFields({ projects: {
+    const data = withBranchFields({ branchProjects: {
       eyebrow: null,
       heading: "Projects",
       description: null,
@@ -567,7 +563,7 @@ describe("homepage server adapter", () => {
   });
 
   it("exposes only public-display investments and consent-approved testimonials", () => {
-    const investor: GroupFields["investor"] = {
+    const investor: HomepageFields["investor"] = {
       eyebrow: null,
       heading: "Investor",
       description: null,
@@ -603,7 +599,7 @@ describe("homepage server adapter", () => {
         ],
       },
     };
-    const testimonials: GroupFields["testimonials"] = {
+    const testimonials: HomepageFields["testimonials"] = {
       eyebrow: null,
       heading: "Testimonials",
       description: null,

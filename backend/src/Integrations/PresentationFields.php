@@ -28,10 +28,6 @@ final class PresentationFields {
 	/**
 	 * Return the complete source-controlled presentation field definitions.
 	 *
-	 * Nested WPGraphQL-for-ACF type names are intentionally not declared here.
-	 * The live schema inventory must record the generated nested names before
-	 * frontend GraphQL Code Generator output is finalized.
-	 *
 	 * @return array<string,array<string,mixed>>
 	 */
 	public static function definitions(): array {
@@ -78,6 +74,7 @@ final class PresentationFields {
 					'Group Homepage',
 					'sira_group_homepage',
 					'groupHomepage',
+					'SiraGroupHomepage',
 					self::group_homepage_fields(),
 					array(
 						'conditional_logic' => array(
@@ -96,6 +93,7 @@ final class PresentationFields {
 					'Branch Homepage',
 					'sira_branch_homepage',
 					'branchHomepage',
+					'SiraBranchHomepage',
 					self::branch_homepage_fields(),
 					array(
 						'conditional_logic' => array(
@@ -141,11 +139,23 @@ final class PresentationFields {
 	 * `{repeater_name}_{row}_{sub_field_name}`). Two sub-fields anywhere in
 	 * this tree that share the same raw `name` silently overwrite each
 	 * other's stored value the moment both are populated — the GraphQL
-	 * field name (4th argument to each field helper below) is unaffected
-	 * and stays exactly what the frontend already expects; only the raw
-	 * storage name needs to be unique. Every helper below therefore takes
-	 * a $prefix/$key_suffix and folds it into the storage name, the same
-	 * way it already folds into the field KEY.
+	 * field name (the graphql_field_name argument to each field helper
+	 * below) is unaffected and stays exactly what the frontend already
+	 * expects; only the raw storage name needs to be unique. Every helper
+	 * below therefore takes a $prefix/$key_suffix and folds it into the
+	 * storage name, the same way it already folds into the field KEY.
+	 *
+	 * Separately: every nested `group`/`repeater` field below also takes an
+	 * explicit, globally-unique `graphql_type_name`. This is NOT optional
+	 * decoration — confirmed empirically on the live site, WPGraphQL for
+	 * ACF fails to resolve text/textarea/repeater sub-fields nested two or
+	 * more `group` levels deep (e.g. siraHomepage.groupHomepage.hero.
+	 * description) when the enclosing group is left to auto-generate its
+	 * GraphQL type name; every such query silently returned null for those
+	 * fields (radio/true_false fields at the same depth resolved fine,
+	 * which is what made this easy to miss). Every homepage section
+	 * rendered blank on the frontend as a direct result. Giving every
+	 * nested group/repeater its own named type fixes resolution.
 	 *
 	 * @return array<int,array<string,mixed>>
 	 */
@@ -156,6 +166,7 @@ final class PresentationFields {
 				'Hero',
 				'hero',
 				'hero',
+				'SiraGroupHeroSection',
 				array(
 					self::text(
 						'field_sira_group_hero_heading_before',
@@ -199,6 +210,7 @@ final class PresentationFields {
 						'Hero Slides',
 						'hero_slides',
 						'slides',
+						'SiraGroupHeroSlide',
 						self::group_hero_slide_fields(),
 						array(
 							'layout'       => 'block',
@@ -214,6 +226,7 @@ final class PresentationFields {
 				'Announcement Ticker',
 				'ticker',
 				'ticker',
+				'SiraGroupTickerSection',
 				array(
 					self::true_false(
 						'field_sira_group_ticker_enabled',
@@ -227,6 +240,7 @@ final class PresentationFields {
 						'Ticker Items',
 						'ticker_items',
 						'items',
+						'SiraGroupTickerItem',
 						array(
 							self::text(
 								'field_sira_group_ticker_item_label',
@@ -259,7 +273,8 @@ final class PresentationFields {
 			self::editorial_section(
 				'latest_updates',
 				'Latest Updates',
-				'latestUpdates'
+				'latestUpdates',
+				'SiraGroupLatestUpdatesSection'
 			),
 			self::relationship_section(
 				'companies',
@@ -267,13 +282,15 @@ final class PresentationFields {
 				'companies',
 				array( 'sira_company' ),
 				'selectedCompanies',
-				12
+				12,
+				'SiraGroupCompaniesSection'
 			),
 			self::group_field(
 				'field_sira_group_home_about',
 				'About & Metrics',
 				'about',
 				'about',
+				'SiraGroupAboutSection',
 				array_merge(
 					self::section_header_sub_fields( 'about' ),
 					array(
@@ -288,6 +305,7 @@ final class PresentationFields {
 							'Metrics',
 							'about_metrics',
 							'metrics',
+							'SiraGroupAboutMetric',
 							self::metric_fields( 'about_metric' ),
 							array(
 								'layout'       => 'table',
@@ -303,6 +321,7 @@ final class PresentationFields {
 				'Investor Section',
 				'investor',
 				'investor',
+				'SiraGroupInvestorSection',
 				array_merge(
 					self::section_header_sub_fields( 'investor' ),
 					array(
@@ -317,6 +336,7 @@ final class PresentationFields {
 							'Investor Metrics',
 							'investor_metrics',
 							'metrics',
+							'SiraGroupInvestorMetric',
 							self::metric_fields( 'investor_metric' ),
 							array(
 								'layout'       => 'table',
@@ -366,7 +386,8 @@ final class PresentationFields {
 				'services',
 				array( 'sira_service' ),
 				'selectedServices',
-				12
+				12,
+				'SiraGroupServicesSection'
 			),
 			self::relationship_section(
 				'projects',
@@ -374,12 +395,14 @@ final class PresentationFields {
 				'projects',
 				array( 'sira_project' ),
 				'selectedProjects',
-				12
+				12,
+				'SiraGroupProjectsSection'
 			),
 			self::editorial_section(
 				'insights',
 				'Insights & News',
-				'insights'
+				'insights',
+				'SiraGroupInsightsSection'
 			),
 			self::relationship_section(
 				'testimonials',
@@ -387,7 +410,8 @@ final class PresentationFields {
 				'testimonials',
 				array( 'sira_testimonial' ),
 				'selectedTestimonials',
-				8
+				8,
+				'SiraGroupTestimonialsSection'
 			),
 			self::relationship_section(
 				'partners',
@@ -395,11 +419,13 @@ final class PresentationFields {
 				'partners',
 				array( 'sira_partner' ),
 				'selectedPartners',
-				24
+				24,
+				'SiraGroupPartnersSection'
 			),
 			self::contact_section(
 				'group',
-				'Group Contact'
+				'Group Contact',
+				'SiraGroupContactSection'
 			),
 		);
 	}
@@ -500,6 +526,7 @@ final class PresentationFields {
 				'Hero',
 				'hero',
 				'hero',
+				'SiraBranchHeroSection',
 				array(
 					self::text(
 						'field_sira_branch_hero_eyebrow',
@@ -581,6 +608,7 @@ final class PresentationFields {
 				'Statistics',
 				'branch_statistics',
 				'statistics',
+				'SiraBranchStatistic',
 				self::metric_fields( 'branch_statistic' ),
 				array(
 					'layout'       => 'table',
@@ -593,6 +621,7 @@ final class PresentationFields {
 				'Overview',
 				'overview',
 				'overview',
+				'SiraBranchOverviewSection',
 				array_merge(
 					self::section_header_sub_fields( 'branch_overview' ),
 					array(
@@ -610,6 +639,7 @@ final class PresentationFields {
 				'Focus Areas',
 				'branch_focus_areas',
 				'focusAreas',
+				'SiraBranchFocusArea',
 				array(
 					self::text(
 						'field_sira_branch_focus_title',
@@ -641,22 +671,26 @@ final class PresentationFields {
 				'projects',
 				array( 'sira_project' ),
 				'selectedProjects',
-				12
+				12,
+				'SiraBranchProjectsSection'
 			),
 			self::editorial_section(
 				'branch_insights',
 				'Insights & News',
-				'insights'
+				'insights',
+				'SiraBranchInsightsSection'
 			),
 			self::contact_section(
 				'branch',
-				'Branch Contact'
+				'Branch Contact',
+				'SiraBranchContactSection'
 			),
 			self::group_field(
 				'field_sira_branch_footer',
 				'Footer',
 				'footer',
 				'footer',
+				'SiraBranchFooterSection',
 				array(
 					self::text(
 						'field_sira_branch_footer_tagline',
@@ -923,14 +957,17 @@ final class PresentationFields {
 
 	/**
 	 * $prefix must be globally unique across every call site in this file —
-	 * see the note on group_homepage_fields() above for why.
+	 * see the note on group_homepage_fields() above for why. $graphql_type_name
+	 * must be globally unique across the whole GraphQL schema — see the same
+	 * note for why it's required at all.
 	 *
 	 * @return array<string,mixed>
 	 */
 	private static function editorial_section(
 		string $key_suffix,
 		string $label,
-		string $graphql_field_name
+		string $graphql_field_name,
+		string $graphql_type_name
 	): array {
 		$prefix = 'group_' . $key_suffix;
 
@@ -939,6 +976,7 @@ final class PresentationFields {
 			$label,
 			$key_suffix,
 			$graphql_field_name,
+			$graphql_type_name,
 			array_merge(
 				self::section_header_sub_fields( $prefix ),
 				array(
@@ -1001,6 +1039,8 @@ final class PresentationFields {
 	/**
 	 * $key_suffix must be globally unique across every call site in this
 	 * file — see the note on group_homepage_fields() above for why.
+	 * $graphql_type_name must be globally unique across the whole GraphQL
+	 * schema — see the same note for why it's required at all.
 	 *
 	 * @param array<int,string> $post_types Post types.
 	 * @return array<string,mixed>
@@ -1011,13 +1051,15 @@ final class PresentationFields {
 		string $graphql_field_name,
 		array $post_types,
 		string $relationship_graphql_field,
-		int $maximum
+		int $maximum,
+		string $graphql_type_name
 	): array {
 		return self::group_field(
 			'field_sira_' . $key_suffix,
 			$label,
 			$key_suffix,
 			$graphql_field_name,
+			$graphql_type_name,
 			array_merge(
 				self::section_header_sub_fields( $key_suffix ),
 				array(
@@ -1036,19 +1078,23 @@ final class PresentationFields {
 
 	/**
 	 * $context must be globally unique across every call site in this file
-	 * — see the note on group_homepage_fields() above for why.
+	 * — see the note on group_homepage_fields() above for why. $graphql_type_name
+	 * must be globally unique across the whole GraphQL schema — see the same
+	 * note for why it's required at all.
 	 *
 	 * @return array<string,mixed>
 	 */
 	private static function contact_section(
 		string $context,
-		string $label
+		string $label,
+		string $graphql_type_name
 	): array {
 		return self::group_field(
 			'field_sira_' . $context . '_contact',
 			$label,
 			'contact',
 			'contact',
+			$graphql_type_name,
 			array(
 				self::text(
 					'field_sira_' . $context . '_contact_eyebrow',
@@ -1182,6 +1228,7 @@ final class PresentationFields {
 		string $label,
 		string $name,
 		string $graphql_field_name,
+		string $graphql_type_name,
 		array $sub_fields,
 		array $extra = array()
 	): array {
@@ -1194,6 +1241,7 @@ final class PresentationFields {
 				'layout'               => 'block',
 				'show_in_graphql'      => true,
 				'graphql_field_name'   => $graphql_field_name,
+				'graphql_type_name'    => $graphql_type_name,
 				'sub_fields'           => $sub_fields,
 			),
 			$extra
@@ -1210,6 +1258,7 @@ final class PresentationFields {
 		string $label,
 		string $name,
 		string $graphql_field_name,
+		string $graphql_type_name,
 		array $sub_fields,
 		array $extra = array()
 	): array {
@@ -1223,6 +1272,7 @@ final class PresentationFields {
 				'button_label'         => 'Add row',
 				'show_in_graphql'      => true,
 				'graphql_field_name'   => $graphql_field_name,
+				'graphql_type_name'    => $graphql_type_name,
 				'sub_fields'           => $sub_fields,
 			),
 			$extra

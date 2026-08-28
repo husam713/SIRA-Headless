@@ -11,6 +11,7 @@ import { GroupInvestor } from "@/components/homepage/group-investor";
 import { GroupLatestUpdates } from "@/components/homepage/group-latest-updates";
 import { GroupPartners } from "@/components/homepage/group-partners";
 import { GroupProjects } from "@/components/homepage/group-projects";
+import { GroupServices } from "@/components/homepage/group-services";
 import { GroupTestimonials } from "@/components/homepage/group-testimonials";
 import { GroupTicker } from "@/components/homepage/group-ticker";
 import { getBrand } from "@/lib/brand";
@@ -56,6 +57,7 @@ export default async function SiteHomePage({
         <GroupCompanies section={homepage.homepage.companies} />
         <GroupAbout section={homepage.homepage.about} />
         <GroupInvestor section={homepage.homepage.investor} />
+        <GroupServices section={homepage.homepage.services} />
         <GroupProjects section={homepage.homepage.projects} />
         <GroupInsights section={homepage.homepage.insights} />
         <GroupTestimonials section={homepage.homepage.testimonials} />

@@ -1,4 +1,7 @@
 import { notFound } from "next/navigation";
+import { BranchHero } from "@/components/homepage/branch-hero";
+import { BranchOverview } from "@/components/homepage/branch-overview";
+import { BranchStats } from "@/components/homepage/branch-stats";
 import { GroupAbout } from "@/components/homepage/group-about";
 import { GroupCompanies } from "@/components/homepage/group-companies";
 import { GroupContact } from "@/components/homepage/group-contact";
@@ -59,6 +62,34 @@ export default async function SiteHomePage({
         <GroupPartners section={homepage.homepage.partners} />
         <GroupContact
           section={homepage.homepage.contact}
+          email={brand.email}
+          address={brand.address}
+        />
+      </>
+    );
+  }
+
+  if (homepage.status === "ready" && homepage.homepage.variant === "branch") {
+    const { homepage: branch } = homepage;
+
+    return (
+      <>
+        {/*
+          Hidden, not decorative: carries the resolved WordPress page title so
+          published-vs-draft data selection stays independently verifiable in
+          rendered output (see scripts/preview-runtime-check.mjs), without
+          duplicating the hero's own <h1> for screen-reader users.
+        */}
+        <span className="sr-only" data-sira-homepage-title>
+          {branch.title}
+        </span>
+        <BranchHero hero={branch.hero} />
+        <BranchStats statistics={branch.statistics} />
+        <BranchOverview overview={branch.overview} focusAreas={branch.focusAreas} />
+        <GroupProjects section={branch.projects} />
+        <GroupInsights section={branch.insights} />
+        <GroupContact
+          section={branch.contact}
           email={brand.email}
           address={brand.address}
         />

@@ -1,39 +1,39 @@
 {
-  "canonicalSha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+  "canonicalSha256": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c",
   "canonicalSite": "consulting",
-  "fetchedAt": "2026-08-09T06:01:26.643Z",
+  "fetchedAt": "2026-08-28T05:00:53.981Z",
   "groupAuditSite": "group",
-  "groupSha256": "9469ebc4fbea5e55982661ca58e31de5b592fc8a9e6f0a31efd9bf000bf49971",
+  "groupSha256": "7cf2a36102b239a45f0dc7b893d4a1b6a5f3de5a03d1d1675d4d50b09e0bad5f",
   "policy": "four-branch-exact-group-structural-superset",
   "sites": [
     {
       "hostname": "siratrgroup.com",
       "role": "group-audit",
-      "sha256": "9469ebc4fbea5e55982661ca58e31de5b592fc8a9e6f0a31efd9bf000bf49971",
+      "sha256": "7cf2a36102b239a45f0dc7b893d4a1b6a5f3de5a03d1d1675d4d50b09e0bad5f",
       "siteKey": "group"
     },
     {
       "hostname": "consulting.siratrgroup.com",
       "role": "canonical-branch",
-      "sha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "sha256": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c",
       "siteKey": "consulting"
     },
     {
       "hostname": "healthcare.siratrgroup.com",
       "role": "branch",
-      "sha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "sha256": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c",
       "siteKey": "healthcare"
     },
     {
       "hostname": "lifestyle.siratrgroup.com",
       "role": "branch",
-      "sha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "sha256": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c",
       "siteKey": "lifestyle"
     },
     {
       "hostname": "realestate.siratrgroup.com",
       "role": "branch",
-      "sha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+      "sha256": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c",
       "siteKey": "realestate"
     }
   ],

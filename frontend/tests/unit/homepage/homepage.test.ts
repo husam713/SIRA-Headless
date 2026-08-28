@@ -5,16 +5,20 @@ import type { SiraHomepageQueryData } from "@/queries/homepage";
 import type { BranchSiteKey } from "@/lib/homepage/types";
 
 type HomepagePage = NonNullable<SiraHomepageQueryData["page"]>;
-type HomepageFields = NonNullable<HomepagePage["siraHomepage"]>;
 
-// Every section lives directly on `siraHomepage` (no `groupHomepage`/
-// `branchHomepage` wrapper) — see the note on PresentationFields.php's
-// group_homepage_fields() and normalize-homepage.ts for why: WPGraphQL for
-// ACF silently failed to resolve text/textarea/repeater/relationship fields
-// three `group` levels deep, so that wrapper was removed. `hero`, `projects`,
-// `insights`, and `contact` are the only names both variants used, so those
-// four are now prefixed (groupHero/branchHero, etc.) to stay unique as
-// siblings; every other section name is unchanged.
+// Every section is its OWN standalone top-level field group, so it lives
+// directly on `page` — not nested under `siraHomepage` (which now holds
+// only `variant`), and not under a `groupHomepage`/`branchHomepage` wrapper
+// either. See the note on PresentationFields.php's
+// group_homepage_section_groups() and normalize-homepage.ts for why:
+// WPGraphQL for ACF cannot resolve text/textarea/link/wysiwyg/relationship
+// fields that live inside a `group`-type field nested inside another field
+// group's own `fields` array. `hero`, `projects`, `insights`, and `contact`
+// are the only names both variants used, so those four are prefixed
+// (groupHero/branchHero, etc.) to stay unique as siblings; every other
+// section name is unchanged. `statistics`/`focusAreas` are each their own
+// field group wrapping a same-named repeater (a naming quirk explained in
+// normalize-homepage.ts), hence the extra nesting level on those two below.
 function emptyBranchFields() {
   return {
     branchHero: null,
@@ -51,23 +55,21 @@ function createBranchHomepage(title = "Consulting"): SiraHomepageQueryData {
       databaseId: 42,
       uri: "/",
       title,
-      siraHomepage: {
-        variant: "branch",
-        ...emptyGroupFields(),
-        ...emptyBranchFields(),
-        branchHero: {
-          eyebrow: "  Consulting  ",
-          headingBefore: "Strategy for",
-          headingHighlight: "new markets",
-          headingAfter: null,
-          description: "  Deliberate   growth. ",
-          region: "Riyadh",
-          imageAlt: null,
-          image: null,
-          mobileImage: null,
-          primaryCta: null,
-          secondaryCta: null,
-        },
+      siraHomepage: { variant: "branch" },
+      ...emptyGroupFields(),
+      ...emptyBranchFields(),
+      branchHero: {
+        eyebrow: "  Consulting  ",
+        headingBefore: "Strategy for",
+        headingHighlight: "new markets",
+        headingAfter: null,
+        description: "  Deliberate   growth. ",
+        region: "Riyadh",
+        imageAlt: null,
+        image: null,
+        mobileImage: null,
+        primaryCta: null,
+        secondaryCta: null,
       },
     },
   };
@@ -79,45 +81,35 @@ function createGroupHomepage(): SiraHomepageQueryData {
       databaseId: 7,
       uri: "/",
       title: "SIRA Group",
-      siraHomepage: {
-        variant: "group",
-        ...emptyGroupFields(),
-        ...emptyBranchFields(),
-        groupHero: {
-          headingBefore: "Shaping a",
-          headingHighlight: "smarter",
-          headingAfter: "future",
-          description: "Long-term enterprise value.",
-          primaryCta: null,
-          secondaryCta: null,
-          slides: null,
-        },
+      siraHomepage: { variant: "group" },
+      ...emptyGroupFields(),
+      ...emptyBranchFields(),
+      groupHero: {
+        headingBefore: "Shaping a",
+        headingHighlight: "smarter",
+        headingAfter: "future",
+        description: "Long-term enterprise value.",
+        primaryCta: null,
+        secondaryCta: null,
+        slides: null,
       },
     },
   };
 }
 
-function withBranchFields(overrides: Partial<HomepageFields>): SiraHomepageQueryData {
+function withBranchFields(overrides: Partial<HomepagePage>): SiraHomepageQueryData {
   const data = createBranchHomepage();
   const page = data.page as HomepagePage;
-  const fields = page.siraHomepage as HomepageFields;
   return {
-    page: {
-      ...page,
-      siraHomepage: { ...fields, ...overrides },
-    },
+    page: { ...page, ...overrides },
   };
 }
 
-function withGroupFields(overrides: Partial<HomepageFields>): SiraHomepageQueryData {
+function withGroupFields(overrides: Partial<HomepagePage>): SiraHomepageQueryData {
   const data = createGroupHomepage();
   const page = data.page as HomepagePage;
-  const fields = page.siraHomepage as HomepageFields;
   return {
-    page: {
-      ...page,
-      siraHomepage: { ...fields, ...overrides },
-    },
+    page: { ...page, ...overrides },
   };
 }
 
@@ -360,9 +352,9 @@ function createCompleteBranchHomepage(): SiraHomepageQueryData {
       primaryCta: { title: "Projects", url: "/projects/", target: null },
       secondaryCta: null,
     },
-    statistics: [{ value: "12", label: "Facilities", supportingText: null }],
+    statistics: { statistics: [{ value: "12", label: "Facilities", supportingText: null }] },
     overview: { eyebrow: "Overview", heading: "Our focus", description: null, body: "<p>Overview</p>", link: null },
-    focusAreas: [{ title: "Delivery", description: "Integrated care" }],
+    focusAreas: { focusAreas: [{ title: "Delivery", description: "Integrated care" }] },
     branchProjects: {
       eyebrow: "Projects",
       heading: "Selected work",
@@ -563,7 +555,7 @@ describe("homepage server adapter", () => {
   });
 
   it("exposes only public-display investments and consent-approved testimonials", () => {
-    const investor: HomepageFields["investor"] = {
+    const investor: HomepagePage["investor"] = {
       eyebrow: null,
       heading: "Investor",
       description: null,
@@ -599,7 +591,7 @@ describe("homepage server adapter", () => {
         ],
       },
     };
-    const testimonials: HomepageFields["testimonials"] = {
+    const testimonials: HomepagePage["testimonials"] = {
       eyebrow: null,
       heading: "Testimonials",
       description: null,

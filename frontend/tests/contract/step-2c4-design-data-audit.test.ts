@@ -315,16 +315,20 @@ describe("Step 2C.4 production design and data-contract audit", () => {
 
   it("maps the current canonical live types instead of proposing duplicates", () => {
     const expectedFields = {
-      // Flat by design, not nested under groupHomepage/branchHomepage
-      // wrapper types (those no longer exist) — see the note on
-      // PresentationFields.php's group_homepage_fields() for why: WPGraphQL
-      // for ACF silently failed to resolve several field types three
-      // `group` levels deep, so every section is now a direct sibling of
-      // `variant`. `hero`, `projects`, `insights`, and `contact` are the
-      // only names both variants used, so those four are prefixed
-      // (groupHero/branchHero, etc.) to stay unique as siblings.
-      SiraHomepage: [
-        "variant",
+      // `SiraHomepage` now holds only `variant` — every section is its own
+      // standalone top-level field group directly on `Page` instead, not
+      // nested under `SiraHomepage` or a groupHomepage/branchHomepage
+      // wrapper (neither exists any more). See the note on
+      // PresentationFields.php's group_homepage_section_groups() for why:
+      // WPGraphQL for ACF cannot resolve text/textarea/link/wysiwyg/
+      // relationship fields that live inside a `group`-type field nested
+      // inside another field group's own `fields` array — only a field
+      // group's own direct top-level fields resolve correctly. `hero`,
+      // `projects`, `insights`, and `contact` are the only names both
+      // variants used, so those four are prefixed (groupHero/branchHero,
+      // etc.) to stay unique as siblings on `Page`.
+      SiraHomepage: [ "variant" ],
+      Page: [
         "groupHero",
         "ticker",
         "latestUpdates",

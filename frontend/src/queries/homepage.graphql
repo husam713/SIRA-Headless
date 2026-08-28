@@ -46,6 +46,10 @@ fragment HomepageCompanyNode on SiraCompany {
     externalWebsiteUrl
     cardImageOverride { node { ...HomepageMedia } }
   }
+  businessUnit: siraBusinessUnits(first: 1) {
+    nodes { ... on SiraBusinessUnit { databaseId name slug } }
+    pageInfo { hasNextPage }
+  }
 }
 
 fragment HomepageEditorialNode on ContentNode {

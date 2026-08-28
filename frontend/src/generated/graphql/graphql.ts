@@ -120,7 +120,7 @@ export type HomepageFeaturedImageFragment = { readonly node: { readonly database
 
 export type HomepageProjectNodeFragment = { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null };
 
-export type HomepageCompanyNodeFragment = { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly companyDetails: { readonly shortDescriptor: string | null, readonly operatingStatus: string | null, readonly externalWebsiteUrl: string | null, readonly cardImageOverride: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null } | null };
+export type HomepageCompanyNodeFragment = { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly companyDetails: { readonly shortDescriptor: string | null, readonly operatingStatus: string | null, readonly externalWebsiteUrl: string | null, readonly cardImageOverride: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null };
 
 type HomepageEditorialNode_MediaItem_Fragment = { readonly __typename: 'MediaItem' };
 
@@ -334,7 +334,7 @@ export type SiraHomepageQuery = { readonly page: { readonly databaseId: number, 
             | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null }
             | Record<PropertyKey, never>
           >, readonly pageInfo: { readonly hasNextPage: boolean } } | null, readonly relatedCompany: { readonly nodes: ReadonlyArray<
-            | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly companyDetails: { readonly shortDescriptor: string | null, readonly operatingStatus: string | null, readonly externalWebsiteUrl: string | null, readonly cardImageOverride: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null } | null }
+            | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly companyDetails: { readonly shortDescriptor: string | null, readonly operatingStatus: string | null, readonly externalWebsiteUrl: string | null, readonly cardImageOverride: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null }
             | Record<PropertyKey, never>
           >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null> | null } | null, readonly ticker: { readonly enabled: boolean | null, readonly items: ReadonlyArray<{ readonly label: string | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<
             | { readonly databaseId: number, readonly name: string | null, readonly slug: string | null }
@@ -372,7 +372,7 @@ export type SiraHomepageQuery = { readonly page: { readonly databaseId: number, 
           | { readonly __typename: 'SiraTestimonial' }
           | { readonly __typename: 'SiraWhitepaper' }
         >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null, readonly companies: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly selectedCompanies: { readonly nodes: ReadonlyArray<
-          | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly companyDetails: { readonly shortDescriptor: string | null, readonly operatingStatus: string | null, readonly externalWebsiteUrl: string | null, readonly cardImageOverride: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null } | null }
+          | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly companyDetails: { readonly shortDescriptor: string | null, readonly operatingStatus: string | null, readonly externalWebsiteUrl: string | null, readonly cardImageOverride: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null }
           | Record<PropertyKey, never>
         >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null, readonly about: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly body: string | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly metrics: ReadonlyArray<{ readonly value: string | null, readonly label: string | null, readonly supportingText: string | null } | null> | null } | null, readonly investor: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly body: string | null, readonly formHeading: string | null, readonly formDescription: string | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly metrics: ReadonlyArray<{ readonly value: string | null, readonly label: string | null, readonly supportingText: string | null } | null> | null, readonly selectedInvestments: { readonly nodes: ReadonlyArray<
           | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly investmentDetails: { readonly publicDisplay: boolean | null, readonly ticketSizeLabel: string | null } | null }
@@ -648,6 +648,18 @@ export const HomepageCompanyNodeFragmentDoc = new TypedDocumentString(`
       node {
         ...HomepageMedia
       }
+    }
+  }
+  businessUnit: siraBusinessUnits(first: 1) {
+    nodes {
+      ... on SiraBusinessUnit {
+        databaseId
+        name
+        slug
+      }
+    }
+    pageInfo {
+      hasNextPage
     }
   }
 }
@@ -1591,6 +1603,18 @@ fragment HomepageCompanyNode on SiraCompany {
       node {
         ...HomepageMedia
       }
+    }
+  }
+  businessUnit: siraBusinessUnits(first: 1) {
+    nodes {
+      ... on SiraBusinessUnit {
+        databaseId
+        name
+        slug
+      }
+    }
+    pageInfo {
+      hasNextPage
     }
   }
 }

@@ -226,6 +226,10 @@ function createCompleteGroupHomepage(): SiraHomepageQueryData {
             externalWebsiteUrl: "https://company.example.test/",
             cardImageOverride: createMedia(602),
           },
+          businessUnit: {
+            nodes: [{ databaseId: 5, name: "Real Estate", slug: "real-estate" }],
+            pageInfo: { hasNextPage: false },
+          },
         }],
       },
     },

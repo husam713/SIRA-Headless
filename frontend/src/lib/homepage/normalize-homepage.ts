@@ -284,6 +284,7 @@ function normalizeItem(
     relationshipLabel: normalizePlainText(details?.["relationshipLabel"], 240),
     publicationDate: normalizeDate(details?.["publicationDate"]),
     version: normalizePlainText(details?.["version"], 120),
+    businessUnit: normalizeBusinessUnits(value["businessUnit"]),
   });
 }
 

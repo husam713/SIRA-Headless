@@ -211,6 +211,7 @@ export function GroupInvestor({ section }: GroupInvestorProps) {
 
   return (
     <section
+      id="investors"
       aria-labelledby={hasHeading ? "investor-heading" : undefined}
       aria-label={hasHeading ? undefined : (section.eyebrow ?? "Investor Relations")}
       className="bg-brand-deep py-20 text-brand-paper sm:py-28 lg:py-36"

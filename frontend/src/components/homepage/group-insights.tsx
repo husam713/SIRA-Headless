@@ -64,6 +64,7 @@ export function GroupInsights({ section }: GroupInsightsProps) {
 
   return (
     <section
+      id="insights"
       aria-labelledby="insights-heading"
       className="border-b border-brand-border py-20 sm:py-28 lg:py-36"
     >

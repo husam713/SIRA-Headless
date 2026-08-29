@@ -95,6 +95,7 @@ export function GroupCompanies({ section }: GroupCompaniesProps) {
 
   return (
     <section
+      id="companies"
       aria-labelledby="companies-heading"
       className="bg-brand-deep py-20 text-brand-paper sm:py-28 lg:py-36"
     >

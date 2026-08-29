@@ -51,6 +51,7 @@ export function BranchOverview({ overview, focusAreas }: BranchOverviewProps) {
 
   return (
     <section
+      id="overview"
       aria-labelledby={hasHeading ? "overview-heading" : undefined}
       aria-label={hasHeading ? undefined : (overview?.eyebrow ?? "Overview")}
       className="py-20 sm:py-28 lg:py-36"

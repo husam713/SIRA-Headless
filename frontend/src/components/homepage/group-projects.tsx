@@ -74,6 +74,7 @@ export function GroupProjects({ section }: GroupProjectsProps) {
 
   return (
     <section
+      id="projects"
       aria-labelledby="projects-heading"
       className="border-b border-brand-border bg-brand-tint py-20 sm:py-28 lg:py-36"
     >

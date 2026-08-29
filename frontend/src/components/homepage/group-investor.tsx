@@ -1,3 +1,5 @@
+import { getBrandPreset } from "@/lib/brand";
+import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
   HomepageContentItem,
@@ -38,22 +40,33 @@ function TractionMetric({ metric }: TractionMetricProps) {
 
 interface InvestmentCardProps {
   readonly item: HomepageContentItem;
+  readonly accentColor: string;
+  readonly sectorLabel: string | null;
 }
 
-function InvestmentCard({ item }: InvestmentCardProps) {
+function InvestmentCard({ item, accentColor, sectorLabel }: InvestmentCardProps) {
   // Plain <div>, not a link: item.href is the investment content node's own
   // uri, but this app has no investment detail route yet — only the
   // homepage is implemented under (sites)/[siteKey]. Restore as a link
   // once a detail route exists.
   //
-  // The design colors each opportunity card's top border/sector label by
-  // its related company's business unit. That relationship isn't in the
-  // GraphQL contract for investments yet (only for companies/hero slides/
-  // ticker items so far), so this uses the single approved group accent
-  // uniformly rather than fabricate a per-business-unit color with no data
-  // behind it — a real follow-up, not a design choice.
+  // The design also shows a colored RAISING/OPERATIONAL/EARLY stage badge
+  // per card — that's a genuinely separate content-modeling gap (no field
+  // for it exists on SiraInvestment at all yet, only ticketSizeLabel), so
+  // it isn't rendered rather than inventing a value with no data behind it.
   return (
-    <div className="flex flex-col gap-4 border border-brand-deep-border border-t-[3px] border-t-brand-accent bg-brand-deep-card p-8">
+    <div
+      className="flex flex-col gap-4 border border-brand-deep-border bg-brand-deep-card p-8"
+      style={{ borderTopWidth: "3px", borderTopColor: accentColor }}
+    >
+      {sectorLabel !== null ? (
+        <p
+          className="text-[11px] font-bold uppercase tracking-[0.1em]"
+          style={{ color: accentColor }}
+        >
+          {sectorLabel}
+        </p>
+      ) : null}
       <h4 className="font-display text-2xl font-normal leading-tight text-brand-paper">
         {item.title}
       </h4>
@@ -176,6 +189,12 @@ function InvestorPackShell({
 export function GroupInvestor({ section }: GroupInvestorProps) {
   if (section === null) return null;
 
+  const groupPreset = getBrandPreset("group");
+  const fallbackAccent = Object.freeze({
+    label: groupPreset.name,
+    color: groupPreset.identity.accent,
+  });
+
   const hasHeading = section.heading !== null;
   const hasCopy = section.description !== null;
   const hasMetrics = section.metrics.length > 0;
@@ -233,9 +252,27 @@ export function GroupInvestor({ section }: GroupInvestorProps) {
 
         {hasInvestments ? (
           <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {section.investments.items.map((item) => (
-              <InvestmentCard key={item.databaseId} item={item} />
-            ))}
+            {section.investments.items.map((item) => {
+              const accent = resolveBusinessUnitAccent(item.businessUnit, fallbackAccent);
+              // The raw business-unit name ("Real Estate"), not the resolved
+              // preset's full brand name ("SIRA Real Estate") — matches the
+              // design's short sector label. Null (not the Group fallback
+              // label) when the investment has no related company/business
+              // unit, since "SIRA GROUP" isn't a sector.
+              const sectorLabel =
+                item.businessUnit.status === "ready"
+                  ? (item.businessUnit.items[0]?.name ?? null)
+                  : null;
+
+              return (
+                <InvestmentCard
+                  key={item.databaseId}
+                  item={item}
+                  accentColor={accent.color}
+                  sectorLabel={sectorLabel}
+                />
+              );
+            })}
           </div>
         ) : null}
 

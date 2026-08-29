@@ -262,6 +262,20 @@ function normalizeItem(
       })
     : featuredImage;
 
+  // Investments carry no business-unit relation of their own — it's read
+  // through investmentDetails.relatedCompany's own businessUnit instead
+  // (see HomepageInvestmentNode in homepage.graphql), unlike companies/hero
+  // slides/ticker items, which expose `businessUnit` directly on the node.
+  const investmentRelatedCompany = isRecord(details?.["relatedCompany"])
+    ? details["relatedCompany"]
+    : null;
+  const investmentCompanyNodes = Array.isArray(investmentRelatedCompany?.["nodes"])
+    ? investmentRelatedCompany["nodes"]
+    : [];
+  const investmentBusinessUnit = isRecord(investmentCompanyNodes[0])
+    ? investmentCompanyNodes[0]["businessUnit"]
+    : null;
+
   return Object.freeze({
     kind: contract.kind,
     databaseId,
@@ -284,7 +298,9 @@ function normalizeItem(
     relationshipLabel: normalizePlainText(details?.["relationshipLabel"], 240),
     publicationDate: normalizeDate(details?.["publicationDate"]),
     version: normalizePlainText(details?.["version"], 120),
-    businessUnit: normalizeBusinessUnits(value["businessUnit"]),
+    businessUnit: normalizeBusinessUnits(
+      contract.kind === "investment" ? investmentBusinessUnit : value["businessUnit"],
+    ),
   });
 }
 

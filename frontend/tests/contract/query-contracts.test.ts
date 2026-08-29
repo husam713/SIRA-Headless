@@ -222,7 +222,7 @@ describe("approved SIRA GraphQL operation contracts", () => {
       }),
     );
 
-    expect(relationshipBounds).toHaveLength(15);
+    expect(relationshipBounds).toHaveLength(16);
     expect([...new Set(relationshipBounds)].sort((left, right) => left - right)).toEqual([
       1,
       6,

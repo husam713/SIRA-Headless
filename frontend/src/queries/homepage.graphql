@@ -75,7 +75,21 @@ fragment HomepageEditorialNode on ContentNode {
 fragment HomepageInvestmentNode on SiraInvestment {
   databaseId contentTypeName title uri excerpt isRestricted
   featuredImage { ...HomepageFeaturedImage }
-  investmentDetails { publicDisplay ticketSizeLabel }
+  investmentDetails {
+    publicDisplay
+    ticketSizeLabel
+    relatedCompany(first: 1) {
+      nodes {
+        ... on SiraCompany {
+          businessUnit: siraBusinessUnits(first: 1) {
+            nodes { ... on SiraBusinessUnit { databaseId name slug } }
+            pageInfo { hasNextPage }
+          }
+        }
+      }
+      pageInfo { hasNextPage }
+    }
+  }
 }
 
 fragment HomepageServiceNode on SiraService {

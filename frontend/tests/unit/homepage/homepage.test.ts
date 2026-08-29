@@ -260,7 +260,19 @@ function createCompleteGroupHomepage(): SiraHomepageQueryData {
           excerpt: null,
           isRestricted: false,
           featuredImage: null,
-          investmentDetails: { publicDisplay: true, ticketSizeLabel: "Growth" },
+          investmentDetails: {
+            publicDisplay: true,
+            ticketSizeLabel: "Growth",
+            relatedCompany: {
+              nodes: [{
+                businessUnit: {
+                  nodes: [{ databaseId: 5, name: "Healthcare", slug: "healthcare" }],
+                  pageInfo: { hasNextPage: false },
+                },
+              }],
+              pageInfo: { hasNextPage: false },
+            },
+          },
         }],
       },
       onePagerDocument: emptyConnection,
@@ -580,7 +592,11 @@ describe("homepage server adapter", () => {
             excerpt: null,
             isRestricted: false,
             featuredImage: null,
-            investmentDetails: { publicDisplay: false, ticketSizeLabel: null },
+            investmentDetails: {
+              publicDisplay: false,
+              ticketSizeLabel: null,
+              relatedCompany: { nodes: [], pageInfo: { hasNextPage: false } },
+            },
           },
           {
             databaseId: 2,
@@ -590,7 +606,11 @@ describe("homepage server adapter", () => {
             excerpt: null,
             isRestricted: false,
             featuredImage: null,
-            investmentDetails: { publicDisplay: true, ticketSizeLabel: "Growth" },
+            investmentDetails: {
+              publicDisplay: true,
+              ticketSizeLabel: "Growth",
+              relatedCompany: { nodes: [], pageInfo: { hasNextPage: false } },
+            },
           },
         ],
       },

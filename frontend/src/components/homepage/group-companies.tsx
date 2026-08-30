@@ -1,6 +1,9 @@
 import { getBrandPreset } from "@/lib/brand";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
+import { CardRail } from "@/components/layout/card-rail";
 import { CtaLink } from "@/components/homepage/cta-link";
+import { GridItem, PageGrid } from "@/components/layout/page-grid";
+import { Section } from "@/components/layout/section";
 import type {
   HomepageContentItem,
   HomepageContentSection,
@@ -12,6 +15,17 @@ import type {
 // company's own business unit (real estate/healthcare/lifestyle/consulting),
 // borrowing that branch's already-approved accent (see
 // business-unit-accent.ts) rather than inventing new colors.
+//
+// Step 4 Phase 2 pilot: this section is the first consumer of the shared
+// layout primitives. It previously hand-rolled `max-w-[82.5rem] px-6 lg:px-8`
+// and its own `lg:grid-cols-12` track, so it aligned to nothing else on the
+// page.
+
+// Media, heading, and body are three top-level elements rather than a media
+// block plus one padded wrapper, because CardRail aligns cards through
+// `grid-template-rows: subgrid` and can only align parts it can see. The
+// previous `flex-1` on the body only ever aligned the cards' bottom edges.
+const CARD_ROWS = 3;
 
 interface GroupCompaniesProps {
   readonly section: HomepageContentSection | null;
@@ -31,8 +45,11 @@ function CompanyCard({ item, index, accentColor }: CompanyCardProps) {
     // uri, but this app has no company detail route yet — only the
     // homepage is implemented under (sites)/[siteKey]. Restore as a link
     // once a detail route exists.
+    //
+    // No flex/grid class here: CardRail's stylesheet makes each child a
+    // subgrid, with a flex-column fallback where subgrid is unsupported.
     <div
-      className="flex flex-col overflow-hidden border border-brand-deep-border bg-brand-deep-card"
+      className="overflow-hidden border border-brand-deep-border bg-brand-deep-card"
       style={{ borderTopWidth: "3px", borderTopColor: accentColor }}
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-brand-deep">
@@ -55,7 +72,9 @@ function CompanyCard({ item, index, accentColor }: CompanyCardProps) {
         {item.status !== null ? (
           <span
             aria-hidden="true"
-            className="absolute left-5 top-5 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.08em]"
+            // Logical inset: `left-5` pinned this to the visual left, so it sat
+            // on the wrong corner of the card under Arabic RTL.
+            className="absolute start-5 top-5 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.08em]"
             style={{ backgroundColor: accentColor, color: "var(--brand-deep)" }}
           >
             {item.status}
@@ -63,23 +82,26 @@ function CompanyCard({ item, index, accentColor }: CompanyCardProps) {
         ) : null}
         <span
           aria-hidden="true"
-          className="absolute bottom-5 left-7 font-display text-sm tracking-[0.18em]"
+          className="absolute bottom-5 start-7 font-display text-sm tracking-[0.18em]"
           style={{ color: accentColor }}
         >
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-8">
-        <h3 className="text-balance font-display text-2xl font-normal leading-tight text-brand-paper">
-          {item.title}
-        </h3>
-        {copy !== null ? (
-          <p className="flex-1 text-sm leading-relaxed text-brand-paper/70">
-            {copy}
-          </p>
-        ) : null}
-      </div>
+      <h3 className="text-balance px-8 pt-8 font-display text-2xl font-normal leading-tight text-brand-paper">
+        {item.title}
+      </h3>
+
+      {copy === null ? (
+        // Placeholder keeps the row count stable; omitting it would shift every
+        // later part of this card up a subgrid row and break the alignment.
+        <div className="pb-8" />
+      ) : (
+        <p className="px-8 pb-8 pt-3 text-sm leading-relaxed text-brand-paper/70">
+          {copy}
+        </p>
+      )}
     </div>
   );
 }
@@ -94,54 +116,53 @@ export function GroupCompanies({ section }: GroupCompaniesProps) {
   });
 
   return (
-    <section
-      id="companies"
-      aria-labelledby="companies-heading"
-      className="bg-brand-deep py-20 text-brand-paper sm:py-28 lg:py-36"
-    >
-      <div className="mx-auto w-full max-w-[82.5rem] px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-5">
-            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent-bright">
-              {section.eyebrow ?? "Our Companies"}
-            </p>
-            {section.heading !== null ? (
-              <h2
-                id="companies-heading"
-                className="mt-4 text-balance font-display text-[clamp(2.25rem,5vw,4rem)] font-normal leading-[1.05]"
-              >
-                {section.heading}
-              </h2>
-            ) : null}
-          </div>
-
-          {section.description !== null || section.link !== null ? (
-            <div className="lg:col-span-5 lg:col-start-8">
-              {section.description !== null ? (
-                <p className="text-base leading-relaxed text-brand-paper/70">
-                  {section.description}
-                </p>
-              ) : null}
-              {section.link !== null ? (
-                <div className="mt-4">
-                  <CtaLink link={section.link} variant="ghost-dark" />
-                </div>
-              ) : null}
-            </div>
+    <Section id="companies" tone="deep" labelledBy="companies-heading">
+      <PageGrid className="gap-y-8 lg:items-end">
+        <GridItem span={5}>
+          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent-bright">
+            {section.eyebrow ?? "Our Companies"}
+          </p>
+          {section.heading !== null ? (
+            <h2
+              id="companies-heading"
+              className="mt-4 text-balance font-display text-[clamp(2.25rem,5vw,4rem)] font-normal leading-[1.05]"
+            >
+              {section.heading}
+            </h2>
           ) : null}
-        </div>
+        </GridItem>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:mt-24 sm:grid-cols-2">
-          {section.selection.items.map((item, index) => (
-            <CompanyCard
-              key={item.databaseId}
-              item={item}
-              index={index}
-              accentColor={resolveBusinessUnitAccent(item.businessUnit, fallbackAccent).color}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+        {section.description !== null || section.link !== null ? (
+          // Columns 8-12: the deliberate gap after the heading block is the
+          // section's asymmetry, and it now measures against the same master
+          // grid every other section uses.
+          <GridItem span={5} start={8}>
+            {section.description !== null ? (
+              <p className="text-base leading-relaxed text-brand-paper/70">
+                {section.description}
+              </p>
+            ) : null}
+            {section.link !== null ? (
+              <div className="mt-4">
+                <CtaLink link={section.link} variant="ghost-dark" />
+              </div>
+            ) : null}
+          </GridItem>
+        ) : null}
+
+        <GridItem className="mt-8 sm:mt-16">
+          <CardRail max={2} rows={CARD_ROWS}>
+            {section.selection.items.map((item, index) => (
+              <CompanyCard
+                key={item.databaseId}
+                item={item}
+                index={index}
+                accentColor={resolveBusinessUnitAccent(item.businessUnit, fallbackAccent).color}
+              />
+            ))}
+          </CardRail>
+        </GridItem>
+      </PageGrid>
+    </Section>
   );
 }

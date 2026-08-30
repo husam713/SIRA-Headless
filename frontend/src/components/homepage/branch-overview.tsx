@@ -1,4 +1,7 @@
 import { CtaLink } from "@/components/homepage/cta-link";
+import { GridItem, PageGrid } from "@/components/layout/page-grid";
+import { Prose } from "@/components/layout/prose";
+import { Section } from "@/components/layout/section";
 import type {
   HomepageFocusArea,
   HomepageRichTextSection,
@@ -11,6 +14,16 @@ import type {
 // the branch's own accent color. `body` (rich text) isn't rendered here yet:
 // no branch page in the design reference shows it as separate copy beyond
 // `description`, and no WYSIWYG-safe rendering path exists yet for it.
+//
+// Step 4 Phase 2 pilot (branch side). The point of this one is that a branch
+// section needs no branch-specific layout code: it uses the same master grid
+// and the same tokens as the Group sections, and varies only through the
+// brand accent already carried by --brand-accent (ADR-028 s6). There is still
+// exactly one BranchHomepage architecture.
+//
+// Note: focusAreas currently normalizes to empty on every branch because ACF
+// repeaters do not resolve over WPGraphQL (see normalize-homepage.ts). The
+// empty path is therefore the live path today, not a hypothetical one.
 
 interface BranchOverviewProps {
   readonly overview: HomepageRichTextSection | null;
@@ -49,15 +62,19 @@ export function BranchOverview({ overview, focusAreas }: BranchOverviewProps) {
 
   if (overview === null && !hasFocusAreas) return null;
 
+  // With no focus areas there is no second column, so the copy takes a wider
+  // span instead of leaving half the grid empty. This is the master grid doing
+  // art direction, not a breakpoint collapse.
+  const copySpan = hasFocusAreas ? 5 : 8;
+
   return (
-    <section
+    <Section
       id="overview"
-      aria-labelledby={hasHeading ? "overview-heading" : undefined}
-      aria-label={hasHeading ? undefined : (overview?.eyebrow ?? "Overview")}
-      className="py-20 sm:py-28 lg:py-36"
+      labelledBy={hasHeading ? "overview-heading" : undefined}
+      label={hasHeading ? undefined : (overview?.eyebrow ?? "Overview")}
     >
-      <div className="mx-auto grid w-full max-w-[82.5rem] grid-cols-1 gap-12 px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
-        <div>
+      <PageGrid className="gap-y-12">
+        <GridItem span={copySpan}>
           <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent">
             {overview?.eyebrow ?? "Overview"}
           </p>
@@ -70,27 +87,33 @@ export function BranchOverview({ overview, focusAreas }: BranchOverviewProps) {
             </h2>
           ) : null}
           {hasCopy ? (
-            <p className="mt-6 max-w-[32rem] text-base leading-relaxed text-brand-ink-soft">
-              {overview?.description}
-            </p>
+            // Reading measure comes from --layout-reading-width rather than a
+            // hand-picked max-w-[32rem].
+            <Prose className="mt-6">
+              <p className="text-base leading-relaxed text-brand-ink-soft">
+                {overview?.description}
+              </p>
+            </Prose>
           ) : null}
           {overview?.link !== null && overview?.link !== undefined ? (
             <div className="mt-8">
               <CtaLink link={overview.link} variant="ghost-light" />
             </div>
           ) : null}
-        </div>
+        </GridItem>
 
         {hasFocusAreas ? (
-          <div className="flex flex-col">
-            {focusAreas.map((area, index) => (
-              // The focus-area list is a fixed, non-reorderable server-rendered
-              // selection with no stable identifier of its own — index is safe here.
-              <FocusAreaRow key={index} area={area} index={index} />
-            ))}
-          </div>
+          <GridItem span={5} start={8}>
+            <div className="flex flex-col">
+              {focusAreas.map((area, index) => (
+                // The focus-area list is a fixed, non-reorderable server-rendered
+                // selection with no stable identifier of its own — index is safe here.
+                <FocusAreaRow key={index} area={area} index={index} />
+              ))}
+            </div>
+          </GridItem>
         ) : null}
-      </div>
-    </section>
+      </PageGrid>
+    </Section>
   );
 }

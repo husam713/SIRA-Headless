@@ -29,12 +29,14 @@ const SPACE_CLASS: Readonly<Record<SectionSpace, string>> = Object.freeze({
 
 interface SectionProps {
   readonly children: ReactNode;
-  readonly id?: string;
+  readonly id?: string | undefined;
   readonly tone?: SectionTone;
   readonly space?: SectionSpace;
   // Prefer labelledBy; fall back to label only when there is no rendered heading.
-  readonly labelledBy?: string;
-  readonly label?: string;
+  // `| undefined` is explicit because the project runs
+  // exactOptionalPropertyTypes, and callers pass a conditional value.
+  readonly labelledBy?: string | undefined;
+  readonly label?: string | undefined;
   readonly className?: string;
 }
 

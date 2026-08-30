@@ -17,7 +17,13 @@ interface StatCellProps {
 
 function StatCell({ metric }: StatCellProps) {
   return (
-    <div className="flex flex-col gap-2 border-brand-on-accent-border px-6 py-8 [border-inline-start-width:1px] first:border-s-0 sm:px-8">
+    // The band is deliberately edge-to-edge, so the cell supplies the
+    // gutter rather than a container. Taking it from --layout-gutter puts
+    // the stat text on the same inline start as every other section.
+    <div
+      className="flex flex-col gap-2 border-brand-on-accent-border py-8 [border-inline-start-width:1px] first:border-s-0"
+      style={{ paddingInline: "var(--layout-gutter)" }}
+    >
       {metric.value !== null ? (
         <p className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-normal leading-none text-brand-on-accent">
           {metric.value}
@@ -37,7 +43,12 @@ export function BranchStats({ statistics }: BranchStatsProps) {
 
   return (
     <section aria-label="Key metrics" className="bg-brand-accent">
-      <div className="mx-auto grid w-full max-w-[82.5rem] grid-cols-2 sm:grid-cols-4">
+      {/* Not PageContainer: this band runs to the container edge and the
+          cells own the gutter. Width still comes from the shared token. */}
+      <div
+        className="mx-auto grid w-full grid-cols-2 sm:grid-cols-4"
+        style={{ maxWidth: "var(--layout-container)" }}
+      >
         {statistics.map((metric, index) => (
           // The metric list is a fixed, non-reorderable server-rendered
           // selection with no stable identifier of its own — index is safe here.

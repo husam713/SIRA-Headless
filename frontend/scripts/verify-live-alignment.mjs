@@ -1,5 +1,4 @@
 import { readFileSync, mkdirSync } from "node:fs";
-import { join } from "node:path";
 
 const NEWLINE = String.fromCharCode(10);
 

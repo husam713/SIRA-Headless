@@ -1,3 +1,5 @@
+import { PageContainer } from "@/components/layout/page-container";
+import { Section } from "@/components/layout/section";
 import { CtaLink } from "@/components/homepage/cta-link";
 import { formatContentDate } from "@/lib/homepage/format-date";
 import type {
@@ -63,12 +65,12 @@ export function GroupInsights({ section }: GroupInsightsProps) {
   if (section === null || section.selection.status !== "ready") return null;
 
   return (
-    <section
+    <Section
       id="insights"
-      aria-labelledby="insights-heading"
-      className="border-b border-brand-border py-20 sm:py-28 lg:py-36"
+      labelledBy="insights-heading"
+      className="border-b border-brand-border"
     >
-      <div className="mx-auto w-full max-w-[82.5rem] px-6 lg:px-8">
+      <PageContainer>
         <div className="flex flex-wrap items-end justify-between gap-8">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
@@ -99,7 +101,7 @@ export function GroupInsights({ section }: GroupInsightsProps) {
             <InsightCard key={item.databaseId} item={item} />
           ))}
         </div>
-      </div>
-    </section>
+      </PageContainer>
+    </Section>
   );
 }

@@ -61,10 +61,16 @@
   /* Frontend-owned structural tokens. */
   --layout-container: 82.5rem;
   --layout-reading-width: 42rem;
-  /* Matches the shipped py-20 / sm:py-28 / lg:py-36 rhythm (5/7/9rem) so
-     adopting .section is not a visual change. */
+  /* Fluid replacement for the stepped py-20 / sm:py-28 / lg:py-36 rhythm.
+     This is an intentional visual evolution, NOT a neutral swap: the two
+     scales coincide only at mobile and >=1600px and diverge most at 768px
+     (80px here against 112px before, -29%). ADR-028 s5 permits the change;
+     the value is what needs reviewing, not the mechanism. */
   --space-section: clamp(5rem, 9vw, 9rem);
-  --layout-gutter: clamp(1.25rem, 4vw, 4rem);
+  /* Owner decision: matches the measured SIRA reference baseline
+     (24px at the mobile floor, capping at 48px on wide screens).
+     Deliberate design DNA, not inherited drift. */
+  --layout-gutter: clamp(1.5rem, 5vw, 3rem);
   --layout-grid-gap: clamp(0.8rem, 2vw, 1.75rem);
   /* Master grid steps 4 -> 8 -> 12. Sections inherit this count rather than
      re-declaring their own column track. */
@@ -301,6 +307,11 @@ a {
   display: grid;
   grid-row: span var(--rail-rows, 4);
   grid-template-rows: subgrid;
+  /* A subgrid child inherits the parent's row-gap between its own rows, so
+     the rail's gap would open up INSIDE every card on top of the padding the
+     component already sets. Zero it here: card-internal spacing is the
+     component's job, row-to-row separation stays the parent's. */
+  row-gap: 0;
   min-width: 0;
 }
 
@@ -322,5 +333,12 @@ a {
     display: flex;
     flex-direction: column;
     grid-row: auto;
+    row-gap: 0;
+  }
+
+  /* Equal-height cells alone only align card bottoms; the last part has to
+     grow or the copy stops short of the card edge. */
+  .rail__items > * > :last-child {
+    flex: 1;
   }
 }

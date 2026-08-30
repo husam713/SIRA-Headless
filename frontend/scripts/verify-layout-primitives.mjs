@@ -1,6 +1,25 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { chromium } from "playwright-core";
+
+// playwright-core is only present as an optional transitive of vitest's
+// browser runner, so it can vanish on a clean install. Same guarded lazy
+// import as scripts/visual-diff.mjs rather than a bare MODULE_NOT_FOUND.
+const NEWLINE = String.fromCharCode(10);
+
+async function loadChromium() {
+  try {
+    const playwright = await import("playwright-core");
+    return playwright.chromium;
+  } catch {
+    throw new Error(
+      [
+        "playwright-core is not installed.",
+        "  Install it:            pnpm add -D playwright-core",
+        "  Then install Chromium: npx playwright install chromium",
+      ].join(NEWLINE),
+    );
+  }
+}
 
 // Verifies the layout primitives in src/styles/globals.css actually behave:
 // master-grid column steps, container cap, span/start placement, RTL mirroring,
@@ -50,6 +69,7 @@ const trackCount = (value) => value.split(" ").filter(Boolean).length;
 const results = [];
 const check = (name, pass, detail) => results.push({ name, pass, detail });
 
+const chromium = await loadChromium();
 const browser = await chromium.launch();
 
 for (const dir of ["ltr", "rtl"]) {
@@ -65,6 +85,8 @@ for (const dir of ["ltr", "rtl"]) {
         gridCols: styles("grid").gridTemplateColumns,
         gridWidth: box("grid").width,
         railCols: getComputedStyle(document.querySelector(".rail__items")).gridTemplateColumns,
+        railRowGap: getComputedStyle(document.querySelector(".rail__items")).rowGap,
+        cardRowGap: getComputedStyle(document.querySelector(".rail__items > *")).rowGap,
         a: box("a"),
         b: box("b"),
         cards: [box("c1"), box("c2"), box("c3")],
@@ -72,6 +94,13 @@ for (const dir of ["ltr", "rtl"]) {
         clientWidth: document.documentElement.clientWidth,
       };
     });
+
+    // Regression guard: a subgrid child inherits its parent row-gap between
+    // its OWN rows, which opened the rail gap up inside every card on top of
+    // the padding the component sets. The rail keeps its row gap; cards do not.
+    check(`${dir} ${width}px rail keeps row-gap, card interior does not`,
+      m.railRowGap !== "0px" && m.cardRowGap === "0px",
+      `rail=${m.railRowGap} card=${m.cardRowGap}`);
 
     const expectedCols = width < 768 ? 4 : width < 1100 ? 8 : 12;
     check(`${dir} ${width}px master grid = ${expectedCols} cols`, trackCount(m.gridCols) === expectedCols, trackCount(m.gridCols));

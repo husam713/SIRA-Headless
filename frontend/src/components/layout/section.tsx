@@ -4,8 +4,11 @@ import { joinClasses } from "@/components/layout/page-container";
 
 // One section rhythm instead of the four competing scales the homepage grew
 // (py-20 sm:py-28 lg:py-36, py-24 sm:py-32 lg:py-40, py-16 sm:py-20, flat
-// py-20). --space-section matches the dominant 5/7/9rem scale, so adopting
-// this is not a visual change for the sections that already used it.
+// py-20). --space-section replaces those with one fluid scale, which is an
+// intentional visual evolution rather than a like-for-like swap: it runs
+// tighter than the old stepped values through the tablet range and matches
+// them again at mobile and very wide viewports. See the token comment in
+// globals.css for the measured deltas.
 //
 // scroll-margin-block-start comes with it: the header is `sticky top-0`, and
 // the anchor ids added for the WordPress nav previously landed their headings

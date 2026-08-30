@@ -1,6 +1,6 @@
 # SIRA Current Project State
 
-State snapshot last verified through canonical Git evidence: 2026-08-23
+State snapshot last verified through canonical Git evidence: 2026-08-30
 
 ## Current authoritative state
 
@@ -8,7 +8,7 @@ State snapshot last verified through canonical Git evidence: 2026-08-23
 - **Repository HEAD rule:** discover the current commit from Git; snapshot coordinates below are provenance and must not be treated as an eternally current HEAD
 - **PR #31 reconciliation status:** OWNER ACCEPTED / MERGED
 - **Latest accepted governance milestone:** Step 4 Editorial Architecture / ADR-028, owner accepted and merged through PR `#30`
-- **Repository/frontend state:** Step 4 governance accepted; production visual implementation NOT STARTED
+- **Repository/frontend state:** Step 4 governance accepted; Group homepage visual sections accepted and merged through PRs `#36`, `#38`, `#40`, `#41`; shared shell and branch homepage open on PR `#44`
 - **CMS mutation track:** Step 2C.5B remains the accepted readiness milestone and is `BLOCKED_BY_BACKUP_EVIDENCE`
 - **AI Engineering OS Governance Foundation:** OWNER AUTHORIZED / IMPLEMENTED / INDEPENDENTLY VERIFIED / MERGED / POST-MERGE VERIFIED / CANONICAL through PR `#33`
 - **Acceptance-Gates current-state maintenance:** CLOSED / POST-MERGE VERIFIED / CANONICAL through PR `#34`
@@ -60,6 +60,10 @@ separate.
 | Post-PR30 durable-state reconciliation | OWNER ACCEPTED / MERGED | `#31` | `daf7479114f4faba3fa736ee957e03a8d207d49e` / `85b749da5a7769a48e67b22685db904607e0a388` |
 | AI Engineering OS Governance Foundation | OWNER AUTHORIZED / POST-MERGE VERIFIED / CANONICAL | `#33` | `4c695a0e3c9950b5ec6ede35ca836c5532814cc1` / `009bbfdb64cb38b2ddacbb1e7b8884eb614c47aa` |
 | Acceptance-Gates current-state maintenance | POST-MERGE VERIFIED / CANONICAL | `#34` | `3ca656a3eaa84fc076d1cd6fe4677a2e461cca68` / `86581d46b07a7b971cd2de44b476e1ac0b25bfee` |
+| Step 4 Group homepage hero | OWNER ACCEPTED / MERGED | `#36` | `59f74f72016585bc34809deb6e23a48ae098b207` |
+| Step 4 Group Latest Updates + Companies | OWNER ACCEPTED / MERGED | `#38` | `41fe34b47e2ce6141ebc282300689d4787bf473a` |
+| Step 4 Group Investor Relations | OWNER ACCEPTED / MERGED | `#40` | `24f016ada7bfc35aadb722b44a16074e95a789cb` |
+| Step 4 Group About | OWNER ACCEPTED / MERGED | `#41` | `ce8c22925127e51a036a19ef469ff06db88ee62e` |
 
 Step 3D.2 is NOT STARTED. Step 3D.3 remains gated by unresolved `2C4-B09`.
 Full Step 3D closure must not be claimed. `PREVIEW-AUTH-001` remains DEFERRED.
@@ -222,7 +226,7 @@ Known separate observation: backend source declares SiraProjectDetails while the
 - `PREVIEW-AUTH-001`: DEFERRED.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED; the human backup/admin evidence gate remains required.
-- Step 4 prototype and production UI implementation: NOT AUTHORIZED / NOT STARTED.
+- Step 4 production UI implementation: AUTHORIZED / IN PROGRESS. Group homepage sections are merged; PR `#44` remains open and unaccepted. The next authorized increment is the shared responsive layout primitives; Newsroom route work is deliberately sequenced after it.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 
 PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance

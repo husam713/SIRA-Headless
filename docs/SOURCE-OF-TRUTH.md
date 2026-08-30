@@ -48,8 +48,11 @@ Step 2C.5B business baseline proves accepted Step 3A, Step 3B, Step 3C.1,
 Step 3C.2, Step 3D.1, the Homepage Production Data Contract, the Step 4 Exact
 Design Fidelity Charter, and ADR-028. Step 3D.2 is NOT STARTED, Step 3D.3 is
 gated by `2C4-B09`, and full Step 3D closure must not be claimed. Step 4 visual
-implementation is NOT STARTED and no prototype or production UI increment is
-authorized.
+implementation is IN PROGRESS: the Group homepage hero, Latest Updates,
+Companies, Investor Relations, and About sections are owner accepted and merged
+through PRs `#36`, `#38`, `#40`, and `#41`. The shared shell, remaining Group
+sections, and the branch homepage remain open and unaccepted on PR `#44`. See
+SOT-002 below.
 
 The separate Step 2C.5B CMS readiness plan remains
 `BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`,
@@ -152,6 +155,36 @@ The repository backend is therefore authoritative for the verified LIVE / Step 2
 This closure removes only the SOT-001 backend-freshness blocker. Backend work still requires normal stage authorization and review. This closure does not establish exact effective live WordPress Admin coordinates and does not change mutationReadiness=BLOCKED_BY_BACKUP_EVIDENCE, CMS mutation authorization, Batch A authorization, backup/export/restore authorization, production authorization, Step 2C.5C status, Step 3 status, or deployment status.
 
 Known separate observation: backend source declares SiraProjectDetails while the accepted frontend/live GraphQL schema exposes ProjectDetails. The mechanism remains UNKNOWN; no speculative backend change is authorized by this closure.
+
+## Current frontend implementation status
+
+### SOT-002 — durable-state implementation drift
+
+**Status: CLOSED**
+
+The durable-state carriers asserted that Step 4 visual implementation was NOT
+STARTED and that no prototype or production UI increment was authorized. Git
+evidence disproved this on all three counts:
+
+- `main` contains owner-accepted merged Group homepage sections through PR `#36`
+  (`59f74f72016585bc34809deb6e23a48ae098b207`), PR `#38`
+  (`41fe34b47e2ce6141ebc282300689d4787bf473a`), PR `#40`
+  (`24f016ada7bfc35aadb722b44a16074e95a789cb`), and PR `#41`
+  (`ce8c22925127e51a036a19ef469ff06db88ee62e`);
+- PR `#44` carries a further open, unaccepted increment implementing the shared
+  site shell, the remaining Group sections, and the branch homepage;
+- an art-direction prototype exists under `frontend/prototypes/step-4-art-direction/`.
+
+Per the conflict protocol, repository/Git evidence governs implementation state.
+The carriers are reconciled to Git. No contract-locked CMS-track coordinate was
+changed: `currentStage`, `currentSubstage`, `executionBranch`,
+`executionBaseline`, `latestAcceptedIncrement`, `latestRepositoryReconciliation`,
+`groupStagingStrategy`, and the Step 2C.5B authorization flags are untouched, and
+the full contract suite passes unchanged.
+
+This closure records implementation history only. It does not authorize merge of
+PR `#44`, production deployment, DNS, Group cutover, CMS mutation, or any
+subsequent increment. The prototype remains NON-PRODUCTION reference evidence.
 
 ## Historical / reference-only sources
 

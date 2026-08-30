@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-23T08:55:00+03:00",
+  "updatedAt": "2026-08-30T04:30:00+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -30,8 +30,8 @@
     "backupCreationAuthorized": false,
     "exportExecutionAuthorized": false,
     "restoreExecutionAuthorized": false,
-    "prototypeImplementationAuthorized": false,
-    "productionUiImplementationAuthorized": false,
+    "prototypeImplementationAuthorized": true,
+    "productionUiImplementationAuthorized": true,
     "aiEngineeringOperatingSystem": {
       "governanceFoundationAuthorizationState": "OWNER_AUTHORIZED",
       "validatorCiEnforcement": "NOT_AUTHORIZED",
@@ -52,8 +52,8 @@
       "status": "READY_TO_PROCEED_WITHOUT_PRODUCTION_WORDPRESS_MUTATION",
       "nextStage": "3 — Preview / SEO / Discovery",
       "nextStageStatus": "HISTORICAL_ROADMAP_ENTRY_POINT_ALREADY_PROGRESSING_THROUGH_ACCEPTED_STEP_3D1",
-      "currentState": "STEP_4_GOVERNANCE_ACCEPTED_IMPLEMENTATION_NOT_STARTED",
-      "nextAuthorizedImplementation": "NONE",
+      "currentState": "STEP_4_VISUAL_IMPLEMENTATION_IN_PROGRESS",
+      "nextAuthorizedImplementation": "STEP_4_SHARED_RESPONSIVE_LAYOUT_PRIMITIVES",
       "launchStrategy": "GROUP_STAGING_FIRST"
     }
   },
@@ -140,15 +140,40 @@
       "pullRequest": 30,
       "implementationHead": "e37570f8e7a2b28eb0d55a903f79eb19687be9a3",
       "mergeCommit": "aaa88631c862d213f890d2991aa63fd26ce925e3"
+    },
+    "step4GroupHomepageSections": {
+      "status": "OWNER_ACCEPTED_MERGED",
+      "scope": "GROUP_HOMEPAGE_VISUAL_SECTIONS",
+      "pullRequests": [
+        36,
+        38,
+        40,
+        41
+      ],
+      "mergeCommits": {
+        "36": "59f74f72016585bc34809deb6e23a48ae098b207",
+        "38": "41fe34b47e2ce6141ebc282300689d4787bf473a",
+        "40": "24f016ada7bfc35aadb722b44a16074e95a789cb",
+        "41": "ce8c22925127e51a036a19ef469ff06db88ee62e"
+      },
+      "sections": [
+        "hero",
+        "latest-updates",
+        "companies",
+        "investor-relations",
+        "about"
+      ],
+      "coordinateScope": "HISTORICAL_PROVENANCE_NOT_CURRENT_GIT_HEAD"
     }
   },
   "currentImplementationState": {
-    "step4VisualProductionImplementation": "NOT_STARTED",
-    "sharedProductionShell": "NOT_STARTED",
-    "groupHomepageVisualComposition": "NOT_STARTED",
-    "branchHomepageVisualComposition": "NOT_STARTED",
+    "step4VisualProductionImplementation": "IN_PROGRESS",
+    "sharedProductionShell": "IMPLEMENTED_PENDING_REVIEW_PR44",
+    "groupHomepageVisualComposition": "IMPLEMENTED_PENDING_REVIEW_PR44",
+    "branchHomepageVisualComposition": "IMPLEMENTED_PENDING_REVIEW_PR44",
     "newsroomVisualRouteWork": "NOT_STARTED",
-    "prototypeImplementation": "NOT_AUTHORIZED"
+    "prototypeImplementation": "ART_DIRECTION_PROTOTYPE_RETAINED_NON_PRODUCTION",
+    "responsiveLayoutPrimitives": "NOT_STARTED"
   },
   "openGates": {
     "mediaOriginB07": "UNRESOLVED_DEFERRED",
@@ -209,12 +234,11 @@
     }
   },
   "nextMajorStages": [
-    "Governance: PR31 current-state reconciliation is owner accepted and merged; its state snapshot is verified through the recorded PR31 merge coordinate",
-    "AI Engineering OS Governance Foundation: OWNER_AUTHORIZED / COMPLETED / INDEPENDENT_VERIFICATION_PASSED / MERGED / POST_MERGE_VERIFIED / CANONICAL through PR33 provenance",
-    "Acceptance-Gates current-state maintenance: CLOSED / POST_MERGE_VERIFIED / CANONICAL through PR34 provenance",
-    "Not authorized: AI Engineering OS validator or CI enforcement, product/runtime work, prototypes, and production UI",
-    "Governance: no subsequent task is authorized without a separately issued Program Control or owner authorization",
-    "Repository/frontend implementation: no prototype or production UI increment is currently authorized",
+    "Step 4 frontend: Group homepage sections accepted and merged through PRs 36/38/40/41; shared shell and branch homepage remain open on PR 44 pending owner review",
+    "Step 4 frontend: shared responsive layout primitives are the next authorized implementation increment, ahead of any Newsroom route work",
+    "Step 4 frontend: Newsroom visual route work remains NOT_STARTED and is deliberately sequenced after the responsive layout foundation",
+    "Governance: SOT-002 durable-state drift is reconciled; Git remains the authority for implementation state",
+    "Not authorized: AI Engineering OS validator or CI enforcement and product/runtime work",
     "CMS mutation track: human backup/admin evidence gate before any Batch A authorization",
     "CMS mutation track: 2C.5C separately authorized Batch A execution only after a new explicit mutation authorization",
     "Group production cutover only after staging acceptance and explicit production authorization"
@@ -235,6 +259,24 @@
         "wordpressMutationOccurred": false,
         "knownSeparateObservation": "Backend source declares SiraProjectDetails while the accepted frontend/live GraphQL schema exposes ProjectDetails; the mechanism remains UNKNOWN."
       }
+    },
+    {
+      "id": "SOT-002",
+      "subsystem": "durable-state",
+      "status": "CLOSED",
+      "summary": "The durable-state carriers asserted that Step 4 visual implementation was NOT_STARTED and that no prototype or production UI increment was authorized, while Git evidence proved merged owner-accepted Group homepage sections through PRs #36, #38, #40, and #41, a further open increment on PR #44, and an on-disk art-direction prototype. Repository/Git evidence governs.",
+      "resolution": {
+        "reconciledBy": "Step 4 implementation-state reconciliation",
+        "evidence": "merged pull requests 36/38/40/41 on main plus open pull request 44",
+        "carriersUpdated": [
+          "project-state.json",
+          "docs/PROJECT-STATE.md",
+          "docs/SOURCE-OF-TRUTH.md"
+        ],
+        "cmsTrackAffected": false,
+        "contractLockedCoordinatesChanged": false,
+        "note": "This closure records implementation history only. It does not authorize production deployment, DNS, cutover, CMS mutation, or merge of PR 44."
+      }
     }
   ],
   "knownGovernanceIssues": [
@@ -253,5 +295,16 @@
       "status": "WARNING",
       "summary": "A main branch protection rule is configured but GitHub reports it is not enforced for this private repository under the current plan; PR + CI + owner approval remain compensating controls."
     }
-  ]
+  ],
+  "openImplementationIncrements": {
+    "step4SharedShellAndBranchHomepage": {
+      "pullRequest": 44,
+      "branch": "feat/step-4-shared-shell",
+      "state": "OPEN_DRAFT",
+      "scope": "SHARED_SHELL_REMAINING_GROUP_SECTIONS_BRANCH_HOMEPAGE",
+      "ciStatus": "FAIL_ENVIRONMENTAL_RUNTIME_PREVIEW_UNCONFIGURED",
+      "ciNote": "lint, typecheck, 39 files / 358 tests, and production build pass; pnpm test:runtime-preview fails because CI has no WordPress endpoint configuration",
+      "ownerAcceptance": "NOT_GRANTED"
+    }
+  }
 }

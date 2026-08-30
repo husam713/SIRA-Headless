@@ -29,7 +29,8 @@
     "test:schema-compatibility": "vitest run tests/unit/schema-compatibility.test.ts",
     "check:schema-tooling": "pnpm lint && pnpm typecheck && pnpm test:schema-compatibility",
     "visual-diff": "node scripts/visual-diff.mjs",
-    "verify:layout": "node scripts/verify-layout-primitives.mjs"
+    "verify:layout": "node scripts/verify-layout-primitives.mjs",
+    "verify:alignment": "node scripts/verify-live-alignment.mjs"
   },
   "dependencies": {
     "next": "16.2.12",

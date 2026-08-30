@@ -25,4 +25,37 @@ describe("SIRA font and design-token source contract", () => {
     expect(globalCss).toContain("--layout-reading-width");
     expect(globalCss).toContain("--space-section");
   });
+
+  // Declaring a token proves nothing. These three sat unused while
+  // max-w-[82.5rem] was hardcoded in 17 components, and the old assertions
+  // above still passed. Require a real consumer so they cannot drift again.
+  it("consumes the structural tokens rather than only declaring them", () => {
+    for (const token of ["--layout-container", "--layout-reading-width", "--space-section"]) {
+      expect(globalCss, `${token} is declared but never referenced`).toContain(`var(${token})`);
+    }
+  });
+
+  it("defines the shared layout primitives the components depend on", () => {
+    for (const selector of [".page-container", ".page-grid", ".grid-item", ".section", ".prose-measure", ".rail__items"]) {
+      expect(globalCss).toContain(selector);
+    }
+  });
+
+  it("uses subgrid and container queries for card rails", () => {
+    expect(globalCss).toContain("grid-template-rows: subgrid");
+    expect(globalCss).toContain("container-type: inline-size");
+    expect(globalCss).toContain("@container rail");
+    // Subgrid support is broad but not universal; the fallback must survive.
+    expect(globalCss).toContain("@supports not (grid-template-rows: subgrid)");
+  });
+
+  it("keeps the marquee direction-aware so RTL does not animate into blank space", () => {
+    expect(globalCss).toContain("@keyframes ticker-marquee-rtl");
+    expect(globalCss).toContain('[dir="rtl"] .ticker-marquee');
+  });
+
+  it("offsets anchor targets from the sticky header", () => {
+    expect(globalCss).toContain("scroll-padding-block-start");
+    expect(globalCss).toContain("scroll-margin-block-start");
+  });
 });

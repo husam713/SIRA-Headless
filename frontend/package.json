@@ -28,7 +28,8 @@
     "check:brand": "pnpm lint && pnpm typecheck && pnpm test:brand && pnpm build",
     "test:schema-compatibility": "vitest run tests/unit/schema-compatibility.test.ts",
     "check:schema-tooling": "pnpm lint && pnpm typecheck && pnpm test:schema-compatibility",
-    "visual-diff": "node scripts/visual-diff.mjs"
+    "visual-diff": "node scripts/visual-diff.mjs",
+    "verify:layout": "node scripts/verify-layout-primitives.mjs"
   },
   "dependencies": {
     "next": "16.2.12",

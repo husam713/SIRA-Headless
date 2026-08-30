@@ -81,7 +81,7 @@ export function GroupTicker({ ticker }: GroupTickerProps) {
           ),
         )}
       </ul>
-      <div className="flex w-max animate-[ticker-marquee_32s_linear_infinite]">
+      <div className="ticker-marquee flex w-max animate-[ticker-marquee_32s_linear_infinite]">
         <TickerStrip entries={entries} />
         <TickerStrip entries={entries} />
       </div>

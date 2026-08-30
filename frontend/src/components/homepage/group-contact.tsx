@@ -1,3 +1,5 @@
+import { PageContainer } from "@/components/layout/page-container";
+import { Section } from "@/components/layout/section";
 import type { HomepageContactSection } from "@/lib/homepage/types";
 
 interface GroupContactProps {
@@ -70,13 +72,16 @@ export function GroupContact({ section, email, address }: GroupContactProps) {
   }
 
   return (
-    <section
+    <Section
       id="contact"
-      aria-labelledby={hasHeading ? "contact-heading" : undefined}
-      aria-label={hasHeading ? undefined : (section.eyebrow ?? "Get in Touch")}
-      className="bg-brand-deep py-20 text-brand-paper sm:py-28 lg:py-36"
+      labelledBy={hasHeading ? "contact-heading" : undefined}
+      label={hasHeading ? undefined : (section.eyebrow ?? "Get in Touch")}
+      tone="deep"
     >
-      <div className="mx-auto grid w-full max-w-[72.5rem] grid-cols-1 gap-12 px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+      {/* Was max-w-[72.5rem] — the one section that silently used a
+          different container width from every other. Normalised; the
+          internal two-column form split keeps its own wider gap. */}
+      <PageContainer className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
           <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent-bright">
             {section.eyebrow ?? "Get in Touch"}
@@ -113,7 +118,7 @@ export function GroupContact({ section, email, address }: GroupContactProps) {
         </div>
 
         <InertContactForm />
-      </div>
-    </section>
+      </PageContainer>
+    </Section>
   );
 }

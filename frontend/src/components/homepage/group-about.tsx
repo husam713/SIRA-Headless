@@ -1,3 +1,5 @@
+import { GridItem, PageGrid } from "@/components/layout/page-grid";
+import { Section } from "@/components/layout/section";
 import type { HomepageMetric, HomepageMetricsSection } from "@/lib/homepage/types";
 
 // Design reference (SIRA Group Homepage.dc.html, #about): no background
@@ -40,20 +42,23 @@ export function GroupAbout({ section }: GroupAboutProps) {
 
   if (!hasHeading && !hasCopy && !hasMetrics) return null;
 
+  // Was py-24 sm:py-32 lg:py-40 — the one section running ~20% taller than
+  // its peers. Now on the shared rhythm.
   return (
-    <section
-      aria-labelledby={hasHeading ? "about-heading" : undefined}
-      aria-label={hasHeading ? undefined : (section.eyebrow ?? "About SIRA Group")}
-      className="py-24 sm:py-32 lg:py-40"
+    <Section
+      labelledBy={hasHeading ? "about-heading" : undefined}
+      label={hasHeading ? undefined : (section.eyebrow ?? "About SIRA Group")}
     >
-      <div className="mx-auto grid w-full max-w-[82.5rem] grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-        <div className="lg:col-span-3">
+      <PageGrid className="gap-y-10">
+        {/* 3 + 8 leaves column 12 open by design — the eyebrow rail and the
+            editorial column, not a full-width split. */}
+        <GridItem span={3}>
           <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent">
             {section.eyebrow ?? "About SIRA Group"}
           </p>
-        </div>
+        </GridItem>
 
-        <div className="flex flex-col gap-12 lg:col-span-8">
+        <GridItem span={8} className="flex flex-col gap-12">
           {hasHeading ? (
             <h2
               id="about-heading"
@@ -78,8 +83,8 @@ export function GroupAbout({ section }: GroupAboutProps) {
               ))}
             </div>
           ) : null}
-        </div>
-      </div>
-    </section>
+        </GridItem>
+      </PageGrid>
+    </Section>
   );
 }

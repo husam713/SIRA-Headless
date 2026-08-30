@@ -1,3 +1,5 @@
+import { GridItem, PageGrid } from "@/components/layout/page-grid";
+import { Section } from "@/components/layout/section";
 import { CtaLink } from "@/components/homepage/cta-link";
 import { formatContentDate } from "@/lib/homepage/format-date";
 import type {
@@ -72,12 +74,9 @@ export function GroupLatestUpdates({ section }: GroupLatestUpdatesProps) {
   const [first, ...rest] = section.selection.items;
 
   return (
-    <section
-      aria-labelledby="latest-updates-heading"
-      className="border-b border-brand-border py-20 sm:py-28 lg:py-36"
-    >
-      <div className="mx-auto grid w-full max-w-[82.5rem] grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-        <div className="lg:col-span-3">
+    <Section labelledBy="latest-updates-heading" className="border-b border-brand-border">
+      <PageGrid className="gap-y-10">
+        <GridItem span={3}>
           <h2
             id="latest-updates-heading"
             className="text-[11px] font-bold uppercase tracking-[0.12em]"
@@ -99,9 +98,9 @@ export function GroupLatestUpdates({ section }: GroupLatestUpdatesProps) {
               <CtaLink link={section.link} variant="ghost-light" />
             </div>
           ) : null}
-        </div>
+        </GridItem>
 
-        <div className="lg:col-span-9">
+        <GridItem span={9}>
           {first !== undefined ? (
             <div className="flex flex-col gap-6 border-t border-brand-border pt-6 sm:flex-row sm:gap-12">
               <UpdateMeta item={first} className="sm:w-36 sm:flex-shrink-0" />
@@ -125,8 +124,8 @@ export function GroupLatestUpdates({ section }: GroupLatestUpdatesProps) {
               ))}
             </div>
           ) : null}
-        </div>
-      </div>
-    </section>
+        </GridItem>
+      </PageGrid>
+    </Section>
   );
 }

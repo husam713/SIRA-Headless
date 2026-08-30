@@ -1,3 +1,4 @@
+import { PageContainer } from "@/components/layout/page-container";
 import { getBrandPreset } from "@/lib/brand";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import type { GroupHomepageHero } from "@/lib/homepage/types";
@@ -86,9 +87,9 @@ export function GroupHero({ hero }: GroupHeroProps) {
       {preparedSlides.length > 0 ? (
         <GroupHeroCarousel slides={preparedSlides}>{headingContent}</GroupHeroCarousel>
       ) : (
-        <div className="relative z-[2] mx-auto w-full max-w-[82.5rem] px-6 pb-16 pt-32 sm:pb-20 lg:px-8 lg:pb-24">
+        <PageContainer className="relative z-[2] pb-16 pt-32 sm:pb-20 lg:pb-24">
           {headingContent}
-        </div>
+        </PageContainer>
       )}
     </section>
   );

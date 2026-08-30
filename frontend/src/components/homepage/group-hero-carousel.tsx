@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { CtaLink } from "@/components/homepage/cta-link";
+import { GridItem, PageGrid } from "@/components/layout/page-grid";
 import type { HomepageLink, HomepageMedia } from "@/lib/homepage/types";
 
 export interface PreparedGroupHeroSlide {
@@ -135,11 +136,11 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
         }}
       />
 
-      <div className="relative z-[2] mx-auto grid w-full max-w-[82.5rem] gap-10 px-6 pb-16 pt-32 sm:pb-20 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:pb-24">
-        <div className="lg:col-span-8">{children}</div>
+      <PageGrid className="relative z-[2] gap-y-10 pb-16 pt-32 sm:pb-20 lg:pb-24">
+        <GridItem span={8}>{children}</GridItem>
 
         {canRotate ? (
-          <div className="flex flex-col gap-6 lg:col-span-4">
+          <GridItem span={4} className="flex flex-col gap-6">
             <div className="flex items-baseline gap-3 border-b border-brand-paper/20 pb-4">
               <span
                 className="font-display text-4xl leading-none transition-colors duration-700 sm:text-5xl"
@@ -210,9 +211,9 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
                 );
               })}
             </div>
-          </div>
+          </GridItem>
         ) : null}
-      </div>
+      </PageGrid>
 
       <p aria-live="polite" className="sr-only">
         {activeSlide !== undefined && canRotate

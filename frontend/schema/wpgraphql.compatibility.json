@@ -2,10 +2,10 @@
   "branches": {
     "exactSchemaEquality": true,
     "hashes": {
-      "consulting": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
-      "healthcare": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
-      "lifestyle": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
-      "realestate": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0"
+      "consulting": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c",
+      "healthcare": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c",
+      "lifestyle": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c",
+      "realestate": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c"
     },
     "siteKeys": [
       "consulting",
@@ -15,11 +15,11 @@
     ]
   },
   "canonical": {
-    "sha256": "32438736d4d73da267242d2ffe38a3e1c00844d10066d7bc098aad70bbf9f4f0",
+    "sha256": "9133013d6176c93023476f6ad9401381c3d15a2a3344ae675f37ff5d5103592c",
     "siteKey": "consulting"
   },
   "compatible": true,
-  "generatedAt": "2026-08-09T06:01:26.643Z",
+  "generatedAt": "2026-08-28T19:44:30.838Z",
   "group": {
     "groupOnlyAdditions": {
       "arguments": [],
@@ -37,6 +37,10 @@
         {
           "enum": "ContentTypeEnum",
           "value": "SLIDER_IMAGE"
+        },
+        {
+          "enum": "MimeTypeEnum",
+          "value": "IMAGE_SVG_XML"
         },
         {
           "enum": "TaxonomyEnum",
@@ -109,6 +113,14 @@
           "type": "UpdateSliderImagePayload"
         },
         {
+          "coordinate": "RootQuery.aiExperimentsSettings",
+          "type": "AiExperimentsSettings"
+        },
+        {
+          "coordinate": "RootQuery.connectorsSettings",
+          "type": "ConnectorsSettings"
+        },
+        {
           "coordinate": "RootQuery.project",
           "type": "Project"
         },
@@ -159,11 +171,267 @@
         {
           "coordinate": "RootQuery.sliderImages",
           "type": "RootQueryToSliderImageConnection"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureAbilitiesExplorerEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureAiRequestLoggingEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureAltTextGenerationEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureCommentModerationEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureCommentModerationFieldModerateGuests",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureConnectorApprovalEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureContentClassificationEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureContentClassificationFieldMaxSuggestions",
+          "type": "Int"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureContentClassificationFieldStrategy",
+          "type": "String"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureContentResizingEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureContentTranslationEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureCustomAbilitiesEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureEditorialNotesEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureEditorialUpdatesEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureExcerptGenerationEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureImageGenerationEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureKeyEncryptionEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureMetaDescriptionEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeaturesEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureSlugGenerationEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureSuggestReplyEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureSummarizationEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureTitleGenerationEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.aiExperimentsSettingsWpaiFeatureTypeAheadEnabled",
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "Settings.connectorsSettingsConnectorsAiAnthropicApiKey",
+          "type": "String"
+        },
+        {
+          "coordinate": "Settings.connectorsSettingsConnectorsAiGoogleApiKey",
+          "type": "String"
+        },
+        {
+          "coordinate": "Settings.connectorsSettingsConnectorsAiOpenaiApiKey",
+          "type": "String"
+        },
+        {
+          "coordinate": "UpdateSettingsPayload.aiExperimentsSettings",
+          "type": "AiExperimentsSettings"
+        },
+        {
+          "coordinate": "UpdateSettingsPayload.connectorsSettings",
+          "type": "ConnectorsSettings"
         }
       ],
-      "inputFields": [],
+      "inputFields": [
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureAbilitiesExplorerEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureAiRequestLoggingEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureAltTextGenerationEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureCommentModerationEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureCommentModerationFieldModerateGuests",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureConnectorApprovalEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureContentClassificationEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureContentClassificationFieldMaxSuggestions",
+          "requiredWithoutDefault": false,
+          "type": "Int"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureContentClassificationFieldStrategy",
+          "requiredWithoutDefault": false,
+          "type": "String"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureContentResizingEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureContentTranslationEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureCustomAbilitiesEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureEditorialNotesEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureEditorialUpdatesEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureExcerptGenerationEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureImageGenerationEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureKeyEncryptionEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureMetaDescriptionEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeaturesEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureSlugGenerationEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureSuggestReplyEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureSummarizationEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureTitleGenerationEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.aiExperimentsSettingsWpaiFeatureTypeAheadEnabled",
+          "requiredWithoutDefault": false,
+          "type": "Boolean"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.connectorsSettingsConnectorsAiAnthropicApiKey",
+          "requiredWithoutDefault": false,
+          "type": "String"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.connectorsSettingsConnectorsAiGoogleApiKey",
+          "requiredWithoutDefault": false,
+          "type": "String"
+        },
+        {
+          "coordinate": "UpdateSettingsInput.connectorsSettingsConnectorsAiOpenaiApiKey",
+          "requiredWithoutDefault": false,
+          "type": "String"
+        }
+      ],
       "interfaces": [],
       "types": [
+        {
+          "kind": "OBJECT",
+          "name": "AiExperimentsSettings"
+        },
         {
           "kind": "OBJECT",
           "name": "Buttons"
@@ -211,6 +479,10 @@
         {
           "kind": "INTERFACE",
           "name": "CompanyInformationOurPartners_Fields"
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ConnectorsSettings"
         },
         {
           "kind": "ENUM",
@@ -841,7 +1113,7 @@
       ]
     },
     "issues": [],
-    "sha256": "9469ebc4fbea5e55982661ca58e31de5b592fc8a9e6f0a31efd9bf000bf49971",
+    "sha256": "7cf2a36102b239a45f0dc7b893d4a1b6a5f3de5a03d1d1675d4d50b09e0bad5f",
     "siteKey": "group",
     "structurallyContainsCanonical": true
   },

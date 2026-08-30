@@ -27,7 +27,8 @@
     "test:brand": "vitest run tests/unit/brand tests/contract/brand-contract.test.ts tests/contract/design-runtime-exclusion.test.ts",
     "check:brand": "pnpm lint && pnpm typecheck && pnpm test:brand && pnpm build",
     "test:schema-compatibility": "vitest run tests/unit/schema-compatibility.test.ts",
-    "check:schema-tooling": "pnpm lint && pnpm typecheck && pnpm test:schema-compatibility"
+    "check:schema-tooling": "pnpm lint && pnpm typecheck && pnpm test:schema-compatibility",
+    "visual-diff": "node scripts/visual-diff.mjs"
   },
   "dependencies": {
     "next": "16.2.12",

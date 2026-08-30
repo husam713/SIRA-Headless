@@ -64,6 +64,8 @@ export interface HomepageContentItem {
   readonly relationshipLabel: string | null;
   readonly publicationDate: string | null;
   readonly version: string | null;
+  /** Currently only populated for companies (`SiraCompany.siraBusinessUnits`). */
+  readonly businessUnit: HomepageSelection<HomepageBusinessUnit>;
 }
 
 export type HomepageSelectionReason =

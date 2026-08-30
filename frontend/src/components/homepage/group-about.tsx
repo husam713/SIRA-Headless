@@ -1,5 +1,10 @@
 import type { HomepageMetric, HomepageMetricsSection } from "@/lib/homepage/types";
 
+// Design reference (SIRA Group Homepage.dc.html, #about): no background
+// override at all — light section on the page's own paper background, dark
+// ink text, accent-colored stat values. The dark treatment belongs to the
+// Investor section (#investors) instead, not here.
+
 interface GroupAboutProps {
   readonly section: HomepageMetricsSection | null;
 }
@@ -11,16 +16,16 @@ interface MetricProps {
 function Metric({ metric }: MetricProps) {
   return (
     <div>
-      <p className="font-display text-[clamp(2rem,4vw,3.5rem)] font-normal leading-none">
+      <p className="font-display text-[clamp(2rem,4vw,3.5rem)] font-normal leading-none text-brand-accent">
         {metric.value}
       </p>
       {metric.label !== null ? (
-        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-paper/60">
+        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-ink-faint">
           {metric.label}
         </p>
       ) : null}
       {metric.supportingText !== null ? (
-        <p className="mt-2 text-xs text-brand-paper/50">{metric.supportingText}</p>
+        <p className="mt-2 text-xs text-brand-ink-faint/70">{metric.supportingText}</p>
       ) : null}
     </div>
   );
@@ -39,11 +44,11 @@ export function GroupAbout({ section }: GroupAboutProps) {
     <section
       aria-labelledby={hasHeading ? "about-heading" : undefined}
       aria-label={hasHeading ? undefined : (section.eyebrow ?? "About SIRA Group")}
-      className="bg-brand-deep py-24 text-brand-paper sm:py-32 lg:py-40"
+      className="py-24 sm:py-32 lg:py-40"
     >
       <div className="mx-auto grid w-full max-w-[82.5rem] grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
         <div className="lg:col-span-3">
-          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent-bright">
+          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent">
             {section.eyebrow ?? "About SIRA Group"}
           </p>
         </div>
@@ -59,13 +64,13 @@ export function GroupAbout({ section }: GroupAboutProps) {
           ) : null}
 
           {hasCopy ? (
-            <p className="max-w-[40rem] text-[clamp(1rem,1.5vw,1.375rem)] leading-relaxed text-brand-paper/80">
+            <p className="max-w-[40rem] text-[clamp(1rem,1.5vw,1.375rem)] leading-relaxed text-brand-ink-soft">
               {section.description}
             </p>
           ) : null}
 
           {hasMetrics ? (
-            <div className="grid grid-cols-2 gap-x-8 gap-y-10 border-t border-brand-paper/15 pt-12 sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-10 border-t border-brand-border pt-12 sm:grid-cols-4">
               {section.metrics.map((metric, index) => (
                 // The metric list is a fixed, non-reorderable server-rendered
                 // selection with no stable identifier of its own — index is safe here.

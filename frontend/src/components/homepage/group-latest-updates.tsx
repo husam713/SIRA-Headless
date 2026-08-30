@@ -1,4 +1,5 @@
 import { CtaLink } from "@/components/homepage/cta-link";
+import { formatContentDate } from "@/lib/homepage/format-date";
 import type {
   HomepageContentItem,
   HomepageEditorialSection,
@@ -15,18 +16,6 @@ const KIND_LABELS: Readonly<Record<string, string>> = Object.freeze({
   "press-release": "Press Release",
 });
 
-function formatUpdateDate(value: string | null): string | null {
-  if (value === null) return null;
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return null;
-  return new Intl.DateTimeFormat("en", {
-    month: "short",
-    year: "numeric",
-  })
-    .format(date)
-    .toUpperCase();
-}
-
 interface UpdateMetaProps {
   readonly item: HomepageContentItem;
   readonly className?: string;
@@ -34,7 +23,7 @@ interface UpdateMetaProps {
 
 function UpdateMeta({ item, className = "" }: UpdateMetaProps) {
   const label = KIND_LABELS[item.kind] ?? item.kind;
-  const date = formatUpdateDate(item.date);
+  const date = formatContentDate(item.date);
 
   return (
     <div className={className}>

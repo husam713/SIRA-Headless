@@ -162,8 +162,11 @@ describe("approved SIRA GraphQL operation contracts", () => {
       'page(id: "/", idType: URI, asPreview: $asPreview)',
     );
     expect(SIRA_HOMEPAGE_QUERY.source).toContain("siraHomepage");
-    expect(SIRA_HOMEPAGE_QUERY.source).toContain("groupHomepage");
-    expect(SIRA_HOMEPAGE_QUERY.source).toContain("branchHomepage");
+    // No groupHomepage/branchHomepage wrapper — every section is a direct
+    // sibling of `variant` (see the note on PresentationFields.php's
+    // group_homepage_fields() for why that wrapper was removed).
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("groupHero");
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("branchHero");
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("pages(");
     for (const bound of [1, 6, 8, 12, 24]) {
       expect(SIRA_HOMEPAGE_QUERY.source).toContain(`first: ${bound}`);
@@ -219,7 +222,7 @@ describe("approved SIRA GraphQL operation contracts", () => {
       }),
     );
 
-    expect(relationshipBounds).toHaveLength(15);
+    expect(relationshipBounds).toHaveLength(16);
     expect([...new Set(relationshipBounds)].sort((left, right) => left - right)).toEqual([
       1,
       6,

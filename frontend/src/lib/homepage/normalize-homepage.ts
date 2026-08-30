@@ -262,6 +262,20 @@ function normalizeItem(
       })
     : featuredImage;
 
+  // Investments carry no business-unit relation of their own — it's read
+  // through investmentDetails.relatedCompany's own businessUnit instead
+  // (see HomepageInvestmentNode in homepage.graphql), unlike companies/hero
+  // slides/ticker items, which expose `businessUnit` directly on the node.
+  const investmentRelatedCompany = isRecord(details?.["relatedCompany"])
+    ? details["relatedCompany"]
+    : null;
+  const investmentCompanyNodes = Array.isArray(investmentRelatedCompany?.["nodes"])
+    ? investmentRelatedCompany["nodes"]
+    : [];
+  const investmentBusinessUnit = isRecord(investmentCompanyNodes[0])
+    ? investmentCompanyNodes[0]["businessUnit"]
+    : null;
+
   return Object.freeze({
     kind: contract.kind,
     databaseId,
@@ -284,6 +298,9 @@ function normalizeItem(
     relationshipLabel: normalizePlainText(details?.["relationshipLabel"], 240),
     publicationDate: normalizeDate(details?.["publicationDate"]),
     version: normalizePlainText(details?.["version"], 120),
+    businessUnit: normalizeBusinessUnits(
+      contract.kind === "investment" ? investmentBusinessUnit : value["businessUnit"],
+    ),
   });
 }
 
@@ -481,34 +498,42 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
 
   const databaseId = Number(page["databaseId"]);
   const title = normalizePlainText(page["title"], 240);
+  // Every section is its OWN standalone top-level field group, so it lives
+  // directly on `page` — not nested under `siraHomepage` (which now holds
+  // only `variant`), and not under a `groupHomepage`/`branchHomepage`
+  // wrapper either. See the note on PresentationFields.php's
+  // group_homepage_section_groups() for why: WPGraphQL for ACF cannot
+  // resolve text/textarea/link/wysiwyg/relationship fields that live
+  // inside a `group`-type field nested inside another field group's own
+  // `fields` array — only a field group's own direct top-level fields
+  // resolve correctly.
   if (siteKey === "group") {
-    const group = fields["groupHomepage"];
-    if (!isRecord(group) || !isRecord(group["hero"])) return invalid(siteKey, "missing-variant-data");
+    if (!isRecord(page["groupHero"])) return invalid(siteKey, "missing-variant-data");
     const homepage: GroupHomepage = Object.freeze({
       siteKey,
       databaseId,
       uri: "/",
       title,
       variant: "group",
-      hero: normalizeGroupHero(group["hero"]),
-      ticker: normalizeTicker(group["ticker"]),
-      latestUpdates: normalizeEditorialSection(group["latestUpdates"]),
-      companies: normalizeContentSection(group["companies"], "selectedCompanies", "SiraCompany"),
-      about: normalizeMetricsSection(group["about"], 8),
-      investor: normalizeInvestor(group["investor"]),
-      services: normalizeContentSection(group["services"], "selectedServices", "SiraService"),
-      projects: normalizeContentSection(group["projects"], "selectedProjects", "SiraProject"),
-      insights: normalizeEditorialSection(group["insights"]),
-      testimonials: normalizeContentSection(group["testimonials"], "selectedTestimonials", "SiraTestimonial"),
-      partners: normalizeContentSection(group["partners"], "selectedPartners", "SiraPartner"),
-      contact: normalizeContact(group["contact"]),
+      hero: normalizeGroupHero(page["groupHero"]),
+      ticker: normalizeTicker(page["ticker"]),
+      latestUpdates: normalizeEditorialSection(page["latestUpdates"]),
+      companies: normalizeContentSection(page["companies"], "selectedCompanies", "SiraCompany"),
+      about: normalizeMetricsSection(page["about"], 8),
+      investor: normalizeInvestor(page["investor"]),
+      services: normalizeContentSection(page["services"], "selectedServices", "SiraService"),
+      projects: normalizeContentSection(page["groupProjects"], "selectedProjects", "SiraProject"),
+      insights: normalizeEditorialSection(page["groupInsights"]),
+      testimonials: normalizeContentSection(page["testimonials"], "selectedTestimonials", "SiraTestimonial"),
+      partners: normalizeContentSection(page["partners"], "selectedPartners", "SiraPartner"),
+      contact: normalizeContact(page["groupContact"]),
     });
     return Object.freeze({ status: "ready", homepage });
   }
 
-  const branch = fields["branchHomepage"];
-  if (!isRecord(branch) || !isRecord(branch["hero"])) return invalid(siteKey, "missing-variant-data");
-  const hero = branch["hero"];
+  // Same flattening applies to the branch variant's sections.
+  if (!isRecord(page["branchHero"])) return invalid(siteKey, "missing-variant-data");
+  const hero = page["branchHero"];
   const branchHero: BranchHomepageHero = Object.freeze({
     ...normalizeHero(hero),
     eyebrow: normalizePlainText(hero["eyebrow"], 160),
@@ -517,16 +542,27 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
     image: normalizeMedia(hero["image"]),
     mobileImage: normalizeMedia(hero["mobileImage"]),
   });
-  const focusAreas = Array.isArray(branch["focusAreas"])
-    ? branch["focusAreas"].slice(0, 12).filter(isRecord).map((item): HomepageFocusArea => Object.freeze({
+  // `statistics`/`focusAreas` are each their own field group wrapping a
+  // same-named repeater (Page.statistics.statistics, Page.focusAreas.
+  // focusAreas) — WPGraphQL for ACF auto-derives the wrapper's own type
+  // name from the field group title rather than the graphql_type_name set
+  // in PresentationFields.php, which collided with the repeater's own name
+  // when the field group held nothing else. Repeaters don't resolve over
+  // GraphQL yet regardless (see the note on PresentationFields.php's
+  // group_homepage_section_groups()), so this always normalizes empty for
+  // now; kept correct for when that's fixed.
+  const focusAreasField = isRecord(page["focusAreas"]) ? page["focusAreas"]["focusAreas"] : null;
+  const focusAreas = Array.isArray(focusAreasField)
+    ? focusAreasField.slice(0, 12).filter(isRecord).map((item): HomepageFocusArea => Object.freeze({
         title: normalizePlainText(item["title"], 240),
         description: normalizePlainText(item["description"], 1_000),
       }))
     : Object.freeze([]);
-  const footer = isRecord(branch["footer"])
+  const statisticsField = isRecord(page["statistics"]) ? page["statistics"]["statistics"] : null;
+  const footer = isRecord(page["footer"])
     ? Object.freeze({
-        taglineOverride: normalizePlainText(branch["footer"]["taglineOverride"], 500),
-        groupLinkLabelOverride: normalizePlainText(branch["footer"]["groupLinkLabelOverride"], 240),
+        taglineOverride: normalizePlainText(page["footer"]["taglineOverride"], 500),
+        groupLinkLabelOverride: normalizePlainText(page["footer"]["groupLinkLabelOverride"], 240),
       })
     : null;
   const homepage: BranchHomepage = Object.freeze({
@@ -536,12 +572,12 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
     title,
     variant: "branch",
     hero: branchHero,
-    statistics: normalizeMetrics(branch["statistics"], 8),
-    overview: normalizeRichTextSection(branch["overview"]),
+    statistics: normalizeMetrics(statisticsField, 8),
+    overview: normalizeRichTextSection(page["overview"]),
     focusAreas: Object.freeze(focusAreas),
-    projects: normalizeContentSection(branch["projects"], "selectedProjects", "SiraProject"),
-    insights: normalizeEditorialSection(branch["insights"]),
-    contact: normalizeContact(branch["contact"]),
+    projects: normalizeContentSection(page["branchProjects"], "selectedProjects", "SiraProject"),
+    insights: normalizeEditorialSection(page["branchInsights"]),
+    contact: normalizeContact(page["branchContact"]),
     footer,
   });
   return Object.freeze({ status: "ready", homepage });

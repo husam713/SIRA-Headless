@@ -1,3 +1,5 @@
+import { PageContainer } from "@/components/layout/page-container";
+import { Section } from "@/components/layout/section";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
   HomepageContentItem,
@@ -39,12 +41,12 @@ export function GroupServices({ section }: GroupServicesProps) {
   const hasHeading = section.heading !== null;
 
   return (
-    <section
-      aria-labelledby={hasHeading ? "services-heading" : undefined}
-      aria-label={hasHeading ? undefined : (section.eyebrow ?? "Services")}
-      className="border-b border-brand-border py-20 sm:py-28 lg:py-36"
+    <Section
+      labelledBy={hasHeading ? "services-heading" : undefined}
+      label={hasHeading ? undefined : (section.eyebrow ?? "Services")}
+      className="border-b border-brand-border"
     >
-      <div className="mx-auto w-full max-w-[82.5rem] px-6 lg:px-8">
+      <PageContainer>
         <div className="flex flex-wrap items-end justify-between gap-8">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
@@ -75,7 +77,7 @@ export function GroupServices({ section }: GroupServicesProps) {
             <ServiceCard key={item.databaseId} item={item} index={index} />
           ))}
         </div>
-      </div>
-    </section>
+      </PageContainer>
+    </Section>
   );
 }

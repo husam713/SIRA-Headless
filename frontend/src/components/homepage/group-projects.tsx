@@ -1,3 +1,5 @@
+import { PageContainer } from "@/components/layout/page-container";
+import { Section } from "@/components/layout/section";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
   HomepageContentItem,
@@ -73,12 +75,12 @@ export function GroupProjects({ section }: GroupProjectsProps) {
   if (section === null || section.selection.status !== "ready") return null;
 
   return (
-    <section
+    <Section
       id="projects"
-      aria-labelledby="projects-heading"
-      className="border-b border-brand-border bg-brand-tint py-20 sm:py-28 lg:py-36"
+      labelledBy="projects-heading"
+      className="border-b border-brand-border bg-brand-tint"
     >
-      <div className="mx-auto w-full max-w-[82.5rem] px-6 lg:px-8">
+      <PageContainer>
         <div className="flex flex-wrap items-end justify-between gap-8">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
@@ -109,7 +111,7 @@ export function GroupProjects({ section }: GroupProjectsProps) {
             <ProjectCard key={item.databaseId} item={item} />
           ))}
         </div>
-      </div>
-    </section>
+      </PageContainer>
+    </Section>
   );
 }

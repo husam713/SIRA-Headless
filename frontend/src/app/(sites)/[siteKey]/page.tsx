@@ -1,3 +1,4 @@
+import { PageContainer } from "@/components/layout/page-container";
 import { notFound } from "next/navigation";
 import { BranchHero } from "@/components/homepage/branch-hero";
 import { BranchOverview } from "@/components/homepage/branch-overview";
@@ -103,7 +104,8 @@ export default async function SiteHomePage({
     homepage.status === "ready" ? homepage.homepage.title : brand.name;
 
   return (
-    <section className="mx-auto grid min-h-[60svh] max-w-7xl content-center gap-6 px-6 py-20 lg:px-8">
+    <section>
+      <PageContainer className="grid min-h-[60svh] content-center gap-6 py-20">
       <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-accent">
         Step 3
       </p>
@@ -135,6 +137,7 @@ export default async function SiteHomePage({
           <dd className="font-medium">{site.canonicalHostname}</dd>
         </div>
       </dl>
+      </PageContainer>
     </section>
   );
 }

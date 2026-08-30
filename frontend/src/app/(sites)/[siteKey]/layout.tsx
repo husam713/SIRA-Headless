@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { BrandDocument } from "@/components/brand/brand-document";
 import { SiteFooter } from "@/components/shell/site-footer";
 import { SiteHeader } from "@/components/shell/site-header";
+import { PageContainer } from "@/components/layout/page-container";
 import { getBrand } from "@/lib/brand";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { getNavigation } from "@/lib/navigation";
@@ -109,14 +110,17 @@ export default async function SiteLayout({
       {draft.isEnabled ? (
         <aside
           aria-label="Preview Mode"
-          className="border-b border-brand-border bg-brand-tint px-6 py-3 text-sm"
+          className="border-b border-brand-border bg-brand-tint text-sm"
         >
-          <div className="mx-auto flex max-w-[82.5rem] items-center justify-between gap-4">
+          {/* The gutter belongs to the container, not the <aside>: the old
+              px-6 carried no lg: step, so this banner desynced from the
+              header and every section at wide viewports. */}
+          <PageContainer className="flex items-center justify-between gap-4 py-3">
             <strong>Preview Mode</strong>
             <Link className="underline" href="/api/preview/exit/?destination=/">
               Exit Preview
             </Link>
-          </div>
+          </PageContainer>
         </aside>
       ) : null}
 

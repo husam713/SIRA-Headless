@@ -1,3 +1,5 @@
+import { PageContainer } from "@/components/layout/page-container";
+import { Section } from "@/components/layout/section";
 import { getBrandPreset } from "@/lib/brand";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import { CtaLink } from "@/components/homepage/cta-link";
@@ -210,13 +212,13 @@ export function GroupInvestor({ section }: GroupInvestorProps) {
   }
 
   return (
-    <section
+    <Section
       id="investors"
-      aria-labelledby={hasHeading ? "investor-heading" : undefined}
-      aria-label={hasHeading ? undefined : (section.eyebrow ?? "Investor Relations")}
-      className="bg-brand-deep py-20 text-brand-paper sm:py-28 lg:py-36"
+      labelledBy={hasHeading ? "investor-heading" : undefined}
+      label={hasHeading ? undefined : (section.eyebrow ?? "Investor Relations")}
+      tone="deep"
     >
-      <div className="mx-auto w-full max-w-[82.5rem] px-6 lg:px-8">
+      <PageContainer>
         <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent-bright">
           {section.eyebrow ?? "Investor Relations"}
         </p>
@@ -284,7 +286,7 @@ export function GroupInvestor({ section }: GroupInvestorProps) {
             onePager={onePager}
           />
         ) : null}
-      </div>
-    </section>
+      </PageContainer>
+    </Section>
   );
 }

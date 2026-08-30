@@ -1,3 +1,5 @@
+import { PageContainer } from "@/components/layout/page-container";
+import { Section } from "@/components/layout/section";
 import type {
   HomepageContentItem,
   HomepageContentSection,
@@ -47,12 +49,12 @@ export function GroupTestimonials({ section }: GroupTestimonialsProps) {
   const hasHeading = section.heading !== null;
 
   return (
-    <section
-      aria-labelledby={hasHeading ? "testimonials-heading" : undefined}
-      aria-label={hasHeading ? undefined : (section.eyebrow ?? "In Their Words")}
-      className="border-b border-brand-border py-20 sm:py-28 lg:py-36"
+    <Section
+      labelledBy={hasHeading ? "testimonials-heading" : undefined}
+      label={hasHeading ? undefined : (section.eyebrow ?? "In Their Words")}
+      className="border-b border-brand-border"
     >
-      <div className="mx-auto w-full max-w-[82.5rem] px-6 lg:px-8">
+      <PageContainer>
         <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
           {section.eyebrow ?? "In Their Words"}
         </p>
@@ -70,7 +72,7 @@ export function GroupTestimonials({ section }: GroupTestimonialsProps) {
             <TestimonialCard key={item.databaseId} item={item} />
           ))}
         </div>
-      </div>
-    </section>
+      </PageContainer>
+    </Section>
   );
 }

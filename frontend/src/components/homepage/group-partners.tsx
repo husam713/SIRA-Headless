@@ -1,3 +1,5 @@
+import { PageContainer } from "@/components/layout/page-container";
+import { Section } from "@/components/layout/section";
 import type {
   HomepageContentItem,
   HomepageContentSection,
@@ -37,12 +39,13 @@ export function GroupPartners({ section }: GroupPartnersProps) {
   const hasHeading = section.heading !== null;
 
   return (
-    <section
-      aria-labelledby={hasHeading ? "partners-heading" : undefined}
-      aria-label={hasHeading ? undefined : (section.eyebrow ?? "Our Partners")}
-      className="border-b border-brand-border py-16 text-center sm:py-20"
+    <Section
+      labelledBy={hasHeading ? "partners-heading" : undefined}
+      label={hasHeading ? undefined : (section.eyebrow ?? "Our Partners")}
+      space="tight"
+      className="border-b border-brand-border text-center"
     >
-      <div className="mx-auto w-full max-w-[82.5rem] px-6 lg:px-8">
+      <PageContainer>
         <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
           {section.eyebrow ?? "Our Partners"}
         </p>
@@ -65,7 +68,7 @@ export function GroupPartners({ section }: GroupPartnersProps) {
             <PartnerLogo key={item.databaseId} item={item} />
           ))}
         </div>
-      </div>
-    </section>
+      </PageContainer>
+    </Section>
   );
 }

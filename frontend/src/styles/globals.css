@@ -61,7 +61,22 @@
   /* Frontend-owned structural tokens. */
   --layout-container: 82.5rem;
   --layout-reading-width: 42rem;
-  --space-section: clamp(4.5rem, 9vw, 7.5rem);
+  /* Fluid replacement for the stepped py-20 / sm:py-28 / lg:py-36 rhythm.
+     This is an intentional visual evolution, NOT a neutral swap: the two
+     scales coincide only at mobile and >=1600px and diverge most at 768px
+     (80px here against 112px before, -29%). ADR-028 s5 permits the change;
+     the value is what needs reviewing, not the mechanism. */
+  --space-section: clamp(5rem, 9vw, 9rem);
+  /* Owner decision: matches the measured SIRA reference baseline
+     (24px at the mobile floor, capping at 48px on wide screens).
+     Deliberate design DNA, not inherited drift. */
+  --layout-gutter: clamp(1.5rem, 5vw, 3rem);
+  --layout-grid-gap: clamp(0.8rem, 2vw, 1.75rem);
+  /* Master grid steps 4 -> 8 -> 12. Sections inherit this count rather than
+     re-declaring their own column track. */
+  --layout-grid-columns: 4;
+  /* Sticky header height, used as the anchor scroll offset. */
+  --layout-header-offset: 5rem;
   --focus-ring-width: 2px;
   --focus-ring-offset: 4px;
 }
@@ -79,14 +94,31 @@ html:lang(ar) {
   box-sizing: border-box;
 }
 
+@media (min-width: 48rem) {
+  :root {
+    --layout-grid-columns: 8;
+  }
+}
+
+@media (min-width: 68.75rem) {
+  :root {
+    --layout-grid-columns: 12;
+  }
+}
+
 html {
   min-width: 320px;
+  /* Keeps anchor targets clear of the sticky header. */
+  scroll-padding-block-start: var(--layout-header-offset);
   background: var(--brand-paper);
   color: var(--brand-ink);
 }
 
 body {
   margin: 0;
+  /* Contains full-bleed children without creating a scroll container, so
+     position: sticky keeps working. */
+  overflow-x: clip;
   font-family: var(--font-sira-body);
 }
 
@@ -136,6 +168,9 @@ a {
   }
 }
 
+/* translateX is physical, so LTR and RTL need opposite directions: the
+   duplicated strip overflows toward the inline end, which is left in LTR and
+   right in RTL. A single -50% keyframe animates RTL into blank space. */
 @keyframes ticker-marquee {
   from {
     transform: translateX(0);
@@ -143,6 +178,19 @@ a {
   to {
     transform: translateX(-50%);
   }
+}
+
+@keyframes ticker-marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+[dir="rtl"] .ticker-marquee {
+  animation-name: ticker-marquee-rtl;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -153,5 +201,144 @@ a {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Layout primitives
+
+   These back the React components in src/components/layout. They live in CSS
+   rather than Tailwind utilities because subgrid and container queries have no
+   utility equivalent in this project (Tailwind v4, CSS-first config, no
+   tailwind.config), and because the master grid must be declared once and
+   inherited rather than re-spelled per section.
+   --------------------------------------------------------------------------- */
+
+.page-container {
+  width: min(100%, var(--layout-container));
+  margin-inline: auto;
+  padding-inline: var(--layout-gutter);
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--layout-grid-columns), minmax(0, 1fr));
+  column-gap: var(--layout-grid-gap);
+  width: min(100%, var(--layout-container));
+  margin-inline: auto;
+  padding-inline: var(--layout-gutter);
+}
+
+/* Nested grids inherit the parent tracks instead of inventing their own, which
+   is what keeps section-to-section alignment true. */
+.page-grid--subgrid {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  column-gap: inherit;
+  width: auto;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+/* Full width below the tablet step; spans engage from there up. */
+.grid-item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+@media (min-width: 48rem) {
+  .grid-item {
+    grid-column: var(--grid-item-start-md, auto) / span var(--grid-item-span-md, var(--layout-grid-columns));
+  }
+}
+
+@media (min-width: 68.75rem) {
+  .grid-item {
+    grid-column: var(--grid-item-start, auto) / span var(--grid-item-span, var(--layout-grid-columns));
+  }
+}
+
+.section {
+  padding-block: var(--space-section);
+  scroll-margin-block-start: var(--layout-header-offset);
+}
+
+.section--tight {
+  padding-block: calc(var(--space-section) * 0.6);
+}
+
+.section--flush {
+  padding-block: 0;
+}
+
+.prose-measure {
+  max-inline-size: var(--layout-reading-width);
+}
+
+/* Edge bleed cancels the container gutter; full bleed reaches the viewport.
+   Both use logical margins so they mirror correctly under RTL. */
+.bleed-edge {
+  margin-inline: calc(var(--layout-gutter) * -1);
+}
+
+.bleed-full {
+  margin-inline: calc(50% - 50vw);
+  max-inline-size: 100vw;
+}
+
+/* Card rails size to their own inline space, not the viewport, so the same
+   component works in a narrow branch column and a wide group section. */
+.rail {
+  container-type: inline-size;
+  container-name: rail;
+}
+
+.rail__items {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--layout-grid-gap);
+}
+
+/* Subgrid gives every card the same internal row lines, so eyebrows, headings
+   and body copy align across a row instead of only the bottom edge lining up
+   the way flex-1 leaves it. */
+.rail__items > * {
+  display: grid;
+  grid-row: span var(--rail-rows, 4);
+  grid-template-rows: subgrid;
+  /* A subgrid child inherits the parent's row-gap between its own rows, so
+     the rail's gap would open up INSIDE every card on top of the padding the
+     component already sets. Zero it here: card-internal spacing is the
+     component's job, row-to-row separation stays the parent's. */
+  row-gap: 0;
+  min-width: 0;
+}
+
+@container rail (min-width: 34rem) {
+  .rail__items {
+    grid-template-columns: repeat(min(2, var(--rail-max, 3)), minmax(0, 1fr));
+  }
+}
+
+@container rail (min-width: 52rem) {
+  .rail__items {
+    grid-template-columns: repeat(var(--rail-max, 3), minmax(0, 1fr));
+  }
+}
+
+/* No subgrid: fall back to equal-height cells so cards still bottom-align. */
+@supports not (grid-template-rows: subgrid) {
+  .rail__items > * {
+    display: flex;
+    flex-direction: column;
+    grid-row: auto;
+    row-gap: 0;
+  }
+
+  /* Equal-height cells alone only align card bottoms; the last part has to
+     grow or the copy stops short of the card edge. */
+  .rail__items > * > :last-child {
+    flex: 1;
   }
 }

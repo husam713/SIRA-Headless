@@ -12,6 +12,7 @@ use Sira\Core\Admin\NetworkSettings;
 use Sira\Core\Admin\SiteSettings;
 use Sira\Core\Brand\BrandManager;
 use Sira\Core\Content\MetaFields;
+use Sira\Core\Content\NavMenus;
 use Sira\Core\Content\PostTypes;
 use Sira\Core\Content\Taxonomies;
 use Sira\Core\Forms\LegacyContactForm;
@@ -47,6 +48,7 @@ final class Plugin {
 		BrandManager::instance()->hooks();
 		( new PostTypes() )->hooks();
 		( new Taxonomies() )->hooks();
+		( new NavMenus() )->hooks();
 		( new MetaFields() )->hooks();
 		( new SiteSettings() )->hooks();
 		( new DemoImporter() )->hooks();

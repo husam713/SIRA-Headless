@@ -58,7 +58,8 @@ Every section field queried against the checked-in schema's real field names.
 **This corrects the provisional reading in an earlier draft of this document.**
 An earlier pass sampled only `overview` among branch sections and concluded the
 branch sites carried "2-3 of ~8". They do not. Three of four branch sites are
-**content-complete apart from the two unresolvable repeaters**.
+**content-complete** — including the statistics and focus-area repeaters,
+which do resolve (G4 withdrawn).
 
 Two consequences:
 
@@ -128,7 +129,7 @@ already-recorded `CMS-2C4-001` / `CMS-2C4-002` identity actions.
 | # | Gap | Class | Blocks |
 |---|---|---|---|
 | G1 | No registered nav-menu locations | **backend code** | all navigation, mobile menu |
-| G2 | **Healthcare only** — 2 of 8 sections; other branches are 7 of 8 | content | Healthcare launch |
+| G2 | **Healthcare only** — 2 of 8 sections; other branches are **8 of 8** | content | Healthcare launch |
 | G3 | No legal pages on any site | content + model | compliance, footer links |
 | ~~G4~~ | ~~ACF repeaters unresolvable~~ **WITHDRAWN — not a defect.** Repeaters resolve and carry real content on three sites; the claim came from a stale code comment. Verified 2026-08-31. | — | — |
 | G5 | `branch.footer` filled on 3 sites, normalized then **discarded** | frontend wiring | **live data loss** |
@@ -161,10 +162,10 @@ text, and validating.
   hardcoded English labels, and `group-investor.tsx` hardcodes investor
   categories and dollar ticket bands. Those are business data and belong in the
   CMS.
-- **Repeater replacement for G4** — stats and focus areas must move off ACF
-  repeaters to something WPGraphQL resolves. Candidates: flexible content, a CPT
-  with an ordered relationship, or discrete numbered field groups.
-  **Requires a spike; do not assume.**
+- ~~**Repeater replacement for G4**~~ — **removed.** G4 is withdrawn: the
+  repeaters resolve and carry real content. Do **not** migrate stats or focus
+  areas off ACF repeaters; there is nothing to fix, and doing so would discard
+  authored content on three sites for no benefit.
 
 Every field gets a label and description written for a non-technical employee,
 not a developer.
@@ -341,7 +342,7 @@ evidence.
 One PR per Task Packet, against `main`, never combined:
 
 - `docs/` — TP-1 audit output, TP-12 handover
-- `backend/` — TP-2, TP-4, TP-5, TP-6, TP-7, TP-8 (each separately)
+- `backend/` — TP-2, TP-5, TP-6, TP-7, TP-8 (each separately; TP-4 closed, no work)
 - `frontend/` — TP-3 only
 - **no PR** — TP-9, TP-10 (execution packets with their own approval record)
 
@@ -362,8 +363,8 @@ RB-009 (restore evidence)  = UNKNOWN
 ```
 
 `SOT-001`'s closure additionally requires new backend work to carry its own
-authorized stage. TP-2 and TP-4…TP-8 each need one.
+authorized stage. TP-2 and TP-5…TP-8 each need one (TP-4 is closed).
 
-**Recommended order:** TP-1 (free, read-only, completes the evidence) → TP-2
-(unblocks all navigation) → TP-3 → TP-4. Nothing mutating until backup and
-restore evidence exists.
+**Recommended order:** ~~TP-1~~ (done) → **TP-2** (unblocks all navigation) →
+~~TP-3~~ (done, PR #50) → ~~TP-4~~ (closed, no work) → TP-5. Nothing mutating
+until backup and restore evidence exists.

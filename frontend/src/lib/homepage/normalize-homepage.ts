@@ -554,6 +554,12 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
   // backend defect. Verified 2026-08-31 against live data: Consulting,
   // Lifestyle and Real Estate each return 4 statistics and 3 focus areas.
   // Healthcare returns null for both because nobody has authored them.
+  //
+  // WHY it changed is unknown — plausibly a WPGraphQL-for-ACF version bump or
+  // a field-group config change, but neither was confirmed. Treat resolution
+  // as verified-by-observation, not guaranteed by contract: if these ever
+  // normalize empty again, re-probe the endpoints before assuming a
+  // frontend fault.
   const focusAreasField = isRecord(page["focusAreas"]) ? page["focusAreas"]["focusAreas"] : null;
   const focusAreas = Array.isArray(focusAreasField)
     ? focusAreasField.slice(0, 12).filter(isRecord).map((item): HomepageFocusArea => Object.freeze({

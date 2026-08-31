@@ -21,9 +21,12 @@ import type {
 // brand accent already carried by --brand-accent (ADR-028 s6). There is still
 // exactly one BranchHomepage architecture.
 //
-// Note: focusAreas currently normalizes to empty on every branch because ACF
-// repeaters do not resolve over WPGraphQL (see normalize-homepage.ts). The
-// empty path is therefore the live path today, not a hypothetical one.
+// Note: focusAreas resolves and carries real content. Live-verified
+// 2026-08-31: Consulting, Lifestyle and Real Estate each return 3 focus
+// areas; Healthcare returns null only because nobody has authored them. An
+// earlier version of this note claimed ACF repeaters do not resolve over
+// WPGraphQL and that the empty path was the live path — both false. The
+// empty branch below is a real but currently Healthcare-only case.
 
 interface BranchOverviewProps {
   readonly overview: HomepageRichTextSection | null;

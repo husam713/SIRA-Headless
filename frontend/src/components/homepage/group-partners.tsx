@@ -40,6 +40,7 @@ export function GroupPartners({ section }: GroupPartnersProps) {
 
   return (
     <Section
+      id="partners"
       labelledBy={hasHeading ? "partners-heading" : undefined}
       label={hasHeading ? undefined : (section.eyebrow ?? "Our Partners")}
       space="tight"

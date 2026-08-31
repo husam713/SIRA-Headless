@@ -46,6 +46,7 @@ export function GroupAbout({ section }: GroupAboutProps) {
   // its peers. Now on the shared rhythm.
   return (
     <Section
+      id="about"
       labelledBy={hasHeading ? "about-heading" : undefined}
       label={hasHeading ? undefined : (section.eyebrow ?? "About SIRA Group")}
     >

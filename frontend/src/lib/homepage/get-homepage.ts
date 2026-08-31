@@ -73,7 +73,7 @@ async function resolvePublishedHomepage(
 
 export const getHomepage = cache(resolvePublishedHomepage);
 
-export async function getPreviewHomepage(
+async function resolvePreviewHomepage(
   siteKey: SiteKey,
 ): Promise<HomepageResolution> {
   return resolveHomepage(
@@ -86,6 +86,12 @@ export async function getPreviewHomepage(
       ),
   );
 }
+
+// Request-cached for the same reason as getHomepage above: the layout and the
+// page each resolve the homepage, and without this the preview path issues two
+// GraphQL round-trips per draft render. React cache() is per-request, so draft
+// content is still never shared between requests.
+export const getPreviewHomepage = cache(resolvePreviewHomepage);
 
 export async function getHomepageForRequest(
   siteKey: SiteKey,

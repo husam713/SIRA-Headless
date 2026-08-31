@@ -9,6 +9,7 @@ import { SiteHeader } from "@/components/shell/site-header";
 import { PageContainer } from "@/components/layout/page-container";
 import { getBrand } from "@/lib/brand";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { getHomepageForRequest } from "@/lib/homepage";
 import { getNavigation } from "@/lib/navigation";
 import type { NavigationItem, NavigationResolution } from "@/lib/navigation";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
@@ -82,11 +83,21 @@ export default async function SiteLayout({
     notFound();
   }
 
-  const [brand, draft, navigation] = await Promise.all([
+  // getHomepageForRequest is request-cached and already awaited by the page,
+  // so this resolves the same promise rather than issuing a second query. The
+  // footer lives in the layout but its branch overrides arrive with homepage
+  // data, which is why they were previously parsed and then dropped.
+  const [brand, draft, navigation, homepage] = await Promise.all([
     getBrand(site.key),
     draftMode(),
     getNavigation(site.key),
+    getHomepageForRequest(site.key),
   ]);
+
+  const branchFooter =
+    homepage.status === "ready" && homepage.homepage.variant === "branch"
+      ? homepage.homepage.footer
+      : null;
 
   const groupSite = resolveGroupCrossLink(site.key);
   const groupHeaderLink = groupSite === null
@@ -94,7 +105,10 @@ export default async function SiteLayout({
     : { label: `${groupSite.name} ↗`, href: `https://${groupSite.canonicalHostname}/` };
   const groupFooterLink = groupSite === null
     ? null
-    : { label: `A ${groupSite.name} Company ↗`, href: `https://${groupSite.canonicalHostname}/` };
+    : {
+        label: `${branchFooter?.groupLinkLabelOverride ?? `A ${groupSite.name} Company`} ↗`,
+        href: `https://${groupSite.canonicalHostname}/`,
+      };
 
   return (
     <BrandDocument site={site} brand={brand}>
@@ -136,6 +150,7 @@ export default async function SiteLayout({
         brand={brand}
         items={scopeItems(navigation, "footer")}
         groupLink={groupFooterLink}
+        taglineOverride={branchFooter?.taglineOverride ?? null}
       />
     </BrandDocument>
   );

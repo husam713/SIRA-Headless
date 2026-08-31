@@ -50,6 +50,7 @@ export function GroupTestimonials({ section }: GroupTestimonialsProps) {
 
   return (
     <Section
+      id="testimonials"
       labelledBy={hasHeading ? "testimonials-heading" : undefined}
       label={hasHeading ? undefined : (section.eyebrow ?? "In Their Words")}
       className="border-b border-brand-border"

@@ -13,9 +13,15 @@ interface SiteFooterProps {
   readonly items: readonly NavigationItem[];
   /** Cross-link back to SIRA GROUP, present on branch sites only. */
   readonly groupLink: GroupCrossLink | null;
+  /**
+   * Branch-authored replacement for the brand tagline, from the homepage
+   * `footer.taglineOverride` field. Null on Group and whenever the editor
+   * has not set one, in which case the brand tagline stands.
+   */
+  readonly taglineOverride: string | null;
 }
 
-export function SiteFooter({ brand, items, groupLink }: SiteFooterProps) {
+export function SiteFooter({ brand, items, groupLink, taglineOverride }: SiteFooterProps) {
   const year = new Date().getFullYear();
 
   return (
@@ -38,8 +44,10 @@ export function SiteFooter({ brand, items, groupLink }: SiteFooterProps) {
                 {brand.name}
               </span>
             </div>
-            {brand.tagline !== null ? (
-              <p className="mt-4 text-sm leading-relaxed">{brand.tagline}</p>
+            {(taglineOverride ?? brand.tagline) !== null ? (
+              <p className="mt-4 text-sm leading-relaxed">
+                {taglineOverride ?? brand.tagline}
+              </p>
             ) : null}
             {brand.address !== null ? (
               <p className="mt-3 text-xs text-brand-paper/55">{brand.address}</p>

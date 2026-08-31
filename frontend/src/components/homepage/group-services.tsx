@@ -42,6 +42,7 @@ export function GroupServices({ section }: GroupServicesProps) {
 
   return (
     <Section
+      id="services"
       labelledBy={hasHeading ? "services-heading" : undefined}
       label={hasHeading ? undefined : (section.eyebrow ?? "Services")}
       className="border-b border-brand-border"

@@ -74,7 +74,11 @@ export function GroupLatestUpdates({ section }: GroupLatestUpdatesProps) {
   const [first, ...rest] = section.selection.items;
 
   return (
-    <Section labelledBy="latest-updates-heading" className="border-b border-brand-border">
+    <Section
+      id="latest-updates"
+      labelledBy="latest-updates-heading"
+      className="border-b border-brand-border"
+    >
       <PageGrid className="gap-y-10">
         <GridItem span={3}>
           <h2

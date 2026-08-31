@@ -160,18 +160,18 @@ const mockServer = createServer((req, res) => {
               title: previewRequest
                 ? `Draft Home ${previewSequence}`
                 : "Published Home",
-              // `siraHomepage` carries only `variant`. Every section is its own
-              // top-level field group on `page` rather than nesting under a
-              // `groupHomepage`/`branchHomepage` wrapper, because WPGraphQL for
-              // ACF cannot resolve fields inside a `group`-type field nested in
-              // another field group. See normalizeHomepage in
+              // `siraHomepage` carries only `variant`; the sections arrive in
+              // two ACF field groups on `page`, `groupHomepage` and
+              // `branchHomepage`. See normalizeHomepage in
               // src/lib/homepage/normalize-homepage.ts.
               siraHomepage: { variant: "group" },
-              groupHero: {
-                headingBefore: "Runtime",
-                headingHighlight: "preview",
-                headingAfter: "check",
-                description: "Local runtime verification.",
+              groupHomepage: {
+                hero: {
+                  headingBefore: "Runtime",
+                  headingHighlight: "preview",
+                  headingAfter: "check",
+                  description: "Local runtime verification.",
+                },
               },
             },
           }

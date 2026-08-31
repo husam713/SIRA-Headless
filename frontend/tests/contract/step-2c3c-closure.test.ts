@@ -145,8 +145,8 @@ describe("Step 2C.3C cumulative closure contract", () => {
     );
     expect(SIRA_HOMEPAGE_QUERY.source).not.toMatch(/\bpages\s*\(/u);
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("/home");
-    expect(SIRA_HOMEPAGE_QUERY.source).toContain("groupHero");
-    expect(SIRA_HOMEPAGE_QUERY.source).toContain("branchHero");
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("groupHomepage");
+    expect(SIRA_HOMEPAGE_QUERY.source).toContain("branchHomepage");
 
     for (const location of ["PRIMARY", "FOOTER", "LEGAL"]) {
       expect(SIRA_NAVIGATION_QUERY.source).toContain(`location: ${location}`);

@@ -498,42 +498,50 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
 
   const databaseId = Number(page["databaseId"]);
   const title = normalizePlainText(page["title"], 240);
-  // Every section is its OWN standalone top-level field group, so it lives
-  // directly on `page` — not nested under `siraHomepage` (which now holds
-  // only `variant`), and not under a `groupHomepage`/`branchHomepage`
-  // wrapper either. See the note on PresentationFields.php's
-  // group_homepage_section_groups() for why: WPGraphQL for ACF cannot
-  // resolve text/textarea/link/wysiwyg/relationship fields that live
-  // inside a `group`-type field nested inside another field group's own
-  // `fields` array — only a field group's own direct top-level fields
-  // resolve correctly.
+  // sira-core 1.6.0 registers the sections as two ACF *field groups*,
+  // `groupHomepage` and `branchHomepage`, rather than as `group`-type fields
+  // nested inside one. ACF prefixes a group field's children with the parent
+  // name, so the old nesting made it look for
+  // `sira_group_homepage_hero_heading_before` while every row actually stored
+  // on a front page is `hero_heading_before` — so every field resolved to null
+  // and this normalizer never reached "ready". A field group adds no storage
+  // prefix, which makes the existing content readable without re-authoring it,
+  // and keeps Group and Branch in separate GraphQL types — which the nesting
+  // was providing, since both variants name a section `hero`.
+  const groupSections: Record<string, unknown> = isRecord(page["groupHomepage"])
+    ? page["groupHomepage"]
+    : {};
+  const branchSections: Record<string, unknown> = isRecord(page["branchHomepage"])
+    ? page["branchHomepage"]
+    : {};
+
   if (siteKey === "group") {
-    if (!isRecord(page["groupHero"])) return invalid(siteKey, "missing-variant-data");
+    if (!isRecord(groupSections["hero"])) return invalid(siteKey, "missing-variant-data");
     const homepage: GroupHomepage = Object.freeze({
       siteKey,
       databaseId,
       uri: "/",
       title,
       variant: "group",
-      hero: normalizeGroupHero(page["groupHero"]),
-      ticker: normalizeTicker(page["ticker"]),
-      latestUpdates: normalizeEditorialSection(page["latestUpdates"]),
-      companies: normalizeContentSection(page["companies"], "selectedCompanies", "SiraCompany"),
-      about: normalizeMetricsSection(page["about"], 8),
-      investor: normalizeInvestor(page["investor"]),
-      services: normalizeContentSection(page["services"], "selectedServices", "SiraService"),
-      projects: normalizeContentSection(page["groupProjects"], "selectedProjects", "SiraProject"),
-      insights: normalizeEditorialSection(page["groupInsights"]),
-      testimonials: normalizeContentSection(page["testimonials"], "selectedTestimonials", "SiraTestimonial"),
-      partners: normalizeContentSection(page["partners"], "selectedPartners", "SiraPartner"),
-      contact: normalizeContact(page["groupContact"]),
+      hero: normalizeGroupHero(groupSections["hero"]),
+      ticker: normalizeTicker(groupSections["ticker"]),
+      latestUpdates: normalizeEditorialSection(groupSections["latestUpdates"]),
+      companies: normalizeContentSection(groupSections["companies"], "selectedCompanies", "SiraCompany"),
+      about: normalizeMetricsSection(groupSections["about"], 8),
+      investor: normalizeInvestor(groupSections["investor"]),
+      services: normalizeContentSection(groupSections["services"], "selectedServices", "SiraService"),
+      projects: normalizeContentSection(groupSections["projects"], "selectedProjects", "SiraProject"),
+      insights: normalizeEditorialSection(groupSections["insights"]),
+      testimonials: normalizeContentSection(groupSections["testimonials"], "selectedTestimonials", "SiraTestimonial"),
+      partners: normalizeContentSection(groupSections["partners"], "selectedPartners", "SiraPartner"),
+      contact: normalizeContact(groupSections["contact"]),
     });
     return Object.freeze({ status: "ready", homepage });
   }
 
-  // Same flattening applies to the branch variant's sections.
-  if (!isRecord(page["branchHero"])) return invalid(siteKey, "missing-variant-data");
-  const hero = page["branchHero"];
+  // Same field-group move applies to the branch variant's sections.
+  if (!isRecord(branchSections["hero"])) return invalid(siteKey, "missing-variant-data");
+  const hero = branchSections["hero"];
   const branchHero: BranchHomepageHero = Object.freeze({
     ...normalizeHero(hero),
     eyebrow: normalizePlainText(hero["eyebrow"], 160),
@@ -542,36 +550,30 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
     image: normalizeMedia(hero["image"]),
     mobileImage: normalizeMedia(hero["mobileImage"]),
   });
-  // `statistics`/`focusAreas` are each their own field group wrapping a
-  // same-named repeater (Page.statistics.statistics, Page.focusAreas.
-  // focusAreas), because WPGraphQL for ACF derives the wrapper's type name
-  // from the field group title rather than the graphql_type_name set in
-  // PresentationFields.php.
+  // `statistics` and `focusAreas` are repeaters, and under the field-group
+  // registration they arrive as plain lists. They used to be doubled up
+  // (`statistics { statistics { … } }`) because each sat inside a same-named
+  // group field; that wrapper is gone.
   //
-  // These DO resolve. An earlier version of this comment said repeaters did
-  // not resolve over GraphQL and that this always normalized empty; that is
-  // no longer true and the stale note caused the gap to be mis-triaged as a
-  // backend defect. Verified 2026-08-31 against live data: Consulting,
-  // Lifestyle and Real Estate each return 4 statistics and 3 focus areas.
-  // Healthcare returns null for both because nobody has authored them.
-  //
-  // WHY it changed is unknown — plausibly a WPGraphQL-for-ACF version bump or
-  // a field-group config change, but neither was confirmed. Treat resolution
-  // as verified-by-observation, not guaranteed by contract: if these ever
-  // normalize empty again, re-probe the endpoints before assuming a
-  // frontend fault.
-  const focusAreasField = isRecord(page["focusAreas"]) ? page["focusAreas"]["focusAreas"] : null;
+  // Repeaters DO resolve. An older version of this comment claimed they did
+  // not and that this always normalized empty; that was wrong, and the stale
+  // note caused the gap to be mis-triaged as a backend defect. Treat
+  // resolution as verified-by-observation rather than guaranteed by contract:
+  // if these ever normalize empty again, probe the endpoint directly before
+  // assuming a frontend fault. A branch site legitimately returns null here
+  // when nobody has authored the content — Healthcare did on 2026-08-31.
+  const focusAreasField = branchSections["focusAreas"];
   const focusAreas = Array.isArray(focusAreasField)
     ? focusAreasField.slice(0, 12).filter(isRecord).map((item): HomepageFocusArea => Object.freeze({
         title: normalizePlainText(item["title"], 240),
         description: normalizePlainText(item["description"], 1_000),
       }))
     : Object.freeze([]);
-  const statisticsField = isRecord(page["statistics"]) ? page["statistics"]["statistics"] : null;
-  const footer = isRecord(page["footer"])
+  const statisticsField = branchSections["statistics"];
+  const footer = isRecord(branchSections["footer"])
     ? Object.freeze({
-        taglineOverride: normalizePlainText(page["footer"]["taglineOverride"], 500),
-        groupLinkLabelOverride: normalizePlainText(page["footer"]["groupLinkLabelOverride"], 240),
+        taglineOverride: normalizePlainText(branchSections["footer"]["taglineOverride"], 500),
+        groupLinkLabelOverride: normalizePlainText(branchSections["footer"]["groupLinkLabelOverride"], 240),
       })
     : null;
   const homepage: BranchHomepage = Object.freeze({
@@ -582,11 +584,11 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
     variant: "branch",
     hero: branchHero,
     statistics: normalizeMetrics(statisticsField, 8),
-    overview: normalizeRichTextSection(page["overview"]),
+    overview: normalizeRichTextSection(branchSections["overview"]),
     focusAreas: Object.freeze(focusAreas),
-    projects: normalizeContentSection(page["branchProjects"], "selectedProjects", "SiraProject"),
-    insights: normalizeEditorialSection(page["branchInsights"]),
-    contact: normalizeContact(page["branchContact"]),
+    projects: normalizeContentSection(branchSections["projects"], "selectedProjects", "SiraProject"),
+    insights: normalizeEditorialSection(branchSections["insights"]),
+    contact: normalizeContact(branchSections["contact"]),
     footer,
   });
   return Object.freeze({ status: "ready", homepage });

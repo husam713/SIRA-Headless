@@ -317,37 +317,38 @@ describe("Step 2C.4 production design and data-contract audit", () => {
     const expectedFields = {
       // `SiraHomepage` now holds only `variant` — every section is its own
       // standalone top-level field group directly on `Page` instead, not
-      // nested under `SiraHomepage` or a groupHomepage/branchHomepage
-      // wrapper (neither exists any more). See the note on
-      // PresentationFields.php's group_homepage_section_groups() for why:
-      // WPGraphQL for ACF cannot resolve text/textarea/link/wysiwyg/
-      // relationship fields that live inside a `group`-type field nested
-      // inside another field group's own `fields` array — only a field
-      // group's own direct top-level fields resolve correctly. `hero`,
-      // `projects`, `insights`, and `contact` are the only names both
-      // variants used, so those four are prefixed (groupHero/branchHero,
-      // etc.) to stay unique as siblings on `Page`.
+      // The sections are two ACF field groups on `Page` — `groupHomepage` and
+      // `branchHomepage` — not `group`-type fields nested inside the
+      // `siraHomepage` group. ACF prefixes a group field's children with the
+      // parent name, so the nested form looked for
+      // `sira_group_homepage_hero_heading_before` while every row stored on a
+      // front page is `hero_heading_before`; every field resolved to null. A
+      // field group adds no storage prefix, and the two wrappers also keep the
+      // section names unique, since both variants call a section `hero`.
       SiraHomepage: [ "variant" ],
-      Page: [
-        "groupHero",
+      Page: [ "groupHomepage", "branchHomepage" ],
+      GroupHomepage: [
+        "hero",
         "ticker",
         "latestUpdates",
         "companies",
         "about",
         "investor",
         "services",
-        "groupProjects",
-        "groupInsights",
+        "projects",
+        "insights",
         "testimonials",
         "partners",
-        "groupContact",
-        "branchHero",
+        "contact",
+      ],
+      BranchHomepage: [
+        "hero",
         "statistics",
         "overview",
         "focusAreas",
-        "branchProjects",
-        "branchInsights",
-        "branchContact",
+        "projects",
+        "insights",
+        "contact",
         "footer",
       ],
       CompanyDetails: [

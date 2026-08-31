@@ -4,127 +4,7 @@ schema {
 }
 
 """
-The &quot;About&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type About implements About_Fields & AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  body: String
-
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  metrics: [AboutMetrics]
-}
-
-"""
-The &quot;AboutMetrics&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type AboutMetrics implements AboutMetrics_Fields & AcfFieldGroup & AcfFieldGroupFields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;AboutMetrics&quot; Field Group
-  """
-  label: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;AboutMetrics&quot; Field Group
-  """
-  supportingText: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;AboutMetrics&quot; Field Group
-  """
-  value: String
-}
-
-"""
-Interface representing fields of the ACF &quot;AboutMetrics&quot; Field Group
-"""
-interface AboutMetrics_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;AboutMetrics&quot; Field Group
-  """
-  label: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;AboutMetrics&quot; Field Group
-  """
-  supportingText: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;AboutMetrics&quot; Field Group
-  """
-  value: String
-}
-
-"""Interface representing fields of the ACF &quot;About&quot; Field Group"""
-interface About_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  body: String
-
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;About&quot; Field Group
-  """
-  metrics: [AboutMetrics]
-}
-
-"""
-Connection between the BranchInsights_Fields type and the ContentNode type
+Connection between the PersonDetails_Fields type and the ContentNode type
 """
 type AcfContentNodeConnection implements Connection & ContentNodeConnection {
   """Edges for the AcfContentNodeConnection connection"""
@@ -201,7 +81,9 @@ type AcfMediaItemConnection implements Connection & MediaItemConnection {
   pageInfo: AcfMediaItemConnectionPageInfo!
 }
 
-"""Connection between the BranchHero_Fields type and the MediaItem type"""
+"""
+Connection between the CompanyDetails_Fields type and the MediaItem type
+"""
 type AcfMediaItemConnectionEdge implements Edge & MediaItemConnectionEdge & OneToOneConnection {
   """
   Opaque reference to the nodes position in the connection. Value can be used with pagination args.
@@ -229,7 +111,9 @@ type AcfMediaItemConnectionPageInfo implements MediaItemConnectionPageInfo & Pag
   startCursor: String
 }
 
-"""Connection between the TickerItems_Fields type and the TermNode type"""
+"""
+Connection between the GroupHomepageHeroSlides_Fields type and the TermNode type
+"""
 type AcfTermNodeConnection implements Connection & TermNodeConnection {
   """Edges for the AcfTermNodeConnection connection"""
   edges: [AcfTermNodeConnectionEdge!]!
@@ -329,16 +213,64 @@ enum AvatarRatingEnum {
 }
 
 """
-The &quot;BranchContact&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+The &quot;BranchHomepage&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
-type BranchContact implements AcfFieldGroup & AcfFieldGroupFields & BranchContact_Fields {
+type BranchHomepage implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepage_Fields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchContact&quot; Field Group
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  contact: BranchHomepageContact
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  focusAreas: [BranchHomepageFocusAreas]
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  footer: BranchHomepageFooter
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  hero: BranchHomepageHero
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  insights: BranchHomepageInsights
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  overview: BranchHomepageOverview
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  projects: BranchHomepageProjects
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  statistics: [BranchHomepageStatistics]
+}
+
+"""
+The &quot;BranchHomepageContact&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BranchHomepageContact implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepageContact_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageContact&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchContact&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageContact&quot; Field Group
   """
   eyebrow: String
 
@@ -351,27 +283,27 @@ type BranchContact implements AcfFieldGroup & AcfFieldGroupFields & BranchContac
   formContext: String
 
   """
-  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;BranchContact&quot; Field Group
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;BranchHomepageContact&quot; Field Group
   """
   formVariant: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchContact&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageContact&quot; Field Group
   """
   heading: String
 }
 
 """
-Interface representing fields of the ACF &quot;BranchContact&quot; Field Group
+Interface representing fields of the ACF &quot;BranchHomepageContact&quot; Field Group
 """
-interface BranchContact_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+interface BranchHomepageContact_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchContact&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageContact&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchContact&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageContact&quot; Field Group
   """
   eyebrow: String
 
@@ -384,27 +316,99 @@ interface BranchContact_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   formContext: String
 
   """
-  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;BranchContact&quot; Field Group
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;BranchHomepageContact&quot; Field Group
   """
   formVariant: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchContact&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageContact&quot; Field Group
   """
   heading: String
 }
 
 """
-The &quot;BranchHero&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+The &quot;BranchHomepageFocusAreas&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
-type BranchHero implements AcfFieldGroup & AcfFieldGroupFields & BranchHero_Fields {
+type BranchHomepageFocusAreas implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepageFocusAreas_Fields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageFocusAreas&quot; Field Group
+  """
+  description: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageFocusAreas&quot; Field Group
+  """
+  title: String
+}
+
+"""
+Interface representing fields of the ACF &quot;BranchHomepageFocusAreas&quot; Field Group
+"""
+interface BranchHomepageFocusAreas_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageFocusAreas&quot; Field Group
+  """
+  description: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageFocusAreas&quot; Field Group
+  """
+  title: String
+}
+
+"""
+The &quot;BranchHomepageFooter&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BranchHomepageFooter implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepageFooter_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageFooter&quot; Field Group
+  """
+  groupLinkLabelOverride: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageFooter&quot; Field Group
+  """
+  taglineOverride: String
+}
+
+"""
+Interface representing fields of the ACF &quot;BranchHomepageFooter&quot; Field Group
+"""
+interface BranchHomepageFooter_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageFooter&quot; Field Group
+  """
+  groupLinkLabelOverride: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageFooter&quot; Field Group
+  """
+  taglineOverride: String
+}
+
+"""
+The &quot;BranchHomepageHero&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BranchHomepageHero implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepageHero_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   eyebrow: String
 
@@ -412,62 +416,62 @@ type BranchHero implements AcfFieldGroup & AcfFieldGroupFields & BranchHero_Fiel
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   headingAfter: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   headingBefore: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   headingHighlight: String
 
   """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   image: AcfMediaItemConnectionEdge
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   imageAlt: String
 
   """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   mobileImage: AcfMediaItemConnectionEdge
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   primaryCta: AcfLink
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   region: String
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   secondaryCta: AcfLink
 }
 
 """
-Interface representing fields of the ACF &quot;BranchHero&quot; Field Group
+Interface representing fields of the ACF &quot;BranchHomepageHero&quot; Field Group
 """
-interface BranchHero_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+interface BranchHomepageHero_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   eyebrow: String
 
@@ -475,62 +479,62 @@ interface BranchHero_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   headingAfter: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   headingBefore: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   headingHighlight: String
 
   """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   image: AcfMediaItemConnectionEdge
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   imageAlt: String
 
   """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   mobileImage: AcfMediaItemConnectionEdge
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   primaryCta: AcfLink
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   region: String
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHero&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageHero&quot; Field Group
   """
   secondaryCta: AcfLink
 }
 
 """
-The &quot;BranchInsights&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+The &quot;BranchHomepageInsights&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
-type BranchInsights implements AcfFieldGroup & AcfFieldGroupFields & BranchInsights_Fields {
+type BranchHomepageInsights implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepageInsights_Fields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   eyebrow: String
 
@@ -538,22 +542,22 @@ type BranchInsights implements AcfFieldGroup & AcfFieldGroupFields & BranchInsig
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   heading: String
 
   """
-  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   itemLimit: Float
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   link: AcfLink
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   selectedItems(
     """
@@ -574,22 +578,22 @@ type BranchInsights implements AcfFieldGroup & AcfFieldGroupFields & BranchInsig
   ): AcfContentNodeConnection
 
   """
-  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   sourceMode: String
 }
 
 """
-Interface representing fields of the ACF &quot;BranchInsights&quot; Field Group
+Interface representing fields of the ACF &quot;BranchHomepageInsights&quot; Field Group
 """
-interface BranchInsights_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+interface BranchHomepageInsights_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   eyebrow: String
 
@@ -597,22 +601,22 @@ interface BranchInsights_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   heading: String
 
   """
-  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   itemLimit: Float
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   link: AcfLink
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   selectedItems(
     """
@@ -633,22 +637,27 @@ interface BranchInsights_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   ): AcfContentNodeConnection
 
   """
-  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;BranchInsights&quot; Field Group
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;BranchHomepageInsights&quot; Field Group
   """
   sourceMode: String
 }
 
 """
-The &quot;BranchProjects&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+The &quot;BranchHomepageOverview&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
-type BranchProjects implements AcfFieldGroup & AcfFieldGroupFields & BranchProjects_Fields {
+type BranchHomepageOverview implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepageOverview_Fields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchProjects&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BranchHomepageOverview&quot; Field Group
+  """
+  body: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageOverview&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchProjects&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageOverview&quot; Field Group
   """
   eyebrow: String
 
@@ -656,17 +665,78 @@ type BranchProjects implements AcfFieldGroup & AcfFieldGroupFields & BranchProje
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchProjects&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageOverview&quot; Field Group
   """
   heading: String
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchProjects&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageOverview&quot; Field Group
+  """
+  link: AcfLink
+}
+
+"""
+Interface representing fields of the ACF &quot;BranchHomepageOverview&quot; Field Group
+"""
+interface BranchHomepageOverview_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BranchHomepageOverview&quot; Field Group
+  """
+  body: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageOverview&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageOverview&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageOverview&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageOverview&quot; Field Group
+  """
+  link: AcfLink
+}
+
+"""
+The &quot;BranchHomepageProjects&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BranchHomepageProjects implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepageProjects_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageProjects&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageProjects&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageProjects&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageProjects&quot; Field Group
   """
   link: AcfLink
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BranchProjects&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BranchHomepageProjects&quot; Field Group
   """
   selectedProjects(
     """
@@ -688,16 +758,16 @@ type BranchProjects implements AcfFieldGroup & AcfFieldGroupFields & BranchProje
 }
 
 """
-Interface representing fields of the ACF &quot;BranchProjects&quot; Field Group
+Interface representing fields of the ACF &quot;BranchHomepageProjects&quot; Field Group
 """
-interface BranchProjects_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+interface BranchHomepageProjects_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchProjects&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageProjects&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchProjects&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageProjects&quot; Field Group
   """
   eyebrow: String
 
@@ -705,17 +775,17 @@ interface BranchProjects_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchProjects&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageProjects&quot; Field Group
   """
   heading: String
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchProjects&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageProjects&quot; Field Group
   """
   link: AcfLink
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BranchProjects&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BranchHomepageProjects&quot; Field Group
   """
   selectedProjects(
     """
@@ -734,6 +804,100 @@ interface BranchProjects_Fields implements AcfFieldGroup & AcfFieldGroupFields {
     """The number of items to return before the referenced "before" cursor"""
     last: Int
   ): AcfContentNodeConnection
+}
+
+"""
+The &quot;BranchHomepageStatistics&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BranchHomepageStatistics implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepageStatistics_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageStatistics&quot; Field Group
+  """
+  label: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageStatistics&quot; Field Group
+  """
+  supportingText: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageStatistics&quot; Field Group
+  """
+  value: String
+}
+
+"""
+Interface representing fields of the ACF &quot;BranchHomepageStatistics&quot; Field Group
+"""
+interface BranchHomepageStatistics_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageStatistics&quot; Field Group
+  """
+  label: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageStatistics&quot; Field Group
+  """
+  supportingText: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageStatistics&quot; Field Group
+  """
+  value: String
+}
+
+"""
+Interface representing fields of the ACF &quot;BranchHomepage&quot; Field Group
+"""
+interface BranchHomepage_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  contact: BranchHomepageContact
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  focusAreas: [BranchHomepageFocusAreas]
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  footer: BranchHomepageFooter
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  hero: BranchHomepageHero
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  insights: BranchHomepageInsights
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  overview: BranchHomepageOverview
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  projects: BranchHomepageProjects
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  statistics: [BranchHomepageStatistics]
 }
 
 """
@@ -2082,104 +2246,6 @@ enum CommentsConnectionOrderbyEnum {
 }
 
 """
-The &quot;Companies&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type Companies implements AcfFieldGroup & AcfFieldGroupFields & Companies_Fields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Companies&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Companies&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Companies&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Companies&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Companies&quot; Field Group
-  """
-  selectedCompanies(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-}
-
-"""
-Interface representing fields of the ACF &quot;Companies&quot; Field Group
-"""
-interface Companies_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Companies&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Companies&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Companies&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Companies&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Companies&quot; Field Group
-  """
-  selectedCompanies(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-}
-
-"""
 The &quot;CompanyDetails&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type CompanyDetails implements AcfFieldGroup & AcfFieldGroupFields & CompanyDetails_Fields {
@@ -2599,15 +2665,6 @@ The templates that can be assigned to content. Used to filter a connection by th
 enum ContentTemplateEnum {
   """The default template, applied when no specific template is assigned."""
   DEFAULT_TEMPLATE
-
-  """The "SIRA Dynamic Branch Homepage" template."""
-  PAGE_TEMPLATES_SIRA_BRANCH_TEMPLATE
-
-  """The "SIRA Dynamic Homepage" template."""
-  PAGE_TEMPLATES_SIRA_HOME_TEMPLATE
-
-  """The "SIRA Newsroom" template."""
-  PAGE_TEMPLATES_SIRA_NEWSROOM_TEMPLATE
 }
 
 """An Post Type object"""
@@ -7378,104 +7435,6 @@ interface EnqueuedStylesheetConnectionPageInfo implements PageInfo & WPPageInfo 
   startCursor: String
 }
 
-"""
-The &quot;FocusAreas&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type FocusAreas implements AcfFieldGroup & AcfFieldGroupFields & FocusAreas_Fields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;FocusAreas&quot; Field Group
-  """
-  focusAreas: [FocusAreasFocusAreas]
-}
-
-"""
-The &quot;FocusAreasFocusAreas&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type FocusAreasFocusAreas implements AcfFieldGroup & AcfFieldGroupFields & FocusAreasFocusAreas_Fields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;FocusAreasFocusAreas&quot; Field Group
-  """
-  description: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FocusAreasFocusAreas&quot; Field Group
-  """
-  title: String
-}
-
-"""
-Interface representing fields of the ACF &quot;FocusAreasFocusAreas&quot; Field Group
-"""
-interface FocusAreasFocusAreas_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;FocusAreasFocusAreas&quot; Field Group
-  """
-  description: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FocusAreasFocusAreas&quot; Field Group
-  """
-  title: String
-}
-
-"""
-Interface representing fields of the ACF &quot;FocusAreas&quot; Field Group
-"""
-interface FocusAreas_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;FocusAreas&quot; Field Group
-  """
-  focusAreas: [FocusAreasFocusAreas]
-}
-
-"""
-The &quot;Footer&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type Footer implements AcfFieldGroup & AcfFieldGroupFields & Footer_Fields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group
-  """
-  groupLinkLabelOverride: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group
-  """
-  taglineOverride: String
-}
-
-"""
-Interface representing fields of the ACF &quot;Footer&quot; Field Group
-"""
-interface Footer_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group
-  """
-  groupLinkLabelOverride: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group
-  """
-  taglineOverride: String
-}
-
 """The general setting type"""
 type GeneralSettings implements Node {
   """A date format for all date strings."""
@@ -7538,16 +7497,304 @@ type GeneralSettingsToMediaItemConnectionEdge implements Edge & MediaItemConnect
 }
 
 """
-The &quot;GroupContact&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+The &quot;GroupHomepage&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
-type GroupContact implements AcfFieldGroup & AcfFieldGroupFields & GroupContact_Fields {
+type GroupHomepage implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepage_Fields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupContact&quot; Field Group
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  about: GroupHomepageAbout
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  companies: GroupHomepageCompanies
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  contact: GroupHomepageContact
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  hero: GroupHomepageHero
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  insights: GroupHomepageInsights
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  investor: GroupHomepageInvestor
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  latestUpdates: GroupHomepageLatestUpdates
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  partners: GroupHomepagePartners
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  projects: GroupHomepageProjects
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  services: GroupHomepageServices
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  testimonials: GroupHomepageTestimonials
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  ticker: GroupHomepageTicker
+}
+
+"""
+The &quot;GroupHomepageAbout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageAbout implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageAbout_Fields {
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  body: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupContact&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  metrics: [GroupHomepageAboutMetrics]
+}
+
+"""
+The &quot;GroupHomepageAboutMetrics&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageAboutMetrics implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageAboutMetrics_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageAboutMetrics&quot; Field Group
+  """
+  label: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageAboutMetrics&quot; Field Group
+  """
+  supportingText: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageAboutMetrics&quot; Field Group
+  """
+  value: String
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepageAboutMetrics&quot; Field Group
+"""
+interface GroupHomepageAboutMetrics_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageAboutMetrics&quot; Field Group
+  """
+  label: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageAboutMetrics&quot; Field Group
+  """
+  supportingText: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageAboutMetrics&quot; Field Group
+  """
+  value: String
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepageAbout&quot; Field Group
+"""
+interface GroupHomepageAbout_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  body: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;GroupHomepageAbout&quot; Field Group
+  """
+  metrics: [GroupHomepageAboutMetrics]
+}
+
+"""
+The &quot;GroupHomepageCompanies&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageCompanies implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageCompanies_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageCompanies&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageCompanies&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageCompanies&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageCompanies&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageCompanies&quot; Field Group
+  """
+  selectedCompanies(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepageCompanies&quot; Field Group
+"""
+interface GroupHomepageCompanies_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageCompanies&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageCompanies&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageCompanies&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageCompanies&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageCompanies&quot; Field Group
+  """
+  selectedCompanies(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+The &quot;GroupHomepageContact&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageContact implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageContact_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageContact&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageContact&quot; Field Group
   """
   eyebrow: String
 
@@ -7560,27 +7807,27 @@ type GroupContact implements AcfFieldGroup & AcfFieldGroupFields & GroupContact_
   formContext: String
 
   """
-  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;GroupContact&quot; Field Group
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;GroupHomepageContact&quot; Field Group
   """
   formVariant: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupContact&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageContact&quot; Field Group
   """
   heading: String
 }
 
 """
-Interface representing fields of the ACF &quot;GroupContact&quot; Field Group
+Interface representing fields of the ACF &quot;GroupHomepageContact&quot; Field Group
 """
-interface GroupContact_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+interface GroupHomepageContact_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupContact&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageContact&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupContact&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageContact&quot; Field Group
   """
   eyebrow: String
 
@@ -7593,22 +7840,22 @@ interface GroupContact_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   formContext: String
 
   """
-  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;GroupContact&quot; Field Group
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;GroupHomepageContact&quot; Field Group
   """
   formVariant: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupContact&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageContact&quot; Field Group
   """
   heading: String
 }
 
 """
-The &quot;GroupHero&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+The &quot;GroupHomepageHero&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
-type GroupHero implements AcfFieldGroup & AcfFieldGroupFields & GroupHero_Fields {
+type GroupHomepageHero implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageHero_Fields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   description: String
 
@@ -7616,42 +7863,42 @@ type GroupHero implements AcfFieldGroup & AcfFieldGroupFields & GroupHero_Fields
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   headingAfter: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   headingBefore: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   headingHighlight: String
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   primaryCta: AcfLink
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   secondaryCta: AcfLink
 
   """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
-  slides: [GroupHeroSlides]
+  slides: [GroupHomepageHeroSlides]
 }
 
 """
-The &quot;GroupHeroSlides&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+The &quot;GroupHomepageHeroSlides&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
-type GroupHeroSlides implements AcfFieldGroup & AcfFieldGroupFields & GroupHeroSlides_Fields {
+type GroupHomepageHeroSlides implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageHeroSlides_Fields {
   """
-  Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   businessUnit(
     """
@@ -7672,12 +7919,12 @@ type GroupHeroSlides implements AcfFieldGroup & AcfFieldGroupFields & GroupHeroS
   ): AcfTermNodeConnection
 
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   descriptionOverride: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   eyebrowOverride: String
 
@@ -7685,32 +7932,32 @@ type GroupHeroSlides implements AcfFieldGroup & AcfFieldGroupFields & GroupHeroS
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   imageAltOverride: String
 
   """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   imageOverride: AcfMediaItemConnectionEdge
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   locationOverride: String
 
   """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   mobileImageOverride: AcfMediaItemConnectionEdge
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   primaryCtaOverride: AcfLink
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   relatedCompany(
     """
@@ -7731,7 +7978,7 @@ type GroupHeroSlides implements AcfFieldGroup & AcfFieldGroupFields & GroupHeroS
   ): AcfContentNodeConnection
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   relatedProject(
     """
@@ -7752,22 +7999,22 @@ type GroupHeroSlides implements AcfFieldGroup & AcfFieldGroupFields & GroupHeroS
   ): AcfContentNodeConnection
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   secondaryCtaOverride: AcfLink
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   titleOverride: String
 }
 
 """
-Interface representing fields of the ACF &quot;GroupHeroSlides&quot; Field Group
+Interface representing fields of the ACF &quot;GroupHomepageHeroSlides&quot; Field Group
 """
-interface GroupHeroSlides_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+interface GroupHomepageHeroSlides_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
-  Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   businessUnit(
     """
@@ -7788,12 +8035,12 @@ interface GroupHeroSlides_Fields implements AcfFieldGroup & AcfFieldGroupFields 
   ): AcfTermNodeConnection
 
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   descriptionOverride: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   eyebrowOverride: String
 
@@ -7801,32 +8048,32 @@ interface GroupHeroSlides_Fields implements AcfFieldGroup & AcfFieldGroupFields 
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   imageAltOverride: String
 
   """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   imageOverride: AcfMediaItemConnectionEdge
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   locationOverride: String
 
   """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   mobileImageOverride: AcfMediaItemConnectionEdge
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   primaryCtaOverride: AcfLink
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   relatedCompany(
     """
@@ -7847,7 +8094,7 @@ interface GroupHeroSlides_Fields implements AcfFieldGroup & AcfFieldGroupFields 
   ): AcfContentNodeConnection
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   relatedProject(
     """
@@ -7868,22 +8115,22 @@ interface GroupHeroSlides_Fields implements AcfFieldGroup & AcfFieldGroupFields 
   ): AcfContentNodeConnection
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   secondaryCtaOverride: AcfLink
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHeroSlides&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHeroSlides&quot; Field Group
   """
   titleOverride: String
 }
 
 """
-Interface representing fields of the ACF &quot;GroupHero&quot; Field Group
+Interface representing fields of the ACF &quot;GroupHomepageHero&quot; Field Group
 """
-interface GroupHero_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+interface GroupHomepageHero_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   description: String
 
@@ -7891,47 +8138,47 @@ interface GroupHero_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   headingAfter: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   headingBefore: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   headingHighlight: String
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   primaryCta: AcfLink
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
   secondaryCta: AcfLink
 
   """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;GroupHero&quot; Field Group
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;GroupHomepageHero&quot; Field Group
   """
-  slides: [GroupHeroSlides]
+  slides: [GroupHomepageHeroSlides]
 }
 
 """
-The &quot;GroupInsights&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+The &quot;GroupHomepageInsights&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
-type GroupInsights implements AcfFieldGroup & AcfFieldGroupFields & GroupInsights_Fields {
+type GroupHomepageInsights implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageInsights_Fields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   eyebrow: String
 
@@ -7939,22 +8186,22 @@ type GroupInsights implements AcfFieldGroup & AcfFieldGroupFields & GroupInsight
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   heading: String
 
   """
-  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   itemLimit: Float
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   link: AcfLink
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   selectedItems(
     """
@@ -7975,22 +8222,22 @@ type GroupInsights implements AcfFieldGroup & AcfFieldGroupFields & GroupInsight
   ): AcfContentNodeConnection
 
   """
-  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   sourceMode: String
 }
 
 """
-Interface representing fields of the ACF &quot;GroupInsights&quot; Field Group
+Interface representing fields of the ACF &quot;GroupHomepageInsights&quot; Field Group
 """
-interface GroupInsights_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+interface GroupHomepageInsights_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   eyebrow: String
 
@@ -7998,22 +8245,22 @@ interface GroupInsights_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   heading: String
 
   """
-  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   itemLimit: Float
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   link: AcfLink
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   selectedItems(
     """
@@ -8034,22 +8281,27 @@ interface GroupInsights_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   ): AcfContentNodeConnection
 
   """
-  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;GroupInsights&quot; Field Group
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;GroupHomepageInsights&quot; Field Group
   """
   sourceMode: String
 }
 
 """
-The &quot;GroupProjects&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+The &quot;GroupHomepageInvestor&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
-type GroupProjects implements AcfFieldGroup & AcfFieldGroupFields & GroupProjects_Fields {
+type GroupHomepageInvestor implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageInvestor_Fields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupProjects&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  body: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupProjects&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
   """
   eyebrow: String
 
@@ -8057,17 +8309,454 @@ type GroupProjects implements AcfFieldGroup & AcfFieldGroupFields & GroupProject
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupProjects&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  formDescription: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  formHeading: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
   """
   heading: String
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupProjects&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
   """
   link: AcfLink
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupProjects&quot; Field Group
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  metrics: [GroupHomepageInvestorMetrics]
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  onePagerDocument(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  selectedInvestments(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+The &quot;GroupHomepageInvestorMetrics&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageInvestorMetrics implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageInvestorMetrics_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestorMetrics&quot; Field Group
+  """
+  label: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestorMetrics&quot; Field Group
+  """
+  supportingText: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestorMetrics&quot; Field Group
+  """
+  value: String
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepageInvestorMetrics&quot; Field Group
+"""
+interface GroupHomepageInvestorMetrics_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestorMetrics&quot; Field Group
+  """
+  label: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestorMetrics&quot; Field Group
+  """
+  supportingText: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestorMetrics&quot; Field Group
+  """
+  value: String
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepageInvestor&quot; Field Group
+"""
+interface GroupHomepageInvestor_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  body: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  formDescription: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  formHeading: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  metrics: [GroupHomepageInvestorMetrics]
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  onePagerDocument(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageInvestor&quot; Field Group
+  """
+  selectedInvestments(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+The &quot;GroupHomepageLatestUpdates&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageLatestUpdates implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageLatestUpdates_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  itemLimit: Float
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  selectedItems(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  sourceMode: String
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepageLatestUpdates&quot; Field Group
+"""
+interface GroupHomepageLatestUpdates_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  itemLimit: Float
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  selectedItems(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;GroupHomepageLatestUpdates&quot; Field Group
+  """
+  sourceMode: String
+}
+
+"""
+The &quot;GroupHomepagePartners&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepagePartners implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepagePartners_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepagePartners&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepagePartners&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepagePartners&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepagePartners&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepagePartners&quot; Field Group
+  """
+  selectedPartners(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepagePartners&quot; Field Group
+"""
+interface GroupHomepagePartners_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepagePartners&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepagePartners&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepagePartners&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepagePartners&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepagePartners&quot; Field Group
+  """
+  selectedPartners(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+The &quot;GroupHomepageProjects&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageProjects implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageProjects_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageProjects&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageProjects&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageProjects&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageProjects&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageProjects&quot; Field Group
   """
   selectedProjects(
     """
@@ -8089,16 +8778,16 @@ type GroupProjects implements AcfFieldGroup & AcfFieldGroupFields & GroupProject
 }
 
 """
-Interface representing fields of the ACF &quot;GroupProjects&quot; Field Group
+Interface representing fields of the ACF &quot;GroupHomepageProjects&quot; Field Group
 """
-interface GroupProjects_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+interface GroupHomepageProjects_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupProjects&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageProjects&quot; Field Group
   """
   description: String
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupProjects&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageProjects&quot; Field Group
   """
   eyebrow: String
 
@@ -8106,17 +8795,17 @@ interface GroupProjects_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupProjects&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageProjects&quot; Field Group
   """
   heading: String
 
   """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupProjects&quot; Field Group
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageProjects&quot; Field Group
   """
   link: AcfLink
 
   """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupProjects&quot; Field Group
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageProjects&quot; Field Group
   """
   selectedProjects(
     """
@@ -8135,6 +8824,384 @@ interface GroupProjects_Fields implements AcfFieldGroup & AcfFieldGroupFields {
     """The number of items to return before the referenced "before" cursor"""
     last: Int
   ): AcfContentNodeConnection
+}
+
+"""
+The &quot;GroupHomepageServices&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageServices implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageServices_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageServices&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageServices&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageServices&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageServices&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageServices&quot; Field Group
+  """
+  selectedServices(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepageServices&quot; Field Group
+"""
+interface GroupHomepageServices_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageServices&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageServices&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageServices&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageServices&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageServices&quot; Field Group
+  """
+  selectedServices(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+The &quot;GroupHomepageTestimonials&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageTestimonials implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageTestimonials_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageTestimonials&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageTestimonials&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageTestimonials&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageTestimonials&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageTestimonials&quot; Field Group
+  """
+  selectedTestimonials(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepageTestimonials&quot; Field Group
+"""
+interface GroupHomepageTestimonials_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;GroupHomepageTestimonials&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageTestimonials&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageTestimonials&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageTestimonials&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;GroupHomepageTestimonials&quot; Field Group
+  """
+  selectedTestimonials(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+The &quot;GroupHomepageTicker&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageTicker implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageTicker_Fields {
+  """
+  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;GroupHomepageTicker&quot; Field Group
+  """
+  enabled: Boolean
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;GroupHomepageTicker&quot; Field Group
+  """
+  items: [GroupHomepageTickerItems]
+}
+
+"""
+The &quot;GroupHomepageTickerItems&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type GroupHomepageTickerItems implements AcfFieldGroup & AcfFieldGroupFields & GroupHomepageTickerItems_Fields {
+  """
+  Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;GroupHomepageTickerItems&quot; Field Group
+  """
+  businessUnit(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfTermNodeConnection
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageTickerItems&quot; Field Group
+  """
+  label: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageTickerItems&quot; Field Group
+  """
+  link: AcfLink
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepageTickerItems&quot; Field Group
+"""
+interface GroupHomepageTickerItems_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;GroupHomepageTickerItems&quot; Field Group
+  """
+  businessUnit(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfTermNodeConnection
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;GroupHomepageTickerItems&quot; Field Group
+  """
+  label: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;GroupHomepageTickerItems&quot; Field Group
+  """
+  link: AcfLink
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepageTicker&quot; Field Group
+"""
+interface GroupHomepageTicker_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;GroupHomepageTicker&quot; Field Group
+  """
+  enabled: Boolean
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;GroupHomepageTicker&quot; Field Group
+  """
+  items: [GroupHomepageTickerItems]
+}
+
+"""
+Interface representing fields of the ACF &quot;GroupHomepage&quot; Field Group
+"""
+interface GroupHomepage_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  about: GroupHomepageAbout
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  companies: GroupHomepageCompanies
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  contact: GroupHomepageContact
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  hero: GroupHomepageHero
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  insights: GroupHomepageInsights
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  investor: GroupHomepageInvestor
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  latestUpdates: GroupHomepageLatestUpdates
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  partners: GroupHomepagePartners
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  projects: GroupHomepageProjects
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  services: GroupHomepageServices
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  testimonials: GroupHomepageTestimonials
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;GroupHomepage&quot; Field Group
+  """
+  ticker: GroupHomepageTicker
 }
 
 """
@@ -8856,350 +9923,6 @@ interface InvestmentDetails_Fields implements AcfFieldGroup & AcfFieldGroupField
   Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;InvestmentDetails&quot; Field Group
   """
   ticketSizeLabel: String
-}
-
-"""
-The &quot;Investor&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type Investor implements AcfFieldGroup & AcfFieldGroupFields & Investor_Fields {
-  """
-  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  body: String
-
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  formDescription: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  formHeading: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  metrics: [InvestorMetrics]
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  onePagerDocument(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  selectedInvestments(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-}
-
-"""
-The &quot;InvestorMetrics&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type InvestorMetrics implements AcfFieldGroup & AcfFieldGroupFields & InvestorMetrics_Fields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;InvestorMetrics&quot; Field Group
-  """
-  label: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;InvestorMetrics&quot; Field Group
-  """
-  supportingText: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;InvestorMetrics&quot; Field Group
-  """
-  value: String
-}
-
-"""
-Interface representing fields of the ACF &quot;InvestorMetrics&quot; Field Group
-"""
-interface InvestorMetrics_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;InvestorMetrics&quot; Field Group
-  """
-  label: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;InvestorMetrics&quot; Field Group
-  """
-  supportingText: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;InvestorMetrics&quot; Field Group
-  """
-  value: String
-}
-
-"""
-Interface representing fields of the ACF &quot;Investor&quot; Field Group
-"""
-interface Investor_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  body: String
-
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  formDescription: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  formHeading: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  metrics: [InvestorMetrics]
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  onePagerDocument(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Investor&quot; Field Group
-  """
-  selectedInvestments(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-}
-
-"""
-The &quot;LatestUpdates&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type LatestUpdates implements AcfFieldGroup & AcfFieldGroupFields & LatestUpdates_Fields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  itemLimit: Float
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  selectedItems(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-
-  """
-  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  sourceMode: String
-}
-
-"""
-Interface representing fields of the ACF &quot;LatestUpdates&quot; Field Group
-"""
-interface LatestUpdates_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  itemLimit: Float
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  selectedItems(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-
-  """
-  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;LatestUpdates&quot; Field Group
-  """
-  sourceMode: String
 }
 
 """File details for a Media Item"""
@@ -10240,17 +10963,11 @@ enum MenuLocationEnum {
   """Put the menu in the footer location"""
   FOOTER
 
-  """Put the menu in the languages location"""
-  LANGUAGES
-
   """Put the menu in the legal location"""
   LEGAL
 
   """Put the menu in the primary location"""
   PRIMARY
-
-  """Put the menu in the utility location"""
-  UTILITY
 }
 
 """
@@ -10334,9 +11051,6 @@ Media file type classification based on MIME standards. Used to identify and fil
 enum MimeTypeEnum {
   """application/java mime type."""
   APPLICATION_JAVA
-
-  """application/javascript mime type."""
-  APPLICATION_JAVASCRIPT
 
   """application/msword mime type."""
   APPLICATION_MSWORD
@@ -10528,15 +11242,6 @@ enum MimeTypeEnum {
   """audio/x-realaudio mime type."""
   AUDIO_X_REALAUDIO
 
-  """font/ttf mime type."""
-  FONT_TTF
-
-  """font/woff mime type."""
-  FONT_WOFF
-
-  """font/woff2 mime type."""
-  FONT_WOFF2
-
   """image/avif mime type."""
   IMAGE_AVIF
 
@@ -10581,9 +11286,6 @@ enum MimeTypeEnum {
 
   """text/csv mime type."""
   TEXT_CSV
-
-  """text/html mime type."""
-  TEXT_HTML
 
   """text/plain mime type."""
   TEXT_PLAIN
@@ -10870,78 +11572,9 @@ enum OrderEnum {
 }
 
 """
-The &quot;Overview&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type Overview implements AcfFieldGroup & AcfFieldGroupFields & Overview_Fields {
-  """
-  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;Overview&quot; Field Group
-  """
-  body: String
-
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Overview&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Overview&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Overview&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Overview&quot; Field Group
-  """
-  link: AcfLink
-}
-
-"""
-Interface representing fields of the ACF &quot;Overview&quot; Field Group
-"""
-interface Overview_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;Overview&quot; Field Group
-  """
-  body: String
-
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Overview&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Overview&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Overview&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Overview&quot; Field Group
-  """
-  link: AcfLink
-}
-
-"""
 A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages.
 """
-type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfAbout & WithAcfBranchContact & WithAcfBranchHero & WithAcfBranchInsights & WithAcfBranchProjects & WithAcfCompanies & WithAcfFocusAreas & WithAcfFooter & WithAcfGroupContact & WithAcfGroupHero & WithAcfGroupInsights & WithAcfGroupProjects & WithAcfInvestor & WithAcfLatestUpdates & WithAcfOverview & WithAcfPartners & WithAcfServices & WithAcfSiraHomepage & WithAcfStatistics & WithAcfTestimonials & WithAcfTicker {
-  """Fields of the About ACF Field Group"""
-  about: About
-
+type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBranchHomepage & WithAcfGroupHomepage & WithAcfSiraHomepage {
   """
   Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -10975,17 +11608,8 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   """The globally unique identifier of the author of the node"""
   authorId: ID
 
-  """Fields of the BranchContact ACF Field Group"""
-  branchContact: BranchContact
-
-  """Fields of the BranchHero ACF Field Group"""
-  branchHero: BranchHero
-
-  """Fields of the BranchInsights ACF Field Group"""
-  branchInsights: BranchInsights
-
-  """Fields of the BranchProjects ACF Field Group"""
-  branchProjects: BranchProjects
+  """Fields of the BranchHomepage ACF Field Group"""
+  branchHomepage: BranchHomepage
 
   """
   Connection between the HierarchicalContentNode type and the ContentNode type
@@ -11040,9 +11664,6 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
     """Arguments for filtering the connection"""
     where: PageToCommentConnectionWhereArgs
   ): PageToCommentConnection
-
-  """Fields of the Companies ACF Field Group"""
-  companies: Companies
 
   """The content of the post."""
   content(
@@ -11141,23 +11762,8 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   """Globally unique ID of the featured image assigned to the node"""
   featuredImageId: ID
 
-  """Fields of the FocusAreas ACF Field Group"""
-  focusAreas: FocusAreas
-
-  """Fields of the Footer ACF Field Group"""
-  footer: Footer
-
-  """Fields of the GroupContact ACF Field Group"""
-  groupContact: GroupContact
-
-  """Fields of the GroupHero ACF Field Group"""
-  groupHero: GroupHero
-
-  """Fields of the GroupInsights ACF Field Group"""
-  groupInsights: GroupInsights
-
-  """Fields of the GroupProjects ACF Field Group"""
-  groupProjects: GroupProjects
+  """Fields of the GroupHomepage ACF Field Group"""
+  groupHomepage: GroupHomepage
 
   """
   The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
@@ -11169,9 +11775,6 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
 
   """The globally unique identifier of the page object."""
   id: ID!
-
-  """Fields of the Investor ACF Field Group"""
-  investor: Investor
 
   """Whether the node is a Comment"""
   isComment: Boolean!
@@ -11203,9 +11806,6 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   """The user that most recently edited the node"""
   lastEditedBy: ContentNodeToEditLastConnectionEdge
 
-  """Fields of the LatestUpdates ACF Field Group"""
-  latestUpdates: LatestUpdates
-
   """The permalink of the post"""
   link: String
 
@@ -11224,9 +11824,6 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   """
   modifiedGmt: String
 
-  """Fields of the Overview ACF Field Group"""
-  overview: Overview
-
   """The id field matches the WP_Post-&gt;ID field."""
   pageId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
@@ -11238,9 +11835,6 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
 
   """The globally unique identifier of the parent node."""
   parentId: ID
-
-  """Fields of the Partners ACF Field Group"""
-  partners: Partners
 
   """The password for the page object."""
   password: String
@@ -11281,9 +11875,6 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
     where: PageToRevisionConnectionWhereArgs
   ): PageToRevisionConnection
 
-  """Fields of the Services ACF Field Group"""
-  services: Services
-
   """Fields of the SiraHomepage ACF Field Group"""
   siraHomepage: SiraHomepage
 
@@ -11292,20 +11883,11 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   """
   slug: String
 
-  """Fields of the Statistics ACF Field Group"""
-  statistics: Statistics
-
   """The current status of the object"""
   status: String
 
   """The template assigned to a node of content"""
   template: ContentTemplate
-
-  """Fields of the Testimonials ACF Field Group"""
-  testimonials: Testimonials
-
-  """Fields of the Ticker ACF Field Group"""
-  ticker: Ticker
 
   """
   The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
@@ -11710,104 +12292,6 @@ interface PartnerDetails_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;PartnerDetails&quot; Field Group
   """
   websiteUrl: String
-}
-
-"""
-The &quot;Partners&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type Partners implements AcfFieldGroup & AcfFieldGroupFields & Partners_Fields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Partners&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Partners&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Partners&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Partners&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Partners&quot; Field Group
-  """
-  selectedPartners(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-}
-
-"""
-Interface representing fields of the ACF &quot;Partners&quot; Field Group
-"""
-interface Partners_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Partners&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Partners&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Partners&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Partners&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Partners&quot; Field Group
-  """
-  selectedPartners(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
 }
 
 """The permalink setting type"""
@@ -24247,104 +24731,6 @@ type SendPasswordResetEmailPayload {
 
   """The user that the password reset email was sent to"""
   user: User @deprecated(reason: "This field will be removed in a future version of WPGraphQL")
-}
-
-"""
-The &quot;Services&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type Services implements AcfFieldGroup & AcfFieldGroupFields & Services_Fields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Services&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Services&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Services&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Services&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Services&quot; Field Group
-  """
-  selectedServices(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-}
-
-"""
-Interface representing fields of the ACF &quot;Services&quot; Field Group
-"""
-interface Services_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Services&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Services&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Services&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Services&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Services&quot; Field Group
-  """
-  selectedServices(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
 }
 
 """All of the registered settings"""
@@ -59549,78 +59935,6 @@ input SiraWhitepaperToTermNodeConnectionWhereArgs {
 }
 
 """
-The &quot;Statistics&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type Statistics implements AcfFieldGroup & AcfFieldGroupFields & Statistics_Fields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;Statistics&quot; Field Group
-  """
-  statistics: [StatisticsStatistics]
-}
-
-"""
-The &quot;StatisticsStatistics&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type StatisticsStatistics implements AcfFieldGroup & AcfFieldGroupFields & StatisticsStatistics_Fields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;StatisticsStatistics&quot; Field Group
-  """
-  label: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;StatisticsStatistics&quot; Field Group
-  """
-  supportingText: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;StatisticsStatistics&quot; Field Group
-  """
-  value: String
-}
-
-"""
-Interface representing fields of the ACF &quot;StatisticsStatistics&quot; Field Group
-"""
-interface StatisticsStatistics_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;StatisticsStatistics&quot; Field Group
-  """
-  label: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;StatisticsStatistics&quot; Field Group
-  """
-  supportingText: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;StatisticsStatistics&quot; Field Group
-  """
-  value: String
-}
-
-"""
-Interface representing fields of the ACF &quot;Statistics&quot; Field Group
-"""
-interface Statistics_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;Statistics&quot; Field Group
-  """
-  statistics: [StatisticsStatistics]
-}
-
-"""
 A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications.
 """
 type Tag implements DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable {
@@ -60397,24 +60711,6 @@ type TaxonomyToTermNodeConnectionPageInfo implements PageInfo & TermNodeConnecti
   startCursor: String
 }
 
-"""The template assigned to the node"""
-type Template_SIRADynamicBranchHomepage implements ContentTemplate {
-  """The name of the template"""
-  templateName: String
-}
-
-"""The template assigned to the node"""
-type Template_SIRADynamicHomepage implements ContentTemplate {
-  """The name of the template"""
-  templateName: String
-}
-
-"""The template assigned to the node"""
-type Template_SIRANewsroom implements ContentTemplate {
-  """The name of the template"""
-  templateName: String
-}
-
 """
 Base interface for taxonomy terms such as categories and tags. Terms are used to organize and classify content.
 """
@@ -60759,104 +61055,6 @@ interface TestimonialDetails_Fields implements AcfFieldGroup & AcfFieldGroupFiel
   sourceUrl: String
 }
 
-"""
-The &quot;Testimonials&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type Testimonials implements AcfFieldGroup & AcfFieldGroupFields & Testimonials_Fields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Testimonials&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Testimonials&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Testimonials&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Testimonials&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Testimonials&quot; Field Group
-  """
-  selectedTestimonials(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-}
-
-"""
-Interface representing fields of the ACF &quot;Testimonials&quot; Field Group
-"""
-interface Testimonials_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;Testimonials&quot; Field Group
-  """
-  description: String
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Testimonials&quot; Field Group
-  """
-  eyebrow: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Testimonials&quot; Field Group
-  """
-  heading: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;Testimonials&quot; Field Group
-  """
-  link: AcfLink
-
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;Testimonials&quot; Field Group
-  """
-  selectedTestimonials(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-}
-
 """A theme object"""
 type Theme implements Node {
   """
@@ -60955,120 +61153,6 @@ interface ThemeConnectionPageInfo implements PageInfo & WPPageInfo {
 
   """When paginating backwards, the cursor to continue."""
   startCursor: String
-}
-
-"""
-The &quot;Ticker&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type Ticker implements AcfFieldGroup & AcfFieldGroupFields & Ticker_Fields {
-  """
-  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;Ticker&quot; Field Group
-  """
-  enabled: Boolean
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;Ticker&quot; Field Group
-  """
-  items: [TickerItems]
-}
-
-"""
-The &quot;TickerItems&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type TickerItems implements AcfFieldGroup & AcfFieldGroupFields & TickerItems_Fields {
-  """
-  Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;TickerItems&quot; Field Group
-  """
-  businessUnit(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfTermNodeConnection
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TickerItems&quot; Field Group
-  """
-  label: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;TickerItems&quot; Field Group
-  """
-  link: AcfLink
-}
-
-"""
-Interface representing fields of the ACF &quot;TickerItems&quot; Field Group
-"""
-interface TickerItems_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;taxonomy&quot; Field Type added to the schema as part of the &quot;TickerItems&quot; Field Group
-  """
-  businessUnit(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfTermNodeConnection
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TickerItems&quot; Field Group
-  """
-  label: String
-
-  """
-  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;TickerItems&quot; Field Group
-  """
-  link: AcfLink
-}
-
-"""
-Interface representing fields of the ACF &quot;Ticker&quot; Field Group
-"""
-interface Ticker_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;Ticker&quot; Field Group
-  """
-  enabled: Boolean
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;Ticker&quot; Field Group
-  """
-  items: [TickerItems]
 }
 
 """
@@ -68796,51 +68880,11 @@ interface WPPageInfo implements PageInfo {
 }
 
 """
-Provides access to fields of the &quot;About&quot; ACF Field Group via the &quot;about&quot; field
+Provides access to fields of the &quot;BranchHomepage&quot; ACF Field Group via the &quot;branchHomepage&quot; field
 """
-interface WithAcfAbout {
-  """Fields of the About ACF Field Group"""
-  about: About
-}
-
-"""
-Provides access to fields of the &quot;BranchContact&quot; ACF Field Group via the &quot;branchContact&quot; field
-"""
-interface WithAcfBranchContact {
-  """Fields of the BranchContact ACF Field Group"""
-  branchContact: BranchContact
-}
-
-"""
-Provides access to fields of the &quot;BranchHero&quot; ACF Field Group via the &quot;branchHero&quot; field
-"""
-interface WithAcfBranchHero {
-  """Fields of the BranchHero ACF Field Group"""
-  branchHero: BranchHero
-}
-
-"""
-Provides access to fields of the &quot;BranchInsights&quot; ACF Field Group via the &quot;branchInsights&quot; field
-"""
-interface WithAcfBranchInsights {
-  """Fields of the BranchInsights ACF Field Group"""
-  branchInsights: BranchInsights
-}
-
-"""
-Provides access to fields of the &quot;BranchProjects&quot; ACF Field Group via the &quot;branchProjects&quot; field
-"""
-interface WithAcfBranchProjects {
-  """Fields of the BranchProjects ACF Field Group"""
-  branchProjects: BranchProjects
-}
-
-"""
-Provides access to fields of the &quot;Companies&quot; ACF Field Group via the &quot;companies&quot; field
-"""
-interface WithAcfCompanies {
-  """Fields of the Companies ACF Field Group"""
-  companies: Companies
+interface WithAcfBranchHomepage {
+  """Fields of the BranchHomepage ACF Field Group"""
+  branchHomepage: BranchHomepage
 }
 
 """
@@ -68860,51 +68904,11 @@ interface WithAcfDocumentDetails {
 }
 
 """
-Provides access to fields of the &quot;FocusAreas&quot; ACF Field Group via the &quot;focusAreas&quot; field
+Provides access to fields of the &quot;GroupHomepage&quot; ACF Field Group via the &quot;groupHomepage&quot; field
 """
-interface WithAcfFocusAreas {
-  """Fields of the FocusAreas ACF Field Group"""
-  focusAreas: FocusAreas
-}
-
-"""
-Provides access to fields of the &quot;Footer&quot; ACF Field Group via the &quot;footer&quot; field
-"""
-interface WithAcfFooter {
-  """Fields of the Footer ACF Field Group"""
-  footer: Footer
-}
-
-"""
-Provides access to fields of the &quot;GroupContact&quot; ACF Field Group via the &quot;groupContact&quot; field
-"""
-interface WithAcfGroupContact {
-  """Fields of the GroupContact ACF Field Group"""
-  groupContact: GroupContact
-}
-
-"""
-Provides access to fields of the &quot;GroupHero&quot; ACF Field Group via the &quot;groupHero&quot; field
-"""
-interface WithAcfGroupHero {
-  """Fields of the GroupHero ACF Field Group"""
-  groupHero: GroupHero
-}
-
-"""
-Provides access to fields of the &quot;GroupInsights&quot; ACF Field Group via the &quot;groupInsights&quot; field
-"""
-interface WithAcfGroupInsights {
-  """Fields of the GroupInsights ACF Field Group"""
-  groupInsights: GroupInsights
-}
-
-"""
-Provides access to fields of the &quot;GroupProjects&quot; ACF Field Group via the &quot;groupProjects&quot; field
-"""
-interface WithAcfGroupProjects {
-  """Fields of the GroupProjects ACF Field Group"""
-  groupProjects: GroupProjects
+interface WithAcfGroupHomepage {
+  """Fields of the GroupHomepage ACF Field Group"""
+  groupHomepage: GroupHomepage
 }
 
 """
@@ -68916,43 +68920,11 @@ interface WithAcfInvestmentDetails {
 }
 
 """
-Provides access to fields of the &quot;Investor&quot; ACF Field Group via the &quot;investor&quot; field
-"""
-interface WithAcfInvestor {
-  """Fields of the Investor ACF Field Group"""
-  investor: Investor
-}
-
-"""
-Provides access to fields of the &quot;LatestUpdates&quot; ACF Field Group via the &quot;latestUpdates&quot; field
-"""
-interface WithAcfLatestUpdates {
-  """Fields of the LatestUpdates ACF Field Group"""
-  latestUpdates: LatestUpdates
-}
-
-"""
-Provides access to fields of the &quot;Overview&quot; ACF Field Group via the &quot;overview&quot; field
-"""
-interface WithAcfOverview {
-  """Fields of the Overview ACF Field Group"""
-  overview: Overview
-}
-
-"""
 Provides access to fields of the &quot;PartnerDetails&quot; ACF Field Group via the &quot;partnerDetails&quot; field
 """
 interface WithAcfPartnerDetails {
   """Fields of the PartnerDetails ACF Field Group"""
   partnerDetails: PartnerDetails
-}
-
-"""
-Provides access to fields of the &quot;Partners&quot; ACF Field Group via the &quot;partners&quot; field
-"""
-interface WithAcfPartners {
-  """Fields of the Partners ACF Field Group"""
-  partners: Partners
 }
 
 """
@@ -68972,14 +68944,6 @@ interface WithAcfProjectDetails {
 }
 
 """
-Provides access to fields of the &quot;Services&quot; ACF Field Group via the &quot;services&quot; field
-"""
-interface WithAcfServices {
-  """Fields of the Services ACF Field Group"""
-  services: Services
-}
-
-"""
 Provides access to fields of the &quot;SiraHomepage&quot; ACF Field Group via the &quot;siraHomepage&quot; field
 """
 interface WithAcfSiraHomepage {
@@ -68988,35 +68952,11 @@ interface WithAcfSiraHomepage {
 }
 
 """
-Provides access to fields of the &quot;Statistics&quot; ACF Field Group via the &quot;statistics&quot; field
-"""
-interface WithAcfStatistics {
-  """Fields of the Statistics ACF Field Group"""
-  statistics: Statistics
-}
-
-"""
 Provides access to fields of the &quot;TestimonialDetails&quot; ACF Field Group via the &quot;testimonialDetails&quot; field
 """
 interface WithAcfTestimonialDetails {
   """Fields of the TestimonialDetails ACF Field Group"""
   testimonialDetails: TestimonialDetails
-}
-
-"""
-Provides access to fields of the &quot;Testimonials&quot; ACF Field Group via the &quot;testimonials&quot; field
-"""
-interface WithAcfTestimonials {
-  """Fields of the Testimonials ACF Field Group"""
-  testimonials: Testimonials
-}
-
-"""
-Provides access to fields of the &quot;Ticker&quot; ACF Field Group via the &quot;ticker&quot; field
-"""
-interface WithAcfTicker {
-  """Fields of the Ticker ACF Field Group"""
-  ticker: Ticker
 }
 
 """The writing setting type"""

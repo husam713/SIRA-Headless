@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import {
   createBrandCssVariables,
   type ResolvedBrand,
@@ -34,6 +35,7 @@ export function BrandDocument({
     >
       <body className="min-h-screen bg-brand-paper font-sans text-brand-ink antialiased">
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );

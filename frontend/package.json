@@ -33,26 +33,27 @@
     "verify:alignment": "node scripts/verify-live-alignment.mjs"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "next": "16.2.12",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "server-only": "0.0.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "7.2.0",
+    "@graphql-codegen/client-preset": "6.1.0",
+    "@graphql-codegen/typescript-operations": "6.1.2",
+    "@graphql-typed-document-node/core": "3.2.0",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "22.20.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.5",
     "eslint-config-next": "16.2.12",
+    "graphql": "16.14.2",
     "postcss": "8.5.23",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3",
-    "vitest": "4.1.10",
-    "@graphql-codegen/cli": "7.2.0",
-    "@graphql-codegen/client-preset": "6.1.0",
-    "@graphql-codegen/typescript-operations": "6.1.2",
-    "@graphql-typed-document-node/core": "3.2.0",
-    "graphql": "16.14.2"
+    "vitest": "4.1.10"
   }
 }

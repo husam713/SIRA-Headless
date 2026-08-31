@@ -28,28 +28,45 @@ final class PresentationFields {
 	/**
 	 * Return the complete source-controlled presentation field definitions.
 	 *
-	 * Nested WPGraphQL-for-ACF type names are intentionally not declared here.
-	 * The live schema inventory must record the generated nested names before
-	 * frontend GraphQL Code Generator output is finalized.
+	 * Every Homepage section (hero, ticker, about, ... contact, footer) is
+	 * its own STANDALONE top-level field group here, each independently
+	 * targeting `Page` — see the note on group_homepage_section_groups()
+	 * for why: WPGraphQL for ACF cannot resolve text/textarea/link/wysiwyg/
+	 * relationship fields that live inside a `group`-type field nested
+	 * inside another field group's own `fields` array, confirmed
+	 * empirically through two separate live deploys. A field group's OWN
+	 * top-level `fields` (like `group_sira_company_details`'s
+	 * `shortDescriptor`) resolves fine — it's specifically a `group` field
+	 * NESTED one level inside that breaks it.
 	 *
 	 * @return array<string,array<string,mixed>>
 	 */
 	public static function definitions(): array {
-		return array(
-			'group_sira_homepage'           => self::homepage_group(),
-			'group_sira_company_details'    => self::company_group(),
-			'group_sira_investment_details' => self::investment_group(),
-			'group_sira_testimonial_details' => self::testimonial_group(),
-			'group_sira_partner_details'    => self::partner_group(),
+		return array_merge(
+			array(
+				'group_sira_homepage_variant' => self::homepage_variant_group(),
+			),
+			self::group_homepage_section_groups(),
+			self::branch_homepage_section_groups(),
+			array(
+				'group_sira_company_details'    => self::company_group(),
+				'group_sira_investment_details' => self::investment_group(),
+				'group_sira_testimonial_details' => self::testimonial_group(),
+				'group_sira_partner_details'    => self::partner_group(),
+			)
 		);
 	}
 
 	/**
+	 * The only field that ever lived directly on `siraHomepage` and still
+	 * does — everything else moved out into its own standalone field group
+	 * (see definitions()).
+	 *
 	 * @return array<string,mixed>
 	 */
-	private static function homepage_group(): array {
+	private static function homepage_variant_group(): array {
 		return array(
-			'key'                                  => 'group_sira_homepage',
+			'key'                                  => 'group_sira_homepage_variant',
 			'title'                                => 'SIRA Homepage',
 			'show_in_graphql'                      => true,
 			'graphql_field_name'                   => 'siraHomepage',
@@ -73,57 +90,8 @@ final class PresentationFields {
 						'layout'       => 'horizontal',
 					)
 				),
-				self::group_field(
-					'field_sira_group_homepage',
-					'Group Homepage',
-					'sira_group_homepage',
-					'groupHomepage',
-					self::group_homepage_fields(),
-					array(
-						'conditional_logic' => array(
-							array(
-								array(
-									'field'    => 'field_sira_homepage_variant',
-									'operator' => '==',
-									'value'    => 'group',
-								),
-							),
-						),
-					)
-				),
-				self::group_field(
-					'field_sira_branch_homepage',
-					'Branch Homepage',
-					'sira_branch_homepage',
-					'branchHomepage',
-					self::branch_homepage_fields(),
-					array(
-						'conditional_logic' => array(
-							array(
-								array(
-									'field'    => 'field_sira_homepage_variant',
-									'operator' => '==',
-									'value'    => 'branch',
-								),
-							),
-						),
-					)
-				),
 			),
-			'location'                             => array(
-				array(
-					array(
-						'param'    => 'post_type',
-						'operator' => '==',
-						'value'    => 'page',
-					),
-					array(
-						'param'    => 'page_type',
-						'operator' => '==',
-						'value'    => 'front_page',
-					),
-				),
-			),
+			'location'                             => self::front_page_location(),
 			'menu_order'                           => 10,
 			'position'                             => 'acf_after_title',
 			'style'                                => 'default',
@@ -134,58 +102,102 @@ final class PresentationFields {
 	}
 
 	/**
+	 * Every non-repeater ACF sub-field nested (at any depth) under a given
+	 * top-level field group shares ONE flat postmeta namespace — ACF's
+	 * `group` field type does NOT prefix its sub-fields' storage by the
+	 * parent group's name (unlike `repeater`, which prefixes by
+	 * `{repeater_name}_{row}_{sub_field_name}`). Two sub-fields anywhere
+	 * that share the same raw `name` silently overwrite each other's stored
+	 * value the moment both are populated — the GraphQL field name is
+	 * unaffected and stays exactly what the frontend already expects; only
+	 * the raw storage name needs to be unique. Every helper below therefore
+	 * takes a $prefix/$key_suffix and folds it into the storage name, the
+	 * same way it already folds into the field KEY.
+	 *
+	 * IMPORTANT — two separate, empirically-confirmed WPGraphQL for ACF
+	 * limitations shape this whole file:
+	 *
+	 * 1. A `group`-type field NESTED inside another field group's `fields`
+	 *    array (i.e. not the field group's own direct field) breaks
+	 *    resolution for every text/textarea/link/wysiwyg/relationship
+	 *    sub-field inside it — they all resolve to null over GraphQL no
+	 *    matter how deep, while radio/true_false/number fields at the same
+	 *    position resolve fine. A field group's OWN top-level fields (like
+	 *    `group_sira_company_details`'s `shortDescriptor`) are NOT nested
+	 *    this way and resolve correctly. This is why every Homepage section
+	 *    below (hero, ticker, about, ... contact, footer) is registered as
+	 *    its OWN standalone top-level field group targeting `Page` directly
+	 *    (see group_homepage_section_groups()/branch_homepage_section_groups()),
+	 *    instead of being nested `group` fields inside one big
+	 *    `group_sira_homepage` field group as earlier versions of this file
+	 *    had it.
+	 *
+	 * 2. `repeater`-type fields do not resolve at all over GraphQL in this
+	 *    setup — confirmed null even as a field group's own direct
+	 *    top-level field (zero nesting), unlike every other field type.
+	 *    Hero slides, ticker items, and the metrics/statistics repeaters
+	 *    are therefore a KNOWN, currently-unresolved gap: their definitions
+	 *    are kept here (correct data model, correct storage) so admin entry
+	 *    and the ACF field registry stay intact, but the frontend cannot
+	 *    read them via GraphQL yet. Flagging this explicitly rather than
+	 *    silently dropping the fields — a follow-up fix (a different field
+	 *    type, or a raw-postmeta read path) is needed separately.
+	 *
 	 * @return array<int,array<string,mixed>>
 	 */
-	private static function group_homepage_fields(): array {
+	private static function group_homepage_section_groups(): array {
 		return array(
-			self::group_field(
-				'field_sira_group_home_hero',
-				'Hero',
-				'hero',
-				'hero',
+			'group_sira_group_hero' => self::homepage_section_group(
+				'group_sira_group_hero',
+				'Group Homepage — Hero',
+				'groupHero',
+				'SiraGroupHeroSection',
 				array(
 					self::text(
 						'field_sira_group_hero_heading_before',
 						'Heading Before Highlight',
-						'heading_before',
+						'hero_heading_before',
 						'headingBefore'
 					),
 					self::text(
 						'field_sira_group_hero_heading_highlight',
 						'Highlighted Heading',
-						'heading_highlight',
+						'hero_heading_highlight',
 						'headingHighlight'
 					),
 					self::text(
 						'field_sira_group_hero_heading_after',
 						'Heading After Highlight',
-						'heading_after',
+						'hero_heading_after',
 						'headingAfter'
 					),
 					self::textarea(
 						'field_sira_group_hero_description',
 						'Description',
-						'description',
+						'hero_description',
 						'description',
 						array( 'rows' => 4 )
 					),
 					self::link_field(
 						'field_sira_group_hero_primary_cta',
 						'Primary CTA',
-						'primary_cta',
+						'hero_primary_cta',
 						'primaryCta'
 					),
 					self::link_field(
 						'field_sira_group_hero_secondary_cta',
 						'Secondary CTA',
-						'secondary_cta',
+						'hero_secondary_cta',
 						'secondaryCta'
 					),
+					// NOTE: repeater, does not resolve over GraphQL yet — see
+					// the class-level doc comment on this method, point 2.
 					self::repeater(
 						'field_sira_group_hero_slides',
 						'Hero Slides',
+						'hero_slides',
 						'slides',
-						'slides',
+						'SiraGroupHeroSlide',
 						self::group_hero_slide_fields(),
 						array(
 							'layout'       => 'block',
@@ -196,24 +208,26 @@ final class PresentationFields {
 					),
 				)
 			),
-			self::group_field(
-				'field_sira_group_home_ticker',
-				'Announcement Ticker',
+			'group_sira_group_ticker' => self::homepage_section_group(
+				'group_sira_group_ticker',
+				'Group Homepage — Announcement Ticker',
 				'ticker',
-				'ticker',
+				'SiraGroupTickerSection',
 				array(
 					self::true_false(
 						'field_sira_group_ticker_enabled',
 						'Enabled',
-						'enabled',
+						'ticker_enabled',
 						'enabled',
 						array( 'default_value' => 1 )
 					),
+					// NOTE: repeater, does not resolve over GraphQL yet.
 					self::repeater(
 						'field_sira_group_ticker_items',
 						'Ticker Items',
+						'ticker_items',
 						'items',
-						'items',
+						'SiraGroupTickerItem',
 						array(
 							self::text(
 								'field_sira_group_ticker_item_label',
@@ -243,39 +257,42 @@ final class PresentationFields {
 					),
 				)
 			),
-			self::editorial_section(
-				'latest_updates',
-				'Latest Updates',
-				'latestUpdates'
+			'group_sira_group_latest_updates' => self::homepage_section_group(
+				'group_sira_group_latest_updates',
+				'Group Homepage — Latest Updates',
+				'latestUpdates',
+				'SiraGroupLatestUpdatesSection',
+				self::editorial_section_fields( 'latest_updates', 'group_latest_updates' )
 			),
-			self::relationship_section(
+			'group_sira_group_companies' => self::homepage_section_group(
+				'group_sira_group_companies',
+				'Group Homepage — Company Portfolio',
 				'companies',
-				'Company Portfolio',
-				'companies',
-				array( 'sira_company' ),
-				'selectedCompanies',
-				12
+				'SiraGroupCompaniesSection',
+				self::relationship_section_fields( 'companies', array( 'sira_company' ), 'selectedCompanies', 12 )
 			),
-			self::group_field(
-				'field_sira_group_home_about',
-				'About & Metrics',
+			'group_sira_group_about' => self::homepage_section_group(
+				'group_sira_group_about',
+				'Group Homepage — About & Metrics',
 				'about',
-				'about',
+				'SiraGroupAboutSection',
 				array_merge(
-					self::section_header_sub_fields( 'group_about' ),
+					self::section_header_sub_fields( 'about' ),
 					array(
 						self::wysiwyg(
 							'field_sira_group_about_body',
 							'Body',
-							'body',
+							'about_body',
 							'body'
 						),
+						// NOTE: repeater, does not resolve over GraphQL yet.
 						self::repeater(
 							'field_sira_group_about_metrics',
 							'Metrics',
+							'about_metrics',
 							'metrics',
-							'metrics',
-							self::metric_fields( 'group_about_metric' ),
+							'SiraGroupAboutMetric',
+							self::metric_fields( 'about_metric' ),
 							array(
 								'layout'       => 'table',
 								'button_label' => 'Add metric',
@@ -285,26 +302,28 @@ final class PresentationFields {
 					)
 				)
 			),
-			self::group_field(
-				'field_sira_group_home_investor',
-				'Investor Section',
+			'group_sira_group_investor' => self::homepage_section_group(
+				'group_sira_group_investor',
+				'Group Homepage — Investor Section',
 				'investor',
-				'investor',
+				'SiraGroupInvestorSection',
 				array_merge(
-					self::section_header_sub_fields( 'group_investor' ),
+					self::section_header_sub_fields( 'investor' ),
 					array(
 						self::wysiwyg(
 							'field_sira_group_investor_body',
 							'Body',
-							'body',
+							'investor_body',
 							'body'
 						),
+						// NOTE: repeater, does not resolve over GraphQL yet.
 						self::repeater(
 							'field_sira_group_investor_metrics',
 							'Investor Metrics',
+							'investor_metrics',
 							'metrics',
-							'metrics',
-							self::metric_fields( 'group_investor_metric' ),
+							'SiraGroupInvestorMetric',
+							self::metric_fields( 'investor_metric' ),
 							array(
 								'layout'       => 'table',
 								'button_label' => 'Add investor metric',
@@ -314,7 +333,7 @@ final class PresentationFields {
 						self::relationship(
 							'field_sira_group_investor_items',
 							'Selected Public Investments',
-							'selected_investments',
+							'investor_selected_investments',
 							'selectedInvestments',
 							array( 'sira_investment' ),
 							array( 'max' => 6 )
@@ -322,7 +341,7 @@ final class PresentationFields {
 						self::relationship(
 							'field_sira_group_investor_one_pager',
 							'One-pager Document',
-							'one_pager_document',
+							'investor_one_pager_document',
 							'onePagerDocument',
 							array(
 								'sira_document',
@@ -334,59 +353,60 @@ final class PresentationFields {
 						self::text(
 							'field_sira_group_investor_form_heading',
 							'Form Heading',
-							'form_heading',
+							'investor_form_heading',
 							'formHeading'
 						),
 						self::textarea(
 							'field_sira_group_investor_form_description',
 							'Form Description',
-							'form_description',
+							'investor_form_description',
 							'formDescription',
 							array( 'rows' => 3 )
 						),
 					)
 				)
 			),
-			self::relationship_section(
+			'group_sira_group_services' => self::homepage_section_group(
+				'group_sira_group_services',
+				'Group Homepage — Services',
 				'services',
-				'Services',
-				'services',
-				array( 'sira_service' ),
-				'selectedServices',
-				12
+				'SiraGroupServicesSection',
+				self::relationship_section_fields( 'services', array( 'sira_service' ), 'selectedServices', 12 )
 			),
-			self::relationship_section(
-				'projects',
-				'Projects',
-				'projects',
-				array( 'sira_project' ),
-				'selectedProjects',
-				12
+			'group_sira_group_projects' => self::homepage_section_group(
+				'group_sira_group_projects',
+				'Group Homepage — Projects',
+				'groupProjects',
+				'SiraGroupProjectsSection',
+				self::relationship_section_fields( 'projects', array( 'sira_project' ), 'selectedProjects', 12 )
 			),
-			self::editorial_section(
-				'insights',
-				'Insights & News',
-				'insights'
+			'group_sira_group_insights' => self::homepage_section_group(
+				'group_sira_group_insights',
+				'Group Homepage — Insights & News',
+				'groupInsights',
+				'SiraGroupInsightsSection',
+				self::editorial_section_fields( 'insights', 'group_insights' )
 			),
-			self::relationship_section(
+			'group_sira_group_testimonials' => self::homepage_section_group(
+				'group_sira_group_testimonials',
+				'Group Homepage — Testimonials',
 				'testimonials',
-				'Testimonials',
-				'testimonials',
-				array( 'sira_testimonial' ),
-				'selectedTestimonials',
-				8
+				'SiraGroupTestimonialsSection',
+				self::relationship_section_fields( 'testimonials', array( 'sira_testimonial' ), 'selectedTestimonials', 8 )
 			),
-			self::relationship_section(
+			'group_sira_group_partners' => self::homepage_section_group(
+				'group_sira_group_partners',
+				'Group Homepage — Partners',
 				'partners',
-				'Partners',
-				'partners',
-				array( 'sira_partner' ),
-				'selectedPartners',
-				24
+				'SiraGroupPartnersSection',
+				self::relationship_section_fields( 'partners', array( 'sira_partner' ), 'selectedPartners', 24 )
 			),
-			self::contact_section(
-				'group',
-				'Group Contact'
+			'group_sira_group_contact' => self::homepage_section_group(
+				'group_sira_group_contact',
+				'Group Homepage — Contact',
+				'groupContact',
+				'SiraGroupContactSection',
+				self::contact_section_fields( 'group' )
 			),
 		);
 	}
@@ -480,50 +500,50 @@ final class PresentationFields {
 	/**
 	 * @return array<int,array<string,mixed>>
 	 */
-	private static function branch_homepage_fields(): array {
+	private static function branch_homepage_section_groups(): array {
 		return array(
-			self::group_field(
-				'field_sira_branch_home_hero',
-				'Hero',
-				'hero',
-				'hero',
+			'group_sira_branch_hero' => self::homepage_section_group(
+				'group_sira_branch_hero',
+				'Branch Homepage — Hero',
+				'branchHero',
+				'SiraBranchHeroSection',
 				array(
 					self::text(
 						'field_sira_branch_hero_eyebrow',
 						'Eyebrow',
-						'eyebrow',
+						'branch_hero_eyebrow',
 						'eyebrow'
 					),
 					self::text(
 						'field_sira_branch_hero_region',
 						'Region',
-						'region',
+						'branch_hero_region',
 						'region'
 					),
 					self::text(
 						'field_sira_branch_hero_heading_before',
 						'Heading Before Highlight',
-						'heading_before',
+						'branch_hero_heading_before',
 						'headingBefore',
 						array( 'required' => 1 )
 					),
 					self::text(
 						'field_sira_branch_hero_heading_highlight',
 						'Highlighted Heading',
-						'heading_highlight',
+						'branch_hero_heading_highlight',
 						'headingHighlight',
 						array( 'required' => 1 )
 					),
 					self::text(
 						'field_sira_branch_hero_heading_after',
 						'Heading After Highlight',
-						'heading_after',
+						'branch_hero_heading_after',
 						'headingAfter'
 					),
 					self::textarea(
 						'field_sira_branch_hero_description',
 						'Description',
-						'description',
+						'branch_hero_description',
 						'description',
 						array(
 							'rows'     => 4,
@@ -533,128 +553,152 @@ final class PresentationFields {
 					self::image(
 						'field_sira_branch_hero_image',
 						'Hero Image',
-						'image',
+						'branch_hero_image',
 						'image',
 						array( 'required' => 1 )
 					),
 					self::image(
 						'field_sira_branch_hero_mobile_image',
 						'Mobile Hero Image',
-						'mobile_image',
+						'branch_hero_mobile_image',
 						'mobileImage'
 					),
 					self::text(
 						'field_sira_branch_hero_alt',
 						'Image Alt Override',
-						'image_alt',
+						'branch_hero_image_alt',
 						'imageAlt'
 					),
 					self::link_field(
 						'field_sira_branch_hero_primary_cta',
 						'Primary CTA',
-						'primary_cta',
+						'branch_hero_primary_cta',
 						'primaryCta'
 					),
 					self::link_field(
 						'field_sira_branch_hero_secondary_cta',
 						'Secondary CTA',
-						'secondary_cta',
+						'branch_hero_secondary_cta',
 						'secondaryCta'
 					),
 				)
 			),
-			self::repeater(
-				'field_sira_branch_statistics',
-				'Statistics',
+			'group_sira_branch_statistics' => self::homepage_section_group(
+				'group_sira_branch_statistics',
+				'Branch Homepage — Statistics',
 				'statistics',
-				'statistics',
-				self::metric_fields( 'branch_statistic' ),
+				'SiraBranchStatisticsSection',
 				array(
-					'layout'       => 'table',
-					'button_label' => 'Add statistic',
-					'max'          => 8,
+					// NOTE: repeater, does not resolve over GraphQL yet.
+					self::repeater(
+						'field_sira_branch_statistics',
+						'Statistics',
+						'branch_statistics',
+						'statistics',
+						'SiraBranchStatistic',
+						self::metric_fields( 'branch_statistic' ),
+						array(
+							'layout'       => 'table',
+							'button_label' => 'Add statistic',
+							'max'          => 8,
+						)
+					),
 				)
 			),
-			self::group_field(
-				'field_sira_branch_overview',
-				'Overview',
+			'group_sira_branch_overview' => self::homepage_section_group(
+				'group_sira_branch_overview',
+				'Branch Homepage — Overview',
 				'overview',
-				'overview',
+				'SiraBranchOverviewSection',
 				array_merge(
 					self::section_header_sub_fields( 'branch_overview' ),
 					array(
 						self::wysiwyg(
 							'field_sira_branch_overview_body',
 							'Body',
-							'body',
+							'branch_overview_body',
 							'body'
 						),
 					)
 				)
 			),
-			self::repeater(
-				'field_sira_branch_focus_areas',
-				'Focus Areas',
-				'focus_areas',
+			'group_sira_branch_focus_areas' => self::homepage_section_group(
+				'group_sira_branch_focus_areas',
+				'Branch Homepage — Focus Areas',
 				'focusAreas',
+				'SiraBranchFocusAreasSection',
 				array(
-					self::text(
-						'field_sira_branch_focus_title',
-						'Title',
-						'title',
-						'title',
-						array( 'required' => 1 )
-					),
-					self::textarea(
-						'field_sira_branch_focus_description',
-						'Description',
-						'description',
-						'description',
+					// NOTE: repeater, does not resolve over GraphQL yet.
+					self::repeater(
+						'field_sira_branch_focus_areas',
+						'Focus Areas',
+						'branch_focus_areas',
+						'focusAreas',
+						'SiraBranchFocusArea',
 						array(
-							'rows'     => 3,
-							'required' => 1,
+							self::text(
+								'field_sira_branch_focus_title',
+								'Title',
+								'title',
+								'title',
+								array( 'required' => 1 )
+							),
+							self::textarea(
+								'field_sira_branch_focus_description',
+								'Description',
+								'description',
+								'description',
+								array(
+									'rows'     => 3,
+									'required' => 1,
+								)
+							),
+						),
+						array(
+							'layout'       => 'block',
+							'button_label' => 'Add focus area',
+							'max'          => 12,
 						)
 					),
-				),
-				array(
-					'layout'       => 'block',
-					'button_label' => 'Add focus area',
-					'max'          => 12,
 				)
 			),
-			self::relationship_section(
-				'branch_projects',
-				'Projects',
-				'projects',
-				array( 'sira_project' ),
-				'selectedProjects',
-				12
+			'group_sira_branch_projects' => self::homepage_section_group(
+				'group_sira_branch_projects',
+				'Branch Homepage — Projects',
+				'branchProjects',
+				'SiraBranchProjectsSection',
+				self::relationship_section_fields( 'branch_projects', array( 'sira_project' ), 'selectedProjects', 12 )
 			),
-			self::editorial_section(
-				'branch_insights',
-				'Insights & News',
-				'insights'
+			'group_sira_branch_insights' => self::homepage_section_group(
+				'group_sira_branch_insights',
+				'Branch Homepage — Insights & News',
+				'branchInsights',
+				'SiraBranchInsightsSection',
+				self::editorial_section_fields( 'branch_insights', 'branch_insights' )
 			),
-			self::contact_section(
-				'branch',
-				'Branch Contact'
+			'group_sira_branch_contact' => self::homepage_section_group(
+				'group_sira_branch_contact',
+				'Branch Homepage — Contact',
+				'branchContact',
+				'SiraBranchContactSection',
+				self::contact_section_fields( 'branch' )
 			),
-			self::group_field(
-				'field_sira_branch_footer',
-				'Footer',
+			'group_sira_branch_footer' => self::homepage_section_group(
+				'group_sira_branch_footer',
+				'Branch Homepage — Footer',
 				'footer',
-				'footer',
+				'SiraBranchFooterSection',
 				array(
 					self::text(
 						'field_sira_branch_footer_tagline',
 						'Tagline Override',
-						'tagline_override',
+						'branch_footer_tagline',
 						'taglineOverride'
 					),
 					self::text(
 						'field_sira_branch_footer_group_label',
 						'Group Link Label Override',
-						'group_link_label_override',
+						'branch_footer_group_link_label',
 						'groupLinkLabelOverride'
 					),
 				)
@@ -870,6 +914,70 @@ final class PresentationFields {
 	}
 
 	/**
+	 * Shared front-page location rule used by every Homepage section field
+	 * group (and the variant selector itself).
+	 *
+	 * @return array<int,array<int,array<string,mixed>>>
+	 */
+	private static function front_page_location(): array {
+		return array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'page',
+				),
+				array(
+					'param'    => 'page_type',
+					'operator' => '==',
+					'value'    => 'front_page',
+				),
+			),
+		);
+	}
+
+	/**
+	 * Wraps a Homepage section's own fields into a standalone, top-level
+	 * ACF field group targeting `Page` directly — see the class-level doc
+	 * comment on group_homepage_section_groups() for why every section is
+	 * its own field group instead of being nested inside one big wrapper.
+	 *
+	 * Deliberately has no `conditional_logic`: that's a per-FIELD setting
+	 * in ACF, not a field-group-level one, and since resolving the
+	 * blank-homepage bug matters far more than wp-admin polish right now,
+	 * every section's edit-screen metabox is simply always visible
+	 * regardless of the selected variant. Revisit once the frontend is
+	 * confirmed working end to end.
+	 *
+	 * @param array<int,array<string,mixed>> $fields Fields.
+	 * @return array<string,mixed>
+	 */
+	private static function homepage_section_group(
+		string $key,
+		string $title,
+		string $graphql_field_name,
+		string $graphql_type_name,
+		array $fields
+	): array {
+		return array(
+			'key'                                  => $key,
+			'title'                                => $title,
+			'show_in_graphql'                      => true,
+			'graphql_field_name'                   => $graphql_field_name,
+			'graphql_type_name'                    => $graphql_type_name,
+			'map_graphql_types_from_location_rules' => false,
+			'graphql_types'                        => array( 'Page' ),
+			'fields'                               => $fields,
+			'location'                             => self::front_page_location(),
+			'position'                             => 'normal',
+			'style'                                => 'default',
+			'label_placement'                      => 'top',
+			'instruction_placement'                => 'label',
+			'active'                               => true,
+		);
+	}
+
+	/**
 	 * @param array<int,array<string,mixed>> $fields Fields.
 	 * @return array<string,mixed>
 	 */
@@ -909,165 +1017,65 @@ final class PresentationFields {
 	}
 
 	/**
-	 * @return array<string,mixed>
+	 * $prefix and $key_suffix must be globally unique across every call
+	 * site in this file — see the note on group_homepage_section_groups()
+	 * above for why (flat postmeta namespace).
+	 *
+	 * @return array<int,array<string,mixed>>
 	 */
-	private static function editorial_section(
-		string $key_suffix,
-		string $label,
-		string $graphql_field_name
-	): array {
-		$prefix = 'group_' . $key_suffix;
-
-		return self::group_field(
-			'field_sira_' . $key_suffix,
-			$label,
-			$key_suffix,
-			$graphql_field_name,
-			array_merge(
-				self::section_header_sub_fields( $prefix ),
-				array(
-					self::radio(
-						'field_sira_' . $key_suffix . '_source_mode',
-						'Source Mode',
-						'source_mode',
-						'sourceMode',
-						array(
-							'latest'  => 'Latest published items',
-							'curated' => 'Curated selection',
-						),
-						'latest',
-						array(
-							'required' => 1,
-							'layout'   => 'horizontal',
-						)
+	private static function editorial_section_fields( string $key_suffix, string $prefix ): array {
+		return array_merge(
+			self::section_header_sub_fields( $prefix ),
+			array(
+				self::radio(
+					'field_sira_' . $key_suffix . '_source_mode',
+					'Source Mode',
+					$key_suffix . '_source_mode',
+					'sourceMode',
+					array(
+						'latest'  => 'Latest published items',
+						'curated' => 'Curated selection',
 					),
-					self::relationship(
-						'field_sira_' . $key_suffix . '_items',
-						'Selected Editorial Items',
-						'selected_items',
-						'selectedItems',
-						array(
-							'sira_news',
-							'sira_insight',
-							'sira_article',
-							'sira_press_release',
-						),
-						array(
-							'max'               => 12,
-							'conditional_logic' => array(
+					'latest',
+					array(
+						'required' => 1,
+						'layout'   => 'horizontal',
+					)
+				),
+				self::relationship(
+					'field_sira_' . $key_suffix . '_items',
+					'Selected Editorial Items',
+					$key_suffix . '_selected_items',
+					'selectedItems',
+					array(
+						'sira_news',
+						'sira_insight',
+						'sira_article',
+						'sira_press_release',
+					),
+					array(
+						'max'               => 12,
+						'conditional_logic' => array(
+							array(
 								array(
-									array(
-										'field'    => 'field_sira_' . $key_suffix . '_source_mode',
-										'operator' => '==',
-										'value'    => 'curated',
-									),
+									'field'    => 'field_sira_' . $key_suffix . '_source_mode',
+									'operator' => '==',
+									'value'    => 'curated',
 								),
 							),
-						)
-					),
-					self::number(
-						'field_sira_' . $key_suffix . '_limit',
-						'Item Limit',
-						'item_limit',
-						'itemLimit',
-						array(
-							'default_value' => 3,
-							'min'           => 1,
-							'max'           => 12,
-							'step'          => 1,
-						)
-					),
-				)
-			)
-		);
-	}
-
-	/**
-	 * @param array<int,string> $post_types Post types.
-	 * @return array<string,mixed>
-	 */
-	private static function relationship_section(
-		string $key_suffix,
-		string $label,
-		string $graphql_field_name,
-		array $post_types,
-		string $relationship_graphql_field,
-		int $maximum
-	): array {
-		return self::group_field(
-			'field_sira_' . $key_suffix,
-			$label,
-			$key_suffix,
-			$graphql_field_name,
-			array_merge(
-				self::section_header_sub_fields( $key_suffix ),
-				array(
-					self::relationship(
-						'field_sira_' . $key_suffix . '_items',
-						'Selected Items',
-						'selected_items',
-						$relationship_graphql_field,
-						$post_types,
-						array( 'max' => $maximum )
-					),
-				)
-			)
-		);
-	}
-
-	/**
-	 * @return array<string,mixed>
-	 */
-	private static function contact_section(
-		string $context,
-		string $label
-	): array {
-		return self::group_field(
-			'field_sira_' . $context . '_contact',
-			$label,
-			'contact',
-			'contact',
-			array(
-				self::text(
-					'field_sira_' . $context . '_contact_eyebrow',
-					'Eyebrow',
-					'eyebrow',
-					'eyebrow'
+						),
+					)
 				),
-				self::text(
-					'field_sira_' . $context . '_contact_heading',
-					'Heading',
-					'heading',
-					'heading'
-				),
-				self::textarea(
-					'field_sira_' . $context . '_contact_description',
-					'Description',
-					'description',
-					'description',
-					array( 'rows' => 4 )
-				),
-				self::radio(
-					'field_sira_' . $context . '_contact_form_variant',
-					'Form Variant',
-					'form_variant',
-					'formVariant',
+				self::number(
+					'field_sira_' . $key_suffix . '_limit',
+					'Item Limit',
+					$key_suffix . '_item_limit',
+					'itemLimit',
 					array(
-						'contact'     => 'General contact',
-						'partnership' => 'Partnership enquiry',
-						'investor'    => 'Investor enquiry',
-					),
-					'contact',
-					array( 'layout' => 'horizontal' )
-				),
-				self::text(
-					'field_sira_' . $context . '_contact_form_context',
-					'Form Context',
-					'form_context',
-					'formContext',
-					array(
-						'maxlength'    => 100,
-						'instructions' => 'A non-secret routing context validated against the future frontend form registry.',
+						'default_value' => 3,
+						'min'           => 1,
+						'max'           => 12,
+						'step'          => 1,
 					)
 				),
 			)
@@ -1075,6 +1083,90 @@ final class PresentationFields {
 	}
 
 	/**
+	 * $key_suffix must be globally unique across every call site in this
+	 * file — see the note on group_homepage_section_groups() above for why.
+	 *
+	 * @param array<int,string> $post_types Post types.
+	 * @return array<int,array<string,mixed>>
+	 */
+	private static function relationship_section_fields(
+		string $key_suffix,
+		array $post_types,
+		string $relationship_graphql_field,
+		int $maximum
+	): array {
+		return array_merge(
+			self::section_header_sub_fields( $key_suffix ),
+			array(
+				self::relationship(
+					'field_sira_' . $key_suffix . '_items',
+					'Selected Items',
+					$key_suffix . '_selected_items',
+					$relationship_graphql_field,
+					$post_types,
+					array( 'max' => $maximum )
+				),
+			)
+		);
+	}
+
+	/**
+	 * $context must be globally unique across every call site in this file
+	 * — see the note on group_homepage_section_groups() above for why.
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	private static function contact_section_fields( string $context ): array {
+		return array(
+			self::text(
+				'field_sira_' . $context . '_contact_eyebrow',
+				'Eyebrow',
+				$context . '_contact_eyebrow',
+				'eyebrow'
+			),
+			self::text(
+				'field_sira_' . $context . '_contact_heading',
+				'Heading',
+				$context . '_contact_heading',
+				'heading'
+			),
+			self::textarea(
+				'field_sira_' . $context . '_contact_description',
+				'Description',
+				$context . '_contact_description',
+				'description',
+				array( 'rows' => 4 )
+			),
+			self::radio(
+				'field_sira_' . $context . '_contact_form_variant',
+				'Form Variant',
+				$context . '_contact_form_variant',
+				'formVariant',
+				array(
+					'contact'     => 'General contact',
+					'partnership' => 'Partnership enquiry',
+					'investor'    => 'Investor enquiry',
+				),
+				'contact',
+				array( 'layout' => 'horizontal' )
+			),
+			self::text(
+				'field_sira_' . $context . '_contact_form_context',
+				'Form Context',
+				$context . '_contact_form_context',
+				'formContext',
+				array(
+					'maxlength'    => 100,
+					'instructions' => 'A non-secret routing context validated against the future frontend form registry.',
+				)
+			),
+		);
+	}
+
+	/**
+	 * $prefix must be globally unique across every call site in this file —
+	 * see the note on group_homepage_section_groups() above for why.
+	 *
 	 * @return array<int,array<string,mixed>>
 	 */
 	private static function section_header_sub_fields( string $prefix ): array {
@@ -1082,32 +1174,43 @@ final class PresentationFields {
 			self::text(
 				'field_sira_' . $prefix . '_eyebrow',
 				'Eyebrow',
-				'eyebrow',
+				$prefix . '_eyebrow',
 				'eyebrow'
 			),
 			self::text(
 				'field_sira_' . $prefix . '_heading',
 				'Heading',
-				'heading',
+				$prefix . '_heading',
 				'heading'
 			),
 			self::textarea(
 				'field_sira_' . $prefix . '_description',
 				'Description',
-				'description',
+				$prefix . '_description',
 				'description',
 				array( 'rows' => 3 )
 			),
 			self::link_field(
 				'field_sira_' . $prefix . '_link',
 				'Section Link',
-				'link',
+				$prefix . '_link',
 				'link'
 			),
 		);
 	}
 
 	/**
+	 * $prefix must be globally unique across every call site in this file so
+	 * each sub-field's ACF KEY is unique — but unlike section_header_sub_fields()
+	 * etc., the raw storage NAME here is deliberately left bare ('value',
+	 * 'label', 'supporting_text'). These sub-fields only ever live inside a
+	 * repeater, and repeaters already namespace their row storage by their
+	 * own name (the name passed to self::repeater() at each call site, which
+	 * independently must be unique), so prefixing the sub-field names too
+	 * would be redundant. It also has to stay bare: the starter importer
+	 * writes repeater rows as plain ['value' => ..., 'label' => ...,
+	 * 'supporting_text' => ...] arrays keyed by these raw names.
+	 *
 	 * @return array<int,array<string,mixed>>
 	 */
 	private static function metric_fields( string $prefix ): array {
@@ -1140,39 +1243,12 @@ final class PresentationFields {
 	 * @param array<string,mixed>            $extra Extra ACF settings.
 	 * @return array<string,mixed>
 	 */
-	private static function group_field(
-		string $key,
-		string $label,
-		string $name,
-		string $graphql_field_name,
-		array $sub_fields,
-		array $extra = array()
-	): array {
-		return array_merge(
-			array(
-				'key'                  => $key,
-				'label'                => $label,
-				'name'                 => $name,
-				'type'                 => 'group',
-				'layout'               => 'block',
-				'show_in_graphql'      => true,
-				'graphql_field_name'   => $graphql_field_name,
-				'sub_fields'           => $sub_fields,
-			),
-			$extra
-		);
-	}
-
-	/**
-	 * @param array<int,array<string,mixed>> $sub_fields Sub-fields.
-	 * @param array<string,mixed>            $extra Extra ACF settings.
-	 * @return array<string,mixed>
-	 */
 	private static function repeater(
 		string $key,
 		string $label,
 		string $name,
 		string $graphql_field_name,
+		string $graphql_type_name,
 		array $sub_fields,
 		array $extra = array()
 	): array {
@@ -1186,6 +1262,7 @@ final class PresentationFields {
 				'button_label'         => 'Add row',
 				'show_in_graphql'      => true,
 				'graphql_field_name'   => $graphql_field_name,
+				'graphql_type_name'    => $graphql_type_name,
 				'sub_fields'           => $sub_fields,
 			),
 			$extra

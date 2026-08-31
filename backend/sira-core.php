@@ -3,7 +3,7 @@
  * Plugin Name: SIRA Core Platform
  * Plugin URI: https://siratrgroup.com/
  * Description: Network-wide headless content model, multisite branding, WPGraphQL schema, REST fallback, and governance for SIRA Group.
- * Version: 1.4.0
+ * Version: 1.5.0
  * Requires at least: 6.6
  * Requires PHP: 8.3
  * Author: SIRA Group

@@ -96,19 +96,42 @@ equivalent schema.
 
 ## Starter importer
 
-The importer creates only structured starter records:
+The importer creates structured starter records:
 
 - companies;
 - projects;
-- news.
+- news;
+- services;
+- articles (for the Insights relationship);
+- testimonials (with Consent Approved switched on);
+- partners (name only — see below);
+- public investments (with Public Display Approved switched on);
+- an investor one-pager document record (metadata only — see below).
+
+If the site has a static front page configured (Settings → Reading → "Your
+homepage displays" → A static page), it also fills in that page's Group
+Homepage ACF fields (hero, ticker, about, investor section, and every other
+section's header text), relating the records above into each section's
+relationship field. If no static front page is configured, this step is
+skipped and only the standalone records above are created.
 
 It does not:
 
-- create pages;
+- create pages, or assign or change which page is the front page;
 - insert shortcodes;
 - assign theme templates;
-- download third-party media;
-- overwrite existing records.
+- download or attach third-party media — Hero slide images, Partner logos,
+  and the investor one-pager's actual file are left unattached; the
+  frontend gracefully renders without them (a solid background instead of
+  a hero photo, no logo tile, no working download link) until real media
+  is uploaded manually;
+- overwrite existing records (matched by title).
+
+All of the above is placeholder copy drawn from the approved design
+reference, meant to give the frontend something real to render while it's
+being built and tested. Replace it with real business content — investor
+figures, testimonial quotes and their consent, partner names — before
+production launch.
 
 ## Step 2C.2B presentation contract
 

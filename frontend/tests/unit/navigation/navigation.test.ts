@@ -160,6 +160,33 @@ describe("native navigation server adapter", () => {
     expect(Object.isFrozen(result.primary.menu.items[0]?.children)).toBe(true);
   });
 
+  // Regression: WordPress sends 0, not null, for a top-level item's parent.
+  // Every fixture here used null, so the suite never saw the real payload while
+  // production rejected all five sites' menus as "invalid-hierarchy" and the
+  // header rendered nothing. Values taken from the live PRIMARY menu.
+  it("treats a parent id of 0 as top level, the way WordPress reports it", () => {
+    const data = createNavigationData();
+    const result = normalizeNavigation("group", {
+      ...data,
+      primary: createCollection(65, "PRIMARY", [
+        createItem(1704, { parentDatabaseId: 0, order: 1, label: "Companies" }),
+        createItem(1708, { parentDatabaseId: 0, order: 2, label: "Investors" }),
+        createItem(1706, { parentDatabaseId: 0, order: 3, label: "Projects" }),
+      ]),
+    });
+
+    if (result.status !== "resolved" || result.primary.status !== "ready") {
+      throw new Error("Expected a menu of top-level items to be ready.");
+    }
+
+    expect(result.primary.menu.items.map((item) => item.label)).toEqual([
+      "Companies",
+      "Investors",
+      "Projects",
+    ]);
+    expect(result.primary.menu.items.every((item) => item.children.length === 0)).toBe(true);
+  });
+
   it.each([
     [
       "duplicate IDs",

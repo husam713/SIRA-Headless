@@ -544,13 +544,22 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
   });
   // `statistics`/`focusAreas` are each their own field group wrapping a
   // same-named repeater (Page.statistics.statistics, Page.focusAreas.
-  // focusAreas) — WPGraphQL for ACF auto-derives the wrapper's own type
-  // name from the field group title rather than the graphql_type_name set
-  // in PresentationFields.php, which collided with the repeater's own name
-  // when the field group held nothing else. Repeaters don't resolve over
-  // GraphQL yet regardless (see the note on PresentationFields.php's
-  // group_homepage_section_groups()), so this always normalizes empty for
-  // now; kept correct for when that's fixed.
+  // focusAreas), because WPGraphQL for ACF derives the wrapper's type name
+  // from the field group title rather than the graphql_type_name set in
+  // PresentationFields.php.
+  //
+  // These DO resolve. An earlier version of this comment said repeaters did
+  // not resolve over GraphQL and that this always normalized empty; that is
+  // no longer true and the stale note caused the gap to be mis-triaged as a
+  // backend defect. Verified 2026-08-31 against live data: Consulting,
+  // Lifestyle and Real Estate each return 4 statistics and 3 focus areas.
+  // Healthcare returns null for both because nobody has authored them.
+  //
+  // WHY it changed is unknown — plausibly a WPGraphQL-for-ACF version bump or
+  // a field-group config change, but neither was confirmed. Treat resolution
+  // as verified-by-observation, not guaranteed by contract: if these ever
+  // normalize empty again, re-probe the endpoints before assuming a
+  // frontend fault.
   const focusAreasField = isRecord(page["focusAreas"]) ? page["focusAreas"]["focusAreas"] : null;
   const focusAreas = Array.isArray(focusAreasField)
     ? focusAreasField.slice(0, 12).filter(isRecord).map((item): HomepageFocusArea => Object.freeze({

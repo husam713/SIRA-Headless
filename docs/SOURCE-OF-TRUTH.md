@@ -48,11 +48,19 @@ Step 2C.5B business baseline proves accepted Step 3A, Step 3B, Step 3C.1,
 Step 3C.2, Step 3D.1, the Homepage Production Data Contract, the Step 4 Exact
 Design Fidelity Charter, and ADR-028. Step 3D.2 is NOT STARTED, Step 3D.3 is
 gated by `2C4-B09`, and full Step 3D closure must not be claimed. Step 4 visual
-implementation is IN PROGRESS: the Group homepage hero, Latest Updates,
-Companies, Investor Relations, and About sections are owner accepted and merged
-through PRs `#36`, `#38`, `#40`, and `#41`. The shared shell, remaining Group
-sections, and the branch homepage remain open and unaccepted on PR `#44`. See
-SOT-002 below.
+implementation is IN PROGRESS. The Group homepage hero, Latest Updates,
+Companies, Investor Relations, and About sections merged through PRs `#36`,
+`#38`, `#40`, and `#41`. The shared shell, remaining Group sections, and the
+branch homepage merged through PR `#44` at `1078155c`. Shared responsive layout
+primitives reached `main` through PRs `#47` and `#48`. CMS and menu enablement
+reached `main` through PRs `#49` to `#53`. Newsroom route work remains
+NOT STARTED.
+
+For PR `#44` and every later increment, merge state is inspectable but no
+GitHub review is recorded. A merge alone is not evidence of owner acceptance.
+See the acceptance-evidence caveat in `project-state.json` and the historical
+SOT-002 record below, which is preserved as written and describes what was open
+at the time it was made.
 
 The separate Step 2C.5B CMS readiness plan remains
 `BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`,

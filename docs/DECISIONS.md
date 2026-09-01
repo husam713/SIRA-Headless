@@ -160,6 +160,17 @@ This register consolidates durable decisions that should not be re-litigated by 
 - **Sequencing:** The primitives land before further page work. Newsroom route work is deliberately sequenced after the responsive foundation and its viewport/RTL/reduced-motion validation, because §7 requires the Newsroom to evolve away from a purely repetitive equal-card grid.
 - **Scope:** This decision governs presentation composition only. It does not reopen the architecture locks in `docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md` §21, and it does not authorize production deployment, DNS, cutover, CMS mutation, or media-origin, forms, or multilingual resolution (`2C4-B07`, `2C4-B08`, `2C4-B09` remain unresolved).
 
+- **Implementation observation (recorded by `TP-STEP4-R0`, 2026-09-01):** the
+  **Status above remains `Proposed` and is deliberately unchanged by this
+  note.** However, the increments implementing this decision are merged to
+  `main`: PR `#47` and PR `#48` at `4f8c8d87` introduced the primitives and
+  adopted them across the shell and every homepage section. The decision is
+  therefore implemented ahead of the owner acceptance its own Status requires.
+  This is recorded as a discrepancy for the owner to resolve; a reconciliation
+  task has no authority to grant the acceptance, and neither PR carries a
+  recorded GitHub review. Resolving it requires an explicit owner decision to
+  either accept ADR-029 or direct a different disposition of the merged work.
+
 ## Resolved decision records
 
 ### ADR-PENDING-002 — Backend source reconciliation

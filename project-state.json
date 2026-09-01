@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-08-30T04:30:00+03:00",
+  "updatedAt": "2026-09-01T00:00:00+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -53,7 +53,7 @@
       "nextStage": "3 — Preview / SEO / Discovery",
       "nextStageStatus": "HISTORICAL_ROADMAP_ENTRY_POINT_ALREADY_PROGRESSING_THROUGH_ACCEPTED_STEP_3D1",
       "currentState": "STEP_4_VISUAL_IMPLEMENTATION_IN_PROGRESS",
-      "nextAuthorizedImplementation": "STEP_4_SHARED_RESPONSIVE_LAYOUT_PRIMITIVES",
+      "nextAuthorizedImplementation": "NONE_SEPARATELY_AUTHORIZED",
       "launchStrategy": "GROUP_STAGING_FIRST"
     }
   },
@@ -168,12 +168,12 @@
   },
   "currentImplementationState": {
     "step4VisualProductionImplementation": "IN_PROGRESS",
-    "sharedProductionShell": "IMPLEMENTED_PENDING_REVIEW_PR44",
-    "groupHomepageVisualComposition": "IMPLEMENTED_PENDING_REVIEW_PR44",
-    "branchHomepageVisualComposition": "IMPLEMENTED_PENDING_REVIEW_PR44",
+    "sharedProductionShell": "MERGED_PR44",
+    "groupHomepageVisualComposition": "MERGED_PR44",
+    "branchHomepageVisualComposition": "MERGED_PR44",
     "newsroomVisualRouteWork": "NOT_STARTED",
     "prototypeImplementation": "ART_DIRECTION_PROTOTYPE_RETAINED_NON_PRODUCTION",
-    "responsiveLayoutPrimitives": "NOT_STARTED"
+    "responsiveLayoutPrimitives": "MERGED_PR47_PR48"
   },
   "openGates": {
     "mediaOriginB07": "UNRESOLVED_DEFERRED",
@@ -234,8 +234,8 @@
     }
   },
   "nextMajorStages": [
-    "Step 4 frontend: Group homepage sections accepted and merged through PRs 36/38/40/41; shared shell and branch homepage remain open on PR 44 pending owner review",
-    "Step 4 frontend: shared responsive layout primitives are the next authorized implementation increment, ahead of any Newsroom route work",
+    "Step 4 frontend: Group homepage sections merged through PRs 36/38/40/41; shared shell and branch homepage merged through PR 44; shared responsive layout primitives merged through PRs 47/48; see step4MergedIncrements and its acceptanceEvidenceCaveat",
+    "Step 4 frontend: the shared responsive layout primitives are merged; the next increment is separately authorized and is not implied by this record",
     "Step 4 frontend: Newsroom visual route work remains NOT_STARTED and is deliberately sequenced after the responsive layout foundation",
     "Governance: SOT-002 durable-state drift is reconciled; Git remains the authority for implementation state",
     "Not authorized: AI Engineering OS validator or CI enforcement and product/runtime work",
@@ -296,15 +296,45 @@
       "summary": "A main branch protection rule is configured but GitHub reports it is not enforced for this private repository under the current plan; PR + CI + owner approval remain compensating controls."
     }
   ],
-  "openImplementationIncrements": {
-    "step4SharedShellAndBranchHomepage": {
-      "pullRequest": 44,
-      "branch": "feat/step-4-shared-shell",
-      "state": "OPEN_DRAFT",
-      "scope": "SHARED_SHELL_REMAINING_GROUP_SECTIONS_BRANCH_HOMEPAGE",
-      "ciStatus": "FAIL_ENVIRONMENTAL_RUNTIME_PREVIEW_UNCONFIGURED",
-      "ciNote": "lint, typecheck, 39 files / 358 tests, and production build pass; pnpm test:runtime-preview fails because CI has no WordPress endpoint configuration",
-      "ownerAcceptance": "NOT_GRANTED"
+  "openImplementationIncrements": {},
+  "step4MergedIncrements": {
+    "coordinateScope": "HISTORICAL_PROVENANCE_NOT_CURRENT_GIT_HEAD",
+    "acceptanceEvidenceCaveat": "For pull requests 44, 46, 47, 48, 49, 50, 51, 52, and 53 the merge commit is the only inspectable acceptance artifact. None of those pull requests carries a recorded GitHub review. A merge is not by itself evidence of owner acceptance and these entries must not be read as independently verified owner acceptance. This list is exact; pull request 45 is an unrelated open draft and is not part of it.",
+    "increments": [
+      { "pullRequest": 44, "branch": "feat/step-4-shared-shell", "mergeCommit": "1078155c", "scope": "SHARED_SHELL_REMAINING_GROUP_SECTIONS_BRANCH_HOMEPAGE", "state": "MERGED", "recordedReviews": 0 },
+      { "pullRequest": 46, "branch": "docs/step-4-implementation-state-reconciliation", "mergeCommit": "6de7ff97", "scope": "SOT_002_DURABLE_STATE_RECONCILIATION", "state": "MERGED", "recordedReviews": 0 },
+      { "pullRequest": 47, "branch": "feat/step-4-layout-primitives", "mergeCommit": "4f8c8d87", "scope": "SHARED_RESPONSIVE_LAYOUT_PRIMITIVES", "state": "MERGED_SUBSUMED_BY_PR48", "recordedReviews": 0 },
+      { "pullRequest": 48, "branch": "feat/step-4-pilot-sections", "mergeCommit": "4f8c8d87", "scope": "LAYOUT_PRIMITIVE_ADOPTION_AND_ALIGNMENT_QA_HARNESS", "state": "MERGED", "recordedReviews": 0 },
+      { "pullRequest": 49, "branch": "feat/tp-2-nav-menu-locations", "mergeCommit": "fa453432", "scope": "BACKEND_NAV_MENU_LOCATIONS", "state": "MERGED", "recordedReviews": 0 },
+      { "pullRequest": 50, "branch": "feat/tp-3-footer-overrides-anchors", "mergeCommit": "090b2285", "scope": "BRANCH_FOOTER_OVERRIDES_AND_SECTION_ANCHORS", "state": "MERGED", "recordedReviews": 0 },
+      { "pullRequest": 51, "branch": "feat/tp-4-branch-stats-focus-areas", "mergeCommit": "b3927355", "scope": "G4_WITHDRAWAL_AND_REPEATER_CLAIM_CORRECTION", "state": "MERGED", "recordedReviews": 0 },
+      { "pullRequest": 52, "branch": "fix/homepage-acf-field-groups", "mergeCommit": "d638f977", "scope": "HOMEPAGE_ACF_FIELD_GROUPS_AND_NAVIGATION_FIX", "state": "MERGED", "recordedReviews": 0 },
+      { "pullRequest": 53, "branch": "chore/schema-authenticated-refresh", "mergeCommit": "44acc6f6", "scope": "AUTHENTICATED_GRAPHQL_SCHEMA_REFRESH", "state": "MERGED", "recordedReviews": 0 }
+    ]
+  },
+  "nonDurableTerminology": {
+    "phase3_5": "Not a durable project phase. Individual behaviors require traceability to an approved charter requirement or an explicit owner decision.",
+    "phase3_5ObservedSource": "Appears only in the body text of GitHub pull request 48, written by the implementing agent and marked there blocked on owner decision. It appears nowhere in the repository.",
+    "step4PhaseNumbering": "The Phase 1 to Phase 4 labels exist only in commit subjects and two source comments. There is no Phase 0. The approved sequence is the A to O list in docs/STEP-4-EXACT-DESIGN-FIDELITY-IMPLEMENTATION.md section 20."
+  },
+  "durableTerminology": {
+    "layerC": {
+      "classification": "DURABLE_ARCHITECTURE_TERMINOLOGY_NOT_A_PHASE",
+      "meaning": "Progressive premium enhancement.",
+      "definedBy": [
+        "docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md",
+        "docs/STEP-4-DESIGN-DIRECTION-RECONCILIATION.md"
+      ],
+      "specificationAuthority": "ADR-028 editorial architecture specification, recorded as owner accepted, merged, and canonical.",
+      "constraint": "Layer C must never be required for navigation, comprehension, accessibility, forms, or core CTA behavior.",
+      "authorizationBoundary": "The existence of the Layer C category does not authorize implementing a specific effect. Every specific effect still requires an approved Task Packet or explicit owner-authorized scope."
     }
+  },
+  "adr029Observation": {
+    "status": "PROPOSED",
+    "statusSource": "docs/DECISIONS.md ADR-029 records: Proposed. Requires owner acceptance before the implementing increment proceeds.",
+    "implementationState": "MERGED_THROUGH_PR47_AND_PR48",
+    "note": "Recorded as an observation only. This reconciliation does not change the ADR status. Resolving the discrepancy requires an explicit owner decision.",
+    "recordedBy": "TP-STEP4-R0"
   }
 }

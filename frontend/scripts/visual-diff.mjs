@@ -39,10 +39,17 @@ const REFERENCE_DIR = path.join(REPO_ROOT, ".local-reference", "step-4-design");
 const NEWLINE = String.fromCharCode(10);
 
 /**
- * `playwright-core` is currently only present as an optional transitive
- * dependency of vitest's browser runner, so it can disappear on a clean
- * install. Import it lazily and fail with an actionable message instead of a
- * bare MODULE_NOT_FOUND.
+ * `playwright-core` is an explicit devDependency. It used to arrive only as an
+ * optional transitive of vitest's browser runner, which meant a clean
+ * `pnpm install --frozen-lockfile` did not install it at all. The guarded lazy
+ * import stays so a missing or stale module fails with an actionable message
+ * instead of a bare MODULE_NOT_FOUND.
+ *
+ * The browser BINARY is a separate download and is not bundled with the
+ * package. Install it with:
+ *   node node_modules/playwright-core/cli.js install chromium
+ * A missing binary surfaces later, from Playwright's own `chromium.launch()`,
+ * not from the catch below — that catch only ever sees the import fail.
  */
 async function loadChromium() {
   try {
@@ -51,9 +58,8 @@ async function loadChromium() {
   } catch {
     throw new Error(
       [
-        "playwright-core is not installed.",
-        "  Install it:            pnpm add -D playwright-core",
-        "  Then install Chromium: npx playwright install chromium",
+        "Could not import playwright-core. The module is missing or the install is stale.",
+        "  Install deps: pnpm install",
       ].join(NEWLINE),
     );
   }

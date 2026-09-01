@@ -21,6 +21,14 @@ const NEWLINE = String.fromCharCode(10);
 // inline-start edge. That is the property the shared container exists to
 // guarantee, and it is the one a per-component test can never prove.
 
+// playwright-core is an explicit devDependency; the guarded lazy import stays
+// so a missing or stale module fails with an actionable message.
+//
+// The browser BINARY is a separate download and is not bundled with the
+// package. Install it with:
+//   node node_modules/playwright-core/cli.js install chromium
+// A missing binary surfaces later, from Playwright's own chromium.launch(),
+// not from the catch below — that catch only ever sees the import fail.
 async function loadChromium() {
   try {
     const playwright = await import("playwright-core");
@@ -28,9 +36,8 @@ async function loadChromium() {
   } catch {
     throw new Error(
       [
-        "playwright-core is not installed.",
-        "  Install it:            pnpm add -D playwright-core",
-        "  Then install Chromium: npx playwright install chromium",
+        "Could not import playwright-core. The module is missing or the install is stale.",
+        "  Install deps: pnpm install",
       ].join(NEWLINE),
     );
   }
@@ -115,3 +122,9 @@ for (const r of rows) { if (!r.p) bad++; if (!r.p || /1440px|320px/.test(r.n)) c
 console.log(`\n${rows.length - bad}/${rows.length} passed`);
 if (!bad) console.log("(all pass — failures only would print above)");
 console.log(`screenshots: ${OUT}`);
+
+// Fail the process, do not merely report. verify-layout-primitives.mjs already
+// exits non-zero; this script did not, so every "N/N passed" line it printed
+// was an observation rather than a gate: a failing whole-page assertion still
+// exited 0 and could not block anything that consumed it.
+process.exit(bad === 0 ? 0 : 1);

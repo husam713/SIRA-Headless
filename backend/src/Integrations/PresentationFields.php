@@ -37,6 +37,8 @@ final class PresentationFields {
 	public static function definitions(): array {
 		return array(
 			'group_sira_homepage'           => self::homepage_group(),
+			'group_sira_group_homepage'     => self::group_homepage_group(),
+			'group_sira_branch_homepage'    => self::branch_homepage_group(),
 			'group_sira_company_details'    => self::company_group(),
 			'group_sira_investment_details' => self::investment_group(),
 			'group_sira_testimonial_details' => self::testimonial_group(),
@@ -73,42 +75,6 @@ final class PresentationFields {
 						'layout'       => 'horizontal',
 					)
 				),
-				self::group_field(
-					'field_sira_group_homepage',
-					'Group Homepage',
-					'sira_group_homepage',
-					'groupHomepage',
-					self::group_homepage_fields(),
-					array(
-						'conditional_logic' => array(
-							array(
-								array(
-									'field'    => 'field_sira_homepage_variant',
-									'operator' => '==',
-									'value'    => 'group',
-								),
-							),
-						),
-					)
-				),
-				self::group_field(
-					'field_sira_branch_homepage',
-					'Branch Homepage',
-					'sira_branch_homepage',
-					'branchHomepage',
-					self::branch_homepage_fields(),
-					array(
-						'conditional_logic' => array(
-							array(
-								array(
-									'field'    => 'field_sira_homepage_variant',
-									'operator' => '==',
-									'value'    => 'branch',
-								),
-							),
-						),
-					)
-				),
 			),
 			'location'                             => array(
 				array(
@@ -130,6 +96,96 @@ final class PresentationFields {
 			'label_placement'                      => 'top',
 			'instruction_placement'                => 'label',
 			'active'                               => true,
+		);
+	}
+
+	/**
+	 * Group homepage sections, registered as their own field group.
+	 *
+	 * These sections were previously nested inside `sira_group_homepage`, an ACF
+	 * group *field*. ACF prefixes a group field's children with the parent name,
+	 * so that structure reads `sira_group_homepage_hero_heading_before` — while
+	 * every row actually stored on the front page is `hero_heading_before`. Live
+	 * evidence: the Group front page holds 440 meta rows and not one carries a
+	 * `sira_group_homepage` prefix, so every nested field resolved to null and
+	 * the frontend fell back to its not-ready page.
+	 *
+	 * A field *group* adds no storage prefix, so registering the sections this
+	 * way makes the existing content readable again without re-authoring it, and
+	 * keeps Group and Branch in separate GraphQL types — which the nesting was
+	 * providing, since both variants name their sections `hero`.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function group_homepage_group(): array {
+		return array(
+			'key'                                  => 'group_sira_group_homepage',
+			'title'                                => 'SIRA Homepage — Group Sections',
+			'show_in_graphql'                      => true,
+			'graphql_field_name'                   => 'groupHomepage',
+			'graphql_type_name'                    => 'SiraGroupHomepage',
+			'map_graphql_types_from_location_rules' => false,
+			'graphql_types'                        => array( 'Page' ),
+			'fields'                               => self::group_homepage_fields(),
+			'location'                             => self::front_page_location(),
+			'menu_order'                           => 11,
+			'position'                             => 'normal',
+			'style'                                => 'default',
+			'label_placement'                      => 'top',
+			'instruction_placement'                => 'label',
+			'active'                               => true,
+		);
+	}
+
+	/**
+	 * Branch homepage sections, registered as their own field group.
+	 *
+	 * Same correction as {@see self::group_homepage_group()}. Branch front pages
+	 * store `branch_hero_*`, `branch_statistics_*`, and `branch_focus_areas_*`,
+	 * never `sira_branch_homepage_*`, so `statistics` and `focusAreas` were both
+	 * resolving to null on all four branch sites.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function branch_homepage_group(): array {
+		return array(
+			'key'                                  => 'group_sira_branch_homepage',
+			'title'                                => 'SIRA Homepage — Branch Sections',
+			'show_in_graphql'                      => true,
+			'graphql_field_name'                   => 'branchHomepage',
+			'graphql_type_name'                    => 'SiraBranchHomepage',
+			'map_graphql_types_from_location_rules' => false,
+			'graphql_types'                        => array( 'Page' ),
+			'fields'                               => self::branch_homepage_fields(),
+			'location'                             => self::front_page_location(),
+			'menu_order'                           => 12,
+			'position'                             => 'normal',
+			'style'                                => 'default',
+			'label_placement'                      => 'top',
+			'instruction_placement'                => 'label',
+			'active'                               => true,
+		);
+	}
+
+	/**
+	 * Shared location rule: the site's front page only.
+	 *
+	 * @return array<int,array<int,array<string,string>>>
+	 */
+	private static function front_page_location(): array {
+		return array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'page',
+				),
+				array(
+					'param'    => 'page_type',
+					'operator' => '==',
+					'value'    => 'front_page',
+				),
+			),
 		);
 	}
 

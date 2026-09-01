@@ -133,7 +133,8 @@ query SiraHomepage($asPreview: Boolean = false) {
     siraHomepage {
       variant
     }
-    groupHero {
+    groupHomepage {
+      hero {
       headingBefore headingHighlight headingAfter description
       primaryCta { ...HomepageLink }
       secondaryCta { ...HomepageLink }
@@ -212,7 +213,7 @@ query SiraHomepage($asPreview: Boolean = false) {
         pageInfo { hasNextPage }
       }
     }
-    groupProjects {
+      projects {
       eyebrow heading description
       link { ...HomepageLink }
       selectedProjects(first: 12) {
@@ -220,7 +221,7 @@ query SiraHomepage($asPreview: Boolean = false) {
         pageInfo { hasNextPage }
       }
     }
-    groupInsights {
+      insights {
       eyebrow heading description sourceMode itemLimit
       link { ...HomepageLink }
       selectedItems(first: 12) {
@@ -244,8 +245,10 @@ query SiraHomepage($asPreview: Boolean = false) {
         pageInfo { hasNextPage }
       }
     }
-    groupContact { eyebrow heading description formVariant formContext }
-    branchHero {
+      contact { eyebrow heading description formVariant formContext }
+    }
+    branchHomepage {
+      hero {
       eyebrow headingBefore headingHighlight headingAfter description region
       imageAlt
       image { node { ...HomepageMedia } }
@@ -253,13 +256,13 @@ query SiraHomepage($asPreview: Boolean = false) {
       primaryCta { ...HomepageLink }
       secondaryCta { ...HomepageLink }
     }
-    statistics { statistics { value label supportingText } }
+      statistics { value label supportingText }
     overview {
       eyebrow heading description body
       link { ...HomepageLink }
     }
-    focusAreas { focusAreas { title description } }
-    branchProjects {
+      focusAreas { title description }
+      projects {
       eyebrow heading description
       link { ...HomepageLink }
       selectedProjects(first: 12) {
@@ -267,7 +270,7 @@ query SiraHomepage($asPreview: Boolean = false) {
         pageInfo { hasNextPage }
       }
     }
-    branchInsights {
+      insights {
       eyebrow heading description sourceMode itemLimit
       link { ...HomepageLink }
       selectedItems(first: 12) {
@@ -275,7 +278,8 @@ query SiraHomepage($asPreview: Boolean = false) {
         pageInfo { hasNextPage }
       }
     }
-    branchContact { eyebrow heading description formVariant formContext }
-    footer { taglineOverride groupLinkLabelOverride }
+      contact { eyebrow heading description formVariant formContext }
+      footer { taglineOverride groupLinkLabelOverride }
+    }
   }
 }

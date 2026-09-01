@@ -5,112 +5,120 @@ import type { SiraHomepageQueryData } from "@/queries/homepage";
 import type { BranchSiteKey } from "@/lib/homepage/types";
 
 type HomepagePage = NonNullable<SiraHomepageQueryData["page"]>;
+type GroupSections = NonNullable<HomepagePage["groupHomepage"]>;
 
-// Every section is its OWN standalone top-level field group, so it lives
-// directly on `page` — not nested under `siraHomepage` (which now holds
-// only `variant`), and not under a `groupHomepage`/`branchHomepage` wrapper
-// either. See the note on PresentationFields.php's
-// group_homepage_section_groups() and normalize-homepage.ts for why:
-// WPGraphQL for ACF cannot resolve text/textarea/link/wysiwyg/relationship
-// fields that live inside a `group`-type field nested inside another field
-// group's own `fields` array. `hero`, `projects`, `insights`, and `contact`
-// are the only names both variants used, so those four are prefixed
-// (groupHero/branchHero, etc.) to stay unique as siblings; every other
-// section name is unchanged. `statistics`/`focusAreas` are each their own
-// field group wrapping a same-named repeater (a naming quirk explained in
-// normalize-homepage.ts), hence the extra nesting level on those two below.
-function emptyBranchFields() {
-  return {
-    branchHero: null,
-    statistics: null,
-    overview: null,
-    focusAreas: null,
-    branchProjects: null,
-    branchInsights: null,
-    branchContact: null,
-    footer: null,
-  };
+// sira-core registers the homepage sections as two ACF field groups, so they
+// arrive as `page.groupHomepage.*` and `page.branchHomepage.*`. Inside each
+// wrapper the names are plain (`hero`, `projects`, `insights`, `contact`) —
+// the variant prefix that used to keep them unique as siblings on `page` is no
+// longer needed, because the two wrappers already namespace them.
+//
+// These fixtures still take the flat, prefixed names so each test reads as one
+// section under test; the builders below do the nesting. The maps are the
+// single place that knows the flat -> nested correspondence.
+const GROUP_SECTION_BY_FLAT_NAME = {
+  groupHero: "hero",
+  ticker: "ticker",
+  latestUpdates: "latestUpdates",
+  companies: "companies",
+  about: "about",
+  investor: "investor",
+  services: "services",
+  groupProjects: "projects",
+  groupInsights: "insights",
+  testimonials: "testimonials",
+  partners: "partners",
+  groupContact: "contact",
+} as const;
+
+const BRANCH_SECTION_BY_FLAT_NAME = {
+  branchHero: "hero",
+  statistics: "statistics",
+  overview: "overview",
+  focusAreas: "focusAreas",
+  branchProjects: "projects",
+  branchInsights: "insights",
+  branchContact: "contact",
+  footer: "footer",
+} as const;
+
+type SectionOverrides = Readonly<Record<string, unknown>>;
+
+function nestSections(
+  overrides: SectionOverrides,
+  nameByFlatName: Readonly<Record<string, string>>,
+): Record<string, unknown> {
+  const nested: Record<string, unknown> = {};
+
+  for (const [flatName, nestedName] of Object.entries(nameByFlatName)) {
+    nested[nestedName] = overrides[flatName] ?? null;
+  }
+
+  return nested;
 }
 
-function emptyGroupFields() {
-  return {
-    groupHero: null,
-    ticker: null,
-    latestUpdates: null,
-    companies: null,
-    about: null,
-    investor: null,
-    services: null,
-    groupProjects: null,
-    groupInsights: null,
-    testimonials: null,
-    partners: null,
-    groupContact: null,
-  };
-}
-
-function createBranchHomepage(title = "Consulting"): SiraHomepageQueryData {
+function createPage(
+  variant: "group" | "branch",
+  databaseId: number,
+  title: string,
+  overrides: SectionOverrides,
+): SiraHomepageQueryData {
   return {
     page: {
-      databaseId: 42,
+      databaseId,
       uri: "/",
       title,
-      siraHomepage: { variant: "branch" },
-      ...emptyGroupFields(),
-      ...emptyBranchFields(),
-      branchHero: {
-        eyebrow: "  Consulting  ",
-        headingBefore: "Strategy for",
-        headingHighlight: "new markets",
-        headingAfter: null,
-        description: "  Deliberate   growth. ",
-        region: "Riyadh",
-        imageAlt: null,
-        image: null,
-        mobileImage: null,
-        primaryCta: null,
-        secondaryCta: null,
-      },
-    },
+      siraHomepage: { variant },
+      groupHomepage: nestSections(overrides, GROUP_SECTION_BY_FLAT_NAME),
+      branchHomepage: nestSections(overrides, BRANCH_SECTION_BY_FLAT_NAME),
+    } as unknown as HomepagePage,
   };
+}
+
+const BRANCH_HERO_FIXTURE = {
+  eyebrow: "  Consulting  ",
+  headingBefore: "Strategy for",
+  headingHighlight: "new markets",
+  headingAfter: null,
+  description: "  Deliberate   growth. ",
+  region: "Riyadh",
+  imageAlt: null,
+  image: null,
+  mobileImage: null,
+  primaryCta: null,
+  secondaryCta: null,
+};
+
+const GROUP_HERO_FIXTURE = {
+  headingBefore: "Shaping a",
+  headingHighlight: "smarter",
+  headingAfter: "future",
+  description: "Long-term enterprise value.",
+  primaryCta: null,
+  secondaryCta: null,
+  slides: null,
+};
+
+function createBranchHomepage(title = "Consulting"): SiraHomepageQueryData {
+  return createPage("branch", 42, title, { branchHero: BRANCH_HERO_FIXTURE });
 }
 
 function createGroupHomepage(): SiraHomepageQueryData {
-  return {
-    page: {
-      databaseId: 7,
-      uri: "/",
-      title: "SIRA Group",
-      siraHomepage: { variant: "group" },
-      ...emptyGroupFields(),
-      ...emptyBranchFields(),
-      groupHero: {
-        headingBefore: "Shaping a",
-        headingHighlight: "smarter",
-        headingAfter: "future",
-        description: "Long-term enterprise value.",
-        primaryCta: null,
-        secondaryCta: null,
-        slides: null,
-      },
-    },
-  };
+  return createPage("group", 7, "SIRA Group", { groupHero: GROUP_HERO_FIXTURE });
 }
 
-function withBranchFields(overrides: Partial<HomepagePage>): SiraHomepageQueryData {
-  const data = createBranchHomepage();
-  const page = data.page as HomepagePage;
-  return {
-    page: { ...page, ...overrides },
-  };
+function withBranchFields(overrides: SectionOverrides): SiraHomepageQueryData {
+  return createPage("branch", 42, "Consulting", {
+    branchHero: BRANCH_HERO_FIXTURE,
+    ...overrides,
+  });
 }
 
-function withGroupFields(overrides: Partial<HomepagePage>): SiraHomepageQueryData {
-  const data = createGroupHomepage();
-  const page = data.page as HomepagePage;
-  return {
-    page: { ...page, ...overrides },
-  };
+function withGroupFields(overrides: SectionOverrides): SiraHomepageQueryData {
+  return createPage("group", 7, "SIRA Group", {
+    groupHero: GROUP_HERO_FIXTURE,
+    ...overrides,
+  });
 }
 
 function createProject(databaseId: number, restricted = false) {
@@ -368,9 +376,9 @@ function createCompleteBranchHomepage(): SiraHomepageQueryData {
       primaryCta: { title: "Projects", url: "/projects/", target: null },
       secondaryCta: null,
     },
-    statistics: { statistics: [{ value: "12", label: "Facilities", supportingText: null }] },
+    statistics: [{ value: "12", label: "Facilities", supportingText: null }],
     overview: { eyebrow: "Overview", heading: "Our focus", description: null, body: "<p>Overview</p>", link: null },
-    focusAreas: { focusAreas: [{ title: "Delivery", description: "Integrated care" }] },
+    focusAreas: [{ title: "Delivery", description: "Integrated care" }],
     branchProjects: {
       eyebrow: "Projects",
       heading: "Selected work",
@@ -571,7 +579,7 @@ describe("homepage server adapter", () => {
   });
 
   it("exposes only public-display investments and consent-approved testimonials", () => {
-    const investor: HomepagePage["investor"] = {
+    const investor: GroupSections["investor"] = {
       eyebrow: null,
       heading: "Investor",
       description: null,
@@ -615,7 +623,7 @@ describe("homepage server adapter", () => {
         ],
       },
     };
-    const testimonials: HomepagePage["testimonials"] = {
+    const testimonials: GroupSections["testimonials"] = {
       eyebrow: null,
       heading: "Testimonials",
       description: null,

@@ -166,9 +166,20 @@ function normalizeFlatItem(
     return null;
   }
 
+  // WordPress reports a top-level item's parent as 0, not null. Carrying that 0
+  // through made hasInvalidHierarchy treat every top-level item as pointing at a
+  // parent that does not exist, so it rejected whole menus as "invalid-hierarchy"
+  // and the header rendered nothing while the CMS payload was perfectly valid.
+  // Every fixture used null, so no test ever saw the real shape.
+  const parentDatabaseId =
+    Number.isSafeInteger(item.parentDatabaseId) &&
+    Number(item.parentDatabaseId) > 0
+      ? Number(item.parentDatabaseId)
+      : null;
+
   return Object.freeze({
     databaseId: itemDatabaseId,
-    parentDatabaseId: item.parentDatabaseId,
+    parentDatabaseId,
     label,
     href,
     target: normalizeTarget(item.target, diagnostics, itemDatabaseId),

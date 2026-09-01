@@ -11052,6 +11052,9 @@ enum MimeTypeEnum {
   """application/java mime type."""
   APPLICATION_JAVA
 
+  """application/javascript mime type."""
+  APPLICATION_JAVASCRIPT
+
   """application/msword mime type."""
   APPLICATION_MSWORD
 
@@ -11242,6 +11245,15 @@ enum MimeTypeEnum {
   """audio/x-realaudio mime type."""
   AUDIO_X_REALAUDIO
 
+  """font/ttf mime type."""
+  FONT_TTF
+
+  """font/woff mime type."""
+  FONT_WOFF
+
+  """font/woff2 mime type."""
+  FONT_WOFF2
+
   """image/avif mime type."""
   IMAGE_AVIF
 
@@ -11286,6 +11298,9 @@ enum MimeTypeEnum {
 
   """text/csv mime type."""
   TEXT_CSV
+
+  """text/html mime type."""
+  TEXT_HTML
 
   """text/plain mime type."""
   TEXT_PLAIN

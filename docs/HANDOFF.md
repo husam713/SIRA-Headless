@@ -76,10 +76,28 @@ by `2C4-B09`, `PREVIEW-AUTH-001` remains DEFERRED, and full Step 3D closure
 must not be claimed.
 
 The Homepage Production Data Contract, Step 4 Exact Design Fidelity Charter,
-and ADR-028 Editorial Architecture are owner accepted and merged. Step 4
-visual implementation, the shared production shell, Group/Branch homepage
-composition, and Newsroom visual/route work are NOT STARTED. Prototype and
-production UI implementation are NOT AUTHORIZED.
+and ADR-028 Editorial Architecture are recorded as owner accepted and merged.
+
+Step 4 visual implementation is IN PROGRESS. It is not NOT STARTED. Git
+evidence on `main`: Group homepage sections merged through PRs `#36`, `#38`,
+`#40`, `#41`; the shared site header/mobile-menu/footer shell and the branch
+homepage merged through PR `#44` at `1078155c`; the shared responsive layout
+primitives merged through PRs `#47` and `#48` at `4f8c8d87`; and CMS/menu
+enablement merged through PRs `#49`, `#50`, `#51`, `#52`, `#53`, with `main`
+at `44acc6f6` when this was reconciled. Prototype and production UI
+implementation are AUTHORIZED: `project-state.json` records
+`authorization.prototypeImplementationAuthorized` and
+`authorization.productionUiImplementationAuthorized` as `true`.
+
+Newsroom visual/route work remains NOT STARTED. No newsroom route, component,
+or query exists under `frontend/src`.
+
+Acceptance-evidence caveat. For PRs `#44` and `#47` through `#53` the only
+inspectable acceptance artifact is the merge commit; none of those pull
+requests carries a recorded GitHub review. Where this file or
+`docs/PROJECT-STATE.md` states owner acceptance for them, that is asserted by
+a durable document and is not independently verified. A merge is not by itself
+evidence of owner acceptance.
 
 The AI Engineering OS Governance Foundation is already canonical. Preserve its
 owner authorization as the authorization dimension, while representing its
@@ -123,6 +141,32 @@ Do not restart or redesign without newer repository evidence:
 
 Historical Step 2C.5A/2C.5B artifacts remain historical and must not be rewritten to pretend the new staging decision existed when they were created.
 
+## Non-durable terminology
+
+Do not treat the following as project phases or as approved scope.
+
+- **"Phase 3.5"** and **"Layer C"** — Not a durable project phase. Individual
+  behaviors require traceability to an approved charter requirement or an
+  explicit owner decision. Both strings appear only in the body text of GitHub
+  pull request `#48`, written by the implementing agent, with Phase 3.5 marked
+  "blocked on owner decision". Neither string appears anywhere in this
+  repository.
+- **"Step 4 Phase 1-4"** — these labels exist only in commit subjects and two
+  source comments. There is no Phase 0, and the numbering does not map onto any
+  approved plan. The approved sequence is the A-to-O list in
+  `docs/STEP-4-EXACT-DESIGN-FIDELITY-IMPLEMENTATION.md` section 20.
+
+A behavior proposed in a pull request description has not been approved by
+being merged alongside other work.
+
+## Acceptance evidence
+
+Pull requests `#44` and `#47` through `#53` carry no recorded GitHub reviews.
+For those increments the merge commit is the only inspectable acceptance
+artifact. Do not infer owner acceptance from a merge, from GitHub state, from
+previous agent text, or from the presence of an implementation in the
+repository.
+
 ## Architecture locks
 
 - Consulting is the canonical branch GraphQL schema.
@@ -164,9 +208,16 @@ history. Their completion does not grant authority for a subsequent task.
 Program Control or the owner must issue a new bounded authorization for any
 later implementation or protected transition.
 
-Validator/CI enforcement, AI Engineering OS product/runtime work, prototypes,
-production UI, WordPress mutation, external staging, deployment, DNS, and
-production cutover remain NOT AUTHORIZED.
+AI Engineering OS validator/CI enforcement, AI Engineering OS product/runtime
+work, WordPress mutation, external staging, deployment, DNS, and production
+cutover remain NOT AUTHORIZED. Prototype and production UI implementation are
+no longer in this list: they are authorized, and Step 4 visual implementation
+is in progress (see Current state).
+
+The AI Engineering OS validator/CI boundary in
+`docs/AI-ENGINEERING-OS.md` concerns validators for the governance contracts
+themselves. It does not cover frontend build, test, or layout-verification
+tooling in `frontend/scripts`, which is ordinary frontend CI.
 
 ## Handoff completion format
 

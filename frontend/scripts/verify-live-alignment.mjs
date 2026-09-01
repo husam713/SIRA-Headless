@@ -28,9 +28,9 @@ async function loadChromium() {
   } catch {
     throw new Error(
       [
-        "playwright-core is not installed.",
-        "  Install it:            pnpm add -D playwright-core",
-        "  Then install Chromium: npx playwright install chromium",
+        "playwright-core is present but its browser is missing, or install is stale.",
+        "  Install deps:     pnpm install",
+        "  Install Chromium: node node_modules/playwright-core/cli.js install chromium",
       ].join(NEWLINE),
     );
   }
@@ -115,3 +115,9 @@ for (const r of rows) { if (!r.p) bad++; if (!r.p || /1440px|320px/.test(r.n)) c
 console.log(`\n${rows.length - bad}/${rows.length} passed`);
 if (!bad) console.log("(all pass — failures only would print above)");
 console.log(`screenshots: ${OUT}`);
+
+// Fail the process, do not merely report. verify-layout-primitives.mjs already
+// exits non-zero; this script did not, so every "N/N passed" line it printed
+// was an observation rather than a gate: a failing whole-page assertion still
+// exited 0 and could not block anything that consumed it.
+process.exit(bad === 0 ? 0 : 1);

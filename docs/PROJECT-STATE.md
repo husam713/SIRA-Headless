@@ -1,6 +1,6 @@
 # SIRA Current Project State
 
-State snapshot last verified through canonical Git evidence: 2026-08-30
+State snapshot last verified through canonical Git evidence: 2026-09-01, against `main` at `44acc6f6`
 
 ## Current authoritative state
 
@@ -8,14 +8,15 @@ State snapshot last verified through canonical Git evidence: 2026-08-30
 - **Repository HEAD rule:** discover the current commit from Git; snapshot coordinates below are provenance and must not be treated as an eternally current HEAD
 - **PR #31 reconciliation status:** OWNER ACCEPTED / MERGED
 - **Latest accepted governance milestone:** Step 4 Editorial Architecture / ADR-028, owner accepted and merged through PR `#30`
-- **Repository/frontend state:** Step 4 governance accepted; Group homepage visual sections accepted and merged through PRs `#36`, `#38`, `#40`, `#41`; shared shell and branch homepage open on PR `#44`
+- **Repository/frontend state:** Step 4 governance accepted; Group homepage visual sections merged through PRs `#36`, `#38`, `#40`, `#41`; shared shell and branch homepage merged through PR `#44`; shared responsive layout primitives merged through PRs `#47`/`#48`; CMS/menu enablement merged through PRs `#49`-`#53`
 - **CMS mutation track:** Step 2C.5B remains the accepted readiness milestone and is `BLOCKED_BY_BACKUP_EVIDENCE`
 - **AI Engineering OS Governance Foundation:** OWNER AUTHORIZED / IMPLEMENTED / INDEPENDENTLY VERIFIED / MERGED / POST-MERGE VERIFIED / CANONICAL through PR `#33`
 - **Acceptance-Gates current-state maintenance:** CLOSED / POST-MERGE VERIFIED / CANONICAL through PR `#34`
-- **AI Engineering OS enforcement/product boundary:** validator and CI enforcement, product/runtime work, prototypes, and production UI are NOT AUTHORIZED
+- **AI Engineering OS enforcement/product boundary:** AI Engineering OS validator and CI enforcement, and AI Engineering OS product/runtime work, are NOT AUTHORIZED. This boundary concerns validators for the governance contracts themselves and does not cover ordinary frontend build/test/layout tooling in `frontend/scripts`. Prototypes and production UI are **not** covered by this boundary: both are authorized (see below)
 - **Subsequent authorization boundary:** no later task inherits authority from the accepted governance work; Program Control or the owner must issue separate authorization
 - **Latest approved tag:** `step-2c3b-approved`
-- **Prototype implementation:** NOT AUTHORIZED
+- **Prototype implementation:** AUTHORIZED (`project-state.json` `authorization.prototypeImplementationAuthorized: true`)
+- **Production UI implementation:** AUTHORIZED / IN PROGRESS (`authorization.productionUiImplementationAuthorized: true`; Step 4 sections merged, see the milestone table)
 - **Production deployment:** NOT AUTHORIZED
 
 Authorization, implementation, independent verification, acceptance, merge
@@ -64,6 +65,19 @@ separate.
 | Step 4 Group Latest Updates + Companies | OWNER ACCEPTED / MERGED | `#38` | `41fe34b47e2ce6141ebc282300689d4787bf473a` |
 | Step 4 Group Investor Relations | OWNER ACCEPTED / MERGED | `#40` | `24f016ada7bfc35aadb722b44a16074e95a789cb` |
 | Step 4 Group About | OWNER ACCEPTED / MERGED | `#41` | `ce8c22925127e51a036a19ef469ff06db88ee62e` |
+| Step 4 shared shell + branch homepage | MERGED (merge is the sole acceptance artifact) | `#44` | `1078155c` |
+| SOT-002 Step 4 implementation-state reconciliation | MERGED (merge is the sole acceptance artifact) | `#46` | `6de7ff97` |
+| Step 4 shared responsive layout primitives (ADR-029) | MERGED (merge is the sole acceptance artifact; **ADR-029 status remains `Proposed`**) | `#47`, `#48` | `4f8c8d87` |
+| Backend PRIMARY/FOOTER/LEGAL nav menu locations | MERGED (merge is the sole acceptance artifact) | `#49` | `fa453432` |
+| Branch footer overrides + section anchor ids | MERGED (merge is the sole acceptance artifact) | `#50` | `090b2285` |
+| G4 withdrawal / repeater-claim correction | MERGED (merge is the sole acceptance artifact) | `#51` | `b3927355` |
+| Homepage ACF field groups + navigation fix | MERGED (merge is the sole acceptance artifact) | `#52` | `d638f977` |
+| Authenticated GraphQL schema refresh | MERGED (merge is the sole acceptance artifact) | `#53` | `44acc6f6` |
+
+Acceptance-evidence caveat for PRs `#44` and `#47`-`#53`: none carries a
+recorded GitHub review, so the merge commit is the only inspectable acceptance
+artifact. Rows above that read OWNER ACCEPTED for earlier PRs are preserved
+exactly as previously recorded and are neither upgraded nor downgraded here.
 
 Step 3D.2 is NOT STARTED. Step 3D.3 remains gated by unresolved `2C4-B09`.
 Full Step 3D closure must not be claimed. `PREVIEW-AUTH-001` remains DEFERRED.
@@ -226,7 +240,7 @@ Known separate observation: backend source declares SiraProjectDetails while the
 - `PREVIEW-AUTH-001`: DEFERRED.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED; the human backup/admin evidence gate remains required.
-- Step 4 production UI implementation: AUTHORIZED / IN PROGRESS. Group homepage sections are merged; PR `#44` remains open and unaccepted. The next authorized increment is the shared responsive layout primitives; Newsroom route work is deliberately sequenced after it.
+- Step 4 production UI implementation: AUTHORIZED / IN PROGRESS. Group homepage sections, the shared shell, the branch homepage, and the shared responsive layout primitives are all merged (PRs `#36`-`#48`). Newsroom route work remains NOT STARTED and is deliberately sequenced after the responsive foundation.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 
 PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance
@@ -236,8 +250,9 @@ governance history. For the Governance Foundation, authorization remains
 post-merge verified and Canonicality is true. No subsequent task is authorized
 by those accepted records; Program Control or the owner must issue separate
 authorization. Validator/CI enforcement, AI Engineering OS product/runtime
-work, prototypes, production UI, WordPress mutation, external staging,
-deployment, DNS, and production cutover remain NOT AUTHORIZED.
+work, WordPress mutation, external staging, deployment, DNS, and production
+cutover remain NOT AUTHORIZED. Prototypes and production UI are no longer in
+this list: both are authorized and Step 4 visual implementation is in progress.
 
 ## Owner/external decisions still protected
 

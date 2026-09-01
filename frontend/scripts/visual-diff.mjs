@@ -51,9 +51,9 @@ async function loadChromium() {
   } catch {
     throw new Error(
       [
-        "playwright-core is not installed.",
-        "  Install it:            pnpm add -D playwright-core",
-        "  Then install Chromium: npx playwright install chromium",
+        "playwright-core is present but its browser is missing, or install is stale.",
+        "  Install deps:     pnpm install",
+        "  Install Chromium: node node_modules/playwright-core/cli.js install chromium",
       ].join(NEWLINE),
     );
   }

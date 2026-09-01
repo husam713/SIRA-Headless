@@ -1,9 +1,11 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
-// playwright-core is only present as an optional transitive of vitest's
-// browser runner, so it can vanish on a clean install. Same guarded lazy
-// import as scripts/visual-diff.mjs rather than a bare MODULE_NOT_FOUND.
+// playwright-core is an explicit devDependency. It used to arrive only as an
+// optional transitive of vitest's browser runner, which meant a clean
+// `pnpm install --frozen-lockfile` did not install it at all and both
+// verifiers died on MODULE_NOT_FOUND. The guarded lazy import stays, because
+// the browser BINARY is still a separate download that can be absent.
 const NEWLINE = String.fromCharCode(10);
 
 async function loadChromium() {
@@ -13,9 +15,9 @@ async function loadChromium() {
   } catch {
     throw new Error(
       [
-        "playwright-core is not installed.",
-        "  Install it:            pnpm add -D playwright-core",
-        "  Then install Chromium: npx playwright install chromium",
+        "playwright-core is present but its browser is missing, or install is stale.",
+        "  Install deps:     pnpm install",
+        "  Install Chromium: node node_modules/playwright-core/cli.js install chromium",
       ].join(NEWLINE),
     );
   }
@@ -26,9 +28,13 @@ async function loadChromium() {
 // subgrid row alignment, container-query card rails, and absence of horizontal
 // overflow.
 //
-// Runs against the BUILT css, so `pnpm build` must run first. Requires the
-// Playwright browser download (`pnpm exec playwright install chromium`).
-// Not wired into CI yet - the full viewport/RTL/reduced-motion matrix is Phase 4.
+// Runs against the BUILT css, so `pnpm build` must run first, and needs the
+// Chromium download (`node node_modules/playwright-core/cli.js install chromium`).
+//
+// Wired into Frontend CI after the build step, with the browser cached. It
+// exits non-zero on a failed assertion, so it gates. Its whole-page
+// counterpart, scripts/verify-live-alignment.mjs, is deliberately not in CI:
+// it needs a captured deployment and CI holds no credentials for one.
 
 const CHUNK_DIR = join(".next", "static", "chunks");
 

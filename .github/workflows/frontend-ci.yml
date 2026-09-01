@@ -84,5 +84,25 @@ jobs:
       - name: Production build
         run: pnpm build
 
+      # verify:layout reads the BUILT css out of .next/static/chunks, so it has
+      # to follow the build step. Browsers are cached because the Chromium
+      # download is larger than the whole rest of this job.
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('frontend/pnpm-lock.yaml') }}
+          restore-keys: |
+            playwright-${{ runner.os }}-
+
+      - name: Install Chromium for the layout verifier
+        run: node node_modules/playwright-core/cli.js install --with-deps chromium
+
+      # Exits non-zero on a failed assertion, so this is a real gate. Its
+      # whole-page counterpart (verify:alignment) is deliberately NOT wired in:
+      # it needs a captured deployment, which CI has no credentials for.
+      - name: Verify shared layout primitives
+        run: pnpm verify:layout
+
       - name: Run local Draft Mode runtime verification
         run: pnpm test:runtime-preview

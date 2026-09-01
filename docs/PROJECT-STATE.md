@@ -240,7 +240,7 @@ Known separate observation: backend source declares SiraProjectDetails while the
 - `PREVIEW-AUTH-001`: DEFERRED.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED; the human backup/admin evidence gate remains required.
-- Step 4 production UI implementation: AUTHORIZED / IN PROGRESS. Group homepage sections, the shared shell, the branch homepage, and the shared responsive layout primitives are all merged (PRs `#36`-`#48`). Newsroom route work remains NOT STARTED and is deliberately sequenced after the responsive foundation.
+- Step 4 production UI implementation: AUTHORIZED / IN PROGRESS. Group homepage sections, the shared shell, the branch homepage, and the shared responsive layout primitives are all merged, through PRs `#36`, `#38`, `#40`, `#41`, `#44`, `#47`, and `#48`. That list is exact: `#37`, `#42`, `#43`, `#45`, and `#46` were not visual implementation increments. Newsroom route work remains NOT STARTED and is deliberately sequenced after the responsive foundation.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 
 PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance

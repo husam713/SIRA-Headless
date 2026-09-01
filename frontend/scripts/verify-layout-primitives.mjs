@@ -4,8 +4,14 @@ import { join } from "node:path";
 // playwright-core is an explicit devDependency. It used to arrive only as an
 // optional transitive of vitest's browser runner, which meant a clean
 // `pnpm install --frozen-lockfile` did not install it at all and both
-// verifiers died on MODULE_NOT_FOUND. The guarded lazy import stays, because
-// the browser BINARY is still a separate download that can be absent.
+// verifiers died on MODULE_NOT_FOUND. The guarded lazy import stays so a
+// missing or stale module fails with an actionable message.
+//
+// The browser BINARY is a separate download and is not bundled with the
+// package. Install it with:
+//   node node_modules/playwright-core/cli.js install chromium
+// A missing binary surfaces later, from Playwright's own chromium.launch(),
+// not from the catch below — that catch only ever sees the import fail.
 const NEWLINE = String.fromCharCode(10);
 
 async function loadChromium() {
@@ -15,9 +21,8 @@ async function loadChromium() {
   } catch {
     throw new Error(
       [
-        "playwright-core is present but its browser is missing, or install is stale.",
-        "  Install deps:     pnpm install",
-        "  Install Chromium: node node_modules/playwright-core/cli.js install chromium",
+        "Could not import playwright-core. The module is missing or the install is stale.",
+        "  Install deps: pnpm install",
       ].join(NEWLINE),
     );
   }

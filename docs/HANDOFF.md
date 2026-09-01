@@ -145,12 +145,12 @@ Historical Step 2C.5A/2C.5B artifacts remain historical and must not be rewritte
 
 Do not treat the following as project phases or as approved scope.
 
-- **"Phase 3.5"** and **"Layer C"** — Not a durable project phase. Individual
-  behaviors require traceability to an approved charter requirement or an
-  explicit owner decision. Both strings appear only in the body text of GitHub
-  pull request `#48`, written by the implementing agent, with Phase 3.5 marked
-  "blocked on owner decision". Neither string appears anywhere in this
-  repository.
+- **"Phase 3.5"** — Not a durable project phase. It appears only in the body
+  text of GitHub pull request `#48`, written by the implementing agent, and is
+  marked there "blocked on owner decision". It appears nowhere in this
+  repository. Individual behaviors proposed under that label require
+  traceability to an approved charter requirement or an explicit owner
+  decision.
 - **"Step 4 Phase 1-4"** — these labels exist only in commit subjects and two
   source comments. There is no Phase 0, and the numbering does not map onto any
   approved plan. The approved sequence is the A-to-O list in
@@ -159,13 +159,35 @@ Do not treat the following as project phases or as approved scope.
 A behavior proposed in a pull request description has not been approved by
 being merged alongside other work.
 
+## Durable terminology — Layer C
+
+**"Layer C" is durable architecture terminology, not a phase label.** It is
+defined by the canonical ADR-028 editorial architecture specification:
+
+- `docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md` — "Layer C — Progressive premium
+  enhancement";
+- `docs/STEP-4-DESIGN-DIRECTION-RECONCILIATION.md` — the same definition, and
+  the constraint below.
+
+It means progressive premium enhancement.
+
+Layer C must never be required for navigation, comprehension, accessibility,
+forms, or core CTA behavior.
+
+The existence of the Layer C category does not authorize implementing a
+specific effect. Every specific effect still requires an approved Task Packet
+or explicit owner-authorized scope.
+
 ## Acceptance evidence
 
-Pull requests `#44` and `#47` through `#53` carry no recorded GitHub reviews.
-For those increments the merge commit is the only inspectable acceptance
-artifact. Do not infer owner acceptance from a merge, from GitHub state, from
-previous agent text, or from the presence of an implementation in the
-repository.
+Pull requests `#44`, `#46`, `#47`, `#48`, `#49`, `#50`, `#51`, `#52`, and `#53`
+carry no recorded GitHub reviews. For those increments the merge commit is the
+only inspectable acceptance artifact. Do not infer owner acceptance from a
+merge, from GitHub state, from previous agent text, or from the presence of an
+implementation in the repository.
+
+This list is exact. Pull request `#45` is an unrelated open draft and is not
+part of it.
 
 ## Architecture locks
 

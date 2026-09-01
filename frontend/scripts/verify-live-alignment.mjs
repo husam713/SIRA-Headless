@@ -21,6 +21,14 @@ const NEWLINE = String.fromCharCode(10);
 // inline-start edge. That is the property the shared container exists to
 // guarantee, and it is the one a per-component test can never prove.
 
+// playwright-core is an explicit devDependency; the guarded lazy import stays
+// so a missing or stale module fails with an actionable message.
+//
+// The browser BINARY is a separate download and is not bundled with the
+// package. Install it with:
+//   node node_modules/playwright-core/cli.js install chromium
+// A missing binary surfaces later, from Playwright's own chromium.launch(),
+// not from the catch below — that catch only ever sees the import fail.
 async function loadChromium() {
   try {
     const playwright = await import("playwright-core");
@@ -28,9 +36,8 @@ async function loadChromium() {
   } catch {
     throw new Error(
       [
-        "playwright-core is present but its browser is missing, or install is stale.",
-        "  Install deps:     pnpm install",
-        "  Install Chromium: node node_modules/playwright-core/cli.js install chromium",
+        "Could not import playwright-core. The module is missing or the install is stale.",
+        "  Install deps: pnpm install",
       ].join(NEWLINE),
     );
   }

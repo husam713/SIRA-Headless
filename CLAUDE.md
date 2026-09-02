@@ -20,15 +20,33 @@ this file is the thing that is wrong.
 
 ## Start every session here
 
-Before making any engineering claim, and before any mutation:
+Before answering any substantive engineering question, making any material
+engineering claim, or performing any mutation:
 
 1. **Read `AGENTS.md` in full.**
-2. Execute the repository boot sequence in `templates/ai/BOOT-PROTOCOL.md`,
-   which lists the documents to read, the Git/GitHub state to inspect, and the
-   reconciliation step that must precede mutation.
+2. **Read `templates/ai/BOOT-PROTOCOL.md` in full**, then **execute every
+   applicable item of its boot sequence, in the order that file defines.**
 
 Do not restate that sequence from memory — read it. It is versioned and this
-file is not a copy of it.
+file is not a copy of it. Reading `AGENTS.md` alone is not a completed boot.
+
+The boot cannot silently skip any of these:
+
+- `docs/AI-ENGINEERING-OS.md`
+- `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`
+- `project-state.json`
+- `docs/PROJECT-STATE.md`
+- `docs/SOURCE-OF-TRUTH.md`
+- relevant entries in `docs/DECISIONS.md`
+- `docs/HANDOFF.md`
+- the applicable Git/GitHub and task evidence
+
+Inspecting Git early is fine, but it does not replace the remaining items and
+does not end the boot.
+
+If a required boot source is missing, unreadable, or contradicts another, report
+`WARNING` or `BLOCKED` and say which source and which conflict. Never proceed
+silently, and never state that boot completed when it did not.
 
 ## Non-negotiable while working here
 
@@ -64,6 +82,10 @@ Do not report `PASS` unless the check actually ran against the stated baseline.
 - **Never generalize a verified search result to a term you did not search.**
   Verifying that term A is absent says nothing about term B. Search each term,
   or report it as `UNKNOWN`.
+- **Similar names are separate claims.** Do not transfer behaviour, history,
+  test results, or failure mechanisms between similarly named scripts,
+  commands, phases, PRs, fields, or artifacts. Verify the exact identifier you
+  are describing.
 - Snapshot coordinates in durable state files are historical provenance. Always
   rediscover the current HEAD from Git.
 - When a task changes durable project state, update only the carriers that

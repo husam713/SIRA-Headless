@@ -150,7 +150,10 @@ This register consolidates durable decisions that should not be re-litigated by 
 
 ## ADR-029 — Step 4 responsive composition uses shared layout primitives
 
-- **Status:** Proposed. Requires owner acceptance before the implementing increment proceeds.
+- **Status:** Accepted by the owner after implementation, through the durable owner-decision comment on PR `#48` at `2026-09-02T03:17:53Z` (https://github.com/husam713/SIRA-Headless/pull/48#issuecomment-5503798684), recorded against merge `4f8c8d87`.
+- **Previous status:** Proposed until 2026-09-02. Owner acceptance was recorded after the implementing increments were merged. That chronology is deliberate history and must not be rewritten as though acceptance preceded implementation or merge.
+- **Relation to ADR-028:** ADR-029 implements ADR-028 §4 and §10. It does not supersede ADR-028, which remains the preceding canonical architecture decision.
+- **Acceptance boundary:** this acceptance covers the architecture decision only. It is not owner acceptance of every PR `#47`/`#48` implementation detail; it does not establish responsive, RTL, reduced-motion, accessibility, or visual-regression completion (sequence items L-O of `docs/STEP-4-EXACT-DESIGN-FIDELITY-IMPLEMENTATION.md` section 20); it does not resolve `2C4-B07`, `2C4-B08`, `2C4-B09`, or `PREVIEW-AUTH-001`; and it does not authorize TP-STEP4-R1, Newsroom work, CB-2, CMS mutation, staging, deployment, DNS, or production cutover.
 - **Context:** An audit of `feat/step-4-shared-shell` at `ce5dbe6` found the Step 4 code is CSS-led and has a correct Server/Client boundary, but has no shared layout primitive. `max-w-[82.5rem]` is hand-rolled 17 times with three drift variants; `--layout-container`, `--layout-reading-width`, and `--space-section` are declared in `frontend/src/styles/globals.css` with zero consumers while a contract test asserts only that the strings exist; and `subgrid`, size container queries, and intrinsic grids (`auto-fit`/`minmax()`) have zero occurrences. Only two breakpoints (`sm:`, `lg:`) are in use, so the 1024-1320px band renders identically to 2560px.
 - **Decision:** Introduce shared Server-Component layout primitives (`PageContainer`, `PageGrid`, `Section`, `Prose`, `CardRail`) over a small semantic CSS layer in `globals.css` that owns the master grid, Subgrid card rails, section rhythm, reading widths, and full-/edge-bleed rules. Sections consume the primitives instead of re-declaring containers and grids.
 - **Rule:** Subgrid and size container queries are expressed in the CSS layer, not as Tailwind arbitrary values. Container queries are scoped to components that must adapt to their own width — card rails, and Branch sections reused inside differently sized Group and Branch contexts — and must not be applied blanket-wise; viewport media queries remain correct for page-level chapter changes. The structural tokens become load-bearing, and their contract test must assert consumption rather than declaration.
@@ -170,6 +173,18 @@ This register consolidates durable decisions that should not be re-litigated by 
   task has no authority to grant the acceptance, and neither PR carries a
   recorded GitHub review. Resolving it requires an explicit owner decision to
   either accept ADR-029 or direct a different disposition of the merged work.
+
+- **Acceptance resolution (recorded by `TP-ADR029-ACCEPTANCE-RECONCILIATION`,
+  2026-09-02):** the discrepancy recorded above is resolved by owner acceptance,
+  not by rewriting the record of it. The observation stands as written history:
+  implementation and merge preceded acceptance. The owner accepted ADR-029 as
+  the governing architecture decision in the PR `#48` comment cited in the
+  Status line. The sentence above stating that neither PR carries a recorded
+  GitHub review remains true of formal GitHub Review objects and is now
+  qualified: PR `#48` carries an owner comment accepting the ADR-029
+  architecture decision only. Owner acceptance of the PR `#47`/`#48`
+  implementation detail is still absent, and L-O QA completion is still not
+  established.
 
 ## Resolved decision records
 

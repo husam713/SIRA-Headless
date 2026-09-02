@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-09-01T00:00:00+03:00",
+  "updatedAt": "2026-09-02T00:00:00+03:00",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -19,7 +19,8 @@
     "reconciliationMergeCommit": "85b749da5a7769a48e67b22685db904607e0a388",
     "stateVerifiedThrough": "85b749da5a7769a48e67b22685db904607e0a388"
   },
-  "latestApprovedMilestone": "Step 4 Editorial Architecture Governance (ADR-028)",
+  "latestApprovedMilestone": "Step 4 Responsive Composition Architecture (ADR-029 — owner accepted after implementation)",
+  "precedingCanonicalArchitectureDecision": "Step 4 Editorial Architecture Governance (ADR-028), owner accepted and merged through pull request 30. ADR-029 implements ADR-028 sections 4 and 10 and does not supersede it.",
   "latestApprovedTag": "step-2c3b-approved",
   "productionAuthorized": false,
   "authorization": {
@@ -141,6 +142,28 @@
       "implementationHead": "e37570f8e7a2b28eb0d55a903f79eb19687be9a3",
       "mergeCommit": "aaa88631c862d213f890d2991aa63fd26ce925e3"
     },
+    "step4ResponsiveCompositionArchitecture": {
+      "status": "OWNER_ACCEPTED_AFTER_IMPLEMENTATION",
+      "decision": "ADR-029",
+      "pullRequests": [
+        47,
+        48
+      ],
+      "mergeCommit": "4f8c8d87",
+      "acceptanceEvidence": "https://github.com/husam713/SIRA-Headless/pull/48#issuecomment-5503798684",
+      "acceptanceRecordedAt": "2026-09-02T03:17:53Z",
+      "acceptanceChronology": "IMPLEMENTATION_AND_MERGE_PRECEDED_OWNER_ACCEPTANCE",
+      "acceptanceScope": "ARCHITECTURE_DECISION_ONLY",
+      "supersedes": null,
+      "relationToAdr028": "IMPLEMENTS_SECTIONS_4_AND_10_DOES_NOT_SUPERSEDE",
+      "notAcceptedByThisDecision": [
+        "owner acceptance of every pull request 47/48 implementation detail",
+        "responsive, RTL, reduced-motion, accessibility, and visual-regression completion (sequence items L to O)",
+        "resolution of 2C4-B07, 2C4-B08, 2C4-B09, or PREVIEW-AUTH-001",
+        "authorization of TP-STEP4-R1, Newsroom work, CB-2, CMS mutation, staging, deployment, DNS, or production cutover"
+      ],
+      "coordinateScope": "HISTORICAL_PROVENANCE_NOT_CURRENT_GIT_HEAD"
+    },
     "step4GroupHomepageSections": {
       "status": "OWNER_ACCEPTED_MERGED",
       "scope": "GROUP_HOMEPAGE_VISUAL_SECTIONS",
@@ -236,6 +259,8 @@
   "nextMajorStages": [
     "Step 4 frontend: Group homepage sections merged through PRs 36/38/40/41; shared shell and branch homepage merged through PR 44; shared responsive layout primitives merged through PRs 47/48; see step4MergedIncrements and its acceptanceEvidenceCaveat",
     "Step 4 frontend: the shared responsive layout primitives are merged; the next increment is separately authorized and is not implied by this record",
+    "Step 4 architecture: ADR-029 is owner accepted after implementation through the pull request 48 comment; the acceptance covers the architecture decision only and authorizes no subsequent task",
+    "Step 4 frontend: TP-STEP4-R1, Newsroom work, and CB-2 each remain separately gated and are not authorized by ADR-029 acceptance",
     "Step 4 frontend: Newsroom visual route work remains NOT_STARTED and is deliberately sequenced after the responsive layout foundation",
     "Governance: SOT-002 durable-state drift is reconciled; Git remains the authority for implementation state",
     "Not authorized: AI Engineering OS validator or CI enforcement and product/runtime work",
@@ -299,17 +324,20 @@
   "openImplementationIncrements": {},
   "step4MergedIncrements": {
     "coordinateScope": "HISTORICAL_PROVENANCE_NOT_CURRENT_GIT_HEAD",
-    "acceptanceEvidenceCaveat": "For pull requests 44, 46, 47, 48, 49, 50, 51, 52, and 53 the merge commit is the only inspectable acceptance artifact. None of those pull requests carries a recorded GitHub review. A merge is not by itself evidence of owner acceptance and these entries must not be read as independently verified owner acceptance. This list is exact; pull request 45 is an unrelated open draft and is not part of it.",
+    "acceptanceEvidenceCaveat": "Acceptance evidence differs per pull request and must not be generalized. Pull requests 44, 46, 47, 49, 50, 51, 52, and 53: the conversation threads were inspected on 2026-09-02 and no owner-acceptance artifact was found, so the merge commit is the only acceptance-relevant artifact; the owner comments on 47, 49, 50, and 51 are supersession and findings-response notes, not acceptance. Pull request 48: carries an owner comment accepting the ADR-029 architecture decision only, which explicitly does not accept every pull request 47/48 implementation detail and does not establish responsive, RTL, reduced-motion, accessibility, or visual-regression completion for sequence items L to O. Pull requests 55 and 56: carry owner-acceptance comments at their exact reviewed candidate heads. A merge is not by itself evidence of owner acceptance. This list is exact; pull request 45 is an unrelated open draft and is not part of it.",
+    "acceptanceEvidenceMethod": "recordedReviews counts formal GitHub Review objects only. A count of 0 states that no Review object was submitted; it does not establish absence of owner-acceptance evidence, because pull request conversation comments are durable acceptance evidence, as pull requests 48, 55, and 56 demonstrate. Review-object count and acceptance evidence are separate facts and must be evaluated separately for each pull request.",
     "increments": [
-      { "pullRequest": 44, "branch": "feat/step-4-shared-shell", "mergeCommit": "1078155c", "scope": "SHARED_SHELL_REMAINING_GROUP_SECTIONS_BRANCH_HOMEPAGE", "state": "MERGED", "recordedReviews": 0 },
-      { "pullRequest": 46, "branch": "docs/step-4-implementation-state-reconciliation", "mergeCommit": "6de7ff97", "scope": "SOT_002_DURABLE_STATE_RECONCILIATION", "state": "MERGED", "recordedReviews": 0 },
-      { "pullRequest": 47, "branch": "feat/step-4-layout-primitives", "mergeCommit": "4f8c8d87", "scope": "SHARED_RESPONSIVE_LAYOUT_PRIMITIVES", "state": "MERGED_SUBSUMED_BY_PR48", "recordedReviews": 0 },
-      { "pullRequest": 48, "branch": "feat/step-4-pilot-sections", "mergeCommit": "4f8c8d87", "scope": "LAYOUT_PRIMITIVE_ADOPTION_AND_ALIGNMENT_QA_HARNESS", "state": "MERGED", "recordedReviews": 0 },
-      { "pullRequest": 49, "branch": "feat/tp-2-nav-menu-locations", "mergeCommit": "fa453432", "scope": "BACKEND_NAV_MENU_LOCATIONS", "state": "MERGED", "recordedReviews": 0 },
-      { "pullRequest": 50, "branch": "feat/tp-3-footer-overrides-anchors", "mergeCommit": "090b2285", "scope": "BRANCH_FOOTER_OVERRIDES_AND_SECTION_ANCHORS", "state": "MERGED", "recordedReviews": 0 },
-      { "pullRequest": 51, "branch": "feat/tp-4-branch-stats-focus-areas", "mergeCommit": "b3927355", "scope": "G4_WITHDRAWAL_AND_REPEATER_CLAIM_CORRECTION", "state": "MERGED", "recordedReviews": 0 },
-      { "pullRequest": 52, "branch": "fix/homepage-acf-field-groups", "mergeCommit": "d638f977", "scope": "HOMEPAGE_ACF_FIELD_GROUPS_AND_NAVIGATION_FIX", "state": "MERGED", "recordedReviews": 0 },
-      { "pullRequest": 53, "branch": "chore/schema-authenticated-refresh", "mergeCommit": "44acc6f6", "scope": "AUTHENTICATED_GRAPHQL_SCHEMA_REFRESH", "state": "MERGED", "recordedReviews": 0 }
+      { "pullRequest": 44, "branch": "feat/step-4-shared-shell", "mergeCommit": "1078155c", "scope": "SHARED_SHELL_REMAINING_GROUP_SECTIONS_BRANCH_HOMEPAGE", "state": "MERGED", "recordedReviews": 0, "ownerAcceptanceEvidence": "NONE_FOUND" },
+      { "pullRequest": 46, "branch": "docs/step-4-implementation-state-reconciliation", "mergeCommit": "6de7ff97", "scope": "SOT_002_DURABLE_STATE_RECONCILIATION", "state": "MERGED", "recordedReviews": 0, "ownerAcceptanceEvidence": "NONE_FOUND" },
+      { "pullRequest": 47, "branch": "feat/step-4-layout-primitives", "mergeCommit": "4f8c8d87", "scope": "SHARED_RESPONSIVE_LAYOUT_PRIMITIVES", "state": "MERGED_SUBSUMED_BY_PR48", "recordedReviews": 0, "ownerAcceptanceEvidence": "NONE_FOUND" },
+      { "pullRequest": 48, "branch": "feat/step-4-pilot-sections", "mergeCommit": "4f8c8d87", "scope": "LAYOUT_PRIMITIVE_ADOPTION_AND_ALIGNMENT_QA_HARNESS", "state": "MERGED", "recordedReviews": 0, "ownerAcceptanceEvidence": "ARCHITECTURE_DECISION_ONLY: https://github.com/husam713/SIRA-Headless/pull/48#issuecomment-5503798684" },
+      { "pullRequest": 49, "branch": "feat/tp-2-nav-menu-locations", "mergeCommit": "fa453432", "scope": "BACKEND_NAV_MENU_LOCATIONS", "state": "MERGED", "recordedReviews": 0, "ownerAcceptanceEvidence": "NONE_FOUND" },
+      { "pullRequest": 50, "branch": "feat/tp-3-footer-overrides-anchors", "mergeCommit": "090b2285", "scope": "BRANCH_FOOTER_OVERRIDES_AND_SECTION_ANCHORS", "state": "MERGED", "recordedReviews": 0, "ownerAcceptanceEvidence": "NONE_FOUND" },
+      { "pullRequest": 51, "branch": "feat/tp-4-branch-stats-focus-areas", "mergeCommit": "b3927355", "scope": "G4_WITHDRAWAL_AND_REPEATER_CLAIM_CORRECTION", "state": "MERGED", "recordedReviews": 0, "ownerAcceptanceEvidence": "NONE_FOUND" },
+      { "pullRequest": 52, "branch": "fix/homepage-acf-field-groups", "mergeCommit": "d638f977", "scope": "HOMEPAGE_ACF_FIELD_GROUPS_AND_NAVIGATION_FIX", "state": "MERGED", "recordedReviews": 0, "ownerAcceptanceEvidence": "NONE_FOUND" },
+      { "pullRequest": 53, "branch": "chore/schema-authenticated-refresh", "mergeCommit": "44acc6f6", "scope": "AUTHENTICATED_GRAPHQL_SCHEMA_REFRESH", "state": "MERGED", "recordedReviews": 0, "ownerAcceptanceEvidence": "NONE_FOUND" },
+      { "pullRequest": 55, "branch": "chore/step-4-governance-and-harness", "mergeCommit": "70bd8618", "scope": "DURABLE_STATE_RECONCILIATION_AND_ALIGNMENT_HARNESS_GATE", "state": "MERGED", "recordedReviews": 0, "ownerAcceptanceEvidence": "CANDIDATE_HEAD_ACCEPTED at ebece6d6f2adece0907cf7b4bcf37272036b5fec: https://github.com/husam713/SIRA-Headless/pull/55#issuecomment-5502143380" },
+      { "pullRequest": 56, "branch": "docs/claude-bootstrap-cb1", "mergeCommit": "dddf9b30", "scope": "CLAUDE_MD_BOOTSTRAP_ADAPTER", "state": "MERGED", "recordedReviews": 0, "ownerAcceptanceEvidence": "CANDIDATE_HEAD_ACCEPTED at 92538d93fbfcbcafdde6e538a51904f3f7323883: https://github.com/husam713/SIRA-Headless/pull/56#issuecomment-5503164075" }
     ]
   },
   "nonDurableTerminology": {
@@ -331,10 +359,13 @@
     }
   },
   "adr029Observation": {
-    "status": "PROPOSED",
-    "statusSource": "docs/DECISIONS.md ADR-029 records: Proposed. Requires owner acceptance before the implementing increment proceeds.",
+    "status": "OWNER_ACCEPTED_AFTER_IMPLEMENTATION",
+    "statusSource": "docs/DECISIONS.md ADR-029 records owner acceptance through the durable owner-decision comment on pull request 48 at 2026-09-02T03:17:53Z: https://github.com/husam713/SIRA-Headless/pull/48#issuecomment-5503798684",
     "implementationState": "MERGED_THROUGH_PR47_AND_PR48",
-    "note": "Recorded as an observation only. This reconciliation does not change the ADR status. Resolving the discrepancy requires an explicit owner decision.",
-    "recordedBy": "TP-STEP4-R0"
+    "acceptanceChronology": "IMPLEMENTATION_AND_MERGE_PRECEDED_OWNER_ACCEPTANCE",
+    "acceptanceScope": "ARCHITECTURE_DECISION_ONLY",
+    "note": "The TP-STEP4-R0 observation that implementation preceded acceptance is preserved as written history in docs/DECISIONS.md and is resolved by owner acceptance rather than by rewriting it. The acceptance covers the architecture decision only: owner acceptance of the pull request 47/48 implementation detail remains absent, L to O responsive, RTL, reduced-motion, accessibility, and visual-regression completion is not established, and no downstream task is authorized.",
+    "recordedBy": "TP-STEP4-R0",
+    "reconciledBy": "TP-ADR029-ACCEPTANCE-RECONCILIATION"
   }
 }

@@ -40,6 +40,8 @@ to that subsystem.
 - PR `#31` reconciliation starting baseline: `aaa88631c862d213f890d2991aa63fd26ce925e3`
 - PR `#31` accepted candidate: `daf7479114f4faba3fa736ee957e03a8d207d49e`
 - PR `#31` merge / state verified-through coordinate: `85b749da5a7769a48e67b22685db904607e0a388`
+- Latest accepted architecture milestone: Step 4 Responsive Composition Architecture / ADR-029, owner accepted after implementation on 2026-09-02 through the PR `#48` comment, recorded against merge `4f8c8d87`
+- Preceding canonical architecture decision: Step 4 Editorial Architecture / ADR-028; ADR-029 implements ADR-028 §4 and §10 and does not supersede it
 - Latest accepted product/design governance milestone: Step 4 Editorial Architecture / ADR-028
 - Accepted PR / candidate head / merge: `#30` / `e37570f8e7a2b28eb0d55a903f79eb19687be9a3` / `aaa88631c862d213f890d2991aa63fd26ce925e3`
 - AI Engineering OS Governance Foundation: PR `#33`, authorization `OWNER_AUTHORIZED`, implementation complete, independent verification passed, merge complete, post-merge verified, canonical
@@ -68,14 +70,25 @@ Companies, Investor Relations, and About sections merged through PRs `#36`,
 `#38`, `#40`, and `#41`. The shared shell, remaining Group sections, and the
 branch homepage merged through PR `#44` at `1078155c`. Shared responsive layout
 primitives reached `main` through PRs `#47` and `#48`. CMS and menu enablement
-reached `main` through PRs `#49` to `#53`. Newsroom route work remains
-NOT STARTED.
+reached `main` through PRs `#49` to `#53`. Durable-state reconciliation and the
+alignment harness gate reached `main` through PR `#55` at `70bd8618`, and the
+`CLAUDE.md` bootstrap adapter through PR `#56` at `dddf9b30`. Newsroom route
+work remains NOT STARTED.
 
-For PR `#44` and every later increment, merge state is inspectable but no
-GitHub review is recorded. A merge alone is not evidence of owner acceptance.
-See the acceptance-evidence caveat in `project-state.json` and the historical
-SOT-002 record below, which is preserved as written and describes what was open
-at the time it was made.
+Acceptance evidence differs per pull request and must not be generalized. For
+PRs `#44`, `#46`, `#47`, and `#49` to `#53`, the conversation threads were
+inspected on 2026-09-02 and carry no owner-acceptance artifact, so the merge
+commit is the only acceptance-relevant artifact. PR `#48` carries an owner
+comment accepting the ADR-029 architecture decision only; that comment
+explicitly does not accept every PR `#47`/`#48` implementation detail and does
+not establish L-O responsive, RTL, reduced-motion, accessibility, or
+visual-regression completion. PRs `#55` and `#56` carry owner-acceptance
+comments at their exact reviewed candidate heads. A merge alone is still not
+evidence of owner acceptance, and a `recordedReviews` count of 0 states only
+that no formal GitHub Review object was submitted — it does not establish
+absence of acceptance evidence. See the per-pull-request record in
+`project-state.json` and the historical SOT-002 record below, which is preserved
+as written and describes what was open at the time it was made.
 
 The separate Step 2C.5B CMS readiness plan remains
 `BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`,
@@ -128,6 +141,14 @@ incremental owner gates. ADR-028 supersedes only conflicting visual,
 art-direction, composition, and literal-fidelity constraints. The seven
 approved `.dc.html` files remain design evidence, SIRA design DNA, and
 visual/interaction references; they are not production runtime dependencies.
+
+ADR-029 is the current accepted architecture decision for Step 4 responsive
+composition and shared layout primitives. The owner accepted it on 2026-09-02
+through the PR `#48` comment, after the implementing increments merged through
+PRs `#47` and `#48` at `4f8c8d87`; that chronology is preserved history. The
+acceptance covers the architecture decision only: it does not accept every
+implementation detail of those PRs, does not establish L-O QA completion, and
+does not supersede ADR-028, which it implements at §4 and §10.
 
 Current presentation direction is approved `.dc` design DNA plus Editorial
 Fluidity, stronger Architectural Modernism, Adaptive Modular Components, and

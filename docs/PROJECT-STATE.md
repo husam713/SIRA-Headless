@@ -1,13 +1,14 @@
 # SIRA Current Project State
 
-State snapshot last verified through canonical Git evidence: 2026-09-01, against `main` at `44acc6f6`
+State snapshot last verified through canonical Git evidence: 2026-09-02, against `main` at `dddf9b30`
 
 ## Current authoritative state
 
 - **Canonical integration/default branch:** `main`
 - **Repository HEAD rule:** discover the current commit from Git; snapshot coordinates below are provenance and must not be treated as an eternally current HEAD
 - **PR #31 reconciliation status:** OWNER ACCEPTED / MERGED
-- **Latest accepted governance milestone:** Step 4 Editorial Architecture / ADR-028, owner accepted and merged through PR `#30`
+- **Latest accepted architecture milestone:** Step 4 Responsive Composition Architecture / ADR-029, owner accepted after implementation on 2026-09-02 through the PR `#48` comment, recorded against merge `4f8c8d87`
+- **Preceding canonical architecture decision:** Step 4 Editorial Architecture / ADR-028, owner accepted and merged through PR `#30`; ADR-029 implements ADR-028 §4 and §10 and does not supersede it
 - **Repository/frontend state:** Step 4 governance accepted; Group homepage visual sections merged through PRs `#36`, `#38`, `#40`, `#41`; shared shell and branch homepage merged through PR `#44`; shared responsive layout primitives merged through PRs `#47`/`#48`; CMS/menu enablement merged through PRs `#49`-`#53`
 - **CMS mutation track:** Step 2C.5B remains the accepted readiness milestone and is `BLOCKED_BY_BACKUP_EVIDENCE`
 - **AI Engineering OS Governance Foundation:** OWNER AUTHORIZED / IMPLEMENTED / INDEPENDENTLY VERIFIED / MERGED / POST-MERGE VERIFIED / CANONICAL through PR `#33`
@@ -67,17 +68,36 @@ separate.
 | Step 4 Group About | OWNER ACCEPTED / MERGED | `#41` | `ce8c22925127e51a036a19ef469ff06db88ee62e` |
 | Step 4 shared shell + branch homepage | MERGED (merge is the sole acceptance artifact) | `#44` | `1078155c` |
 | SOT-002 Step 4 implementation-state reconciliation | MERGED (merge is the sole acceptance artifact) | `#46` | `6de7ff97` |
-| Step 4 shared responsive layout primitives (ADR-029) | MERGED (merge is the sole acceptance artifact; **ADR-029 status remains `Proposed`**) | `#47`, `#48` | `4f8c8d87` |
+| Step 4 shared responsive layout primitives (ADR-029) | MERGED — **ADR-029 architecture owner accepted 2026-09-02 on PR `#48`, after this merge**; owner acceptance of the `#47`/`#48` implementation detail remains absent and L-O QA is not established | `#47`, `#48` | `4f8c8d87` |
 | Backend PRIMARY/FOOTER/LEGAL nav menu locations | MERGED (merge is the sole acceptance artifact) | `#49` | `fa453432` |
 | Branch footer overrides + section anchor ids | MERGED (merge is the sole acceptance artifact) | `#50` | `090b2285` |
 | G4 withdrawal / repeater-claim correction | MERGED (merge is the sole acceptance artifact) | `#51` | `b3927355` |
 | Homepage ACF field groups + navigation fix | MERGED (merge is the sole acceptance artifact) | `#52` | `d638f977` |
 | Authenticated GraphQL schema refresh | MERGED (merge is the sole acceptance artifact) | `#53` | `44acc6f6` |
+| Step 4 durable-state reconciliation + alignment harness gate | OWNER ACCEPTED at reviewed head `ebece6d6` / MERGED | `#55` | `70bd8618` |
+| CLAUDE.md bootstrap adapter | OWNER ACCEPTED at reviewed head `92538d93` / MERGED | `#56` | `dddf9b30` |
 
-Acceptance-evidence caveat for PRs `#44` and `#47`-`#53`: none carries a
-recorded GitHub review, so the merge commit is the only inspectable acceptance
-artifact. Rows above that read OWNER ACCEPTED for earlier PRs are preserved
-exactly as previously recorded and are neither upgraded nor downgraded here.
+Acceptance evidence differs per pull request and must not be generalized:
+
+- **PRs `#44`, `#46`, `#47`, `#49`-`#53` — no acceptance artifact.** The
+  conversation threads were inspected on 2026-09-02 and carry no owner-acceptance
+  artifact, so the merge commit is the only acceptance-relevant artifact. The
+  owner comments on `#47`, `#49`, `#50`, and `#51` are supersession and
+  findings-response notes, not acceptance.
+- **PR `#48` — architecture acceptance only.** It carries an owner comment
+  accepting the ADR-029 architecture decision. That comment explicitly does not
+  accept every PR `#47`/`#48` implementation detail and does not establish
+  responsive, RTL, reduced-motion, accessibility, or visual-regression (L-O)
+  completion.
+- **PRs `#55`, `#56` — candidate acceptance.** Both carry owner-acceptance
+  comments at their exact reviewed candidate heads, `ebece6d6` and `92538d93`.
+
+Method: a `recordedReviews` count of 0 states only that no formal GitHub Review
+object was submitted. It does not establish absence of owner-acceptance
+evidence; pull request conversation comments are durable acceptance evidence, as
+`#48`, `#55`, and `#56` show. Rows above that read OWNER ACCEPTED for earlier
+PRs are preserved exactly as previously recorded and are neither upgraded nor
+downgraded here.
 
 Step 3D.2 is NOT STARTED. Step 3D.3 remains gated by unresolved `2C4-B09`.
 Full Step 3D closure must not be claimed. `PREVIEW-AUTH-001` remains DEFERRED.
@@ -240,7 +260,7 @@ Known separate observation: backend source declares SiraProjectDetails while the
 - `PREVIEW-AUTH-001`: DEFERRED.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED; the human backup/admin evidence gate remains required.
-- Step 4 production UI implementation: AUTHORIZED / IN PROGRESS. Group homepage sections, the shared shell, the branch homepage, and the shared responsive layout primitives are all merged, through PRs `#36`, `#38`, `#40`, `#41`, `#44`, `#47`, and `#48`. That list is exact: `#37`, `#42`, `#43`, `#45`, and `#46` were not visual implementation increments. Newsroom route work remains NOT STARTED and is deliberately sequenced after the responsive foundation.
+- Step 4 production UI implementation: AUTHORIZED / IN PROGRESS. Group homepage sections, the shared shell, the branch homepage, and the shared responsive layout primitives are all merged, through PRs `#36`, `#38`, `#40`, `#41`, `#44`, `#47`, and `#48`. That list is exact: `#37`, `#42`, `#43`, `#45`, and `#46` were not visual implementation increments. Newsroom route work remains NOT STARTED and is deliberately sequenced after the responsive foundation. ADR-029, which governs that responsive foundation, is owner accepted as of 2026-09-02; the acceptance covers the architecture decision only and grants no downstream authority.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 
 PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance

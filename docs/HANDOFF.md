@@ -25,7 +25,8 @@ Then reconcile them against Git before editing.
 - PR `#31` accepted candidate: `daf7479114f4faba3fa736ee957e03a8d207d49e`
 - PR `#31` merge / state verified-through coordinate: `85b749da5a7769a48e67b22685db904607e0a388`
 - PR `#31` reconciliation status: OWNER ACCEPTED / MERGED
-- Latest accepted product/design governance milestone: Step 4 Editorial Architecture / ADR-028 through PR `#30`
+- Latest accepted architecture milestone: Step 4 Responsive Composition Architecture / ADR-029, owner accepted after implementation on 2026-09-02 through the PR `#48` comment
+- Preceding canonical architecture decision: Step 4 Editorial Architecture / ADR-028 through PR `#30`; ADR-029 implements ADR-028 §4 and §10 and does not supersede it
 - AI Engineering OS Governance Foundation: PR `#33`, owner authorized, implementation completed, independently verified, merged, post-merge verified, canonical
 - Governance Foundation candidate / merge provenance: `4c695a0e3c9950b5ec6ede35ca836c5532814cc1` / `009bbfdb64cb38b2ddacbb1e7b8884eb614c47aa`
 - Acceptance-Gates current-state maintenance: PR `#34`, closed / post-merge verified / canonical
@@ -83,21 +84,31 @@ evidence on `main`: Group homepage sections merged through PRs `#36`, `#38`,
 `#40`, `#41`; the shared site header/mobile-menu/footer shell and the branch
 homepage merged through PR `#44` at `1078155c`; the shared responsive layout
 primitives merged through PRs `#47` and `#48` at `4f8c8d87`; and CMS/menu
-enablement merged through PRs `#49`, `#50`, `#51`, `#52`, `#53`, with `main`
-at `44acc6f6` when this was reconciled. Prototype and production UI
-implementation are AUTHORIZED: `project-state.json` records
+enablement merged through PRs `#49`, `#50`, `#51`, `#52`, `#53`; durable-state
+reconciliation and the alignment harness gate merged through PR `#55` at
+`70bd8618`; and the `CLAUDE.md` bootstrap adapter through PR `#56` at
+`dddf9b30`, with `main` at `dddf9b30` when this was reconciled. ADR-029, which
+governs the responsive foundation, is owner accepted as of 2026-09-02 through
+the PR `#48` comment; acceptance was recorded after implementation and merge,
+covers the architecture decision only, and grants no downstream authority.
+Prototype and production UI implementation are AUTHORIZED: `project-state.json` records
 `authorization.prototypeImplementationAuthorized` and
 `authorization.productionUiImplementationAuthorized` as `true`.
 
 Newsroom visual/route work remains NOT STARTED. No newsroom route, component,
 or query exists under `frontend/src`.
 
-Acceptance-evidence caveat. For PRs `#44` and `#47` through `#53` the only
-inspectable acceptance artifact is the merge commit; none of those pull
-requests carries a recorded GitHub review. Where this file or
-`docs/PROJECT-STATE.md` states owner acceptance for them, that is asserted by
-a durable document and is not independently verified. A merge is not by itself
-evidence of owner acceptance.
+Acceptance evidence. It differs per pull request and must not be generalized.
+For PRs `#44`, `#46`, `#47`, and `#49` through `#53` the merge commit is the
+only acceptance-relevant artifact; the threads were inspected on 2026-09-02 and
+carry no owner-acceptance artifact. PR `#48` carries an owner comment accepting
+the ADR-029 architecture decision only, which explicitly does not accept every
+PR `#47`/`#48` implementation detail and does not establish L-O QA completion.
+PRs `#55` and `#56` carry owner-acceptance comments at their exact reviewed
+candidate heads. Where this file or `docs/PROJECT-STATE.md` states owner
+acceptance without such an artifact, that is asserted by a durable document and
+is not independently verified. A merge is not by itself evidence of owner
+acceptance.
 
 The AI Engineering OS Governance Foundation is already canonical. Preserve its
 owner authorization as the authorization dimension, while representing its
@@ -180,11 +191,26 @@ or explicit owner-authorized scope.
 
 ## Acceptance evidence
 
-Pull requests `#44`, `#46`, `#47`, `#48`, `#49`, `#50`, `#51`, `#52`, and `#53`
-carry no recorded GitHub reviews. For those increments the merge commit is the
-only inspectable acceptance artifact. Do not infer owner acceptance from a
-merge, from GitHub state, from previous agent text, or from the presence of an
-implementation in the repository.
+Acceptance evidence is per pull request. Do not generalize it, and do not infer
+owner acceptance from a merge, from GitHub state, from previous agent text, or
+from the presence of an implementation in the repository.
+
+- **No acceptance artifact — PRs `#44`, `#46`, `#47`, `#49`, `#50`, `#51`,
+  `#52`, `#53`.** Threads inspected 2026-09-02. The merge commit is the only
+  acceptance-relevant artifact. The owner comments on `#47`, `#49`, `#50`, and
+  `#51` are supersession and findings-response notes, not acceptance.
+- **Architecture acceptance only — PR `#48`.** An owner comment accepts the
+  ADR-029 architecture decision. It explicitly does not accept every PR
+  `#47`/`#48` implementation detail and does not establish responsive, RTL,
+  reduced-motion, accessibility, or visual-regression (L-O) completion.
+- **Candidate acceptance — PRs `#55`, `#56`.** Owner-acceptance comments at the
+  exact reviewed candidate heads `ebece6d6` and `92538d93`.
+
+A `recordedReviews` count of 0 states only that no formal GitHub Review object
+was submitted. It does not establish absence of owner-acceptance evidence: pull
+request conversation comments are durable acceptance evidence, as `#48`, `#55`,
+and `#56` show. Review-object count and acceptance evidence are separate facts
+and must be evaluated separately for each pull request.
 
 This list is exact. Pull request `#45` is an unrelated open draft and is not
 part of it.
@@ -234,7 +260,9 @@ AI Engineering OS validator/CI enforcement, AI Engineering OS product/runtime
 work, WordPress mutation, external staging, deployment, DNS, and production
 cutover remain NOT AUTHORIZED. Prototype and production UI implementation are
 no longer in this list: they are authorized, and Step 4 visual implementation
-is in progress (see Current state).
+is in progress (see Current state). Owner acceptance of ADR-029 does not change
+this list: it authorizes no subsequent task, and TP-STEP4-R1, Newsroom work, and
+CB-2 each still require separate bounded authorization.
 
 The AI Engineering OS validator/CI boundary in
 `docs/AI-ENGINEERING-OS.md` concerns validators for the governance contracts

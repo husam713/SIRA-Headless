@@ -1,0 +1,279 @@
+{
+  "page": {
+    "databaseId": 7,
+    "uri": "/",
+    "title": "SIRA Group Fixture",
+    "siraHomepage": {
+      "variant": "group"
+    },
+    "groupHomepage": {
+      "hero": {
+        "headingBefore": "Shaping a",
+        "headingHighlight": "smarter",
+        "headingAfter": "future",
+        "description": "SENTINEL-GROUP-HERO hero description.",
+        "primaryCta": null,
+        "secondaryCta": null,
+        "slides": null
+      },
+      "ticker": {
+        "enabled": true,
+        "items": [
+          {
+            "label": "SENTINEL-GROUP-TICKER",
+            "link": null,
+            "businessUnit": null
+          }
+        ]
+      },
+      "latestUpdates": {
+        "eyebrow": "Newsroom",
+        "heading": "SENTINEL-GROUP-LATEST-UPDATES",
+        "description": null,
+        "link": null,
+        "sourceMode": "manual",
+        "itemLimit": 3,
+        "selectedItems": {
+          "pageInfo": {
+            "hasNextPage": false
+          },
+          "nodes": [
+            {
+              "__typename": "SiraNewsItem",
+              "contentTypeName": "sira_news",
+              "databaseId": 201,
+              "isRestricted": false,
+              "title": "SENTINEL-GROUP-LATEST-UPDATES item",
+              "uri": "/news/sentinel-update/",
+              "excerpt": "Latest updates fixture excerpt.",
+              "date": "2026-08-01T00:00:00+00:00",
+              "featuredImage": null
+            }
+          ]
+        }
+      },
+      "companies": {
+        "eyebrow": "Our Companies",
+        "heading": "SENTINEL-GROUP-COMPANIES",
+        "description": null,
+        "link": null,
+        "sourceMode": "manual",
+        "itemLimit": 4,
+        "selectedCompanies": {
+          "pageInfo": {
+            "hasNextPage": false
+          },
+          "nodes": [
+            {
+              "__typename": "SiraCompany",
+              "contentTypeName": "sira_company",
+              "databaseId": 301,
+              "isRestricted": false,
+              "title": "SENTINEL-GROUP-COMPANIES item",
+              "uri": "/companies/sentinel-company/",
+              "excerpt": "Companies fixture excerpt.",
+              "featuredImage": null,
+              "siraBusinessUnits": null
+            }
+          ]
+        }
+      },
+      "about": {
+        "eyebrow": "About",
+        "heading": "SENTINEL-GROUP-ABOUT",
+        "description": null,
+        "link": null,
+        "body": "<p>About fixture body.</p>",
+        "metrics": [
+          {
+            "value": "4",
+            "label": "Sectors",
+            "description": null
+          },
+          {
+            "value": "1998",
+            "label": "Founded",
+            "description": null
+          }
+        ]
+      },
+      "investor": {
+        "eyebrow": "Investor Relations",
+        "heading": "SENTINEL-GROUP-INVESTOR",
+        "description": null,
+        "link": null,
+        "body": "<p>Investor fixture body.</p>",
+        "metrics": [
+          {
+            "value": "12%",
+            "label": "CAGR",
+            "description": null
+          }
+        ],
+        "formHeading": "Investor enquiries",
+        "formDescription": "Investor form fixture description.",
+        "selectedInvestments": {
+          "pageInfo": {
+            "hasNextPage": false
+          },
+          "nodes": [
+            {
+              "__typename": "SiraInvestment",
+              "contentTypeName": "sira_investment",
+              "databaseId": 401,
+              "isRestricted": false,
+              "title": "SENTINEL-GROUP-INVESTOR item",
+              "uri": "/investments/sentinel-investment/",
+              "excerpt": "Investment fixture excerpt.",
+              "featuredImage": null,
+              "investmentDetails": {
+                "publicDisplay": true
+              }
+            }
+          ]
+        },
+        "onePagerDocument": null
+      },
+      "services": {
+        "eyebrow": "Services",
+        "heading": "SENTINEL-GROUP-SERVICES",
+        "description": null,
+        "link": null,
+        "sourceMode": "manual",
+        "itemLimit": 3,
+        "selectedServices": {
+          "pageInfo": {
+            "hasNextPage": false
+          },
+          "nodes": [
+            {
+              "__typename": "SiraService",
+              "contentTypeName": "sira_service",
+              "databaseId": 501,
+              "isRestricted": false,
+              "title": "SENTINEL-GROUP-SERVICES item",
+              "uri": "/services/sentinel-service/",
+              "excerpt": "Services fixture excerpt.",
+              "featuredImage": null
+            }
+          ]
+        }
+      },
+      "projects": {
+        "eyebrow": "Projects",
+        "heading": "SENTINEL-GROUP-PROJECTS",
+        "description": null,
+        "link": null,
+        "sourceMode": "manual",
+        "itemLimit": 3,
+        "selectedProjects": {
+          "pageInfo": {
+            "hasNextPage": false
+          },
+          "nodes": [
+            {
+              "__typename": "SiraProject",
+              "contentTypeName": "sira_project",
+              "databaseId": 601,
+              "isRestricted": false,
+              "title": "SENTINEL-GROUP-PROJECTS item",
+              "uri": "/projects/sentinel-project/",
+              "excerpt": "Projects fixture excerpt.",
+              "featuredImage": null
+            }
+          ]
+        }
+      },
+      "insights": {
+        "eyebrow": "Insights",
+        "heading": "SENTINEL-GROUP-INSIGHTS",
+        "description": null,
+        "link": null,
+        "sourceMode": "manual",
+        "itemLimit": 3,
+        "selectedItems": {
+          "pageInfo": {
+            "hasNextPage": false
+          },
+          "nodes": [
+            {
+              "__typename": "SiraInsight",
+              "contentTypeName": "sira_insight",
+              "databaseId": 701,
+              "isRestricted": false,
+              "title": "SENTINEL-GROUP-INSIGHTS item",
+              "uri": "/insights/sentinel-insight/",
+              "excerpt": "Insights fixture excerpt.",
+              "date": "2026-07-15T00:00:00+00:00",
+              "featuredImage": null
+            }
+          ]
+        }
+      },
+      "testimonials": {
+        "eyebrow": "Testimonials",
+        "heading": "SENTINEL-GROUP-TESTIMONIALS",
+        "description": null,
+        "link": null,
+        "sourceMode": "manual",
+        "itemLimit": 3,
+        "selectedTestimonials": {
+          "pageInfo": {
+            "hasNextPage": false
+          },
+          "nodes": [
+            {
+              "__typename": "SiraTestimonial",
+              "contentTypeName": "sira_testimonial",
+              "databaseId": 801,
+              "isRestricted": false,
+              "title": "SENTINEL-GROUP-TESTIMONIALS item",
+              "uri": "/testimonials/sentinel-testimonial/",
+              "excerpt": "Testimonial fixture excerpt.",
+              "role": "Chief Executive",
+              "organization": "Sentinel Holdings",
+              "featuredImage": null,
+              "testimonialDetails": {
+                "consentApproved": true
+              }
+            }
+          ]
+        }
+      },
+      "partners": {
+        "eyebrow": "Partners",
+        "heading": "SENTINEL-GROUP-PARTNERS",
+        "description": null,
+        "link": null,
+        "sourceMode": "manual",
+        "itemLimit": 6,
+        "selectedPartners": {
+          "pageInfo": {
+            "hasNextPage": false
+          },
+          "nodes": [
+            {
+              "__typename": "SiraPartner",
+              "contentTypeName": "sira_partner",
+              "databaseId": 901,
+              "isRestricted": false,
+              "title": "SENTINEL-GROUP-PARTNERS item",
+              "uri": "/partners/sentinel-partner/",
+              "excerpt": "Partner fixture excerpt.",
+              "relationshipLabel": "Strategic partner",
+              "featuredImage": null
+            }
+          ]
+        }
+      },
+      "contact": {
+        "eyebrow": "Contact",
+        "heading": "SENTINEL-GROUP-CONTACT",
+        "description": "Contact fixture description.",
+        "formVariant": null,
+        "formContext": null
+      }
+    },
+    "branchHomepage": null
+  }
+}

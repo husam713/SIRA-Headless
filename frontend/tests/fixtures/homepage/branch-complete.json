@@ -1,0 +1,100 @@
+{
+  "page": {
+    "databaseId": 42,
+    "uri": "/",
+    "title": "SIRA Consulting Fixture",
+    "siraHomepage": { "variant": "branch" },
+    "groupHomepage": null,
+    "branchHomepage": {
+      "hero": {
+        "eyebrow": "Consulting",
+        "headingBefore": "Strategy for",
+        "headingHighlight": "new markets",
+        "headingAfter": null,
+        "description": "SENTINEL-BRANCH-HERO hero description.",
+        "region": "Riyadh",
+        "imageAlt": null,
+        "image": null,
+        "mobileImage": null,
+        "primaryCta": null,
+        "secondaryCta": null
+      },
+      "statistics": [
+        { "value": "120", "label": "SENTINEL-BRANCH-STATISTICS", "description": null },
+        { "value": "18", "label": "Sectors served", "description": null }
+      ],
+      "overview": {
+        "eyebrow": "Overview",
+        "heading": "SENTINEL-BRANCH-OVERVIEW",
+        "description": null,
+        "link": null,
+        "body": "<p>Overview fixture body.</p>"
+      },
+      "focusAreas": [
+        {
+          "title": "SENTINEL-BRANCH-FOCUS-AREAS",
+          "description": "Focus area fixture description."
+        },
+        {
+          "title": "Operating model",
+          "description": "Second focus area fixture description."
+        }
+      ],
+      "projects": {
+        "eyebrow": "Projects",
+        "heading": "SENTINEL-BRANCH-PROJECTS",
+        "description": null,
+        "link": null,
+        "sourceMode": "manual",
+        "itemLimit": 3,
+        "selectedProjects": {
+          "pageInfo": { "hasNextPage": false },
+          "nodes": [
+            {
+              "__typename": "SiraProject",
+              "contentTypeName": "sira_project",
+              "databaseId": 1101,
+              "isRestricted": false,
+              "title": "SENTINEL-BRANCH-PROJECTS item",
+              "uri": "/projects/sentinel-branch-project/",
+              "excerpt": "Branch projects fixture excerpt.",
+              "featuredImage": null
+            }
+          ]
+        }
+      },
+      "insights": {
+        "eyebrow": "Insights",
+        "heading": "SENTINEL-BRANCH-INSIGHTS",
+        "description": null,
+        "link": null,
+        "sourceMode": "manual",
+        "itemLimit": 3,
+        "selectedItems": {
+          "pageInfo": { "hasNextPage": false },
+          "nodes": [
+            {
+              "__typename": "SiraInsight",
+              "contentTypeName": "sira_insight",
+              "databaseId": 1201,
+              "isRestricted": false,
+              "title": "SENTINEL-BRANCH-INSIGHTS item",
+              "uri": "/insights/sentinel-branch-insight/",
+              "excerpt": "Branch insights fixture excerpt.",
+              "date": "2026-07-20T00:00:00+00:00",
+              "featuredImage": null
+            }
+          ]
+        }
+      },
+      "contact": {
+        "eyebrow": "Contact",
+        "heading": "SENTINEL-BRANCH-CONTACT",
+        "description": "Branch contact fixture description.",
+        "formVariant": null,
+        "formContext": null
+      },
+      "footer": null
+    }
+  }
+}

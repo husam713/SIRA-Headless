@@ -73,9 +73,34 @@ export type HomepageSelectionReason =
   | "relationship-truncated"
   | "no-public-items";
 
+/**
+ * Every presentation section that may be omitted without collapsing the page.
+ * Used to attribute a GraphQL field error to the section it actually affected;
+ * an error that cannot be attributed safely stays `null` rather than being
+ * blamed on the wrong section.
+ */
+export type HomepageSectionName =
+  | "about"
+  | "companies"
+  | "contact"
+  | "focusAreas"
+  | "footer"
+  | "hero"
+  | "insights"
+  | "investor"
+  | "latestUpdates"
+  | "overview"
+  | "partners"
+  | "projects"
+  | "services"
+  | "statistics"
+  | "testimonials"
+  | "ticker";
+
 export interface HomepageDiagnostic {
   readonly code:
     | "content-type-mismatch"
+    | "graphql-field-error"
     | "invalid-content-item"
     | "invalid-media"
     | "invalid-restriction-signal"
@@ -83,6 +108,12 @@ export interface HomepageDiagnostic {
     | "restricted-content-item"
     | "unsupported-content-type";
   readonly databaseId: number | null;
+  /**
+   * The affected section when an error path maps to one exactly, otherwise
+   * `null`. Never carries a GraphQL message, endpoint, or query text: this
+   * value reaches the browser through the rendered payload.
+   */
+  readonly section: HomepageSectionName | null;
 }
 
 export type HomepageSelection<T> =
@@ -189,7 +220,12 @@ export interface GroupHomepage {
   readonly uri: "/";
   readonly title: string | null;
   readonly variant: "group";
-  readonly hero: GroupHomepageHero;
+  /**
+   * Nullable like every other section: a hero that is absent or that failed to
+   * resolve is omitted, and the rest of the homepage still renders. Only the
+   * page envelope itself is critical.
+   */
+  readonly hero: GroupHomepageHero | null;
   readonly ticker: HomepageTicker | null;
   readonly latestUpdates: HomepageEditorialSection | null;
   readonly companies: HomepageContentSection | null;
@@ -201,6 +237,8 @@ export interface GroupHomepage {
   readonly testimonials: HomepageContentSection | null;
   readonly partners: HomepageContentSection | null;
   readonly contact: HomepageContactSection | null;
+  /** Page-level diagnostics, e.g. a section dropped by a GraphQL field error. */
+  readonly diagnostics: readonly HomepageDiagnostic[];
 }
 
 export interface BranchHomepageHero extends HomepageHero {
@@ -227,7 +265,8 @@ export interface BranchHomepage {
   readonly uri: "/";
   readonly title: string | null;
   readonly variant: "branch";
-  readonly hero: BranchHomepageHero;
+  /** Nullable for the same reason as `GroupHomepage.hero`. */
+  readonly hero: BranchHomepageHero | null;
   readonly statistics: readonly HomepageMetric[];
   readonly overview: HomepageRichTextSection | null;
   readonly focusAreas: readonly HomepageFocusArea[];
@@ -235,6 +274,8 @@ export interface BranchHomepage {
   readonly insights: HomepageEditorialSection | null;
   readonly contact: HomepageContactSection | null;
   readonly footer: BranchHomepageFooter | null;
+  /** Page-level diagnostics, e.g. a section dropped by a GraphQL field error. */
+  readonly diagnostics: readonly HomepageDiagnostic[];
 }
 
 export type Homepage = GroupHomepage | BranchHomepage;

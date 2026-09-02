@@ -9,7 +9,12 @@ import {
   normalizeCacheTags,
   siteCacheTags,
 } from "@/lib/cache/tags";
-import { executeGraphQL } from "@/lib/graphql/client";
+import {
+  executeGraphQL,
+  executeGraphQLTolerant,
+  type GraphQLExecutionOptions,
+  type TolerantGraphQLResult,
+} from "@/lib/graphql/client";
 import type {
   GraphQLOperation,
   GraphQLVariables,
@@ -26,6 +31,36 @@ export interface PublishedGraphQLOptions {
   readonly fetchImpl?: typeof fetch;
 }
 
+function publishedRequest(
+  siteKey: SiteKey,
+  options: PublishedGraphQLOptions,
+): {
+  readonly site: ReturnType<typeof getWordPressSiteConfig>;
+  readonly execution: GraphQLExecutionOptions;
+} {
+  const site = getWordPressSiteConfig(siteKey);
+  const tags = normalizeCacheTags([
+    ...siteCacheTags(site.blogId, site.siteKey),
+    ...(options.tags ?? []),
+  ]);
+
+  return {
+    site,
+    execution: {
+      cache: "force-cache",
+      timeoutMs: options.timeoutMs ?? getGraphQLTimeoutMs(),
+      revalidate:
+        options.revalidate ?? getGraphQLRevalidateSeconds(),
+      tags,
+      ...(options.signal === undefined ? {} : { signal: options.signal }),
+      ...(options.trace === undefined ? {} : { trace: options.trace }),
+      ...(options.fetchImpl === undefined
+        ? {}
+        : { fetchImpl: options.fetchImpl }),
+    },
+  };
+}
+
 export async function fetchPublishedGraphQL<
   TResult,
   TVariables extends GraphQLVariables,
@@ -35,22 +70,26 @@ export async function fetchPublishedGraphQL<
   variables: TVariables,
   options: PublishedGraphQLOptions = {},
 ): Promise<TResult> {
-  const site = getWordPressSiteConfig(siteKey);
-  const tags = normalizeCacheTags([
-    ...siteCacheTags(site.blogId, site.siteKey),
-    ...(options.tags ?? []),
-  ]);
+  const { site, execution } = publishedRequest(siteKey, options);
 
-  return executeGraphQL(site, operation, variables, {
-    cache: "force-cache",
-    timeoutMs: options.timeoutMs ?? getGraphQLTimeoutMs(),
-    revalidate:
-      options.revalidate ?? getGraphQLRevalidateSeconds(),
-    tags,
-    ...(options.signal === undefined ? {} : { signal: options.signal }),
-    ...(options.trace === undefined ? {} : { trace: options.trace }),
-    ...(options.fetchImpl === undefined
-      ? {}
-      : { fetchImpl: options.fetchImpl }),
-  });
+  return executeGraphQL(site, operation, variables, execution);
+}
+
+/**
+ * Tolerant counterpart of `fetchPublishedGraphQL`. Identical request shape;
+ * the only difference is that non-null data accompanied by GraphQL errors is
+ * returned rather than thrown. Homepage-only.
+ */
+export async function fetchPublishedGraphQLTolerant<
+  TResult,
+  TVariables extends GraphQLVariables,
+>(
+  siteKey: SiteKey,
+  operation: GraphQLOperation<TResult, TVariables>,
+  variables: TVariables,
+  options: PublishedGraphQLOptions = {},
+): Promise<TolerantGraphQLResult<TResult>> {
+  const { site, execution } = publishedRequest(siteKey, options);
+
+  return executeGraphQLTolerant(site, operation, variables, execution);
 }

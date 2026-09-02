@@ -70,9 +70,21 @@ function isAbortError(error: unknown): boolean {
  * field errors. Only `executeGraphQLTolerant` can produce one with a non-empty
  * `errors` list; the default executor still fails closed on any error.
  *
- * `operationName` and `requestId` travel with the result so callers can emit
- * sanitized server-side diagnostics without re-deriving them. The GraphQL
- * message is deliberately NOT part of this contract.
+ * `errors` is `GraphQLErrorSummary[]`, and a summary **does** carry a GraphQL
+ * `message` — bounded to 500 characters by `parseGraphQLResponse`, but still
+ * originating from WordPress and capable of exposing schema, database, or
+ * plugin internals. A length bound is not redaction.
+ *
+ * This whole result is therefore **server-only**. Callers must not log,
+ * serialize, or expose the complete error object, and must not pass it into a
+ * rendered payload. A caller crossing a browser, RSC, or logging boundary
+ * projects only the approved safe fields — `path` and `code` — and drops the
+ * rest. `operationName` and `requestId` travel with the result so a caller can
+ * correlate a failure without re-deriving them; both are safe to log.
+ *
+ * `src/lib/homepage/get-homepage.ts` is the reference consumer: it logs
+ * `path` and `code` only, and its diagnostics carry neither message nor
+ * endpoint into the page.
  */
 export interface TolerantGraphQLResult<TResult> {
   readonly data: TResult;

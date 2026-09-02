@@ -44,6 +44,35 @@ function groupPage(
   };
 }
 
+const BRANCH_HERO = {
+  eyebrow: "Consulting",
+  headingBefore: "Strategy for",
+  headingHighlight: "new markets",
+  headingAfter: null,
+  description: "Branch hero description.",
+  region: "Riyadh",
+  imageAlt: null,
+  image: null,
+  mobileImage: null,
+  primaryCta: null,
+  secondaryCta: null,
+};
+
+function branchPage(
+  sections: Readonly<Record<string, unknown>>,
+): SiraHomepageQueryData {
+  return {
+    page: {
+      databaseId: 42,
+      uri: "/",
+      title: "SIRA Consulting",
+      siraHomepage: { variant: "branch" },
+      groupHomepage: null,
+      branchHomepage: sections,
+    } as unknown as HomepagePage,
+  };
+}
+
 function tolerated(
   data: SiraHomepageQueryData,
   errors: readonly GraphQLErrorSummary[] = [],
@@ -186,6 +215,87 @@ describe("homepage tolerant boundary", () => {
     if (resolution.status !== "ready") throw new Error("expected ready");
 
     expect(resolution.homepage.diagnostics).toEqual([]);
+  });
+});
+
+// WPGraphQL error paths point at the exact failing field, so they are usually
+// deeper than the section itself: a hero slide image, a project's featured
+// image. Mapping has to reach the section through that depth, and refuse
+// everything it cannot attribute with certainty.
+describe("error path to section mapping", () => {
+  function groupSections(
+    path: readonly (string | number)[] | null,
+  ): readonly { code: string; databaseId: number | null; section: string | null }[] {
+    const resolution = normalizeHomepage(
+      "group",
+      groupPage({ hero: GROUP_HERO, contact: CONTACT }),
+      [fieldError(path)],
+    );
+
+    if (resolution.status !== "ready") throw new Error("expected ready");
+
+    return [...resolution.homepage.diagnostics];
+  }
+
+  it("maps a deep group hero path to hero", () => {
+    expect(
+      groupSections(["page", "groupHomepage", "hero", "slides", 0, "imageOverride"]),
+    ).toEqual([{ code: "graphql-field-error", databaseId: null, section: "hero" }]);
+  });
+
+  it("maps a deep branch projects path to projects", () => {
+    const resolution = normalizeHomepage(
+      "consulting",
+      branchPage({ hero: BRANCH_HERO }),
+      [fieldError(["page", "branchHomepage", "projects", "nodes", 0, "featuredImage"])],
+    );
+
+    if (resolution.status !== "ready") throw new Error("expected ready");
+
+    expect(resolution.homepage.diagnostics).toEqual([
+      { code: "graphql-field-error", databaseId: null, section: "projects" },
+    ]);
+  });
+
+  it("refuses to map a path from the wrong variant envelope", () => {
+    // A branch-shaped path arriving on a group page names a real section, but
+    // not one this page rendered. Attributing it would blame a healthy section.
+    expect(
+      groupSections(["page", "branchHomepage", "hero"]),
+    ).toEqual([{ code: "graphql-field-error", databaseId: null, section: null }]);
+  });
+
+  it("refuses to map a path that does not start at page", () => {
+    expect(
+      groupSections(["viewer", "groupHomepage", "hero"]),
+    ).toEqual([{ code: "graphql-field-error", databaseId: null, section: null }]);
+  });
+
+  it("refuses to map a missing path", () => {
+    expect(groupSections(null)).toEqual([
+      { code: "graphql-field-error", databaseId: null, section: null },
+    ]);
+  });
+
+  it("refuses to map a path that is too short to name a section", () => {
+    expect(groupSections(["page", "groupHomepage"])).toEqual([
+      { code: "graphql-field-error", databaseId: null, section: null },
+    ]);
+    expect(groupSections([])).toEqual([
+      { code: "graphql-field-error", databaseId: null, section: null },
+    ]);
+  });
+
+  it("refuses to map an unknown field name in the right envelope", () => {
+    expect(
+      groupSections(["page", "groupHomepage", "notASection"]),
+    ).toEqual([{ code: "graphql-field-error", databaseId: null, section: null }]);
+  });
+
+  it("refuses to map a numeric segment where a section name belongs", () => {
+    expect(groupSections(["page", "groupHomepage", 0])).toEqual([
+      { code: "graphql-field-error", databaseId: null, section: null },
+    ]);
   });
 });
 

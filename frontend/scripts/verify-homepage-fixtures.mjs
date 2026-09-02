@@ -71,37 +71,75 @@ function readFixtureMarkup(name) {
 const HERO_GROUP = "Fixture hero description for the group homepage.";
 const HERO_BRANCH = "Fixture hero description for the branch homepage.";
 
+// Every section carried by a "complete" fixture has its own sentinel, so a
+// section that stops rendering fails a named assertion instead of hiding
+// behind a page that still looks broadly populated.
+const GROUP_SECTION_SENTINELS = [
+  "SENTINEL-GROUP-HERO",
+  "SENTINEL-GROUP-TICKER",
+  "SENTINEL-GROUP-LATEST-UPDATES",
+  "SENTINEL-GROUP-COMPANIES",
+  "SENTINEL-GROUP-ABOUT",
+  "SENTINEL-GROUP-INVESTOR",
+  "SENTINEL-GROUP-SERVICES",
+  "SENTINEL-GROUP-PROJECTS",
+  "SENTINEL-GROUP-INSIGHTS",
+  "SENTINEL-GROUP-TESTIMONIALS",
+  "SENTINEL-GROUP-PARTNERS",
+  "SENTINEL-GROUP-CONTACT",
+];
+
+const BRANCH_SECTION_SENTINELS = [
+  "SENTINEL-BRANCH-HERO",
+  "SENTINEL-BRANCH-STATISTICS",
+  "SENTINEL-BRANCH-OVERVIEW",
+  "SENTINEL-BRANCH-FOCUS-AREAS",
+  "SENTINEL-BRANCH-PROJECTS",
+  "SENTINEL-BRANCH-INSIGHTS",
+  "SENTINEL-BRANCH-CONTACT",
+];
+
+// The Step 3 block is what the route renders when nothing resolves. Its
+// appearance in any fixture would mean tolerance failed and the page collapsed,
+// so every case asserts it is absent.
+const FALLBACK_MARKERS = [
+  "Step 3",
+  "Brand identity is supplied by WordPress",
+];
+
 const EXPECTATIONS = [
   {
+    // Every renderable Group section, each proved by its own sentinel.
     file: "group-complete.html",
-    present: [HERO_GROUP, "Fixture about heading", "Fixture contact heading", "Fixture ticker item"],
-    absent: [],
+    present: GROUP_SECTION_SENTINELS,
+    absent: FALLBACK_MARKERS,
   },
   {
     // The point of the whole task: hero is gone, everything else survives.
     file: "group-hero-missing.html",
     present: ["Fixture about heading", "Fixture contact heading", "Fixture ticker item"],
-    absent: [HERO_GROUP],
+    absent: [HERO_GROUP, ...FALLBACK_MARKERS],
   },
   {
     file: "group-partial.html",
     present: [HERO_GROUP, "Fixture contact heading"],
-    absent: ["Fixture about heading"],
+    absent: ["Fixture about heading", ...FALLBACK_MARKERS],
   },
   {
+    // Every renderable Branch section, each proved by its own sentinel.
     file: "branch-complete.html",
-    present: [HERO_BRANCH, "Fixture overview heading", "Engagements", "Fixture branch contact heading"],
-    absent: [],
+    present: BRANCH_SECTION_SENTINELS,
+    absent: FALLBACK_MARKERS,
   },
   {
     file: "branch-hero-missing.html",
     present: ["Fixture overview heading", "Engagements", "Fixture branch contact heading"],
-    absent: [HERO_BRANCH],
+    absent: [HERO_BRANCH, ...FALLBACK_MARKERS],
   },
   {
     file: "branch-partial.html",
     present: [HERO_BRANCH, "Fixture overview heading"],
-    absent: ["Fixture branch contact heading"],
+    absent: ["Fixture branch contact heading", ...FALLBACK_MARKERS],
   },
 ];
 

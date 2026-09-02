@@ -10,6 +10,7 @@ import {
   GraphQLResponseError,
   GraphQLTimeoutError,
 } from "@/lib/graphql/errors";
+import type { GraphQLErrorSummary } from "@/lib/graphql/errors";
 import type {
   GraphQLOperation,
   GraphQLVariables,
@@ -64,7 +65,25 @@ function isAbortError(error: unknown): boolean {
   );
 }
 
-export async function executeGraphQL<
+/**
+ * A tolerated partial-data result: WPGraphQL returned usable `data` alongside
+ * field errors. Only `executeGraphQLTolerant` can produce one with a non-empty
+ * `errors` list; the default executor still fails closed on any error.
+ *
+ * `operationName` and `requestId` travel with the result so callers can emit
+ * sanitized server-side diagnostics without re-deriving them. The GraphQL
+ * message is deliberately NOT part of this contract.
+ */
+export interface TolerantGraphQLResult<TResult> {
+  readonly data: TResult;
+  readonly errors: readonly GraphQLErrorSummary[];
+  readonly operationName: string;
+  readonly requestId: string;
+}
+
+const NO_ERRORS: readonly GraphQLErrorSummary[] = Object.freeze([]);
+
+async function executeGraphQLCore<
   TResult,
   TVariables extends GraphQLVariables,
 >(
@@ -72,7 +91,8 @@ export async function executeGraphQL<
   operation: GraphQLOperation<TResult, TVariables>,
   variables: TVariables,
   options: GraphQLExecutionOptions,
-): Promise<TResult> {
+  toleratePartialData: boolean,
+): Promise<TolerantGraphQLResult<TResult>> {
   const requestId = randomUUID();
   const trace = options.trace ?? discardGraphQLTrace;
   const fetchImpl = options.fetchImpl ?? fetch;
@@ -200,9 +220,24 @@ export async function executeGraphQL<
     }
 
     if (parsed.errors.length > 0) {
+      // The existing `graphql-error` trace outcome covers both branches: an
+      // error did occur either way. The tracing contract is unchanged.
       emitTrace("graphql-error", response.status);
-      throw new GraphQLResponseError(parsed.errors, {
-        siteKey: site.siteKey,
+
+      // Fail closed unless the caller opted in AND the payload is usable.
+      // Null data plus errors stays fatal even for a tolerant caller: there is
+      // nothing to render, so degrading would only hide the failure.
+      if (!toleratePartialData || parsed.data === null) {
+        throw new GraphQLResponseError(parsed.errors, {
+          siteKey: site.siteKey,
+          operationName: operation.operationName,
+          requestId,
+        });
+      }
+
+      return Object.freeze({
+        data: parsed.data,
+        errors: parsed.errors,
         operationName: operation.operationName,
         requestId,
       });
@@ -219,7 +254,12 @@ export async function executeGraphQL<
 
     emitTrace("success", response.status);
 
-    return parsed.data;
+    return Object.freeze({
+      data: parsed.data,
+      errors: NO_ERRORS,
+      operationName: operation.operationName,
+      requestId,
+    });
   } catch (error) {
     if (
       error instanceof GraphQLHttpError ||
@@ -269,4 +309,48 @@ export async function executeGraphQL<
       options.signal.removeEventListener("abort", externalAbortHandler);
     }
   }
+}
+
+/**
+ * The default executor, and the only one every non-homepage caller uses. Its
+ * contract is unchanged: any GraphQL error, HTTP error, protocol error,
+ * timeout, or abort throws, including partial data accompanied by errors.
+ */
+export async function executeGraphQL<
+  TResult,
+  TVariables extends GraphQLVariables,
+>(
+  site: WordPressSiteConfig,
+  operation: GraphQLOperation<TResult, TVariables>,
+  variables: TVariables,
+  options: GraphQLExecutionOptions,
+): Promise<TResult> {
+  const result = await executeGraphQLCore(
+    site,
+    operation,
+    variables,
+    options,
+    false,
+  );
+
+  return result.data;
+}
+
+/**
+ * Opt-in executor for callers that can render a partial payload. It differs
+ * from `executeGraphQL` in exactly one case: non-null `data` accompanied by
+ * GraphQL errors is returned instead of thrown, so the caller can render what
+ * resolved and record the rest as diagnostics. Every other failure still
+ * throws. Only the homepage opts in.
+ */
+export async function executeGraphQLTolerant<
+  TResult,
+  TVariables extends GraphQLVariables,
+>(
+  site: WordPressSiteConfig,
+  operation: GraphQLOperation<TResult, TVariables>,
+  variables: TVariables,
+  options: GraphQLExecutionOptions,
+): Promise<TolerantGraphQLResult<TResult>> {
+  return executeGraphQLCore(site, operation, variables, options, true);
 }

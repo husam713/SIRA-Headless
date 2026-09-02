@@ -5,9 +5,10 @@ import { cache } from "react";
 import { normalizeHomepage } from "@/lib/homepage/normalize-homepage";
 import type { HomepageResolution } from "@/lib/homepage/types";
 import {
-  fetchPreviewGraphQL,
-  fetchPublishedGraphQL,
+  fetchPreviewGraphQLTolerant,
+  fetchPublishedGraphQLTolerant,
   SiraGraphQLError,
+  type TolerantGraphQLResult,
 } from "@/lib/graphql";
 import {
   SIRA_HOMEPAGE_QUERY,
@@ -15,7 +16,9 @@ import {
 } from "@/queries/homepage";
 import type { SiteKey } from "@/types/site";
 
-export type HomepageQueryExecutor = () => Promise<SiraHomepageQueryData>;
+export type HomepageQueryExecutor = () => Promise<
+  TolerantGraphQLResult<SiraHomepageQueryData>
+>;
 
 function logHomepageFailure(siteKey: SiteKey, error: unknown): void {
   if (error instanceof SiraGraphQLError) {
@@ -36,12 +39,44 @@ function logHomepageFailure(siteKey: SiteKey, error: unknown): void {
   });
 }
 
+/**
+ * Server-side only. Records which homepage fields the endpoint failed to
+ * resolve, with enough context to correlate the failure against WordPress:
+ * operation name, site key, request id, the sanitized error path, and the
+ * sanitized extension code.
+ *
+ * The GraphQL message is deliberately excluded, along with the endpoint and
+ * the query text: those can carry WordPress internals, and this line is not
+ * worth the leak. The browser sees only the section-level diagnostics attached
+ * to the homepage itself.
+ */
+function logToleratedFieldErrors(
+  siteKey: SiteKey,
+  result: TolerantGraphQLResult<SiraHomepageQueryData>,
+): void {
+  if (result.errors.length === 0) return;
+
+  console.warn("SIRA homepage query returned partial data.", {
+    siteKey,
+    operationName: result.operationName,
+    requestId: result.requestId,
+    failedFields: result.errors.map((error) => ({
+      path: error.path,
+      code: error.code,
+    })),
+  });
+}
+
 export async function resolveHomepage(
   siteKey: SiteKey,
   execute: HomepageQueryExecutor,
 ): Promise<HomepageResolution> {
   try {
-    return normalizeHomepage(siteKey, await execute());
+    const result = await execute();
+
+    logToleratedFieldErrors(siteKey, result);
+
+    return normalizeHomepage(siteKey, result.data, result.errors);
   } catch (error) {
     logHomepageFailure(siteKey, error);
 
@@ -62,7 +97,7 @@ async function resolvePublishedHomepage(
   return resolveHomepage(
     siteKey,
     async () =>
-      await fetchPublishedGraphQL(
+      await fetchPublishedGraphQLTolerant(
         siteKey,
         SIRA_HOMEPAGE_QUERY,
         { asPreview: false },
@@ -79,7 +114,7 @@ async function resolvePreviewHomepage(
   return resolveHomepage(
     siteKey,
     async () =>
-      await fetchPreviewGraphQL(
+      await fetchPreviewGraphQLTolerant(
         siteKey,
         SIRA_HOMEPAGE_QUERY,
         { asPreview: true },

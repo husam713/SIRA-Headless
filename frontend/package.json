@@ -30,6 +30,7 @@
     "check:schema-tooling": "pnpm lint && pnpm typecheck && pnpm test:schema-compatibility",
     "visual-diff": "node scripts/visual-diff.mjs",
     "verify:layout": "node scripts/verify-layout-primitives.mjs",
+    "verify:fixtures": "vitest run tests/harness/compose-homepage-fixtures.test.ts && node scripts/verify-homepage-fixtures.mjs",
     "verify:alignment": "node scripts/verify-live-alignment.mjs"
   },
   "dependencies": {

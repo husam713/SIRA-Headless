@@ -1,0 +1,39 @@
+{
+  "page": {
+    "databaseId": 7,
+    "uri": "/",
+    "title": "SIRA Group Fixture (partial)",
+    "siraHomepage": {
+      "variant": "group"
+    },
+    "groupHomepage": {
+      "hero": {
+        "headingBefore": "Shaping a",
+        "headingHighlight": "smarter",
+        "headingAfter": "future",
+        "description": "Fixture hero description for the group homepage.",
+        "primaryCta": null,
+        "secondaryCta": null,
+        "slides": null
+      },
+      "ticker": null,
+      "latestUpdates": null,
+      "companies": null,
+      "about": null,
+      "investor": null,
+      "services": null,
+      "projects": null,
+      "insights": null,
+      "testimonials": null,
+      "partners": null,
+      "contact": {
+        "eyebrow": "Contact",
+        "heading": "Fixture contact heading",
+        "description": "Fixture contact description.",
+        "formVariant": null,
+        "formContext": null
+      }
+    },
+    "branchHomepage": null
+  }
+}

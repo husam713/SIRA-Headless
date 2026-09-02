@@ -104,5 +104,13 @@ jobs:
       - name: Verify shared layout primitives
         run: pnpm verify:layout
 
+      # Renders the fixtures through the real homepage components and asserts
+      # the partial-data behaviour: a failed section is omitted, every other
+      # section still renders, nothing overflows. Same prerequisites as
+      # verify:layout — the built css and the Chromium install above — so it
+      # follows both. Fixture rendering is not production visual acceptance.
+      - name: Verify homepage fixture rendering
+        run: pnpm verify:fixtures
+
       - name: Run local Draft Mode runtime verification
         run: pnpm test:runtime-preview

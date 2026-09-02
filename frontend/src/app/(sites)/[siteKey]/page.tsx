@@ -52,7 +52,14 @@ export default async function SiteHomePage({
         <span className="sr-only" data-sira-homepage-title>
           {homepage.homepage.title}
         </span>
-        <GroupHero hero={homepage.homepage.hero} />
+        {/*
+          Conditional for the same reason every other section is: a hero that
+          is absent or that lost its data to a GraphQL field error is omitted,
+          and the rest of the homepage still renders inside the shared shell.
+        */}
+        {homepage.homepage.hero !== null && (
+          <GroupHero hero={homepage.homepage.hero} />
+        )}
         <GroupTicker ticker={homepage.homepage.ticker} />
         <GroupLatestUpdates section={homepage.homepage.latestUpdates} />
         <GroupCompanies section={homepage.homepage.companies} />
@@ -86,7 +93,8 @@ export default async function SiteHomePage({
         <span className="sr-only" data-sira-homepage-title>
           {branch.title}
         </span>
-        <BranchHero hero={branch.hero} />
+        {/* Conditional for the same reason as the group hero above. */}
+        {branch.hero !== null && <BranchHero hero={branch.hero} />}
         <BranchStats statistics={branch.statistics} />
         <BranchOverview overview={branch.overview} focusAreas={branch.focusAreas} />
         <GroupProjects section={branch.projects} />

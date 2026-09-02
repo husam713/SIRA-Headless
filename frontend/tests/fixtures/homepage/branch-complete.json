@@ -1,0 +1,65 @@
+{
+  "page": {
+    "databaseId": 42,
+    "uri": "/",
+    "title": "SIRA Consulting Fixture",
+    "siraHomepage": {
+      "variant": "branch"
+    },
+    "groupHomepage": null,
+    "branchHomepage": {
+      "hero": {
+        "eyebrow": "Consulting",
+        "headingBefore": "Strategy for",
+        "headingHighlight": "new markets",
+        "headingAfter": null,
+        "description": "Fixture hero description for the branch homepage.",
+        "region": "Riyadh",
+        "imageAlt": null,
+        "image": null,
+        "mobileImage": null,
+        "primaryCta": null,
+        "secondaryCta": null
+      },
+      "statistics": [
+        {
+          "value": "120",
+          "label": "Engagements",
+          "description": null
+        },
+        {
+          "value": "18",
+          "label": "Sectors served",
+          "description": null
+        }
+      ],
+      "overview": {
+        "eyebrow": "Overview",
+        "heading": "Fixture overview heading",
+        "description": null,
+        "link": null,
+        "body": "<p>Fixture overview body.</p>"
+      },
+      "focusAreas": [
+        {
+          "title": "Market entry",
+          "description": "Fixture focus area description."
+        },
+        {
+          "title": "Operating model",
+          "description": "Second fixture focus area."
+        }
+      ],
+      "projects": null,
+      "insights": null,
+      "contact": {
+        "eyebrow": "Contact",
+        "heading": "Fixture branch contact heading",
+        "description": "Fixture branch contact description.",
+        "formVariant": null,
+        "formContext": null
+      },
+      "footer": null
+    }
+  }
+}

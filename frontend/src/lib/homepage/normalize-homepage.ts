@@ -23,9 +23,11 @@ import type {
   HomepageRichTextSection,
   HomepageSelection,
   HomepageSectionHeader,
+  HomepageSectionName,
   HomepageTicker,
   InvalidHomepageReason,
 } from "@/lib/homepage/types";
+import type { GraphQLErrorSummary } from "@/lib/graphql/errors";
 import type { SiraHomepageQueryData } from "@/queries/homepage";
 import type { SiteKey } from "@/types/site";
 
@@ -162,8 +164,74 @@ function normalizeMedia(value: unknown): HomepageMedia | null {
   });
 }
 
-function diagnostic(code: Diagnostic["code"], databaseId: number | null): Diagnostic {
-  return Object.freeze({ code, databaseId });
+function diagnostic(
+  code: Diagnostic["code"],
+  databaseId: number | null,
+  section: HomepageSectionName | null = null,
+): Diagnostic {
+  return Object.freeze({ code, databaseId, section });
+}
+
+const SECTION_NAMES: ReadonlySet<string> = new Set<HomepageSectionName>([
+  "about",
+  "companies",
+  "contact",
+  "focusAreas",
+  "footer",
+  "hero",
+  "insights",
+  "investor",
+  "latestUpdates",
+  "overview",
+  "partners",
+  "projects",
+  "services",
+  "statistics",
+  "testimonials",
+  "ticker",
+]);
+
+/**
+ * Maps a GraphQL error path onto the section it affected, but only on an exact
+ * match of `page -> <variant envelope> -> <known section>`. Anything else
+ * returns null: an unattributable error is recorded without a section rather
+ * than blamed on a section that may be perfectly healthy.
+ */
+function sectionFromErrorPath(
+  path: readonly (string | number)[] | null,
+  envelopeKey: string,
+): HomepageSectionName | null {
+  if (path === null || path.length < 3) return null;
+  if (path[0] !== "page" || path[1] !== envelopeKey) return null;
+
+  const candidate = path[2];
+
+  return typeof candidate === "string" && SECTION_NAMES.has(candidate)
+    ? (candidate as HomepageSectionName)
+    : null;
+}
+
+/**
+ * Turns tolerated transport errors into page-level diagnostics. Only the code
+ * and the mapped section survive: the GraphQL message, the endpoint, and the
+ * query text never enter this model, because it is rendered into the page
+ * payload and therefore reaches the browser.
+ */
+function fieldErrorDiagnostics(
+  errors: readonly GraphQLErrorSummary[],
+  envelopeKey: string,
+): readonly Diagnostic[] {
+  if (errors.length === 0) return EMPTY_DIAGNOSTICS;
+
+  return Object.freeze(
+    errors.map((error) =>
+      diagnostic(
+        "graphql-field-error",
+        null,
+        sectionFromErrorPath(error.path, envelopeKey),
+      ),
+    ),
+  );
 }
 
 function normalizeMetric(value: unknown): HomepageMetric | null {
@@ -484,7 +552,23 @@ function invalid(siteKey: SiteKey, reason: InvalidHomepageReason): HomepageResol
   return Object.freeze({ status: "invalid", siteKey, reason });
 }
 
-export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData): HomepageResolution {
+/**
+ * Resilience boundary.
+ *
+ * CRITICAL — the page envelope. A missing or malformed `page`, `siraHomepage`,
+ * variant, or variant field group means there is no recoverable homepage, and
+ * these still resolve to `not-found` / `invalid` exactly as before.
+ *
+ * TOLERANT — every presentation section, `hero` included. A section that is
+ * absent or that lost its data to a GraphQL field error is omitted, and the
+ * rest of the homepage still renders. `fieldErrors` carries the tolerated
+ * transport errors so they can be attributed to sections where safe.
+ */
+export function normalizeHomepage(
+  siteKey: SiteKey,
+  data: SiraHomepageQueryData,
+  fieldErrors: readonly GraphQLErrorSummary[] = [],
+): HomepageResolution {
   if (!isRecord(data) || !("page" in data)) return invalid(siteKey, "invalid-page");
   const page = data["page"];
   if (page === null) return Object.freeze({ status: "not-found", siteKey, reason: "homepage-not-configured" });
@@ -516,14 +600,21 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
     : {};
 
   if (siteKey === "group") {
-    if (!isRecord(groupSections["hero"])) return invalid(siteKey, "missing-variant-data");
+    // The variant envelope stays critical: without the field group there is no
+    // recoverable homepage data at all. This check used to be implicit, riding
+    // on the hero guard below; hero is tolerant now, so it is stated directly.
+    if (!isRecord(page["groupHomepage"])) return invalid(siteKey, "missing-variant-data");
     const homepage: GroupHomepage = Object.freeze({
       siteKey,
       databaseId,
       uri: "/",
       title,
       variant: "group",
-      hero: normalizeGroupHero(groupSections["hero"]),
+      // Tolerant from here down. An absent or failed hero is omitted like any
+      // other section instead of collapsing the whole page.
+      hero: isRecord(groupSections["hero"])
+        ? normalizeGroupHero(groupSections["hero"])
+        : null,
       ticker: normalizeTicker(groupSections["ticker"]),
       latestUpdates: normalizeEditorialSection(groupSections["latestUpdates"]),
       companies: normalizeContentSection(groupSections["companies"], "selectedCompanies", "SiraCompany"),
@@ -535,21 +626,25 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
       testimonials: normalizeContentSection(groupSections["testimonials"], "selectedTestimonials", "SiraTestimonial"),
       partners: normalizeContentSection(groupSections["partners"], "selectedPartners", "SiraPartner"),
       contact: normalizeContact(groupSections["contact"]),
+      diagnostics: fieldErrorDiagnostics(fieldErrors, "groupHomepage"),
     });
     return Object.freeze({ status: "ready", homepage });
   }
 
   // Same field-group move applies to the branch variant's sections.
-  if (!isRecord(branchSections["hero"])) return invalid(siteKey, "missing-variant-data");
-  const hero = branchSections["hero"];
-  const branchHero: BranchHomepageHero = Object.freeze({
-    ...normalizeHero(hero),
-    eyebrow: normalizePlainText(hero["eyebrow"], 160),
-    region: normalizePlainText(hero["region"], 160),
-    imageAlt: normalizePlainText(hero["imageAlt"], 300),
-    image: normalizeMedia(hero["image"]),
-    mobileImage: normalizeMedia(hero["mobileImage"]),
-  });
+  // Same envelope/section split as the group variant above.
+  if (!isRecord(page["branchHomepage"])) return invalid(siteKey, "missing-variant-data");
+  const heroSource = branchSections["hero"];
+  const branchHero: BranchHomepageHero | null = isRecord(heroSource)
+    ? Object.freeze({
+        ...normalizeHero(heroSource),
+        eyebrow: normalizePlainText(heroSource["eyebrow"], 160),
+        region: normalizePlainText(heroSource["region"], 160),
+        imageAlt: normalizePlainText(heroSource["imageAlt"], 300),
+        image: normalizeMedia(heroSource["image"]),
+        mobileImage: normalizeMedia(heroSource["mobileImage"]),
+      })
+    : null;
   // `statistics` and `focusAreas` are repeaters, and under the field-group
   // registration they arrive as plain lists. They used to be doubled up
   // (`statistics { statistics { … } }`) because each sat inside a same-named
@@ -590,6 +685,7 @@ export function normalizeHomepage(siteKey: SiteKey, data: SiraHomepageQueryData)
     insights: normalizeEditorialSection(branchSections["insights"]),
     contact: normalizeContact(branchSections["contact"]),
     footer,
+    diagnostics: fieldErrorDiagnostics(fieldErrors, "branchHomepage"),
   });
   return Object.freeze({ status: "ready", homepage });
 }

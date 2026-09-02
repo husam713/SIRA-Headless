@@ -1,0 +1,52 @@
+{
+  "page": {
+    "databaseId": 7,
+    "uri": "/",
+    "title": "SIRA Group Fixture",
+    "siraHomepage": { "variant": "group" },
+    "groupHomepage": {
+      "hero": {
+        "headingBefore": "Shaping a",
+        "headingHighlight": "smarter",
+        "headingAfter": "future",
+        "description": "Fixture hero description for the group homepage.",
+        "primaryCta": null,
+        "secondaryCta": null,
+        "slides": null
+      },
+      "ticker": {
+        "enabled": true,
+        "items": [
+          { "label": "Fixture ticker item", "link": null, "businessUnit": null }
+        ]
+      },
+      "latestUpdates": null,
+      "companies": null,
+      "about": {
+        "eyebrow": "About",
+        "heading": "Fixture about heading",
+        "description": null,
+        "link": null,
+        "body": "<p>Fixture about body.</p>",
+        "metrics": [
+          { "value": "4", "label": "Sectors", "description": null },
+          { "value": "1998", "label": "Founded", "description": null }
+        ]
+      },
+      "investor": null,
+      "services": null,
+      "projects": null,
+      "insights": null,
+      "testimonials": null,
+      "partners": null,
+      "contact": {
+        "eyebrow": "Contact",
+        "heading": "Fixture contact heading",
+        "description": "Fixture contact description.",
+        "formVariant": null,
+        "formContext": null
+      }
+    },
+    "branchHomepage": null
+  }
+}

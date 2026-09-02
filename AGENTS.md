@@ -19,6 +19,11 @@ At the beginning of every engineering session:
 
 Never determine current project state from conversation memory alone.
 
+Claude Code does not load this file automatically; it loads `CLAUDE.md`. That
+file is a platform-specific bootstrap adapter whose only job is to direct the
+session here and into this boot protocol. It carries no authority of its own.
+Agents that do not auto-load `CLAUDE.md` start from this file directly.
+
 ## Evidence Classification
 
 Every material engineering claim must be classified mentally as one of:

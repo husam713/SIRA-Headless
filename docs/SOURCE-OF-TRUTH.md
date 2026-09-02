@@ -16,6 +16,21 @@ specific subsystem only as permitted by the Operating Protocol. Such a
 discrepancy must be recorded here and reconciled before new changes are made
 to that subsystem.
 
+## Agent instruction sources
+
+- `AGENTS.md` — the engineering operating rules, and the entry point for agents
+  that do not auto-load a platform-specific file.
+- `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md` — the normative protocol
+  identified by `docs/AI-ENGINEERING-OS.md`. It alone governs evidence
+  precedence.
+- `templates/ai/BOOT-PROTOCOL.md` — the boot/recovery sequence.
+- `CLAUDE.md` — **a platform-specific bootstrap adapter, not a source of
+  authority.** Claude Code auto-loads `CLAUDE.md` and does not auto-load
+  `AGENTS.md`, so this file exists solely to direct such a session into
+  `AGENTS.md` and the boot protocol above. It defines no protocol and grants no
+  authorization. If it conflicts with any document in this registry, that
+  document governs and `CLAUDE.md` is corrected.
+
 ## Current authoritative repository baseline
 
 - Repository: `husam713/SIRA-Headless`

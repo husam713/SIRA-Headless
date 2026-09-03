@@ -1,6 +1,6 @@
 # SIRA Current Project State
 
-State snapshot last verified through canonical Git evidence: 2026-09-03, against `main` at `e3920919`
+State snapshot last verified through canonical Git evidence: 2026-09-03, against `main` at `a3c3ae3f`
 
 ## Current authoritative state
 
@@ -79,6 +79,7 @@ separate.
 | ADR-029 owner-acceptance reconciliation | OWNER ACCEPTED at reviewed head `87ca6b8c` / MERGED | `#57` | `4da63260` |
 | Homepage partial-GraphQL-data tolerance + fixture harness | OWNER ACCEPTED at reviewed head `23b4af88` / MERGED | `#58` | `e829696e` |
 | Step 4 G-J branch variant validation + visual capture tooling | OWNER ACCEPTED at reviewed head `219ed48c` / MERGED | `#59` | `e3920919` |
+| Step 4 G-J fixture-backed visual fidelity correction | OWNER ACCEPTED at reviewed head `e82230ac` / MERGED | `#60` | `a3c3ae3f` |
 
 Acceptance evidence differs per pull request and must not be generalized:
 
@@ -92,21 +93,24 @@ Acceptance evidence differs per pull request and must not be generalized:
   accept every PR `#47`/`#48` implementation detail and does not establish
   responsive, RTL, reduced-motion, accessibility, or visual-regression (L-O)
   completion.
-- **PRs `#55`, `#56`, `#57`, `#58`, `#59` — candidate acceptance.** All five carry
+- **PRs `#55`, `#56`, `#57`, `#58`, `#59`, `#60` — candidate acceptance.** All six carry
   owner-acceptance comments at their exact reviewed candidate heads:
-  `ebece6d6`, `92538d93`, `87ca6b8c`, `23b4af88`, and `219ed48c`. PR `#57` additionally
+  `ebece6d6`, `92538d93`, `87ca6b8c`, `23b4af88`, `219ed48c`, and `e82230ac`. PR `#57` additionally
   records independent read-only verification G3 APPROVE and a passing Frontend
   CI run at its accepted head. PR `#58`'s acceptance explicitly does not
   establish production visual acceptance, live CMS validation,
   `verify:alignment`, or L-O QA. PR `#59` covers G-J branch variant validation
   only; its owner comment records an independent review returning APPROVE, and
   Frontend CI run 33701056508 passed at its accepted head. None of them
-  authorizes any follow-on task.
+  authorizes any follow-on task. PR `#60` covers the scoped G-J fixture-backed
+  visual-fidelity correction only, and explicitly accepts three non-blocking
+  warnings: local evidence path notation, the PR-body screenshot count, and the
+  contrast sweep recorded NOT RUN.
 
 Method: a `recordedReviews` count of 0 states only that no formal GitHub Review
 object was submitted. It does not establish absence of owner-acceptance
 evidence; pull request conversation comments are durable acceptance evidence, as
-`#48`, `#55`, `#56`, `#57`, `#58`, and `#59` show. Rows above that read OWNER ACCEPTED
+`#48`, `#55`, `#56`, `#57`, `#58`, `#59`, and `#60` show. Rows above that read OWNER ACCEPTED
 for earlier PRs are preserved exactly as previously recorded and are neither
 upgraded nor downgraded here.
 

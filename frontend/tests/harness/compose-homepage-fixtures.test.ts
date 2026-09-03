@@ -13,6 +13,7 @@ import type { SiteKey } from "@/types/site";
 import {
   composeBranchHomepage,
   composeGroupHomepage,
+  withBrandTokens,
 } from "./homepage-fixture-composer";
 
 // next/link needs the Next runtime, which this render deliberately does not
@@ -135,10 +136,16 @@ describe("homepage fixture composition", () => {
       if (resolution.status !== "ready") return;
 
       const { homepage } = resolution;
-      const markup =
+      // Wrapped so the emitted HTML carries this tenant's brand tokens; the
+      // screenshot surface is otherwise colourless and every tenant looks
+      // identical.
+      const composed =
         homepage.variant === "group"
-          ? renderToStaticMarkup(composeGroupHomepage(homepage))
-          : renderToStaticMarkup(composeBranchHomepage(homepage));
+          ? composeGroupHomepage(homepage)
+          : composeBranchHomepage(homepage);
+      const markup = renderToStaticMarkup(
+        withBrandTokens(testCase.siteKey, composed),
+      );
 
       expect(markup.length).toBeGreaterThan(0);
 
@@ -208,6 +215,28 @@ describe("homepage fixture composition", () => {
     expect(new Set(signatures).size, "brand token sets are pairwise distinct").toBe(
       signatures.length,
     );
+  });
+
+  it("carries each tenant's brand tokens into the emitted fixture markup", () => {
+    for (const siteKey of BRANCH_TENANTS) {
+      const resolution = normalizeHomepage(siteKey, readFixture("branch-complete"));
+
+      expect(resolution.status, `${siteKey} resolution`).toBe("ready");
+
+      if (resolution.status !== "ready") continue;
+      if (resolution.homepage.variant !== "branch") continue;
+
+      const markup = renderToStaticMarkup(
+        withBrandTokens(siteKey, composeBranchHomepage(resolution.homepage)),
+      );
+
+      expect(markup, `${siteKey} brand key`).toContain(`data-brand-key="${siteKey}"`);
+
+      const brand = createFallbackBrand(siteKey);
+      // The primary token is what a reviewer sees first, so assert the real
+      // value reaches the markup rather than merely that some style exists.
+      expect(markup, `${siteKey} primary token`).toContain(brand.identity.primary);
+    }
   });
 
   it("renders every branch tenant through the same shared component set", () => {

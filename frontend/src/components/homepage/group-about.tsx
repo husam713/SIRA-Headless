@@ -1,5 +1,6 @@
 import { GridItem, PageGrid } from "@/components/layout/page-grid";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import type { HomepageMetric, HomepageMetricsSection } from "@/lib/homepage/types";
 
 // Design reference (SIRA Group Homepage.dc.html, #about): no background
@@ -54,9 +55,7 @@ export function GroupAbout({ section }: GroupAboutProps) {
         {/* 3 + 8 leaves column 12 open by design — the eyebrow rail and the
             editorial column, not a full-width split. */}
         <GridItem span={3}>
-          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent">
-            {section.eyebrow ?? "About SIRA Group"}
-          </p>
+          <SectionEyebrow>{section.eyebrow ?? "About SIRA Group"}</SectionEyebrow>
         </GridItem>
 
         <GridItem span={8} className="flex flex-col gap-12">

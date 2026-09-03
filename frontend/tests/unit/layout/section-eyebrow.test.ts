@@ -7,14 +7,21 @@ import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 
 const HOMEPAGE_DIR = join("src", "components", "homepage");
 
-// Sections rendered by the branch homepage. Group-only sections are outside
-// this increment's scope and are reported rather than changed.
-const BRANCH_SECTION_FILES = [
+// Sections converted to the shared eyebrow. The branch homepage renders the
+// first five; the last three are Group-only and were converted separately.
+//
+// group-latest-updates, group-partners, group-services and group-testimonials
+// still hand-roll the same eyebrow and are NOT in this list: they are reported
+// for a separate decision rather than changed without authorization.
+const CONVERTED_SECTION_FILES = [
   "branch-hero.tsx",
   "branch-overview.tsx",
   "group-projects.tsx",
   "group-insights.tsx",
   "group-contact.tsx",
+  "group-about.tsx",
+  "group-companies.tsx",
+  "group-investor.tsx",
 ] as const;
 
 const EYEBROW_TYPOGRAPHY = "tracking-[0.12em]";
@@ -45,8 +52,8 @@ describe("SectionEyebrow", () => {
   // The rule was previously drawn inline in BranchHero alone, so five other
   // sections repeated the eyebrow typography without it. Keeping the markup in
   // one place is what stops it drifting apart again.
-  it("is the only eyebrow implementation used by the branch sections", () => {
-    for (const file of BRANCH_SECTION_FILES) {
+  it("is the only eyebrow implementation used by the converted sections", () => {
+    for (const file of CONVERTED_SECTION_FILES) {
       const source = readFileSync(join(HOMEPAGE_DIR, file), "utf8");
 
       expect(source, `${file} should use the shared eyebrow`).toContain("SectionEyebrow");

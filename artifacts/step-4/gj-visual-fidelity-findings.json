@@ -26,8 +26,8 @@
       "tenant": "healthcare",
       "surface": "header",
       "assessedOn": "live",
-      "classification": "NOT_ASSESSABLE",
-      "detail": "The fixture composer deliberately excludes the shell, so the header was not assessed on the comparable surface in this increment. Two live-surface observations are carried forward: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE), and the CTA is a pill where the reference draws a square (OWNER_DESIGN_CHOICE, no systemic evidence either way, not changed here).",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "OWNER DECISION APPLIED. The CTA was a full pill (rounded-full) where the reference draws a square-cornered rectangle; it is now rounded-sm (2px), per the owner's preference for close desktop fidelity. Verified on the live surface at 1440/768/390. Remaining live-surface observations, unchanged: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE). NOTE: src/components/homepage/cta-link.tsx, the shared CTA used by hero and section links, still renders rounded-full and is OUTSIDE this increment's allowlist, so the header CTA and the body CTAs now differ; deferred to the shared-shell fidelity task rather than expanding scope.",
       "tenantInvariant": true
     },
     {
@@ -83,23 +83,23 @@
       "surface": "contact",
       "assessedOn": "fixture",
       "classification": "DESIGN_BUG_FIXED",
-      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html.",
+      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html. OWNER DECISION APPLIED: the muted SEND MESSAGE control is ACCEPTED AS IMPLEMENTED and stays visually disabled until the form is functional.",
       "tenantInvariant": true
     },
     {
       "tenant": "healthcare",
       "surface": "footer",
       "assessedOn": "live",
-      "classification": "NOT_ASSESSABLE",
-      "detail": "Excluded from the fixture composer. Live-surface observations carried forward: literal 'sss' body text and the copyright entity are CMS_CONTENT_DIFFERENCE; the footer navigation row absent from the reference is OWNER_DESIGN_CHOICE. Not changed here.",
+      "classification": "DNA_PRESERVED_COMPOSITION_EVOLVED",
+      "detail": "OWNER DECISION APPLIED. The footer navigation row absent from the reference is ACCEPTED AS IMPLEMENTED and reclassified DNA_PRESERVED_COMPOSITION_EVOLVED: it is useful to the reader and does not harm the identity. Literal 'sss' body text and the copyright entity remain CMS_CONTENT_DIFFERENCE. Footer composition was not otherwise assessed on the fixture surface, which excludes the shell.",
       "tenantInvariant": true
     },
     {
       "tenant": "consulting",
       "surface": "header",
       "assessedOn": "live",
-      "classification": "NOT_ASSESSABLE",
-      "detail": "The fixture composer deliberately excludes the shell, so the header was not assessed on the comparable surface in this increment. Two live-surface observations are carried forward: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE), and the CTA is a pill where the reference draws a square (OWNER_DESIGN_CHOICE, no systemic evidence either way, not changed here).",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "OWNER DECISION APPLIED. The CTA was a full pill (rounded-full) where the reference draws a square-cornered rectangle; it is now rounded-sm (2px), per the owner's preference for close desktop fidelity. Verified on the live surface at 1440/768/390. Remaining live-surface observations, unchanged: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE). NOTE: src/components/homepage/cta-link.tsx, the shared CTA used by hero and section links, still renders rounded-full and is OUTSIDE this increment's allowlist, so the header CTA and the body CTAs now differ; deferred to the shared-shell fidelity task rather than expanding scope.",
       "tenantInvariant": true
     },
     {
@@ -155,23 +155,23 @@
       "surface": "contact",
       "assessedOn": "fixture",
       "classification": "DESIGN_BUG_FIXED",
-      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html.",
+      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html. OWNER DECISION APPLIED: the muted SEND MESSAGE control is ACCEPTED AS IMPLEMENTED and stays visually disabled until the form is functional.",
       "tenantInvariant": true
     },
     {
       "tenant": "consulting",
       "surface": "footer",
       "assessedOn": "live",
-      "classification": "NOT_ASSESSABLE",
-      "detail": "Excluded from the fixture composer. Live-surface observations carried forward: literal 'sss' body text and the copyright entity are CMS_CONTENT_DIFFERENCE; the footer navigation row absent from the reference is OWNER_DESIGN_CHOICE. Not changed here.",
+      "classification": "DNA_PRESERVED_COMPOSITION_EVOLVED",
+      "detail": "OWNER DECISION APPLIED. The footer navigation row absent from the reference is ACCEPTED AS IMPLEMENTED and reclassified DNA_PRESERVED_COMPOSITION_EVOLVED: it is useful to the reader and does not harm the identity. Literal 'sss' body text and the copyright entity remain CMS_CONTENT_DIFFERENCE. Footer composition was not otherwise assessed on the fixture surface, which excludes the shell.",
       "tenantInvariant": true
     },
     {
       "tenant": "lifestyle",
       "surface": "header",
       "assessedOn": "live",
-      "classification": "NOT_ASSESSABLE",
-      "detail": "The fixture composer deliberately excludes the shell, so the header was not assessed on the comparable surface in this increment. Two live-surface observations are carried forward: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE), and the CTA is a pill where the reference draws a square (OWNER_DESIGN_CHOICE, no systemic evidence either way, not changed here).",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "OWNER DECISION APPLIED. The CTA was a full pill (rounded-full) where the reference draws a square-cornered rectangle; it is now rounded-sm (2px), per the owner's preference for close desktop fidelity. Verified on the live surface at 1440/768/390. Remaining live-surface observations, unchanged: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE). NOTE: src/components/homepage/cta-link.tsx, the shared CTA used by hero and section links, still renders rounded-full and is OUTSIDE this increment's allowlist, so the header CTA and the body CTAs now differ; deferred to the shared-shell fidelity task rather than expanding scope.",
       "tenantInvariant": true
     },
     {
@@ -227,23 +227,23 @@
       "surface": "contact",
       "assessedOn": "fixture",
       "classification": "DESIGN_BUG_FIXED",
-      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html.",
+      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html. OWNER DECISION APPLIED: the muted SEND MESSAGE control is ACCEPTED AS IMPLEMENTED and stays visually disabled until the form is functional.",
       "tenantInvariant": true
     },
     {
       "tenant": "lifestyle",
       "surface": "footer",
       "assessedOn": "live",
-      "classification": "NOT_ASSESSABLE",
-      "detail": "Excluded from the fixture composer. Live-surface observations carried forward: literal 'sss' body text and the copyright entity are CMS_CONTENT_DIFFERENCE; the footer navigation row absent from the reference is OWNER_DESIGN_CHOICE. Not changed here.",
+      "classification": "DNA_PRESERVED_COMPOSITION_EVOLVED",
+      "detail": "OWNER DECISION APPLIED. The footer navigation row absent from the reference is ACCEPTED AS IMPLEMENTED and reclassified DNA_PRESERVED_COMPOSITION_EVOLVED: it is useful to the reader and does not harm the identity. Literal 'sss' body text and the copyright entity remain CMS_CONTENT_DIFFERENCE. Footer composition was not otherwise assessed on the fixture surface, which excludes the shell.",
       "tenantInvariant": true
     },
     {
       "tenant": "realestate",
       "surface": "header",
       "assessedOn": "live",
-      "classification": "NOT_ASSESSABLE",
-      "detail": "The fixture composer deliberately excludes the shell, so the header was not assessed on the comparable surface in this increment. Two live-surface observations are carried forward: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE), and the CTA is a pill where the reference draws a square (OWNER_DESIGN_CHOICE, no systemic evidence either way, not changed here).",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "OWNER DECISION APPLIED. The CTA was a full pill (rounded-full) where the reference draws a square-cornered rectangle; it is now rounded-sm (2px), per the owner's preference for close desktop fidelity. Verified on the live surface at 1440/768/390. Remaining live-surface observations, unchanged: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE). NOTE: src/components/homepage/cta-link.tsx, the shared CTA used by hero and section links, still renders rounded-full and is OUTSIDE this increment's allowlist, so the header CTA and the body CTAs now differ; deferred to the shared-shell fidelity task rather than expanding scope.",
       "tenantInvariant": true
     },
     {
@@ -299,15 +299,15 @@
       "surface": "contact",
       "assessedOn": "fixture",
       "classification": "DESIGN_BUG_FIXED",
-      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html.",
+      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html. OWNER DECISION APPLIED: the muted SEND MESSAGE control is ACCEPTED AS IMPLEMENTED and stays visually disabled until the form is functional.",
       "tenantInvariant": true
     },
     {
       "tenant": "realestate",
       "surface": "footer",
       "assessedOn": "live",
-      "classification": "NOT_ASSESSABLE",
-      "detail": "Excluded from the fixture composer. Live-surface observations carried forward: literal 'sss' body text and the copyright entity are CMS_CONTENT_DIFFERENCE; the footer navigation row absent from the reference is OWNER_DESIGN_CHOICE. Not changed here.",
+      "classification": "DNA_PRESERVED_COMPOSITION_EVOLVED",
+      "detail": "OWNER DECISION APPLIED. The footer navigation row absent from the reference is ACCEPTED AS IMPLEMENTED and reclassified DNA_PRESERVED_COMPOSITION_EVOLVED: it is useful to the reader and does not harm the identity. Literal 'sss' body text and the copyright entity remain CMS_CONTENT_DIFFERENCE. Footer composition was not otherwise assessed on the fixture surface, which excludes the shell.",
       "tenantInvariant": true
     }
   ],
@@ -316,19 +316,20 @@
     "projects",
     "insights",
     "contact",
-    "hero (shared primitive adoption)"
+    "hero (shared primitive adoption)",
+    "header CTA radius (owner decision)"
   ],
   "notCorrected": {
     "DNA_PRESERVED_COMPOSITION_EVOLVED": [
       "card and focus-area titles in the display serif"
     ],
     "OWNER_DESIGN_CHOICE": [
-      "muted SEND MESSAGE control",
-      "header CTA radius",
-      "footer navigation row"
+      "muted SEND MESSAGE control (accepted as implemented)",
+      "footer navigation row (accepted as implemented)"
     ],
     "OUT_OF_SCOPE": [
-      "group-about.tsx, group-companies.tsx and group-investor.tsx also hand-roll an eyebrow; they are Group-only sections and are reported, not changed"
+      "group-about.tsx, group-companies.tsx and group-investor.tsx also hand-roll an eyebrow; they are Group-only sections and are reported, not changed",
+      "src/components/homepage/cta-link.tsx still renders rounded-full, so body CTAs now differ from the corrected header CTA; outside the allowlist and deferred to the shared-shell fidelity task"
     ]
   },
   "notClaimed": [
@@ -339,5 +340,26 @@
     "CMS mutation",
     "deployment",
     "staging"
-  ]
+  ],
+  "ownerDesignDecisions": {
+    "recordedAt": "2026-09-03T02:29:38.389Z",
+    "reference": "OWNER DESIGN DECISIONS — PR #60",
+    "decisions": [
+      {
+        "item": "Muted SEND MESSAGE control",
+        "decision": "ACCEPT AS IMPLEMENTED",
+        "applied": "no change; stays visually disabled until the form is functional"
+      },
+      {
+        "item": "Header CTA radius",
+        "decision": "CHANGE to a reference-aligned rectangle with a small corner radius",
+        "applied": "src/components/shell/site-header.tsx: rounded-full -> rounded-sm"
+      },
+      {
+        "item": "Footer navigation row",
+        "decision": "ACCEPT AS IMPLEMENTED",
+        "applied": "no change; reclassified DNA_PRESERVED_COMPOSITION_EVOLVED"
+      }
+    ]
+  }
 }

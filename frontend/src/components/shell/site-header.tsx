@@ -86,7 +86,7 @@ export function SiteHeader({ brand, items, groupLink }: SiteHeaderProps) {
           {brand.email !== null ? (
             <a
               href={`mailto:${brand.email}`}
-              className="hidden rounded-full bg-brand-ink px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.03em] text-brand-paper transition-colors hover:bg-brand-ink/90 lg:inline-block"
+              className="hidden rounded-sm bg-brand-ink px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.03em] text-brand-paper transition-colors hover:bg-brand-ink/90 lg:inline-block"
             >
               Contact Us
             </a>

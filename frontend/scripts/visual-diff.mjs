@@ -29,7 +29,7 @@
 
 import { createServer } from "node:http";
 import { createHash } from "node:crypto";
-import { readFile, mkdir, writeFile, stat } from "node:fs/promises";
+import { readFile, readdir, mkdir, writeFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -123,36 +123,43 @@ const TARGETS = Object.freeze({
   group: Object.freeze({
     label: "SIRA Group Homepage",
     reference: "SIRA Group Homepage.dc.html",
+    fixture: "group-complete.html",
     live: liveFor("group", Object.freeze({ url: LIVE_BASE_URL })),
   }),
   realestate: Object.freeze({
     label: "SIRA Real Estate",
     reference: "Sira Real Estate.dc.html",
+    fixture: "branch-complete-realestate.html",
     live: liveFor("realestate", null),
   }),
   healthcare: Object.freeze({
     label: "SIRA Healthcare",
     reference: "Sira Healthcare.dc.html",
+    fixture: "branch-complete-healthcare.html",
     live: liveFor("healthcare", null),
   }),
   lifestyle: Object.freeze({
     label: "SIRA Lifestyle",
     reference: "Sira Lifestyle.dc.html",
+    fixture: "branch-complete-lifestyle.html",
     live: liveFor("lifestyle", null),
   }),
   consulting: Object.freeze({
     label: "SIRA Consulting",
     reference: "Sira Consulting.dc.html",
+    fixture: "branch-complete.html",
     live: liveFor("consulting", null),
   }),
   news: Object.freeze({
     label: "SIRA News",
     reference: "Sira News.dc.html",
+    fixture: null,
     live: null,
   }),
   branch: Object.freeze({
     label: "Generic Branch Template",
     reference: "Sira Branch.dc.html",
+    fixture: null,
     live: null,
   }),
 });
@@ -183,6 +190,7 @@ function parseArgs(argv) {
   );
   let list = false;
   let viewports = [...DEFAULT_VIEWPORT_WIDTHS];
+  let source = "live";
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
@@ -204,6 +212,14 @@ function parseArgs(argv) {
         return width;
       });
       if (viewports.length === 0) throw new Error("--viewports requires at least one width");
+      i += 1;
+    } else if (arg === "--source") {
+      const value = argv[i + 1];
+      if (value === undefined) throw new Error("--source requires a value");
+      if (value !== "live" && value !== "fixture") {
+        throw new Error(`--source expects "live" or "fixture", got "${value}"`);
+      }
+      source = value;
       i += 1;
     } else if (arg === "--targets") {
       const value = argv[i + 1];
@@ -231,7 +247,38 @@ function parseArgs(argv) {
     );
   }
 
-  return { targets, outDir, list, viewports };
+  return { targets, outDir, list, viewports, source };
+}
+
+const FIXTURE_HTML_DIR = path.join(REPO_ROOT, "frontend", "test-results", "homepage-fixtures");
+const FIXTURE_CHUNK_DIR = path.join(REPO_ROOT, "frontend", ".next", "static", "chunks");
+
+// Assembles exactly what scripts/verify-homepage-fixtures.mjs assembles: the
+// built CSS plus the next/font variable classes recovered from it. The fixture
+// markup already carries its tenant brand tokens, emitted by tests/harness.
+async function readFixtureDocument(fileName) {
+  const markup = await readFile(path.join(FIXTURE_HTML_DIR, fileName), "utf8");
+
+  const cssFiles = (await readdir(FIXTURE_CHUNK_DIR)).filter((name) => name.endsWith(".css"));
+  if (cssFiles.length === 0) {
+    throw new Error(`No CSS in ${FIXTURE_CHUNK_DIR}. Run the build first.`);
+  }
+  const parts = await Promise.all(
+    cssFiles.map((name) => readFile(path.join(FIXTURE_CHUNK_DIR, name), "utf8")),
+  );
+  const css = parts.join(NEWLINE);
+
+  const fontClasses = new Set();
+  for (const match of css.matchAll(/\.([A-Za-z0-9_-]+__variable)/g)) fontClasses.add(match[1]);
+  if (fontClasses.size === 0) {
+    throw new Error("No next/font variable classes in the built CSS; typography would be wrong.");
+  }
+
+  return (
+    `<!doctype html><html lang="en" class="${[...fontClasses].join(" ")}">` +
+    `<head><meta charset="utf-8"><style>${css}</style></head>` +
+    `<body>${markup}</body></html>`
+  );
 }
 
 async function startReferenceServer() {
@@ -239,6 +286,14 @@ async function startReferenceServer() {
     void (async () => {
       try {
         const requestPath = decodeURIComponent((request.url ?? "/").split("?")[0]);
+
+        if (requestPath.startsWith("/__fixture/")) {
+          const fileName = path.basename(requestPath.slice("/__fixture/".length));
+          const document = await readFixtureDocument(fileName);
+          response.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+          response.end(document);
+          return;
+        }
         const relativePath = requestPath === "/" ? "" : requestPath.replace(/^\/+/, "");
         const filePath = path.join(REFERENCE_DIR, relativePath);
 
@@ -397,7 +452,7 @@ async function captureSide(browser, key, side, url, viewportWidth, outDir, extra
   }
 }
 
-async function captureTarget(browser, baseUrl, key, target, outDir, viewports) {
+async function captureTarget(browser, baseUrl, key, target, outDir, viewports, source) {
   console.log(`
 === ${target.label} (${key}) ===`);
   const results = [];
@@ -414,6 +469,46 @@ async function captureTarget(browser, baseUrl, key, target, outDir, viewports) {
         undefined,
       ),
     );
+  }
+
+  // Fixture mode replaces the live side with the composed fixture render, which
+  // carries full content and this tenant's brand tokens. It is the only surface
+  // that can compare the content sections while the CMS is unauthored.
+  if (source === "fixture") {
+    if (target.fixture === null) {
+      for (const viewportWidth of viewports) {
+        console.log(`  fixture @ ${viewportWidth}px: SKIPPED (no fixture for this target)`);
+        results.push({
+          tenant: key,
+          side: "fixture",
+          viewport: viewportWidth,
+          url: null,
+          status: "SKIPPED",
+          httpStatus: null,
+          startedAt: new Date().toISOString(),
+          finishedAt: new Date().toISOString(),
+          error: "no fixture render exists for this target",
+          files: [],
+        });
+      }
+      return results;
+    }
+
+    for (const viewportWidth of viewports) {
+      results.push(
+        await captureSide(
+          browser,
+          key,
+          "fixture",
+          `${baseUrl}/__fixture/${encodeURIComponent(target.fixture)}`,
+          viewportWidth,
+          outDir,
+          undefined,
+        ),
+      );
+    }
+
+    return results;
   }
 
   if (target.live === null) {
@@ -461,7 +556,7 @@ async function captureTarget(browser, baseUrl, key, target, outDir, viewports) {
 }
 
 async function main() {
-  const { targets, outDir, list, viewports } = parseArgs(process.argv.slice(2));
+  const { targets, outDir, list, viewports, source } = parseArgs(process.argv.slice(2));
 
   if (list) {
     console.log("Available targets:");
@@ -474,6 +569,7 @@ async function main() {
   await mkdir(outDir, { recursive: true });
   console.log(`Output directory: ${outDir}`);
   console.log(`Viewports: ${viewports.join(", ")}`);
+  console.log(`Source: ${source}`);
 
   const runStartedAt = new Date().toISOString();
   const results = [];
@@ -486,7 +582,7 @@ async function main() {
     for (const key of targets) {
       // parseArgs already rejected unknown targets, so every key here is real.
       results.push(
-        ...(await captureTarget(browser, baseUrl, key, TARGETS[key], outDir, viewports)),
+        ...(await captureTarget(browser, baseUrl, key, TARGETS[key], outDir, viewports, source)),
       );
     }
   } finally {
@@ -510,6 +606,7 @@ async function main() {
         outDir,
         requestedTargets: targets,
         requestedViewports: viewports,
+        source,
         references: Object.fromEntries(
           targets.map((key) => [key, TARGETS[key].reference]),
         ),

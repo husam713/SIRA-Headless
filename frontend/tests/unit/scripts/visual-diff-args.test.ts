@@ -78,6 +78,28 @@ describe("visual-diff CLI arguments", () => {
     }
   });
 
+  it("defaults to the live source and accepts the fixture source", () => {
+    // Fixture mode is what makes the content sections comparable while the CMS
+    // is unauthored; live stays the default so existing invocations are
+    // unchanged.
+    expect(run(["--source", "fixture", "--targets", "healthcare", "--list"]).status).toBe(0);
+    expect(run(["--source", "live", "--targets", "healthcare", "--list"]).status).toBe(0);
+  });
+
+  it("rejects an unknown source", () => {
+    const { status, stderr } = run(["--source", "bogus", "--targets", "healthcare"]);
+
+    expect(status).toBe(1);
+    expect(stderr).toContain('--source expects "live" or "fixture"');
+  });
+
+  it("requires a value for --source", () => {
+    const { status, stderr } = run(["--source"]);
+
+    expect(status).toBe(1);
+    expect(stderr).toContain("--source requires a value");
+  });
+
   it("rejects an unrecognised flag", () => {
     const { status, stderr } = run(["--nope"]);
 

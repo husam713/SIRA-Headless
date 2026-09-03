@@ -1,0 +1,343 @@
+{
+  "taskId": "TP-STEP4-GJ-VISUAL-FIDELITY",
+  "baseline": "e3920919ac1f700b3da4c6fc96b0f2acd12e9bba",
+  "createdAt": "2026-09-03T02:11:28.624Z",
+  "method": {
+    "desktopReferenceWidth": 1440,
+    "responsiveWidths": [
+      768,
+      390
+    ],
+    "surfaces": {
+      "fixture": "branch-complete.json rendered through the real components, carrying per-tenant brand tokens and the real next/font faces. Content-bearing and CMS-independent.",
+      "live": "local next dev via SIRA_VISUAL_DIFF_LOCAL_ORIGIN. Covers the shell only; its content sections are empty because the CMS is unauthored."
+    },
+    "tenantInvariance": "All four tenants render through ONE shared BranchHomepage component set, so a design finding is tenant-invariant by construction. Per-tenant variation is brand tokens, asserted pairwise-distinct in tests/harness and verified in each fixture render. Each cell is therefore stated for every tenant rather than re-derived four times.",
+    "referenceAuthority": ".dc.html is the desktop comparison reference. docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md section 19 governs: a composition change is not a bug merely because it differs from .dc. The specification, accessibility, responsive behaviour and the shared headless architecture override the canvas."
+  },
+  "responsiveInterpretation": {
+    "classification": "RESPONSIVE_INTERPRETATION",
+    "detail": "The reference canvases are fixed-width and overflow their own viewport at 390px - the header CTA runs off-screen - so they are not the mobile or tablet authority. The implementation reflows instead. No horizontal overflow at 1440, 768 or 390: verify:layout 75/75 and verify:fixtures 114/114 both assert it.",
+    "appliesTo": "all surfaces at 768 and 390"
+  },
+  "cells": 36,
+  "matrix": [
+    {
+      "tenant": "healthcare",
+      "surface": "header",
+      "assessedOn": "live",
+      "classification": "NOT_ASSESSABLE",
+      "detail": "The fixture composer deliberately excludes the shell, so the header was not assessed on the comparable surface in this increment. Two live-surface observations are carried forward: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE), and the CTA is a pill where the reference draws a square (OWNER_DESIGN_CHOICE, no systemic evidence either way, not changed here).",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "healthcare",
+      "surface": "hero",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Structure matches the reference: leading rule, uppercase tracked eyebrow, two-line display heading whose second clause is italic in the brand accent, then description. The hero was the only section already drawing the rule; it now uses the shared SectionEyebrow so there is one definition.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "healthcare",
+      "surface": "statistics",
+      "assessedOn": "fixture",
+      "classification": "MATCHED",
+      "detail": "Full-bleed accent band, display-serif numeral over an uppercase tracked label, vertical dividers between columns - as the reference. Column distribution is NOT_ASSESSABLE: the fixture carries two statistics and the reference four.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "healthcare",
+      "surface": "overview",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow lacked the leading rule the reference applies to every section. Fixed via SectionEyebrow.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "healthcare",
+      "surface": "focusAreas",
+      "assessedOn": "fixture",
+      "classification": "DNA_PRESERVED_COMPOSITION_EVOLVED",
+      "detail": "Numbering, rules and spacing match. Item titles render in the display serif where the reference uses bold sans; six of seven card components already use font-display, so this is a consistent system choice and the specification governs over .dc.html. Not changed.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "healthcare",
+      "surface": "projects",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow lacked the rule and used text-brand-ink-faint (grey) where the reference and our own branch-overview use the accent. Fixed. Card title serif is DNA_PRESERVED_COMPOSITION_EVOLVED. Status badge presentation is NOT_ASSESSABLE: the fixture project carries no status.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "healthcare",
+      "surface": "insights",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Same eyebrow rule and grey-accent defects as projects. Fixed.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "healthcare",
+      "surface": "contact",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "healthcare",
+      "surface": "footer",
+      "assessedOn": "live",
+      "classification": "NOT_ASSESSABLE",
+      "detail": "Excluded from the fixture composer. Live-surface observations carried forward: literal 'sss' body text and the copyright entity are CMS_CONTENT_DIFFERENCE; the footer navigation row absent from the reference is OWNER_DESIGN_CHOICE. Not changed here.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "consulting",
+      "surface": "header",
+      "assessedOn": "live",
+      "classification": "NOT_ASSESSABLE",
+      "detail": "The fixture composer deliberately excludes the shell, so the header was not assessed on the comparable surface in this increment. Two live-surface observations are carried forward: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE), and the CTA is a pill where the reference draws a square (OWNER_DESIGN_CHOICE, no systemic evidence either way, not changed here).",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "consulting",
+      "surface": "hero",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Structure matches the reference: leading rule, uppercase tracked eyebrow, two-line display heading whose second clause is italic in the brand accent, then description. The hero was the only section already drawing the rule; it now uses the shared SectionEyebrow so there is one definition.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "consulting",
+      "surface": "statistics",
+      "assessedOn": "fixture",
+      "classification": "MATCHED",
+      "detail": "Full-bleed accent band, display-serif numeral over an uppercase tracked label, vertical dividers between columns - as the reference. Column distribution is NOT_ASSESSABLE: the fixture carries two statistics and the reference four.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "consulting",
+      "surface": "overview",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow lacked the leading rule the reference applies to every section. Fixed via SectionEyebrow.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "consulting",
+      "surface": "focusAreas",
+      "assessedOn": "fixture",
+      "classification": "DNA_PRESERVED_COMPOSITION_EVOLVED",
+      "detail": "Numbering, rules and spacing match. Item titles render in the display serif where the reference uses bold sans; six of seven card components already use font-display, so this is a consistent system choice and the specification governs over .dc.html. Not changed.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "consulting",
+      "surface": "projects",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow lacked the rule and used text-brand-ink-faint (grey) where the reference and our own branch-overview use the accent. Fixed. Card title serif is DNA_PRESERVED_COMPOSITION_EVOLVED. Status badge presentation is NOT_ASSESSABLE: the fixture project carries no status.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "consulting",
+      "surface": "insights",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Same eyebrow rule and grey-accent defects as projects. Fixed.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "consulting",
+      "surface": "contact",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "consulting",
+      "surface": "footer",
+      "assessedOn": "live",
+      "classification": "NOT_ASSESSABLE",
+      "detail": "Excluded from the fixture composer. Live-surface observations carried forward: literal 'sss' body text and the copyright entity are CMS_CONTENT_DIFFERENCE; the footer navigation row absent from the reference is OWNER_DESIGN_CHOICE. Not changed here.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "lifestyle",
+      "surface": "header",
+      "assessedOn": "live",
+      "classification": "NOT_ASSESSABLE",
+      "detail": "The fixture composer deliberately excludes the shell, so the header was not assessed on the comparable surface in this increment. Two live-surface observations are carried forward: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE), and the CTA is a pill where the reference draws a square (OWNER_DESIGN_CHOICE, no systemic evidence either way, not changed here).",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "lifestyle",
+      "surface": "hero",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Structure matches the reference: leading rule, uppercase tracked eyebrow, two-line display heading whose second clause is italic in the brand accent, then description. The hero was the only section already drawing the rule; it now uses the shared SectionEyebrow so there is one definition.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "lifestyle",
+      "surface": "statistics",
+      "assessedOn": "fixture",
+      "classification": "MATCHED",
+      "detail": "Full-bleed accent band, display-serif numeral over an uppercase tracked label, vertical dividers between columns - as the reference. Column distribution is NOT_ASSESSABLE: the fixture carries two statistics and the reference four.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "lifestyle",
+      "surface": "overview",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow lacked the leading rule the reference applies to every section. Fixed via SectionEyebrow.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "lifestyle",
+      "surface": "focusAreas",
+      "assessedOn": "fixture",
+      "classification": "DNA_PRESERVED_COMPOSITION_EVOLVED",
+      "detail": "Numbering, rules and spacing match. Item titles render in the display serif where the reference uses bold sans; six of seven card components already use font-display, so this is a consistent system choice and the specification governs over .dc.html. Not changed.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "lifestyle",
+      "surface": "projects",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow lacked the rule and used text-brand-ink-faint (grey) where the reference and our own branch-overview use the accent. Fixed. Card title serif is DNA_PRESERVED_COMPOSITION_EVOLVED. Status badge presentation is NOT_ASSESSABLE: the fixture project carries no status.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "lifestyle",
+      "surface": "insights",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Same eyebrow rule and grey-accent defects as projects. Fixed.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "lifestyle",
+      "surface": "contact",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "lifestyle",
+      "surface": "footer",
+      "assessedOn": "live",
+      "classification": "NOT_ASSESSABLE",
+      "detail": "Excluded from the fixture composer. Live-surface observations carried forward: literal 'sss' body text and the copyright entity are CMS_CONTENT_DIFFERENCE; the footer navigation row absent from the reference is OWNER_DESIGN_CHOICE. Not changed here.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "realestate",
+      "surface": "header",
+      "assessedOn": "live",
+      "classification": "NOT_ASSESSABLE",
+      "detail": "The fixture composer deliberately excludes the shell, so the header was not assessed on the comparable surface in this increment. Two live-surface observations are carried forward: the CTA label and wordmark come from the CMS (CMS_CONTENT_DIFFERENCE), and the CTA is a pill where the reference draws a square (OWNER_DESIGN_CHOICE, no systemic evidence either way, not changed here).",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "realestate",
+      "surface": "hero",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Structure matches the reference: leading rule, uppercase tracked eyebrow, two-line display heading whose second clause is italic in the brand accent, then description. The hero was the only section already drawing the rule; it now uses the shared SectionEyebrow so there is one definition.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "realestate",
+      "surface": "statistics",
+      "assessedOn": "fixture",
+      "classification": "MATCHED",
+      "detail": "Full-bleed accent band, display-serif numeral over an uppercase tracked label, vertical dividers between columns - as the reference. Column distribution is NOT_ASSESSABLE: the fixture carries two statistics and the reference four.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "realestate",
+      "surface": "overview",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow lacked the leading rule the reference applies to every section. Fixed via SectionEyebrow.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "realestate",
+      "surface": "focusAreas",
+      "assessedOn": "fixture",
+      "classification": "DNA_PRESERVED_COMPOSITION_EVOLVED",
+      "detail": "Numbering, rules and spacing match. Item titles render in the display serif where the reference uses bold sans; six of seven card components already use font-display, so this is a consistent system choice and the specification governs over .dc.html. Not changed.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "realestate",
+      "surface": "projects",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow lacked the rule and used text-brand-ink-faint (grey) where the reference and our own branch-overview use the accent. Fixed. Card title serif is DNA_PRESERVED_COMPOSITION_EVOLVED. Status badge presentation is NOT_ASSESSABLE: the fixture project carries no status.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "realestate",
+      "surface": "insights",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Same eyebrow rule and grey-accent defects as projects. Fixed.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "realestate",
+      "surface": "contact",
+      "assessedOn": "fixture",
+      "classification": "DESIGN_BUG_FIXED",
+      "detail": "Eyebrow rule fixed (bright tone on the deep section). The SEND MESSAGE control is muted with the note 'Online message submission isn't available yet' where the reference shows a solid accent button: OWNER_DESIGN_CHOICE, kept as-is, because styling a non-functional control as an active primary CTA is a misleading affordance and accessibility governs over .dc.html.",
+      "tenantInvariant": true
+    },
+    {
+      "tenant": "realestate",
+      "surface": "footer",
+      "assessedOn": "live",
+      "classification": "NOT_ASSESSABLE",
+      "detail": "Excluded from the fixture composer. Live-surface observations carried forward: literal 'sss' body text and the copyright entity are CMS_CONTENT_DIFFERENCE; the footer navigation row absent from the reference is OWNER_DESIGN_CHOICE. Not changed here.",
+      "tenantInvariant": true
+    }
+  ],
+  "corrected": [
+    "overview",
+    "projects",
+    "insights",
+    "contact",
+    "hero (shared primitive adoption)"
+  ],
+  "notCorrected": {
+    "DNA_PRESERVED_COMPOSITION_EVOLVED": [
+      "card and focus-area titles in the display serif"
+    ],
+    "OWNER_DESIGN_CHOICE": [
+      "muted SEND MESSAGE control",
+      "header CTA radius",
+      "footer navigation row"
+    ],
+    "OUT_OF_SCOPE": [
+      "group-about.tsx, group-companies.tsx and group-investor.tsx also hand-roll an eyebrow; they are Group-only sections and are reported, not changed"
+    ]
+  },
+  "notClaimed": [
+    "production visual acceptance",
+    "K Newsroom",
+    "L-O completion",
+    "complete live CMS content",
+    "CMS mutation",
+    "deployment",
+    "staging"
+  ]
+}

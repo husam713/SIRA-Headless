@@ -20,9 +20,12 @@ const BRANCH_SECTION_FILES = [
 const EYEBROW_TYPOGRAPHY = "tracking-[0.12em]";
 
 function render(tone?: "accent" | "bright"): string {
-  return renderToStaticMarkup(
-    createElement(SectionEyebrow, tone === undefined ? null : { tone }, "Overview"),
-  );
+  const props =
+    tone === undefined
+      ? { children: "Overview" }
+      : { tone, children: "Overview" };
+
+  return renderToStaticMarkup(createElement(SectionEyebrow, props));
 }
 
 describe("SectionEyebrow", () => {

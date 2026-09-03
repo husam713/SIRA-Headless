@@ -467,6 +467,20 @@ function normalizeEditorialSection(value: unknown): HomepageEditorialSection | n
   return normalizeContentSection(value, "selectedItems", null);
 }
 
+// A branch site nobody has authored still returns its ACF group as an object
+// with every field null. `isRecord` is therefore true, the section is kept, and
+// it renders as an empty band: an 850px hero carrying no heading at all, and an
+// overview showing only its fallback eyebrow. Presence of the group is not
+// presence of content, so emptiness is judged on the normalized values.
+//
+// normalizePlainText already collapses whitespace-only strings to null, so a
+// field containing only spaces counts as empty here without a second check.
+//
+// Branch tenants only. Group normalization is deliberately untouched.
+function hasAnyValue(values: readonly unknown[]): boolean {
+  return values.some((value) => value !== null);
+}
+
 function normalizeRichTextSection(value: unknown): HomepageRichTextSection | null {
   if (!isRecord(value)) return null;
   return Object.freeze({ ...normalizeHeader(value), body: normalizeRichText(value["body"]) });
@@ -635,7 +649,7 @@ export function normalizeHomepage(
   // Same envelope/section split as the group variant above.
   if (!isRecord(page["branchHomepage"])) return invalid(siteKey, "missing-variant-data");
   const heroSource = branchSections["hero"];
-  const branchHero: BranchHomepageHero | null = isRecord(heroSource)
+  const branchHeroCandidate: BranchHomepageHero | null = isRecord(heroSource)
     ? Object.freeze({
         ...normalizeHero(heroSource),
         eyebrow: normalizePlainText(heroSource["eyebrow"], 160),
@@ -645,6 +659,24 @@ export function normalizeHomepage(
         mobileImage: normalizeMedia(heroSource["mobileImage"]),
       })
     : null;
+  // imageAlt is deliberately not counted: alt text without an image renders
+  // nothing, so it cannot on its own make the hero worth showing.
+  const branchHero: BranchHomepageHero | null =
+    branchHeroCandidate !== null &&
+    hasAnyValue([
+      branchHeroCandidate.headingBefore,
+      branchHeroCandidate.headingHighlight,
+      branchHeroCandidate.headingAfter,
+      branchHeroCandidate.description,
+      branchHeroCandidate.eyebrow,
+      branchHeroCandidate.region,
+      branchHeroCandidate.image,
+      branchHeroCandidate.mobileImage,
+      branchHeroCandidate.primaryCta,
+      branchHeroCandidate.secondaryCta,
+    ])
+      ? branchHeroCandidate
+      : null;
   // `statistics` and `focusAreas` are repeaters, and under the field-group
   // registration they arrive as plain lists. They used to be doubled up
   // (`statistics { statistics { … } }`) because each sat inside a same-named
@@ -665,6 +697,18 @@ export function normalizeHomepage(
       }))
     : Object.freeze([]);
   const statisticsField = branchSections["statistics"];
+  const overviewCandidate = normalizeRichTextSection(branchSections["overview"]);
+  const overview =
+    overviewCandidate !== null &&
+    hasAnyValue([
+      overviewCandidate.eyebrow,
+      overviewCandidate.heading,
+      overviewCandidate.description,
+      overviewCandidate.link,
+      overviewCandidate.body,
+    ])
+      ? overviewCandidate
+      : null;
   const footer = isRecord(branchSections["footer"])
     ? Object.freeze({
         taglineOverride: normalizePlainText(branchSections["footer"]["taglineOverride"], 500),
@@ -679,7 +723,7 @@ export function normalizeHomepage(
     variant: "branch",
     hero: branchHero,
     statistics: normalizeMetrics(statisticsField, 8),
-    overview: normalizeRichTextSection(branchSections["overview"]),
+    overview,
     focusAreas: Object.freeze(focusAreas),
     projects: normalizeContentSection(branchSections["projects"], "selectedProjects", "SiraProject"),
     insights: normalizeEditorialSection(branchSections["insights"]),

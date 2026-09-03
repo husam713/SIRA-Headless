@@ -87,17 +87,36 @@ const MIME_TYPES = Object.freeze({
 const LIVE_BASE_URL =
   "https://sira-headless-git-feat-step-4-shared-shell-husam713s-projects.vercel.app/";
 
-// Hostname-based routing means one alias cannot serve more than one site, but
-// the [siteKey] route path can. Point this at a local `next dev` to capture any
-// tenant without a per-site deployment alias or the Vercel CLI:
-//   SIRA_VISUAL_DIFF_BASE_URL=http://localhost:3000
+// Tenants are resolved from the Host header, not from a path segment: the
+// [siteKey] route parameter is populated by hostname discovery, and requesting
+// http://localhost:3000/healthcare/ is a 404 while an unknown Host is a 421.
+// So local capture maps the canonical hostnames onto a local `next dev` at the
+// DNS layer and requests the real hostname:
+//   SIRA_VISUAL_DIFF_LOCAL_ORIGIN=127.0.0.1:3000
 // Unset, every target keeps exactly its previous live entry.
-const LOCAL_BASE_URL = process.env["SIRA_VISUAL_DIFF_BASE_URL"];
+const LOCAL_ORIGIN = process.env["SIRA_VISUAL_DIFF_LOCAL_ORIGIN"];
+
+// Mirrors canonicalHostname in src/config/sites.ts. Duplicated rather than
+// imported because this is a plain .mjs script and that registry is TypeScript.
+const SITE_HOSTNAMES = Object.freeze({
+  group: "siratrgroup.com",
+  consulting: "consulting.siratrgroup.com",
+  healthcare: "healthcare.siratrgroup.com",
+  lifestyle: "lifestyle.siratrgroup.com",
+  realestate: "realestate.siratrgroup.com",
+});
+
+function localResolverRules() {
+  if (LOCAL_ORIGIN === undefined || LOCAL_ORIGIN === "") return [];
+  const rules = Object.values(SITE_HOSTNAMES)
+    .map((hostname) => `MAP ${hostname} ${LOCAL_ORIGIN}`)
+    .join(",");
+  return [`--host-resolver-rules=${rules}`];
+}
 
 function liveFor(siteKey, fallback) {
-  if (LOCAL_BASE_URL === undefined || LOCAL_BASE_URL === "") return fallback;
-  const base = LOCAL_BASE_URL.endsWith("/") ? LOCAL_BASE_URL : `${LOCAL_BASE_URL}/`;
-  return Object.freeze({ url: new URL(siteKey, base).toString() });
+  if (LOCAL_ORIGIN === undefined || LOCAL_ORIGIN === "") return fallback;
+  return Object.freeze({ url: `http://${SITE_HOSTNAMES[siteKey]}/` });
 }
 
 const TARGETS = Object.freeze({
@@ -411,7 +430,7 @@ async function captureTarget(browser, baseUrl, key, target, outDir, viewports) {
         httpStatus: null,
         startedAt: new Date().toISOString(),
         finishedAt: new Date().toISOString(),
-        error: "no live URL configured; set SIRA_VISUAL_DIFF_BASE_URL",
+        error: "no live URL configured; set SIRA_VISUAL_DIFF_LOCAL_ORIGIN",
         files: [],
       });
     }
@@ -461,7 +480,7 @@ async function main() {
 
   const { server, baseUrl } = await startReferenceServer();
   const chromium = await loadChromium();
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ args: localResolverRules() });
 
   try {
     for (const key of targets) {

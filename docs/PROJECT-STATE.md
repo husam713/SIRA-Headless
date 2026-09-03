@@ -1,6 +1,6 @@
 # SIRA Current Project State
 
-State snapshot last verified through canonical Git evidence: 2026-09-02, against `main` at `dddf9b30`
+State snapshot last verified through canonical Git evidence: 2026-09-03, against `main` at `e829696e`
 
 ## Current authoritative state
 
@@ -76,6 +76,8 @@ separate.
 | Authenticated GraphQL schema refresh | MERGED (merge is the sole acceptance artifact) | `#53` | `44acc6f6` |
 | Step 4 durable-state reconciliation + alignment harness gate | OWNER ACCEPTED at reviewed head `ebece6d6` / MERGED | `#55` | `70bd8618` |
 | CLAUDE.md bootstrap adapter | OWNER ACCEPTED at reviewed head `92538d93` / MERGED | `#56` | `dddf9b30` |
+| ADR-029 owner-acceptance reconciliation | OWNER ACCEPTED at reviewed head `87ca6b8c` / MERGED | `#57` | `4da63260` |
+| Homepage partial-GraphQL-data tolerance + fixture harness | OWNER ACCEPTED at reviewed head `23b4af88` / MERGED | `#58` | `e829696e` |
 
 Acceptance evidence differs per pull request and must not be generalized:
 
@@ -89,15 +91,20 @@ Acceptance evidence differs per pull request and must not be generalized:
   accept every PR `#47`/`#48` implementation detail and does not establish
   responsive, RTL, reduced-motion, accessibility, or visual-regression (L-O)
   completion.
-- **PRs `#55`, `#56` — candidate acceptance.** Both carry owner-acceptance
-  comments at their exact reviewed candidate heads, `ebece6d6` and `92538d93`.
+- **PRs `#55`, `#56`, `#57`, `#58` — candidate acceptance.** All four carry
+  owner-acceptance comments at their exact reviewed candidate heads:
+  `ebece6d6`, `92538d93`, `87ca6b8c`, and `23b4af88`. PR `#57` additionally
+  records independent read-only verification G3 APPROVE and a passing Frontend
+  CI run at its accepted head. PR `#58`'s acceptance explicitly does not
+  establish production visual acceptance, live CMS validation,
+  `verify:alignment`, or L-O QA. Neither authorizes any follow-on task.
 
 Method: a `recordedReviews` count of 0 states only that no formal GitHub Review
 object was submitted. It does not establish absence of owner-acceptance
 evidence; pull request conversation comments are durable acceptance evidence, as
-`#48`, `#55`, and `#56` show. Rows above that read OWNER ACCEPTED for earlier
-PRs are preserved exactly as previously recorded and are neither upgraded nor
-downgraded here.
+`#48`, `#55`, `#56`, `#57`, and `#58` show. Rows above that read OWNER ACCEPTED
+for earlier PRs are preserved exactly as previously recorded and are neither
+upgraded nor downgraded here.
 
 Step 3D.2 is NOT STARTED. Step 3D.3 remains gated by unresolved `2C4-B09`.
 Full Step 3D closure must not be claimed. `PREVIEW-AUTH-001` remains DEFERRED.

@@ -1,10 +1,7 @@
-﻿# Environment secrets
-.env
-.env.local
-.env.production
-.env.development
-.env.*.local
+﻿# Environment secrets (example templates stay tracked)
+.env*
 !.env.example
+!.env*.example
 
 # Node.js / Next.js
 node_modules/
@@ -36,9 +33,18 @@ pnpm-debug.log*
 Thumbs.db
 
 # Editors
-.vscode/settings.json
+.vscode/*
+!.vscode/extensions.json
 .idea/
 
 # Temporary archives
 *.tmp
 *.bak
+
+# Local tooling / link state
+.vercel/
+.pnpm-store/
+.claude/settings.local.json
+
+# Backend packaging artifacts (kept on disk, backed up outside the repo)
+backend/*.zip

@@ -1,0 +1,737 @@
+{
+  "schemaVersion": "1.0",
+  "artifactId": "TP-STEP4-GJ-VISUAL-EVIDENCE",
+  "taskId": "TP-STEP4-GJ",
+  "producer": "IMPLEMENTATION/LOCAL",
+  "repository": "husam713/SIRA-Headless",
+  "baseline": "e829696e82229cf52d3b3f3f19b0da6693040fcd",
+  "candidateHead": null,
+  "createdAt": "2026-09-03T00:39:09.404Z",
+  "files": [
+    {
+      "path": "consulting/1440/consulting-live-1440-00.png",
+      "sha256": "9f59417cddbd0d5de3077402a4295b03200e4cc05edc8edba37e6601660b9746",
+      "size": 40529
+    },
+    {
+      "path": "consulting/1440/consulting-live-1440-01.png",
+      "sha256": "a72662cced3b7812561c752bfae26a155f271c1b92dc2504c45469408087c074",
+      "size": 79020
+    },
+    {
+      "path": "consulting/1440/consulting-live-1440-02.png",
+      "sha256": "d1d85c18e0db8619be89e409ef98c3e4883ea14b35080efb0ea40300f09d94bc",
+      "size": 65356
+    },
+    {
+      "path": "consulting/1440/consulting-live-1440-03.png",
+      "sha256": "6b530bb12bf5d4c0ab7be7193625bbdda1649851c18159b69b27fa8035240ce7",
+      "size": 22544
+    },
+    {
+      "path": "consulting/390/consulting-live-390-00.png",
+      "sha256": "3df65b87c6de55f85ca656b1da06c3ff410aaacab0d1f2eed7eb03795abd3a05",
+      "size": 24866
+    },
+    {
+      "path": "consulting/390/consulting-live-390-01.png",
+      "sha256": "5e047435631c42e3d57ef8362f3caf5aeebf2ab13149b8a63351381acbb68ef2",
+      "size": 39065
+    },
+    {
+      "path": "consulting/390/consulting-live-390-02.png",
+      "sha256": "fef230b1bd6f7477e0238562c523dffaf0a13f3a3a733695fd88fc78d3d3505e",
+      "size": 50779
+    },
+    {
+      "path": "consulting/390/consulting-live-390-03.png",
+      "sha256": "ff6655c077203e9b9d08dc8b81ec404b7709aea478269bb4f6ad587cc6744fca",
+      "size": 43507
+    },
+    {
+      "path": "consulting/390/consulting-live-390-04.png",
+      "sha256": "86943fdea3bee50ada46608d4d28ad9569abd0443e20c5217097f61730d35e7b",
+      "size": 25744
+    },
+    {
+      "path": "consulting/768/consulting-live-768-00.png",
+      "sha256": "67ce3b7aebf9e18b93a6238361ed4126b4c235c4d7016b82e56f7b33b34c1dff",
+      "size": 33009
+    },
+    {
+      "path": "consulting/768/consulting-live-768-01.png",
+      "sha256": "b8803f9a037d9a9974d277da2c41f90085ef997a96b3b3651d6f499172a56705",
+      "size": 63498
+    },
+    {
+      "path": "consulting/768/consulting-live-768-02.png",
+      "sha256": "9736d06f77e2f92e1b3125bbec1db1726f32bf90a91d55e1d5e1f24a03097613",
+      "size": 66094
+    },
+    {
+      "path": "consulting/768/consulting-live-768-03.png",
+      "sha256": "427946fc02b3d0c84014587fb9c5c2d5430b5150b08518e095373909ab15f77c",
+      "size": 32352
+    },
+    {
+      "path": "consulting/1440/consulting-reference-1440-00.png",
+      "sha256": "e465863cdcc7452175c0fd586105470b2dedc0b273e095caa8cfc9655206538a",
+      "size": 144398
+    },
+    {
+      "path": "consulting/1440/consulting-reference-1440-01.png",
+      "sha256": "21628cab1adf0648a9e3178ed649469cbfd44e5b585ab5928a1eabde0b1842eb",
+      "size": 87951
+    },
+    {
+      "path": "consulting/1440/consulting-reference-1440-02.png",
+      "sha256": "9e9e0b36b4f84017292051e87b4d0422e85ca8abf509df232ded4f2b1e20adcd",
+      "size": 77774
+    },
+    {
+      "path": "consulting/1440/consulting-reference-1440-03.png",
+      "sha256": "5f68605da12954e4599f894337eb3ebd8b6b673e5005936b619f81a4e93fab83",
+      "size": 63931
+    },
+    {
+      "path": "consulting/390/consulting-reference-390-00.png",
+      "sha256": "0fb89b7727133ff8bb94f41bf13fa1e19b92abd50bbe911d4881e4da6ad51b6b",
+      "size": 56449
+    },
+    {
+      "path": "consulting/390/consulting-reference-390-01.png",
+      "sha256": "df315641249644ccd8a84683edd9cb8be85e682bb09c792520e20e38525157d7",
+      "size": 41843
+    },
+    {
+      "path": "consulting/390/consulting-reference-390-02.png",
+      "sha256": "881d753391af0952e1e2cb8dac15e0f1c844e6a48d5962e366a7ae64aea3cf29",
+      "size": 33067
+    },
+    {
+      "path": "consulting/390/consulting-reference-390-03.png",
+      "sha256": "cad668540c50675ab1020e04add19f6aa29f2010cc0d93b39d779d1aa4ad2c31",
+      "size": 40001
+    },
+    {
+      "path": "consulting/390/consulting-reference-390-04.png",
+      "sha256": "1bb9636c8a1459d9a683801850a515e2123272c91df6e30f31c71df844dde319",
+      "size": 52394
+    },
+    {
+      "path": "consulting/390/consulting-reference-390-05.png",
+      "sha256": "471df2a4c7c4835d312212af22b97e05838baeb28e05ade50d635a4ec6f151d0",
+      "size": 24564
+    },
+    {
+      "path": "consulting/768/consulting-reference-768-00.png",
+      "sha256": "d35f9c8eb280ec731357fe3218128fcaee93346fb35b25a3788fbc05becc6681",
+      "size": 76285
+    },
+    {
+      "path": "consulting/768/consulting-reference-768-01.png",
+      "sha256": "26d44c6f599535fa10c6a149e85f412c2b57ca6648a4158622c4342d92adf482",
+      "size": 62829
+    },
+    {
+      "path": "consulting/768/consulting-reference-768-02.png",
+      "sha256": "af3fb790434010a1933c2d7bdc4db83a888588d8c3e0c79dbb21ec71317005db",
+      "size": 59215
+    },
+    {
+      "path": "consulting/768/consulting-reference-768-03.png",
+      "sha256": "127793af66d4ea8168bd37c9639b6a9c44814040962dda42549d114cb7e1597f",
+      "size": 70698
+    },
+    {
+      "path": "consulting/768/consulting-reference-768-04.png",
+      "sha256": "bd27a2f50ff377c14579b1275b76222d53f63091668f0a9d339f601e6ecb28e5",
+      "size": 15300
+    },
+    {
+      "path": "healthcare/1440/healthcare-live-1440-00.png",
+      "sha256": "25145a556625a43a50fedac30e8814b57a696847f5acd7faba911082b9c796a3",
+      "size": 37983
+    },
+    {
+      "path": "healthcare/1440/healthcare-live-1440-01.png",
+      "sha256": "0531b2e531fcff7069bc2894f1bb62b326015cf4c8bedcf4ab49933068832da8",
+      "size": 47640
+    },
+    {
+      "path": "healthcare/1440/healthcare-live-1440-02.png",
+      "sha256": "338eee55cfe0b9474b4ff60085cd733e90381e8f293370f0b77ff4ed0bf76ec3",
+      "size": 63002
+    },
+    {
+      "path": "healthcare/1440/healthcare-live-1440-03.png",
+      "sha256": "645241b631332282b6b9959a002cbb1bca06290976fbe7c84b1807311ddfb65d",
+      "size": 20458
+    },
+    {
+      "path": "healthcare/390/healthcare-live-390-00.png",
+      "sha256": "a9aa8dbfb3fb095582b774bf2fcc60d9065d20f0181254b9cd1dddffe2cb2166",
+      "size": 18330
+    },
+    {
+      "path": "healthcare/390/healthcare-live-390-01.png",
+      "sha256": "dd4543a87d31b7d2f4ba68bcd30586b884fa02f3d0f97a46bea5725d347067e1",
+      "size": 39556
+    },
+    {
+      "path": "healthcare/390/healthcare-live-390-02.png",
+      "sha256": "8ebfd56ce9df60d61b6124b3d6a3791cab2fb4a1736868eca35b431182119b7c",
+      "size": 42358
+    },
+    {
+      "path": "healthcare/390/healthcare-live-390-03.png",
+      "sha256": "da23959302853f711b90c951793cac27866dbbc453929764f051e013402b3a55",
+      "size": 37944
+    },
+    {
+      "path": "healthcare/390/healthcare-live-390-04.png",
+      "sha256": "65d41c61f1b14ece26c78d7b1e832b6705453aaece2a1809e26d0fbfcb5b80ad",
+      "size": 24520
+    },
+    {
+      "path": "healthcare/768/healthcare-live-768-00.png",
+      "sha256": "fd29e65b9bed9516a0487e5bf2887c1469eeecb6afd3b505077bd8daa7cfddf6",
+      "size": 24027
+    },
+    {
+      "path": "healthcare/768/healthcare-live-768-01.png",
+      "sha256": "8ce9b60fbe30a39f3c7cc494d1246f8aaa0ebbc23be8eab269ecc5119719cceb",
+      "size": 48264
+    },
+    {
+      "path": "healthcare/768/healthcare-live-768-02.png",
+      "sha256": "d6043483229b6b2b8f0c1531171e9e1e474b72e74378c4b75e61b7ba8d4ef0db",
+      "size": 50047
+    },
+    {
+      "path": "healthcare/768/healthcare-live-768-03.png",
+      "sha256": "ca66a9ad70559bc61720d0820a402e871b5ab94a929cc40e938fd812bb8df573",
+      "size": 30000
+    },
+    {
+      "path": "healthcare/1440/healthcare-reference-1440-00.png",
+      "sha256": "05fe3669e894a7a70861112af4ddf8e777aeb6a47225666d35cf6739deecfa10",
+      "size": 147252
+    },
+    {
+      "path": "healthcare/1440/healthcare-reference-1440-01.png",
+      "sha256": "b3f7962db1846d52693df0626da6b3b55d726d9d9ba66b597a890385fc28dcc6",
+      "size": 105972
+    },
+    {
+      "path": "healthcare/1440/healthcare-reference-1440-02.png",
+      "sha256": "437769d9a76996c7bc9640131bd477607707c2da2a6fea7894efd6998bbd688b",
+      "size": 80195
+    },
+    {
+      "path": "healthcare/1440/healthcare-reference-1440-03.png",
+      "sha256": "d8c1a02cd9ed65ab350ad3a96ed0cd0485b6576a98fbe40adf98861d75ee2153",
+      "size": 58569
+    },
+    {
+      "path": "healthcare/390/healthcare-reference-390-00.png",
+      "sha256": "3fa1d98cbc8f2faa0c495e92616ee8e44a36395ea57522b06ee1d55aec6d8bf7",
+      "size": 66277
+    },
+    {
+      "path": "healthcare/390/healthcare-reference-390-01.png",
+      "sha256": "1c66981f1d5b62f66c6216491093ba7faae141f1025937bb237ccca8addcde19",
+      "size": 46690
+    },
+    {
+      "path": "healthcare/390/healthcare-reference-390-02.png",
+      "sha256": "943771af471e119c0cf5f8461ac9ad3a4919c5e4d8c1e62e66c3a4729fe3c1f6",
+      "size": 38636
+    },
+    {
+      "path": "healthcare/390/healthcare-reference-390-03.png",
+      "sha256": "535a685cd91695de49664d34bd482015552e7a59bdcd6c33095a61a83dc5752e",
+      "size": 38866
+    },
+    {
+      "path": "healthcare/390/healthcare-reference-390-04.png",
+      "sha256": "405ca9ba457152ad1fed262b647d89b8cbc7fc381c75cb6faa17f2019430276a",
+      "size": 52237
+    },
+    {
+      "path": "healthcare/390/healthcare-reference-390-05.png",
+      "sha256": "1d72b53e7bf5d6931e3fac6acde0c0ac5dde1595c441611156135491570b876c",
+      "size": 37120
+    },
+    {
+      "path": "healthcare/768/healthcare-reference-768-00.png",
+      "sha256": "5b366e8276aabac4517598b913eda0cf1fe10ece2a78ba080353136e33c48a7f",
+      "size": 84621
+    },
+    {
+      "path": "healthcare/768/healthcare-reference-768-01.png",
+      "sha256": "fcf6b72ada699eed74707741bd944cbfe5f152b8415ffa2ce8370af25a0b205f",
+      "size": 69568
+    },
+    {
+      "path": "healthcare/768/healthcare-reference-768-02.png",
+      "sha256": "473b590d13d902155feddba6d23a28e3e188fbc489cf43f39be478adb0a6758b",
+      "size": 52306
+    },
+    {
+      "path": "healthcare/768/healthcare-reference-768-03.png",
+      "sha256": "d77ff5772ecb737177b0777f66f6fb8f7c071bb17e0c4c05749c55310183d4a8",
+      "size": 69794
+    },
+    {
+      "path": "healthcare/768/healthcare-reference-768-04.png",
+      "sha256": "4478887d5a70b196dd08ec187c88b43d936ceacdba450d85bcca007dbb81f383",
+      "size": 16074
+    },
+    {
+      "path": "lifestyle/1440/lifestyle-live-1440-00.png",
+      "sha256": "5b8140cc5b67c0e48cba393f3db2f74e7d944c0f2dfe7d2f983cee630db074f6",
+      "size": 36223
+    },
+    {
+      "path": "lifestyle/1440/lifestyle-live-1440-01.png",
+      "sha256": "af1370b2ead1b82c62e472807b15717a4f7b05dcf63db597f894f6261bc6a18f",
+      "size": 67843
+    },
+    {
+      "path": "lifestyle/1440/lifestyle-live-1440-02.png",
+      "sha256": "250ea0605556a7601157cb40646165800e630b863f36c136e3f3ad2e0bd3fe49",
+      "size": 53913
+    },
+    {
+      "path": "lifestyle/1440/lifestyle-live-1440-03.png",
+      "sha256": "bf177da2c9a1888c58a39544a6d5f7057eb2d65fd191b6fe11f6f96b8eee370a",
+      "size": 24231
+    },
+    {
+      "path": "lifestyle/390/lifestyle-live-390-00.png",
+      "sha256": "4f626fb994a8363424c54d41d4f559d282eb313c15fe9222eff7313c250fd654",
+      "size": 23902
+    },
+    {
+      "path": "lifestyle/390/lifestyle-live-390-01.png",
+      "sha256": "f8ce79142d6eee9af145d0dea61438ddae46991417e29575e4ab614ddc3399bd",
+      "size": 34521
+    },
+    {
+      "path": "lifestyle/390/lifestyle-live-390-02.png",
+      "sha256": "91bcce48d1fe26fd34ac7e665b0f065a43e949c6cdc478e46fcd1a05b3f5b1bb",
+      "size": 37028
+    },
+    {
+      "path": "lifestyle/390/lifestyle-live-390-03.png",
+      "sha256": "9551d84e7b27e4a99cd4a77209506d86d4d40374258bbf4a6a5b4ba8a2ca3315",
+      "size": 37407
+    },
+    {
+      "path": "lifestyle/390/lifestyle-live-390-04.png",
+      "sha256": "b56e6ffaeb7da2223347a8b708e19b74c4d6b4f6b224681e091fd0f6508a0509",
+      "size": 27749
+    },
+    {
+      "path": "lifestyle/768/lifestyle-live-768-00.png",
+      "sha256": "8020546874a133e831fe812e64ca8cb91ebcf1bcd3b648158abef025af05116d",
+      "size": 28841
+    },
+    {
+      "path": "lifestyle/768/lifestyle-live-768-01.png",
+      "sha256": "43b725152d4e457e54cd6cd6eec354bd96c0944f9ebda2c12653edb2ab2b02ad",
+      "size": 51685
+    },
+    {
+      "path": "lifestyle/768/lifestyle-live-768-02.png",
+      "sha256": "8b636389cb38cfddc030f96da97fd15b99431aef0a9306560dcb01b1687189b5",
+      "size": 48731
+    },
+    {
+      "path": "lifestyle/768/lifestyle-live-768-03.png",
+      "sha256": "b025c8665927a6ffa128251c5038b1d4b0d33dbf8626d6f9533ea92cd7b905f2",
+      "size": 34168
+    },
+    {
+      "path": "lifestyle/1440/lifestyle-reference-1440-00.png",
+      "sha256": "091c38ed702c00ba63d75e7d5b1f47233916793d7c8f6b56110c3ff7b92e9181",
+      "size": 129960
+    },
+    {
+      "path": "lifestyle/1440/lifestyle-reference-1440-01.png",
+      "sha256": "d9ffc2fbfe6122db4cbca97dd6860bd68a3c53342f0af70b9cfb55252b23c8b4",
+      "size": 94949
+    },
+    {
+      "path": "lifestyle/1440/lifestyle-reference-1440-02.png",
+      "sha256": "da341b7200b2964a681aa01014c6f563b8aebef18f2fd18ea8273ccc70475a54",
+      "size": 88029
+    },
+    {
+      "path": "lifestyle/1440/lifestyle-reference-1440-03.png",
+      "sha256": "391b7d6561150c94bd21e17795bcfdbd4eae2aa113f00c6d14d033fc40387664",
+      "size": 58410
+    },
+    {
+      "path": "lifestyle/390/lifestyle-reference-390-00.png",
+      "sha256": "69f114ce6db001ff464304c3929b38ab3e485bfae698a6caa54805b3b9dc65ad",
+      "size": 56127
+    },
+    {
+      "path": "lifestyle/390/lifestyle-reference-390-01.png",
+      "sha256": "8c7d148c288d3427d716b43db0411c3de257d86f68fd4ff29a097b2ad2d4c3e3",
+      "size": 43975
+    },
+    {
+      "path": "lifestyle/390/lifestyle-reference-390-02.png",
+      "sha256": "ecb2f37529a35fc6b99deff0a59b9c823afaabc6ea450de64e863f5393e79acb",
+      "size": 32984
+    },
+    {
+      "path": "lifestyle/390/lifestyle-reference-390-03.png",
+      "sha256": "7a2e1cbbe69c393c4b7863e34b44ed328dc7595497ee9a1dd0472ee0d60033f1",
+      "size": 39088
+    },
+    {
+      "path": "lifestyle/390/lifestyle-reference-390-04.png",
+      "sha256": "b308ebcb7aa34bd56472a73db723afe8f26ecd14b4c4d2ebbf140e11cc6c4001",
+      "size": 52324
+    },
+    {
+      "path": "lifestyle/390/lifestyle-reference-390-05.png",
+      "sha256": "727e953ea6db50ac7f5a08fbb1897d76297829ef62998e7676041f58a2ab2b17",
+      "size": 23791
+    },
+    {
+      "path": "lifestyle/768/lifestyle-reference-768-00.png",
+      "sha256": "220dde40aa9573bf99c188c20b97949446473cbb416ca405606c4d889be8cc94",
+      "size": 74330
+    },
+    {
+      "path": "lifestyle/768/lifestyle-reference-768-01.png",
+      "sha256": "283277005830e56f815cf4fd773ff82d91fa11dd52909ec55de638d6dd01ebe6",
+      "size": 61339
+    },
+    {
+      "path": "lifestyle/768/lifestyle-reference-768-02.png",
+      "sha256": "e59661098b55d731ca4095f6a0eb13f89a4621465515645578963c2935ef0430",
+      "size": 60021
+    },
+    {
+      "path": "lifestyle/768/lifestyle-reference-768-03.png",
+      "sha256": "0a14efc043445ded911d17b337dc2e154dcc8c1be28e2cf542a7354586190719",
+      "size": 70694
+    },
+    {
+      "path": "lifestyle/768/lifestyle-reference-768-04.png",
+      "sha256": "f8ada6e6b4d82bdf707e6721b8324334ca27b6ffe55e49d3d95f36aee8bd7721",
+      "size": 15052
+    },
+    {
+      "path": "realestate/1440/realestate-live-1440-00.png",
+      "sha256": "70b25c063fa765518723d1983916d64e93a185910bb51e6b88be16caabe624f0",
+      "size": 38795
+    },
+    {
+      "path": "realestate/1440/realestate-live-1440-01.png",
+      "sha256": "a190196369622f3f829daa137b9ae9d0e77a50cac8110d134d9ffbdb0c7763b9",
+      "size": 68816
+    },
+    {
+      "path": "realestate/1440/realestate-live-1440-02.png",
+      "sha256": "ef32c0c408f8e504425cdfb3cd02f344b3b257f9c3e50a431326da0062c78c8f",
+      "size": 54691
+    },
+    {
+      "path": "realestate/1440/realestate-live-1440-03.png",
+      "sha256": "eb38648249b9bc216b2de6a86bf45a3a634d25e29e4d4eb27d53a8c467421ed5",
+      "size": 22916
+    },
+    {
+      "path": "realestate/390/realestate-live-390-00.png",
+      "sha256": "fe7fb94a1b73c3320fb4016308acfd15518186d5fa15080965589a23fae33019",
+      "size": 24785
+    },
+    {
+      "path": "realestate/390/realestate-live-390-01.png",
+      "sha256": "be5c94d51fe4906d48312e7622e404a232d8a25d537db890d972c25b4d5dcb03",
+      "size": 35236
+    },
+    {
+      "path": "realestate/390/realestate-live-390-02.png",
+      "sha256": "815fbc527415db690378b18ebc18cc5f413c87705f48eb91528204ae0730460c",
+      "size": 36289
+    },
+    {
+      "path": "realestate/390/realestate-live-390-03.png",
+      "sha256": "a9bc05a1c97b1d90b1d88e717cea5c2e172fbb40ddf97aec1b31fa687677f931",
+      "size": 35165
+    },
+    {
+      "path": "realestate/390/realestate-live-390-04.png",
+      "sha256": "55269562c0f9a55785c2093cbec4a267b0e2e1fc888029bdabbb0220261d2f68",
+      "size": 26766
+    },
+    {
+      "path": "realestate/768/realestate-live-768-00.png",
+      "sha256": "ddc8b7999057723ad37aad66bb9e60fc5513c31184c99ba0ffc3007674164f6b",
+      "size": 31569
+    },
+    {
+      "path": "realestate/768/realestate-live-768-01.png",
+      "sha256": "851874fc7ce7884f829b3cda81fd266b0ea564a651c104268d6bd464e8e5d9d9",
+      "size": 51702
+    },
+    {
+      "path": "realestate/768/realestate-live-768-02.png",
+      "sha256": "d19636f3feb8076437a52c501a86823b5a1dd7f288bd3e1467b46b98633151f8",
+      "size": 49225
+    },
+    {
+      "path": "realestate/768/realestate-live-768-03.png",
+      "sha256": "b22d45a69065dae4b9857dd8edeb49f070211ba732f72baf5538e07397b01b9e",
+      "size": 32263
+    },
+    {
+      "path": "realestate/1440/realestate-reference-1440-00.png",
+      "sha256": "43af7c9c05950de0d169635888544ddc3422fe1650d718825de7de60d4209175",
+      "size": 143830
+    },
+    {
+      "path": "realestate/1440/realestate-reference-1440-01.png",
+      "sha256": "147e33c3f07387b1bb51bcf4085c06d6ef198bafab3c8f0dd56d2d97154236dd",
+      "size": 93442
+    },
+    {
+      "path": "realestate/1440/realestate-reference-1440-02.png",
+      "sha256": "edfd580cc59edff2a80f62b695028c2ff8dced85d6789834d4067f6ebf9d7550",
+      "size": 77822
+    },
+    {
+      "path": "realestate/1440/realestate-reference-1440-03.png",
+      "sha256": "30e7494ebcb9ffc96c740c16070d15e6dbc92f0476b6c7a3889c34771d563d6d",
+      "size": 53823
+    },
+    {
+      "path": "realestate/390/realestate-reference-390-00.png",
+      "sha256": "6f2ff32013afc0c5be2517e2570ed534aec51ed9da5f4f9a79b4c3434f7bfcc5",
+      "size": 53758
+    },
+    {
+      "path": "realestate/390/realestate-reference-390-01.png",
+      "sha256": "9cdbb5582a4f799071b50e503fb7a4f99f0df92497a59ad54e47a4fd8f72e617",
+      "size": 45033
+    },
+    {
+      "path": "realestate/390/realestate-reference-390-02.png",
+      "sha256": "40610fd1b77032eb329c8e59ea4ab49474bb14605fbf1a953030fb89abb7c935",
+      "size": 34283
+    },
+    {
+      "path": "realestate/390/realestate-reference-390-03.png",
+      "sha256": "26234ca0fcd846d0b007ff7ab4d91a64d702c578cf5be6be6578b905773e982f",
+      "size": 42346
+    },
+    {
+      "path": "realestate/390/realestate-reference-390-04.png",
+      "sha256": "8dba70e1400cea95e4a4d56994c4264a1858e31066537912230346f9d901ba51",
+      "size": 54066
+    },
+    {
+      "path": "realestate/390/realestate-reference-390-05.png",
+      "sha256": "4540c3383dc99e045268b42c64de4b55e629e78e8c7a1c57e28e3e95f2c8e491",
+      "size": 28614
+    },
+    {
+      "path": "realestate/768/realestate-reference-768-00.png",
+      "sha256": "4574090c78f8dd28aab6c32407268fdef83c228b4bdeda29c0db0670a3dfd822",
+      "size": 79450
+    },
+    {
+      "path": "realestate/768/realestate-reference-768-01.png",
+      "sha256": "0c4c49f4cc01dd4310c091ddd5699da9733f8510d1e324f9c28030c8be301ea6",
+      "size": 60888
+    },
+    {
+      "path": "realestate/768/realestate-reference-768-02.png",
+      "sha256": "b10ff885a8d29e4c86466da9d86946b73e169b48a277c6c9453c021d3d8b3f59",
+      "size": 52324
+    },
+    {
+      "path": "realestate/768/realestate-reference-768-03.png",
+      "sha256": "1b5439de356e78d83d56ca32d27cef841e3f1fa2bb8a64bc071fb6a19c610522",
+      "size": 63200
+    },
+    {
+      "path": "realestate/768/realestate-reference-768-04.png",
+      "sha256": "598dd66d5dfa80c7c18997dd3d0d389f919e36537f430f99bcd78be94fb13d15",
+      "size": 15373
+    }
+  ],
+  "validation": [
+    {
+      "check": "capture healthcare reference @ 1440px",
+      "status": "PASS",
+      "evidence": "4 band(s); first healthcare-reference-1440-00.png sha256 05fe3669e894a7a70861112af4ddf8e777aeb6a47225666d35cf6739deecfa10"
+    },
+    {
+      "check": "capture healthcare reference @ 768px",
+      "status": "PASS",
+      "evidence": "5 band(s); first healthcare-reference-768-00.png sha256 5b366e8276aabac4517598b913eda0cf1fe10ece2a78ba080353136e33c48a7f"
+    },
+    {
+      "check": "capture healthcare reference @ 390px",
+      "status": "PASS",
+      "evidence": "6 band(s); first healthcare-reference-390-00.png sha256 3fa1d98cbc8f2faa0c495e92616ee8e44a36395ea57522b06ee1d55aec6d8bf7"
+    },
+    {
+      "check": "capture healthcare live @ 1440px",
+      "status": "PASS",
+      "evidence": "4 band(s); first healthcare-live-1440-00.png sha256 25145a556625a43a50fedac30e8814b57a696847f5acd7faba911082b9c796a3"
+    },
+    {
+      "check": "capture healthcare live @ 768px",
+      "status": "PASS",
+      "evidence": "4 band(s); first healthcare-live-768-00.png sha256 fd29e65b9bed9516a0487e5bf2887c1469eeecb6afd3b505077bd8daa7cfddf6"
+    },
+    {
+      "check": "capture healthcare live @ 390px",
+      "status": "PASS",
+      "evidence": "5 band(s); first healthcare-live-390-00.png sha256 a9aa8dbfb3fb095582b774bf2fcc60d9065d20f0181254b9cd1dddffe2cb2166"
+    },
+    {
+      "check": "capture consulting reference @ 1440px",
+      "status": "PASS",
+      "evidence": "4 band(s); first consulting-reference-1440-00.png sha256 e465863cdcc7452175c0fd586105470b2dedc0b273e095caa8cfc9655206538a"
+    },
+    {
+      "check": "capture consulting reference @ 768px",
+      "status": "PASS",
+      "evidence": "5 band(s); first consulting-reference-768-00.png sha256 d35f9c8eb280ec731357fe3218128fcaee93346fb35b25a3788fbc05becc6681"
+    },
+    {
+      "check": "capture consulting reference @ 390px",
+      "status": "PASS",
+      "evidence": "6 band(s); first consulting-reference-390-00.png sha256 0fb89b7727133ff8bb94f41bf13fa1e19b92abd50bbe911d4881e4da6ad51b6b"
+    },
+    {
+      "check": "capture consulting live @ 1440px",
+      "status": "PASS",
+      "evidence": "4 band(s); first consulting-live-1440-00.png sha256 9f59417cddbd0d5de3077402a4295b03200e4cc05edc8edba37e6601660b9746"
+    },
+    {
+      "check": "capture consulting live @ 768px",
+      "status": "PASS",
+      "evidence": "4 band(s); first consulting-live-768-00.png sha256 67ce3b7aebf9e18b93a6238361ed4126b4c235c4d7016b82e56f7b33b34c1dff"
+    },
+    {
+      "check": "capture consulting live @ 390px",
+      "status": "PASS",
+      "evidence": "5 band(s); first consulting-live-390-00.png sha256 3df65b87c6de55f85ca656b1da06c3ff410aaacab0d1f2eed7eb03795abd3a05"
+    },
+    {
+      "check": "capture lifestyle reference @ 1440px",
+      "status": "PASS",
+      "evidence": "4 band(s); first lifestyle-reference-1440-00.png sha256 091c38ed702c00ba63d75e7d5b1f47233916793d7c8f6b56110c3ff7b92e9181"
+    },
+    {
+      "check": "capture lifestyle reference @ 768px",
+      "status": "PASS",
+      "evidence": "5 band(s); first lifestyle-reference-768-00.png sha256 220dde40aa9573bf99c188c20b97949446473cbb416ca405606c4d889be8cc94"
+    },
+    {
+      "check": "capture lifestyle reference @ 390px",
+      "status": "PASS",
+      "evidence": "6 band(s); first lifestyle-reference-390-00.png sha256 69f114ce6db001ff464304c3929b38ab3e485bfae698a6caa54805b3b9dc65ad"
+    },
+    {
+      "check": "capture lifestyle live @ 1440px",
+      "status": "PASS",
+      "evidence": "4 band(s); first lifestyle-live-1440-00.png sha256 5b8140cc5b67c0e48cba393f3db2f74e7d944c0f2dfe7d2f983cee630db074f6"
+    },
+    {
+      "check": "capture lifestyle live @ 768px",
+      "status": "PASS",
+      "evidence": "4 band(s); first lifestyle-live-768-00.png sha256 8020546874a133e831fe812e64ca8cb91ebcf1bcd3b648158abef025af05116d"
+    },
+    {
+      "check": "capture lifestyle live @ 390px",
+      "status": "PASS",
+      "evidence": "5 band(s); first lifestyle-live-390-00.png sha256 4f626fb994a8363424c54d41d4f559d282eb313c15fe9222eff7313c250fd654"
+    },
+    {
+      "check": "capture realestate reference @ 1440px",
+      "status": "PASS",
+      "evidence": "4 band(s); first realestate-reference-1440-00.png sha256 43af7c9c05950de0d169635888544ddc3422fe1650d718825de7de60d4209175"
+    },
+    {
+      "check": "capture realestate reference @ 768px",
+      "status": "PASS",
+      "evidence": "5 band(s); first realestate-reference-768-00.png sha256 4574090c78f8dd28aab6c32407268fdef83c228b4bdeda29c0db0670a3dfd822"
+    },
+    {
+      "check": "capture realestate reference @ 390px",
+      "status": "PASS",
+      "evidence": "6 band(s); first realestate-reference-390-00.png sha256 6f2ff32013afc0c5be2517e2570ed534aec51ed9da5f4f9a79b4c3434f7bfcc5"
+    },
+    {
+      "check": "capture realestate live @ 1440px",
+      "status": "PASS",
+      "evidence": "4 band(s); first realestate-live-1440-00.png sha256 70b25c063fa765518723d1983916d64e93a185910bb51e6b88be16caabe624f0"
+    },
+    {
+      "check": "capture realestate live @ 768px",
+      "status": "PASS",
+      "evidence": "4 band(s); first realestate-live-768-00.png sha256 ddc8b7999057723ad37aad66bb9e60fc5513c31184c99ba0ffc3007674164f6b"
+    },
+    {
+      "check": "capture realestate live @ 390px",
+      "status": "PASS",
+      "evidence": "5 band(s); first realestate-live-390-00.png sha256 fe7fb94a1b73c3320fb4016308acfd15518186d5fa15080965589a23fae33019"
+    },
+    {
+      "check": "visual-diff process exit",
+      "status": "PASS",
+      "evidence": "exit 0; 24 PASS / 0 FAIL / 0 SKIPPED of 24 requested"
+    },
+    {
+      "check": "pnpm check:source",
+      "status": "PASS",
+      "evidence": "lint clean; tsc --noEmit exit 0; vitest 45 files / 428 tests passed; next build exit 0"
+    },
+    {
+      "check": "pnpm verify:fixtures",
+      "status": "PASS",
+      "evidence": "114/114 fixture assertions passed"
+    },
+    {
+      "check": "pnpm verify:layout",
+      "status": "PASS",
+      "evidence": "75/75 layout assertions passed"
+    },
+    {
+      "check": "pnpm verify:alignment",
+      "status": "NOT RUN",
+      "evidence": "geometry/overflow/direction/reduced-motion evidence; not run for G-J, and it would not establish typography, colour, imagery, interaction or motion fidelity"
+    }
+  ],
+  "evidenceClass": "TRANSFERRED_EVIDENCE",
+  "acceptanceState": "IMPLEMENTED_PENDING_INDEPENDENT_REVIEW",
+  "canonical": false,
+  "notes": [
+    "Evidence root (LOCAL reviewer only): C:\\Users\\User\\SIRA-evidence\\TP-STEP4-GJ. files[].path is relative to that root; PNGs are deliberately outside the repository, frontend/src and frontend/public.",
+    "Committing this manifest changes the branch head, so candidateHead is null here by construction; the exact final candidate head is recorded in the pull request Evidence Envelope after commit.",
+    "Captured with: SIRA_VISUAL_DIFF_LOCAL_ORIGIN=127.0.0.1:3000 node scripts/visual-diff.mjs --targets healthcare,consulting,lifestyle,realestate --viewports 1440,768,390. Tenants resolve from the Host header, so chromium maps the canonical hostnames onto a local next dev.",
+    "Viewports 1440/768/390 straddle the app's real breakpoints (48rem = 768 and 68.75rem = 1100 in src/styles/globals.css); 1440 sits above the desktop breakpoint with the 1320.5px container cap engaged.",
+    "References: healthcare -> .local-reference/step-4-design/Sira Healthcare.dc.html; consulting -> .local-reference/step-4-design/Sira Consulting.dc.html; lifestyle -> .local-reference/step-4-design/Sira Lifestyle.dc.html; realestate -> .local-reference/step-4-design/Sira Real Estate.dc.html. .local-reference/ is untracked by architecture and is reference-only.",
+    "PIXEL-LEVEL EVIDENCE IS LOCAL-ONLY. Because .local-reference/ is untracked, neither CI nor a GitHub-only reviewer can reproduce the reference side. A GitHub-only reviewer must classify this tier NOT_VERIFIED_BY_THIS_AGENT and must not claim PASS from this manifest alone.",
+    "FINDING CMS_CONTENT_DIFFERENCE (all four tenants): the branch homepage query returns HTTP 200, siraHomepage.variant='branch' and zero GraphQL errors, but hero, statistics, overview and focusAreas are empty. The shell, navigation, brand tokens and section skeleton render; the authored content does not exist yet. No frontend hardcoding was introduced.",
+    "FINDING CMS_CONTENT_DIFFERENCE (healthcare): live brand accent is #8224e3 (purple) while --brand-primary is #1e73be (blue) and the code preset in src/lib/brand/fallbacks.ts uses accent #2c6dad. #8224e3 is a WordPress default palette value, so the healthcare brand accent appears unset in the CMS. data-brand-source='wordpress' for all four tenants, so this is CMS data, not a frontend defect.",
+    "FINDING CMS_CONTENT_DIFFERENCE (healthcare): live wordmark reads 'SIRA Health' while the design reference and the code preset both read 'SIRA Healthcare'. The other three wordmarks match.",
+    "OBSERVATION: no <h1> is present on any of the four tenants, because BranchHero is correctly omitted when hero data is absent. This resolves with authored hero content and is not a separate defect.",
+    "OBSERVATION: all four tenants render 5 sections with no horizontal overflow at 1440, 768 and 390.",
+    "NO FUNCTIONAL_DEFECT was found in the shared BranchHomepage component set for G-J.",
+    "This artifact does not establish production visual acceptance, K Newsroom completion, L-O completion, complete live CMS content, CMS mutation, deployment, or staging. Artifact existence does not imply canonicality."
+  ]
+}

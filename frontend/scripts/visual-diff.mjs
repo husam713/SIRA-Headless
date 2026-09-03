@@ -28,7 +28,8 @@
  */
 
 import { createServer } from "node:http";
-import { readFile, mkdir } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { readFile, mkdir, writeFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -86,31 +87,63 @@ const MIME_TYPES = Object.freeze({
 const LIVE_BASE_URL =
   "https://sira-headless-git-feat-step-4-shared-shell-husam713s-projects.vercel.app/";
 
+// Tenants are resolved from the Host header, not from a path segment: the
+// [siteKey] route parameter is populated by hostname discovery, and requesting
+// http://localhost:3000/healthcare/ is a 404 while an unknown Host is a 421.
+// So local capture maps the canonical hostnames onto a local `next dev` at the
+// DNS layer and requests the real hostname:
+//   SIRA_VISUAL_DIFF_LOCAL_ORIGIN=127.0.0.1:3000
+// Unset, every target keeps exactly its previous live entry.
+const LOCAL_ORIGIN = process.env["SIRA_VISUAL_DIFF_LOCAL_ORIGIN"];
+
+// Mirrors canonicalHostname in src/config/sites.ts. Duplicated rather than
+// imported because this is a plain .mjs script and that registry is TypeScript.
+const SITE_HOSTNAMES = Object.freeze({
+  group: "siratrgroup.com",
+  consulting: "consulting.siratrgroup.com",
+  healthcare: "healthcare.siratrgroup.com",
+  lifestyle: "lifestyle.siratrgroup.com",
+  realestate: "realestate.siratrgroup.com",
+});
+
+function localResolverRules() {
+  if (LOCAL_ORIGIN === undefined || LOCAL_ORIGIN === "") return [];
+  const rules = Object.values(SITE_HOSTNAMES)
+    .map((hostname) => `MAP ${hostname} ${LOCAL_ORIGIN}`)
+    .join(",");
+  return [`--host-resolver-rules=${rules}`];
+}
+
+function liveFor(siteKey, fallback) {
+  if (LOCAL_ORIGIN === undefined || LOCAL_ORIGIN === "") return fallback;
+  return Object.freeze({ url: `http://${SITE_HOSTNAMES[siteKey]}/` });
+}
+
 const TARGETS = Object.freeze({
   group: Object.freeze({
     label: "SIRA Group Homepage",
     reference: "SIRA Group Homepage.dc.html",
-    live: Object.freeze({ url: LIVE_BASE_URL }),
+    live: liveFor("group", Object.freeze({ url: LIVE_BASE_URL })),
   }),
   realestate: Object.freeze({
     label: "SIRA Real Estate",
     reference: "Sira Real Estate.dc.html",
-    live: null,
+    live: liveFor("realestate", null),
   }),
   healthcare: Object.freeze({
     label: "SIRA Healthcare",
     reference: "Sira Healthcare.dc.html",
-    live: null,
+    live: liveFor("healthcare", null),
   }),
   lifestyle: Object.freeze({
     label: "SIRA Lifestyle",
     reference: "Sira Lifestyle.dc.html",
-    live: null,
+    live: liveFor("lifestyle", null),
   }),
   consulting: Object.freeze({
     label: "SIRA Consulting",
     reference: "Sira Consulting.dc.html",
-    live: null,
+    live: liveFor("consulting", null),
   }),
   news: Object.freeze({
     label: "SIRA News",
@@ -124,7 +157,14 @@ const TARGETS = Object.freeze({
   }),
 });
 
-const VIEWPORT = Object.freeze({ width: 1920, height: 1080 });
+// Default stays the historical single 1920 capture so existing invocations are
+// unchanged. --viewports selects the comparison widths; G-J uses 1440,768,390,
+// which straddle the app's real breakpoints (48rem = 768 and 68.75rem = 1100 in
+// styles/globals.css) rather than generic device sizes.
+const DEFAULT_VIEWPORT_WIDTHS = Object.freeze([1920]);
+const VIEWPORT_HEIGHT = 1080;
+const MIN_VIEWPORT_WIDTH = 320;
+const MAX_VIEWPORT_WIDTH = 3840;
 const BAND_HEIGHT = 1300;
 const BAND_OVERLAP = 100;
 const MAX_BANDS = 40;
@@ -142,11 +182,29 @@ function parseArgs(argv) {
     "sira-visual-diff",
   );
   let list = false;
+  let viewports = [...DEFAULT_VIEWPORT_WIDTHS];
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--list") {
       list = true;
+    } else if (arg === "--viewports") {
+      const value = argv[i + 1];
+      if (value === undefined) throw new Error("--viewports requires a value");
+      viewports = value.split(",").map((item) => item.trim()).filter(Boolean).map((item) => {
+        if (!/^[0-9]+$/.test(item)) {
+          throw new Error(`--viewports expects integer widths, got "${item}"`);
+        }
+        const width = Number(item);
+        if (width < MIN_VIEWPORT_WIDTH || width > MAX_VIEWPORT_WIDTH) {
+          throw new Error(
+            `--viewports width ${width} is outside ${MIN_VIEWPORT_WIDTH}-${MAX_VIEWPORT_WIDTH}`,
+          );
+        }
+        return width;
+      });
+      if (viewports.length === 0) throw new Error("--viewports requires at least one width");
+      i += 1;
     } else if (arg === "--targets") {
       const value = argv[i + 1];
       if (value === undefined) throw new Error("--targets requires a value");
@@ -162,7 +220,18 @@ function parseArgs(argv) {
     }
   }
 
-  return { targets, outDir, list };
+  if (targets.length === 0) throw new Error("--targets requires at least one target");
+
+  // An unknown target used to warn and continue, so a typo produced a run that
+  // looked successful and captured nothing for that tenant. It is now fatal.
+  const unknown = targets.filter((key) => !Object.hasOwn(TARGETS, key));
+  if (unknown.length > 0) {
+    throw new Error(
+      `Unknown target(s): ${unknown.join(", ")}. Run with --list to see valid targets.`,
+    );
+  }
+
+  return { targets, outDir, list, viewports };
 }
 
 async function startReferenceServer() {
@@ -209,7 +278,7 @@ async function settle(page) {
   );
 }
 
-async function captureBands(page, outDir, prefix) {
+async function captureBands(page, outDir, prefix, viewportWidth) {
   const totalHeight = await page.evaluate(() =>
     Math.max(
       document.documentElement.scrollHeight,
@@ -219,8 +288,7 @@ async function captureBands(page, outDir, prefix) {
   );
 
   if (totalHeight <= 0) {
-    console.warn(`  (skipping ${prefix}: page reported zero height)`);
-    return [];
+    throw new Error(`${prefix}: page reported zero height, so nothing was captured`);
   }
 
   const files = [];
@@ -235,7 +303,7 @@ async function captureBands(page, outDir, prefix) {
       // clip is viewport-relative unless fullPage is set; these bands are
       // slices of the whole document, so both are required.
       fullPage: true,
-      clip: { x: 0, y, width: VIEWPORT.width, height },
+      clip: { x: 0, y, width: viewportWidth, height },
       timeout: SCREENSHOT_TIMEOUT_MS,
     });
     files.push(file);
@@ -248,30 +316,125 @@ async function captureBands(page, outDir, prefix) {
   return files;
 }
 
-async function captureTarget(browser, baseUrl, key, target, outDir) {
-  console.log(`\n=== ${target.label} (${key}) ===`);
+async function sideCarRecord(files) {
+  const records = [];
+  for (const file of files) {
+    const bytes = await readFile(file);
+    const info = await stat(file);
+    records.push({
+      path: path.basename(file),
+      absolutePath: file,
+      size: info.size,
+      sha256: createHash("sha256").update(bytes).digest("hex"),
+    });
+  }
+  return records;
+}
 
-  const referencePage = await browser.newPage({ viewport: VIEWPORT });
+// One capture = one tenant, one side, one viewport. Every requested capture
+// produces a record, successful or not, so a partial run can never be read as a
+// complete one.
+async function captureSide(browser, key, side, url, viewportWidth, outDir, extraHeaders) {
+  const startedAt = new Date().toISOString();
+  const prefix = `${key}-${side}-${viewportWidth}`;
+  const page = await browser.newPage({
+    viewport: { width: viewportWidth, height: VIEWPORT_HEIGHT },
+    ...(extraHeaders === undefined ? {} : { extraHTTPHeaders: extraHeaders }),
+  });
+
   try {
-    const referenceUrl = `${baseUrl}/${encodeURIComponent(target.reference)}`;
-    await referencePage.goto(referenceUrl, {
-      waitUntil: "load",
+    const response = await page.goto(url, {
+      waitUntil: side === "reference" ? "load" : "domcontentloaded",
       timeout: NAVIGATION_TIMEOUT_MS,
     });
-    await settle(referencePage);
-    await referencePage.waitForTimeout(600);
-    const files = await captureBands(referencePage, outDir, `${key}-reference`);
-    console.log(`Reference: ${files.length} band(s):`);
-    for (const file of files) console.log(`  ${file}`);
+    const status = response === null ? null : response.status();
+
+    if (status === 401) {
+      throw new Error(
+        "HTTP 401 - set SIRA_VERCEL_PROTECTION_BYPASS (Vercel project settings -> " +
+          "Deployment Protection -> Protection Bypass for Automation) and retry",
+      );
+    }
+    if (status !== null && status >= 400) {
+      throw new Error(`HTTP ${status}`);
+    }
+
+    await settle(page);
+    await page.waitForTimeout(600);
+
+    const files = await captureBands(page, outDir, prefix, viewportWidth);
+    if (files.length === 0) throw new Error("no bands were captured");
+
+    console.log(`  ${side} @ ${viewportWidth}px: PASS (${files.length} band(s))`);
+    return {
+      tenant: key,
+      side,
+      viewport: viewportWidth,
+      url,
+      status: "PASS",
+      httpStatus: status,
+      startedAt,
+      finishedAt: new Date().toISOString(),
+      error: null,
+      files: await sideCarRecord(files),
+    };
   } catch (error) {
-    console.error(`Reference capture failed for "${key}":`, error.message);
+    console.error(`  ${side} @ ${viewportWidth}px: FAIL - ${error.message}`);
+    return {
+      tenant: key,
+      side,
+      viewport: viewportWidth,
+      url,
+      status: "FAIL",
+      httpStatus: null,
+      startedAt,
+      finishedAt: new Date().toISOString(),
+      error: error.message,
+      files: [],
+    };
   } finally {
-    await referencePage.close();
+    await page.close();
+  }
+}
+
+async function captureTarget(browser, baseUrl, key, target, outDir, viewports) {
+  console.log(`
+=== ${target.label} (${key}) ===`);
+  const results = [];
+
+  for (const viewportWidth of viewports) {
+    results.push(
+      await captureSide(
+        browser,
+        key,
+        "reference",
+        `${baseUrl}/${encodeURIComponent(target.reference)}`,
+        viewportWidth,
+        outDir,
+        undefined,
+      ),
+    );
   }
 
   if (target.live === null) {
-    console.log("Live: skipped (no reachable preview URL configured for this target yet).");
-    return;
+    // Not requested, so not a failure: it is reported as SKIPPED and the
+    // manifest says why.
+    for (const viewportWidth of viewports) {
+      console.log(`  live @ ${viewportWidth}px: SKIPPED (no live URL configured)`);
+      results.push({
+        tenant: key,
+        side: "live",
+        viewport: viewportWidth,
+        url: null,
+        status: "SKIPPED",
+        httpStatus: null,
+        startedAt: new Date().toISOString(),
+        finishedAt: new Date().toISOString(),
+        error: "no live URL configured; set SIRA_VISUAL_DIFF_LOCAL_ORIGIN",
+        files: [],
+      });
+    }
+    return results;
   }
 
   const bypass = process.env["SIRA_VERCEL_PROTECTION_BYPASS"];
@@ -280,33 +443,25 @@ async function captureTarget(browser, baseUrl, key, target, outDir) {
     headers["x-vercel-protection-bypass"] = bypass;
   }
 
-  const livePage = await browser.newPage({ viewport: VIEWPORT, extraHTTPHeaders: headers });
-  try {
-    const response = await livePage.goto(target.live.url, {
-      waitUntil: "domcontentloaded",
-      timeout: NAVIGATION_TIMEOUT_MS,
-    });
-    if (response !== null && response.status() === 401) {
-      console.warn(
-        "Live: got HTTP 401 — set SIRA_VERCEL_PROTECTION_BYPASS (Vercel project settings → " +
-          "Deployment Protection → Protection Bypass for Automation) and retry.",
-      );
-      return;
-    }
-    await settle(livePage);
-    await livePage.waitForTimeout(600);
-    const files = await captureBands(livePage, outDir, `${key}-live`);
-    console.log(`Live: ${files.length} band(s):`);
-    for (const file of files) console.log(`  ${file}`);
-  } catch (error) {
-    console.error(`Live capture failed for "${key}":`, error.message);
-  } finally {
-    await livePage.close();
+  for (const viewportWidth of viewports) {
+    results.push(
+      await captureSide(
+        browser,
+        key,
+        "live",
+        target.live.url,
+        viewportWidth,
+        outDir,
+        headers,
+      ),
+    );
   }
+
+  return results;
 }
 
 async function main() {
-  const { targets, outDir, list } = parseArgs(process.argv.slice(2));
+  const { targets, outDir, list, viewports } = parseArgs(process.argv.slice(2));
 
   if (list) {
     console.log("Available targets:");
@@ -318,26 +473,83 @@ async function main() {
 
   await mkdir(outDir, { recursive: true });
   console.log(`Output directory: ${outDir}`);
+  console.log(`Viewports: ${viewports.join(", ")}`);
+
+  const runStartedAt = new Date().toISOString();
+  const results = [];
 
   const { server, baseUrl } = await startReferenceServer();
   const chromium = await loadChromium();
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ args: localResolverRules() });
 
   try {
     for (const key of targets) {
-      const target = TARGETS[key];
-      if (target === undefined) {
-        console.warn(`Unknown target "${key}" — skipping. Run with --list to see valid targets.`);
-        continue;
-      }
-      await captureTarget(browser, baseUrl, key, target, outDir);
+      // parseArgs already rejected unknown targets, so every key here is real.
+      results.push(
+        ...(await captureTarget(browser, baseUrl, key, TARGETS[key], outDir, viewports)),
+      );
     }
   } finally {
     await browser.close();
     server.close();
   }
 
-  console.log(`\nDone. All screenshots saved under: ${outDir}`);
+  const failed = results.filter((r) => r.status === "FAIL");
+  const passed = results.filter((r) => r.status === "PASS");
+  const skipped = results.filter((r) => r.status === "SKIPPED");
+  const exitStatus = failed.length === 0 ? 0 : 1;
+
+  const manifestPath = path.join(outDir, "capture-manifest.json");
+  await writeFile(
+    manifestPath,
+    `${JSON.stringify(
+      {
+        tool: "frontend/scripts/visual-diff.mjs",
+        startedAt: runStartedAt,
+        finishedAt: new Date().toISOString(),
+        outDir,
+        requestedTargets: targets,
+        requestedViewports: viewports,
+        references: Object.fromEntries(
+          targets.map((key) => [key, TARGETS[key].reference]),
+        ),
+        summary: {
+          requested: results.length,
+          passed: passed.length,
+          failed: failed.length,
+          skipped: skipped.length,
+        },
+        captures: results,
+        exitStatus,
+      },
+      null,
+      2,
+    )}
+`,
+    "utf8",
+  );
+
+  console.log(
+    `
+Captures: ${passed.length} PASS, ${failed.length} FAIL, ${skipped.length} SKIPPED`,
+  );
+  console.log(`Manifest: ${manifestPath}`);
+
+  if (exitStatus !== 0) {
+    // A failed capture must never be reportable as a complete successful run.
+    console.error(
+      `
+${failed.length} requested capture(s) failed:` +
+        failed
+          .map((r) => `
+  ${r.tenant} ${r.side} @ ${r.viewport}px - ${r.error}`)
+          .join(""),
+    );
+    process.exitCode = 1;
+    return;
+  }
+
+  console.log(`Done. All screenshots saved under: ${outDir}`);
 }
 
 main().catch((error) => {

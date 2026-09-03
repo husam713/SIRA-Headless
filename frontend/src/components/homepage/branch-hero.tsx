@@ -1,4 +1,5 @@
 import { PageContainer } from "@/components/layout/page-container";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type { BranchHomepageHero } from "@/lib/homepage/types";
 
@@ -59,10 +60,9 @@ export function BranchHero({ hero }: BranchHeroProps) {
       <PageContainer className="relative z-[2] pb-16 pt-32 sm:pb-20 lg:pb-24">
         <div className="flex max-w-[42rem] flex-col gap-8 text-brand-paper">
           {hero.eyebrow !== null || hero.region !== null ? (
-            <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent">
-              <span aria-hidden="true" className="h-px w-8 bg-current" />
+            <SectionEyebrow>
               {[hero.eyebrow, hero.region].filter((part) => part !== null).join(" · ")}
-            </p>
+            </SectionEyebrow>
           ) : null}
 
           {hasHeading ? (

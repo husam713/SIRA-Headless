@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { CtaLink } from "@/components/homepage/cta-link";
 import { formatContentDate } from "@/lib/homepage/format-date";
 import type {
@@ -73,9 +74,7 @@ export function GroupInsights({ section }: GroupInsightsProps) {
       <PageContainer>
         <div className="flex flex-wrap items-end justify-between gap-8">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-              {section.eyebrow ?? "News & Perspectives"}
-            </p>
+            <SectionEyebrow>{section.eyebrow ?? "News & Perspectives"}</SectionEyebrow>
             {section.heading !== null ? (
               <h2
                 id="insights-heading"

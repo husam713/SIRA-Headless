@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import type { HomepageContactSection } from "@/lib/homepage/types";
 
 interface GroupContactProps {
@@ -83,9 +84,7 @@ export function GroupContact({ section, email, address }: GroupContactProps) {
           internal two-column form split keeps its own wider gap. */}
       <PageContainer className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent-bright">
-            {section.eyebrow ?? "Get in Touch"}
-          </p>
+          <SectionEyebrow tone="bright">{section.eyebrow ?? "Get in Touch"}</SectionEyebrow>
           {hasHeading ? (
             <h2
               id="contact-heading"

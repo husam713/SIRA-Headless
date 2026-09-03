@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
   HomepageContentItem,
@@ -83,9 +84,7 @@ export function GroupProjects({ section }: GroupProjectsProps) {
       <PageContainer>
         <div className="flex flex-wrap items-end justify-between gap-8">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-              {section.eyebrow ?? "Global Footprint"}
-            </p>
+            <SectionEyebrow>{section.eyebrow ?? "Global Footprint"}</SectionEyebrow>
             {section.heading !== null ? (
               <h2
                 id="projects-heading"

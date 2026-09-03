@@ -14,7 +14,10 @@ import { GroupProjects } from "@/components/homepage/group-projects";
 import { GroupServices } from "@/components/homepage/group-services";
 import { GroupTestimonials } from "@/components/homepage/group-testimonials";
 import { GroupTicker } from "@/components/homepage/group-ticker";
+import { createBrandCssVariables } from "@/lib/brand/css-variables";
+import { createFallbackBrand } from "@/lib/brand/fallbacks";
 import type { BranchHomepage, GroupHomepage } from "@/lib/homepage/types";
+import type { SiteKey } from "@/types/site";
 
 // Test-only composer. It imports the REAL production section components and
 // mirrors the composition in src/app/(sites)/[siteKey]/page.tsx, including the
@@ -27,6 +30,33 @@ import type { BranchHomepage, GroupHomepage } from "@/lib/homepage/types";
 //
 // The shared shell (SiteHeader / SiteFooter) lives in the route layout, not the
 // page, and needs live navigation data, so it is out of this harness's scope.
+
+// Production puts the brand tokens on <html> and the paper/ink classes on
+// <body> (see src/components/brand/brand-document.tsx). The harness renders a
+// fragment, so it mirrors both onto one wrapper: without it every fixture
+// renders with default colours and the four tenants are indistinguishable.
+//
+// The values come from the real brand exports, never from a copy of the
+// palette. Fonts are deliberately NOT handled here - next/font cannot be
+// imported outside the Next compiler - so scripts/verify-homepage-fixtures.mjs
+// applies the font-variable classes it discovers in the built CSS.
+export function withBrandTokens(
+  siteKey: SiteKey,
+  children: ReactElement,
+): ReactElement {
+  const brand = createFallbackBrand(siteKey);
+
+  return (
+    <div
+      data-brand-key={brand.key}
+      data-brand-source={brand.source}
+      className="min-h-screen bg-brand-paper font-sans text-brand-ink antialiased"
+      style={createBrandCssVariables(brand)}
+    >
+      {children}
+    </div>
+  );
+}
 
 const FIXTURE_EMAIL = "fixtures@example.test";
 const FIXTURE_ADDRESS = "Fixture address, Riyadh";

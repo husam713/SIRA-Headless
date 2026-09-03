@@ -2,6 +2,7 @@ import { CtaLink } from "@/components/homepage/cta-link";
 import { GridItem, PageGrid } from "@/components/layout/page-grid";
 import { Prose } from "@/components/layout/prose";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import type {
   HomepageFocusArea,
   HomepageRichTextSection,
@@ -78,9 +79,7 @@ export function BranchOverview({ overview, focusAreas }: BranchOverviewProps) {
     >
       <PageGrid className="gap-y-12">
         <GridItem span={copySpan}>
-          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent">
-            {overview?.eyebrow ?? "Overview"}
-          </p>
+          <SectionEyebrow>{overview?.eyebrow ?? "Overview"}</SectionEyebrow>
           {hasHeading ? (
             <h2
               id="overview-heading"

@@ -54,6 +54,30 @@ function readBuiltCss() {
     .join("\n");
 }
 
+// next/font emits one hashed class per family that defines the --font-*
+// variable (e.g. archivo_961f138c-module__9QqUMW__variable). The harness cannot
+// import @/styles/fonts, because next/font only resolves inside the Next
+// compiler, so the classes are recovered from the built CSS instead. The hash
+// changes every build, which is exactly why this is derived and never
+// hardcoded. Without them the fixture surface renders in a fallback face and
+// every spacing and wrapping comparison is measuring the wrong typography.
+function readFontVariableClasses(css) {
+  const found = new Set();
+  for (const match of css.matchAll(/\.([A-Za-z0-9_-]+__variable)/g)) {
+    found.add(match[1]);
+  }
+  if (found.size === 0) {
+    // Failing loudly beats silently measuring a fallback face: spacing,
+    // wrapping and section heights would all be wrong and nothing would say so.
+    throw new Error(
+      "No next/font variable classes found in the built CSS. Re-run the build; " +
+        "do not compare typography or spacing against this render.",
+    );
+  }
+
+  return [...found].join(" ");
+}
+
 function readFixtureMarkup(name) {
   try {
     return readFileSync(join(HTML_DIR, name), "utf8");
@@ -154,6 +178,7 @@ const VIEWPORTS = [
 const FAILURE_DEMO = process.env["SIRA_FIXTURE_FAILURE_DEMO"] === "1";
 
 const css = readBuiltCss();
+const fontVariableClasses = readFontVariableClasses(css);
 const chromium = await loadChromium();
 const browser = await chromium.launch();
 const failures = [];
@@ -168,7 +193,9 @@ try {
     }
 
     const html =
-      '<!doctype html><html lang="en"><head><meta charset="utf-8"><style>' +
+      '<!doctype html><html lang="en" class="' +
+      fontVariableClasses +
+      '"><head><meta charset="utf-8"><style>' +
       css +
       "</style></head><body>" +
       markup +

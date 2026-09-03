@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import type {
   HomepageContentItem,
   HomepageContentSection,
@@ -47,9 +48,7 @@ export function GroupPartners({ section }: GroupPartnersProps) {
       className="border-b border-brand-border text-center"
     >
       <PageContainer>
-        <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-          {section.eyebrow ?? "Our Partners"}
-        </p>
+        <SectionEyebrow tone="faint">{section.eyebrow ?? "Our Partners"}</SectionEyebrow>
         {hasHeading ? (
           <h2
             id="partners-heading"

@@ -1,5 +1,6 @@
 import { GridItem, PageGrid } from "@/components/layout/page-grid";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { CtaLink } from "@/components/homepage/cta-link";
 import { formatContentDate } from "@/lib/homepage/format-date";
 import type {
@@ -81,12 +82,9 @@ export function GroupLatestUpdates({ section }: GroupLatestUpdatesProps) {
     >
       <PageGrid className="gap-y-10">
         <GridItem span={3}>
-          <h2
-            id="latest-updates-heading"
-            className="text-[11px] font-bold uppercase tracking-[0.12em]"
-          >
+          <SectionEyebrow as="h2" id="latest-updates-heading" tone="faint">
             {section.eyebrow ?? "Latest Updates"}
-          </h2>
+          </SectionEyebrow>
           {section.heading !== null ? (
             <p className="mt-4 font-display text-2xl font-normal leading-tight">
               {section.heading}

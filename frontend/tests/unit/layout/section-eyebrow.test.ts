@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -7,12 +7,10 @@ import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 
 const HOMEPAGE_DIR = join("src", "components", "homepage");
 
-// Sections converted to the shared eyebrow. The branch homepage renders the
-// first five; the last three are Group-only and were converted separately.
-//
-// group-latest-updates, group-partners, group-services and group-testimonials
-// still hand-roll the same eyebrow and are NOT in this list: they are reported
-// for a separate decision rather than changed without authorization.
+// Every scoped homepage section now uses the shared eyebrow. The list is
+// exhaustive on purpose: the guard below also asserts that no homepage
+// component hand-rolls the eyebrow typography any more, so a new section
+// cannot quietly reintroduce one.
 const CONVERTED_SECTION_FILES = [
   "branch-hero.tsx",
   "branch-overview.tsx",
@@ -22,11 +20,18 @@ const CONVERTED_SECTION_FILES = [
   "group-about.tsx",
   "group-companies.tsx",
   "group-investor.tsx",
+  "group-latest-updates.tsx",
+  "group-partners.tsx",
+  "group-services.tsx",
+  "group-testimonials.tsx",
 ] as const;
 
-const EYEBROW_TYPOGRAPHY = "tracking-[0.12em]";
+// The exact eyebrow signature. Matching on tracking alone is too broad: the
+// carousel slide label (10px span with a per-slide accent) and the ticker
+// entry (text-xs, semibold) share the tracking without being eyebrows.
+const EYEBROW_TYPOGRAPHY = "text-[11px] font-bold uppercase tracking-[0.12em]";
 
-function render(tone?: "accent" | "bright"): string {
+function render(tone?: "accent" | "bright" | "faint"): string {
   const props =
     tone === undefined
       ? { children: "Overview" }
@@ -44,9 +49,45 @@ describe("SectionEyebrow", () => {
     expect(markup).toContain("Overview");
   });
 
-  it("carries the accent tone by default and the bright tone on deep sections", () => {
+  it("carries the accent tone by default and the other tones on request", () => {
     expect(render()).toContain("text-brand-accent");
     expect(render("bright")).toContain("text-brand-accent-bright");
+    // Sections that have always been quiet must not be repainted by the
+    // migration to the shared component.
+    expect(render("faint")).toContain("text-brand-ink-faint");
+  });
+
+  it("can render as a heading that keeps its id", () => {
+    // group-latest-updates uses its eyebrow as the section accessible name via
+    // aria-labelledby, so it must stay an <h2> and keep the id.
+    // Props go through a variable: passing children inline trips
+    // react/no-children-prop, while omitting it fails the required prop.
+    const props = {
+      as: "h2",
+      id: "latest-updates-heading",
+      children: "Latest Updates",
+    } as const;
+    const markup = renderToStaticMarkup(createElement(SectionEyebrow, props));
+
+    expect(markup).toContain("<h2");
+    expect(markup).toContain('id="latest-updates-heading"');
+    expect(markup).toContain('aria-hidden="true"');
+  });
+
+  it("keeps the aria-labelledby target intact in group-latest-updates", () => {
+    const source = readFileSync(join(HOMEPAGE_DIR, "group-latest-updates.tsx"), "utf8");
+
+    expect(source).toContain('labelledBy="latest-updates-heading"');
+    expect(source).toContain('id="latest-updates-heading"');
+    expect(source).toContain('as="h2"');
+  });
+
+  it("leaves no hand-rolled eyebrow anywhere in the homepage sections", () => {
+    const remaining = readdirSync(HOMEPAGE_DIR).filter((file) =>
+      readFileSync(join(HOMEPAGE_DIR, file), "utf8").includes(EYEBROW_TYPOGRAPHY),
+    );
+
+    expect(remaining).toEqual([]);
   });
 
   // The rule was previously drawn inline in BranchHero alone, so five other

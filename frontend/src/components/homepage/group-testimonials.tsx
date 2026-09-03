@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import type {
   HomepageContentItem,
   HomepageContentSection,
@@ -56,9 +57,7 @@ export function GroupTestimonials({ section }: GroupTestimonialsProps) {
       className="border-b border-brand-border"
     >
       <PageContainer>
-        <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-          {section.eyebrow ?? "In Their Words"}
-        </p>
+        <SectionEyebrow tone="faint">{section.eyebrow ?? "In Their Words"}</SectionEyebrow>
         {hasHeading ? (
           <h2
             id="testimonials-heading"

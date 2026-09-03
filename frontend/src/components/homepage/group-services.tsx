@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
   HomepageContentItem,
@@ -50,9 +51,7 @@ export function GroupServices({ section }: GroupServicesProps) {
       <PageContainer>
         <div className="flex flex-wrap items-end justify-between gap-8">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-              {section.eyebrow ?? "What We Do"}
-            </p>
+            <SectionEyebrow tone="faint">{section.eyebrow ?? "What We Do"}</SectionEyebrow>
             {hasHeading ? (
               <h2
                 id="services-heading"

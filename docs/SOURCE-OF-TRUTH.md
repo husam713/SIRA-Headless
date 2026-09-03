@@ -75,7 +75,10 @@ alignment harness gate reached `main` through PR `#55` at `70bd8618`, and the
 `CLAUDE.md` bootstrap adapter through PR `#56` at `dddf9b30`. ADR-029 owner
 acceptance was recorded through PR `#57` at `4da63260`, and tolerance of partial
 GraphQL homepage data, with the homepage fixture harness, through PR `#58` at
-`e829696e`. Newsroom route work remains NOT STARTED.
+`e829696e`. Step 4 sequence items G to J, the branch variant validation for
+Healthcare, Consulting, Lifestyle and Real Estate against the shared
+BranchHomepage, reached `main` through PR `#59` at `e3920919`, together with the
+per-viewport visual capture tooling. Newsroom route work remains NOT STARTED.
 
 Acceptance evidence differs per pull request and must not be generalized. For
 PRs `#44`, `#46`, `#47`, and `#49` to `#53`, the conversation threads were
@@ -84,13 +87,15 @@ commit is the only acceptance-relevant artifact. PR `#48` carries an owner
 comment accepting the ADR-029 architecture decision only; that comment
 explicitly does not accept every PR `#47`/`#48` implementation detail and does
 not establish L-O responsive, RTL, reduced-motion, accessibility, or
-visual-regression completion. PRs `#55`, `#56`, `#57`, and `#58` carry
+visual-regression completion. PRs `#55`, `#56`, `#57`, `#58`, and `#59` carry
 owner-acceptance comments at their exact reviewed candidate heads. PR `#57`
 additionally records independent read-only verification G3 APPROVE and a passing
 Frontend CI run at its accepted head `87ca6b8c`; PR `#58` is accepted at
 `23b4af88` and its acceptance explicitly does not establish production visual
-acceptance, live CMS validation, `verify:alignment`, or L-O QA. Neither
-authorizes any follow-on task. A merge alone is still not
+acceptance, live CMS validation, `verify:alignment`, or L-O QA. PR `#59` is
+accepted at `219ed48c`, covers G to J branch variant validation only, and
+records an independent review returning APPROVE with Frontend CI run
+33701056508 passing at that head. None of them authorizes any follow-on task. A merge alone is still not
 evidence of owner acceptance, and a `recordedReviews` count of 0 states only
 that no formal GitHub Review object was submitted — it does not establish
 absence of acceptance evidence. See the per-pull-request record in

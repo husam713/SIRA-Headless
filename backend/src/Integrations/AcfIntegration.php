@@ -10,6 +10,31 @@ namespace Sira\Core\Integrations;
 final class AcfIntegration {
 	public function hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
+		add_action( 'acf/input/admin_enqueue_scripts', array( $this, 'enqueue_homepage_variant_panels' ) );
+	}
+
+	/**
+	 * Keep the Group and Branch homepage schemas registered while showing editors
+	 * only the field group selected by Homepage Variant.
+	 */
+	public function enqueue_homepage_variant_panels(): void {
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			return;
+		}
+
+		$screen = get_current_screen();
+
+		if ( null === $screen || 'post' !== $screen->base || 'page' !== $screen->post_type ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'sira-homepage-variant-panels',
+			SIRA_CORE_URL . 'assets/js/homepage-variant-panels.js',
+			array( 'acf-input' ),
+			SIRA_CORE_VERSION,
+			true
+		);
 	}
 
 	public function register(): void {

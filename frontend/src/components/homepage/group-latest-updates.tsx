@@ -82,7 +82,7 @@ export function GroupLatestUpdates({ section }: GroupLatestUpdatesProps) {
     >
       <PageGrid className="gap-y-10">
         <GridItem span={3}>
-          <SectionEyebrow as="h2" id="latest-updates-heading" tone="faint">
+          <SectionEyebrow as="h2" id="latest-updates-heading" tone="inherit">
             {section.eyebrow ?? "Latest Updates"}
           </SectionEyebrow>
           {section.heading !== null ? (

@@ -659,8 +659,14 @@ export function normalizeHomepage(
         mobileImage: normalizeMedia(heroSource["mobileImage"]),
       })
     : null;
-  // imageAlt is deliberately not counted: alt text without an image renders
-  // nothing, so it cannot on its own make the hero worth showing.
+  // The keep-threshold has to match what BranchHero actually renders, or the
+  // empty band comes back through a narrower door. The hero is a 75-85svh
+  // full-bleed panel whose <h1> is gated on a heading, so eyebrow, region and
+  // imageAlt cannot justify it on their own: an eyebrow-only hero is that same
+  // tall dark band carrying one small line and no heading at all.
+  //
+  // Only content that fills the panel counts: headings, description, either
+  // image, or a CTA.
   const branchHero: BranchHomepageHero | null =
     branchHeroCandidate !== null &&
     hasAnyValue([
@@ -668,8 +674,6 @@ export function normalizeHomepage(
       branchHeroCandidate.headingHighlight,
       branchHeroCandidate.headingAfter,
       branchHeroCandidate.description,
-      branchHeroCandidate.eyebrow,
-      branchHeroCandidate.region,
       branchHeroCandidate.image,
       branchHeroCandidate.mobileImage,
       branchHeroCandidate.primaryCta,

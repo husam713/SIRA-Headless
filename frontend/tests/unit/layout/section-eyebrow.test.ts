@@ -31,7 +31,7 @@ const CONVERTED_SECTION_FILES = [
 // entry (text-xs, semibold) share the tracking without being eyebrows.
 const EYEBROW_TYPOGRAPHY = "text-[11px] font-bold uppercase tracking-[0.12em]";
 
-function render(tone?: "accent" | "bright" | "faint"): string {
+function render(tone?: "accent" | "bright" | "faint" | "inherit"): string {
   const props =
     tone === undefined
       ? { children: "Overview" }
@@ -55,6 +55,23 @@ describe("SectionEyebrow", () => {
     // Sections that have always been quiet must not be repainted by the
     // migration to the shared component.
     expect(render("faint")).toContain("text-brand-ink-faint");
+    // "inherit" sets no colour at all, for sections that never carried one.
+    const inherited = render("inherit");
+    expect(inherited).not.toContain("text-brand-ink-faint");
+    expect(inherited).not.toContain("text-brand-accent");
+  });
+
+  it("does not repaint the Latest Updates heading", () => {
+    // It never carried a colour class: it inherited --brand-ink. Giving it the
+    // faint tone was a contrast regression on a heading that is also the
+    // section's accessible name, so it must stay uncoloured.
+    const source = readFileSync(join(HOMEPAGE_DIR, "group-latest-updates.tsx"), "utf8");
+
+    expect(source).toContain('tone="inherit"');
+    // Scoped to the eyebrow: the file legitimately uses ink-faint elsewhere,
+    // on the card meta line.
+    expect(source).not.toContain('tone="faint"');
+    expect(source).not.toContain('tone="accent"');
   });
 
   it("can render as a heading that keeps its id", () => {
@@ -83,9 +100,14 @@ describe("SectionEyebrow", () => {
   });
 
   it("leaves no hand-rolled eyebrow anywhere in the homepage sections", () => {
-    const remaining = readdirSync(HOMEPAGE_DIR).filter((file) =>
-      readFileSync(join(HOMEPAGE_DIR, file), "utf8").includes(EYEBROW_TYPOGRAPHY),
-    );
+    // withFileTypes and the .tsx filter keep this from throwing EISDIR the day
+    // someone adds a subdirectory or a non-source asset under homepage/.
+    const remaining = readdirSync(HOMEPAGE_DIR, { withFileTypes: true })
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".tsx"))
+      .map((entry) => entry.name)
+      .filter((name) =>
+        readFileSync(join(HOMEPAGE_DIR, name), "utf8").includes(EYEBROW_TYPOGRAPHY),
+      );
 
     expect(remaining).toEqual([]);
   });

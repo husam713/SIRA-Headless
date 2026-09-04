@@ -94,14 +94,58 @@ describe("empty branch section normalization", () => {
     expect(hero?.description).toBeNull();
   });
 
-  it("keeps a hero authored only with an eyebrow or a region", () => {
-    expect(branchHomepage({ hero: { ...EMPTY_HERO, eyebrow: "SIRA Healthcare" } }).hero).not.toBeNull();
-    expect(branchHomepage({ hero: { ...EMPTY_HERO, region: "Nairobi, Kenya" } }).hero).not.toBeNull();
+  it("drops a hero authored only with an eyebrow, a region, or alt text", () => {
+    // None of these fills the panel. BranchHero gates its <h1> on a heading, so
+    // an eyebrow-only hero is the same 75-85svh dark band with one small line
+    // and no heading - exactly what this normalization exists to remove. The
+    // keep-threshold has to match what actually renders.
+    expect(branchHomepage({ hero: { ...EMPTY_HERO, eyebrow: "SIRA Healthcare" } }).hero).toBeNull();
+    expect(branchHomepage({ hero: { ...EMPTY_HERO, region: "Nairobi, Kenya" } }).hero).toBeNull();
+    expect(branchHomepage({ hero: { ...EMPTY_HERO, imageAlt: "Diagnostic centre" } }).hero).toBeNull();
+    // Together they still do not add up to a renderable hero.
+    expect(
+      branchHomepage({
+        hero: { ...EMPTY_HERO, eyebrow: "SIRA Healthcare", region: "Nairobi, Kenya" },
+      }).hero,
+    ).toBeNull();
   });
 
-  it("does not let alt text alone keep an image-less hero", () => {
-    // Alt text without an image renders nothing, so it cannot justify the band.
-    expect(branchHomepage({ hero: { ...EMPTY_HERO, imageAlt: "Diagnostic centre" } }).hero).toBeNull();
+  it("keeps a hero carrying any content that fills the panel", () => {
+    // Media arrives edge-wrapped, and normalizeMedia requires a databaseId and
+    // an unrestricted public sourceUrl.
+    const image = {
+      node: {
+        databaseId: 11,
+        sourceUrl: "https://example.test/hero.jpg",
+        altText: null,
+        isRestricted: false,
+        mediaDetails: { width: 1600, height: 900 },
+      },
+    };
+
+    expect(branchHomepage({ hero: { ...EMPTY_HERO, description: "Copy." } }).hero).not.toBeNull();
+    expect(branchHomepage({ hero: { ...EMPTY_HERO, image } }).hero).not.toBeNull();
+    expect(branchHomepage({ hero: { ...EMPTY_HERO, mobileImage: image } }).hero).not.toBeNull();
+    expect(
+      branchHomepage({
+        hero: { ...EMPTY_HERO, primaryCta: { title: "Contact", url: "/contact", target: null } },
+      }).hero,
+    ).not.toBeNull();
+  });
+
+  it("keeps an eyebrow and region on a hero that is otherwise renderable", () => {
+    // They are not enough on their own, but they must survive when kept.
+    const hero = branchHomepage({
+      hero: {
+        ...EMPTY_HERO,
+        headingHighlight: "Diagnostics",
+        eyebrow: "SIRA Healthcare",
+        region: "Nairobi, Kenya",
+      },
+    }).hero;
+
+    expect(hero?.eyebrow).toBe("SIRA Healthcare");
+    expect(hero?.region).toBe("Nairobi, Kenya");
   });
 
   it("drops a completely empty overview", () => {

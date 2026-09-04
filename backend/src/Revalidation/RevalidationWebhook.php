@@ -167,8 +167,25 @@ final class RevalidationWebhook {
 		}
 	}
 
+	/**
+	 * WordPress does not use one signature for these three hooks.
+	 *
+	 * `added_post_meta` and `updated_post_meta` pass a single int meta id,
+	 * but `deleted_post_meta` passes an ARRAY of ids - both from
+	 * delete_metadata() and from delete_metadata_by_mid(), which casts with
+	 * (array). Under declare(strict_types=1) an `int` parameter therefore
+	 * threw a TypeError and took the whole request down.
+	 *
+	 * That fired on any meta deletion: clearing a field on save, deleting a
+	 * post, or WordPress pruning revisions when an editor is opened - which
+	 * is how it surfaced, as a fatal on the most heavily revised page.
+	 *
+	 * The id is unused here; only $object_id decides what to revalidate.
+	 *
+	 * @param int|array $meta_id Single id, or ids when meta was deleted.
+	 */
 	public function post_meta_changed(
-		int $meta_id,
+		int|array $meta_id,
 		int $object_id,
 		string $meta_key,
 		mixed $meta_value = null

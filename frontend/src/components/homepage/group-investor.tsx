@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { getBrandPreset } from "@/lib/brand";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import { CtaLink } from "@/components/homepage/cta-link";
@@ -219,9 +220,7 @@ export function GroupInvestor({ section }: GroupInvestorProps) {
       tone="deep"
     >
       <PageContainer>
-        <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent-bright">
-          {section.eyebrow ?? "Investor Relations"}
-        </p>
+        <SectionEyebrow tone="bright">{section.eyebrow ?? "Investor Relations"}</SectionEyebrow>
 
         <div className="mt-6 max-w-3xl">
           {hasHeading ? (

@@ -4,6 +4,7 @@ import { CardRail } from "@/components/layout/card-rail";
 import { CtaLink } from "@/components/homepage/cta-link";
 import { GridItem, PageGrid } from "@/components/layout/page-grid";
 import { Section } from "@/components/layout/section";
+import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import type {
   HomepageContentItem,
   HomepageContentSection,
@@ -119,9 +120,7 @@ export function GroupCompanies({ section }: GroupCompaniesProps) {
     <Section id="companies" tone="deep" labelledBy="companies-heading">
       <PageGrid className="gap-y-8 lg:items-end">
         <GridItem span={5}>
-          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent-bright">
-            {section.eyebrow ?? "Our Companies"}
-          </p>
+          <SectionEyebrow tone="bright">{section.eyebrow ?? "Our Companies"}</SectionEyebrow>
           {section.heading !== null ? (
             <h2
               id="companies-heading"

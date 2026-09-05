@@ -61,6 +61,11 @@
   /* Frontend-owned structural tokens. */
   --layout-container: 82.5rem;
   --layout-reading-width: 42rem;
+  /* The shared shell header is `sticky top-0`, so anything else that sticks
+     has to clear it. Its height is padding-driven (py-4 around the wordmark),
+     which is why this is a measured constant rather than something the header
+     can hand out: the newsroom index bar and year spine offset from it. */
+  --shell-header-height: 4.5rem;
   /* Fluid replacement for the stepped py-20 / sm:py-28 / lg:py-36 rhythm.
      This is an intentional visual evolution, NOT a neutral swap: the two
      scales coincide only at mobile and >=1600px and diverge most at 768px

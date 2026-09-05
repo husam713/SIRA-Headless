@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Bleed, PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { editorialKindSingular } from "@/lib/editorial/ledger";
@@ -34,9 +36,8 @@ function LeadMeta({ item }: NewsroomLeadProps) {
 }
 
 export function NewsroomLead({ item }: NewsroomLeadProps) {
-  // No link: item.href is the WordPress content-node uri and this app has no
-  // article detail route yet, so linking would send readers to a 404. Same
-  // constraint the homepage editorial sections already carry.
+  // item.href is the WordPress content-node uri, which the [section]/[slug]
+  // route now serves verbatim, so the lead links straight to it.
   if (item.featuredImage === null) {
     return (
       <Section space="tight" className="border-b border-brand-border">
@@ -50,7 +51,9 @@ export function NewsroomLead({ item }: NewsroomLeadProps) {
               it reads as, and the lead collapses into a narrow column.
             */}
             <h2 className="mt-6 max-w-[20ch] text-balance font-display text-[clamp(2rem,5.5vw,4rem)] font-normal leading-[1.04]">
-              {item.title}
+              <Link href={item.href} className="hover:text-brand-accent">
+                {item.title}
+              </Link>
             </h2>
           </article>
           {item.excerpt !== null ? (
@@ -97,7 +100,9 @@ export function NewsroomLead({ item }: NewsroomLeadProps) {
         <article className="lg:col-span-5">
           <LeadMeta item={item} />
           <h2 className="mt-6 text-balance font-display text-[clamp(1.875rem,3.5vw,3rem)] font-normal leading-[1.06]">
-            {item.title}
+            <Link href={item.href} className="hover:text-brand-accent">
+              {item.title}
+            </Link>
           </h2>
           {item.excerpt !== null ? (
             <p className="mt-6 max-w-[46ch] text-[1.0625rem] leading-relaxed text-brand-ink-soft">

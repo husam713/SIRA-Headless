@@ -1,7 +1,10 @@
+import Link from "next/link";
+
 import { GridItem, PageGrid } from "@/components/layout/page-grid";
 import { Section } from "@/components/layout/section";
 import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { CtaLink } from "@/components/homepage/cta-link";
+import { editorialArticleHref } from "@/lib/editorial/routes";
 import { formatContentDate } from "@/lib/homepage/format-date";
 import type {
   HomepageContentItem,
@@ -48,23 +51,26 @@ interface UpdateBodyProps {
 }
 
 function UpdateBody({ item, headingClassName }: UpdateBodyProps) {
+  // Only the four editorial bases have a detail route; anything else renders
+  // unlinked rather than pointing at a 404.
+  const href = editorialArticleHref(item.href);
+
   return (
     <div className="flex flex-col gap-4">
       <h3 className={`font-display font-normal leading-[1.15] ${headingClassName}`}>
-        {item.title}
+        {href === null ? (
+          item.title
+        ) : (
+          <Link href={href} className="hover:text-brand-accent">
+            {item.title}
+          </Link>
+        )}
       </h3>
       {item.excerpt !== null ? (
         <p className="text-[15px] leading-relaxed text-brand-ink-soft">
           {item.excerpt}
         </p>
       ) : null}
-      {/*
-        No "Read More" link: item.href is the CMS content node's own uri
-        (e.g. /insights/some-article/), but this app has no article/insight
-        detail route yet — only the homepage is implemented under
-        (sites)/[siteKey]. Linking it would 404. Restore this once a detail
-        route exists for the relevant content kinds.
-      */}
     </div>
   );
 }

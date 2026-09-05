@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { editorialKindSingular } from "@/lib/editorial/ledger";
@@ -26,7 +28,6 @@ function LedgerRow({ item }: LedgerRowProps) {
   const date = formatContentDate(item.publishedAt);
 
   return (
-    // No link, for the same reason as the lead: there is no article route yet.
     // The meta column is sized so the longest kind label, "Press Release",
     // sets on one line rather than breaking across two beside a one-line date.
     <article className="grid gap-x-8 gap-y-4 border-t border-brand-border py-8 sm:grid-cols-[9rem_1fr] lg:grid-cols-[9rem_1fr_8rem] lg:items-start">
@@ -39,7 +40,14 @@ function LedgerRow({ item }: LedgerRowProps) {
 
       <div className="max-w-[62ch]">
         <h3 className="text-balance font-display text-[clamp(1.375rem,2.2vw,1.75rem)] font-normal leading-snug">
-          {item.title}
+          {/*
+            The title carries the link rather than the whole row: a row-sized
+            hit area would swallow the excerpt's own text selection, and the
+            title is what a reader is aiming at.
+          */}
+          <Link href={item.href} className="hover:text-brand-accent">
+            {item.title}
+          </Link>
         </h3>
         {item.excerpt !== null ? (
           <p className="mt-3 text-[15px] leading-relaxed text-brand-ink-soft">

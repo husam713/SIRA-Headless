@@ -1,7 +1,10 @@
+import Link from "next/link";
+
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { CtaLink } from "@/components/homepage/cta-link";
+import { editorialArticleHref } from "@/lib/editorial/routes";
 import { formatContentDate } from "@/lib/homepage/format-date";
 import type {
   HomepageContentItem,
@@ -18,12 +21,12 @@ interface InsightCardProps {
 
 function InsightCard({ item }: InsightCardProps) {
   const date = formatContentDate(item.date);
+  // item.href is the content node's own uri. The [section]/[slug] route serves
+  // the four editorial bases verbatim, so anything under them links; anything
+  // else stays unlinked rather than pointing at a 404.
+  const href = editorialArticleHref(item.href);
 
   return (
-    // No per-item link: item.href is the article/insight content node's own
-    // uri, but this app has no article detail route yet (no NewsroomPage —
-    // see STEP-4-EXACT-DESIGN-FIDELITY-IMPLEMENTATION.md §5C — has been
-    // built). Restore once that route exists.
     <article className="flex flex-col gap-5">
       <div className="aspect-[16/11] w-full overflow-hidden bg-brand-tint">
         {item.featuredImage !== null ? (
@@ -51,7 +54,13 @@ function InsightCard({ item }: InsightCardProps) {
         <span aria-hidden="true" className="h-px flex-1 bg-brand-border" />
       </div>
       <h3 className="font-display text-xl font-normal leading-snug">
-        {item.title}
+        {href === null ? (
+          item.title
+        ) : (
+          <Link href={href} className="hover:text-brand-accent">
+            {item.title}
+          </Link>
+        )}
       </h3>
       {item.excerpt !== null ? (
         <p className="text-[15px] leading-relaxed text-brand-ink-soft">

@@ -1,12 +1,9 @@
 import "server-only";
 
+import type { EditorialBusinessUnitSlug } from "@/lib/editorial/types";
 import type { SiteKey } from "@/types/site";
 
-export type EditorialBusinessUnitSlug =
-  | "consulting"
-  | "healthcare"
-  | "lifestyle"
-  | "real-estate";
+export type { EditorialBusinessUnitSlug };
 
 const EDITORIAL_BUSINESS_UNIT_BY_SITE = Object.freeze({
   group: null,

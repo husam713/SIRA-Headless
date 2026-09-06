@@ -1,0 +1,118 @@
+{
+  "data": {
+    "siraBusinessUnit": {
+      "contentNodes": {
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "YXJyYXljb25uZWN0aW9uOjY1"
+        },
+        "nodes": [
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 23,
+            "contentTypeName": "sira_article",
+            "date": "2026-06-15T09:00:00",
+            "modified": "2026-06-15T09:00:00",
+            "uri": "/articles/inside-nairobis-diagnostic-imaging-boom/",
+            "isRestricted": false,
+            "title": "Inside Nairobi’s Diagnostic Imaging Boom",
+            "excerpt": "<p>Why demand for advanced radiology is reshaping East African healthcare investment.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraNewsItem",
+            "databaseId": 60,
+            "contentTypeName": "sira_news",
+            "date": "2026-06-02T08:30:00",
+            "modified": "2026-06-02T08:30:00",
+            "uri": "/news/rosina-diagnostic-center-adds-a-pet-ct-molecular-imaging-wing-bringing-early-stage-oncology-screening-within-reach-of-nairobis-referral-network/",
+            "isRestricted": false,
+            "title": "Rosina Diagnostic Center Adds a PET-CT Molecular Imaging Wing, Bringing Early-Stage Oncology Screening Within Reach of Nairobi’s Referral Network",
+            "excerpt": "<p>The facility expands into early-stage cancer diagnostics with next-generation molecular imaging, and becomes the first in the region to publish reporting turnaround times.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 24,
+            "contentTypeName": "sira_article",
+            "date": "2026-05-15T09:00:00",
+            "modified": "2026-05-15T09:00:00",
+            "uri": "/articles/bringing-pet-ct-to-east-africa/",
+            "isRestricted": false,
+            "title": "Bringing PET-CT to East Africa",
+            "excerpt": "<p>What molecular imaging means for early cancer diagnosis in the region.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 25,
+            "contentTypeName": "sira_article",
+            "date": "2026-04-15T09:00:00",
+            "modified": "2026-04-15T09:00:00",
+            "uri": "/articles/european-standards-local-care/",
+            "isRestricted": false,
+            "title": "European Standards, Local Care",
+            "excerpt": "<p>How we translate accreditation-grade medicine into everyday patient access.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraNewsItem",
+            "databaseId": 62,
+            "contentTypeName": "sira_news",
+            "date": "2026-03-30T11:00:00",
+            "modified": "2026-03-30T11:00:00",
+            "uri": "/news/sira-consulting-appointed-to-advise-on-a-cross-border-healthcare-platform/",
+            "isRestricted": false,
+            "title": "SIRA Consulting Appointed to Advise on a Cross-Border Healthcare Platform",
+            "excerpt": "<p>The mandate covers market entry, licensing and clinical partnership structure across two jurisdictions.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraNewsItem",
+            "databaseId": 63,
+            "contentTypeName": "sira_news",
+            "date": "2026-02-19T08:00:00",
+            "modified": "2026-02-19T08:00:00",
+            "uri": "/news/a-second-diagnostic-center-for-east-africa/",
+            "isRestricted": false,
+            "title": "A Second Diagnostic Center for East Africa",
+            "excerpt": "<p>Site selection has begun for a second facility, targeting 2027.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraNewsItem",
+            "databaseId": 64,
+            "contentTypeName": "sira_news",
+            "date": "2025-10-06T08:00:00",
+            "modified": "2025-10-06T08:00:00",
+            "uri": "/news/sira-group-completes-its-investment-in-rosina-diagnostic-center/",
+            "isRestricted": false,
+            "title": "SIRA GROUP Completes Its Investment in Rosina Diagnostic Center",
+            "excerpt": "<p>The transaction closes a nine-month process and gives the group a majority position in the facility.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraNewsItem",
+            "databaseId": 65,
+            "contentTypeName": "sira_news",
+            "date": "2024-04-22T08:30:00",
+            "modified": "2024-04-22T08:30:00",
+            "uri": "/news/first-clinical-partnership-signed-in-nairobi/",
+            "isRestricted": false,
+            "title": "First Clinical Partnership Signed in Nairobi",
+            "excerpt": "<p>A referral agreement covering three private practices.</p>\n",
+            "featuredImage": null
+          }
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "debug": [
+      {
+        "type": "DEBUG_LOGS_INACTIVE",
+        "message": "GraphQL Debug logging is not active. To see debug logs, GRAPHQL_DEBUG must be enabled."
+      }
+    ]
+  }
+}

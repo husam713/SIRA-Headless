@@ -1,5 +1,11 @@
+import {
+  EDITORIAL_DESK_ORDER,
+  isEditorialDeskKey,
+  siteEditorialDesk,
+} from "@/lib/editorial/desks";
 import type {
   EditorialContentTypeName,
+  EditorialDeskKey,
   EditorialDiagnostic,
   EditorialDiagnosticCode,
   EditorialFeedResolution,
@@ -10,16 +16,41 @@ import type {
   EditorialTypename,
   InvalidEditorialFeedReason,
 } from "@/lib/editorial/types";
-import type { SiraEditorialFeedQueryData } from "@/queries/editorial-feed";
+import type {
+  SiraBusinessUnitEditorialFeedQueryData,
+  SiraEditorialFeedQueryData,
+} from "@/queries/editorial-feed";
 import type { SiteKey } from "@/types/site";
 
+type BranchFeedConnection = NonNullable<
+  SiraBusinessUnitEditorialFeedQueryData["siraBusinessUnit"]
+>["contentNodes"];
+
+/**
+ * Both editorial feeds normalize through here. They differ in one selection:
+ * the Group feed carries each entry's Business Unit terms, the branch feed does
+ * not, because on a branch tenant the desk is the site. The input type is the
+ * union of the two generated shapes rather than a hand-written contract, so a
+ * change to either query is a type error here rather than a silent divergence.
+ */
+export type EditorialFeedInput =
+  | SiraEditorialFeedQueryData
+  | Readonly<{ contentNodes: BranchFeedConnection }>;
+
 type EditorialNode = NonNullable<
-  SiraEditorialFeedQueryData["contentNodes"]
+  EditorialFeedInput["contentNodes"]
 >["nodes"][number];
 type SupportedEditorialNode = Extract<
   EditorialNode,
   { readonly __typename: EditorialTypename }
 >;
+
+// The branch feed selects no Business Unit terms — on a branch tenant every
+// entry belongs to that branch by construction — so the connection is optional
+// on the shared node shape.
+type EditorialDeskConnection = {
+  readonly nodes: readonly { readonly slug?: string | null }[];
+} | null;
 
 interface EditorialTypeContract {
   readonly contentTypeName: EditorialContentTypeName;
@@ -184,6 +215,45 @@ function normalizeFeaturedImage(
   });
 }
 
+/**
+ * The desks an entry is filed under, in canonical order.
+ *
+ * Unrecognised term slugs are dropped with a diagnostic rather than rendered:
+ * a term the frontend has no approved label or accent for would otherwise
+ * appear as an unstyled, unfilterable row, and inventing a label for it would
+ * be exactly the CMS-defect-hiding ADR-015 forbids.
+ *
+ * An entry left with no desk falls back to the tenant's own — which for Group
+ * is the ADR-014 `group -> null` mapping expressed as data, not a guess.
+ */
+function normalizeDesks(
+  value: EditorialDeskConnection | undefined,
+  siteKey: SiteKey,
+  nodeDatabaseId: number,
+  diagnostics: EditorialDiagnostic[],
+): readonly EditorialDeskKey[] {
+  const found = new Set<EditorialDeskKey>();
+
+  for (const node of value?.nodes ?? []) {
+    const slug = typeof node.slug === "string" ? node.slug.trim() : "";
+
+    if (slug === "") continue;
+
+    if (!isEditorialDeskKey(slug) || slug === "group") {
+      diagnostics.push(diagnostic("unknown-business-unit", nodeDatabaseId));
+      continue;
+    }
+
+    found.add(slug);
+  }
+
+  const desks = EDITORIAL_DESK_ORDER.filter((desk) => found.has(desk));
+
+  return Object.freeze(
+    desks.length > 0 ? desks : [siteEditorialDesk(siteKey)],
+  );
+}
+
 function isSupportedEditorialNode(
   node: EditorialNode,
 ): node is SupportedEditorialNode {
@@ -192,6 +262,7 @@ function isSupportedEditorialNode(
 
 function normalizeNode(
   node: EditorialNode,
+  siteKey: SiteKey,
   diagnostics: EditorialDiagnostic[],
 ): EditorialItem | null {
   const nodeDatabaseId = Number.isSafeInteger(node.databaseId)
@@ -274,11 +345,19 @@ function normalizeNode(
     publishedAt,
     modifiedAt,
     featuredImage,
+    desks: normalizeDesks(
+      "siraBusinessUnits" in node
+        ? (node.siraBusinessUnits as EditorialDeskConnection)
+        : null,
+      siteKey,
+      nodeDatabaseId,
+      diagnostics,
+    ),
   });
 }
 
 function normalizePageInfo(
-  value: NonNullable<SiraEditorialFeedQueryData["contentNodes"]>["pageInfo"],
+  value: NonNullable<EditorialFeedInput["contentNodes"]>["pageInfo"],
 ): EditorialPageInfo | null {
   if (typeof value.hasNextPage !== "boolean") {
     return null;
@@ -307,7 +386,7 @@ function normalizePageInfo(
 
 export function normalizeEditorialFeed(
   siteKey: SiteKey,
-  data: SiraEditorialFeedQueryData,
+  data: EditorialFeedInput,
 ): EditorialFeedResolution {
   if (
     typeof data !== "object" ||
@@ -343,7 +422,7 @@ export function normalizeEditorialFeed(
 
   const diagnostics: EditorialDiagnostic[] = [];
   const items = data.contentNodes.nodes.flatMap((node) => {
-    const item = normalizeNode(node, diagnostics);
+    const item = normalizeNode(node, siteKey, diagnostics);
     return item === null ? [] : [item];
   });
   const frozenDiagnostics = freezeDiagnostics(diagnostics);

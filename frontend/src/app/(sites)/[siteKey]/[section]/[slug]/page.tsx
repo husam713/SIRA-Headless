@@ -4,11 +4,16 @@ import { notFound } from "next/navigation";
 
 import { ArticlePage } from "@/components/editorial/article-page";
 import { getBrand } from "@/lib/brand";
+import { getEditorialFeed } from "@/lib/editorial";
+import { primaryDesk } from "@/lib/editorial/desks";
+import { toEntryViews, type EntryView } from "@/lib/editorial/entry-view";
 import { getEditorialSingle } from "@/lib/editorial/get-editorial-single";
 import { EDITORIAL_SECTIONS } from "@/lib/editorial/routes";
+import type { EditorialArticle } from "@/lib/editorial/editorial-single-types";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
+import type { SiteKey } from "@/types/site";
 
 // Editorial permalinks keep the bases WordPress owns — /news/, /insights/,
 // /articles/ and /press-releases/ — rather than being folded under one
@@ -22,6 +27,12 @@ import { buildSiteMetadata } from "@/lib/seo/metadata";
 // WordPress slugs are lowercase alphanumerics and hyphens. Anything else is a
 // probe rather than a permalink, and is refused before it reaches the CMS.
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+// How many entries the closing strip carries, and how wide a window to read
+// them out of. The window is the same cached feed call the newsroom makes, so
+// an article page costs one extra GraphQL query at most and usually none.
+const RELATED_COUNT = 3;
+const RELATED_WINDOW = 24;
 
 interface ArticleRouteProps {
   readonly params: Promise<{
@@ -78,6 +89,35 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * Other entries from the same desk, newest first.
+ *
+ * Same desk rather than same content type, because the useful next thing after
+ * reading about one SIRA company is usually another entry from that company,
+ * not another press release from somewhere else in the group. A quiet failure
+ * is correct here: the strip is an addition to the article, and an unreachable
+ * feed must not take the article down with it.
+ */
+async function resolveAlsoInTheRecord(
+  siteKey: SiteKey,
+  article: EditorialArticle,
+): Promise<readonly EntryView[]> {
+  const feed = await getEditorialFeed(siteKey, RELATED_WINDOW);
+
+  if (feed.status !== "ready") return [];
+
+  const desk = primaryDesk(article);
+
+  return toEntryViews(
+    feed.page.items
+      .filter(
+        (item) =>
+          item.databaseId !== article.databaseId && item.desks.includes(desk),
+      )
+      .slice(0, RELATED_COUNT),
+  );
+}
+
 export default async function EditorialArticleRoute({
   params,
 }: ArticleRouteProps) {
@@ -106,5 +146,15 @@ export default async function EditorialArticleRoute({
     );
   }
 
-  return <ArticlePage article={resolution.article} />;
+  const alsoInTheRecord = await resolveAlsoInTheRecord(
+    site.key,
+    resolution.article,
+  );
+
+  return (
+    <ArticlePage
+      article={resolution.article}
+      alsoInTheRecord={alsoInTheRecord}
+    />
+  );
 }

@@ -46,9 +46,17 @@
   --brand-shadow: oklch(0.08 0.02 255 / 0.85);
   --brand-on-accent-border: oklch(0.16 0.02 260 / 0.18);
   --brand-deep-border: oklch(0.3 0.02 255);
-  --brand-hero-overlay-top: oklch(0.15 0.02 255 / 0.4);
-  --brand-hero-overlay-middle: oklch(0.15 0.02 255 / 0.35);
-  --brand-hero-overlay-bottom: oklch(0.12 0.02 255 / 0.94);
+  /* Hero scrim. Raised from 0.4/0.35 because the group slides are bright
+     daylight photography: at the old strength the headline, the slide index
+     and the whole featured-project selector sat on near-white pixels and were
+     effectively unreadable. The reference's hero art is dark to begin with, so
+     it needed no equivalent. */
+  --brand-hero-overlay-top: oklch(0.15 0.02 255 / 0.62);
+  --brand-hero-overlay-middle: oklch(0.15 0.02 255 / 0.58);
+  --brand-hero-overlay-bottom: oklch(0.12 0.02 255 / 0.96);
+  /* A second scrim along the leading edge, where the headline and copy sit.
+     Vertical alone cannot protect text over a bright subject on one side. */
+  --brand-hero-overlay-lead: oklch(0.13 0.02 255 / 0.55);
 
   /* next/font creates the three lower-level font variables. */
   --font-sira-body:
@@ -59,19 +67,30 @@
     var(--font-newsreader), Georgia, "Times New Roman", serif;
 
   /* Frontend-owned structural tokens. */
-  --layout-container: 82.5rem;
+  /* 88.5rem = the reference's 1320px CONTENT column plus its 48px side padding
+     on both sides. Measured, not chosen: the reference caps CONTENT at 1320
+     and pads outside it, where this token caps the OUTER box and pads inside,
+     so the previous 82.5rem produced a 1224px column — 96px narrower than the
+     reference at every desktop width. With 88.5rem the content column measures
+     928 / 1184 / 1320 / 1320 at 1024 / 1280 / 1440 / 1920, matching the
+     reference exactly at all four. */
+  --layout-container: 88.5rem;
   --layout-reading-width: 42rem;
   /* The shared shell header is `sticky top-0`, so anything else that sticks
      has to clear it. Its height is padding-driven (py-4 around the wordmark),
      which is why this is a measured constant rather than something the header
      can hand out: the newsroom index bar and year spine offset from it. */
   --shell-header-height: 4.5rem;
-  /* Fluid replacement for the stepped py-20 / sm:py-28 / lg:py-36 rhythm.
-     This is an intentional visual evolution, NOT a neutral swap: the two
-     scales coincide only at mobile and >=1600px and diverge most at 768px
-     (80px here against 112px before, -29%). ADR-028 s5 permits the change;
-     the value is what needs reviewing, not the mechanism. */
-  --space-section: clamp(5rem, 9vw, 9rem);
+  /* Section rhythm, fitted to the approved reference rather than chosen.
+     Measured block padding on the reference is 64 / 64 / 82 / 96 / 96 / 96 at
+     390 / 768 / 1024 / 1280 / 1440 / 1920, which `clamp(4rem, 8vw, 6rem)`
+     reproduces at every one of those widths. The previous
+     `clamp(5rem, 9vw, 9rem)` produced 130px at 1440 against the reference's
+     96px — 68px of extra height per section, roughly 600px down the page, and
+     the single largest reason the homepage read as longer and emptier than the
+     reference. `.section--tight` inherits the same fit: 0.6 x 96 = 58px,
+     against the reference's measured 56px. */
+  --space-section: clamp(4rem, 8vw, 6rem);
   /* Owner decision: matches the measured SIRA reference baseline
      (24px at the mobile floor, capping at 48px on wide screens).
      Deliberate design DNA, not inherited drift. */
@@ -332,6 +351,37 @@ a {
   }
 }
 
+/* The portfolio rail.
+   Four company panels carry media and therefore need more room per column than
+   a text rail, but the reference deliberately keeps all four in ONE ROW well
+   below the widest desktop rather than dropping to a 2x2 block. Measured on the
+   reference, the company row runs 2 / 2 / 3 / 4 columns at content widths
+   691 / 928 / 1184 / 1320, which the generic ladder above cannot express: it
+   would give 3 columns at 928 and 4 at 1184.
+   These steps are therefore its own, and the generic ladder is left untouched
+   so no other rail — including the Newsroom's — changes. */
+.rail__items--portfolio {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@container rail (min-width: 43rem) {
+  .rail__items--portfolio {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container rail (min-width: 74rem) {
+  .rail__items--portfolio {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@container rail (min-width: 82rem) {
+  .rail__items--portfolio {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 /* No subgrid: fall back to equal-height cells so cards still bottom-align. */
 @supports not (grid-template-rows: subgrid) {
   .rail__items > * {
@@ -346,4 +396,331 @@ a {
   .rail__items > * > :last-child {
     flex: 1;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Newsroom — "The Register"
+
+   The SIRA mark is one continuous line that turns at right angles and nests
+   inward inside a rotated square. That is the grammar this page is built from,
+   and it is deliberately structural rather than ornamental:
+
+   - THE TURN.  Entries are not cards. Each one sits under a hairline that
+     carries a small right-angled corner mark in its desk's accent. Nothing is
+     boxed; the line runs, turns once, and stops.
+   - THE REGISTER.  A fixed leading margin carries the dateline and the desk, so
+     every entry reports to the same vertical. Down a long archive the corner
+     marks stack into a coloured comb, and the composition of the house becomes
+     readable at a glance without a single badge.
+   - THE NESTING.  The front's three entries step 5 / 4 / 3 columns wide with a
+     matching type-scale step, so importance is expressed by the composition
+     itself rather than by decoration.
+
+   All of it is CSS. There is no newsroom JavaScript.
+   --------------------------------------------------------------------------- */
+
+/* The corner mark. Two arms of equal weight meeting at the entry's leading top
+   corner — the meander's atom. Drawn on pseudo-elements so it costs no markup
+   and is invisible to assistive technology, which reads the desk from the
+   register text instead. */
+.turn {
+  position: relative;
+  border-block-start: 1px solid var(--brand-border);
+  --turn-arm: 1.75rem;
+  --turn-weight: 2px;
+}
+
+.turn::before,
+.turn::after {
+  content: "";
+  position: absolute;
+  inset-block-start: calc(var(--turn-weight) * -0.5 - 1px);
+  inset-inline-start: 0;
+  background: var(--desk-accent, var(--brand-accent));
+}
+
+.turn::before {
+  block-size: var(--turn-weight);
+  inline-size: var(--turn-arm);
+  transition: inline-size 240ms cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.turn::after {
+  inline-size: var(--turn-weight);
+  block-size: var(--turn-arm);
+}
+
+/* The line continues. One transition, on one property, tied to the identity —
+   and it is suppressed with everything else under prefers-reduced-motion. */
+.turn:hover::before,
+.turn:focus-within::before {
+  inline-size: calc(var(--turn-arm) * 2.25);
+}
+
+/* The desk index: one continuous hairline carrying five accent segments whose
+   lengths are the desks' shares of the loaded record. Cells stay even so the
+   labels never crowd; only the rule length varies. */
+.desk-index {
+  /* Positioned so that anything absolutely positioned inside the scroller is
+     contained by it. Without this the nearest positioned ancestor is the
+     sticky nav, and an escaped child adds its overflow to the whole page. */
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(9.5rem, 1fr);
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-block-start: 1px solid var(--brand-border);
+}
+
+.desk-index::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .desk-index {
+    overflow-x: visible;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+}
+
+.desk-index__entry {
+  display: block;
+  padding-block: 0.875rem 1rem;
+  padding-inline-end: 1.25rem;
+  /* ink-soft, not ink-faint: measured against the five approved papers,
+     --brand-ink-faint reaches only 3.60:1 on Group's paper (4.45-4.50:1 on the
+     branch papers) and these are 11px links, not large text. ink-soft measures
+     6.81-7.20:1. The same reason the desk accents never carry type: Group's
+     gold is 2.15:1 on paper and Real Estate's ochre 3.61:1. */
+  color: var(--brand-ink-soft);
+  transition: color 160ms ease;
+}
+
+.desk-index__entry:hover,
+.desk-index__entry[aria-current="page"] {
+  color: var(--brand-ink);
+}
+
+/* Rides the container's hairline. Length is the share; the floor keeps a desk
+   that has published once from reading as a desk that has published nothing. */
+.desk-index__rule {
+  display: block;
+  block-size: 3px;
+  margin-block-start: -0.875rem;
+  margin-block-end: 0.875rem;
+  inline-size: max(1.5rem, calc(var(--desk-share, 0) * 100%));
+  background: var(--desk-accent, var(--brand-accent));
+  opacity: 0.32;
+  transition: opacity 160ms ease;
+}
+
+.desk-index__entry:hover .desk-index__rule,
+.desk-index__entry[aria-current="page"] .desk-index__rule {
+  opacity: 1;
+}
+
+.desk-index__rule--empty {
+  background: var(--brand-border);
+  opacity: 1;
+}
+
+/* The record. A leading register column, then the entry, then the kind — the
+   third column appears only when there is room to set it without squeezing the
+   headline. */
+.record-entry {
+  display: grid;
+  gap: 0.75rem var(--layout-grid-gap);
+  padding-block: 1.75rem 2rem;
+  padding-inline-start: 0;
+}
+
+@media (min-width: 48rem) {
+  .record-entry {
+    grid-template-columns: 9rem minmax(0, 1fr);
+    padding-inline-start: 2.75rem;
+    padding-block: 2rem 2.25rem;
+  }
+}
+
+@media (min-width: 68.75rem) {
+  .record-entry {
+    grid-template-columns: 9rem minmax(0, 1fr) 9rem;
+  }
+}
+
+/* Two lines of summary in the record, however long the CMS excerpt is. The
+   record is for scanning; the article page is where the text is read. */
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+/* The lead. Below lg the plate simply follows the image. From lg the two
+   interlock: the image runs to the leading viewport edge and the text plate
+   overlaps its trailing edge by one column, laid on the page rather than
+   floated above it — two systems that overlap without merging. */
+.lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Below lg the picture clears the container gutter only. */
+.lead__figure {
+  margin-inline: calc(var(--layout-gutter) * -1);
+}
+
+@media (min-width: 68.75rem) {
+  .lead {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: center;
+  }
+
+  /* The distance from the container's content edge to the viewport edge,
+     computed rather than expressed as a percentage: a percentage margin on a
+     grid item resolves against its own track, not against the page. */
+  .lead {
+    --lead-bleed: calc(
+      var(--layout-gutter) + max(0rem, (100vw - var(--layout-container)) / 2)
+    );
+  }
+
+  /* Nine columns against the plate's five: the two-column overlap plus the
+     plate's bottom alignment is what makes the crossing legible. With an equal
+     8/5 split the plate simply covers the picture's edge and the two read as
+     adjacent blocks rather than as one plane laid over another. */
+  .lead__figure {
+    grid-row: 1;
+    grid-column: 1 / span 9;
+    margin-inline-start: calc(var(--lead-bleed) * -1);
+    margin-inline-end: 0;
+  }
+
+  /* The picture runs off the leading edge of the page; the plate runs off the
+     trailing one and is laid across the picture where they meet. Bleeding both
+     ways is what stops the plate reading as a floating card: only its top and
+     leading edges are ever visible, so it is a plane crossing another plane
+     rather than a box sitting on top of one. Aligned to the bottom of the row
+     so its lower edge coincides with the picture's. */
+  .lead__plate {
+    grid-row: 1;
+    grid-column: 8 / -1;
+    align-self: end;
+    z-index: 1;
+    background: var(--brand-paper);
+    padding-block: clamp(2rem, 3vw, 3rem);
+    padding-inline-start: clamp(2rem, 3vw, 3rem);
+    padding-inline-end: var(--lead-bleed);
+    margin-inline-end: calc(var(--lead-bleed) * -1);
+  }
+}
+
+/* The front's stepping widths. Expressed here rather than as three sets of
+   utility classes so the 5 / 4 / 3 relationship is stated once and stays
+   readable as the intention it is. */
+.front {
+  display: grid;
+  gap: clamp(2.5rem, 4vw, 3.5rem) var(--layout-grid-gap);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 48rem) {
+  .front {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .front > :first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 68.75rem) {
+  .front {
+    grid-template-columns: 5fr 4fr 3fr;
+    /* One hairline across the whole row, with the three corner marks riding it
+       at the 5 / 4 / 3 divisions — one line, three registers, which is the
+       mark's own logic. Per-entry rules would be broken by the column gaps and
+       the row would read as three separate blocks. */
+    border-block-start: 1px solid var(--brand-border);
+  }
+
+  .front > .turn {
+    border-block-start-color: transparent;
+  }
+
+  .front > :first-child {
+    grid-column: auto;
+  }
+}
+
+/* Matching type step, so the width step reads as hierarchy rather than as an
+   accident of the grid. */
+.front__title {
+  font-size: clamp(1.375rem, 1.9vw, 1.625rem);
+}
+
+/* The step only exists where the widths step. Below lg every entry is full
+   width, and a type ladder without a width ladder reads as three sizes chosen
+   at random. */
+@media (min-width: 68.75rem) {
+  .front > :nth-child(1) .front__title {
+    font-size: 2.125rem;
+  }
+
+  .front > :nth-child(2) .front__title {
+    font-size: 1.625rem;
+  }
+
+  .front > :nth-child(3) .front__title {
+    font-size: 1.25rem;
+  }
+}
+
+/* The masthead's extent block: hairline-ruled figures, set as a description
+   list so the numbers keep their labels. */
+.extent {
+  display: grid;
+  gap: 1px;
+  background: var(--brand-deep-border);
+  border: 1px solid var(--brand-deep-border);
+}
+
+/* Auto-flow rather than a fixed count: the block carries two cells when the
+   record has no usable dates and three when it does, and a fixed track would
+   leave the missing one showing as a slab of rule colour. */
+@media (min-width: 30rem) {
+  .extent {
+    grid-auto-flow: column;
+    /* min-content, not 0: "2023-2026" is wider than an equal third of the
+       block, and equal tracks pushed it straight through the cell rule. */
+    grid-auto-columns: minmax(min-content, 1fr);
+  }
+}
+
+.extent__cell {
+  padding: 1rem 1.125rem 1.125rem;
+  background: var(--brand-deep);
+}
+
+/* The hero's leading-edge scrim.
+   A gradient cannot be expressed in logical directions, so the RTL case is an
+   explicit override rather than something `margin-inline` style properties can
+   handle for us. */
+.hero-scrim-lead {
+  background-image: linear-gradient(
+    to right,
+    var(--brand-hero-overlay-lead) 0%,
+    transparent 62%
+  );
+}
+
+[dir="rtl"] .hero-scrim-lead {
+  background-image: linear-gradient(
+    to left,
+    var(--brand-hero-overlay-lead) 0%,
+    transparent 62%
+  );
 }

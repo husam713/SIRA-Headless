@@ -18,6 +18,24 @@ export type EditorialContentTypeName =
   | "sira_article"
   | "sira_press_release";
 
+/**
+ * The CMS-owned Business Unit slugs. ADR-014 fixes these exact strings; note
+ * `real-estate`, which is deliberately not derivable from the `realestate`
+ * site key.
+ */
+export type EditorialBusinessUnitSlug =
+  | "consulting"
+  | "healthcare"
+  | "lifestyle"
+  | "real-estate";
+
+/**
+ * Where an entry was filed. The four companies, plus `group` for SIRA GROUP
+ * itself — which is the ABSENCE of a Business Unit term, per the ADR-014
+ * mapping `group -> null`.
+ */
+export type EditorialDeskKey = "group" | EditorialBusinessUnitSlug;
+
 export type EditorialDiagnosticCode =
   | "restricted-node"
   | "invalid-node-identity"
@@ -27,7 +45,8 @@ export type EditorialDiagnosticCode =
   | "unsafe-uri"
   | "invalid-publication-date"
   | "invalid-modified-date"
-  | "invalid-featured-image";
+  | "invalid-featured-image"
+  | "unknown-business-unit";
 
 export interface EditorialDiagnostic {
   readonly code: EditorialDiagnosticCode;
@@ -53,6 +72,14 @@ export interface EditorialItem {
   readonly publishedAt: string | null;
   readonly modifiedAt: string | null;
   readonly featuredImage: EditorialImage | null;
+  /**
+   * The desks this entry belongs to, in canonical order, never empty.
+   *
+   * An entry with no Business Unit term resolves to the desk of the tenant that
+   * published it, so a Group item with no term is Group's own reporting rather
+   * than an unlabelled row. A joint announcement can carry two.
+   */
+  readonly desks: readonly EditorialDeskKey[];
 }
 
 export interface EditorialPageInfo {

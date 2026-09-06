@@ -36,9 +36,11 @@ interface CompanyCardProps {
   readonly item: HomepageContentItem;
   readonly index: number;
   readonly accentColor: string;
+  /** Whether the ROW carries media — see the note in GroupCompanies below. */
+  readonly withMedia: boolean;
 }
 
-function CompanyCard({ item, index, accentColor }: CompanyCardProps) {
+function CompanyCard({ item, index, accentColor, withMedia }: CompanyCardProps) {
   const copy = item.descriptor ?? item.excerpt;
 
   return (
@@ -53,7 +55,13 @@ function CompanyCard({ item, index, accentColor }: CompanyCardProps) {
       className="overflow-hidden border border-brand-deep-border bg-brand-deep-card"
       style={{ borderTopWidth: "3px", borderTopColor: accentColor }}
     >
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-brand-deep">
+      <div
+        className={
+          withMedia
+            ? "relative aspect-[16/10] w-full overflow-hidden bg-brand-deep"
+            : "relative w-full overflow-hidden bg-brand-deep px-8 pt-8"
+        }
+      >
         {item.featuredImage !== null ? (
           // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a plain
           // <img> is used rather than next/image, which would require configuring
@@ -69,13 +77,19 @@ function CompanyCard({ item, index, accentColor }: CompanyCardProps) {
             className="h-full w-full object-cover"
           />
         ) : null}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-deep/70" />
+        {withMedia ? (
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-deep/70" />
+        ) : null}
         {item.status !== null ? (
           <span
             aria-hidden="true"
             // Logical inset: `left-5` pinned this to the visual left, so it sat
             // on the wrong corner of the card under Arabic RTL.
-            className="absolute start-5 top-5 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.08em]"
+            className={
+              withMedia
+                ? "absolute start-5 top-5 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.08em]"
+                : "inline-block px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.08em]"
+            }
             style={{ backgroundColor: accentColor, color: "var(--brand-deep)" }}
           >
             {item.status}
@@ -83,7 +97,11 @@ function CompanyCard({ item, index, accentColor }: CompanyCardProps) {
         ) : null}
         <span
           aria-hidden="true"
-          className="absolute bottom-5 start-7 font-display text-sm tracking-[0.18em]"
+          className={
+            withMedia
+              ? "absolute bottom-5 start-7 font-display text-sm tracking-[0.18em]"
+              : "mt-6 block font-display text-sm tracking-[0.18em]"
+          }
           style={{ color: accentColor }}
         >
           {String(index + 1).padStart(2, "0")}
@@ -109,6 +127,13 @@ function CompanyCard({ item, index, accentColor }: CompanyCardProps) {
 
 export function GroupCompanies({ section }: GroupCompaniesProps) {
   if (section === null || section.selection.status !== "ready") return null;
+
+  // EVERY, not some: a 16:10 block reserved on a card with no art is a tall
+  // empty rectangle, so the portfolio row shows media only when all four
+  // companies have it and otherwise composes typographically.
+  const rowHasMedia = section.selection.items.every(
+    (item) => item.featuredImage !== null,
+  );
 
   const groupPreset = getBrandPreset("group");
   const fallbackAccent = Object.freeze({
@@ -150,12 +175,13 @@ export function GroupCompanies({ section }: GroupCompaniesProps) {
         ) : null}
 
         <GridItem className="mt-8 sm:mt-16">
-          <CardRail max={2} rows={CARD_ROWS}>
+          <CardRail max={4} rows={CARD_ROWS} variant="portfolio">
             {section.selection.items.map((item, index) => (
               <CompanyCard
                 key={item.databaseId}
                 item={item}
                 index={index}
+                withMedia={rowHasMedia}
                 accentColor={resolveBusinessUnitAccent(item.businessUnit, fallbackAccent).color}
               />
             ))}

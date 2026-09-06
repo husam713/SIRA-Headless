@@ -1,0 +1,1009 @@
+{
+  "viewport": {
+    "w": 768,
+    "h": 1024
+  },
+  "documentHeight": 10904,
+  "horizontalOverflow": 0,
+  "header": {
+    "x": 0,
+    "y": 0,
+    "w": 768,
+    "h": 77,
+    "box": {
+      "display": "flex",
+      "gridTemplateColumns": "none",
+      "gap": "16px",
+      "padding": "16 31 16 31",
+      "maxWidth": "none",
+      "background": "oklch(0.97 0.006 75 / 0.92)",
+      "aspectRatio": "auto"
+    }
+  },
+  "hero": {
+    "x": 0,
+    "y": 77,
+    "w": 768,
+    "h": 881,
+    "box": {
+      "display": "flex",
+      "gridTemplateColumns": "none",
+      "gap": "normal",
+      "padding": "0 0 0 0",
+      "maxWidth": "none",
+      "background": "oklch(0.16 0.02 255)",
+      "aspectRatio": "auto"
+    }
+  },
+  "headings": [
+    {
+      "tag": "H1",
+      "text": "Shaping a Smarter Future",
+      "x": 38,
+      "y": 355,
+      "w": 685,
+      "h": 64,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 65,
+        "lineHeight": 64,
+        "fontWeight": "500",
+        "letterSpacing": "-1.63",
+        "textTransform": "none",
+        "color": "oklch(0.98 0.006 75)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "SIRA GROUP Signs Strategic Partnership with OVAN Group",
+      "x": 64,
+      "y": 1089,
+      "w": 304,
+      "h": 49,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 19,
+        "lineHeight": 25,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Rosina Diagnostic Center Adds PET-CT Molecular Imaging Wing",
+      "x": 426,
+      "y": 1089,
+      "w": 304,
+      "h": 49,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 19,
+        "lineHeight": 25,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "SIRA GROUP Expands Portfolio into Hospitality & Lifestyle",
+      "x": 64,
+      "y": 1280,
+      "w": 304,
+      "h": 49,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 19,
+        "lineHeight": 25,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "One Group, a Growing Portfolio of Companies",
+      "x": 38,
+      "y": 1563,
+      "w": 680,
+      "h": 31,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 31,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Real Estate Development & Consulting",
+      "x": 75,
+      "y": 2060,
+      "w": 256,
+      "h": 99,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 30,
+        "lineHeight": 33,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Medical Investment & Smart Diagnostics",
+      "x": 437,
+      "y": 2060,
+      "w": 256,
+      "h": 99,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 30,
+        "lineHeight": 33,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Hospitality & Lifestyle Ventures",
+      "x": 75,
+      "y": 2734,
+      "w": 256,
+      "h": 66,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 30,
+        "lineHeight": 33,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Strategic & Investment Consulting",
+      "x": 437,
+      "y": 2734,
+      "w": 256,
+      "h": 99,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 30,
+        "lineHeight": 33,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Bridging Continents Through Smart Investment",
+      "x": 38,
+      "y": 3172,
+      "w": 323,
+      "h": 119,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 35,
+        "lineHeight": 40,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Invest Alongside SIRA GROUP",
+      "x": 38,
+      "y": 3672,
+      "w": 691,
+      "h": 31,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 31,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Sira Prime — Residential",
+      "x": 71,
+      "y": 4359,
+      "w": 266,
+      "h": 24,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 24,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Diagnostic Network Expansion",
+      "x": 431,
+      "y": 4359,
+      "w": 266,
+      "h": 48,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 24,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Hospitality Platform",
+      "x": 71,
+      "y": 4673,
+      "w": 266,
+      "h": 24,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 24,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Request the Investor Pack",
+      "x": 71,
+      "y": 4971,
+      "w": 625,
+      "h": 26,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 26,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Our Core Services",
+      "x": 38,
+      "y": 5779,
+      "w": 272,
+      "h": 34,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 35,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Real Estate Development & Consulting",
+      "x": 75,
+      "y": 5973,
+      "w": 272,
+      "h": 42,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 19,
+        "lineHeight": "normal",
+        "fontWeight": "600",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Medical Investment & Smart Diagnostics",
+      "x": 421,
+      "y": 5973,
+      "w": 272,
+      "h": 42,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 19,
+        "lineHeight": "normal",
+        "fontWeight": "600",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Hospitality & Energy Ventures",
+      "x": 75,
+      "y": 6267,
+      "w": 272,
+      "h": 21,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 19,
+        "lineHeight": "normal",
+        "fontWeight": "600",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Our Projects",
+      "x": 38,
+      "y": 6571,
+      "w": 691,
+      "h": 34,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 35,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Sira Prime",
+      "x": 71,
+      "y": 6984,
+      "w": 266,
+      "h": 30,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 27,
+        "lineHeight": 30,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Rosina Diagnostic Center",
+      "x": 431,
+      "y": 6984,
+      "w": 266,
+      "h": 60,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 27,
+        "lineHeight": 30,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Precision PET-CT Imaging Center",
+      "x": 71,
+      "y": 7532,
+      "w": 266,
+      "h": 60,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 27,
+        "lineHeight": 30,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Insights",
+      "x": 38,
+      "y": 7888,
+      "w": 120,
+      "h": 34,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 35,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Why Istanbul Is Becoming Africa’s Investment Bridge",
+      "x": 38,
+      "y": 8260,
+      "w": 332,
+      "h": 60,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 25,
+        "lineHeight": 30,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Inside Nairobi’s Diagnostic Imaging Boom",
+      "x": 398,
+      "y": 8260,
+      "w": 332,
+      "h": 60,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 25,
+        "lineHeight": 30,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "What We Look for in a Strategic Partner",
+      "x": 38,
+      "y": 8744,
+      "w": 332,
+      "h": 60,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 25,
+        "lineHeight": 30,
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Trusted by Partners Across Our Markets",
+      "x": 38,
+      "y": 9052,
+      "w": 691,
+      "h": 34,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 35,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Strategic Partners",
+      "x": 38,
+      "y": 9598,
+      "w": 691,
+      "h": 26,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 26,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.19 0.014 260)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Ready to Partner With Us?",
+      "x": 38,
+      "y": 9926,
+      "w": 326,
+      "h": 62,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 31,
+        "lineHeight": "normal",
+        "fontWeight": "500",
+        "letterSpacing": 0,
+        "textTransform": "none",
+        "color": "oklch(0.95 0.006 75)"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "label": "Shaping a Smarter Future",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 77,
+      "w": 768,
+      "h": 881,
+      "box": {
+        "display": "flex",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "oklch(0.16 0.02 255)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "SIRA GROUP Signs Strategic Partnership with OVAN G",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 958,
+      "w": 768,
+      "h": 512,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "56 38 56 38",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "One Group, a Growing Portfolio of Companies",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 1469,
+      "w": 768,
+      "h": 1603,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "64 38 64 38",
+        "maxWidth": "none",
+        "background": "oklch(0.21 0.03 250)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "Bridging Continents Through Smart Investment",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 3073,
+      "w": 768,
+      "h": 506,
+      "box": {
+        "display": "grid",
+        "gridTemplateColumns": "322.562px 322.578px",
+        "gap": "46.08px",
+        "padding": "69 38 69 38",
+        "maxWidth": "1320px",
+        "background": "rgba(0, 0, 0, 0)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "Invest Alongside SIRA GROUP",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 3578,
+      "w": 768,
+      "h": 2105,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "64 38 64 38",
+        "maxWidth": "none",
+        "background": "oklch(0.16 0.024 255)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "Our Core Services",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 5684,
+      "w": 768,
+      "h": 793,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "64 38 64 38",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "Our Projects",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 6477,
+      "w": 768,
+      "h": 1317,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "64 38 64 38",
+        "maxWidth": "none",
+        "background": "oklch(0.955 0.006 75)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "Insights",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 7794,
+      "w": 768,
+      "h": 1164,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "64 38 64 38",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "Trusted by Partners Across Our Markets",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 8958,
+      "w": 768,
+      "h": 554,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "64 38 64 38",
+        "maxWidth": "none",
+        "background": "oklch(0.21 0.03 250)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "Strategic Partners",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 9511,
+      "w": 768,
+      "h": 321,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "56 38 56 38",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "Ready to Partner With Us?",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 9832,
+      "w": 768,
+      "h": 611,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "64 38 64 38",
+        "maxWidth": "none",
+        "background": "oklch(0.21 0.03 250)",
+        "aspectRatio": "auto"
+      }
+    },
+    {
+      "label": "footer",
+      "tag": "FOOTER",
+      "x": 0,
+      "y": 10444,
+      "w": 768,
+      "h": 461,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "72 38 32 38",
+        "maxWidth": "none",
+        "background": "oklch(0.16 0.024 255)",
+        "aspectRatio": "auto"
+      }
+    }
+  ],
+  "grids": [
+    {
+      "children": 3,
+      "x": 38,
+      "y": 1061,
+      "w": 691,
+      "h": 352,
+      "cols": "329.609px 329.609px",
+      "gap": "32px",
+      "firstChildText": "REAL ESTATE\n            · JUL 2026\n     "
+    },
+    {
+      "children": 4,
+      "x": 38,
+      "y": 1717,
+      "w": 691,
+      "h": 1291,
+      "cols": "329.609px 329.609px",
+      "gap": "32px",
+      "firstChildText": "Active\n            01\n            SIRA R"
+    },
+    {
+      "children": 2,
+      "x": 0,
+      "y": 3073,
+      "w": 768,
+      "h": 506,
+      "cols": "322.562px 322.578px",
+      "gap": "46.08px",
+      "firstChildText": "About SIRA GROUP\n    \n    Bridging Conti"
+    },
+    {
+      "children": 4,
+      "x": 407,
+      "y": 3229,
+      "w": 323,
+      "h": 192,
+      "cols": "145.281px 145.297px",
+      "gap": "40px 32px",
+      "firstChildText": "10+\n        Years of Experience"
+    },
+    {
+      "children": 4,
+      "x": 38,
+      "y": 3829,
+      "w": 691,
+      "h": 339,
+      "cols": "229.062px 229.078px 229.078px",
+      "gap": "1px",
+      "firstChildText": "$120M+\n          ▲+18% YoY\n          Ass"
+    },
+    {
+      "children": 3,
+      "x": 38,
+      "y": 4286,
+      "w": 691,
+      "h": 577,
+      "cols": "331.609px 331.609px",
+      "gap": "28px",
+      "firstChildText": "Real Estate\n            Raising\n        "
+    },
+    {
+      "children": 2,
+      "x": 38,
+      "y": 4938,
+      "w": 691,
+      "h": 681,
+      "cols": "625.219px",
+      "gap": "38.4px",
+      "firstChildText": "Request the Investor Pack\n        Tell u"
+    },
+    {
+      "children": 2,
+      "x": 71,
+      "y": 5223,
+      "w": 625,
+      "h": 61,
+      "cols": "304.609px 304.609px",
+      "gap": "16px",
+      "firstChildText": "Full Name"
+    },
+    {
+      "children": 3,
+      "x": 38,
+      "y": 5869,
+      "w": 691,
+      "h": 544,
+      "cols": "344.109px 344.109px",
+      "gap": "1px",
+      "firstChildText": "01\n          Real Estate Development & C"
+    },
+    {
+      "children": 3,
+      "x": 38,
+      "y": 6661,
+      "w": 691,
+      "h": 1069,
+      "cols": "331.609px 331.609px",
+      "gap": "28px",
+      "firstChildText": "Under Development\n          \n          \n"
+    },
+    {
+      "children": 3,
+      "x": 38,
+      "y": 7978,
+      "w": 691,
+      "h": 916,
+      "cols": "331.609px 331.609px",
+      "gap": "28px",
+      "firstChildText": "JUL 2026\n            \n          \n       "
+    },
+    {
+      "children": 2,
+      "x": 38,
+      "y": 9142,
+      "w": 691,
+      "h": 306,
+      "cols": "329.609px 329.609px",
+      "gap": "32px",
+      "firstChildText": "“\n          SIRA GROUP brought European "
+    },
+    {
+      "children": 2,
+      "x": 38,
+      "y": 9896,
+      "w": 691,
+      "h": 483,
+      "cols": "325.609px 325.609px",
+      "gap": "40px",
+      "firstChildText": "Partnership\n      \n      Ready to Partne"
+    },
+    {
+      "children": 4,
+      "x": 38,
+      "y": 10516,
+      "w": 691,
+      "h": 315,
+      "cols": "203.734px 203.734px 203.734px",
+      "gap": "40px",
+      "firstChildText": "Shaping a smarter future across Europe, "
+    }
+  ],
+  "images": [
+    {
+      "x": 31,
+      "y": 24,
+      "w": 74,
+      "h": 28,
+      "alt": "SIRA GROUP",
+      "natural": "768x290",
+      "objectFit": "fill"
+    },
+    {
+      "x": -8,
+      "y": 68,
+      "w": 783,
+      "h": 898,
+      "alt": "Sira Prime",
+      "natural": "0x0",
+      "objectFit": "cover"
+    },
+    {
+      "x": -41,
+      "y": 30,
+      "w": 851,
+      "h": 975,
+      "alt": "Rosina Diagnostic Center",
+      "natural": "0x0",
+      "objectFit": "cover"
+    },
+    {
+      "x": -8,
+      "y": 68,
+      "w": 783,
+      "h": 898,
+      "alt": "Hospitality Ventures",
+      "natural": "0x0",
+      "objectFit": "cover"
+    },
+    {
+      "x": 39,
+      "y": 1720,
+      "w": 328,
+      "h": 300,
+      "alt": "Real Estate Development & Consulting",
+      "natural": "0x0",
+      "objectFit": "cover"
+    },
+    {
+      "x": 401,
+      "y": 1720,
+      "w": 328,
+      "h": 300,
+      "alt": "Medical Investment & Smart Diagnostics",
+      "natural": "0x0",
+      "objectFit": "cover"
+    },
+    {
+      "x": 39,
+      "y": 6662,
+      "w": 330,
+      "h": 260,
+      "alt": "Sira Prime",
+      "natural": "0x0",
+      "objectFit": "cover"
+    },
+    {
+      "x": 399,
+      "y": 6662,
+      "w": 330,
+      "h": 260,
+      "alt": "Rosina Diagnostic Center",
+      "natural": "0x0",
+      "objectFit": "cover"
+    },
+    {
+      "x": 218,
+      "y": 9716,
+      "w": 109,
+      "h": 60,
+      "alt": "OVAN Group",
+      "natural": "0x0",
+      "objectFit": "contain"
+    },
+    {
+      "x": 373,
+      "y": 9716,
+      "w": 63,
+      "h": 60,
+      "alt": "Rafeef",
+      "natural": "0x0",
+      "objectFit": "contain"
+    },
+    {
+      "x": 482,
+      "y": 9716,
+      "w": 68,
+      "h": 60,
+      "alt": "Partner",
+      "natural": "0x0",
+      "objectFit": "contain"
+    },
+    {
+      "x": 38,
+      "y": 10516,
+      "w": 106,
+      "h": 40,
+      "alt": "SIRA GROUP",
+      "natural": "768x290",
+      "objectFit": "fill"
+    }
+  ],
+  "bodyFont": "\"Times New Roman\""
+}

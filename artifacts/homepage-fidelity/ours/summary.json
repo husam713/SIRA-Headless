@@ -1,0 +1,42 @@
+{
+  "url": "http://localhost:3100/",
+  "capturedAt": "2026-09-06T08:16:15.912Z",
+  "summary": [
+    {
+      "viewport": "390",
+      "documentHeight": 14320,
+      "overflow": 0,
+      "headerHeight": 77
+    },
+    {
+      "viewport": "768",
+      "documentHeight": 10985,
+      "overflow": 0,
+      "headerHeight": 77
+    },
+    {
+      "viewport": "1024",
+      "documentHeight": 9824,
+      "overflow": 0,
+      "headerHeight": 69
+    },
+    {
+      "viewport": "1280",
+      "documentHeight": 9253,
+      "overflow": 0,
+      "headerHeight": 69
+    },
+    {
+      "viewport": "1440",
+      "documentHeight": 8914,
+      "overflow": 0,
+      "headerHeight": 69
+    },
+    {
+      "viewport": "1920",
+      "documentHeight": 9094,
+      "overflow": 0,
+      "headerHeight": 69
+    }
+  ]
+}

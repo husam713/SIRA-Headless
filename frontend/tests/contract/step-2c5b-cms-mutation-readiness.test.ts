@@ -422,11 +422,31 @@ describe("Step 2C.5B CMS mutation readiness and backup gate", () => {
   });
 
   it("separates Step 2C.5B plan acceptance from Batch A mutation authorization", () => {
+    // The Step 2C.5B ARTIFACTS below are historical: they record what was true
+    // when the plan was written, and must keep saying so.
+    //
+    // Current project state is a different claim, and it changed. The owner
+    // authorized a WordPress backup and Batch A on 2026-09-05 (ADR-030 / ADR-031),
+    // the backup was taken and verified, and the branch-local Business Unit
+    // terms were created. Asserting `false` here would leave the durable state
+    // contradicting the repository — the same drift SOT-002 was opened for.
     expect(projectState.authorization).toMatchObject({
       step2c5bAccepted: true,
-      batchAMutationAuthorized: false,
-      cmsMutationAuthorization: "NOT_GRANTED",
+      batchAMutationAuthorized: true,
+      cmsMutationAuthorization: "OWNER_AUTHORIZED_BOUNDED",
     });
+
+    // The grant is bounded, and the bound is the part worth testing: nothing
+    // about it authorizes deletion or production movement.
+    expect(projectState.authorization["taxonomyDeletionAuthorized"]).toBe(false);
+    expect(projectState.authorization["groupProductionCutoverAuthorized"]).toBe(false);
+    expect(projectState.authorization["productionDnsChangeAuthorized"]).toBe(false);
+
+    // Batch A executed only against a verified recovery point.
+    expect(projectState.authorization["rb001BackupEvidence"]).toMatchObject({
+      status: "PRESENT_VERIFIED",
+    });
+
     expect(projectState.currentStageStatus).toBe("OWNER_ACCEPTED_MERGED");
     expect(readiness).toMatchObject({
       planStatus: "OWNER_ACCEPTED_PENDING_MERGE",

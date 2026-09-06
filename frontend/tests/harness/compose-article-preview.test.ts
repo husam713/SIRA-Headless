@@ -7,8 +7,10 @@ import { describe, expect, it, vi } from "vitest";
 
 import { ArticlePage } from "@/components/editorial/article-page";
 import type { EditorialArticle } from "@/lib/editorial/editorial-single-types";
+import { toEntryViews } from "@/lib/editorial/entry-view";
 import { normalizeEditorialSingle } from "@/lib/editorial/normalize-editorial-single";
 import { parseRichText } from "@/lib/editorial/rich-text";
+import { DEMO_RECORD } from "../fixtures/newsroom/demo-record";
 import { withBrandTokens } from "./homepage-fixture-composer";
 
 vi.mock("next/link", () => ({
@@ -46,15 +48,27 @@ const SYNTHETIC: EditorialArticle = Object.freeze({
   publishedAt: "2026-08-27T20:38:20",
   modifiedAt: "2026-09-02T11:04:00",
   featuredImage: null,
+  desks: Object.freeze(["healthcare"] as const),
   body: parseRichText(RICH_BODY),
 });
+
+// The closing strip, drawn from the same demo record the newsroom preview uses.
+const ALSO = toEntryViews(
+  DEMO_RECORD.filter(
+    (item) =>
+      item.desks.includes("healthcare") && item.title !== SYNTHETIC.title,
+  ).slice(0, 3),
+);
 
 describe("article preview", () => {
   it("renders a full-typography body", () => {
     mkdirSync(OUTPUT_DIR, { recursive: true });
 
     const markup = renderToStaticMarkup(
-      withBrandTokens("healthcare", createElement(ArticlePage, { article: SYNTHETIC })),
+      withBrandTokens(
+        "healthcare",
+        createElement(ArticlePage, { article: SYNTHETIC, alsoInTheRecord: ALSO }),
+      ),
     );
     writeFileSync(join(OUTPUT_DIR, "article.html"), markup);
 
@@ -85,7 +99,13 @@ describe("article preview", () => {
     writeFileSync(
       join(OUTPUT_DIR, "article-live.html"),
       renderToStaticMarkup(
-        withBrandTokens("group", createElement(ArticlePage, { article: resolution.article })),
+        withBrandTokens(
+          "group",
+          createElement(ArticlePage, {
+            article: resolution.article,
+            alsoInTheRecord: [],
+          }),
+        ),
       ),
     );
   });

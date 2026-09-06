@@ -1,0 +1,136 @@
+{
+  "data": {
+    "siraBusinessUnit": {
+      "contentNodes": {
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "YXJyYXljb25uZWN0aW9uOjg3"
+        },
+        "nodes": [
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 24,
+            "contentTypeName": "sira_article",
+            "date": "2026-08-28T19:29:20",
+            "modified": "2026-09-02T04:27:15",
+            "uri": "/articles/what-we-look-for-in-a-strategic-partner__trashed/",
+            "isRestricted": false,
+            "title": "What We Look for in a Strategic Partner",
+            "excerpt": "<p>A look at the criteria SIRA GROUP applies before entering a new market or venture.</p>\n",
+            "featuredImage": {
+              "node": {
+                "databaseId": 66,
+                "sourceUrl": "https://consulting.siratrgroup.com/wp-content/uploads/sites/2/2026/08/istanbul-financial-center-skyline.webp.webp",
+                "altText": "",
+                "mediaDetails": {
+                  "width": 1200,
+                  "height": 747
+                }
+              }
+            }
+          },
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 23,
+            "contentTypeName": "sira_article",
+            "date": "2026-08-28T19:29:20",
+            "modified": "2026-09-02T04:26:11",
+            "uri": "/articles/inside-nairobis-diagnostic-imaging-boom__trashed/",
+            "isRestricted": false,
+            "title": "De-risking Frontier Investment",
+            "excerpt": "<p>Demand for advanced radiology is reshaping how healthcare investors think about East Africa.</p>\n",
+            "featuredImage": {
+              "node": {
+                "databaseId": 66,
+                "sourceUrl": "https://consulting.siratrgroup.com/wp-content/uploads/sites/2/2026/08/istanbul-financial-center-skyline.webp.webp",
+                "altText": "",
+                "mediaDetails": {
+                  "width": 1200,
+                  "height": 747
+                }
+              }
+            }
+          },
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 22,
+            "contentTypeName": "sira_article",
+            "date": "2026-08-28T19:29:20",
+            "modified": "2026-09-02T04:12:37",
+            "uri": "/articles/why-istanbul-is-becoming-africas-investment-bridge__trashed/",
+            "isRestricted": false,
+            "title": "Istanbul as Africa’s Investment Bridge",
+            "excerpt": "<p>How geography and policy are turning Turkish capital toward East African healthcare and housing.</p>\n",
+            "featuredImage": {
+              "node": {
+                "databaseId": 66,
+                "sourceUrl": "https://consulting.siratrgroup.com/wp-content/uploads/sites/2/2026/08/istanbul-financial-center-skyline.webp.webp",
+                "altText": "",
+                "mediaDetails": {
+                  "width": 1200,
+                  "height": 747
+                }
+              }
+            }
+          },
+          {
+            "__typename": "SiraNewsItem",
+            "databaseId": 84,
+            "contentTypeName": "sira_news",
+            "date": "2026-03-30T11:00:00",
+            "modified": "2026-03-30T11:00:00",
+            "uri": "/news/sira-consulting-appointed-to-advise-on-a-cross-border-healthcare-platform/",
+            "isRestricted": false,
+            "title": "SIRA Consulting Appointed to Advise on a Cross-Border Healthcare Platform",
+            "excerpt": "<p>The mandate covers market entry, licensing and clinical partnership structure across two jurisdictions.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraInsight",
+            "databaseId": 85,
+            "contentTypeName": "sira_insight",
+            "date": "2026-02-02T10:30:00",
+            "modified": "2026-02-02T10:30:00",
+            "uri": "/insights/the-cost-of-waiting/",
+            "isRestricted": false,
+            "title": "The Cost of Waiting",
+            "excerpt": "<p>Three markets where the entry price moved against patient capital in eighteen months.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraNewsItem",
+            "databaseId": 86,
+            "contentTypeName": "sira_news",
+            "date": "2025-08-19T10:00:00",
+            "modified": "2025-08-19T10:00:00",
+            "uri": "/news/consulting-practice-expands-its-market-entry-team/",
+            "isRestricted": false,
+            "title": "Consulting Practice Expands Its Market-Entry Team",
+            "excerpt": "<p>Four senior appointments across Istanbul and Nairobi.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraInsight",
+            "databaseId": 87,
+            "contentTypeName": "sira_insight",
+            "date": "2024-08-05T09:00:00",
+            "modified": "2024-08-05T09:00:00",
+            "uri": "/insights/what-good-partnership-looks-like-after-the-first-year/",
+            "isRestricted": false,
+            "title": "What Good Partnership Looks Like After the First Year",
+            "excerpt": "<p>Partnerships are underwritten on the pitch and judged on the second year. A note on what SIRA measures once the novelty is gone.</p>\n",
+            "featuredImage": null
+          }
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "debug": [
+      {
+        "type": "DEBUG_LOGS_INACTIVE",
+        "message": "GraphQL Debug logging is not active. To see debug logs, GRAPHQL_DEBUG must be enabled."
+      }
+    ]
+  }
+}

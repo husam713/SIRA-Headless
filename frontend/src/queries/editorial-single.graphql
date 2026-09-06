@@ -15,6 +15,13 @@ fragment EditorialSingleFeaturedImage on NodeWithFeaturedImageToMediaItemConnect
   }
 }
 
+fragment EditorialSingleDesks on SiraBusinessUnitConnection {
+  nodes {
+    databaseId
+    slug
+  }
+}
+
 query SiraEditorialSingle($uri: String!) {
   nodeByUri(uri: $uri) {
     __typename
@@ -33,6 +40,9 @@ query SiraEditorialSingle($uri: String!) {
       featuredImage {
         ...EditorialSingleFeaturedImage
       }
+      siraBusinessUnits(first: 4) {
+        ...EditorialSingleDesks
+      }
     }
     ... on SiraInsight {
       title
@@ -40,6 +50,9 @@ query SiraEditorialSingle($uri: String!) {
       content(format: RENDERED)
       featuredImage {
         ...EditorialSingleFeaturedImage
+      }
+      siraBusinessUnits(first: 4) {
+        ...EditorialSingleDesks
       }
     }
     ... on SiraArticle {
@@ -49,6 +62,9 @@ query SiraEditorialSingle($uri: String!) {
       featuredImage {
         ...EditorialSingleFeaturedImage
       }
+      siraBusinessUnits(first: 4) {
+        ...EditorialSingleDesks
+      }
     }
     ... on SiraPressRelease {
       title
@@ -56,6 +72,9 @@ query SiraEditorialSingle($uri: String!) {
       content(format: RENDERED)
       featuredImage {
         ...EditorialSingleFeaturedImage
+      }
+      siraBusinessUnits(first: 4) {
+        ...EditorialSingleDesks
       }
     }
   }

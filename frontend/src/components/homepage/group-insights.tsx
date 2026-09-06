@@ -17,9 +17,18 @@ interface GroupInsightsProps {
 
 interface InsightCardProps {
   readonly item: HomepageContentItem;
+  /**
+   * Whether this ROW carries media at all.
+   *
+   * Decided once for the section rather than per card: with a mixed row, one
+   * article showed a photograph while its neighbours reserved an empty grey
+   * rectangle of identical height, which reads as three broken cards rather
+   * than one row. Either every card reserves the block, or none does.
+   */
+  readonly withMedia: boolean;
 }
 
-function InsightCard({ item }: InsightCardProps) {
+function InsightCard({ item, withMedia }: InsightCardProps) {
   const date = formatContentDate(item.date);
   // item.href is the content node's own uri. The [section]/[slug] route serves
   // the four editorial bases verbatim, so anything under them links; anything
@@ -28,6 +37,7 @@ function InsightCard({ item }: InsightCardProps) {
 
   return (
     <article className="flex flex-col gap-5">
+      {withMedia ? (
       <div className="aspect-[16/11] w-full overflow-hidden bg-brand-tint">
         {item.featuredImage !== null ? (
           // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a plain
@@ -45,6 +55,7 @@ function InsightCard({ item }: InsightCardProps) {
           />
         ) : null}
       </div>
+      ) : null}
       <div className="flex items-center gap-3">
         {date !== null ? (
           <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-brand-accent">
@@ -73,6 +84,14 @@ function InsightCard({ item }: InsightCardProps) {
 
 export function GroupInsights({ section }: GroupInsightsProps) {
   if (section === null || section.selection.status !== "ready") return null;
+
+  // EVERY, not some. Reserving the block when only part of the row has art
+  // leaves the rest as empty rectangles of identical height, which reads worse
+  // than no art at all — and filling them would mean inventing imagery the CMS
+  // does not have. A partially-illustrated row becomes a typographic row.
+  const rowHasMedia = section.selection.items.every(
+    (item) => item.featuredImage !== null,
+  );
 
   return (
     <Section
@@ -104,9 +123,9 @@ export function GroupInsights({ section }: GroupInsightsProps) {
           </p>
         ) : null}
 
-        <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {section.selection.items.map((item) => (
-            <InsightCard key={item.databaseId} item={item} />
+            <InsightCard key={item.databaseId} item={item} withMedia={rowHasMedia} />
           ))}
         </div>
       </PageContainer>

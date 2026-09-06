@@ -81,7 +81,12 @@ BranchHomepage, reached `main` through PR `#59` at `e3920919`, together with the
 per-viewport visual capture tooling. The G to J fixture-backed visual-fidelity
 correction - the section eyebrow rule and accent, and the header CTA squared to
 the reference - reached `main` through PR `#60` at `a3c3ae3f`. Newsroom route
-work remains NOT STARTED.
+work is IMPLEMENTED on the unmerged branch `feat/newsroom-ledger` and is NOT
+merged and NOT owner-accepted: the `/news` archive, the editorial article route,
+the shared `NewsroomPage`, the desk registry and the placeholder-content tooling
+all exist there. Any carrier statement that no newsroom route, component or
+query exists under `frontend/src` is stale and was already stale at
+`f55b5eb5`.
 
 Acceptance evidence differs per pull request and must not be generalized. For
 PRs `#44`, `#46`, `#47`, and `#49` to `#53`, the conversation threads were
@@ -107,10 +112,26 @@ absence of acceptance evidence. See the per-pull-request record in
 `project-state.json` and the historical SOT-002 record below, which is preserved
 as written and describes what was open at the time it was made.
 
-The separate Step 2C.5B CMS readiness plan remains
-`BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`,
-Batch A mutation authorization is false, and no backup, export, restore,
-taxonomy deletion, CMS mutation, Step 2C.5C, or deployment is authorized.
+The Step 2C.5B CMS readiness plan is no longer blocked on backup evidence.
+On 2026-09-05 the owner authorized a WordPress backup, placeholder editorial
+seeding, and Batch A (ADR-030, ADR-031). On 2026-09-06 a full multisite
+database backup was taken and verified BEFORE any write - RB-001 evidence now
+exists, recorded in `project-state.json` under
+`authorization.rb001BackupEvidence` - and Batch A executed: the branch-local
+`consulting`, `real-estate` and `lifestyle` terms were created, `healthcare`
+already existed and was not rewritten, and Group's taxonomy was not touched.
+
+That grant is BOUNDED. `cmsMutationAuthorization` is now
+`OWNER_AUTHORIZED_BOUNDED`, not open. Taxonomy deletion, destructive database
+operations, restore execution, Step 2C.5C, staging provisioning, deployment,
+DNS and production cutover all remain NOT AUTHORIZED. RB-009 restore evidence
+is still `UNKNOWN`: the dump has never been restored into a scratch database,
+so recoverability is STRONGLY INFERRED from the dump's integrity rather than
+CONFIRMED by a rehearsal (`openGates.rb009RestoreRehearsal`).
+
+The historical Step 2C.5B artifacts under `artifacts/step-2c5b/` are preserved
+exactly as written and continue to record what was true when they were made.
+They are history, not current state.
 
 ## Current AI Engineering OS governance state
 
@@ -174,6 +195,22 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
 
 ## Current unresolved gates
 
+- **Hostinger CDN blocks the headless GraphQL contract (ADR-032): UNRESOLVED,
+  LAUNCH BLOCKING.** The WordPress origin sits behind Hostinger's CDN
+  (`Server: hcdn`). A POST to the WPGraphQL endpoint from an unrecognised
+  client IP returns HTTP 403 with a JavaScript bot-challenge instead of a
+  GraphQL response; the identical request from the origin returns HTTP 200 with
+  correct data. Every SIRA page is rendered by a server-side fetch to that
+  endpoint (ADR-003, ADR-006), which is the request shape being challenged.
+  Whether the deploying platform's egress is already allowlisted is UNKNOWN and
+  needs hPanel access to determine.
+- **Placeholder editorial present in the CMS: LAUNCH BLOCKING.** 38 records
+  carry `_sira_seed=1` across the five tenants. `blog_public` is `0` on every
+  tenant to keep them out of search results and must return to `1` at launch.
+  `node tools/verify-no-seed-content.mjs` gates both and exits non-zero while
+  either is outstanding.
+- `RB-009` restore rehearsal: UNRESOLVED. A backup exists and is verified; it
+  has never been restored.
 - `2C4-B07` media origin/delivery: UNRESOLVED / DEFERRED.
 - `2C4-B08` forms architecture: UNRESOLVED.
 - `2C4-B09` multilingual architecture: UNRESOLVED.

@@ -3,9 +3,15 @@ import type {
   EditorialSingleResolution,
   InvalidEditorialSingleReason,
 } from "@/lib/editorial/editorial-single-types";
+import {
+  EDITORIAL_DESK_ORDER,
+  isEditorialDeskKey,
+  siteEditorialDesk,
+} from "@/lib/editorial/desks";
 import { parseRichText } from "@/lib/editorial/rich-text";
 import type {
   EditorialContentTypeName,
+  EditorialDeskKey,
   EditorialImage,
   EditorialKind,
   EditorialTypename,
@@ -107,6 +113,34 @@ function normalizeFeaturedImage(value: unknown): EditorialImage | null {
 }
 
 /**
+ * The desks the article is filed under, read the same way the feed reads them
+ * so an entry cannot be labelled one way in the index and another on the page.
+ * See normalizeDesks in normalize-editorial-feed.ts for why an empty result
+ * falls back to the tenant's own desk.
+ */
+function normalizeDesks(
+  value: unknown,
+  siteKey: SiteKey,
+): readonly EditorialDeskKey[] {
+  const nodes = isRecord(value) ? value["nodes"] : null;
+  const found = new Set<EditorialDeskKey>();
+
+  if (Array.isArray(nodes)) {
+    for (const node of nodes) {
+      if (!isRecord(node)) continue;
+      const slug = typeof node["slug"] === "string" ? node["slug"].trim() : "";
+      if (slug !== "" && slug !== "group" && isEditorialDeskKey(slug)) {
+        found.add(slug);
+      }
+    }
+  }
+
+  const desks = EDITORIAL_DESK_ORDER.filter((desk) => found.has(desk));
+
+  return Object.freeze(desks.length > 0 ? desks : [siteEditorialDesk(siteKey)]);
+}
+
+/**
  * Normalize one editorial node addressed by URI.
  *
  * `expectedUri` is checked against what came back, so a CMS-side redirect
@@ -181,6 +215,7 @@ export function normalizeEditorialSingle(
     publishedAt: normalizeDate(node["date"]),
     modifiedAt: normalizeDate(node["modified"]),
     featuredImage: normalizeFeaturedImage(node["featuredImage"]),
+    desks: normalizeDesks(node["siraBusinessUnits"], siteKey),
     body: typeof content === "string" ? parseRichText(content) : Object.freeze([]),
   });
 

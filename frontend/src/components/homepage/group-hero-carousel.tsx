@@ -135,46 +135,139 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
             "linear-gradient(180deg, var(--brand-hero-overlay-top) 0%, var(--brand-hero-overlay-middle) 45%, var(--brand-hero-overlay-bottom) 100%)",
         }}
       />
+      {/* Second scrim along the leading edge, under the headline and copy. A
+          vertical gradient alone cannot protect text set over a bright subject
+          on one side of a daylight photograph. */}
+      <div
+        aria-hidden="true"
+        className="hero-scrim-lead pointer-events-none absolute inset-0 z-[1]"
+      />
 
-      <PageGrid className="relative z-[2] gap-y-10 pb-16 pt-32 sm:pb-20 lg:pb-24">
-        <GridItem span={8}>{children}</GridItem>
+      <PageGrid className="relative z-[2] items-stretch gap-y-8 pb-12 pt-24 lg:gap-y-10 lg:pb-20 lg:pt-28">
+        <GridItem span={7} spanMd={8} className="flex flex-col justify-center">
+          {/*
+            The active slide's origin, above the headline — the reference opens
+            on "SIRA LIFESTYLE · COMING SOON". It lives in the client component
+            because it changes with the slide, while the headline beneath it is
+            server-rendered and constant.
+          */}
+          {activeSlide !== undefined ? (
+            <p
+              className="mb-7 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-bold uppercase tracking-[0.14em] transition-colors duration-700"
+              style={{ color: activeSlide.accentColor }}
+            >
+              <span aria-hidden="true" className="h-px w-8 shrink-0 bg-current" />
+              <span>{activeSlide.tag}</span>
+              {activeSlide.location !== null ? (
+                <>
+                  <span aria-hidden="true" className="opacity-60">
+                    &middot;
+                  </span>
+                  <span className="text-brand-paper/75">{activeSlide.location}</span>
+                </>
+              ) : null}
+            </p>
+          ) : null}
+          {children}
+        </GridItem>
 
         {canRotate ? (
-          <GridItem span={4} className="flex flex-col gap-6">
-            <div className="flex items-baseline gap-3 border-b border-brand-paper/20 pb-4">
+          <GridItem
+            span={4}
+            start={9}
+            spanMd={8}
+            // Below the desktop step the selector sits under the headline
+            // rather than beside it, so it lays its rows out horizontally and
+            // costs one band instead of three. Stacked, it added ~300px to the
+            // hero at 1024 against the reference.
+            className="flex flex-col justify-between gap-6 lg:gap-10"
+          >
+            {/* Slide index, held at the top of its column as the reference does
+                rather than sitting immediately above the selector. */}
+            <div className="flex items-baseline gap-3">
               <span
-                className="font-display text-4xl leading-none transition-colors duration-700 sm:text-5xl"
+                className="font-display text-[clamp(2.5rem,4vw,4rem)] leading-none transition-colors duration-700"
                 style={{ color: activeSlide?.accentColor }}
               >
                 {String(activeIndex + 1).padStart(2, "0")}
               </span>
-              <span className="text-xs font-semibold text-brand-paper/60">
+              <span className="text-sm font-semibold text-brand-paper/60">
                 / {String(slides.length).padStart(2, "0")}
               </span>
-              {showAutoplayControls ? (
-                <button
-                  type="button"
-                  onClick={() => setUserPaused((paused) => !paused)}
-                  aria-pressed={isPlaying}
-                  className="ms-auto rounded-full border border-brand-paper/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-paper/80 transition-colors hover:border-brand-paper hover:text-brand-paper"
-                >
-                  {isPlaying ? "Pause" : "Play"}
-                </button>
-              ) : null}
             </div>
 
-            <div role="group" aria-label="Featured ventures" className="flex flex-col">
+            {/*
+              The selector needs its own surface. Over a photograph the rows
+              were unreadable without one, and the reference gives it a panel
+              rather than floating the text on the image.
+            */}
+            <div className="border border-brand-paper/15 bg-brand-deep/70 p-5 backdrop-blur-sm">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-paper/60">
+                  Featured Projects
+                </span>
+                <span className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setActiveIndex((i) => (i - 1 + slides.length) % slides.length)
+                    }
+                    aria-label="Previous featured project"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-brand-paper/30 text-brand-paper/80 transition-colors hover:border-brand-paper hover:text-brand-paper"
+                  >
+                    <span aria-hidden="true">&larr;</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveIndex((i) => (i + 1) % slides.length)}
+                    aria-label="Next featured project"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-brand-paper/30 text-brand-paper/80 transition-colors hover:border-brand-paper hover:text-brand-paper"
+                  >
+                    <span aria-hidden="true">&rarr;</span>
+                  </button>
+                  {showAutoplayControls ? (
+                    <button
+                      type="button"
+                      onClick={() => setUserPaused((paused) => !paused)}
+                      aria-pressed={isPlaying}
+                      className="ms-1 text-[10px] font-bold uppercase tracking-[0.1em] text-brand-paper/70 transition-colors hover:text-brand-paper"
+                    >
+                      {isPlaying ? "Pause" : "Play"}
+                    </button>
+                  ) : null}
+                </span>
+              </div>
+
+              <div
+                role="group"
+                aria-label="Featured ventures"
+                className="grid grid-cols-1 gap-1 sm:grid-cols-3 lg:grid-cols-1"
+              >
               {slides.map((slide, index) => {
                 const isActive = index === activeIndex;
 
                 return (
-                  <div key={slide.key} className="border-b border-brand-paper/10 py-4">
+                  <div
+                    key={slide.key}
+                    // Active row: accent rule on the leading edge and a faint
+                    // tint, the same "mark, don't box" grammar the rest of the
+                    // site uses.
+                    className="border-s-2 transition-colors duration-300"
+                    style={{
+                      borderInlineStartColor: isActive
+                        ? slide.accentColor
+                        : "transparent",
+                      backgroundColor: isActive
+                        ? "color-mix(in oklab, var(--brand-paper) 10%, transparent)"
+                        : "transparent",
+                    }}
+                  >
                     <button
                       type="button"
                       onClick={() => setActiveIndex(index)}
                       aria-current={isActive ? "true" : undefined}
-                      className="flex w-full flex-col items-start gap-1 text-start transition-opacity duration-500"
-                      style={{ opacity: isActive ? 1 : 0.55 }}
+                      className="flex w-full flex-col items-start gap-0.5 px-3 py-2.5 text-start transition-opacity duration-500"
+                      style={{ opacity: isActive ? 1 : 0.6 }}
                     >
                       <span
                         className="text-[10px] font-bold uppercase tracking-[0.12em]"
@@ -182,11 +275,13 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
                       >
                         {slide.tag}
                       </span>
-                      <span className="font-display text-base font-medium sm:text-lg">
+                      <span className="font-display text-[0.9375rem] font-medium text-brand-paper">
                         {slide.title}
                       </span>
                       {slide.location !== null ? (
-                        <span className="text-xs text-brand-paper/60">{slide.location}</span>
+                        <span className="text-[11px] text-brand-paper/55">
+                          {slide.location}
+                        </span>
                       ) : null}
                     </button>
 
@@ -210,6 +305,7 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
                   </div>
                 );
               })}
+              </div>
             </div>
           </GridItem>
         ) : null}

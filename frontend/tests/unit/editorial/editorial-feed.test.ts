@@ -359,7 +359,84 @@ describe("native editorial feed server adapter", () => {
         width: 1200,
         height: 800,
       },
+      // The branch feed selects no Business Unit terms, so the desk comes from
+      // the tenant: on a branch site every entry belongs to that branch by
+      // construction. Note `real-estate` is NOT derived from `realestate`
+      // (ADR-014) — that mapping is asserted in desks.test.ts.
+      desks: ["lifestyle"],
     });
+  });
+
+  it("labels an entry with the Business Unit terms it actually carries", () => {
+    const result = normalizeEditorialFeed(
+      "group",
+      createData([
+        createNode("SiraNewsItem", 20, {
+          siraBusinessUnits: {
+            nodes: [{ databaseId: 5, slug: "real-estate" }],
+          },
+        }),
+        // Two desks: a joint announcement appears under both filters while
+        // still reading as one entry.
+        createNode("SiraInsight", 21, {
+          siraBusinessUnits: {
+            nodes: [
+              { databaseId: 7, slug: "consulting" },
+              { databaseId: 5, slug: "healthcare" },
+            ],
+          },
+        }),
+        // No terms on the Group tenant is Group's own reporting, per the
+        // ADR-014 mapping `group -> null`. It is not missing data.
+        createNode("SiraArticle", 22),
+      ]),
+    );
+
+    if (result.status !== "ready") {
+      throw new Error("Expected the editorial feed to be ready.");
+    }
+
+    expect(result.page.items.map((item) => item.desks)).toEqual([
+      ["real-estate"],
+      // Canonical order, not the order the CMS happened to return.
+      ["healthcare", "consulting"],
+      ["group"],
+    ]);
+  });
+
+  it("drops a Business Unit term the frontend has no desk for", () => {
+    const result = normalizeEditorialFeed(
+      "group",
+      createData([
+        createNode("SiraNewsItem", 30, {
+          siraBusinessUnits: {
+            nodes: [
+              { databaseId: 9, slug: "aviation" },
+              { databaseId: 5, slug: "healthcare" },
+            ],
+          },
+        }),
+        createNode("SiraInsight", 31, {
+          siraBusinessUnits: { nodes: [{ databaseId: 9, slug: "aviation" }] },
+        }),
+      ]),
+    );
+
+    if (result.status !== "ready") {
+      throw new Error("Expected the editorial feed to be ready.");
+    }
+
+    // An unrecognised term has no approved label, accent or filter URL, so
+    // rendering it would mean inventing one (ADR-015). The entry is kept and
+    // falls back to the tenant's own desk; the term is reported.
+    expect(result.page.items.map((item) => item.desks)).toEqual([
+      ["healthcare"],
+      ["group"],
+    ]);
+    expect(result.page.diagnostics).toEqual([
+      { code: "unknown-business-unit", nodeDatabaseId: 30 },
+      { code: "unknown-business-unit", nodeDatabaseId: 31 },
+    ]);
   });
 
   it("omits malformed nodes without inventing replacement card data", () => {

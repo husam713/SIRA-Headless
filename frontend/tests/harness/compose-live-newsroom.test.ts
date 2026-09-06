@@ -5,7 +5,7 @@ import { createElement, type ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 
-import { NewsroomPage } from "@/components/newsroom/newsroom-page";
+import { NewsroomPage } from "@/components/record/newsroom-page";
 import { normalizeEditorialFeed } from "@/lib/editorial/normalize-editorial-feed";
 import type { SiteKey } from "@/types/site";
 import { withBrandTokens } from "./homepage-fixture-composer";
@@ -25,11 +25,9 @@ vi.mock("next/link", () => ({
 // by tools/capture-live-feed.mjs, through the real normalizer and the real
 // production components.
 //
-// This is the closest thing to a live render that is currently possible.
-// Hostinger's CDN serves a JavaScript bot-challenge to unrecognised client IPs,
-// so the GraphQL endpoint answers 403 from a developer machine and 200 from the
-// server; the capture is therefore made over SSH and replayed here. Everything
-// except the HTTP transport is exercised end to end.
+// The capture is taken by tools/capture-live-feed.mjs against the live endpoint
+// and replayed here, so the whole pipeline below the transport is exercised
+// against content nobody authored for a test.
 //
 // It SKIPS rather than fails when no capture exists, because the captures are
 // real content that a clean checkout has no way to reproduce.
@@ -118,8 +116,12 @@ describe("newsroom against live CMS data", () => {
       mkdirSync(OUTPUT_DIR, { recursive: true });
       writeFileSync(join(OUTPUT_DIR, `live-${site}.html`), markup);
 
-      expect(markup).toContain("newsroom-heading");
-      expect(markup).toContain("placeholder editorial");
+      // Structural assertions against THE SIRA RECORD's own markers.
+      expect(markup).toContain("record-heading");
+      expect(markup).toContain("record-shell");
+      expect(markup).toContain("record-register");
+      // Off the canonical host the masthead states the placeholder caveat.
+      expect(markup).toContain("PLACEHOLDER EDITORIAL");
     });
   }
 

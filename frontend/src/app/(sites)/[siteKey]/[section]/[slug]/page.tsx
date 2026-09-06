@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { draftMode, headers } from "next/headers";
 import { notFound } from "next/navigation";
 
-import { ArticlePage } from "@/components/editorial/article-page";
+import { ArticlePage } from "@/components/record/article-page";
 import { getBrand } from "@/lib/brand";
 import { getEditorialFeed } from "@/lib/editorial";
 import { primaryDesk } from "@/lib/editorial/desks";
@@ -151,10 +151,5 @@ export default async function EditorialArticleRoute({
     resolution.article,
   );
 
-  return (
-    <ArticlePage
-      article={resolution.article}
-      alsoInTheRecord={alsoInTheRecord}
-    />
-  );
+  return <ArticlePage article={resolution.article} related={alsoInTheRecord} />;
 }

@@ -20,6 +20,7 @@ import type {
   SiraBusinessUnitEditorialFeedQueryData,
   SiraEditorialFeedQueryData,
 } from "@/queries/editorial-feed";
+import { decodeEntities } from "@/lib/editorial/rich-text";
 import type { SiteKey } from "@/types/site";
 
 type BranchFeedConnection = NonNullable<
@@ -114,12 +115,20 @@ function normalizePlainText(
     return null;
   }
 
-  const plainText = value
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/giu, " ")
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/giu, " ")
-    .replace(/<[^>]*>/gu, " ")
+  // WordPress hands back entity-encoded text: a title is "SIRA Lifestyle&#8217;s"
+  // and an excerpt ends in "&hellip;". Stripping tags without decoding those
+  // leaves the reader looking at the entity source, because React escapes the
+  // ampersand again on the way out. Decoding runs AFTER tags are stripped, and
+  // any angle bracket it produces is removed again, so no entity can smuggle
+  // markup back in.
+  const plainText = decodeEntities(
+    value
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/giu, " ")
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style>/giu, " ")
+      .replace(/<[^>]*>/gu, " ")
+      .replace(/[<>]/gu, " "),
+  )
     .replace(/[<>]/gu, " ")
-    .replace(/&nbsp;/giu, " ")
     .replace(/\s+/gu, " ")
     .trim();
 

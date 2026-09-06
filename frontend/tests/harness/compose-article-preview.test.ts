@@ -5,7 +5,7 @@ import { createElement, type ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 
-import { ArticlePage } from "@/components/editorial/article-page";
+import { ArticlePage } from "@/components/record/article-page";
 import type { EditorialArticle } from "@/lib/editorial/editorial-single-types";
 import { toEntryViews } from "@/lib/editorial/entry-view";
 import { normalizeEditorialSingle } from "@/lib/editorial/normalize-editorial-single";
@@ -67,7 +67,7 @@ describe("article preview", () => {
     const markup = renderToStaticMarkup(
       withBrandTokens(
         "healthcare",
-        createElement(ArticlePage, { article: SYNTHETIC, alsoInTheRecord: ALSO }),
+        createElement(ArticlePage, { article: SYNTHETIC, related: ALSO }),
       ),
     );
     writeFileSync(join(OUTPUT_DIR, "article.html"), markup);
@@ -103,7 +103,7 @@ describe("article preview", () => {
           "group",
           createElement(ArticlePage, {
             article: resolution.article,
-            alsoInTheRecord: [],
+            related: [],
           }),
         ),
       ),

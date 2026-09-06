@@ -121,43 +121,48 @@ describe("composeNewsroom", () => {
     item(index + 1, `2026-0${((index % 9) + 1).toString()}-01T00:00:00`),
   );
 
-  it("gives the newest entry the lead and the next three the front", () => {
+  /** Lead plus every band, in render order. */
+  function rendered(composed: ReturnType<typeof composeNewsroom>) {
+    return [
+      ...(composed.lead === null ? [] : [composed.lead.databaseId]),
+      ...composed.record.flatMap((band) =>
+        band.items.map((entry) => entry.databaseId),
+      ),
+    ];
+  }
+
+  it("gives the newest entry the lead and indexes the rest", () => {
     const composed = composeNewsroom(many);
 
     expect(composed.lead?.databaseId).toBe(1);
-    expect(composed.front.map((entry) => entry.databaseId)).toEqual([2, 3, 4]);
     expect(
       composed.record.flatMap((band) =>
         band.items.map((entry) => entry.databaseId),
       ),
-    ).toEqual([5, 6, 7, 8, 9]);
+    ).toEqual([2, 3, 4, 5, 6, 7, 8, 9]);
   });
 
-  it("drops the front rather than half-filling its three stepping widths", () => {
-    // Two entries beside a lead would leave a hole where the third step
-    // belongs, and the row would read as a fault rather than a shorter page.
-    const composed = composeNewsroom(many.slice(0, 3));
-
-    expect(composed.lead?.databaseId).toBe(1);
-    expect(composed.front).toEqual([]);
-    expect(
-      composed.record.flatMap((band) => band.items.map((e) => e.databaseId)),
-    ).toEqual([2, 3]);
+  it("renders every entry exactly once, at any length", () => {
+    // The invariant that matters: composition assigns weight, it never drops
+    // stories. A previous iteration reserved a fixed-size row between the lead
+    // and the record, and those entries disappeared from the page when the row
+    // left the design.
+    for (const length of [0, 1, 2, 3, 4, 5, 9]) {
+      const input = many.slice(0, length);
+      expect(rendered(composeNewsroom(input)), `${length} entries`).toEqual(
+        input.map((entry) => entry.databaseId),
+      );
+    }
   });
 
   it("composes an empty view without a lead", () => {
-    expect(composeNewsroom([])).toEqual({
-      lead: null,
-      front: [],
-      record: [],
-    });
+    expect(composeNewsroom([])).toEqual({ lead: null, record: [] });
   });
 
   it("opens a single-entry record on its lead and nothing else", () => {
     const composed = composeNewsroom([item(1, "2026-01-01T00:00:00")]);
 
     expect(composed.lead?.databaseId).toBe(1);
-    expect(composed.front).toEqual([]);
     expect(composed.record).toEqual([]);
   });
 });

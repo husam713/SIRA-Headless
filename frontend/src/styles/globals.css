@@ -101,6 +101,13 @@
   --layout-grid-columns: 4;
   /* Sticky header height, used as the anchor scroll offset. */
   --layout-header-offset: 5rem;
+  /* The ground behind THE SIRA RECORD's paper sheet.
+     Derived from the tenant's own paper rather than written as a literal, so a
+     branch site's warm or cool paper carries its ground with it. The approved
+     prototype sets a sheet of paper on a slightly darker ground; this is that
+     relationship expressed against the brand tokens the project already owns. */
+  --brand-ground: color-mix(in oklab, var(--brand-paper) 78%, var(--brand-ink) 22%);
+
   --focus-ring-width: 2px;
   --focus-ring-offset: 4px;
 }
@@ -549,6 +556,32 @@ a {
   }
 }
 
+/* Three lines in the register, matching the approved prototype's line-clamp. */
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+/* The arrow that steps forward as a cell is hovered. One transform, on one
+   property, suppressed with everything else under prefers-reduced-motion. */
+.record-arrow {
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+
+.record-cell:hover .record-arrow,
+.record-cell:focus-within .record-arrow {
+  transform: translateX(4px);
+}
+
+[dir="rtl"] .record-cell:hover .record-arrow,
+[dir="rtl"] .record-cell:focus-within .record-arrow {
+  transform: translateX(-4px);
+}
+
 /* Two lines of summary in the record, however long the CMS excerpt is. The
    record is for scanning; the article page is where the text is read. */
 .clamp-2 {
@@ -618,67 +651,6 @@ a {
   }
 }
 
-/* The front's stepping widths. Expressed here rather than as three sets of
-   utility classes so the 5 / 4 / 3 relationship is stated once and stays
-   readable as the intention it is. */
-.front {
-  display: grid;
-  gap: clamp(2.5rem, 4vw, 3.5rem) var(--layout-grid-gap);
-  grid-template-columns: minmax(0, 1fr);
-}
-
-@media (min-width: 48rem) {
-  .front {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .front > :first-child {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (min-width: 68.75rem) {
-  .front {
-    grid-template-columns: 5fr 4fr 3fr;
-    /* One hairline across the whole row, with the three corner marks riding it
-       at the 5 / 4 / 3 divisions — one line, three registers, which is the
-       mark's own logic. Per-entry rules would be broken by the column gaps and
-       the row would read as three separate blocks. */
-    border-block-start: 1px solid var(--brand-border);
-  }
-
-  .front > .turn {
-    border-block-start-color: transparent;
-  }
-
-  .front > :first-child {
-    grid-column: auto;
-  }
-}
-
-/* Matching type step, so the width step reads as hierarchy rather than as an
-   accident of the grid. */
-.front__title {
-  font-size: clamp(1.375rem, 1.9vw, 1.625rem);
-}
-
-/* The step only exists where the widths step. Below lg every entry is full
-   width, and a type ladder without a width ladder reads as three sizes chosen
-   at random. */
-@media (min-width: 68.75rem) {
-  .front > :nth-child(1) .front__title {
-    font-size: 2.125rem;
-  }
-
-  .front > :nth-child(2) .front__title {
-    font-size: 1.625rem;
-  }
-
-  .front > :nth-child(3) .front__title {
-    font-size: 1.25rem;
-  }
-}
-
 /* The masthead's extent block: hairline-ruled figures, set as a description
    list so the numbers keep their labels. */
 .extent {
@@ -723,4 +695,350 @@ a {
     var(--brand-hero-overlay-lead) 0%,
     transparent 62%
   );
+}
+
+/* ---------------------------------------------------------------------------
+   THE SIRA RECORD
+
+   The editorial system shared by the Newsroom archive and the article detail
+   page, from the two approved prototypes. Both are one design: a sheet of paper
+   ruled like a printed record, laid on a darker ground, with dark "signal"
+   panels used as editorial counterweight rather than decoration.
+
+   Rules live here rather than as utilities because the same hairline grammar
+   repeats across a dozen components, and because the register's cell borders
+   depend on nth-child position, which utilities express badly.
+   --------------------------------------------------------------------------- */
+
+.record-ground {
+  background: var(--brand-ground);
+}
+
+/* The sheet. Full-bleed on small screens; a bordered page above that. */
+.record-shell {
+  background: var(--brand-paper);
+  border: 1px solid var(--brand-border);
+  overflow: hidden;
+}
+
+.record-wrap {
+  width: min(100%, 77.5rem);
+  margin-inline: auto;
+}
+
+@media (min-width: 34rem) {
+  .record-wrap {
+    margin-block: clamp(1.5rem, 3vw, 2.5rem);
+    padding-inline: 1.125rem;
+  }
+}
+
+/* Section padding inside the sheet. Tighter than the site's --space-section:
+   this is a ruled document, not a landing page. */
+.record-pad {
+  padding-inline: clamp(0.9375rem, 2.2vw, 1.375rem);
+}
+
+.record-rule {
+  border-block-end: 1px solid var(--brand-border);
+}
+
+/* The dark signal panel, shared by the newsroom lead and the article hero.
+   The faint diagonals are a printing artefact, not an image: two gradients,
+   no asset, no request. */
+.record-signal {
+  position: relative;
+  overflow: hidden;
+  background: var(--brand-deep);
+  color: var(--brand-paper);
+}
+
+.record-signal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, transparent 0 48%, rgb(255 255 255 / 0.05) 48% 49%, transparent 49% 100%),
+    linear-gradient(45deg, transparent 0 62%, rgb(255 255 255 / 0.035) 62% 63%, transparent 63% 100%);
+}
+
+.record-signal > * {
+  position: relative;
+}
+
+.record-signal {
+  min-block-size: 10.9375rem;
+}
+
+.record-split--article > .record-signal {
+  min-block-size: 11.5625rem;
+}
+
+/* The register: the compact story grid. Cell borders come from the grid rather
+   than from each card, so the whole block reads as one ruled table. */
+.record-register {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-block-start: 1px solid var(--brand-border);
+}
+
+.record-cell {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  min-block-size: 11.875rem;
+  padding: 1.0625rem clamp(0.9375rem, 2.2vw, 1.125rem);
+  border-block-end: 1px solid var(--brand-border);
+  position: relative;
+  transition: background 180ms ease;
+}
+
+/* The accent rule that draws across the top of a cell on hover — the register's
+   one piece of motion, and the same gesture the article's related cards use. */
+.record-cell::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline-start: 0;
+  block-size: 2px;
+  inline-size: 0;
+  background: var(--desk-accent, var(--brand-accent));
+  transition: inline-size 250ms ease;
+}
+
+.record-cell:hover,
+.record-cell:focus-within {
+  background: color-mix(in oklab, white 34%, transparent);
+}
+
+.record-cell:hover::before,
+.record-cell:focus-within::before {
+  inline-size: 100%;
+}
+
+@media (min-width: 29.4375rem) {
+  .record-register {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .record-cell {
+    border-inline-end: 1px solid var(--brand-border);
+    min-block-size: 13.75rem;
+  }
+
+  .record-cell:nth-child(2n) {
+    border-inline-end: 0;
+  }
+}
+
+@media (min-width: 43.8125rem) {
+  .record-register {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .record-cell:nth-child(2n) {
+    border-inline-end: 1px solid var(--brand-border);
+  }
+
+  .record-cell:nth-child(3n) {
+    border-inline-end: 0;
+  }
+}
+
+/* Two-column splits: the newsroom lead and the article hero. */
+.record-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* The archive lead splits at 700px into 1.55 / 0.75 and holds a 310px row.
+   The article hero holds its single column to 820px and then splits narrower,
+   because its headline is 72px against the lead's 54px and needs the width for
+   longer. Two rules rather than one shared compromise. */
+@media (min-width: 43.8125rem) {
+  .record-split:not(.record-split--article) {
+    grid-template-columns: minmax(0, 1.55fr) minmax(13.75rem, 0.75fr);
+    min-block-size: 19.375rem;
+  }
+}
+
+@media (min-width: 51.375rem) {
+  .record-split--article {
+    grid-template-columns: minmax(0, 1.55fr) minmax(13.75rem, 0.6fr);
+    min-block-size: 20.625rem;
+  }
+}
+
+/* The label / value rail used by the masthead's desk head and the year rows. */
+.record-aside {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.625rem;
+}
+
+@media (min-width: 43.8125rem) {
+  .record-aside {
+    grid-template-columns: 10.625rem minmax(0, 1fr);
+    gap: 1.375rem;
+  }
+}
+
+/* Article body measure and rails. */
+.record-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+@media (min-width: 33.8125rem) {
+  .record-body {
+    grid-template-columns: 6.5625rem minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+
+  /* Without a context rail the reading column simply takes the space. */
+  .record-body > .record-context {
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 51.375rem) {
+  .record-body {
+    grid-template-columns: 9.375rem minmax(0, 40rem) minmax(9.375rem, 1fr);
+  }
+
+  .record-body > .record-context {
+    grid-column: auto;
+  }
+
+  /* With nothing meaningful for the context rail the third track is dropped
+     entirely and the reading column takes the space, rather than the page
+     holding a column open around an absence. */
+  .record-body--no-context {
+    grid-template-columns: 9.375rem minmax(0, 44rem);
+  }
+}
+
+/* On small screens the metadata rail stops being a sidebar and becomes a band. */
+.record-rail--band {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.625rem;
+  border-block-end: 1px solid var(--brand-border);
+  padding-block-end: 0.75rem;
+}
+
+@media (min-width: 33.8125rem) {
+  .record-rail--band {
+    display: block;
+    border-block-end: 0;
+    padding-block-end: 0;
+  }
+}
+
+/* THE RECORD's long-form prose.
+   Set against the record's own measure and rhythm rather than the site-wide
+   Prose primitive: this is the one place on the site designed for sustained
+   reading, and it uses the display serif for body copy, which nothing else
+   does. Encoded once here so an article never needs a one-off stylesheet. */
+.record-prose {
+  color: var(--brand-ink);
+}
+
+.record-prose > :first-child {
+  margin-block-start: 0;
+}
+
+.record-prose p {
+  font-family: var(--font-sira-display);
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  color: color-mix(in oklab, var(--brand-ink) 88%, var(--brand-paper) 12%);
+  margin-block: 0 1.4375rem;
+}
+
+/* The opening paragraph carries the reader in at a larger size, as the
+   approved prototype's `.intro` does. Selected structurally so an editor does
+   not have to remember to tag it. */
+.record-prose > p:first-of-type {
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: var(--brand-ink);
+}
+
+.record-prose h2 {
+  font-family: var(--font-sira-display);
+  font-weight: 400;
+  font-size: clamp(1.625rem, 3vw, 2.125rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-block: 2.5rem 1rem;
+}
+
+.record-prose h3 {
+  font-family: var(--font-sira-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 2vw, 1.4375rem);
+  line-height: 1.1;
+  margin-block: 1.875rem 0.8125rem;
+}
+
+.record-prose ul,
+.record-prose ol {
+  font-family: var(--font-sira-display);
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  padding-inline-start: 1.25rem;
+  margin-block: 0 1.4375rem;
+}
+
+.record-prose li {
+  margin-block-end: 0.5rem;
+}
+
+.record-prose blockquote {
+  margin-block: 2.375rem;
+  padding-block: 1.375rem;
+  padding-inline-start: 1.5rem;
+  border-inline-start: 3px solid var(--desk-accent, var(--brand-accent));
+  font-family: var(--font-sira-display);
+  font-size: clamp(1.375rem, 2.6vw, 1.6875rem);
+  line-height: 1.25;
+  color: var(--brand-ink);
+}
+
+.record-prose a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--desk-accent, var(--brand-accent));
+}
+
+.record-prose figure {
+  margin-block: 2.125rem;
+}
+
+.record-prose img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+.record-prose figcaption {
+  margin-block-start: 0.625rem;
+  font-size: 0.5625rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--brand-ink-soft);
+}
+
+.record-prose hr {
+  border: 0;
+  border-block-start: 1px solid var(--brand-border);
+  margin-block: 2.25rem;
+}
+
+.record-prose code {
+  font-size: 0.875em;
 }

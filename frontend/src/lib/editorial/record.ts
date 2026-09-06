@@ -190,54 +190,37 @@ export function groupByYear(
   );
 }
 
-/**
- * How many entries the front carries below the lead.
- *
- * Three, because the front's widths step 5 / 4 / 3 across the twelve-column
- * grid: the composition is what assigns weight, so the count is fixed by the
- * grid rather than by content volume.
- */
-const FRONT_SIZE = 3;
-
 export interface ComposedNewsroom {
   /** The newest entry, given the page's full weight. Null on an empty view. */
   readonly lead: EditorialItem | null;
-  /** The next entries, at descending width. Shorter than FRONT_SIZE, or empty. */
-  readonly front: readonly EditorialItem[];
-  /** Everything else, as dated bands. */
+  /** Every remaining entry, as dated bands. */
   readonly record: readonly EditorialYear[];
 }
 
 /**
- * Split a feed into the three weights the page composes.
+ * Split a feed into the two weights the page composes.
  *
  * Position, not category, assigns the weight. The feed is already ordered
- * newest-first by the CMS, so this says only "the most recent entries are
- * composed, the rest are indexed" — it does not invent an importance ranking
- * that no editor entered. A filtered view is composed the same way, so it opens
- * on its own lead rather than repeating the unfiltered one.
+ * newest-first by the CMS, so this says only "the most recent entry leads, the
+ * rest are indexed" — it does not invent an importance ranking that no editor
+ * entered. A filtered view is composed the same way, so it opens on its own
+ * lead rather than repeating the unfiltered one.
  *
- * The front is dropped entirely below four entries: two composed entries beside
- * a lead read as a broken row, whereas a lead plus a short index reads as a
- * young archive, which is what it is.
+ * Nothing is discarded: lead plus record is always the whole input. An earlier
+ * iteration carved a fixed-size "front" row out of the middle, and when that
+ * row left the design its entries stopped rendering anywhere.
  */
 export function composeNewsroom(
   items: readonly EditorialItem[],
 ): ComposedNewsroom {
   if (items.length === 0) {
-    return Object.freeze({
-      lead: null,
-      front: Object.freeze([]),
-      record: Object.freeze([]),
-    });
+    return Object.freeze({ lead: null, record: Object.freeze([]) });
   }
 
   const [lead, ...rest] = items;
-  const front = rest.length >= FRONT_SIZE ? rest.slice(0, FRONT_SIZE) : [];
 
   return Object.freeze({
     lead: lead ?? null,
-    front: Object.freeze(front),
-    record: groupByYear(rest.slice(front.length)),
+    record: groupByYear(rest),
   });
 }

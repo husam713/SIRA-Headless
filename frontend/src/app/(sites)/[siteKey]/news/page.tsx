@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { draftMode, headers } from "next/headers";
 import { notFound } from "next/navigation";
 
-import { NewsroomPage as NewsroomPageView } from "@/components/newsroom/newsroom-page";
+import { NewsroomPage as NewsroomPageView } from "@/components/record/newsroom-page";
 import { getBrand } from "@/lib/brand";
 import { getEditorialFeed } from "@/lib/editorial";
 import { resolveDeskFilter } from "@/lib/editorial/desks";

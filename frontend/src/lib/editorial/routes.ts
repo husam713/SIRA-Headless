@@ -39,3 +39,22 @@ export function editorialArticleHref(href: string): string | null {
   // Anything deeper is not a permalink this route can resolve.
   return rest.length === 0 || (rest.length === 1 && rest[0] === "") ? href : null;
 }
+
+const SECTION_LABELS: Readonly<Record<string, string>> = Object.freeze({
+  news: "News",
+  insights: "Insights",
+  articles: "Articles",
+  "press-releases": "Press Releases",
+});
+
+/**
+ * The display name of the permalink base an entry lives under.
+ *
+ * Used by the article breadcrumb, which names the SECTION a reader can navigate
+ * back to rather than the record's content type — those read the same for News
+ * but not for the others.
+ */
+export function editorialSectionLabel(href: string): string | null {
+  const [, section] = href.split("/");
+  return section === undefined ? null : (SECTION_LABELS[section] ?? null);
+}

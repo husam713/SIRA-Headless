@@ -23,8 +23,16 @@ export interface EntryView {
   readonly deskLabel: string;
   readonly accent: string;
   readonly kindLabel: string;
-  /** "14 JUL 2026", or null when the entry carries no usable date. */
+  /** "06 SEP 2026", or null when the entry carries no usable date. */
   readonly dateline: string | null;
+  /**
+   * "SEP 2026" — the register's shorter form.
+   *
+   * The archive sets month and year in a 9px column beside a headline, where a
+   * day adds nothing a reader scanning by month wants; the lead and the article
+   * hero carry the full date instead.
+   */
+  readonly shortDateline: string | null;
 }
 
 /**
@@ -52,6 +60,20 @@ export function formatDateline(value: string | null): string | null {
     .replace(/,/gu, "");
 }
 
+/** The register's month-and-year form, read through the same calendar date. */
+export function formatShortDateline(value: string | null): string | null {
+  const date = calendarDate(value);
+  if (date === null) return null;
+
+  return new Intl.DateTimeFormat("en-GB", {
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  })
+    .format(date)
+    .toUpperCase();
+}
+
 export function toEntryView(item: EditorialItem): EntryView {
   const desk = primaryDesk(item);
 
@@ -63,6 +85,7 @@ export function toEntryView(item: EditorialItem): EntryView {
     accent: editorialDeskAccent(desk),
     kindLabel: editorialKindSingular(item.kind),
     dateline: formatDateline(item.publishedAt),
+    shortDateline: formatShortDateline(item.publishedAt),
   });
 }
 

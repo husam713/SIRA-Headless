@@ -318,6 +318,59 @@ describe("native editorial feed server adapter", () => {
     ]);
   });
 
+  it("decodes the entities WordPress encodes titles and excerpts with", () => {
+    // WordPress returns "SIRA Lifestyle&#8217;s" and "&hellip;", not the
+    // characters. Stripping tags without decoding leaves the reader looking at
+    // the entity source, because React escapes the ampersand again on output.
+    const result = normalizeEditorialFeed(
+      "lifestyle",
+      createData([
+        createNode("SiraArticle", 21, {
+          title: "SIRA Lifestyle&#8217;s First Ground-Up Development",
+          excerpt:
+            "<p>Coastal Residence &amp; the brief&hellip; a nine&#8211;month process.</p>",
+        }),
+      ]),
+    );
+
+    if (result.status !== "ready") {
+      throw new Error("Expected the editorial feed to be ready.");
+    }
+
+    expect(result.page.items[0]?.title).toBe(
+      "SIRA Lifestyle’s First Ground-Up Development",
+    );
+    expect(result.page.items[0]?.excerpt).toBe(
+      "Coastal Residence & the brief… a nine–month process.",
+    );
+  });
+
+  it("cannot be made to smuggle markup back in through an entity", () => {
+    // Decoding runs after tags are stripped, so an encoded tag decodes to text
+    // and its angle brackets are removed rather than reconstituting an element.
+    const result = normalizeEditorialFeed(
+      "lifestyle",
+      createData([
+        createNode("SiraArticle", 22, {
+          title: "&lt;script&gt;alert(1)&lt;/script&gt; headline",
+          excerpt: "&amp;lt;img src=x onerror=alert(1)&amp;gt;",
+        }),
+      ]),
+    );
+
+    if (result.status !== "ready") {
+      throw new Error("Expected the editorial feed to be ready.");
+    }
+
+    for (const value of [
+      result.page.items[0]?.title,
+      result.page.items[0]?.excerpt,
+    ]) {
+      expect(value).not.toContain("<");
+      expect(value).not.toContain(">");
+    }
+  });
+
   it("normalizes card text, safe links, dates, and public media", () => {
     const result = normalizeEditorialFeed(
       "lifestyle",

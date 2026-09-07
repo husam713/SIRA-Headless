@@ -1,9 +1,16 @@
+// The SIRA GROUP operating companies this application serves.
+//
+// `digital` is SIRA Digital, added by ADR-033. It is the first company whose
+// canonical hostname is not a `siratrgroup.com` subdomain: it trades on its own
+// Saudi domain. Nothing in this registry assumed a shared parent domain, so the
+// only thing that changed is that the topology now spans two apex domains.
 export const SITE_KEYS = [
   "group",
   "consulting",
   "healthcare",
   "lifestyle",
   "realestate",
+  "digital",
 ] as const;
 
 export type SiteKey = (typeof SITE_KEYS)[number];

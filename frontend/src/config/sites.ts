@@ -50,6 +50,24 @@ const BASE_SITES = {
     defaultLocale: "en",
     supportedLocales: ["en", "ar"],
   },
+  // SIRA Digital trades on its own Saudi domain rather than a Group subdomain
+  // (ADR-033). That is a deliberate market decision, not drift: the resolver
+  // matches on the whole hostname and never on a parent domain, so a second
+  // apex costs this registry nothing.
+  //
+  // `sirahdigital.sa` is the spelling of the registered domain. The display
+  // name follows the established company convention in this file — SIRA
+  // Consulting, SIRA Healthcare, SIRA Lifestyle, SIRA Real Estate — and the
+  // SIRA/SIRAH spelling of the trading name is recorded in ADR-033 as an open
+  // owner confirmation. It is one string here and one in the brand preset.
+  digital: {
+    key: "digital",
+    name: "SIRA Digital",
+    canonicalHostname: "sirahdigital.sa",
+    aliases: ["www.sirahdigital.sa"],
+    defaultLocale: "en",
+    supportedLocales: ["en", "ar"],
+  },
 } as const satisfies Record<SiteKey, Omit<SiteDefinition, "deploymentHostnames">>;
 
 type ExtraHosts = Partial<Record<SiteKey, readonly string[]>>;

@@ -19,8 +19,36 @@ describe("SIRA site registry", () => {
     ["healthcare.siratrgroup.com", "healthcare"],
     ["lifestyle.siratrgroup.com", "lifestyle"],
     ["realestate.siratrgroup.com", "realestate"],
+    ["sirahdigital.sa", "digital"],
+    ["www.sirahdigital.sa", "digital"],
   ] as const)("resolves %s to %s", (hostname, expectedKey) => {
     expect(resolveSiteFromHostname(hostname)?.site.key).toBe(expectedKey);
+  });
+
+  // ADR-033. The registry never matched on a parent domain, so a company on its
+  // own apex resolves by exactly the same rule as a Group subdomain. These
+  // assertions exist so a future change that reintroduces a siratrgroup.com
+  // assumption fails here rather than in production.
+  it("resolves the Digital company on its own Saudi apex", () => {
+    expect(resolveSiteFromHostname("sirahdigital.sa")).toMatchObject({
+      hostnameRole: "canonical",
+      isCanonical: true,
+      shouldRedirectToCanonical: false,
+      site: { key: "digital", canonicalHostname: "sirahdigital.sa" },
+    });
+  });
+
+  it("redirects the Digital www alias to its own canonical apex, not to Group", () => {
+    expect(resolveSiteFromHostname("www.sirahdigital.sa")).toMatchObject({
+      hostnameRole: "redirect-alias",
+      shouldRedirectToCanonical: true,
+      site: { key: "digital", canonicalHostname: "sirahdigital.sa" },
+    });
+  });
+
+  it("does not resolve an unregistered host under either apex", () => {
+    expect(resolveSiteFromHostname("digital.siratrgroup.com")).toBeNull();
+    expect(resolveSiteFromHostname("mail.sirahdigital.sa")).toBeNull();
   });
 
   it("classifies canonical production hosts without redirecting", () => {

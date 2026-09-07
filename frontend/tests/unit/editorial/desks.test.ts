@@ -34,13 +34,14 @@ function item(
 }
 
 describe("the desk registry", () => {
-  it("lists Group first and the four companies after it", () => {
+  it("lists Group first and every operating company after it", () => {
     expect(EDITORIAL_DESK_ORDER).toEqual([
       "group",
       "healthcare",
       "real-estate",
       "lifestyle",
       "consulting",
+      "digital",
     ]);
   });
 
@@ -114,13 +115,14 @@ describe("deskRegister", () => {
       "real-estate": 1,
       lifestyle: 0,
       consulting: 0,
+      digital: 0,
     });
   });
 
   it("lists every desk even at zero, so the index keeps its shape", () => {
-    // The group has five companies whether or not each published this month.
-    // An index that grew as the archive filled would teach a reader nothing
-    // about the structure of the house.
+    // The group has the companies it has whether or not each published this
+    // month. An index that grew as the archive filled would teach a reader
+    // nothing about the structure of the house.
     expect(deskRegister([]).map((row) => row.desk)).toEqual(
       EDITORIAL_DESK_ORDER,
     );

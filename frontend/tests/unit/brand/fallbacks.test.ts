@@ -55,5 +55,25 @@ describe("approved SIRA fallback presets", () => {
     expect(createFallbackBrand("realestate").semantic.onAccent).toBe(
       "#000000",
     );
+    expect(createFallbackBrand("digital").semantic.onAccent).toBe(
+      "#0a0f1a",
+    );
+  });
+
+  // ADR-033. Digital is the only company set on a dark ground. The shell reads
+  // `paper` as the page ground and `ink` as the text on it, so this inversion
+  // is the entire mechanism — if a later edit lightened `paper` here, the
+  // Digital site would silently become a light site with dark-ground semantic
+  // tokens, which is the failure this guards.
+  it("sets the Digital company on a dark ground with light text", () => {
+    const digital = createFallbackBrand("digital");
+
+    expect(digital.identity.paper).toBe("#0a0f1a");
+    expect(digital.identity.ink).toBe("#f2f6fc");
+    expect(digital.semantic.border).toBe("oklch(1 0 0 / 0.1)");
+
+    for (const siteKey of SITE_KEYS.filter((key) => key !== "digital")) {
+      expect(BRAND_PRESETS[siteKey].identity.paper).toMatch(/^#f/u);
+    }
   });
 });

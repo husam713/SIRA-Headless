@@ -7,8 +7,16 @@ import type { NavigationItem } from "@/lib/navigation";
 import { SITE_KEYS, type SiteKey } from "@/types/site";
 import { Wordmark } from "@/components/shell/wordmark";
 
-// Four columns, matching the reference: the brand statement, the site's own
-// pages, the portfolio companies, and how to reach the group.
+// Two shapes, both taken from the approved designs.
+//
+// SIRA GROUP closes on four columns — the brand statement, the site's own
+// pages, the portfolio companies, and how to reach the group — because the
+// group site is the index of the house.
+//
+// A branch site closes on the brand statement alone, with a single link back
+// to the group. That is what the approved branch designs do, and it is right:
+// a company site that ends by listing its three sibling companies and the
+// group's contact details spends its last screen sending people away.
 //
 // This used to be a brand block beside one flat row of links, which measured
 // the right HEIGHT but read as a generic site footer rather than the
@@ -33,6 +41,45 @@ interface SiteFooterProps {
    * has not set one, in which case the brand tagline stands.
    */
   readonly taglineOverride: string | null;
+}
+
+interface BrandBlockProps {
+  readonly brand: ResolvedBrand;
+  readonly taglineOverride: string | null;
+  readonly className?: string;
+}
+
+/** Mark, wordmark, tagline and address — identical in both footer shapes. */
+function BrandBlock({ brand, taglineOverride, className }: BrandBlockProps) {
+  const tagline = taglineOverride ?? brand.tagline;
+
+  return (
+    <div className={className}>
+      <div className="flex items-center gap-3">
+        {/* Local static asset — see SiteHeader for why this stays a plain <img>. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={brand.assets.markOnDark.src}
+          alt={brand.assets.markOnDark.alt}
+          width={brand.assets.markOnDark.width}
+          height={brand.assets.markOnDark.height}
+          aria-hidden={brand.assets.markOnDark.decorative || undefined}
+          className="h-8 w-auto"
+        />
+        <Wordmark
+          name={brand.name}
+          tone="paper"
+          className="font-display text-lg font-semibold"
+        />
+      </div>
+      {tagline !== null ? (
+        <p className="mt-5 text-sm leading-relaxed">{tagline}</p>
+      ) : null}
+      {brand.address !== null ? (
+        <p className="mt-4 text-xs text-brand-paper/50">{brand.address}</p>
+      ) : null}
+    </div>
+  );
 }
 
 interface FooterColumnProps {
@@ -80,6 +127,9 @@ function portfolioCompanies(currentSite: SiteKey) {
 
 export function SiteFooter({ brand, items, groupLink, taglineOverride }: SiteFooterProps) {
   const year = new Date().getFullYear();
+  // A branch site is exactly the site that has a link back to the group, so
+  // the footer's shape follows from data it already has rather than a new flag.
+  const isBranch = groupLink !== null;
   const companies = portfolioCompanies(brand.siteKey);
 
   const social = [
@@ -93,40 +143,39 @@ export function SiteFooter({ brand, items, groupLink, taglineOverride }: SiteFoo
 
   return (
     <footer className="border-t border-brand-deep-border bg-brand-footer text-brand-paper/70">
-      <PageContainer className="pb-8 pt-[clamp(3rem,5vw,4.5rem)]">
+      <PageContainer
+        className={
+          isBranch
+            // The branch design's measured rhythm: a flat 64px above, 32px below.
+            ? "pb-8 pt-16"
+            : "pb-8 pt-[clamp(3rem,5vw,4.5rem)]"
+        }
+      >
+        {isBranch ? (
+          <div className="flex flex-wrap items-start justify-between gap-8">
+            <BrandBlock
+              brand={brand}
+              taglineOverride={taglineOverride}
+              className="max-w-sm"
+            />
+            {groupLink !== null ? (
+              <a
+                href={groupLink.href}
+                className="text-[11px] font-bold uppercase tracking-[0.1em] text-brand-paper/70 transition-colors hover:text-brand-accent-bright"
+              >
+                {groupLink.label}
+              </a>
+            ) : null}
+          </div>
+        ) : (
+        <>
         {/*
           Auto-fit rather than a fixed four-track grid: the Pages column is a
           CMS menu and the Connect column depends on brand contact data, so a
           tenant with neither must close up instead of leaving two empty tracks.
         */}
         <div className="grid gap-x-10 gap-y-12 [grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))] sm:grid-cols-2 lg:[grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))]">
-          <div className="max-w-xs">
-            <div className="flex items-center gap-3">
-              {/* Local static asset — see SiteHeader for why this stays a plain <img>. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={brand.assets.markOnDark.src}
-                alt={brand.assets.markOnDark.alt}
-                width={brand.assets.markOnDark.width}
-                height={brand.assets.markOnDark.height}
-                aria-hidden={brand.assets.markOnDark.decorative || undefined}
-                className="h-8 w-auto"
-              />
-              <Wordmark
-                name={brand.name}
-                tone="paper"
-                className="font-display text-lg font-semibold"
-              />
-            </div>
-            {(taglineOverride ?? brand.tagline) !== null ? (
-              <p className="mt-5 text-sm leading-relaxed">
-                {taglineOverride ?? brand.tagline}
-              </p>
-            ) : null}
-            {brand.address !== null ? (
-              <p className="mt-4 text-xs text-brand-paper/50">{brand.address}</p>
-            ) : null}
-          </div>
+          <BrandBlock brand={brand} taglineOverride={taglineOverride} className="max-w-xs" />
 
           {items.length > 0 ? (
             <FooterColumn heading="Pages">
@@ -192,19 +241,20 @@ export function SiteFooter({ brand, items, groupLink, taglineOverride }: SiteFoo
             </FooterColumn>
           ) : null}
         </div>
+        </>
+        )}
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-brand-paper/10 pt-6 text-xs">
           <span>
             &copy; {year} {brand.name}. All rights reserved.
           </span>
-          {groupLink !== null ? (
-            <a
-              href={groupLink.href}
-              className="font-semibold uppercase tracking-[0.05em] transition-colors hover:text-brand-accent-bright"
-            >
-              {groupLink.label}
-            </a>
-          ) : null}
+          {/*
+            No group link here. Only a branch site has one, and on a branch it
+            now sits beside the brand block above — which is where the approved
+            design puts it. A second copy in the same footer is noise, and the
+            compiler agrees: with the variant in place this branch was
+            unreachable.
+          */}
         </div>
       </PageContainer>
     </footer>

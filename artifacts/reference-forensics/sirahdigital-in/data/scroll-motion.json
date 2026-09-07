@@ -1,0 +1,5806 @@
+{
+  "docHeight": 5483,
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  },
+  "samples": [
+    {
+      "scrollY": 0,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 2875,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 2862,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 2616,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 1940,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 1940,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 1700,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -706.975, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": 241,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 150,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 2725,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 2712,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 2466,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 1790,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 1790,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 1550,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -731.034, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": 91,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 300,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 2575,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 2562,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 2316,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 1640,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 1640,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 1400,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -746.769, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -59,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 450,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 2425,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 2412,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 2166,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 1490,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 1490,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 1250,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -764.348, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -209,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 600,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 2275,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 2262,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 2016,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 1340,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 1340,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 1100,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -785.63, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -359,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 750,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 2125,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 2112,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 1866,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 1190,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 1190,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 950,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -806.912, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -509,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 900,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 1975,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 1962,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 1716,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 1040,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 1040,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 800,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -825.424, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -659,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 1050,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 1825,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 1812,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 1566,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 890,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 890,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 634,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -842.076, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -809,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 1200,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 1675,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 1662,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 1416,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 740,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 740,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 480,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -861.509, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -959,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 1350,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 1525,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 1512,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 1266,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 590,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 590,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 330,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -880.021, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -1109,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 1500,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 1375,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 1362,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 1116,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 440,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 440,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 180,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -895.751, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -1259,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 1650,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 1225,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 1212,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 966,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 290,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 290,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": 30,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -917.033, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -1409,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 1800,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 1075,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 1062,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 816,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": 140,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": 140,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -120,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -933.685, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -1559,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 1950,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 925,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 912,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 666,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -10,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -10,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -270,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -952.196, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -1709,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 2100,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 775,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 762,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 516,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -160,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -160,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -420,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -972.557, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -1859,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 2250,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 625,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 612,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 366,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -310,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -310,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -570,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -993.839, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -2009,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 2400,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 475,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 462,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 216,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -460,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -460,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -720,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1014.19, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -2159,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 277,
+          "h": 388,
+          "x": 558,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 99,
+          "h": 138,
+          "x": 893,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 57,
+          "h": 80,
+          "x": 1011,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 40,
+          "h": 57,
+          "x": 1095,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 375,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 54,
+          "h": 75,
+          "x": 359,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 75,
+          "h": 106,
+          "x": 429,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 2550,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 332,
+          "h": 182
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.75113px",
+        "fontSize": "216.692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 319,
+          "h": 335
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 72,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -610,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -610,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -870,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1035.48, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -2309,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 162,
+          "h": 228,
+          "x": 487,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 213,
+          "h": 299,
+          "x": 708,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 69,
+          "h": 97,
+          "x": 963,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 49,
+          "h": 68,
+          "x": 1051,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 793,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 45,
+          "h": 63,
+          "x": 324,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 64,
+          "h": 89,
+          "x": 392,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 2700,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0.073851",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 335,
+          "h": 172
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 11.0799)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-9.21823px",
+        "fontSize": "204.85px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 324,
+          "h": 325
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 72,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -760,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -760,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -1020,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1055.84, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -2459,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 98,
+          "h": 137,
+          "x": 448,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 277,
+          "h": 389,
+          "x": 604,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 75,
+          "h": 106,
+          "x": 936,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 54,
+          "h": 75,
+          "x": 1027,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1028,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 40,
+          "h": 56,
+          "x": 305,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 57,
+          "h": 80,
+          "x": 372,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 2850,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0.2121",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 340,
+          "h": 153
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 7.4854)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-8.22065px",
+        "fontSize": "182.681px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 333,
+          "h": 306
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 72,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -910,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -910,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -1170,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1077.12, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -2609,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 79,
+          "h": 110,
+          "x": 436,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 297,
+          "h": 416,
+          "x": 573,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 928,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1020,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1098,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 78,
+          "x": 366,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 3000,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0.350919",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 346,
+          "h": 135
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 3.87611)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-7.21895px",
+        "fontSize": "160.421px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 342,
+          "h": 288
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 72,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -1060,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -1060,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -1320,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1097.48, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -2759,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 3150,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0.491138",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 352,
+          "h": 116
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, 0.230412)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-6.20716px",
+        "fontSize": "137.937px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 352,
+          "h": 269
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 72,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -1210,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -1210,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -1470,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1120.62, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -2909,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 3300,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0.632377",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 358,
+          "h": 97
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, -3.4418)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-5.188px",
+        "fontSize": "115.289px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 361,
+          "h": 250
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 72,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -1360,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -1360,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -1620,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1148.37, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -3059,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 3450,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0.769698",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 363,
+          "h": 78
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, -7.01215)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-4.19711px",
+        "fontSize": "93.2692px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 370,
+          "h": 231
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 72,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -1510,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -1510,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -1770,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1172.43, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -3209,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 3600,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0.910017",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 369,
+          "h": 59
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, -10.6604)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-3.1846px",
+        "fontSize": "70.7688px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 380,
+          "h": 212
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 72,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -1660,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -1660,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -1920,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1201.12, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -3359,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 3750,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "0.998669",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 318,
+          "h": 47
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, -12.9654)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-2.5449px",
+        "fontSize": "56.5533px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 331,
+          "h": 200
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": 18,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -1810,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -1810,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -2070,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1226.11, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -3509,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 3900,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "1",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 168,
+          "h": 47
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, -13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-2.53529px",
+        "fontSize": "56.3398px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 181,
+          "h": 200
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": -132,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -1960,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -1960,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -2220,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1252.01, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -3659,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 4050,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "1",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": 18,
+          "h": 47
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, -13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-2.53529px",
+        "fontSize": "56.3398px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": 31,
+          "h": 200
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": -282,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -2110,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -2110,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -2370,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1277.92, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -3809,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 4200,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "1",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": -132,
+          "h": 47
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, -13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-2.53529px",
+        "fontSize": "56.3398px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": -119,
+          "h": 200
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": -432,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -2260,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -2260,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -2520,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1304.76, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -3959,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 4350,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "1",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": -282,
+          "h": 47
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, -13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-2.53529px",
+        "fontSize": "56.3398px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": -269,
+          "h": 200
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": -582,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -2410,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -2410,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -2670,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1325.12, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -4109,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    },
+    {
+      "scrollY": 4500,
+      "rootKtP": "0",
+      "stageVars": {
+        "--kt-p": "1",
+        "--kt-scale": null,
+        "--kt-y": null,
+        "--kt-o": null
+      },
+      "trackVars": {
+        "--kt-p": "0"
+      },
+      "kineticWord": {
+        "rect": {
+          "y": -432,
+          "h": 47
+        },
+        "transform": "matrix(0.92, 0, 0, 1, 0, -13)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "-2.53529px",
+        "fontSize": "56.3398px",
+        "clipPath": null
+      },
+      "kineticInner": {
+        "rect": {
+          "y": -419,
+          "h": 200
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "kineticStage": {
+        "rect": {
+          "y": -732,
+          "h": 828
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowPanel": {
+        "rect": {
+          "y": -2560,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "imageFlowStage": {
+        "rect": {
+          "y": -2560,
+          "h": 564
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "marqueeTrack": {
+        "rect": {
+          "y": -2820,
+          "h": 47
+        },
+        "transform": "matrix(1, 0, 0, 1, -1342.7, 0)",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "18px",
+        "clipPath": null
+      },
+      "heroContent": {
+        "rect": {
+          "y": -4259,
+          "h": 491
+        },
+        "transform": "none",
+        "opacity": "1",
+        "filter": "none",
+        "letterSpacing": "normal",
+        "fontSize": "16px",
+        "clipPath": null
+      },
+      "canvasOpacity": {
+        "opacity": "1",
+        "transform": "none",
+        "position": "static",
+        "parentOpacity": "1",
+        "z": "auto"
+      },
+      "imageFlowImages": [
+        {
+          "w": 77,
+          "h": 109,
+          "x": 435,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 298,
+          "h": 418,
+          "x": 571,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 77,
+          "h": 109,
+          "x": 927,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 1019,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 1103,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 39,
+          "h": 54,
+          "x": 299,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        },
+        {
+          "w": 55,
+          "h": 77,
+          "x": 365,
+          "transform": "none",
+          "opacity": "1",
+          "filter": "none",
+          "zIndex": "auto"
+        }
+      ]
+    }
+  ]
+}

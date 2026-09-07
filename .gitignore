@@ -55,3 +55,4 @@ backend/*.zip
 # frontend/scripts/measure-reference.mjs and measure-homepage.mjs.
 artifacts/homepage-fidelity/**/*.png
 artifacts/editorial/**/*.png
+artifacts/branch-fidelity/**/*.png

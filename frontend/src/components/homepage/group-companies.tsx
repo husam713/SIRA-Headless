@@ -1,7 +1,10 @@
+import type { CSSProperties } from "react";
+
 import { getBrandPreset } from "@/lib/brand";
 import {
   resolveBusinessUnitAccent,
   resolveBusinessUnitSiteKey,
+  type BusinessUnitAccent,
 } from "@/lib/homepage/business-unit-accent";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { CardRail } from "@/components/layout/card-rail";
@@ -26,10 +29,11 @@ import type {
 // and its own `lg:grid-cols-12` track, so it aligned to nothing else on the
 // page.
 
-// Media, heading, body and action are four top-level elements rather than a
-// media block plus one padded wrapper, because CardRail aligns cards through
+// Media band, heading, body and action are four top-level elements rather than
+// a media block plus one padded wrapper, because CardRail aligns cards through
 // `grid-template-rows: subgrid` and can only align parts it can see. The
-// previous `flex-1` on the body only ever aligned the cards' bottom edges.
+// approved design leaves each card's action wherever its own text ends; aligning
+// them across the rail is the one place this improves on it.
 const CARD_ROWS = 4;
 
 interface GroupCompaniesProps {
@@ -39,9 +43,7 @@ interface GroupCompaniesProps {
 interface CompanyCardProps {
   readonly item: HomepageContentItem;
   readonly index: number;
-  readonly accentColor: string;
-  /** Whether the ROW carries media — see the note in GroupCompanies below. */
-  readonly withMedia: boolean;
+  readonly accent: BusinessUnitAccent;
 }
 
 /**
@@ -50,7 +52,7 @@ interface CompanyCardProps {
  * The destination is the company's OWN canonical site from the site registry,
  * resolved through its business unit, rather than a content node this app has
  * no detail route for. A company whose business unit is missing or unknown
- * gets no action rather than a link to nowhere.
+ * gets no link rather than a link to nowhere.
  *
  * The label follows the CMS status: a company that is live invites you to view
  * it, one that is not yet trading invites you to read about it. Any status the
@@ -73,130 +75,137 @@ function companyAction(
   };
 }
 
-function CompanyCard({ item, index, accentColor, withMedia }: CompanyCardProps) {
+/** The card's four subgrid rows: media band, title, description, action. */
+function CardBody({ item, index, accent }: CompanyCardProps) {
   const copy = item.descriptor ?? item.excerpt;
   const action = companyAction(item);
 
   return (
-    // The card is not itself a link: its action goes to another SIRA hostname,
-    // and a whole-card cross-origin target is a surprise rather than a
-    // convenience. The action below is the affordance.
-    //
-    // No flex/grid class here: CardRail's stylesheet makes each child a
-    // subgrid, with a flex-column fallback where subgrid is unsupported.
-    <div
-      className="overflow-hidden border border-brand-deep-border bg-brand-deep-card"
-      style={{ borderTopWidth: "3px", borderTopColor: accentColor }}
-    >
-      <div
-        className={
-          withMedia
-            ? "relative aspect-[16/9] w-full overflow-hidden bg-brand-deep"
-            : "relative w-full overflow-hidden bg-brand-deep px-6 pt-6"
-        }
-      >
-        {/*
-          Only in the media composition. In the typographic one there is no
-          aspect box to clamp to, so `h-full` resolves against an auto-height
-          parent and the image renders at its natural aspect — a portrait
-          photograph then set the subgrid row for every card in the rail.
-        */}
-        {withMedia && item.featuredImage !== null ? (
+    <>
+      <div className="company-card__media card-media">
+        {item.featuredImage !== null ? (
           // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a plain
           // <img> is used rather than next/image, which would require configuring
           // remote patterns.
+          //
+          // Empty alt: the band is decorative here. The company is named by the
+          // heading directly below it and by the label inside the band, so
+          // describing the photograph again would only repeat the card.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={item.featuredImage.sourceUrl}
-            alt={item.featuredImage.altText ?? item.title}
+            alt=""
             width={item.featuredImage.width ?? undefined}
             height={item.featuredImage.height ?? undefined}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover"
           />
         ) : null}
-        {withMedia ? (
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-deep/70" />
-        ) : null}
+
         {item.status !== null ? (
+          // Logical insets throughout: `left-5` pinned these to the visual left,
+          // so they sat on the wrong corner of the card under Arabic RTL.
           <span
-            aria-hidden="true"
-            // Logical inset: `left-4` pinned this to the visual left, so it sat
-            // on the wrong corner of the card under Arabic RTL.
-            className={
-              withMedia
-                ? "absolute start-4 top-4 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em]"
-                : "inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em]"
-            }
-            style={{ backgroundColor: accentColor, color: "var(--brand-deep)" }}
+            className="absolute start-5 top-5 z-10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.08em]"
+            style={{ backgroundColor: accent.color, color: "var(--brand-deep)" }}
           >
             {item.status}
           </span>
         ) : null}
+
         <span
           aria-hidden="true"
-          className={
-            withMedia
-              ? "absolute bottom-4 start-6 font-display text-[0.8125rem] tracking-[0.18em]"
-              : "mt-5 block font-display text-[0.8125rem] tracking-[0.18em]"
-          }
-          style={{ color: accentColor }}
+          className="absolute bottom-5 start-7 z-10 font-display text-[0.9375rem] tracking-[0.18em]"
+          style={{ color: accent.color }}
         >
           {String(index + 1).padStart(2, "0")}
         </span>
+
+        {/*
+          10px, not the eyebrow's 11px: this is a card label with a per-company
+          context, the same species as the carousel's slide label, and the
+          repository keeps those off the section-eyebrow signature on purpose.
+        */}
+        <span
+          aria-hidden="true"
+          className="absolute bottom-5 end-7 z-10 text-[10px] font-bold uppercase tracking-[0.12em] text-brand-paper/75"
+        >
+          {accent.label}
+        </span>
       </div>
 
-      <h3 className="text-balance px-6 pt-6 font-display text-xl font-normal leading-[1.15] text-brand-paper">
+      <h3 className="text-balance px-9 pt-10 font-display text-[1.875rem] font-medium leading-[1.1] text-brand-paper">
         {item.title}
       </h3>
 
       {copy === null ? (
-        // Placeholder keeps the row count stable; omitting it would shift every
-        // later part of this card up a subgrid row and break the alignment.
+        // Placeholder keeps the row count stable; omitting it would shift the
+        // action up a subgrid row and break the alignment across the rail.
         <div />
       ) : (
-        <p className="px-6 pt-2.5 text-[0.8125rem] leading-[1.6] text-brand-paper/70">
+        <p className="px-9 pt-4 text-[0.9375rem] leading-[1.65] text-brand-paper/70">
           {copy}
         </p>
       )}
 
       {action === null ? (
-        <div className="pb-6" />
+        <div className="pb-11" />
       ) : (
-        <p className="px-6 pb-6 pt-5">
-          <a
-            href={action.href}
-            // A CTA scale, deliberately not the shared eyebrow token: an eyebrow
-            // labels a section, this asks the reader to leave for another site.
-            className="group inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] transition-opacity hover:opacity-75"
-            style={{ color: accentColor }}
+        <p
+          className="flex items-center gap-2.5 px-9 pb-11 pt-6 text-xs font-bold uppercase tracking-[0.1em]"
+          style={{ color: accent.color }}
+        >
+          {action.label}
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-300 group-hover/card:translate-x-1 rtl:group-hover/card:-translate-x-1"
           >
-            {action.label}
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
-            >
-              &rarr;
-            </span>
-            <span className="sr-only"> — {item.title}</span>
-          </a>
+            &rarr;
+          </span>
         </p>
       )}
-    </div>
+    </>
+  );
+}
+
+function CompanyCard(props: CompanyCardProps) {
+  const action = companyAction(props.item);
+  const style = { "--company-accent": props.accent.color } as CSSProperties;
+
+  // No CardRail flex/grid class here: its stylesheet makes each child a
+  // subgrid, with a flex-column fallback where subgrid is unsupported.
+  //
+  // The whole card is one link, which is what the approved design does. It
+  // leaves for another SIRA hostname, so the visible "View all" line stays as
+  // the affordance rather than the card being a silent target.
+  if (action === null) {
+    return (
+      <div className="company-card card-lift card-hover" style={style}>
+        <CardBody {...props} />
+      </div>
+    );
+  }
+
+  return (
+    <a
+      href={action.href}
+      className="company-card card-lift card-hover group/card"
+      style={style}
+    >
+      <CardBody {...props} />
+    </a>
   );
 }
 
 export function GroupCompanies({ section }: GroupCompaniesProps) {
   if (section === null || section.selection.status !== "ready") return null;
 
-  // EVERY, not some: a 16:10 block reserved on a card with no art is a tall
-  // empty rectangle, so the portfolio row shows media only when all four
-  // companies have it and otherwise composes typographically.
-  const rowHasMedia = section.selection.items.every(
-    (item) => item.featuredImage !== null,
-  );
-
+  // The media band is unconditional, as the approved design has it. An earlier
+  // rule showed art only when EVERY company had it, so one company without a
+  // featured image suppressed the band on all four — and because that branch
+  // had no aspect box to clamp to, a portrait photograph then set the height of
+  // every card in the rail. A company with no art now shows the same band
+  // carrying its badge, number and label.
   const groupPreset = getBrandPreset("group");
   const fallbackAccent = Object.freeze({
     label: groupPreset.name,
@@ -243,8 +252,7 @@ export function GroupCompanies({ section }: GroupCompaniesProps) {
                 key={item.databaseId}
                 item={item}
                 index={index}
-                withMedia={rowHasMedia}
-                accentColor={resolveBusinessUnitAccent(item.businessUnit, fallbackAccent).color}
+                accent={resolveBusinessUnitAccent(item.businessUnit, fallbackAccent)}
               />
             ))}
           </CardRail>

@@ -36,9 +36,9 @@ function InsightCard({ item, withMedia }: InsightCardProps) {
   const href = editorialArticleHref(item.href);
 
   return (
-    <article className="flex flex-col gap-5">
+    <article className="card-hover flex flex-col gap-5">
       {withMedia ? (
-      <div className="aspect-[16/11] w-full overflow-hidden bg-brand-tint">
+      <div className="card-media aspect-[16/11] w-full bg-brand-tint">
         {item.featuredImage !== null ? (
           // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a plain
           // <img> is used rather than next/image, which would require configuring

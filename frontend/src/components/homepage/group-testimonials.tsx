@@ -25,7 +25,7 @@ function TestimonialCard({ item }: TestimonialCardProps) {
     // Card surface sits ON the dark section rather than reversing out of it:
     // the reference keeps the quote inside the dark environment and separates
     // it with an accent top rule, not with a light panel.
-    <figure className="border-t-[3px] border-brand-accent bg-brand-deep-card p-9 sm:p-10">
+    <figure className="card-lift card-lift--deep border-t-[3px] border-brand-accent bg-brand-deep-card p-9 sm:p-10">
       <p
         aria-hidden="true"
         className="font-display text-5xl leading-[0.6] text-brand-accent"

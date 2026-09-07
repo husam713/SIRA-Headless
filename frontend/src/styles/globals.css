@@ -389,6 +389,121 @@ a {
   }
 }
 
+/* The card lift, measured from the approved design (SIRA Group Homepage.dc.html).
+   The same gesture on the company cards and the project cards: an 8px rise on
+   a decelerating curve, with a shadow that says the card came forward.
+
+   The shadow is a variable because the two surfaces need different ones. On the
+   deep section a near-black at 0.85 reads as depth; the same shadow on paper
+   reads as dirt, so the paper cards carry the reference's lighter, wider one. */
+.card-lift {
+  --card-lift-shadow: 0 30px 60px -24px oklch(0.4 0.02 260 / 0.4);
+
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 450ms ease,
+    border-color 450ms ease;
+}
+
+/* On the deep sections a near-black shadow reads as depth; the paper default
+   would be invisible there. */
+.card-lift--deep {
+  --card-lift-shadow: 0 30px 60px -20px var(--brand-shadow);
+}
+
+.card-lift:hover,
+.card-lift:focus-visible,
+.card-lift:focus-within {
+  transform: translateY(-0.5rem);
+  box-shadow: var(--card-lift-shadow);
+}
+
+/* The slow push into a card's picture, also measured from the approved design:
+   1.06 over 600ms while the card itself rises in 450ms. The two different
+   durations are the point — the frame arrives, then the image keeps moving.
+
+   `card-hover` is the trigger and `card-media` is the clipped frame, kept apart
+   from `card-lift` so a card with no surface of its own can move its picture
+   without also growing a shadow it has no edge to cast. */
+.card-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover .card-media img {
+  transition: transform 600ms ease;
+}
+
+.card-hover:hover .card-media img,
+.card-hover:focus-within .card-media img {
+  transform: scale(1.06);
+}
+
+/* The rise and the push are decoration. Without them a card still answers the
+   pointer through its shadow, and nothing moves under a reader who asked for
+   stillness. */
+@media (prefers-reduced-motion: reduce) {
+  .card-hover:hover .card-media img,
+  .card-hover:focus-within .card-media img {
+    transform: none;
+  }
+
+  .card-lift {
+    transition: box-shadow 450ms ease;
+  }
+
+  .card-lift:hover,
+  .card-lift:focus-visible,
+  .card-lift:focus-within {
+    transform: none;
+  }
+}
+
+/* The company card, measured from the approved design (#companies). The media
+   band is a FIXED 300px rather than an aspect ratio, so the row keeps its
+   proportion at every column count and a company with no featured image shows
+   the same band with its badge, number and label rather than collapsing.
+
+   The whole card is the link. The "View all" line inside it is a span, not a
+   second anchor, because an anchor inside an anchor is invalid and would give
+   the card two tab stops for one destination. */
+.company-card {
+  --card-lift-shadow: 0 30px 60px -20px var(--brand-shadow);
+
+  display: block;
+  overflow: hidden;
+  color: var(--brand-paper);
+  text-decoration: none;
+  background: var(--brand-deep-card);
+  border-block-start: 3px solid var(--company-accent, var(--brand-accent));
+}
+
+.company-card__media {
+  position: relative;
+  block-size: 18.75rem;
+  overflow: hidden;
+  background: var(--brand-deep);
+}
+
+.company-card__media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* Keeps the number and the company label legible over any photograph, which is
+   why the band can carry type at all. */
+.company-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    transparent 40%,
+    color-mix(in oklab, var(--brand-deep) 70%, transparent)
+  );
+}
+
 /* No subgrid: fall back to equal-height cells so cards still bottom-align. */
 @supports not (grid-template-rows: subgrid) {
   .rail__items > * {

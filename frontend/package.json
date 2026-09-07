@@ -31,7 +31,8 @@
     "visual-diff": "node scripts/visual-diff.mjs",
     "verify:layout": "node scripts/verify-layout-primitives.mjs",
     "verify:fixtures": "vitest run tests/harness/compose-homepage-fixtures.test.ts && node scripts/verify-homepage-fixtures.mjs",
-    "verify:alignment": "node scripts/verify-live-alignment.mjs"
+    "verify:alignment": "node scripts/verify-live-alignment.mjs",
+    "preview:newsroom": "vitest run tests/harness/compose-newsroom-preview.test.ts tests/harness/compose-article-preview.test.ts && node scripts/preview-newsroom.mjs"
   },
   "dependencies": {
     "next": "16.2.12",

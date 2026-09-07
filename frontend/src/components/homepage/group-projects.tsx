@@ -21,8 +21,8 @@ function ProjectCard({ item }: ProjectCardProps) {
     // this app has no project detail route yet — same policy as Companies.
     // The section-level `link` below (real CMS data, when present) is the
     // only outbound affordance here.
-    <article className="flex flex-col border border-brand-border bg-brand-paper">
-      <div className="relative aspect-[16/10] overflow-hidden bg-brand-deep">
+    <article className="card-lift card-hover flex flex-col border border-brand-border bg-brand-paper">
+      <div className="card-media aspect-[16/10] bg-brand-deep">
         {item.featuredImage !== null ? (
           // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a plain
           // <img> is used rather than next/image, which would require configuring

@@ -1,3 +1,31 @@
+# The Business Unit terms are selected for DISPLAY, not for filtering. The
+# unfiltered feed stays unfiltered (B4): `contentNodes` carries no business-unit
+# `where` argument, and narrowing to one desk still goes through the term's own
+# `contentNodes` connection in SiraBusinessUnitEditorialFeed below.
+#
+# `first: 4` is a structural bound, not a page: the canonical taxonomy has
+# exactly four terms (ADR-014), so this connection cannot truncate and needs no
+# pageInfo. An item carrying none of them is Group's own — that is the SIRA
+# mapping `group -> null`, not missing data.
+fragment EditorialFeedDesks on SiraBusinessUnitConnection {
+  nodes {
+    databaseId
+    slug
+  }
+}
+
+fragment EditorialFeedMedia on NodeWithFeaturedImageToMediaItemConnectionEdge {
+  node {
+    databaseId
+    sourceUrl
+    altText
+    mediaDetails {
+      width
+      height
+    }
+  }
+}
+
 query SiraEditorialFeed($first: Int!, $after: String) {
   contentNodes(
     first: $first
@@ -29,66 +57,49 @@ query SiraEditorialFeed($first: Int!, $after: String) {
         title
         excerpt
         featuredImage {
-          node {
-            databaseId
-            sourceUrl
-            altText
-            mediaDetails {
-              width
-              height
-            }
-          }
+          ...EditorialFeedMedia
+        }
+        siraBusinessUnits(first: 4) {
+          ...EditorialFeedDesks
         }
       }
       ... on SiraInsight {
         title
         excerpt
         featuredImage {
-          node {
-            databaseId
-            sourceUrl
-            altText
-            mediaDetails {
-              width
-              height
-            }
-          }
+          ...EditorialFeedMedia
+        }
+        siraBusinessUnits(first: 4) {
+          ...EditorialFeedDesks
         }
       }
       ... on SiraArticle {
         title
         excerpt
         featuredImage {
-          node {
-            databaseId
-            sourceUrl
-            altText
-            mediaDetails {
-              width
-              height
-            }
-          }
+          ...EditorialFeedMedia
+        }
+        siraBusinessUnits(first: 4) {
+          ...EditorialFeedDesks
         }
       }
       ... on SiraPressRelease {
         title
         excerpt
         featuredImage {
-          node {
-            databaseId
-            sourceUrl
-            altText
-            mediaDetails {
-              width
-              height
-            }
-          }
+          ...EditorialFeedMedia
+        }
+        siraBusinessUnits(first: 4) {
+          ...EditorialFeedDesks
         }
       }
     }
   }
 }
 
+# A branch tenant's feed. The desk is already known from the site key, so the
+# terms are not re-selected here: on a branch site every item belongs to that
+# branch by construction.
 query SiraBusinessUnitEditorialFeed(
   $businessUnit: ID!
   $first: Int!
@@ -125,60 +136,28 @@ query SiraBusinessUnitEditorialFeed(
           title
           excerpt
           featuredImage {
-            node {
-              databaseId
-              sourceUrl
-              altText
-              mediaDetails {
-                width
-                height
-              }
-            }
+            ...EditorialFeedMedia
           }
         }
         ... on SiraInsight {
           title
           excerpt
           featuredImage {
-            node {
-              databaseId
-              sourceUrl
-              altText
-              mediaDetails {
-                width
-                height
-              }
-            }
+            ...EditorialFeedMedia
           }
         }
         ... on SiraArticle {
           title
           excerpt
           featuredImage {
-            node {
-              databaseId
-              sourceUrl
-              altText
-              mediaDetails {
-                width
-                height
-              }
-            }
+            ...EditorialFeedMedia
           }
         }
         ... on SiraPressRelease {
           title
           excerpt
           featuredImage {
-            node {
-              databaseId
-              sourceUrl
-              altText
-              mediaDetails {
-                width
-                height
-              }
-            }
+            ...EditorialFeedMedia
           }
         }
       }

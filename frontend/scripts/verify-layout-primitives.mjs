@@ -95,6 +95,18 @@ for (const dir of ["ltr", "rtl"]) {
       return {
         gridCols: styles("grid").gridTemplateColumns,
         gridWidth: box("grid").width,
+        // The CONTENT column, i.e. the border box minus its own gutters. This
+        // is the number that has to match the reference and that sections
+        // actually align to; the border box now carries the gutters outside it.
+        gridContentWidth: (() => {
+          const el = document.getElementById("grid");
+          const s = getComputedStyle(el);
+          return (
+            el.getBoundingClientRect().width -
+            Number.parseFloat(s.paddingLeft) -
+            Number.parseFloat(s.paddingRight)
+          );
+        })(),
         railCols: getComputedStyle(document.querySelector(".rail__items")).gridTemplateColumns,
         railRowGap: getComputedStyle(document.querySelector(".rail__items")).rowGap,
         cardRowGap: getComputedStyle(document.querySelector(".rail__items > *")).rowGap,
@@ -115,7 +127,10 @@ for (const dir of ["ltr", "rtl"]) {
 
     const expectedCols = width < 768 ? 4 : width < 1100 ? 8 : 12;
     check(`${dir} ${width}px master grid = ${expectedCols} cols`, trackCount(m.gridCols) === expectedCols, trackCount(m.gridCols));
-    check(`${dir} ${width}px container <= 1320px`, m.gridWidth <= 1320.5, `${m.gridWidth.toFixed(1)}px`);
+    // --layout-container caps the OUTER box (1416px = the reference's 1320px
+    // content column plus its 48px gutters), so the invariant worth holding is
+    // the content column, not the border box.
+    check(`${dir} ${width}px content column <= 1320px`, m.gridContentWidth <= 1320.5, `${m.gridContentWidth.toFixed(1)}px`);
     check(`${dir} ${width}px no horizontal overflow`, m.scrollWidth <= m.clientWidth + 1, `scroll=${m.scrollWidth} client=${m.clientWidth}`);
 
     // Only cards sharing a row can align. Group by top offset first; stacked

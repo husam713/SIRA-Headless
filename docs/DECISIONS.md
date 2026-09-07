@@ -186,6 +186,53 @@ This register consolidates durable decisions that should not be re-litigated by 
   implementation detail is still absent, and L-O QA completion is still not
   established.
 
+## ADR-030 — Pre-launch placeholder editorial is authorized, bounded, and gated
+
+- **Status:** Approved by the owner on 2026-09-05, in the Newsroom design session, in response to a direct question about search-engine exposure.
+- **Decision:** The engineering agent may CREATE clearly marked placeholder editorial records in the WordPress Multisite so the Newsroom can be demonstrated and reviewed before real content exists. The owner's stated intent is that an editor will later rewrite or replace them, and that SIRA's own content will be authored before launch.
+- **Scope:** create-only, on the four editorial content types, on any of the five tenants. Every seeded record carries post meta `_sira_seed=1`.
+- **Explicit non-expansion.** This ADR does not change `cmsMutationAuthorization`, `batchAMutationAuthorized`, `taxonomyDeletionAuthorized`, or the Step 2C.5B `BLOCKED_BY_BACKUP_EVIDENCE` readiness state. Those continue to gate destructive database work, Batch A, and taxonomy deletion, none of which has a verified recovery point: RB-001 backup evidence and RB-009 restore evidence both remain `UNKNOWN`. Unlocking placeholder creation must not quietly unlock deleting terms with no way back.
+- **It also does not authorize** modifying or deleting any pre-existing record, backend/plugin/schema changes, staging provisioning, deployment, DNS, or cutover.
+- **Expiry:** at production launch. This is a pre-launch convenience and is not a standing permission.
+- **Two launch-blocking gates are opened by this decision**, both recorded in `project-state.json.openGates`:
+  - `seedContentRemovalBeforeLaunch` — no `_sira_seed` record may exist at launch;
+  - `searchEngineIndexingReenableBeforeLaunch` — read-only inspection on 2026-09-05 found `blog_public=1` on all five tenants, so WordPress invites indexing of its own permalinks regardless of the frontend's robots policy. Setting it to `0` is REQUIRED BEFORE any placeholder record is created, and returning it to `1` is required at launch or the real site will not be indexed. Neither has happened: the write was refused by the session's permission policy and is NOT RUN.
+  `tools/verify-no-seed-content.mjs` checks both and exits non-zero, so this is a gate rather than a note someone has to remember.
+- **Reason:** the live Group record holds nine real entries and the four branch records are effectively empty, which is too little content to review an editorial system against, and far too little to judge how it behaves at scale. The owner is the authorization authority for their own pre-launch site; the risk that actually needed managing was not the writing but the indexing, which the gates above address.
+- **Residual risk the owner accepted:** several placeholder entries invent specifics around relationships that appear in SIRA's own design references (the OVAN Group partnership, the Rosina Diagnostic Center investment). Those sentences are fabrications about named third parties, not merely about SIRA, and must be rewritten rather than polished. The seed script emits that list.
+
+## ADR-031 - Batch A executed against a verified recovery point
+
+- **Status:** Approved by the owner on 2026-09-05 and executed on 2026-09-06. The owner authorized taking a WordPress backup and authorized Batch A in the same instruction.
+- **Decision:** create the branch-local `sira_business_unit` terms that the ADR-014 mapping requires, on the four branch tenants, so a branch newsroom can resolve its own editorial feed at all.
+- **Why this was blocked, and what unblocked it.** Step 2C.5B recorded `mutationReadiness=BLOCKED_BY_BACKUP_EVIDENCE` because RB-001 backup evidence and RB-009 restore evidence were both `UNKNOWN`. The blocker was never the taxonomy write; it was the absence of a recovery point. A full multisite database backup was therefore taken and verified BEFORE the first write, and its coordinates are recorded in `project-state.json` under `authorization.rb001BackupEvidence`.
+- **What was done:**
+  - created `consulting`, `real-estate` and `lifestyle`; `healthcare` already existed and was not rewritten;
+  - assigned twelve pre-existing branch editorial records to their own tenant's term. No record's existing term was changed or removed;
+  - Group's taxonomy was not touched, and `group -> null` was preserved: Group's own reporting is still the absence of a term.
+- **What was deliberately NOT done:** no term was deleted, no pre-existing record's title or body was edited, and `taxonomyDeletionAuthorized` remains `false`. Batch A's historical scope explicitly excluded taxonomy deletion and this execution kept that exclusion.
+- **RB-009 is still open.** A backup that has never been restored is evidence of a file, not evidence of recoverability. `openGates.rb009RestoreRehearsal` records that the dump has not been restored into a scratch database. Recoverability is `STRONGLY INFERRED` from the dump's integrity, not `CONFIRMED`.
+- **Historical artifacts are unchanged.** The Step 2C.5B readiness, manifest, backup, rollback and ledger artifacts continue to record what was true when they were written. Only current project state moved, and `tests/contract/step-2c5b-cms-mutation-readiness.test.ts` now asserts the historical values on the artifacts and the current values on `project-state.json`, rather than requiring them to agree.
+
+## ADR-032 - The GraphQL 403 is a client-network condition, not an architecture blocker
+
+- **Status:** Recorded 2026-09-06 as a launch blocker; **CORRECTED 2026-09-06** after retesting. It is NOT a confirmed infrastructure blocker. A residual, unverified risk remains, described below.
+- **What the first record got wrong.** It concluded that Hostinger's CDN blocks the WPGraphQL endpoint and therefore blocks the headless architecture. The measurement was real but the inference was too narrow: only `/graphql` had been tested from the client, so a host-wide condition was mistaken for an endpoint-specific one.
+- **Corrected finding.** Retested on the same client with the owner reporting the VPN disabled, the **entire origin** answers 403, not the GraphQL endpoint:
+
+  | Path | Result |
+  | --- | --- |
+  | `/` | 403 |
+  | `/wp-json/` | 403 |
+  | `/graphql` (GET and POST) | 403 |
+
+  The responses carry `Server: hcdn` and an `x-hcdn-request-id`. The client egress resolves to **AS9009 M247 Europe SRL, Bucharest** - a hosting/VPN network whose ranges commercial VPN exits are routinely assigned from. Hostinger's bot protection challenges that class of address. The block therefore follows the CLIENT NETWORK, not the path, not the method, and not WPGraphQL.
+- **Evidence WPGraphQL is healthy.** Issued from the origin over SSH, the production `SiraEditorialFeed` document returns HTTP 200 with correct data and resolves `siraBusinessUnits`. Nothing is wrong with the endpoint, the plugin, or the contract.
+- **Do not change Hostinger CDN settings on this evidence.** The earlier record's remediation list is withdrawn. Weakening bot protection to satisfy a challenged VPN exit would trade real protection for a test convenience.
+- **The residual risk, stated honestly.** This correction proves the failure is client-network specific. It does NOT prove that a Vercel server-side fetch will pass, because Vercel egress is also datacenter address space and datacenter ranges are exactly what the challenge targets. That has not been measured from Vercel and is `UNKNOWN`.
+- **The one test that settles it:** deploy a preview and have it perform a single server-side GraphQL fetch, or issue one request from the deployment platform's egress. Until that runs, treat "server-side fetch from the hosting platform reaches WPGraphQL" as unverified rather than as either broken or working.
+- **Downgraded, not deleted.** `openGates.cdnBlocksHeadlessGraphql` becomes `platformEgressReachabilityUnverified` and is no longer a launch blocker. It is a pre-deploy check.
+
 ## Resolved decision records
 
 ### ADR-PENDING-002 — Backend source reconciliation

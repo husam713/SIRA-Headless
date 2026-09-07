@@ -20,7 +20,10 @@ const CONVERTED_SECTION_FILES = [
   "group-about.tsx",
   "group-companies.tsx",
   "group-investor.tsx",
-  "group-latest-updates.tsx",
+  // group-latest-updates.tsx is deliberately absent: the reference marks that
+  // section with a dot rather than the shared leading rule, so it renders its
+  // own heading. Its contrast and accessible-name guarantees are asserted
+  // directly instead, above.
   "group-partners.tsx",
   "group-services.tsx",
   "group-testimonials.tsx",
@@ -62,16 +65,21 @@ describe("SectionEyebrow", () => {
   });
 
   it("does not repaint the Latest Updates heading", () => {
-    // It never carried a colour class: it inherited --brand-ink. Giving it the
-    // faint tone was a contrast regression on a heading that is also the
-    // section's accessible name, so it must stay uncoloured.
+    // Latest Updates no longer uses the shared rule-eyebrow. The reference
+    // marks this section with a dot rather than a leading rule, so it renders
+    // its own h2 — a deliberate divergence, not drift.
+    //
+    // What the original assertion protected is unchanged and still checked
+    // here: this heading is also the section's accessible name, so it must not
+    // be repainted into an accent that fails contrast against paper.
     const source = readFileSync(join(HOMEPAGE_DIR, "group-latest-updates.tsx"), "utf8");
 
-    expect(source).toContain('tone="inherit"');
-    // Scoped to the eyebrow: the file legitimately uses ink-faint elsewhere,
-    // on the card meta line.
+    expect(source).toContain("text-brand-ink");
     expect(source).not.toContain('tone="faint"');
     expect(source).not.toContain('tone="accent"');
+    // ink-faint is still permitted elsewhere in the file — it paints the
+    // aria-hidden separator on the card meta line, which the original
+    // assertion allowed for the same reason.
   });
 
   it("can render as a heading that keeps its id", () => {
@@ -92,11 +100,13 @@ describe("SectionEyebrow", () => {
   });
 
   it("keeps the aria-labelledby target intact in group-latest-updates", () => {
+    // The section still names itself through its heading; only the heading's
+    // presentation changed, so the wiring must survive.
     const source = readFileSync(join(HOMEPAGE_DIR, "group-latest-updates.tsx"), "utf8");
 
     expect(source).toContain('labelledBy="latest-updates-heading"');
     expect(source).toContain('id="latest-updates-heading"');
-    expect(source).toContain('as="h2"');
+    expect(source).toContain("<h2");
   });
 
   it("leaves no hand-rolled eyebrow anywhere in the homepage sections", () => {

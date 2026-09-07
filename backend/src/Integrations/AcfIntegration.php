@@ -132,6 +132,30 @@ final class AcfIntegration {
 						'name'  => 'sira_accent_color',
 						'type'  => 'color_picker',
 					),
+					/*
+					 * The fields from here to the analytics identifier existed
+					 * only on the Brand Settings screen, which reads the
+					 * effective value but wrote to a second store. Giving them
+					 * an ACF home lets that screen write where it reads.
+					 */
+					array(
+						'key'   => 'field_sira_paper_color',
+						'label' => 'Paper Color',
+						'name'  => 'sira_paper_color',
+						'type'  => 'color_picker',
+					),
+					array(
+						'key'   => 'field_sira_ink_color',
+						'label' => 'Ink Color',
+						'name'  => 'sira_ink_color',
+						'type'  => 'color_picker',
+					),
+					array(
+						'key'   => 'field_sira_brand_tagline',
+						'label' => 'Tagline',
+						'name'  => 'sira_brand_tagline',
+						'type'  => 'text',
+					),
 					array(
 						'key'   => 'field_sira_brand_email',
 						'label' => 'Email',
@@ -171,6 +195,53 @@ final class AcfIntegration {
 						'label' => 'Vision',
 						'name'  => 'sira_brand_vision',
 						'type'  => 'textarea',
+					),
+					array(
+						'key'   => 'field_sira_brand_linkedin',
+						'label' => 'LinkedIn URL',
+						'name'  => 'sira_brand_linkedin',
+						'type'  => 'url',
+					),
+					array(
+						'key'   => 'field_sira_brand_instagram',
+						'label' => 'Instagram URL',
+						'name'  => 'sira_brand_instagram',
+						'type'  => 'url',
+					),
+					array(
+						'key'   => 'field_sira_brand_x',
+						'label' => 'X URL',
+						'name'  => 'sira_brand_x',
+						'type'  => 'url',
+					),
+					array(
+						'key'   => 'field_sira_brand_youtube',
+						'label' => 'YouTube URL',
+						'name'  => 'sira_brand_youtube',
+						'type'  => 'url',
+					),
+					array(
+						'key'          => 'field_sira_brand_analytics_id',
+						'label'        => 'Analytics ID',
+						'name'         => 'sira_brand_analytics_id',
+						'type'         => 'text',
+						'instructions' => 'Operational only. Never exposed through the public brand contract.',
+					),
+					array(
+						'key'          => 'field_sira_announcement_bar_text',
+						'label'        => 'Legacy Announcement Text',
+						'name'         => 'sira_announcement_bar_text',
+						'type'         => 'textarea',
+						'rows'         => 2,
+						'instructions' => 'Backward-compatible fallback used only when the typed Announcement Banner below has no message.',
+					),
+					array(
+						'key'          => 'field_sira_emergency_banner_text',
+						'label'        => 'Legacy Emergency Text',
+						'name'         => 'sira_emergency_banner_text',
+						'type'         => 'textarea',
+						'rows'         => 2,
+						'instructions' => 'Backward-compatible fallback used only when the typed Emergency Banner below has no message.',
 					),
 					array(
 						'key'          => 'field_sira_brand_values',

@@ -1,0 +1,2112 @@
+[
+  {
+    "page": "newsroom",
+    "viewport": 390,
+    "protoHeight": 2408,
+    "prodHeight": 7896,
+    "driftPercent": 227.9,
+    "overflow": {
+      "proto": 0,
+      "prod": 0
+    },
+    "metrics": [
+      {
+        "key": "sheet",
+        "proto": {
+          "count": 1,
+          "width": 390,
+          "height": 2408,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 390,
+          "height": 7001,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "masthead",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 159,
+          "columns": 1,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 388,
+          "height": 167,
+          "columns": 1,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "mastheadTitle",
+        "proto": {
+          "count": 1,
+          "width": 358,
+          "height": 56,
+          "columns": null,
+          "fontSize": 32
+        },
+        "prod": {
+          "count": 1,
+          "width": 358,
+          "height": 56,
+          "columns": null,
+          "fontSize": 32
+        }
+      },
+      {
+        "key": "filters",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 52,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 388,
+          "height": 54,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "lead",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 550,
+          "columns": 1,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 388,
+          "height": 533,
+          "columns": 1,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "leadHeadline",
+        "proto": {
+          "count": 1,
+          "width": 267,
+          "height": 85,
+          "columns": null,
+          "fontSize": 29
+        },
+        "prod": {
+          "count": 1,
+          "width": 246,
+          "height": 57,
+          "columns": null,
+          "fontSize": 29
+        }
+      },
+      {
+        "key": "signal",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 233,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 388,
+          "height": 267,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "deskHead",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 130,
+          "columns": 1,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 4,
+          "width": 388,
+          "height": 138,
+          "columns": 1,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "register",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 1254,
+          "columns": 1,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 4,
+          "width": 388,
+          "height": 3255,
+          "columns": 1,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "storyCell",
+        "proto": {
+          "count": 6,
+          "width": 388,
+          "height": 217,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 29,
+          "width": 388,
+          "height": 190,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "storyTitle",
+        "proto": null,
+        "prod": null
+      },
+      {
+        "key": "yearBand",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 146,
+          "columns": 1,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 3,
+          "width": 388,
+          "height": 135,
+          "columns": 1,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "endBar",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 115,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 388,
+          "height": 126,
+          "columns": null,
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "page": "newsroom",
+    "viewport": 768,
+    "protoHeight": 1435,
+    "prodHeight": 4233,
+    "driftPercent": 195,
+    "overflow": {
+      "proto": 0,
+      "prod": 0
+    },
+    "metrics": [
+      {
+        "key": "sheet",
+        "proto": {
+          "count": 1,
+          "width": 732,
+          "height": 1355,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 732,
+          "height": 3553,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "masthead",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 153,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 730,
+          "height": 157,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "mastheadTitle",
+        "proto": {
+          "count": 1,
+          "width": 518,
+          "height": 95,
+          "columns": null,
+          "fontSize": 53.8
+        },
+        "prod": {
+          "count": 1,
+          "width": 373,
+          "height": 95,
+          "columns": null,
+          "fontSize": 53.8
+        }
+      },
+      {
+        "key": "filters",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 52,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 730,
+          "height": 54,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "lead",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 332,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 730,
+          "height": 310,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "leadHeadline",
+        "proto": {
+          "count": 1,
+          "width": 354,
+          "height": 113,
+          "columns": null,
+          "fontSize": 38.4
+        },
+        "prod": {
+          "count": 1,
+          "width": 326,
+          "height": 75,
+          "columns": null,
+          "fontSize": 38.4
+        }
+      },
+      {
+        "key": "signal",
+        "proto": {
+          "count": 1,
+          "width": 238,
+          "height": 331,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 238,
+          "height": 309,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "deskHead",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 102,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 4,
+          "width": 730,
+          "height": 96,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "register",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 527,
+          "columns": 3,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 4,
+          "width": 730,
+          "height": 1420,
+          "columns": 3,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "storyCell",
+        "proto": {
+          "count": 6,
+          "width": 243,
+          "height": 274,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 29,
+          "width": 243,
+          "height": 234,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "storyTitle",
+        "proto": null,
+        "prod": null
+      },
+      {
+        "key": "yearBand",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 101,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 3,
+          "width": 730,
+          "height": 88,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "endBar",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 87,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 730,
+          "height": 95,
+          "columns": null,
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "page": "newsroom",
+    "viewport": 1024,
+    "protoHeight": 1430,
+    "prodHeight": 4008,
+    "driftPercent": 180.3,
+    "overflow": {
+      "proto": 0,
+      "prod": 0
+    },
+    "metrics": [
+      {
+        "key": "sheet",
+        "proto": {
+          "count": 1,
+          "width": 988,
+          "height": 1350,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 988,
+          "height": 3427,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "masthead",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 178,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 986,
+          "height": 182,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "mastheadTitle",
+        "proto": {
+          "count": 1,
+          "width": 774,
+          "height": 120,
+          "columns": null,
+          "fontSize": 68
+        },
+        "prod": {
+          "count": 1,
+          "width": 619,
+          "height": 120,
+          "columns": null,
+          "fontSize": 68
+        }
+      },
+      {
+        "key": "filters",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 52,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 986,
+          "height": 54,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "lead",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 370,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 986,
+          "height": 310,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "leadHeadline",
+        "proto": {
+          "count": 1,
+          "width": 471,
+          "height": 151,
+          "columns": null,
+          "fontSize": 51.2
+        },
+        "prod": {
+          "count": 1,
+          "width": 435,
+          "height": 100,
+          "columns": null,
+          "fontSize": 51.2
+        }
+      },
+      {
+        "key": "signal",
+        "proto": {
+          "count": 1,
+          "width": 322,
+          "height": 369,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 322,
+          "height": 309,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "deskHead",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 102,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 4,
+          "width": 986,
+          "height": 96,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "register",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 460,
+          "columns": 3,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 4,
+          "width": 986,
+          "height": 1321,
+          "columns": 3,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "storyCell",
+        "proto": {
+          "count": 6,
+          "width": 329,
+          "height": 229,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 29,
+          "width": 329,
+          "height": 220,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "storyTitle",
+        "proto": null,
+        "prod": null
+      },
+      {
+        "key": "yearBand",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 101,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 3,
+          "width": 986,
+          "height": 88,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "endBar",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 87,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 986,
+          "height": 95,
+          "columns": null,
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "page": "newsroom",
+    "viewport": 1440,
+    "protoHeight": 1420,
+    "prodHeight": 3943,
+    "driftPercent": 177.7,
+    "overflow": {
+      "proto": 0,
+      "prod": 0
+    },
+    "metrics": [
+      {
+        "key": "sheet",
+        "proto": {
+          "count": 1,
+          "width": 1204,
+          "height": 1340,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1204,
+          "height": 3432,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "masthead",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 178,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 182,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "mastheadTitle",
+        "proto": {
+          "count": 1,
+          "width": 990,
+          "height": 120,
+          "columns": null,
+          "fontSize": 68
+        },
+        "prod": {
+          "count": 1,
+          "width": 835,
+          "height": 120,
+          "columns": null,
+          "fontSize": 68
+        }
+      },
+      {
+        "key": "filters",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 52,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 54,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "lead",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 378,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 315,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "leadHeadline",
+        "proto": {
+          "count": 1,
+          "width": 497,
+          "height": 159,
+          "columns": null,
+          "fontSize": 54
+        },
+        "prod": {
+          "count": 1,
+          "width": 459,
+          "height": 106,
+          "columns": null,
+          "fontSize": 54
+        }
+      },
+      {
+        "key": "signal",
+        "proto": {
+          "count": 1,
+          "width": 392,
+          "height": 377,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 392,
+          "height": 314,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "deskHead",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 102,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 4,
+          "width": 1202,
+          "height": 96,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "register",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 441,
+          "columns": 3,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 4,
+          "width": 1202,
+          "height": 1321,
+          "columns": 3,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "storyCell",
+        "proto": {
+          "count": 6,
+          "width": 401,
+          "height": 220,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 29,
+          "width": 401,
+          "height": 220,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "storyTitle",
+        "proto": null,
+        "prod": null
+      },
+      {
+        "key": "yearBand",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 101,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 3,
+          "width": 1202,
+          "height": 88,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "endBar",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 87,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 95,
+          "columns": null,
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "page": "newsroom",
+    "viewport": 1920,
+    "protoHeight": 1420,
+    "prodHeight": 3943,
+    "driftPercent": 177.7,
+    "overflow": {
+      "proto": 0,
+      "prod": 0
+    },
+    "metrics": [
+      {
+        "key": "sheet",
+        "proto": {
+          "count": 1,
+          "width": 1204,
+          "height": 1340,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1204,
+          "height": 3432,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "masthead",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 178,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 182,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "mastheadTitle",
+        "proto": {
+          "count": 1,
+          "width": 990,
+          "height": 120,
+          "columns": null,
+          "fontSize": 68
+        },
+        "prod": {
+          "count": 1,
+          "width": 835,
+          "height": 120,
+          "columns": null,
+          "fontSize": 68
+        }
+      },
+      {
+        "key": "filters",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 52,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 54,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "lead",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 378,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 315,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "leadHeadline",
+        "proto": {
+          "count": 1,
+          "width": 497,
+          "height": 159,
+          "columns": null,
+          "fontSize": 54
+        },
+        "prod": {
+          "count": 1,
+          "width": 459,
+          "height": 106,
+          "columns": null,
+          "fontSize": 54
+        }
+      },
+      {
+        "key": "signal",
+        "proto": {
+          "count": 1,
+          "width": 392,
+          "height": 377,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 392,
+          "height": 314,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "deskHead",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 102,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 4,
+          "width": 1202,
+          "height": 96,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "register",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 441,
+          "columns": 3,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 4,
+          "width": 1202,
+          "height": 1321,
+          "columns": 3,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "storyCell",
+        "proto": {
+          "count": 6,
+          "width": 401,
+          "height": 220,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 29,
+          "width": 401,
+          "height": 220,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "storyTitle",
+        "proto": null,
+        "prod": null
+      },
+      {
+        "key": "yearBand",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 101,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 3,
+          "width": 1202,
+          "height": 88,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "endBar",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 87,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 95,
+          "columns": null,
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "page": "article",
+    "viewport": 390,
+    "protoHeight": 3620,
+    "prodHeight": 4626,
+    "driftPercent": 27.8,
+    "overflow": {
+      "proto": 0,
+      "prod": 0
+    },
+    "metrics": [
+      {
+        "key": "sheet",
+        "proto": {
+          "count": 1,
+          "width": 390,
+          "height": 3714,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 390,
+          "height": 3731,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "masthead",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 61,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 388,
+          "height": 61,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "hero",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 526,
+          "columns": 1,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 388,
+          "height": 568,
+          "columns": 1,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "heroHeadline",
+        "proto": {
+          "count": 1,
+          "width": 313,
+          "height": 65,
+          "columns": null,
+          "fontSize": 34
+        },
+        "prod": {
+          "count": 1,
+          "width": 289,
+          "height": 33,
+          "columns": null,
+          "fontSize": 34
+        }
+      },
+      {
+        "key": "deck",
+        "proto": {
+          "count": 1,
+          "width": 360,
+          "height": 72,
+          "columns": null,
+          "fontSize": 15
+        },
+        "prod": {
+          "count": 1,
+          "width": 358,
+          "height": 72,
+          "columns": null,
+          "fontSize": 15
+        }
+      },
+      {
+        "key": "signal",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 236,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 388,
+          "height": 291,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "body",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 2273,
+          "columns": 1,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 388,
+          "height": 2325,
+          "columns": 1,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "rail",
+        "proto": {
+          "count": 2,
+          "width": 360,
+          "height": 87,
+          "columns": 3,
+          "fontSize": 10
+        },
+        "prod": {
+          "count": 1,
+          "width": 358,
+          "height": 50,
+          "columns": 3,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "prose",
+        "proto": {
+          "count": 1,
+          "width": 360,
+          "height": 1916,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 358,
+          "height": 2190,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "proseLine",
+        "proto": {
+          "count": 7,
+          "width": 360,
+          "height": 155,
+          "columns": null,
+          "fontSize": 20
+        },
+        "prod": {
+          "count": 9,
+          "width": 358,
+          "height": 186,
+          "columns": null,
+          "fontSize": 20
+        }
+      },
+      {
+        "key": "related",
+        "proto": {
+          "count": 1,
+          "width": 388,
+          "height": 571,
+          "columns": 1,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 388,
+          "height": 576,
+          "columns": 1,
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "page": "article",
+    "viewport": 768,
+    "protoHeight": 3081,
+    "prodHeight": 3442,
+    "driftPercent": 11.7,
+    "overflow": {
+      "proto": 0,
+      "prod": 0
+    },
+    "metrics": [
+      {
+        "key": "sheet",
+        "proto": {
+          "count": 1,
+          "width": 732,
+          "height": 3076,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 732,
+          "height": 2762,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "masthead",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 58,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 730,
+          "height": 61,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "hero",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 559,
+          "columns": 1,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 730,
+          "height": 568,
+          "columns": 1,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "heroHeadline",
+        "proto": {
+          "count": 1,
+          "width": 460,
+          "height": 96,
+          "columns": null,
+          "fontSize": 49.9
+        },
+        "prod": {
+          "count": 1,
+          "width": 424,
+          "height": 48,
+          "columns": null,
+          "fontSize": 49.9
+        }
+      },
+      {
+        "key": "deck",
+        "proto": {
+          "count": 1,
+          "width": 484,
+          "height": 48,
+          "columns": null,
+          "fontSize": 15
+        },
+        "prod": {
+          "count": 1,
+          "width": 499,
+          "height": 48,
+          "columns": null,
+          "fontSize": 15
+        }
+      },
+      {
+        "key": "signal",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 246,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 730,
+          "height": 299,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "body",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 1868,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 730,
+          "height": 1731,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "rail",
+        "proto": {
+          "count": 2,
+          "width": 105,
+          "height": 1607,
+          "columns": null,
+          "fontSize": 10
+        },
+        "prod": {
+          "count": 1,
+          "width": 105,
+          "height": 1666,
+          "columns": 3,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "prose",
+        "proto": {
+          "count": 1,
+          "width": 553,
+          "height": 1607,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 563,
+          "height": 1666,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "proseLine",
+        "proto": {
+          "count": 7,
+          "width": 553,
+          "height": 93,
+          "columns": null,
+          "fontSize": 20
+        },
+        "prod": {
+          "count": 9,
+          "width": 563,
+          "height": 124,
+          "columns": null,
+          "fontSize": 20
+        }
+      },
+      {
+        "key": "related",
+        "proto": {
+          "count": 1,
+          "width": 730,
+          "height": 381,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 730,
+          "height": 235,
+          "columns": 3,
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "page": "article",
+    "viewport": 1024,
+    "protoHeight": 2434,
+    "prodHeight": 2881,
+    "driftPercent": 18.4,
+    "overflow": {
+      "proto": 0,
+      "prod": 0
+    },
+    "metrics": [
+      {
+        "key": "sheet",
+        "proto": {
+          "count": 1,
+          "width": 988,
+          "height": 2429,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 988,
+          "height": 2300,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "masthead",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 58,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 986,
+          "height": 61,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "hero",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 345,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 986,
+          "height": 330,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "heroHeadline",
+        "proto": {
+          "count": 1,
+          "width": 613,
+          "height": 128,
+          "columns": null,
+          "fontSize": 66.6
+        },
+        "prod": {
+          "count": 1,
+          "width": 566,
+          "height": 64,
+          "columns": null,
+          "fontSize": 66.6
+        }
+      },
+      {
+        "key": "deck",
+        "proto": {
+          "count": 1,
+          "width": 484,
+          "height": 48,
+          "columns": null,
+          "fontSize": 15
+        },
+        "prod": {
+          "count": 1,
+          "width": 499,
+          "height": 48,
+          "columns": null,
+          "fontSize": 15
+        }
+      },
+      {
+        "key": "signal",
+        "proto": {
+          "count": 1,
+          "width": 275,
+          "height": 344,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 275,
+          "height": 329,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "body",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 1626,
+          "columns": 3,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 986,
+          "height": 1522,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "rail",
+        "proto": {
+          "count": 2,
+          "width": 150,
+          "height": 1549,
+          "columns": null,
+          "fontSize": 10
+        },
+        "prod": {
+          "count": 1,
+          "width": 150,
+          "height": 1457,
+          "columns": 3,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "prose",
+        "proto": {
+          "count": 1,
+          "width": 586,
+          "height": 1549,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 704,
+          "height": 1457,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "proseLine",
+        "proto": {
+          "count": 7,
+          "width": 586,
+          "height": 93,
+          "columns": null,
+          "fontSize": 20
+        },
+        "prod": {
+          "count": 9,
+          "width": 704,
+          "height": 93,
+          "columns": null,
+          "fontSize": 20
+        }
+      },
+      {
+        "key": "related",
+        "proto": {
+          "count": 1,
+          "width": 986,
+          "height": 191,
+          "columns": 3,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 986,
+          "height": 221,
+          "columns": 3,
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "page": "article",
+    "viewport": 1440,
+    "protoHeight": 2390,
+    "prodHeight": 2831,
+    "driftPercent": 18.5,
+    "overflow": {
+      "proto": 0,
+      "prod": 0
+    },
+    "metrics": [
+      {
+        "key": "sheet",
+        "proto": {
+          "count": 1,
+          "width": 1204,
+          "height": 2385,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1204,
+          "height": 2320,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "masthead",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 58,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 61,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "hero",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 355,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 330,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "heroHeadline",
+        "proto": {
+          "count": 1,
+          "width": 663,
+          "height": 138,
+          "columns": null,
+          "fontSize": 72
+        },
+        "prod": {
+          "count": 1,
+          "width": 612,
+          "height": 69,
+          "columns": null,
+          "fontSize": 72
+        }
+      },
+      {
+        "key": "deck",
+        "proto": {
+          "count": 1,
+          "width": 484,
+          "height": 48,
+          "columns": null,
+          "fontSize": 15
+        },
+        "prod": {
+          "count": 1,
+          "width": 499,
+          "height": 48,
+          "columns": null,
+          "fontSize": 15
+        }
+      },
+      {
+        "key": "signal",
+        "proto": {
+          "count": 1,
+          "width": 335,
+          "height": 354,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 335,
+          "height": 329,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "body",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 1571,
+          "columns": 3,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 1542,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "rail",
+        "proto": {
+          "count": 2,
+          "width": 150,
+          "height": 1494,
+          "columns": null,
+          "fontSize": 10
+        },
+        "prod": {
+          "count": 1,
+          "width": 150,
+          "height": 1477,
+          "columns": 3,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "prose",
+        "proto": {
+          "count": 1,
+          "width": 640,
+          "height": 1494,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 704,
+          "height": 1477,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "proseLine",
+        "proto": {
+          "count": 7,
+          "width": 640,
+          "height": 93,
+          "columns": null,
+          "fontSize": 20
+        },
+        "prod": {
+          "count": 9,
+          "width": 704,
+          "height": 93,
+          "columns": null,
+          "fontSize": 20
+        }
+      },
+      {
+        "key": "related",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 191,
+          "columns": 3,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 221,
+          "columns": 3,
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "page": "article",
+    "viewport": 1920,
+    "protoHeight": 2390,
+    "prodHeight": 2831,
+    "driftPercent": 18.5,
+    "overflow": {
+      "proto": 0,
+      "prod": 0
+    },
+    "metrics": [
+      {
+        "key": "sheet",
+        "proto": {
+          "count": 1,
+          "width": 1204,
+          "height": 2385,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1204,
+          "height": 2320,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "masthead",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 58,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 61,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "hero",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 355,
+          "columns": 2,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 330,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "heroHeadline",
+        "proto": {
+          "count": 1,
+          "width": 663,
+          "height": 138,
+          "columns": null,
+          "fontSize": 72
+        },
+        "prod": {
+          "count": 1,
+          "width": 612,
+          "height": 69,
+          "columns": null,
+          "fontSize": 72
+        }
+      },
+      {
+        "key": "deck",
+        "proto": {
+          "count": 1,
+          "width": 484,
+          "height": 48,
+          "columns": null,
+          "fontSize": 15
+        },
+        "prod": {
+          "count": 1,
+          "width": 499,
+          "height": 48,
+          "columns": null,
+          "fontSize": 15
+        }
+      },
+      {
+        "key": "signal",
+        "proto": {
+          "count": 1,
+          "width": 335,
+          "height": 354,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 335,
+          "height": 329,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "body",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 1571,
+          "columns": 3,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 1542,
+          "columns": 2,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "rail",
+        "proto": {
+          "count": 2,
+          "width": 150,
+          "height": 1494,
+          "columns": null,
+          "fontSize": 10
+        },
+        "prod": {
+          "count": 1,
+          "width": 150,
+          "height": 1477,
+          "columns": 3,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "prose",
+        "proto": {
+          "count": 1,
+          "width": 640,
+          "height": 1494,
+          "columns": null,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 704,
+          "height": 1477,
+          "columns": null,
+          "fontSize": 16
+        }
+      },
+      {
+        "key": "proseLine",
+        "proto": {
+          "count": 7,
+          "width": 640,
+          "height": 93,
+          "columns": null,
+          "fontSize": 20
+        },
+        "prod": {
+          "count": 9,
+          "width": 704,
+          "height": 93,
+          "columns": null,
+          "fontSize": 20
+        }
+      },
+      {
+        "key": "related",
+        "proto": {
+          "count": 1,
+          "width": 1202,
+          "height": 191,
+          "columns": 3,
+          "fontSize": 16
+        },
+        "prod": {
+          "count": 1,
+          "width": 1202,
+          "height": 221,
+          "columns": 3,
+          "fontSize": 16
+        }
+      }
+    ]
+  }
+]

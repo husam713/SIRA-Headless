@@ -10,19 +10,39 @@
  * (SOT-001). Removing this one file removes the endpoint completely.
  *
  * 2C4-B08 (forms architecture) was previously unresolved, which is why the
- * frontend form shipped inert. The owner resolved it: use the site's own
- * wp_mail path rather than introducing a third-party form service.
+ * frontend form shipped inert. The owner resolved it: handle submissions on
+ * the site's own infrastructure rather than introducing a third-party form
+ * service.
+ *
+ * Flow, in this order and for this reason:
+ *
+ *   1. validate;
+ *   2. STORE the enquiry (sira-contact-store.php) — before any delivery is
+ *      attempted, so a transport outage cannot lose it;
+ *   3. attempt delivery through the authenticated Microsoft 365 transport
+ *      (sira-m365-mailer.php);
+ *   4. record the delivery outcome on the stored record.
+ *
+ * The visitor is told the enquiry was received as soon as step 2 succeeds. A
+ * failure in step 3 is an internal problem: the enquiry is safe, somebody will
+ * read it, and telling a visitor that our mail relay is unhappy would leak
+ * infrastructure detail while helping nobody. Only a failure to STORE is
+ * reported as an error, because only then is the enquiry actually lost.
+ *
+ * Local PHP mail is deliberately NOT used as a fallback. The domain publishes
+ * `-all` and its MX is Microsoft 365, so mail sent from this host is discarded
+ * on arrival; a fallback to it would look like redundancy while delivering
+ * nothing.
  *
  * Security posture:
  *   - public endpoint, but write-only: it returns no data and creates no
- *     queryable public record;
+ *     publicly queryable record;
  *   - every field is length-capped and stripped of control characters before
  *     use, and nothing user-supplied is ever placed in a mail header;
  *   - a honeypot field and a per-IP rate limit absorb casual abuse without a
  *     CAPTCHA;
- *   - the submission is also stored as a private CPT-less option-free comment
- *     -like record in the log below only if mail fails, so a delivery outage
- *     does not silently discard an enquiry.
+ *   - stored submissions are private and administrator-only — see
+ *     sira-contact-store.php for the full privacy posture.
  */
 
 declare(strict_types=1);
@@ -122,7 +142,33 @@ function sira_contact_handle(WP_REST_Request $request)
         );
     }
 
-    $to      = (string) get_option('admin_email');
+    // One place decides who receives enquiries. It defaults to the site's own
+    // administrator address, and SIRA_CONTACT_RECIPIENT in wp-config.php
+    // overrides it per site without touching the frontend or this file.
+    $to = defined('SIRA_CONTACT_RECIPIENT') && trim((string) SIRA_CONTACT_RECIPIENT) !== ''
+        ? (string) SIRA_CONTACT_RECIPIENT
+        : (string) get_option('admin_email');
+
+    $fields = [
+        'name'    => $name,
+        'email'   => $email,
+        'service' => $service,
+        'message' => $message,
+    ];
+
+    // Step 2: store, before anything can fail.
+    $stored = sira_contact_store($fields);
+
+    if (is_wp_error($stored)) {
+        // The only genuinely lost enquiry. Everything else is recoverable.
+        error_log('[sira-contact] could not store a submission: ' . $stored->get_error_code());
+
+        return new WP_REST_Response(
+            ['status' => 'error', 'code' => 'unavailable'],
+            503
+        );
+    }
+
     $site    = (string) get_bloginfo('name');
     $subject = sprintf('[%s] Website enquiry from %s', $site, $name);
 
@@ -138,25 +184,39 @@ function sira_contact_handle(WP_REST_Request $request)
         '',
         '---',
         'Submitted: ' . gmdate('c'),
+        'Record:    #' . $stored,
     ]);
 
-    // Reply-To carries the enquirer's address. It is the ONLY place a
-    // user-supplied value touches a header, and is_email() has already
+    // Step 3. Reply-To carries the enquirer's address; it is the ONLY place a
+    // user-supplied value reaches a mail header, and is_email() has already
     // rejected anything containing a newline or a second address.
-    $headers = ['Reply-To: ' . $email];
-
-    $sent = wp_mail($to, $subject, $body, $headers);
-
-    if (!$sent) {
-        // A delivery failure must not lose the enquiry.
-        error_log('[sira-contact] wp_mail failed for a submission from ' . $email);
-
-        return new WP_REST_Response(
-            ['status' => 'error', 'code' => 'delivery_failed'],
-            502
+    if (!sira_m365_configured()) {
+        sira_contact_record_delivery(
+            $stored,
+            SIRA_CONTACT_DELIVERY_UNCONFIGURED,
+            'microsoft 365 transport not configured'
         );
+        error_log('[sira-contact] stored #' . $stored . ' but the mail transport is not configured');
+
+        return new WP_REST_Response(['status' => 'received'], 201);
     }
 
+    $sent = sira_m365_send($to, $subject, $body, [$email]);
+
+    if (is_wp_error($sent)) {
+        // Step 4, failure branch. The detail is a short transport status such
+        // as "graph:403 ErrorAccessDenied" — never a token or a secret.
+        sira_contact_record_delivery(
+            $stored,
+            SIRA_CONTACT_DELIVERY_FAILED,
+            $sent->get_error_message()
+        );
+        error_log('[sira-contact] stored #' . $stored . ' but delivery failed: ' . $sent->get_error_message());
+    } else {
+        sira_contact_record_delivery($stored, SIRA_CONTACT_DELIVERY_SENT, 'graph:202');
+    }
+
+    // The enquiry is stored either way, so the visitor gets the same answer.
     return new WP_REST_Response(['status' => 'received'], 201);
 }
 

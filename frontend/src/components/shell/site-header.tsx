@@ -3,6 +3,7 @@ import { MobileMenu } from "@/components/shell/mobile-menu";
 import { PageContainer } from "@/components/layout/page-container";
 import type { ResolvedBrand } from "@/lib/brand";
 import type { NavigationItem } from "@/lib/navigation";
+import { Wordmark } from "@/components/shell/wordmark";
 
 interface GroupCrossLink {
   readonly label: string;
@@ -50,9 +51,11 @@ export function SiteHeader({ brand, items, groupLink }: SiteHeaderProps) {
                 aria-hidden={brand.assets.mark.decorative || undefined}
                 className="h-7 w-auto"
               />
-              <span className="font-display text-lg font-semibold tracking-wide text-brand-ink">
-                {brand.name}
-              </span>
+              <Wordmark
+                name={brand.name}
+                tone="ink"
+                className="font-display text-lg font-semibold tracking-wide"
+              />
             </>
           )}
         </Link>

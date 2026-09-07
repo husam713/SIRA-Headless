@@ -5,6 +5,7 @@ import type { ResolvedBrand } from "@/lib/brand";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import type { NavigationItem } from "@/lib/navigation";
 import { SITE_KEYS, type SiteKey } from "@/types/site";
+import { Wordmark } from "@/components/shell/wordmark";
 
 // Four columns, matching the reference: the brand statement, the site's own
 // pages, the portfolio companies, and how to reach the group.
@@ -111,9 +112,11 @@ export function SiteFooter({ brand, items, groupLink, taglineOverride }: SiteFoo
                 aria-hidden={brand.assets.markOnDark.decorative || undefined}
                 className="h-8 w-auto"
               />
-              <span className="font-display text-lg font-semibold text-brand-paper">
-                {brand.name}
-              </span>
+              <Wordmark
+                name={brand.name}
+                tone="paper"
+                className="font-display text-lg font-semibold"
+              />
             </div>
             {(taglineOverride ?? brand.tagline) !== null ? (
               <p className="mt-5 text-sm leading-relaxed">

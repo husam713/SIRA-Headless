@@ -27,7 +27,7 @@ export function BranchHero({ hero }: BranchHeroProps) {
     >
       <div aria-hidden="true" className="absolute inset-0 z-0">
         {hero.image !== null ? (
-          <picture className="absolute inset-0 block">
+          <picture className="hero-media hero-media--active absolute inset-0 block">
             {hero.mobileImage !== null ? (
               <source media="(max-width: 767px)" srcSet={hero.mobileImage.sourceUrl} />
             ) : null}

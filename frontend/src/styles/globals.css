@@ -389,6 +389,39 @@ a {
   }
 }
 
+/* The hero's slow push, measured from the approved design: the active slide's
+   photograph travels from 1 to 1.14 across 7.5s on an ease-out, once, so the
+   motion is fastest as the slide arrives and has all but stopped by the time a
+   reader has finished the headline. A resting 1.02 on the inactive slides keeps
+   the crossfade from snapping between two differently-scaled frames.
+
+   `forwards` matters: without it the image would drop back to 1.02 the instant
+   the animation ends, in the middle of the slide's own dwell. */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.14);
+  }
+}
+
+.hero-media img {
+  transform: scale(1.02);
+}
+
+.hero-media--active img {
+  animation: hero-zoom 7500ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media img,
+  .hero-media--active img {
+    animation: none;
+    transform: none;
+  }
+}
+
 /* The card lift, measured from the approved design (SIRA Group Homepage.dc.html).
    The same gesture on the company cards and the project cards: an 8px rise on
    a decelerating curve, with a shadow that says the card came forward.

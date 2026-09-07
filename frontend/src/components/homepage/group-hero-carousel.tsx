@@ -49,7 +49,9 @@ function HeroSlideImage({ slide, isActive, priority }: HeroSlideImageProps) {
 
   return (
     <picture
-      className="absolute inset-0 block transition-opacity duration-1000"
+      className={`hero-media absolute inset-0 block transition-opacity duration-1000${
+        isActive ? " hero-media--active" : ""
+      }`}
       style={{ opacity: isActive ? 1 : 0 }}
     >
       {slide.mobileImage !== null ? (

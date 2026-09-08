@@ -231,14 +231,11 @@ themselves. Do not infer any line of this section from a previous conversation.
 - Branch: `feat/sirahdigital-sa`
 - HEAD: this continuity commit. Rediscover it from Git rather than trusting a
   SHA written here.
-- Ahead of `origin/feat/sirahdigital-sa` by **4 unpushed commits**: `900f8cc4`,
-  `8bd5822e`, `c72a4f0d`, and this one.
-- Draft PR `#65` is therefore **behind the local branch** and does not show the
-  tenant provisioning, the seeding, or the public routes.
+- Pushed. Draft PR `#65` is current, retitled, and its body carries the full
+  validation table.
+- **Last safe implementation point: the branch head.** Every gate is green.
 - Depends on `feat/newsroom-ledger`. Keep that dependency explicit; do not ship
   Newsroom changes as part of Digital.
-- **Last safe implementation point: `c72a4f0d`.** It passed the full gate.
-  Everything after it is uncommitted and does not compile.
 
 ### Completed and committed
 
@@ -271,20 +268,24 @@ themselves. Do not infer any line of this section from a previous conversation.
   `sira_project`, and `sira_industry` *terms*, so the verifier will report PASS
   while all of them are still live. Verified by reading that file, lines 25-47.
   Found during this checkpoint and deliberately NOT repaired here.
-- The backend edits listed under "Interrupted work" are **local only**. Nothing
-  has been deployed to WordPress since `900f8cc4`.
+- The backend is DEPLOYED and current: `NavMenus.php` (six menu locations) and
+  `PresentationFields.php` (page intro, record locale, localized homepage
+  location) are installed on the origin with timestamped rollback copies beside
+  them, and were linted before and after install.
 
 ### GraphQL / schema / codegen state
 
 - Versioned artifacts in `frontend/schema/` were captured live from all six
   tenants at `900f8cc4`. Branch-peer hash
   `f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1`.
-- **They are now stale relative to the uncommitted backend edits.** Confirmed by
-  grep: `PRIMARY_AR`, `FOOTER_AR`, `LEGAL_AR`, `SiraPageIntro`, and `pageIntro`
-  each appear **0 times** in `frontend/schema/*.graphql` and 0 times in
-  `frontend/src/generated/graphql/graphql.ts`.
-- Consequence: the uncommitted frontend cannot typecheck until the backend change
-  is deployed, introspection re-captured, and codegen re-run.
+- Recaptured after the ADR-034 backend deployment. `MenuLocationEnum` now carries
+  `PRIMARY_AR`, `FOOTER_AR` and `LEGAL_AR`; `PageIntro` and `SiraLocale` are live
+  types. Branch peers exact, Group a structural superset, 165 Group-only types.
+- Note for a future reader: wpgraphql-acf 2.x derives the GraphQL type name from
+  `graphql_field_name`, NOT from `graphql_type_name`. `pageIntro` produces
+  `PageIntro`, not the `SiraPageIntro` a declaration might suggest.
+- Offline schema refresh is driven by `SIRA_SCHEMA_INTROSPECTION_DIR`, not by a
+  `--offline` flag; the flag is accepted and ignored.
 
 ### Route implementation state
 
@@ -308,108 +309,63 @@ Measured in a real browser at 1440 against live WordPress: `work` 4722px /
   ceiling, range outputs, and published assumptions. Nothing was copied or
   reverse-engineered from the reference.
 
-### Localization / Arabic / RTL state — BLOCKED, uncommitted
+### Localization / Arabic / RTL state — DONE
 
-This is the only Definition-of-Done item still open, and it is stopped on a
-governance conflict, not on engineering difficulty.
+`2C4-B09` is RESOLVED for `digital` by ADR-034 (owner decision, 2026-09-08) and
+remains UNRESOLVED for the other five tenants. Both governing documents were
+amended in place with a scoped carve-out rather than left to contradict the code.
 
-**The conflict.** `docs/SIRA-CMS-EDITORIAL-SYSTEM-ARCHITECTURE.md` §WS8 states
-that this is `2C4-B09`, that it must not be bundled into any other workstream,
-that three models remain viable, and that owner decision is required before any
-Arabic content is created. `docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md` §18 adds:
-do not invent locale routes or translated-record ownership, and `hreflang`
-activation is blocked. `project-state.json` still records
-`multilingualArchitectureB09: "UNRESOLVED"`.
+- **Locale is explicit metadata.** `sira_locale` on pages, services, projects and
+  industry terms, with `sira_translation_of` pairing a translation to its
+  original. The `ar-` slug prefix survives only as a fallback for records created
+  before the field existed; it is not the contract.
+- **Approval is per tenant.** `localeRoutesApproved` is `true` for `digital`
+  alone. The proxy refuses `/ar` on the other five, and they publish no
+  `hreflang`.
+- **Both languages are seeded and live** on blog 6: a homepage, four standalone
+  pages, three index pages, 8 services, 5 work entries, 8 industry terms and
+  three menus per language.
+- **Arabic type rules are language-scoped, not per class.** Tracking and casing
+  are neutralised wherever the document language is Arabic, with `lang="en"`
+  islands keeping their own treatment.
 
-The owner's Phase 2 prompt requires Arabic as a first-class experience. That
-requirement and the `2C4-B09` gate are in direct conflict, and WS8 reserves the
-choice for the owner.
+### Interrupted work — none
 
-**What the uncommitted work already does, against that gate.** It implements a
-*fourth* model — locale prefix in the URL, translation as a slug prefix inside
-the same site — and it authors Arabic text. Specifically it:
-
-- invents locale routes (`/ar/...`, resolved in `frontend/src/proxy.ts`);
-- invents translated-record ownership (the `ar-` slug prefix convention);
-- activates `hreflang` and `x-default` in `frontend/src/lib/seo/metadata.ts`;
-- authors Arabic copy in `frontend/src/lib/i18n/locale.ts` and
-  `frontend/src/lib/calculator/copy.ts`;
-- adds `primary_ar` / `footer_ar` / `legal_ar` menu locations **network-wide**,
-  changing the GraphQL enum for all six tenants;
-- references a non-existent **ADR-034** in code comments in
-  `frontend/src/lib/i18n/locale.ts`,
-  `frontend/src/lib/content/get-content-page.ts`, and
-  `backend/src/Content/NavMenus.php`.
-
-**Nothing of this is committed and nothing is deployed.** No Arabic content was
-written to WordPress. The violation is confined to the working tree.
-
-**Resolution path — owner decision required.** Either the owner selects a
-`2C4-B09` model and authorizes an ADR resolving the gate (at minimum for the
-Digital tenant), or the Arabic work is reverted to `c72a4f0d`. Do not commit the
-current localization work under the gate as it stands, and do not author ADR-034
-without that decision.
-
-### Interrupted work — the exact state of the tree
-
-25 tracked files modified, 6 new untracked frontend paths, none committed.
-**The tree does not compile.** `pnpm typecheck` fails with 12 source errors plus
-4 stale `.next` type conflicts. The 12, by cause:
-
-1. **Codegen not re-run** — `get-homepage.ts` ×2, `get-navigation.ts` ×1. The
-   `$uri` homepage variable and the navigation enum variables are not in the
-   generated types yet.
-2. **Backend not deployed** — `normalize-navigation.ts` ×1. `FOOTER_AR` is not in
-   `MenuLocationEnum`.
-3. **A local TypeScript defect in `frontend/src/lib/calculator/copy.ts`** ×8. The
-   `assumption()` switch returns `string | undefined` and two callback parameters
-   are implicitly `any`. Fixable without any deployment.
-4. **`frontend/src/app/(sites)/[siteKey]/contact/page.tsx` ×1 — the single
-   half-converted file.** Every other route was converted; this one was not. It
-   still passes a BCP-47 string to `ImpactCalculator`, which now takes a
-   `LocaleCode`; it still imports `getContentPage` directly rather than the
-   locale-aware route context; and it still hard-codes its hero copy and its
-   eight enquiry-subject strings.
-
-Also interrupted: `frontend/src/lib/i18n/contact-copy.ts` is referenced by an
-intended rewrite of the contact page but **was never created**. It does not exist
-on disk and nothing imports it, confirmed by `grep -rn contact-copy src/`.
-
-Known-failing test, by inspection rather than by running:
-`frontend/tests/unit/calculator/model.test.ts` lines 135-137 call
-`result.assumptions.join(" ")` and expect English prose, but `assumptions` is now
-an array of structured `Assumption` objects.
-
-Untracked paths that are **pre-existing and not part of this work** — do not
-sweep them into a Digital commit: `.github/workflows/backend-ci.yml`,
-`artifacts/branch-fidelity/branch-fidelity.zip`,
-`artifacts/homepage-fidelity/ours/ours.zip`, `artifacts/step-4/responsive-qa/`,
-and `conversation history chat gpt.txt`.
+The tree is clean and every gate is green. The previous checkpoint's list of
+twelve typecheck errors, the half-converted contact route and the missing
+`contact-copy.ts` are all resolved.
 
 ### Validation actually run
 
-| Check | Result | When |
-| --- | --- | --- |
-| `pnpm lint` | PASS | at `c72a4f0d` |
-| `pnpm typecheck` | PASS | at `c72a4f0d` |
-| `pnpm test:run` | PASS — 59 files, 585 tests | at `c72a4f0d` |
-| `pnpm build` | PASS | at `c72a4f0d` |
-| Browser capture, `/work` and `/industries` @1440 | PASS, 0 overflow | at `c72a4f0d` |
-| `php -l`, 34 backend files | PASS | at `900f8cc4` |
-| `validate-static.php` | PASS 169 / FAIL 0 | at `900f8cc4` |
-| `pnpm typecheck` | **FAIL — 12 source errors** | current tree, 2026-09-08 |
+All at the current branch head unless stated.
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | PASS |
+| `pnpm typecheck` | PASS |
+| `pnpm test:run` | PASS — 613 tests, 61 files |
+| `pnpm build` | PASS |
+| `php -l`, complete backend | PASS — 34 files, 0 failures |
+| `validate-static.php` | PASS — 169 passed, 0 failed, 34 not run |
+| Live GraphQL, six tenants | PASS — branch peers exact, Group structural superset |
+| Real browser, EN + AR, 390/768/1024/1280/1440/1920 | PASS — 0 horizontal overflow at every width, both directions |
+| `hreflang` / canonical / robots | PASS — en, ar and x-default emitted; canonical follows the active host |
+| `POST /api/contact/` with an empty body | PASS — 422 with per-field errors, no record created |
+
+`validate-static.php`'s 34 "not run" are its in-process syntax sweep, which this
+host disables by disabling every process function. `php -l` was run separately
+and is recorded above. That is the documented split, not a skipped check.
 
 ### Validation still pending
 
-- Everything on the current tree. Nothing has been re-run green since
-  `c72a4f0d`; treat all current-tree validation as NOT RUN except the failing
-  typecheck above.
-- Per-viewport capture at 390 / 768 / 1024 / 1280 / 1920 — NOT RUN.
-- Arabic / RTL browser validation in both directions — NOT RUN, and blocked.
-- `verify-no-seed-content.mjs` — will report PASS incorrectly; see the defect
-  above.
-- Backend `php -l` and `validate-static.php` against the uncommitted plugin edits
-  — NOT RUN.
+- The final visual-fidelity pass has not run. Density, motion refinement and
+  interaction polish are its subject, not this checkpoint's.
+- `verify-no-seed-content.mjs` has not been run against the live CMS since it was
+  repaired. It is expected to BLOCK — Digital's seeded content is deliberately
+  still there — and that is now the correct answer rather than a false PASS.
+- A real enquiry has not been submitted end to end on Digital. The route's
+  validation path is verified; the delivery leg is inherited unchanged from the
+  existing pipeline and was verified before this workstream.
 
 ### Deferred quality items, held for the final fidelity pass
 
@@ -422,41 +378,31 @@ and `conversation history chat gpt.txt`.
 
 ### Unresolved blockers
 
-1. **`2C4-B09` multilingual gate** — owner decision; blocks all localization.
-2. **Digital's pre-launch hostname is not reconciled in the repository.** The
-   owner set `digital.siratrgroup.com` as the active public host on 2026-09-08;
-   the registry, the topology contract test, and the governance docs still
-   describe `sirahdigital.sa` as canonical. See the owner-decision section above.
-3. **`verify-no-seed-content.mjs` does not cover Digital's content** — launch
-   safety; engineering fix not yet made.
-4. **`sirahdigital.sa` has no hosting-panel vhost and no DNS** — owner action,
-   and no longer on the critical path for pre-launch.
-5. **Trading-name spelling** and **Digital brand mark** — owner deliverables.
-6. RB-009 restore rehearsal and the ADR-032 CDN 403 remain open from before this
+1. **Trading-name spelling** (`SIRA Digital` vs `SIRAH DIGITAL`) and the
+   **Digital brand mark** — owner deliverables.
+2. **Legal review** of the PDPL-aware privacy and terms drafts. They are marked
+   in the content itself as drafts requiring review and claim no certification,
+   audit or regulatory approval.
+3. **`sirahdigital.sa` has no hosting-panel vhost and no DNS** — owner action,
+   and no longer on the critical path: the cutover is a configuration change.
+4. RB-009 restore rehearsal and the ADR-032 CDN 403 remain open from before this
    workstream.
+
+Resolved since the last checkpoint: `2C4-B09` (ADR-034), the hostname contract
+(ADR-035), and the launch gate's coverage of Digital content.
 
 ### Recommended resume point for a fresh session
 
 1. Boot per `CLAUDE.md` and `templates/ai/BOOT-PROTOCOL.md`. Rediscover HEAD.
-2. **Reconcile the pre-launch hostname first** — it is independent of the
-   localization block and of the unpushed commits, and everything canonical
-   (canonical URLs, `metadataBase`, sitemap, robots, OG) derives from it.
-   Confirm with the owner whether `sirahdigital.sa` should redirect to the
-   subdomain pre-launch or simply not resolve, then update
-   `frontend/src/config/sites.ts` and
-   `frontend/tests/contract/digital-tenant-topology.test.ts` together, and author
-   the amending ADR.
-3. **Ask the owner to resolve `2C4-B09` before touching the localization work.**
-   Until then the Arabic tree is unshippable regardless of whether it compiles.
-4. If the owner defers `2C4-B09`: revert the working tree to `c72a4f0d`, push the
-   three unpushed commits, refresh draft PR `#65`, then go to step 6.
-5. If the owner resolves `2C4-B09`: author the ADR first, then finish in this
-   order — (a) fix `copy.ts`; (b) rewrite `contact/page.tsx` and create
-   `frontend/src/lib/i18n/contact-copy.ts`; (c) deploy the two backend files;
-   (d) re-capture introspection and re-run codegen; (e) update the calculator
-   assumptions test; (f) run the full gate; (g) seed Arabic content;
-   (h) browser-validate both directions at all six widths.
-6. Then, and only then, the ONE OWNER CHECKPOINT below.
+2. Core implementation is substantially complete and every gate is green, so the
+   next work is the FINAL VISUAL FIDELITY / MOTION REFINEMENT / INTERACTION
+   POLISH pass — gated by the owner checkpoint below.
+3. The known targets for that pass are in "Deferred quality items" above, led by
+   `/services` density: 12.73 screens at 1440 against the reference's 8.4.
+4. Do not re-seed. The CMS already holds both languages; `--remove` on
+   `tools/seed/digital-seed.php` is the only reversal and it deletes everything
+   carrying the marker.
+5. Do not merge or deploy. The Digital WordPress site must not be deleted.
 
 ### The ONE OWNER CHECKPOINT remains in force
 

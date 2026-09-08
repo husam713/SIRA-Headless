@@ -12535,11 +12535,20 @@ enum MenuLocationEnum {
   """Put the menu in the footer location"""
   FOOTER
 
+  """Put the menu in the footer_ar location"""
+  FOOTER_AR
+
   """Put the menu in the legal location"""
   LEGAL
 
+  """Put the menu in the legal_ar location"""
+  LEGAL_AR
+
   """Put the menu in the primary location"""
   PRIMARY
+
+  """Put the menu in the primary_ar location"""
+  PRIMARY_AR
 }
 
 """
@@ -13146,7 +13155,7 @@ enum OrderEnum {
 """
 A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages.
 """
-type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBranchHomepage & WithAcfDigitalHomepage & WithAcfGroupHomepage & WithAcfSiraHomepage {
+type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBranchHomepage & WithAcfDigitalHomepage & WithAcfGroupHomepage & WithAcfPageIntro & WithAcfSiraHomepage & WithAcfSiraLocale {
   """
   Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -13396,6 +13405,9 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   """The id field matches the WP_Post-&gt;ID field."""
   pageId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
+  """Fields of the PageIntro ACF Field Group"""
+  pageIntro: PageIntro
+
   """The parent of the node. The parent object can be of various types"""
   parent: HierarchicalContentNodeToParentContentNodeConnectionEdge
 
@@ -13446,6 +13458,9 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
 
   """Fields of the SiraHomepage ACF Field Group"""
   siraHomepage: SiraHomepage
+
+  """Fields of the SiraLocale ACF Field Group"""
+  siraLocale: SiraLocale
 
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
@@ -13545,6 +13560,72 @@ interface PageInfo {
 
   """When paginating backwards, the cursor to continue."""
   startCursor: String
+}
+
+"""
+The &quot;PageIntro&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type PageIntro implements AcfFieldGroup & AcfFieldGroupFields & PageIntro_Fields {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageIntro&quot; Field Group
+  """
+  ctaHeading: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageIntro&quot; Field Group
+  """
+  ctaLabel: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageIntro&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageIntro&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;PageIntro&quot; Field Group
+  """
+  standfirst: String
+}
+
+"""
+Interface representing fields of the ACF &quot;PageIntro&quot; Field Group
+"""
+interface PageIntro_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageIntro&quot; Field Group
+  """
+  ctaHeading: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageIntro&quot; Field Group
+  """
+  ctaLabel: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageIntro&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageIntro&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;PageIntro&quot; Field Group
+  """
+  standfirst: String
 }
 
 """Connection between the Page type and the Comment type"""
@@ -43814,7 +43895,7 @@ interface SiraHomepage_Fields implements AcfFieldGroup & AcfFieldGroupFields {
 }
 
 """The SiraIndustry type"""
-type SiraIndustry implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable {
+type SiraIndustry implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfSiraLocale {
   """
   The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -44039,6 +44120,9 @@ type SiraIndustry implements DatabaseIdentifier & HierarchicalNode & Hierarchica
     """Arguments for filtering the connection"""
     where: SiraIndustryToSiraInvestmentConnectionWhereArgs
   ): SiraIndustryToSiraInvestmentConnection
+
+  """Fields of the SiraLocale ACF Field Group"""
+  siraLocale: SiraLocale
 
   """Connection between the SiraIndustry type and the SiraProject type"""
   siraProjects(
@@ -50716,6 +50800,74 @@ input SiraLeadershipProfileToTermNodeConnectionWhereArgs {
   updateTermMetaCache: Boolean
 }
 
+"""
+The &quot;SiraLocale&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type SiraLocale implements AcfFieldGroup & AcfFieldGroupFields & SiraLocale_Fields {
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;SiraLocale&quot; Field Group
+  """
+  code: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  The record in the default language that this one translates. Leave empty when this record has no counterpart.
+  """
+  translationOf(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+Interface representing fields of the ACF &quot;SiraLocale&quot; Field Group
+"""
+interface SiraLocale_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;SiraLocale&quot; Field Group
+  """
+  code: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  The record in the default language that this one translates. Leave empty when this record has no counterpart.
+  """
+  translationOf(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
 """The SiraMediaItem type"""
 type SiraMediaItem implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable {
   """The ancestors of the content node."""
@@ -56321,7 +56473,7 @@ input SiraPressReleaseToTermNodeConnectionWhereArgs {
 }
 
 """The SiraProject type"""
-type SiraProject implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfProjectDetails {
+type SiraProject implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfProjectDetails & WithAcfSiraLocale {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -56608,6 +56760,9 @@ type SiraProject implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
     """Arguments for filtering the connection"""
     where: SiraProjectToSiraIndustryConnectionWhereArgs
   ): SiraProjectToSiraIndustryConnection
+
+  """Fields of the SiraLocale ACF Field Group"""
+  siraLocale: SiraLocale
 
   """The id field matches the WP_Post-&gt;ID field."""
   siraProjectId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
@@ -63130,7 +63285,7 @@ type SiraSectorToTaxonomyConnectionEdge implements Edge & OneToOneConnection & T
 }
 
 """The SiraService type"""
-type SiraService implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable {
+type SiraService implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSiraLocale {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -63370,6 +63525,9 @@ type SiraService implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
     """Arguments for filtering the connection"""
     where: SiraServiceToSiraBusinessUnitConnectionWhereArgs
   ): SiraServiceToSiraBusinessUnitConnection
+
+  """Fields of the SiraLocale ACF Field Group"""
+  siraLocale: SiraLocale
 
   """The id field matches the WP_Post-&gt;ID field."""
   siraServiceId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
@@ -74981,6 +75139,14 @@ interface WithAcfInvestmentDetails {
 }
 
 """
+Provides access to fields of the &quot;PageIntro&quot; ACF Field Group via the &quot;pageIntro&quot; field
+"""
+interface WithAcfPageIntro {
+  """Fields of the PageIntro ACF Field Group"""
+  pageIntro: PageIntro
+}
+
+"""
 Provides access to fields of the &quot;PartnerDetails&quot; ACF Field Group via the &quot;partnerDetails&quot; field
 """
 interface WithAcfPartnerDetails {
@@ -75026,6 +75192,14 @@ Provides access to fields of the &quot;SiraHomepage&quot; ACF Field Group via th
 interface WithAcfSiraHomepage {
   """Fields of the SiraHomepage ACF Field Group"""
   siraHomepage: SiraHomepage
+}
+
+"""
+Provides access to fields of the &quot;SiraLocale&quot; ACF Field Group via the &quot;siraLocale&quot; field
+"""
+interface WithAcfSiraLocale {
+  """Fields of the SiraLocale ACF Field Group"""
+  siraLocale: SiraLocale
 }
 
 """

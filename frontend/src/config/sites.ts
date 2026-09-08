@@ -17,6 +17,7 @@ const BASE_SITES = {
     aliases: ["www.siratrgroup.com"],
     defaultLocale: "en",
     supportedLocales: ["en", "ar"],
+    localeRoutesApproved: false,
   },
   consulting: {
     key: "consulting",
@@ -25,6 +26,7 @@ const BASE_SITES = {
     aliases: [],
     defaultLocale: "en",
     supportedLocales: ["en", "ar"],
+    localeRoutesApproved: false,
   },
   healthcare: {
     key: "healthcare",
@@ -33,6 +35,7 @@ const BASE_SITES = {
     aliases: [],
     defaultLocale: "en",
     supportedLocales: ["en", "ar"],
+    localeRoutesApproved: false,
   },
   lifestyle: {
     key: "lifestyle",
@@ -41,6 +44,7 @@ const BASE_SITES = {
     aliases: [],
     defaultLocale: "en",
     supportedLocales: ["en", "ar"],
+    localeRoutesApproved: false,
   },
   realestate: {
     key: "realestate",
@@ -49,6 +53,7 @@ const BASE_SITES = {
     aliases: [],
     defaultLocale: "en",
     supportedLocales: ["en", "ar"],
+    localeRoutesApproved: false,
   },
   // SIRA Digital will trade on its own Saudi domain rather than a Group
   // subdomain (ADR-033). That is a deliberate market decision, not drift: the
@@ -75,6 +80,9 @@ const BASE_SITES = {
     plannedAliases: ["www.sirahdigital.sa"],
     defaultLocale: "en",
     supportedLocales: ["en", "ar"],
+    // ADR-034, and the only `true` in this file. The other five tenants stay
+    // gated by 2C4-B09 until the owner decides for them too.
+    localeRoutesApproved: true,
   },
 } as const satisfies Record<
   SiteKey,

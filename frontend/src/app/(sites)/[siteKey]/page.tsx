@@ -24,6 +24,8 @@ import { GroupTicker } from "@/components/homepage/group-ticker";
 import { getBrand } from "@/lib/brand";
 import { getHomepageForRequest } from "@/lib/homepage";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { localeUri } from "@/lib/i18n/locale";
+import { getRequestLocale } from "@/lib/i18n/request-locale";
 
 interface SiteHomePageProps {
   readonly params: Promise<{
@@ -41,9 +43,12 @@ export default async function SiteHomePage({
     notFound();
   }
 
+  // Same URI the layout resolves, so the two share one request-cached query
+  // rather than rendering different languages of the same page.
+  const request = await getRequestLocale(site);
   const [brand, homepage] = await Promise.all([
     getBrand(site.key),
-    getHomepageForRequest(site.key),
+    getHomepageForRequest(site.key, localeUri(request.locale, site, "/")),
   ]);
 
   if (homepage.status === "ready" && homepage.homepage.variant === "group") {

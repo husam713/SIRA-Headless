@@ -43,7 +43,24 @@ export interface SiteDefinition {
   readonly plannedAliases: readonly string[];
   readonly deploymentHostnames: readonly string[];
   readonly defaultLocale: LocaleCode;
+  /**
+   * The languages this company intends to publish in.
+   *
+   * Intent, not deployment. Every tenant declares Arabic because every tenant
+   * is a Saudi company; that is not the same as having Arabic routes live.
+   */
   readonly supportedLocales: readonly LocaleCode[];
+  /**
+   * Whether `/ar/...` routing, `hreflang` and translated records are APPROVED
+   * for this tenant.
+   *
+   * `2C4-B09` reserves multilingual architecture for an owner decision, tenant
+   * by tenant, and ADR-034 gives that decision for `digital` alone. Deriving
+   * locale routing from `supportedLocales` instead would have silently switched
+   * it on for five tenants that have no Arabic content and no owner approval —
+   * publishing `hreflang` that points at routes which do not exist.
+   */
+  readonly localeRoutesApproved: boolean;
 }
 
 export interface ResolvedSite {

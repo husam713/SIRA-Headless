@@ -10,7 +10,9 @@ import { PageContainer } from "@/components/layout/page-container";
 import { getBrand } from "@/lib/brand";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { getHomepageForRequest } from "@/lib/homepage";
-import { getNavigation } from "@/lib/navigation";
+import { CHROME, localeHref, localeUri } from "@/lib/i18n/locale";
+import { getRequestLocale } from "@/lib/i18n/request-locale";
+import { getNavigationForLocale } from "@/lib/navigation";
 import type { NavigationItem, NavigationResolution } from "@/lib/navigation";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
@@ -59,16 +61,19 @@ export async function generateMetadata({
     notFound();
   }
 
-  const [brand, requestHeaders, draft] = await Promise.all([
+  const [brand, requestHeaders, draft, request] = await Promise.all([
     getBrand(site.key),
     headers(),
     draftMode(),
+    getRequestLocale(site),
   ]);
   const hostname = requestHeaders.get("host") ?? "";
   const discovery = resolveSiteDiscoveryContext(site.key, hostname);
 
   return buildSiteMetadata(discovery, brand, "/", {
     forceNoIndex: draft.isEnabled,
+    locale: request.locale,
+    path: request.path,
   });
 }
 
@@ -83,15 +88,20 @@ export default async function SiteLayout({
     notFound();
   }
 
+  const request = await getRequestLocale(site);
+  const chrome = CHROME[request.locale];
+
   // getHomepageForRequest is request-cached and already awaited by the page,
   // so this resolves the same promise rather than issuing a second query. The
   // footer lives in the layout but its branch overrides arrive with homepage
-  // data, which is why they were previously parsed and then dropped.
+  // data, which is why they were previously parsed and then dropped. Both must
+  // therefore pass the SAME homepage URI, or the cache misses and the layout
+  // and the page render two different languages of the same page.
   const [brand, draft, navigation, homepage] = await Promise.all([
     getBrand(site.key),
     draftMode(),
-    getNavigation(site.key),
-    getHomepageForRequest(site.key),
+    getNavigationForLocale(site.key, request.locale, site.defaultLocale),
+    getHomepageForRequest(site.key, localeUri(request.locale, site, "/")),
   ]);
 
   const branchFooter =
@@ -120,15 +130,23 @@ export default async function SiteLayout({
         href: `https://${groupSite.canonicalHostname}/`,
       };
 
+  const languageAlternate =
+    request.alternate === null
+      ? null
+      : {
+          locale: request.alternate,
+          href: localeHref(site, request.alternate, request.path),
+        };
+
   return (
-    <BrandDocument site={site} brand={brand}>
+    <BrandDocument brand={brand} locale={request.locale}>
       <SiteStructuredDataScripts siteKey={site.key} brand={brand} />
 
       <a
         href="#main-content"
         className="fixed start-4 top-4 z-50 -translate-y-24 rounded-md bg-brand-ink px-4 py-3 text-brand-paper transition-transform focus:translate-y-0"
       >
-        Skip to main content
+        {chrome.skipToContent}
       </a>
 
       {draft.isEnabled ? (
@@ -140,9 +158,9 @@ export default async function SiteLayout({
               px-6 carried no lg: step, so this banner desynced from the
               header and every section at wide viewports. */}
           <PageContainer className="flex items-center justify-between gap-4 py-3">
-            <strong>Preview Mode</strong>
+            <strong>{chrome.previewMode}</strong>
             <Link className="underline" href="/api/preview/exit/?destination=/">
-              Exit Preview
+              {chrome.exitPreview}
             </Link>
           </PageContainer>
         </aside>
@@ -152,6 +170,9 @@ export default async function SiteLayout({
         brand={brand}
         items={scopeItems(navigation, "primary")}
         groupLink={groupHeaderLink}
+        locale={request.locale}
+        homeHref={localeHref(site, request.locale, "/")}
+        languageAlternate={languageAlternate}
       />
 
       <main id="main-content">{children}</main>

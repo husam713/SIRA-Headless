@@ -1,12 +1,21 @@
 import Link from "next/link";
+import { LanguageSwitch } from "@/components/shell/language-switch";
 import { MobileMenu } from "@/components/shell/mobile-menu";
 import { PageContainer } from "@/components/layout/page-container";
 import type { ResolvedBrand } from "@/lib/brand";
+import { CHROME } from "@/lib/i18n/locale";
 import type { NavigationItem } from "@/lib/navigation";
 import { Wordmark } from "@/components/shell/wordmark";
+import type { LocaleCode } from "@/types/site";
 
 interface GroupCrossLink {
   readonly label: string;
+  readonly href: string;
+}
+
+/** The same page in the other language, when the site offers one. */
+export interface LanguageAlternate {
+  readonly locale: LocaleCode;
   readonly href: string;
 }
 
@@ -19,15 +28,28 @@ interface SiteHeaderProps {
   readonly items: readonly NavigationItem[];
   /** Cross-link back to SIRA GROUP, present on branch sites only. */
   readonly groupLink: GroupCrossLink | null;
+  readonly locale: LocaleCode;
+  /** Where the home link points — `/` or `/ar`, per ADR-034. */
+  readonly homeHref: string;
+  readonly languageAlternate: LanguageAlternate | null;
 }
 
-export function SiteHeader({ brand, items, groupLink }: SiteHeaderProps) {
+export function SiteHeader({
+  brand,
+  items,
+  groupLink,
+  locale,
+  homeHref,
+  languageAlternate,
+}: SiteHeaderProps) {
+  const chrome = CHROME[locale];
+
   return (
     <header className="sticky top-0 z-40 border-b border-brand-border bg-brand-paper-glass backdrop-blur-md">
       {/* Same container primitive as every section, so the header content
           column cannot drift from the page beneath it. */}
       <PageContainer className="flex items-center justify-between gap-6 py-4">
-        <Link href="/" className="flex flex-shrink-0 items-center gap-3">
+        <Link href={homeHref} className="flex flex-shrink-0 items-center gap-3">
           {brand.assets.logo !== null ? (
             // Local static asset (not remote WordPress media, so 2C4-B07 does
             // not apply here) — plain <img> anyway, for consistency with the
@@ -61,7 +83,10 @@ export function SiteHeader({ brand, items, groupLink }: SiteHeaderProps) {
         </Link>
 
         {items.length > 0 ? (
-          <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
+          <nav
+            aria-label={chrome.primaryNav}
+            className="hidden items-center gap-8 lg:flex"
+          >
             {items.map((item) => (
               <a
                 key={item.databaseId}
@@ -86,16 +111,30 @@ export function SiteHeader({ brand, items, groupLink }: SiteHeaderProps) {
             </a>
           ) : null}
 
+          {languageAlternate !== null ? (
+            <LanguageSwitch
+              locale={locale}
+              href={languageAlternate.href}
+              alternate={languageAlternate.locale}
+              className="hidden rounded-sm border border-brand-border px-3 py-2 text-xs font-semibold tracking-[0.06em] text-brand-ink-soft transition-colors hover:border-brand-accent hover:text-brand-accent lg:inline-block"
+            />
+          ) : null}
+
           {brand.email !== null ? (
             <a
               href={`mailto:${brand.email}`}
               className="hidden rounded-sm bg-brand-ink px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.03em] text-brand-on-deep transition-colors hover:bg-brand-ink/90 lg:inline-block"
             >
-              Contact Us
+              {chrome.contactCta}
             </a>
           ) : null}
 
-          <MobileMenu items={items} groupLink={groupLink} />
+          <MobileMenu
+            items={items}
+            groupLink={groupLink}
+            locale={locale}
+            languageAlternate={languageAlternate}
+          />
         </div>
       </PageContainer>
     </header>

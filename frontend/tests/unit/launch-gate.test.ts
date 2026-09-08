@@ -1,13 +1,10 @@
 import { describe, expect, it } from "vitest";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error - a plain .mjs tool with no type declarations; the point of
-// this file is to cover its logic, and giving the tool a .d.ts would be more
-// machinery than the four pure functions it exports are worth.
 import {
   buildProbeScript,
   evaluateTenants,
   formatRow,
   parseTenantRows,
+  type TenantSeedRow,
 } from "../../../tools/verify-no-seed-content.mjs";
 
 // The launch gate is the last thing standing between seeded placeholder content
@@ -25,20 +22,22 @@ import {
 // merely incomplete: an unreadable count used to become a zero, which reads as
 // "clean". A gate that cannot tell must say so.
 
-interface TenantRow {
-  readonly name: string;
-  readonly blogPublic: string;
-  readonly seededPosts: number | null;
-  readonly seededTerms: number | null;
+function rows(raw: string): TenantSeedRow[] {
+  return parseTenantRows(raw);
 }
 
-function rows(raw: string): TenantRow[] {
-  return parseTenantRows(raw) as TenantRow[];
+/** The single row a one-line fixture produces. */
+function row(raw: string): TenantSeedRow {
+  const [first] = rows(raw);
+
+  if (first === undefined) throw new Error(`No tenant row parsed from: ${raw}`);
+
+  return first;
 }
 
 describe("ADR-030 launch gate", () => {
   describe("the probe it sends to WordPress", () => {
-    const script: string = buildProbeScript("/srv/wp", "_sira_seed");
+    const script = buildProbeScript("/srv/wp", "_sira_seed");
 
     it("enumerates post types rather than naming four of them", () => {
       // The old script hard-coded
@@ -143,10 +142,10 @@ describe("ADR-030 launch gate", () => {
 
   describe("what it prints", () => {
     it("distinguishes clean, seeded and unreadable", () => {
-      expect(formatRow(rows("SIRA Group\t1\t0\t0")[0])).toContain("clean");
-      expect(formatRow(rows("SIRA Digital\t1\t2\t8")[0])).toContain("10 SEEDED");
-      expect(formatRow(rows("SIRA Digital\t1\tERR\t0")[0])).toContain("UNREADABLE");
-      expect(formatRow(rows("SIRA Digital\t0\t0\t0")[0])).toContain("NOINDEX");
+      expect(formatRow(row("SIRA Group\t1\t0\t0"))).toContain("clean");
+      expect(formatRow(row("SIRA Digital\t1\t2\t8"))).toContain("10 SEEDED");
+      expect(formatRow(row("SIRA Digital\t1\tERR\t0"))).toContain("UNREADABLE");
+      expect(formatRow(row("SIRA Digital\t0\t0\t0"))).toContain("NOINDEX");
     });
   });
 
@@ -156,10 +155,10 @@ describe("ADR-030 launch gate", () => {
     });
 
     it("treats a malformed row as unreadable rather than as zero", () => {
-      const [row] = rows("SIRA Group\t1");
+      const malformed = row("SIRA Group\t1");
 
-      expect(row?.seededPosts).toBeNull();
-      expect(row?.seededTerms).toBeNull();
+      expect(malformed.seededPosts).toBeNull();
+      expect(malformed.seededTerms).toBeNull();
     });
   });
 });

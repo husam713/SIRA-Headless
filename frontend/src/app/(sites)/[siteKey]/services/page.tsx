@@ -3,12 +3,16 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 
-import { CtaLink } from "@/components/homepage/cta-link";
+import { PageClosingCta } from "@/components/content/page-closing-cta";
+import { PageIntroHeader } from "@/components/content/page-intro-header";
 import { PageContainer } from "@/components/layout/page-container";
-import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { getBrand } from "@/lib/brand";
-import { getContentPage, getServiceIndex } from "@/lib/content/get-content-page";
-import { getSiteDefinition } from "@/lib/host/resolve-site";
+import {
+  getServiceIndexForLocale,
+  neutralSlug,
+} from "@/lib/content/get-content-page";
+import { resolveContentRoute } from "@/lib/content/route-context";
+import { CHROME } from "@/lib/i18n/locale";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -29,29 +33,30 @@ import { buildSiteMetadata } from "@/lib/seo/metadata";
 // carries its own authored body — the problem, what changes, what the system
 // does, what it connects to, where a person stays in the loop — and that body
 // is CMS content, so an editor changes it without a deploy.
+//
+// Anchors use the language-neutral slug, so /services#invoice-capture and
+// /ar/services#invoice-capture land on the same capability.
+
+const ROUTE = "/services";
 
 interface ServicesPageProps {
   readonly params: Promise<{ readonly siteKey: string }>;
 }
 
 async function resolve(params: ServicesPageProps["params"]) {
-  const { siteKey } = await params;
-  const site = getSiteDefinition(siteKey);
+  const context = await resolveContentRoute(params, `${ROUTE}/`);
+  const services = await getServiceIndexForLocale(
+    context.site.key,
+    context.request.locale,
+  );
 
-  if (site === null) notFound();
-
-  const [page, services] = await Promise.all([
-    getContentPage(site.key, "/services/"),
-    getServiceIndex(site.key),
-  ]);
-
-  return { site, page, services };
+  return { ...context, services };
 }
 
 export async function generateMetadata({
   params,
 }: ServicesPageProps): Promise<Metadata> {
-  const { site, page } = await resolve(params);
+  const { site, page, request } = await resolve(params);
   const [brand, requestHeaders] = await Promise.all([
     getBrand(site.key),
     headers(),
@@ -62,41 +67,37 @@ export async function generateMetadata({
   );
 
   return {
-    ...buildSiteMetadata(discovery, brand, "/services"),
+    ...buildSiteMetadata(discovery, brand, ROUTE, {
+      locale: request.locale,
+      path: ROUTE,
+    }),
     title: `${page?.title ?? "Services"} — ${brand.name}`,
   };
 }
 
 export default async function ServicesPage({ params }: ServicesPageProps) {
-  const { services, page } = await resolve(params);
+  const { services, page, site, request } = await resolve(params);
 
   // No services and no page is a tenant that has not been given this route.
   // A 404 is honest; an empty scaffold is not.
   if (services.length === 0 && page === null) notFound();
 
+  const chrome = CHROME[request.locale];
+
   return (
     <>
-      <section
-        className="relative flex min-h-[calc(70svh-var(--layout-header-offset))] items-end"
-        aria-labelledby="services-heading"
-      >
-        <PageContainer className="digital-reveal pb-14 pt-[clamp(4rem,8vw,7rem)]">
-          <SectionEyebrow tone="accent" className="digital-eyebrow">
-            Capabilities
-          </SectionEyebrow>
-          <h1
-            id="services-heading"
-            className="digital-display mt-7 max-w-[16ch] text-balance text-[clamp(2.5rem,1.2rem+3.4vw,3.375rem)] font-bold leading-[0.98] tracking-[-0.03em]"
-          >
-            {page?.title ?? "What we build"}
-          </h1>
-          <p className="mt-7 max-w-[46ch] text-[1.0625rem] leading-[1.7] text-brand-ink-soft">
-            {services.length === 0
-              ? "Capabilities are published from the CMS."
-              : `${String(services.length)} capabilities, each one scoped, built, integrated and handed over. Every entry below says what changes operationally, not what the technology is called.`}
-          </p>
-        </PageContainer>
-      </section>
+      <PageIntroHeader
+        page={page}
+        headingId="services-heading"
+        fallbackEyebrow="Capabilities"
+        fallbackHeading="What we build"
+        fallbackStandfirst={
+          services.length === 0
+            ? "Capabilities are published from the CMS."
+            : "Each one scoped, built, integrated and handed over. Every entry below says what changes operationally, not what the technology is called."
+        }
+        height="tall"
+      />
 
       <PageContainer className="pb-[clamp(4rem,8vw,7rem)]">
         <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[16rem_minmax(0,1fr)]">
@@ -111,13 +112,13 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
               id="services-index-heading"
               className="digital-eyebrow text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint"
             >
-              On this page
+              {chrome.onThisPage}
             </h2>
             <ol className="mt-5 grid gap-0">
               {services.map((service, index) => (
                 <li key={service.databaseId}>
                   <a
-                    href={`#${service.slug}`}
+                    href={`#${neutralSlug(service.slug)}`}
                     className="digital-rail__item flex items-baseline gap-3 border-s-2 border-brand-border py-2 ps-3.5 text-sm text-brand-ink-soft transition-colors hover:border-brand-accent hover:text-brand-ink focus-visible:border-brand-accent focus-visible:text-brand-ink"
                   >
                     <span
@@ -137,12 +138,12 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
             {services.map((service, index) => (
               <article
                 key={service.databaseId}
-                id={service.slug}
+                id={neutralSlug(service.slug)}
                 className="digital-reveal scroll-mt-[calc(var(--layout-header-offset)+2rem)]"
                 style={
                   { "--digital-reveal-offset": `${String(Math.min(index, 3) * 2)}%` } as CSSProperties
                 }
-                aria-labelledby={`${service.slug}-heading`}
+                aria-labelledby={`${neutralSlug(service.slug)}-heading`}
               >
                 <p
                   aria-hidden="true"
@@ -151,7 +152,7 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
                   {String(index + 1).padStart(2, "0")}
                 </p>
                 <h2
-                  id={`${service.slug}-heading`}
+                  id={`${neutralSlug(service.slug)}-heading`}
                   className="digital-display mt-5 text-balance text-[clamp(1.875rem,1.35rem+2.4vw,3.25rem)] font-bold leading-[1.06] tracking-[-0.025em]"
                 >
                   {service.title}
@@ -173,23 +174,14 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
         </div>
       </PageContainer>
 
-      <section
-        className="border-t border-brand-border"
-        aria-labelledby="services-cta-heading"
-      >
-        <PageContainer className="digital-reveal flex min-h-[45svh] flex-col items-center justify-center gap-8 py-[clamp(4rem,8vw,7rem)] text-center">
-          <h2
-            id="services-cta-heading"
-            className="digital-display max-w-[18ch] text-balance text-[clamp(2.25rem,1.5rem+3.6vw,4.5rem)] font-bold leading-[1.04] tracking-[-0.025em]"
-          >
-            Let us look at yours.
-          </h2>
-          <CtaLink
-            link={{ label: "Book an operations review", href: "/contact", target: null }}
-            variant="solid"
-          />
-        </PageContainer>
-      </section>
+      <PageClosingCta
+        page={page}
+        headingId="services-cta-heading"
+        fallbackHeading="Let us look at yours."
+        fallbackLabel="Book an operations review"
+        site={site}
+        locale={request.locale}
+      />
     </>
   );
 }

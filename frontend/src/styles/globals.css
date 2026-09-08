@@ -123,6 +123,38 @@ html:lang(ar) {
     var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
   --font-sira-display:
     var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
+
+  /* Arabic sits lower and reads larger than Latin at the same nominal size, and
+     the ascender/descender pattern needs more room between lines than the tight
+     Latin leading this design uses. These are the two type facts that a mirrored
+     English system gets wrong most visibly. */
+  line-height: 1.85;
+  font-synthesis-weight: none;
+}
+
+/* Two Latin typographic habits that are not merely unnecessary in Arabic but
+   actively wrong:
+   - Arabic script has no letter case, so `text-transform: uppercase` is a no-op
+     at best and mangles transliterated Latin runs at worst.
+   - Letter-spacing severs the cursive joins that make Arabic legible. The
+     negative tracking this design applies to Latin display type is worse still.
+
+   Both are neutralised wherever the language is Arabic. An explicit `lang="en"`
+   island — the language switch, a Latin product name — keeps its own treatment,
+   which is why this is scoped by `:lang()` rather than by class. `!important` is
+   deliberate: these override utility classes, and they are correctness rules
+   rather than style preferences. */
+html:lang(ar) *:not(:lang(en)) {
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+/* Arabic-Indic digits are not universally preferred in Saudi business writing,
+   and mixing them with Latin numerals inside one page is worse than either. The
+   numerals stay Latin; only their font is corrected, because Noto Kufi's digits
+   are the ones that sit correctly beside Arabic text. */
+html:lang(ar) {
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 * {
@@ -1470,18 +1502,17 @@ a {
    descenders that tight leading clips, and negative tracking damages the joins.
    Kufi is also optically smaller at the same point size, so the kinetic band is
    driven a step smaller rather than merely relaxed — at the Latin size it
-   overflows the 1.15 line box inside the sticky stage. */
+   overflows the 1.15 line box inside the sticky stage.
+
+   Only leading is set here. Tracking is handled once, further up, by the rule
+   that neutralises letter-spacing for Arabic text everywhere; the eyebrow used
+   to keep its 0.12em here and that was a mistake — wide tracking breaks the
+   joins on a short Arabic label more visibly than anywhere else on the page. */
 html:lang(ar) .digital-display {
   line-height: 1.28;
-  letter-spacing: 0;
 }
 
 html:lang(ar) .digital-kinetic__word {
   line-height: 1.15;
-  letter-spacing: 0;
   --digital-kinetic-size-start: clamp(3rem, 9vw, 8.5rem);
-}
-
-html:lang(ar) .digital-eyebrow {
-  letter-spacing: 0.12em;
 }

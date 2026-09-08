@@ -1,19 +1,22 @@
 "use client";
 
-import { useId, useMemo, useState } from "react";
+import { useId, useMemo, useState, type ReactNode } from "react";
 
+import { CALCULATOR_COPY, type NumberFormatters } from "@/lib/calculator/copy";
 import {
   calculate,
   formatNumber,
   formatSar,
-  INDUSTRY_LABEL,
+  INDUSTRY_KEYS,
   INPUT_BOUNDS,
-  SIZE_LABEL,
-  WORKFLOW_LABEL,
+  SIZE_KEYS,
+  WORKFLOW_KEYS,
   type IndustryKey,
   type SizeKey,
   type WorkflowKey,
 } from "@/lib/calculator/model";
+import { intlLocale } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 
 // The automation impact calculator.
 //
@@ -33,18 +36,21 @@ import {
 //
 // It exists to start an honest conversation. A calculator that flatters the
 // reader costs the meeting it was supposed to win.
-
-const INDUSTRIES = Object.keys(INDUSTRY_LABEL) as readonly IndustryKey[];
-const SIZES = Object.keys(SIZE_LABEL) as readonly SizeKey[];
-const WORKFLOWS = Object.keys(WORKFLOW_LABEL) as readonly WorkflowKey[];
+//
+// Bilingual throughout, and the RTL work here is not cosmetic. Ranges are the
+// one place a naive mirror goes wrong: "45,000 – 110,000" must keep its numbers
+// in that order in Arabic too, so every range is emitted as an isolated LTR run
+// rather than left to the bidi algorithm to guess at.
 
 interface ImpactCalculatorProps {
-  /** BCP-47 tag used for number and currency formatting. */
-  readonly locale: string;
+  readonly locale: LocaleCode;
 }
 
 export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
   const id = useId();
+  const copy = CALCULATOR_COPY[locale];
+  const intl = intlLocale(locale);
+
   const [industry, setIndustry] = useState<IndustryKey>("professional-services");
   const [size, setSize] = useState<SizeKey>("growing");
   const [people, setPeople] = useState(40);
@@ -60,8 +66,15 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
     [industry, size, people, hoursPerWeek, workflows],
   );
 
-  const money = (value: number) => formatSar(value, locale);
-  const count = (value: number) => formatNumber(value, locale);
+  const format: NumberFormatters = useMemo(
+    () => ({
+      count: (value) => formatNumber(value, intl),
+      money: (value) => formatSar(value, intl),
+      percent: (value) => `${formatNumber(value, intl)}%`,
+    }),
+    [intl],
+  );
+
   const hasScope = workflows.length > 0;
 
   function toggleWorkflow(workflow: WorkflowKey): void {
@@ -88,7 +101,7 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
             htmlFor={`${id}-industry`}
             className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint"
           >
-            Industry
+            {copy.industry}
           </label>
           <select
             id={`${id}-industry`}
@@ -98,9 +111,9 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
             }}
             className="min-h-[44px] rounded-xl border border-brand-border bg-brand-deep-card px-4 text-[0.9375rem] text-brand-ink"
           >
-            {INDUSTRIES.map((key) => (
+            {INDUSTRY_KEYS.map((key) => (
               <option key={key} value={key}>
-                {INDUSTRY_LABEL[key]}
+                {copy.industries[key]}
               </option>
             ))}
           </select>
@@ -111,7 +124,7 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
             htmlFor={`${id}-size`}
             className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint"
           >
-            Organisation size
+            {copy.size}
           </label>
           <select
             id={`${id}-size`}
@@ -121,9 +134,9 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
             }}
             className="min-h-[44px] rounded-xl border border-brand-border bg-brand-deep-card px-4 text-[0.9375rem] text-brand-ink"
           >
-            {SIZES.map((key) => (
+            {SIZE_KEYS.map((key) => (
               <option key={key} value={key}>
-                {SIZE_LABEL[key]}
+                {copy.sizes[key]}
               </option>
             ))}
           </select>
@@ -131,30 +144,32 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
 
         <NumberField
           id={`${id}-people`}
-          label="People this touches"
-          hint="Everyone whose work the automation would change."
+          label={copy.people}
+          hint={copy.peopleHint}
+          exactSuffix={copy.exactSuffix}
           value={people}
           bounds={INPUT_BOUNDS.people}
           onChange={setPeople}
-          format={count}
+          format={format.count}
         />
 
         <NumberField
           id={`${id}-hours`}
-          label="Repetitive hours each, per week"
-          hint="Time spent on work that follows the same steps every time."
+          label={copy.hours}
+          hint={copy.hoursHint}
+          exactSuffix={copy.exactSuffix}
           value={hoursPerWeek}
           bounds={INPUT_BOUNDS.hoursPerWeek}
           onChange={setHoursPerWeek}
-          format={count}
+          format={format.count}
         />
 
         <fieldset className="grid gap-3 border-0 p-0">
           <legend className="mb-1 text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-            Where the time goes
+            {copy.scope}
           </legend>
           <div className="flex flex-wrap gap-2">
-            {WORKFLOWS.map((workflow) => {
+            {WORKFLOW_KEYS.map((workflow) => {
               const selected = workflows.includes(workflow);
 
               return (
@@ -165,13 +180,17 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
                   onClick={() => {
                     toggleWorkflow(workflow);
                   }}
+                  // The unselected border is deliberately stronger than the
+                  // hairline used elsewhere: these are the only controls on the
+                  // page whose *unselected* state still has to read as a
+                  // control, and at 10% white it did not.
                   className={`min-h-[44px] rounded-full border px-4 text-sm font-medium transition-colors ${
                     selected
                       ? "border-brand-accent bg-brand-accent/15 text-brand-ink"
-                      : "border-brand-border bg-transparent text-brand-ink-soft hover:border-brand-ink-faint"
+                      : "border-brand-ink-faint/60 bg-transparent text-brand-ink-soft hover:border-brand-ink-soft hover:text-brand-ink"
                   }`}
                 >
-                  {WORKFLOW_LABEL[workflow]}
+                  {copy.workflows[workflow]}
                 </button>
               );
             })}
@@ -191,50 +210,58 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
           <>
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                Indicative annual saving
+                {copy.headlineLabel}
               </p>
               <p className="mt-3 text-balance text-[clamp(1.875rem,1.35rem+2.4vw,3.25rem)] font-bold leading-[1.06] tracking-[-0.02em]">
-                {money(result.annualSavingSar.low)} – {money(result.annualSavingSar.high)}
+                <NumericRange
+                  low={format.money(result.annualSavingSar.low)}
+                  high={format.money(result.annualSavingSar.high)}
+                />
               </p>
               <p className="mt-3 max-w-[46ch] text-sm leading-[1.6] text-brand-ink-soft">
-                Realised cost avoidance — not the notional value of every freed
-                hour. Most released time is absorbed rather than saved, and this
-                figure already accounts for that.
+                {copy.headlineNote}
               </p>
             </div>
 
             <dl className="grid gap-6 sm:grid-cols-3">
               <Metric
-                label="Hours released a year"
-                value={count(result.hoursReleasedPerYear)}
+                label={copy.hoursReleased}
+                value={format.count(result.hoursReleasedPerYear)}
               />
               <Metric
-                label="Of the manual workload"
-                value={`${String(Math.round(result.coverage * 100))}%`}
+                label={copy.ofWorkload}
+                value={format.percent(Math.round(result.coverage * 100))}
               />
               <Metric
-                label="Payback"
-                value={`${String(result.paybackMonths.low)}–${String(result.paybackMonths.high)} mo`}
+                label={copy.payback}
+                value={
+                  <>
+                    <NumericRange
+                      low={format.count(result.paybackMonths.low)}
+                      high={format.count(result.paybackMonths.high)}
+                    />{" "}
+                    {copy.monthsAbbreviation}
+                  </>
+                }
               />
             </dl>
 
             <div className="border-t border-brand-border pt-6">
               <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                Indicative build
+                {copy.buildLabel}
               </p>
               <p className="mt-2 text-[1.0625rem] text-brand-ink">
-                {money(result.indicativeBuildSar.low)} –{" "}
-                {money(result.indicativeBuildSar.high)} across{" "}
-                {String(result.contributions.length)}{" "}
-                {result.contributions.length === 1 ? "workflow" : "workflows"}
+                <NumericRange
+                  low={format.money(result.indicativeBuildSar.low)}
+                  high={format.money(result.indicativeBuildSar.high)}
+                />{" "}
+                {copy.buildAcross(result.contributions.length)}
               </p>
             </div>
           </>
         ) : (
           <p className="max-w-[42ch] text-[1.0625rem] leading-[1.7] text-brand-ink-soft">
-            Choose at least one place the time goes. Without a scope there is
-            nothing to estimate, and an average would be a guess dressed as a
-            number.
+            {copy.noScope}
           </p>
         )}
 
@@ -248,7 +275,7 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
             }}
             className="min-h-[44px] text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent"
           >
-            {showAssumptions ? "Hide assumptions" : "Show every assumption"}
+            {showAssumptions ? copy.hideAssumptions : copy.showAssumptions}
           </button>
           <ul
             id={`${id}-assumptions`}
@@ -256,22 +283,48 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
             className="mt-4 grid gap-2 text-sm leading-[1.6] text-brand-ink-soft"
           >
             {result.assumptions.map((assumption) => (
-              <li key={assumption}>{assumption}</li>
+              <li key={assumption.kind}>{copy.assumption(assumption, format)}</li>
             ))}
           </ul>
         </div>
 
         <p className="text-xs leading-[1.6] text-brand-ink-faint">
-          Indicative only. This is a model, not a quotation, not a forecast and
-          not a guarantee of any outcome. Real figures come from looking at your
-          actual process.
+          {copy.disclaimer}
         </p>
       </div>
     </div>
   );
 }
 
-function Metric({ label, value }: { readonly label: string; readonly value: string }) {
+/**
+ * A low–high pair that keeps its order in both writing directions.
+ *
+ * Left to itself, the bidi algorithm reorders a Latin-numeral range inside an
+ * Arabic paragraph and the reader is shown the high figure first. `dir="ltr"`
+ * with `unicode-bidi: isolate` (Tailwind's `isolate` here is the CSS isolation
+ * property, so the explicit style is the one that matters) pins the run.
+ */
+function NumericRange({
+  low,
+  high,
+}: {
+  readonly low: string;
+  readonly high: string;
+}) {
+  return (
+    <span dir="ltr" style={{ unicodeBidi: "isolate" }}>
+      {low} – {high}
+    </span>
+  );
+}
+
+function Metric({
+  label,
+  value,
+}: {
+  readonly label: string;
+  readonly value: ReactNode;
+}) {
   return (
     <div>
       <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
@@ -288,6 +341,7 @@ interface NumberFieldProps {
   readonly id: string;
   readonly label: string;
   readonly hint: string;
+  readonly exactSuffix: string;
   readonly value: number;
   readonly bounds: { readonly min: number; readonly max: number; readonly step: number };
   readonly onChange: (value: number) => void;
@@ -301,11 +355,18 @@ interface NumberFieldProps {
  * keyboard at this granularity, and on a touch screen it competes with page
  * scrolling. The number input makes the value typeable and gives the field a
  * real, focusable, labelled control.
+ *
+ * The slider is NOT mirrored for Arabic. A range input is a magnitude axis, not
+ * a reading order: browsers already run it right-to-left under `dir="rtl"`, and
+ * forcing it back would put the maximum where a reader expects the minimum.
+ * This is the "mirror only semantically directional interactions" rule — the
+ * numeric readout beside it is what disambiguates either way.
  */
 function NumberField({
   id,
   label,
   hint,
+  exactSuffix,
   value,
   bounds,
   onChange,
@@ -339,7 +400,7 @@ function NumberField({
         />
         <input
           type="number"
-          aria-label={`${label} (exact)`}
+          aria-label={`${label} (${exactSuffix})`}
           min={bounds.min}
           max={bounds.max}
           step={bounds.step}

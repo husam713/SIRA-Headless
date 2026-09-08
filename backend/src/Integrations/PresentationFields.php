@@ -44,6 +44,8 @@ final class PresentationFields {
 			'group_sira_investment_details' => self::investment_group(),
 			'group_sira_testimonial_details' => self::testimonial_group(),
 			'group_sira_partner_details'    => self::partner_group(),
+			'group_sira_page_intro'         => self::page_intro_group(),
+			'group_sira_locale'             => self::locale_group(),
 		);
 	}
 
@@ -201,6 +203,180 @@ final class PresentationFields {
 			'label_placement'                      => 'top',
 			'instruction_placement'                => 'label',
 			'active'                               => true,
+		);
+	}
+
+	/**
+	 * Which language a record is written in, and which record it translates.
+	 *
+	 * ADR-034. The locale is stored EXPLICITLY rather than inferred from a slug
+	 * naming convention. A convention was the first design and it was wrong for a
+	 * specific, ordinary reason: slugs are editor-editable, so renaming a record
+	 * would silently move it between languages, and nothing in WordPress would
+	 * warn anybody. Routing still uses the `/ar/` URL prefix — that is a URL
+	 * decision — but what a record IS comes from this field.
+	 *
+	 * `translation_of` points from the translation to the original, so exactly one
+	 * record owns the link and there is no pair to keep symmetric. It is optional:
+	 * a page that exists only in Arabic is a real editorial state, not an error.
+	 *
+	 * Registered network-wide because every site in the registry declares Arabic
+	 * as a supported locale. A tenant that has not translated anything simply
+	 * leaves every record at the default, which costs it nothing.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function locale_group(): array {
+		return array(
+			'key'                                  => 'group_sira_locale',
+			'title'                                => 'SIRA Language',
+			'show_in_graphql'                      => true,
+			'graphql_field_name'                   => 'siraLocale',
+			// wpgraphql-acf 2.x derives the GraphQL type name from
+			// `graphql_field_name`, not from this key, so the live type is
+			// `SiraLocale`. Declared to match what is actually produced rather than
+			// to what would be nice, because a name that only exists in this file
+			// sends the next person looking for a type that is not there.
+			'graphql_type_name'                    => 'SiraLocale',
+			'map_graphql_types_from_location_rules' => false,
+			'graphql_types'                        => array(
+				'Page',
+				'SiraService',
+				'SiraProject',
+				'SiraIndustry',
+			),
+			'fields'                               => array(
+				self::radio(
+					'field_sira_locale_code',
+					'Language',
+					'sira_locale',
+					'code',
+					array(
+						'en' => 'English',
+						'ar' => 'Arabic',
+					),
+					'en',
+					array( 'layout' => 'horizontal' )
+				),
+				self::field(
+					'field_sira_locale_translation_of',
+					'Translation Of',
+					'sira_translation_of',
+					'post_object',
+					'translationOf',
+					array(
+						'post_type'         => array( 'page', 'sira_service', 'sira_project' ),
+						'return_format'     => 'id',
+						'multiple'          => 0,
+						'allow_null'        => 1,
+						'instructions'      => 'The record in the default language that this one translates. Leave empty when this record has no counterpart.',
+						'conditional_logic' => array(
+							array(
+								array(
+									'field'    => 'field_sira_locale_code',
+									'operator' => '!=',
+									'value'    => 'en',
+								),
+							),
+						),
+					)
+				),
+			),
+			'location'                             => array(
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'page',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'sira_service',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'sira_project',
+					),
+				),
+				array(
+					array(
+						'param'    => 'taxonomy',
+						'operator' => '==',
+						'value'    => 'sira_industry',
+					),
+				),
+			),
+			'menu_order'                           => 20,
+			'position'                             => 'side',
+			'style'                                => 'default',
+			'label_placement'                      => 'top',
+			'instruction_placement'                => 'label',
+			'active'                               => true,
+		);
+	}
+
+	/**
+	 * The heading block at the top of a standalone page.
+	 *
+	 * Index pages — services, work, industries, contact — used to carry their
+	 * eyebrow, headline and standfirst as literal strings inside React. That made
+	 * the most prominent copy on each page the one part an editor could not
+	 * change, and it made a second language a code change rather than a content
+	 * change. Both problems have the same fix, so this group exists once, for
+	 * every page, on every site in the network.
+	 *
+	 * Every field is optional. A page that sets none of them renders exactly as
+	 * it did before, which is what keeps this safe to add network-wide.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function page_intro_group(): array {
+		return self::content_group(
+			'group_sira_page_intro',
+			'SIRA Page Intro',
+			'pageIntro',
+			'PageIntro',
+			'Page',
+			'page',
+			array(
+				self::text(
+					'field_sira_page_intro_eyebrow',
+					'Eyebrow',
+					'eyebrow',
+					'eyebrow'
+				),
+				self::text(
+					'field_sira_page_intro_heading',
+					'Heading',
+					'heading',
+					'heading'
+				),
+				self::textarea(
+					'field_sira_page_intro_standfirst',
+					'Standfirst',
+					'standfirst',
+					'standfirst',
+					array( 'new_lines' => '' )
+				),
+				self::text(
+					'field_sira_page_intro_cta_label',
+					'Closing Call To Action Label',
+					'cta_label',
+					'ctaLabel'
+				),
+				self::text(
+					'field_sira_page_intro_cta_heading',
+					'Closing Call To Action Heading',
+					'cta_heading',
+					'ctaHeading'
+				),
+			)
 		);
 	}
 

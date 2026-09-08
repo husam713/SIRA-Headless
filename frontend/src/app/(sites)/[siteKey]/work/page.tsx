@@ -3,12 +3,15 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 
-import { CtaLink } from "@/components/homepage/cta-link";
+import { PageClosingCta } from "@/components/content/page-closing-cta";
+import { PageIntroHeader } from "@/components/content/page-intro-header";
 import { PageContainer } from "@/components/layout/page-container";
-import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { getBrand } from "@/lib/brand";
-import { getContentPage, getWorkIndex } from "@/lib/content/get-content-page";
-import { getSiteDefinition } from "@/lib/host/resolve-site";
+import {
+  getWorkIndexForLocale,
+  neutralSlug,
+} from "@/lib/content/get-content-page";
+import { resolveContentRoute } from "@/lib/content/route-context";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -25,28 +28,26 @@ import { buildSiteMetadata } from "@/lib/seo/metadata";
 // depth needs. It is the same rail idea as the homepage capabilities, at a
 // larger scale — one shared pattern rather than two.
 
+const ROUTE = "/work";
+
 interface WorkPageProps {
   readonly params: Promise<{ readonly siteKey: string }>;
 }
 
 async function resolve(params: WorkPageProps["params"]) {
-  const { siteKey } = await params;
-  const site = getSiteDefinition(siteKey);
+  const context = await resolveContentRoute(params, `${ROUTE}/`);
+  const work = await getWorkIndexForLocale(
+    context.site.key,
+    context.request.locale,
+  );
 
-  if (site === null) notFound();
-
-  const [page, work] = await Promise.all([
-    getContentPage(site.key, "/work/"),
-    getWorkIndex(site.key),
-  ]);
-
-  return { site, page, work };
+  return { ...context, work };
 }
 
 export async function generateMetadata({
   params,
 }: WorkPageProps): Promise<Metadata> {
-  const { site, page } = await resolve(params);
+  const { site, page, request } = await resolve(params);
   const [brand, requestHeaders] = await Promise.all([
     getBrand(site.key),
     headers(),
@@ -57,46 +58,36 @@ export async function generateMetadata({
   );
 
   return {
-    ...buildSiteMetadata(discovery, brand, "/work"),
+    ...buildSiteMetadata(discovery, brand, ROUTE, {
+      locale: request.locale,
+      path: ROUTE,
+    }),
     title: `${page?.title ?? "Work"} — ${brand.name}`,
   };
 }
 
 export default async function WorkPage({ params }: WorkPageProps) {
-  const { work } = await resolve(params);
+  const { work, page, site, request } = await resolve(params);
 
   if (work.length === 0) notFound();
 
   return (
     <>
-      <section
-        className="relative flex min-h-[calc(60svh-var(--layout-header-offset))] items-end"
-        aria-labelledby="work-heading"
-      >
-        <PageContainer className="digital-reveal pb-12 pt-[clamp(4rem,8vw,7rem)]">
-          <SectionEyebrow tone="accent" className="digital-eyebrow">
-            What we build
-          </SectionEyebrow>
-          <h1
-            id="work-heading"
-            className="digital-display mt-7 max-w-[18ch] text-balance text-[clamp(2.5rem,1.2rem+3.4vw,3.375rem)] font-bold leading-[0.98] tracking-[-0.03em]"
-          >
-            Systems, not slide decks.
-          </h1>
-          <p className="mt-7 max-w-[48ch] text-[1.0625rem] leading-[1.7] text-brand-ink-soft">
-            Each of these is a working system. They are described by what was
-            broken, what replaced it and how it holds up — not by a client name,
-            because the interesting part was never the logo.
-          </p>
-        </PageContainer>
-      </section>
+      <PageIntroHeader
+        page={page}
+        headingId="work-heading"
+        fallbackEyebrow="What we build"
+        fallbackHeading="Systems, not slide decks."
+        fallbackStandfirst="Each of these is a working system. They are described by what was broken, what replaced it and how it holds up — not by a client name, because the interesting part was never the logo."
+        height="tall"
+      />
 
       <PageContainer className="pb-[clamp(4rem,8vw,7rem)]">
         <ol className="grid gap-0">
           {work.map((entry, index) => (
             <li
               key={entry.databaseId}
-              id={entry.slug}
+              id={neutralSlug(entry.slug)}
               className="digital-reveal scroll-mt-[calc(var(--layout-header-offset)+2rem)] border-t border-brand-border py-[clamp(2.5rem,5vw,4rem)] first:border-t-0 first:pt-0"
               style={
                 { "--digital-reveal-offset": `${String(Math.min(index, 3) * 2)}%` } as CSSProperties
@@ -132,20 +123,14 @@ export default async function WorkPage({ params }: WorkPageProps) {
         </ol>
       </PageContainer>
 
-      <section className="border-t border-brand-border" aria-labelledby="work-cta-heading">
-        <PageContainer className="digital-reveal flex min-h-[45svh] flex-col items-center justify-center gap-8 py-[clamp(4rem,8vw,7rem)] text-center">
-          <h2
-            id="work-cta-heading"
-            className="digital-display max-w-[20ch] text-balance text-[clamp(2.25rem,1.5rem+3.6vw,4.5rem)] font-bold leading-[1.04] tracking-[-0.025em]"
-          >
-            Have a process worth rebuilding?
-          </h2>
-          <CtaLink
-            link={{ label: "Book an operations review", href: "/contact", target: null }}
-            variant="solid"
-          />
-        </PageContainer>
-      </section>
+      <PageClosingCta
+        page={page}
+        headingId="work-cta-heading"
+        fallbackHeading="Have a process worth rebuilding?"
+        fallbackLabel="Book an operations review"
+        site={site}
+        locale={request.locale}
+      />
     </>
   );
 }

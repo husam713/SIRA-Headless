@@ -8,10 +8,16 @@ import type { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type MenuLocationEnum =
   /** Put the menu in the footer location */
   | 'FOOTER'
+  /** Put the menu in the footer_ar location */
+  | 'FOOTER_AR'
   /** Put the menu in the legal location */
   | 'LEGAL'
+  /** Put the menu in the legal_ar location */
+  | 'LEGAL_AR'
   /** Put the menu in the primary location */
-  | 'PRIMARY';
+  | 'PRIMARY'
+  /** Put the menu in the primary_ar location */
+  | 'PRIMARY_AR';
 
 /** The semantic severity of a public SIRA banner. */
 export type SiraBrandBannerSeverity =
@@ -33,7 +39,7 @@ export type SiraContentPageQueryVariables = Exact<{
 }>;
 
 
-export type SiraContentPageQuery = { readonly page: { readonly databaseId: number, readonly uri: string | null, readonly title: string | null, readonly content: string | null, readonly modified: string | null, readonly seo: { readonly variant: string | null } | null } | null };
+export type SiraContentPageQuery = { readonly page: { readonly databaseId: number, readonly uri: string | null, readonly title: string | null, readonly content: string | null, readonly modified: string | null, readonly pageIntro: { readonly eyebrow: string | null, readonly heading: string | null, readonly standfirst: string | null, readonly ctaLabel: string | null, readonly ctaHeading: string | null } | null, readonly seo: { readonly variant: string | null } | null } | null };
 
 export type SiraServiceIndexQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -479,6 +485,7 @@ export type HomepageDocumentNodeFragment =
 
 export type SiraHomepageQueryVariables = Exact<{
   asPreview?: boolean | null | undefined;
+  uri?: string | number | null | undefined;
 }>;
 
 
@@ -680,7 +687,11 @@ export type SiraHomepageQuery = { readonly page: { readonly databaseId: number, 
             | { readonly __typename: 'SiraWhitepaper' }
           >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null, readonly contact: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly formVariant: string | null, readonly formContext: string | null } | null } | null } | null };
 
-export type SiraNavigationQueryVariables = Exact<{ [key: string]: never; }>;
+export type SiraNavigationQueryVariables = Exact<{
+  primary?: MenuLocationEnum | null | undefined;
+  footer?: MenuLocationEnum | null | undefined;
+  legal?: MenuLocationEnum | null | undefined;
+}>;
 
 
 export type SiraNavigationQuery = { readonly primary: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly locations: ReadonlyArray<MenuLocationEnum | null> | null, readonly menuItems: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly label: string | null, readonly order: number | null, readonly parentDatabaseId: number | null, readonly path: string | null, readonly target: string | null, readonly url: string | null }> } | null }> } | null, readonly footer: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly locations: ReadonlyArray<MenuLocationEnum | null> | null, readonly menuItems: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly label: string | null, readonly order: number | null, readonly parentDatabaseId: number | null, readonly path: string | null, readonly target: string | null, readonly url: string | null }> } | null }> } | null, readonly legal: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly locations: ReadonlyArray<MenuLocationEnum | null> | null, readonly menuItems: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly isRestricted: boolean | null, readonly label: string | null, readonly order: number | null, readonly parentDatabaseId: number | null, readonly path: string | null, readonly target: string | null, readonly url: string | null }> } | null }> } | null };
@@ -1301,6 +1312,13 @@ export const SiraContentPageDocument = new TypedDocumentString(`
     title
     content
     modified
+    pageIntro {
+      eyebrow
+      heading
+      standfirst
+      ctaLabel
+      ctaHeading
+    }
     seo: siraHomepage {
       variant
     }
@@ -1310,7 +1328,7 @@ export const SiraContentPageDocument = new TypedDocumentString(`
 export const SiraServiceIndexDocument = new TypedDocumentString(`
     query SiraServiceIndex {
   siraServices(
-    first: 24
+    first: 48
     where: {status: PUBLISH, orderby: [{field: MENU_ORDER, order: ASC}, {field: DATE, order: ASC}]}
   ) {
     pageInfo {
@@ -1330,7 +1348,7 @@ export const SiraServiceIndexDocument = new TypedDocumentString(`
 export const SiraWorkIndexDocument = new TypedDocumentString(`
     query SiraWorkIndex {
   siraProjects(
-    first: 24
+    first: 48
     where: {status: PUBLISH, orderby: [{field: DATE, order: ASC}]}
   ) {
     pageInfo {
@@ -1348,7 +1366,7 @@ export const SiraWorkIndexDocument = new TypedDocumentString(`
     `) as unknown as TypedDocumentString<SiraWorkIndexQuery, SiraWorkIndexQueryVariables>;
 export const SiraIndustryIndexDocument = new TypedDocumentString(`
     query SiraIndustryIndex {
-  siraIndustries(first: 24, where: {hideEmpty: false, orderby: NAME, order: ASC}) {
+  siraIndustries(first: 48, where: {hideEmpty: false, orderby: NAME, order: ASC}) {
     pageInfo {
       hasNextPage
     }
@@ -1583,8 +1601,8 @@ fragment EditorialSingleDesks on SiraBusinessUnitConnection {
   }
 }`) as unknown as TypedDocumentString<SiraEditorialSingleQuery, SiraEditorialSingleQueryVariables>;
 export const SiraHomepageDocument = new TypedDocumentString(`
-    query SiraHomepage($asPreview: Boolean = false) {
-  page(id: "/", idType: URI, asPreview: $asPreview) {
+    query SiraHomepage($asPreview: Boolean = false, $uri: ID = "/") {
+  page(id: $uri, idType: URI, asPreview: $asPreview) {
     databaseId
     uri
     title
@@ -2246,14 +2264,14 @@ fragment HomepageDocumentNode on ContentNode {
   }
 }`) as unknown as TypedDocumentString<SiraHomepageQuery, SiraHomepageQueryVariables>;
 export const SiraNavigationDocument = new TypedDocumentString(`
-    query SiraNavigation {
-  primary: menus(first: 2, where: {location: PRIMARY}) {
+    query SiraNavigation($primary: MenuLocationEnum = PRIMARY, $footer: MenuLocationEnum = FOOTER, $legal: MenuLocationEnum = LEGAL) {
+  primary: menus(first: 2, where: {location: $primary}) {
     ...SiraNavigationMenuCollection
   }
-  footer: menus(first: 2, where: {location: FOOTER}) {
+  footer: menus(first: 2, where: {location: $footer}) {
     ...SiraNavigationMenuCollection
   }
-  legal: menus(first: 2, where: {location: LEGAL}) {
+  legal: menus(first: 2, where: {location: $legal}) {
     ...SiraNavigationMenuCollection
   }
 }

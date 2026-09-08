@@ -3,12 +3,16 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 
-import { CtaLink } from "@/components/homepage/cta-link";
+import { PageClosingCta } from "@/components/content/page-closing-cta";
+import { PageIntroHeader } from "@/components/content/page-intro-header";
 import { PageContainer } from "@/components/layout/page-container";
-import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { getBrand } from "@/lib/brand";
-import { getContentPage, getIndustryIndex } from "@/lib/content/get-content-page";
-import { getSiteDefinition } from "@/lib/host/resolve-site";
+import {
+  getIndustryIndexForLocale,
+  neutralSlug,
+} from "@/lib/content/get-content-page";
+import { resolveContentRoute } from "@/lib/content/route-context";
+import { CHROME } from "@/lib/i18n/locale";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -24,28 +28,26 @@ import { buildSiteMetadata } from "@/lib/seo/metadata";
 // prose rather than an icon and a promise, because the reader is a person who
 // already knows their sector and is checking whether we do.
 
+const ROUTE = "/industries";
+
 interface IndustriesPageProps {
   readonly params: Promise<{ readonly siteKey: string }>;
 }
 
 async function resolve(params: IndustriesPageProps["params"]) {
-  const { siteKey } = await params;
-  const site = getSiteDefinition(siteKey);
+  const context = await resolveContentRoute(params, `${ROUTE}/`);
+  const industries = await getIndustryIndexForLocale(
+    context.site.key,
+    context.request.locale,
+  );
 
-  if (site === null) notFound();
-
-  const [page, industries] = await Promise.all([
-    getContentPage(site.key, "/industries/"),
-    getIndustryIndex(site.key),
-  ]);
-
-  return { site, page, industries };
+  return { ...context, industries };
 }
 
 export async function generateMetadata({
   params,
 }: IndustriesPageProps): Promise<Metadata> {
-  const { site, page } = await resolve(params);
+  const { site, page, request } = await resolve(params);
   const [brand, requestHeaders] = await Promise.all([
     getBrand(site.key),
     headers(),
@@ -56,46 +58,37 @@ export async function generateMetadata({
   );
 
   return {
-    ...buildSiteMetadata(discovery, brand, "/industries"),
+    ...buildSiteMetadata(discovery, brand, ROUTE, {
+      locale: request.locale,
+      path: ROUTE,
+    }),
     title: `${page?.title ?? "Industries"} — ${brand.name}`,
   };
 }
 
 export default async function IndustriesPage({ params }: IndustriesPageProps) {
-  const { industries } = await resolve(params);
+  const { industries, page, site, request } = await resolve(params);
 
   if (industries.length === 0) notFound();
 
+  const chrome = CHROME[request.locale];
+
   return (
     <>
-      <section
-        className="relative flex min-h-[calc(55svh-var(--layout-header-offset))] items-end"
-        aria-labelledby="industries-heading"
-      >
-        <PageContainer className="digital-reveal pb-12 pt-[clamp(4rem,8vw,7rem)]">
-          <SectionEyebrow tone="accent" className="digital-eyebrow">
-            Sectors
-          </SectionEyebrow>
-          <h1
-            id="industries-heading"
-            className="digital-display mt-7 max-w-[20ch] text-balance text-[clamp(2.5rem,1.2rem+3.4vw,3.375rem)] font-bold leading-[0.98] tracking-[-0.03em]"
-          >
-            Every sector loses time somewhere different.
-          </h1>
-          <p className="mt-7 max-w-[48ch] text-[1.0625rem] leading-[1.7] text-brand-ink-soft">
-            We start from the bottleneck, not from the software. Below is where
-            it usually sits, sector by sector, and what can realistically be
-            done about it.
-          </p>
-        </PageContainer>
-      </section>
+      <PageIntroHeader
+        page={page}
+        headingId="industries-heading"
+        fallbackEyebrow="Sectors"
+        fallbackHeading="Every sector loses time somewhere different."
+        fallbackStandfirst="We start from the bottleneck, not from the software. Below is where it usually sits, sector by sector, and what can realistically be done about it."
+      />
 
       <PageContainer className="pb-[clamp(4rem,8vw,7rem)]">
         <ul className="grid gap-x-10 gap-y-0 sm:grid-cols-2">
           {industries.map((industry, index) => (
             <li
               key={industry.databaseId}
-              id={industry.slug}
+              id={neutralSlug(industry.slug)}
               className="digital-reveal scroll-mt-[calc(var(--layout-header-offset)+2rem)] border-t border-brand-border py-9"
               style={
                 { "--digital-reveal-offset": `${String(Math.min(index, 5) * 1.5)}%` } as CSSProperties
@@ -116,7 +109,7 @@ export default async function IndustriesPage({ params }: IndustriesPageProps) {
                     {industry.bottleneck !== null ? (
                       <div>
                         <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                          Where the time goes
+                          {chrome.bottleneckLabel}
                         </dt>
                         <dd className="mt-2 max-w-[46ch] text-sm leading-[1.65] text-brand-ink-soft">
                           {industry.bottleneck}
@@ -126,7 +119,7 @@ export default async function IndustriesPage({ params }: IndustriesPageProps) {
                     {industry.opportunity !== null ? (
                       <div>
                         <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent">
-                          What can be done
+                          {chrome.opportunityLabel}
                         </dt>
                         <dd className="mt-2 max-w-[46ch] text-sm leading-[1.65] text-brand-ink-soft">
                           {industry.opportunity}
@@ -141,23 +134,14 @@ export default async function IndustriesPage({ params }: IndustriesPageProps) {
         </ul>
       </PageContainer>
 
-      <section
-        className="border-t border-brand-border"
-        aria-labelledby="industries-cta-heading"
-      >
-        <PageContainer className="digital-reveal flex min-h-[45svh] flex-col items-center justify-center gap-8 py-[clamp(4rem,8vw,7rem)] text-center">
-          <h2
-            id="industries-cta-heading"
-            className="digital-display max-w-[20ch] text-balance text-[clamp(2.25rem,1.5rem+3.6vw,4.5rem)] font-bold leading-[1.04] tracking-[-0.025em]"
-          >
-            Not listed? The bottleneck is usually the same shape.
-          </h2>
-          <CtaLink
-            link={{ label: "Book an operations review", href: "/contact", target: null }}
-            variant="solid"
-          />
-        </PageContainer>
-      </section>
+      <PageClosingCta
+        page={page}
+        headingId="industries-cta-heading"
+        fallbackHeading="Not listed? The bottleneck is usually the same shape."
+        fallbackLabel="Book an operations review"
+        site={site}
+        locale={request.locale}
+      />
     </>
   );
 }

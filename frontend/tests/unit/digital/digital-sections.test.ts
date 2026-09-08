@@ -162,11 +162,29 @@ describe("the Digital motion layer", () => {
   });
 
   it("relaxes the Latin display metrics for Arabic", () => {
-    // Sub-1.0 leading clips Arabic ascenders and descenders, and negative
-    // tracking damages the joins.
+    // Sub-1.0 leading clips Arabic ascenders and descenders.
     expect(styles).toMatch(/html:lang\(ar\) \.digital-display \{[^}]*line-height: 1\.28;/u);
-    expect(styles).toMatch(/html:lang\(ar\) \.digital-display \{[^}]*letter-spacing: 0;/u);
-    expect(styles).toMatch(/html:lang\(ar\) \.digital-kinetic__word \{[^}]*letter-spacing: 0;/u);
+    expect(styles).toMatch(
+      /html:lang\(ar\) \.digital-kinetic__word \{[^}]*line-height: 1\.15;/u,
+    );
+  });
+
+  it("neutralises Latin tracking and casing for Arabic text once, globally", () => {
+    // Negative tracking damages the cursive joins, and `text-transform` is
+    // meaningless in a script with no letter case. These used to be undone
+    // per-class, which meant every new Arabic surface had to remember to opt
+    // in — and the eyebrow's 0.12em tracking had already been left behind.
+    expect(styles).toMatch(
+      /html:lang\(ar\) \*:not\(:lang\(en\)\) \{[^}]*letter-spacing: normal !important;/u,
+    );
+    expect(styles).toMatch(
+      /html:lang\(ar\) \*:not\(:lang\(en\)\) \{[^}]*text-transform: none !important;/u,
+    );
+
+    // A `lang="en"` island — the language switch, a Latin product name — keeps
+    // its own treatment, which is why this is scoped by language rather than
+    // by class.
+    expect(styles).not.toMatch(/html:lang\(ar\) \.digital-eyebrow/u);
   });
 
   it("pauses ambient motion for a reader who shows intent", () => {

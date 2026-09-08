@@ -5,6 +5,13 @@ query SiraContentPage($uri: ID!, $asPreview: Boolean = false) {
     title
     content
     modified
+    pageIntro {
+      eyebrow
+      heading
+      standfirst
+      ctaLabel
+      ctaHeading
+    }
     seo: siraHomepage {
       variant
     }
@@ -12,7 +19,7 @@ query SiraContentPage($uri: ID!, $asPreview: Boolean = false) {
 }
 
 query SiraServiceIndex {
-  siraServices(first: 24, where: { status: PUBLISH, orderby: [{ field: MENU_ORDER, order: ASC }, { field: DATE, order: ASC }] }) {
+  siraServices(first: 48, where: { status: PUBLISH, orderby: [{ field: MENU_ORDER, order: ASC }, { field: DATE, order: ASC }] }) {
     pageInfo {
       hasNextPage
     }
@@ -28,7 +35,7 @@ query SiraServiceIndex {
 }
 
 query SiraWorkIndex {
-  siraProjects(first: 24, where: { status: PUBLISH, orderby: [{ field: DATE, order: ASC }] }) {
+  siraProjects(first: 48, where: { status: PUBLISH, orderby: [{ field: DATE, order: ASC }] }) {
     pageInfo {
       hasNextPage
     }
@@ -43,7 +50,7 @@ query SiraWorkIndex {
 }
 
 query SiraIndustryIndex {
-  siraIndustries(first: 24, where: { hideEmpty: false, orderby: NAME, order: ASC }) {
+  siraIndustries(first: 48, where: { hideEmpty: false, orderby: NAME, order: ASC }) {
     pageInfo {
       hasNextPage
     }

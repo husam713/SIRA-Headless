@@ -1,45 +1,45 @@
 {
-  "canonicalSha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+  "canonicalSha256": "c834d3624445af3fc8c85d1358562834c4b1ca6bdd0590a74cadb5880bcac974",
   "canonicalSite": "consulting",
-  "fetchedAt": "2026-09-08T03:37:04.148Z",
+  "fetchedAt": "2026-09-08T08:20:13.178Z",
   "groupAuditSite": "group",
-  "groupSha256": "de2ad45677a4b8a87e6f3fae36195e87fbe64fadfa0bc4ef68aeeca4b144dbba",
+  "groupSha256": "7ddf4f33bbcc46dc7a3431ff5627b2f1b95bae3ed240131fa9e8823b00347b57",
   "policy": "branch-peers-exact-group-structural-superset",
   "sites": [
     {
       "hostname": "siratrgroup.com",
       "role": "group-audit",
-      "sha256": "de2ad45677a4b8a87e6f3fae36195e87fbe64fadfa0bc4ef68aeeca4b144dbba",
+      "sha256": "7ddf4f33bbcc46dc7a3431ff5627b2f1b95bae3ed240131fa9e8823b00347b57",
       "siteKey": "group"
     },
     {
       "hostname": "consulting.siratrgroup.com",
       "role": "canonical-branch",
-      "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+      "sha256": "c834d3624445af3fc8c85d1358562834c4b1ca6bdd0590a74cadb5880bcac974",
       "siteKey": "consulting"
     },
     {
       "hostname": "healthcare.siratrgroup.com",
       "role": "branch",
-      "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+      "sha256": "c834d3624445af3fc8c85d1358562834c4b1ca6bdd0590a74cadb5880bcac974",
       "siteKey": "healthcare"
     },
     {
       "hostname": "lifestyle.siratrgroup.com",
       "role": "branch",
-      "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+      "sha256": "c834d3624445af3fc8c85d1358562834c4b1ca6bdd0590a74cadb5880bcac974",
       "siteKey": "lifestyle"
     },
     {
       "hostname": "realestate.siratrgroup.com",
       "role": "branch",
-      "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+      "sha256": "c834d3624445af3fc8c85d1358562834c4b1ca6bdd0590a74cadb5880bcac974",
       "siteKey": "realestate"
     },
     {
-      "hostname": "sirahdigital.sa",
+      "hostname": "127.0.0.1",
       "role": "branch",
-      "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+      "sha256": "c834d3624445af3fc8c85d1358562834c4b1ca6bdd0590a74cadb5880bcac974",
       "siteKey": "digital"
     }
   ],

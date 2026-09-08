@@ -8,7 +8,7 @@ import {
   SIRA_SERVICE_INDEX_QUERY,
   SIRA_WORK_INDEX_QUERY,
 } from "@/queries/content-page";
-import type { SiteKey } from "@/types/site";
+import type { LocaleCode, SiteKey } from "@/types/site";
 
 /**
  * A CMS page rendered as prose, and the service index behind /services.
@@ -19,12 +19,27 @@ import type { SiteKey } from "@/types/site";
  * is sanitised here rather than at the component, so a component cannot forget.
  */
 
+/**
+ * The heading block at the top of a page, authored in the CMS.
+ *
+ * Every field is optional and a page that sets none of them yields `null` here,
+ * so a route can fall back to whatever it rendered before this existed.
+ */
+export interface PageIntro {
+  readonly eyebrow: string | null;
+  readonly heading: string | null;
+  readonly standfirst: string | null;
+  readonly ctaLabel: string | null;
+  readonly ctaHeading: string | null;
+}
+
 export interface ContentPage {
   readonly databaseId: number;
   readonly uri: string;
   readonly title: string;
   readonly html: string | null;
   readonly modified: string | null;
+  readonly intro: PageIntro | null;
 }
 
 export interface ServiceEntry {
@@ -95,7 +110,22 @@ function normalizeContentPage(data: unknown): ContentPage | null {
     title,
     html: editorialHtml(page["content"]),
     modified: typeof page["modified"] === "string" ? page["modified"] : null,
+    intro: normalizeIntro(page["pageIntro"]),
   });
+}
+
+function normalizeIntro(value: unknown): PageIntro | null {
+  if (!isRecord(value)) return null;
+
+  const intro = Object.freeze({
+    eyebrow: plainText(value["eyebrow"], 80),
+    heading: plainText(value["heading"], 200),
+    standfirst: plainText(value["standfirst"], 400),
+    ctaLabel: plainText(value["ctaLabel"], 80),
+    ctaHeading: plainText(value["ctaHeading"], 200),
+  });
+
+  return Object.values(intro).every((field) => field === null) ? null : intro;
 }
 
 function normalizeServiceIndex(data: unknown): readonly ServiceEntry[] {
@@ -313,3 +343,84 @@ export const getContentPage = cache(resolveContentPage);
 export const getWorkIndex = cache(resolveWorkIndex);
 export const getIndustryIndex = cache(resolveIndustryIndex);
 export const getServiceIndex = cache(resolveServiceIndex);
+
+/**
+ * Which language a record is written in.
+ *
+ * ADR-034 puts a translation behind a slug prefix: `/ar/about/` is the Arabic
+ * page, `ar-invoice-capture` is the Arabic service. One convention for pages
+ * and for custom post types, visible in the WordPress admin, requiring neither
+ * a second site nor a translation plugin nor a schema change.
+ *
+ * The trade-off is that the index queries fetch both languages and discard one
+ * here. At this scale — tens of records, one request, already cached — that is
+ * cheaper than the taxonomy and `taxQuery` machinery the alternative needs, and
+ * it is reversible: if the record count ever justifies filtering server-side,
+ * only this function and the queries change.
+ */
+const ARABIC_SLUG_PREFIX = "ar-";
+
+export function isSlugForLocale(slug: string, locale: LocaleCode): boolean {
+  return locale === "ar"
+    ? slug.startsWith(ARABIC_SLUG_PREFIX)
+    : !slug.startsWith(ARABIC_SLUG_PREFIX);
+}
+
+/** The slug without its language marker, so anchors match across languages. */
+export function neutralSlug(slug: string): string {
+  return slug.startsWith(ARABIC_SLUG_PREFIX)
+    ? slug.slice(ARABIC_SLUG_PREFIX.length)
+    : slug;
+}
+
+function forLocale<T extends { readonly slug: string }>(
+  entries: readonly T[],
+  locale: LocaleCode,
+): readonly T[] {
+  const selected = entries.filter((entry) => isSlugForLocale(entry.slug, locale));
+
+  // An untranslated index is shown in the language it does exist in rather than
+  // as an empty page. A missing translation is a content gap; an empty section
+  // reads as a broken build.
+  return Object.freeze(selected.length === 0 ? entries : selected);
+}
+
+export async function getServiceIndexForLocale(
+  siteKey: SiteKey,
+  locale: LocaleCode,
+): Promise<readonly ServiceEntry[]> {
+  return forLocale(await getServiceIndex(siteKey), locale);
+}
+
+export async function getWorkIndexForLocale(
+  siteKey: SiteKey,
+  locale: LocaleCode,
+): Promise<readonly WorkEntry[]> {
+  return forLocale(await getWorkIndex(siteKey), locale);
+}
+
+export async function getIndustryIndexForLocale(
+  siteKey: SiteKey,
+  locale: LocaleCode,
+): Promise<readonly IndustryEntry[]> {
+  return forLocale(await getIndustryIndex(siteKey), locale);
+}
+
+/**
+ * A page in the requested language, falling back to the default-locale copy.
+ *
+ * Showing the English page under an Arabic URL is wrong, but showing nothing is
+ * worse: the route would 404 or lose its only `<h1>`. The fallback keeps the
+ * page usable and keeps the gap visible to whoever is translating.
+ */
+export async function getContentPageForLocale(
+  siteKey: SiteKey,
+  localizedUri: string,
+  defaultUri: string,
+): Promise<ContentPage | null> {
+  const localized = await getContentPage(siteKey, localizedUri);
+
+  if (localized !== null || localizedUri === defaultUri) return localized;
+
+  return getContentPage(siteKey, defaultUri);
+}

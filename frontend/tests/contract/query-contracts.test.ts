@@ -174,9 +174,14 @@ describe("approved SIRA GraphQL operation contracts", () => {
   });
 
   it("uses only the approved root URI and canonical homepage variants", () => {
+    // ADR-034 parameterised the URI so one document resolves `/` and `/ar/`.
+    // The contract that mattered is preserved and asserted directly: the
+    // DEFAULT is still the site root, so every existing caller and every
+    // locale-gated tenant resolves exactly the page it resolved before.
     expect(SIRA_HOMEPAGE_QUERY.source).toContain(
-      'page(id: "/", idType: URI, asPreview: $asPreview)',
+      "page(id: $uri, idType: URI, asPreview: $asPreview)",
     );
+    expect(SIRA_HOMEPAGE_QUERY.source).toMatch(/\$uri: ID = "\/"/u);
     expect(SIRA_HOMEPAGE_QUERY.source).toContain("siraHomepage");
     // No groupHomepage/branchHomepage wrapper — every section is a direct
     // sibling of `variant` (see the note on PresentationFields.php's
@@ -263,6 +268,11 @@ describe("approved SIRA GraphQL operation contracts", () => {
   });
 
   it("uses only evidence-backed native menu locations without a fallback menu", () => {
+    // ADR-034 made the locations variables so the Arabic menus can be read by
+    // this same document. The evidence-backed values are still the contract —
+    // they are now the variable DEFAULTS, so a tenant with no Arabic menus, and
+    // every tenant still gated by 2C4-B09, resolves PRIMARY/FOOTER/LEGAL
+    // exactly as before.
     for (const [scope, location] of [
       ["primary", "PRIMARY"],
       ["footer", "FOOTER"],
@@ -270,8 +280,11 @@ describe("approved SIRA GraphQL operation contracts", () => {
     ] as const) {
       expect(SIRA_NAVIGATION_QUERY.source).toMatch(
         new RegExp(
-          `${scope}: menus\\(first: 2, where: \\{location: ${location}\\}\\)`,
+          `${scope}: menus\\(first: 2, where: \\{location: \\$${scope}\\}\\)`,
         ),
+      );
+      expect(SIRA_NAVIGATION_QUERY.source).toMatch(
+        new RegExp(`\\$${scope}: MenuLocationEnum = ${location}`),
       );
     }
 

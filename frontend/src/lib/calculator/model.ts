@@ -29,8 +29,11 @@ export const CURRENCY = "SAR";
 /** How much released time a business actually converts into avoided cost. */
 export const REALISATION = 0.35;
 
+/** Working weeks in a year, after leave and public holidays. */
+export const WORKING_WEEKS_PER_YEAR = 48;
+
 /** Working hours in a year: 5 days, 48 weeks, 8 hours. */
-export const WORKING_HOURS_PER_YEAR = 5 * 48 * 8;
+export const WORKING_HOURS_PER_YEAR = 5 * WORKING_WEEKS_PER_YEAR * 8;
 
 /**
  * Indicative fully-loaded hourly cost of an administrative employee, in SAR.
@@ -95,9 +98,28 @@ export interface CalculatorResult {
   readonly paybackMonths: Range;
   /** The workflows that contributed, with their individual coverage. */
   readonly contributions: readonly { readonly workflow: WorkflowKey; readonly coverage: number }[];
-  /** Everything the model assumed, for display. */
-  readonly assumptions: readonly string[];
+  /**
+   * Everything the model assumed — as facts, not as sentences.
+   *
+   * The model used to return finished English prose here, which quietly made it
+   * a presentation module and made a second language impossible without editing
+   * arithmetic. Each assumption is now the numbers it is about; the words that
+   * wrap them live in `copy.ts`, one set per language.
+   */
+  readonly assumptions: readonly Assumption[];
 }
+
+export type Assumption =
+  | Readonly<{
+      kind: "workload";
+      people: number;
+      hoursPerWeek: number;
+      weeksPerYear: number;
+    }>
+  | Readonly<{ kind: "coverage"; percent: number; ceilingPercent: number }>
+  | Readonly<{ kind: "realisation"; percent: number }>
+  | Readonly<{ kind: "hourly-cost"; low: number; high: number }>
+  | Readonly<{ kind: "build-cost"; low: number; high: number }>;
 
 /**
  * How much of a manual workload each workflow can typically remove.
@@ -113,13 +135,21 @@ const WORKFLOW_COVERAGE: Readonly<Record<WorkflowKey, number>> = Object.freeze({
   "field-capture": 0.16,
 });
 
-export const WORKFLOW_LABEL: Readonly<Record<WorkflowKey, string>> = Object.freeze({
-  approvals: "Approvals and handovers",
-  documents: "Document handling",
-  "customer-enquiries": "Customer enquiries",
-  reporting: "Reporting and reconciliation",
-  "field-capture": "Field and site capture",
-});
+/**
+ * Presentation order for each set of choices.
+ *
+ * The order is a product decision, so it lives here beside the model rather
+ * than falling out of whichever label map a component happened to iterate. The
+ * labels themselves are in `copy.ts`, one set per language — a model that knows
+ * what a workflow is called in English is a model that cannot be translated.
+ */
+export const WORKFLOW_KEYS: readonly WorkflowKey[] = Object.freeze([
+  "approvals",
+  "documents",
+  "customer-enquiries",
+  "reporting",
+  "field-capture",
+]);
 
 /**
  * A modifier for how much of a sector's work is mechanical.
@@ -140,18 +170,18 @@ const INDUSTRY_FACTOR: Readonly<Record<IndustryKey, number>> = Object.freeze({
   other: 1.0,
 });
 
-export const INDUSTRY_LABEL: Readonly<Record<IndustryKey, string>> = Object.freeze({
-  healthcare: "Healthcare",
-  "real-estate": "Real estate",
-  hospitality: "Hospitality",
-  retail: "Retail and distribution",
-  logistics: "Logistics",
-  construction: "Construction",
-  "professional-services": "Professional services",
-  education: "Education",
-  manufacturing: "Manufacturing",
-  other: "Something else",
-});
+export const INDUSTRY_KEYS: readonly IndustryKey[] = Object.freeze([
+  "healthcare",
+  "real-estate",
+  "hospitality",
+  "retail",
+  "logistics",
+  "construction",
+  "professional-services",
+  "education",
+  "manufacturing",
+  "other",
+]);
 
 /**
  * Larger organisations have more process to standardise, and more coordination
@@ -165,12 +195,12 @@ const SIZE_FACTOR: Readonly<Record<SizeKey, number>> = Object.freeze({
   enterprise: 1.1,
 });
 
-export const SIZE_LABEL: Readonly<Record<SizeKey, string>> = Object.freeze({
-  small: "Under 20 people",
-  growing: "20 to 100 people",
-  established: "100 to 500 people",
-  enterprise: "Over 500 people",
-});
+export const SIZE_KEYS: readonly SizeKey[] = Object.freeze([
+  "small",
+  "growing",
+  "established",
+  "enterprise",
+]);
 
 /** Indicative build cost per workflow, in SAR. A band, not a quotation. */
 const BUILD_COST_PER_WORKFLOW_SAR = Object.freeze({ low: 45_000, high: 110_000 });
@@ -214,7 +244,7 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     Object.hasOwn(WORKFLOW_COVERAGE, workflow),
   );
 
-  const manualHoursPerYear = people * hoursPerWeek * 48;
+  const manualHoursPerYear = people * hoursPerWeek * WORKING_WEEKS_PER_YEAR;
 
   const rawCoverage = workflows.reduce(
     (total, workflow) => total + WORKFLOW_COVERAGE[workflow],
@@ -264,12 +294,29 @@ export function calculate(input: CalculatorInput): CalculatorResult {
         Object.freeze({ workflow, coverage: WORKFLOW_COVERAGE[workflow] }),
       ),
     ),
-    assumptions: Object.freeze([
-      `${String(people)} people × ${String(hoursPerWeek)} repetitive hours per week × 48 working weeks.`,
-      `Selected workflows cover ${String(round(coverage * 100, 1))}% of that manual workload, after an industry and size adjustment, capped at ${String(COVERAGE_CEILING * 100)}%.`,
-      `Only ${String(REALISATION * 100)}% of released hours are counted as realised cost avoidance — the rest is absorbed rather than saved.`,
-      `Fully-loaded cost of ${String(HOURLY_COST_SAR.low)}–${String(HOURLY_COST_SAR.high)} ${CURRENCY} per hour.`,
-      `Indicative build of ${String(BUILD_COST_PER_WORKFLOW_SAR.low.toLocaleString("en"))}–${String(BUILD_COST_PER_WORKFLOW_SAR.high.toLocaleString("en"))} ${CURRENCY} per workflow.`,
+    assumptions: Object.freeze<Assumption[]>([
+      Object.freeze({
+        kind: "workload",
+        people,
+        hoursPerWeek,
+        weeksPerYear: WORKING_WEEKS_PER_YEAR,
+      }),
+      Object.freeze({
+        kind: "coverage",
+        percent: round(coverage * 100, 1),
+        ceilingPercent: COVERAGE_CEILING * 100,
+      }),
+      Object.freeze({ kind: "realisation", percent: REALISATION * 100 }),
+      Object.freeze({
+        kind: "hourly-cost",
+        low: HOURLY_COST_SAR.low,
+        high: HOURLY_COST_SAR.high,
+      }),
+      Object.freeze({
+        kind: "build-cost",
+        low: BUILD_COST_PER_WORKFLOW_SAR.low,
+        high: BUILD_COST_PER_WORKFLOW_SAR.high,
+      }),
     ]),
   });
 }

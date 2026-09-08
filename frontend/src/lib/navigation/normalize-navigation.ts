@@ -11,18 +11,35 @@ import type {
   NavigationScopeResolution,
   NavigationTarget,
 } from "@/lib/navigation/types";
-import type { SiteKey } from "@/types/site";
+import type { LocaleCode, SiteKey } from "@/types/site";
 
 type MenuCollection = NonNullable<SiraNavigationQueryData[NavigationScope]>;
 type NativeMenu = MenuCollection["nodes"][number];
 type NativeMenuItem = NonNullable<NativeMenu["menuItems"]>["nodes"][number];
 
-const SCOPE_LOCATIONS: Readonly<Record<NavigationScope, NavigationLocation>> =
-  Object.freeze({
+/**
+ * The menu location each scope reads, per language.
+ *
+ * ADR-034 gives every scope an Arabic twin registered network-wide, so a menu
+ * is translated by assigning a second menu rather than by translating labels
+ * through a plugin. A site that has not assigned the Arabic locations resolves
+ * `menu-unassigned`, which the caller answers by falling back to the default
+ * locale's menus.
+ */
+export const SCOPE_LOCATIONS: Readonly<
+  Record<LocaleCode, Readonly<Record<NavigationScope, NavigationLocation>>>
+> = Object.freeze({
+  en: Object.freeze({
     primary: "PRIMARY",
     footer: "FOOTER",
     legal: "LEGAL",
-  });
+  }),
+  ar: Object.freeze({
+    primary: "PRIMARY_AR",
+    footer: "FOOTER_AR",
+    legal: "LEGAL_AR",
+  }),
+});
 
 const EMPTY_DIAGNOSTICS: readonly NavigationDiagnostic[] = Object.freeze([]);
 
@@ -255,6 +272,7 @@ function createTree(items: readonly NormalizedFlatItem[]): readonly NavigationIt
 function normalizeScope(
   scope: NavigationScope,
   collection: SiraNavigationQueryData[NavigationScope],
+  expectedLocation: NavigationLocation,
 ): NavigationScopeResolution {
   if (collection === null) {
     return missing(scope, "menu-unassigned");
@@ -273,7 +291,6 @@ function normalizeScope(
   }
 
   const menu = collection.nodes[0];
-  const expectedLocation = SCOPE_LOCATIONS[scope];
 
   if (
     menu === undefined ||
@@ -335,12 +352,15 @@ function normalizeScope(
 export function normalizeNavigation(
   siteKey: SiteKey,
   data: SiraNavigationQueryData,
+  locale: LocaleCode = "en",
 ): NavigationResolution {
+  const locations = SCOPE_LOCATIONS[locale];
+
   return Object.freeze({
     status: "resolved",
     siteKey,
-    primary: normalizeScope("primary", data.primary),
-    footer: normalizeScope("footer", data.footer),
-    legal: normalizeScope("legal", data.legal),
+    primary: normalizeScope("primary", data.primary, locations.primary),
+    footer: normalizeScope("footer", data.footer, locations.footer),
+    legal: normalizeScope("legal", data.legal, locations.legal),
   });
 }

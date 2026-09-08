@@ -200,6 +200,8 @@ $expected_presentation_groups = array(
 	'group_sira_group_homepage',
 	'group_sira_homepage',
 	'group_sira_investment_details',
+	'group_sira_locale',
+	'group_sira_page_intro',
 	'group_sira_partner_details',
 	'group_sira_testimonial_details',
 );

@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
+import { CALCULATOR_COPY } from "@/lib/calculator/copy";
 import {
   calculate,
   COVERAGE_CEILING,
   CURRENCY,
   INPUT_BOUNDS,
   REALISATION,
+  WORKING_WEEKS_PER_YEAR,
   formatSar,
   type CalculatorInput,
 } from "@/lib/calculator/model";
@@ -128,13 +130,60 @@ describe("the automation impact model", () => {
     expect(two.indicativeBuildSar.low).toBeGreaterThan(one.indicativeBuildSar.low);
   });
 
-  it("states every assumption it used", () => {
+  it("states every assumption it used, as facts rather than as sentences", () => {
+    // The model used to return finished English prose here, which quietly made
+    // it a presentation module and made a second language impossible without
+    // editing arithmetic. It now returns the NUMBERS; `copy.ts` owns the words.
     const result = calculate(base);
+    const kinds = result.assumptions.map((assumption) => assumption.kind);
 
-    expect(result.assumptions.length).toBeGreaterThanOrEqual(5);
-    expect(result.assumptions.join(" ")).toContain("48 working weeks");
-    expect(result.assumptions.join(" ")).toContain("absorbed rather than saved");
-    expect(result.assumptions.join(" ")).toContain(CURRENCY);
+    expect(kinds).toEqual([
+      "workload",
+      "coverage",
+      "realisation",
+      "hourly-cost",
+      "build-cost",
+    ]);
+
+    // Every honesty rule the calculator advertises is present as a stated
+    // assumption, not merely applied inside the arithmetic.
+    const workload = result.assumptions.find((a) => a.kind === "workload");
+    const realisation = result.assumptions.find((a) => a.kind === "realisation");
+    const coverage = result.assumptions.find((a) => a.kind === "coverage");
+
+    expect(workload).toMatchObject({
+      people: base.people,
+      hoursPerWeek: base.hoursPerWeek,
+      weeksPerYear: WORKING_WEEKS_PER_YEAR,
+    });
+    expect(realisation?.percent).toBe(REALISATION * 100);
+    expect(coverage?.ceilingPercent).toBe(COVERAGE_CEILING * 100);
+    expect(result.currency).toBe(CURRENCY);
+  });
+
+  it("renders every assumption in both languages", () => {
+    // The point of separating the numbers from the words: an assumption that
+    // has no wording in one language is a silently blank line in the reader's
+    // list, and the assumptions are the honest part of this feature.
+    const result = calculate(base);
+    const format = {
+      count: (value: number) => String(value),
+      money: (value: number) => `SAR ${String(value)}`,
+      percent: (value: number) => `${String(value)}%`,
+    };
+
+    for (const locale of ["en", "ar"] as const) {
+      for (const assumption of result.assumptions) {
+        const sentence = CALCULATOR_COPY[locale].assumption(assumption, format);
+
+        expect(sentence.length).toBeGreaterThan(10);
+        expect(sentence).not.toContain("undefined");
+      }
+    }
+
+    expect(
+      CALCULATOR_COPY.en.assumption(result.assumptions[2]!, format),
+    ).toContain("absorbed rather than saved");
   });
 
   it("formats money as SAR in both locales", () => {

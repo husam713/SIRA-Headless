@@ -277,10 +277,24 @@ Known separate observation: backend source declares SiraProjectDetails while the
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED; the human backup/admin evidence gate remains required.
 - Step 4 production UI implementation: AUTHORIZED / IN PROGRESS. Group homepage sections, the shared shell, the branch homepage, and the shared responsive layout primitives are all merged, through PRs `#36`, `#38`, `#40`, `#41`, `#44`, `#47`, and `#48`. That list is exact: `#37`, `#42`, `#43`, `#45`, and `#46` were not visual implementation increments. Newsroom route work remains NOT STARTED and is deliberately sequenced after the responsive foundation. ADR-029, which governs that responsive foundation, is owner accepted as of 2026-09-02; the acceptance covers the architecture decision only and grants no downstream authority.
 - Digital company (ADR-033): the tenant is registered in the repository on the
-  unmerged branch `feat/sirahdigital-sa`. Its WordPress site is NOT PROVISIONED,
-  its domain is not registered or pointed by this work, and its trading-name
-  spelling is an open owner confirmation. See
-  `docs/DIGITAL-TENANT-PROVISIONING.md`.
+  unmerged branch `feat/sirahdigital-sa`. Its WordPress site **IS PROVISIONED**
+  as of 2026-09-08 — blog 6 on the existing network, `blog_public 0`, created
+  under the authorization the owner's Phase 2 prompt added to ADR-033, after a
+  verified backup. It carries seeded pre-launch content. Its trading-name
+  spelling and brand mark remain open owner confirmations. See
+  `docs/DIGITAL-TENANT-PROVISIONING.md` and the Phase 2 section of
+  `docs/HANDOFF.md`.
+- Digital hostnames (owner decision, 2026-09-08): the active pre-launch public
+  frontend hostname is `digital.siratrgroup.com`. `sirahdigital.sa` remains the
+  intended future canonical domain but is NOT active, is not registered or
+  pointed by this work, and must not be treated as live. The repository has NOT
+  yet been updated to reflect this; `frontend/src/config/sites.ts` still records
+  `sirahdigital.sa` as the canonical hostname. An amending or superseding ADR for
+  the phased hostname strategy has NOT been authored.
+- Digital seeded content is NOT covered by the launch gate.
+  `tools/verify-no-seed-content.mjs` checks only the four editorial post types
+  and post meta, so Digital's seeded pages, services, projects, and industry
+  terms would pass undetected. Launch-blocking defect; not yet fixed.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 
 PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance

@@ -122,35 +122,353 @@ and AI Engineering OS product/runtime work remain NOT AUTHORIZED.
 
 ## New owner decision — SIRA Digital is a first-class company (ADR-033)
 
-The canonical public production topology now spans **two apexes**. SIRA Digital
-trades on `sirahdigital.sa`, a separate Saudi domain, and is a first-class
-tenant of this same platform: the same WordPress Multisite network, the same
+The canonical public production topology is planned to span **two apexes**. SIRA
+Digital will trade on `sirahdigital.sa`, a separate Saudi domain. **Read the
+2026-09-08 owner decision below before acting on that**: pre-launch, Digital's
+active public hostname is `digital.siratrgroup.com`, and `sirahdigital.sa` is
+reserved rather than live.
+
+Either way Digital is a first-class tenant of this same platform: the same
+WordPress Multisite network, the same
 Next.js application, the same GraphQL contract, the same contact pipeline, the
 same site registry. It is **not** a separate codebase and **not** a separate
 CMS.
 
-If you find `sirahdigital.sa` in the registry, it is canonical and authorized.
-Do not report it as topology drift.
+If you find `sirahdigital.sa` in the registry, it is authorized — do not report
+it as topology drift. As of 2026-09-08 it is the *future* canonical hostname
+rather than the active one, and the registry has not yet been updated to say so.
+That mismatch is a known, recorded gap, not drift either.
 
 Implementation lives on the unmerged branch `feat/sirahdigital-sa`. The site
 key is `digital`, the Business Unit slug is `digital`, and Digital is the only
 company set on a dark ground — which took no fork of the shell, because `paper`
 is the page ground and `ink` is the text on it.
 
-Three things are open and must not be assumed finished:
+**The WordPress site IS now provisioned.** This reverses what this file said
+before 2026-09-08. The owner's Phase 2 implementation prompt required Digital to
+exist as a real site inside the existing Multisite network rather than be
+simulated at the registry level, which widened ADR-033's authorization boundary
+to include live site creation. Blog 6 was created with `wp site create`, moved
+onto `sirahdigital.sa` (path `/`) with `update_blog_details()`, and set to
+`blog_public 0` / Asia-Riyadh / week-starts-Sunday to match the other five
+tenants. A verified 7.2 MB / 134-table recovery point was taken before the first
+write. `docs/DIGITAL-TENANT-PROVISIONING.md` records the investigation that
+preceded it, including the finding that `COOKIE_DOMAIN` resolves to the request
+host, so a mapped domain needed no wp-config change at all.
 
-- **The WordPress site is NOT provisioned.** The tenant exists in the
-  repository ahead of the CMS site. That is deliberate: a build with no Digital
-  environment configured degrades that one tenant to its brand preset.
-  `docs/DIGITAL-TENANT-PROVISIONING.md` records the investigation — the
-  existing Multisite has **no architectural blocker** to a mapped external
-  domain on a different TLD — and carries the external admin action card.
+Provisioning the WordPress site did NOT register the domain, change DNS, or
+authorize deployment. Those remain protected.
+
+Two things are open and must not be assumed finished:
+
 - **The trading-name spelling.** `SIRA Digital` follows the established
   `SIRA <Company>` convention; the domain spells it `sirahdigital`. No prior
   canonical name existed in this repository. Owner confirmation needed.
 - **The brand mark.** Digital uses the shared white SIRA mark, which is correct
   for a GROUP company on a dark ground. A Digital-specific mark is an owner
   deliverable.
+
+## New owner decision — Digital launches on a pre-launch subdomain (2026-09-08)
+
+Digital now has **two hostnames with different lifecycles**, and they must not be
+collapsed into one:
+
+| Role | Hostname | Status |
+| --- | --- | --- |
+| Active public frontend, pre-launch | `digital.siratrgroup.com` | **Current** |
+| Future public canonical, Saudi | `sirahdigital.sa` | Reserved, **not active** |
+
+`sirahdigital.sa` remains the intended canonical domain. It is **not** the active
+public frontend hostname yet, and nothing should treat it as live.
+
+**Do not delete or lose the existing Digital WordPress site.** It is blog 6 on
+the existing network and it currently carries `wp_blogs.domain =
+sirahdigital.sa`. That row is the site's identity; losing it loses the tenant and
+its seeded content.
+
+This supersedes the hostname half of ADR-033 for the pre-launch phase. ADR-033's
+premise — that Digital is the first company whose canonical hostname is not a
+`siratrgroup.com` subdomain — remains true at launch but is **not** true today.
+An amending or superseding ADR must be authored to record the phased hostname
+strategy; that is a durable decision and has not been written yet.
+
+**Not yet implemented.** As of this checkpoint the repository still records
+`sirahdigital.sa` as `digital.canonicalHostname` in
+`frontend/src/config/sites.ts`, and the two-apex language in the governance docs
+still describes it as active. The following are open and deliberately untouched
+during this continuity checkpoint:
+
+- `frontend/src/config/sites.ts` — make `digital.siratrgroup.com` the canonical
+  hostname for now and keep `sirahdigital.sa` recorded as future-canonical. Note
+  that listing it as a plain alias would make it 308-redirect to the subdomain,
+  which may or may not be what the owner wants before the domain resolves at all;
+  confirm before choosing.
+- The tenant-topology contract test
+  `frontend/tests/contract/digital-tenant-topology.test.ts` asserts the current
+  hostname and will need updating with the decision, not around it.
+- `wp_blogs.domain` for blog 6 is a **CMS mutation** and remains protected. The
+  frontend resolves the tenant from the request host and reaches WordPress
+  through `SIRA_WP_DIGITAL_GRAPHQL_URL`, so WordPress's stored domain and the
+  public frontend hostname are separable; changing the row is a separate,
+  explicitly authorized action. If it is changed, use `update_blog_details()`
+  rather than a raw `UPDATE`, so the site cache is invalidated.
+- Canonical URLs, `metadataBase`, sitemap, and robots all derive from the site
+  registry, so they follow the registry change and must be re-verified after it.
+
+## Phase 2 — SIRA Digital implementation: resumable state
+
+Verified against the working tree on 2026-09-08 by reading Git and the files
+themselves. Do not infer any line of this section from a previous conversation.
+
+### Coordinates
+
+- Branch: `feat/sirahdigital-sa`
+- HEAD: this continuity commit. Rediscover it from Git rather than trusting a
+  SHA written here.
+- Ahead of `origin/feat/sirahdigital-sa` by **4 unpushed commits**: `900f8cc4`,
+  `8bd5822e`, `c72a4f0d`, and this one.
+- Draft PR `#65` is therefore **behind the local branch** and does not show the
+  tenant provisioning, the seeding, or the public routes.
+- Depends on `feat/newsroom-ledger`. Keep that dependency explicit; do not ship
+  Newsroom changes as part of Digital.
+- **Last safe implementation point: `c72a4f0d`.** It passed the full gate.
+  Everything after it is uncommitted and does not compile.
+
+### Completed and committed
+
+| Commit | What it landed |
+| --- | --- |
+| `9b4a7020` | Phase 1 reference-forensics evidence under `artifacts/reference-forensics/` |
+| `9adc1e6e` | `digital` site key, registry entry, WordPress env keys, brand preset |
+| `1be43843` | Digital brand in `sira-core`; tenant-aware contact recipient routing |
+| `bd890b68` | Two-apex topology governance, ADR-033 |
+| `c04dfd26` | Digital homepage composition and the CSS motion layer |
+| `c4dca911` | `group_sira_digital_homepage` ACF field group |
+| `17c5468b` | Computed `onDeep` foreground token, fixing dark-ground contrast |
+| `900f8cc4` | Real WordPress tenant (blog 6); live schema captured from six tenants |
+| `8bd5822e` | Seed content; homepage rendering from the real CMS |
+| `c72a4f0d` | Public routes: services, work, industries, contact, calculator |
+
+### CMS / WordPress state
+
+- Digital is **blog 6**, domain `sirahdigital.sa`, path `/`, `blog_public 0`.
+- Seeded pre-launch content exists on it: a front page, 4 pages
+  (about / contact / privacy / terms), 8 `sira_service`, 5 `sira_project`,
+  8 `sira_industry` terms, 3 menus. Seeder: `tools/seed/digital-seed.php` with
+  `tools/seed/digital-seed.json`; `--remove` reverses it.
+- Every seeded post carries post meta `_sira_seed=1`; every seeded industry term
+  carries **term meta** `_sira_seed=1`.
+- **DEFECT — the launch gate does not see any of it.**
+  `tools/verify-no-seed-content.mjs` counts only
+  `--post_type=sira_news,sira_insight,sira_article,sira_press_release` and reads
+  **post meta only**. Digital's seeded records are `page`, `sira_service`,
+  `sira_project`, and `sira_industry` *terms*, so the verifier will report PASS
+  while all of them are still live. Verified by reading that file, lines 25-47.
+  Found during this checkpoint and deliberately NOT repaired here.
+- The backend edits listed under "Interrupted work" are **local only**. Nothing
+  has been deployed to WordPress since `900f8cc4`.
+
+### GraphQL / schema / codegen state
+
+- Versioned artifacts in `frontend/schema/` were captured live from all six
+  tenants at `900f8cc4`. Branch-peer hash
+  `f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1`.
+- **They are now stale relative to the uncommitted backend edits.** Confirmed by
+  grep: `PRIMARY_AR`, `FOOTER_AR`, `LEGAL_AR`, `SiraPageIntro`, and `pageIntro`
+  each appear **0 times** in `frontend/schema/*.graphql` and 0 times in
+  `frontend/src/generated/graphql/graphql.ts`.
+- Consequence: the uncommitted frontend cannot typecheck until the backend change
+  is deployed, introspection re-captured, and codegen re-run.
+
+### Route implementation state
+
+Committed at `c72a4f0d` and working against live CMS data: `/` (Digital homepage
+variant), `/services` (anchored long page, sticky index at `lg+`), `/work`
+(numbered register from `sira_project`), `/industries` (bottleneck/opportunity
+pairs from `sira_industry`), `/contact` (hero + `ContactForm` +
+`ImpactCalculator`), and `/[section]` (generic CMS prose route).
+
+Measured in a real browser at 1440 against live WordPress: `work` 4722px /
+5.25 screens / 0 overflow; `industries` 3022px / 3.36 screens / 0 overflow.
+
+### Contact and calculator state
+
+- Contact reuses the existing pipeline unchanged: browser → trusted Next.js route
+  → WordPress → validation → private storage → authenticated delivery. No second
+  enquiry backend was created. Tenant identity and recipient routing resolve from
+  the request host in `backend/mu-plugins/sira-contact-endpoint.php`.
+- The calculator is ours: `frontend/src/lib/calculator/model.ts`, a pure,
+  deterministic SAR model with an explicit realisation fraction, a coverage
+  ceiling, range outputs, and published assumptions. Nothing was copied or
+  reverse-engineered from the reference.
+
+### Localization / Arabic / RTL state — BLOCKED, uncommitted
+
+This is the only Definition-of-Done item still open, and it is stopped on a
+governance conflict, not on engineering difficulty.
+
+**The conflict.** `docs/SIRA-CMS-EDITORIAL-SYSTEM-ARCHITECTURE.md` §WS8 states
+that this is `2C4-B09`, that it must not be bundled into any other workstream,
+that three models remain viable, and that owner decision is required before any
+Arabic content is created. `docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md` §18 adds:
+do not invent locale routes or translated-record ownership, and `hreflang`
+activation is blocked. `project-state.json` still records
+`multilingualArchitectureB09: "UNRESOLVED"`.
+
+The owner's Phase 2 prompt requires Arabic as a first-class experience. That
+requirement and the `2C4-B09` gate are in direct conflict, and WS8 reserves the
+choice for the owner.
+
+**What the uncommitted work already does, against that gate.** It implements a
+*fourth* model — locale prefix in the URL, translation as a slug prefix inside
+the same site — and it authors Arabic text. Specifically it:
+
+- invents locale routes (`/ar/...`, resolved in `frontend/src/proxy.ts`);
+- invents translated-record ownership (the `ar-` slug prefix convention);
+- activates `hreflang` and `x-default` in `frontend/src/lib/seo/metadata.ts`;
+- authors Arabic copy in `frontend/src/lib/i18n/locale.ts` and
+  `frontend/src/lib/calculator/copy.ts`;
+- adds `primary_ar` / `footer_ar` / `legal_ar` menu locations **network-wide**,
+  changing the GraphQL enum for all six tenants;
+- references a non-existent **ADR-034** in code comments in
+  `frontend/src/lib/i18n/locale.ts`,
+  `frontend/src/lib/content/get-content-page.ts`, and
+  `backend/src/Content/NavMenus.php`.
+
+**Nothing of this is committed and nothing is deployed.** No Arabic content was
+written to WordPress. The violation is confined to the working tree.
+
+**Resolution path — owner decision required.** Either the owner selects a
+`2C4-B09` model and authorizes an ADR resolving the gate (at minimum for the
+Digital tenant), or the Arabic work is reverted to `c72a4f0d`. Do not commit the
+current localization work under the gate as it stands, and do not author ADR-034
+without that decision.
+
+### Interrupted work — the exact state of the tree
+
+25 tracked files modified, 6 new untracked frontend paths, none committed.
+**The tree does not compile.** `pnpm typecheck` fails with 12 source errors plus
+4 stale `.next` type conflicts. The 12, by cause:
+
+1. **Codegen not re-run** — `get-homepage.ts` ×2, `get-navigation.ts` ×1. The
+   `$uri` homepage variable and the navigation enum variables are not in the
+   generated types yet.
+2. **Backend not deployed** — `normalize-navigation.ts` ×1. `FOOTER_AR` is not in
+   `MenuLocationEnum`.
+3. **A local TypeScript defect in `frontend/src/lib/calculator/copy.ts`** ×8. The
+   `assumption()` switch returns `string | undefined` and two callback parameters
+   are implicitly `any`. Fixable without any deployment.
+4. **`frontend/src/app/(sites)/[siteKey]/contact/page.tsx` ×1 — the single
+   half-converted file.** Every other route was converted; this one was not. It
+   still passes a BCP-47 string to `ImpactCalculator`, which now takes a
+   `LocaleCode`; it still imports `getContentPage` directly rather than the
+   locale-aware route context; and it still hard-codes its hero copy and its
+   eight enquiry-subject strings.
+
+Also interrupted: `frontend/src/lib/i18n/contact-copy.ts` is referenced by an
+intended rewrite of the contact page but **was never created**. It does not exist
+on disk and nothing imports it, confirmed by `grep -rn contact-copy src/`.
+
+Known-failing test, by inspection rather than by running:
+`frontend/tests/unit/calculator/model.test.ts` lines 135-137 call
+`result.assumptions.join(" ")` and expect English prose, but `assumptions` is now
+an array of structured `Assumption` objects.
+
+Untracked paths that are **pre-existing and not part of this work** — do not
+sweep them into a Digital commit: `.github/workflows/backend-ci.yml`,
+`artifacts/branch-fidelity/branch-fidelity.zip`,
+`artifacts/homepage-fidelity/ours/ours.zip`, `artifacts/step-4/responsive-qa/`,
+and `conversation history chat gpt.txt`.
+
+### Validation actually run
+
+| Check | Result | When |
+| --- | --- | --- |
+| `pnpm lint` | PASS | at `c72a4f0d` |
+| `pnpm typecheck` | PASS | at `c72a4f0d` |
+| `pnpm test:run` | PASS — 59 files, 585 tests | at `c72a4f0d` |
+| `pnpm build` | PASS | at `c72a4f0d` |
+| Browser capture, `/work` and `/industries` @1440 | PASS, 0 overflow | at `c72a4f0d` |
+| `php -l`, 34 backend files | PASS | at `900f8cc4` |
+| `validate-static.php` | PASS 169 / FAIL 0 | at `900f8cc4` |
+| `pnpm typecheck` | **FAIL — 12 source errors** | current tree, 2026-09-08 |
+
+### Validation still pending
+
+- Everything on the current tree. Nothing has been re-run green since
+  `c72a4f0d`; treat all current-tree validation as NOT RUN except the failing
+  typecheck above.
+- Per-viewport capture at 390 / 768 / 1024 / 1280 / 1920 — NOT RUN.
+- Arabic / RTL browser validation in both directions — NOT RUN, and blocked.
+- `verify-no-seed-content.mjs` — will report PASS incorrectly; see the defect
+  above.
+- Backend `php -l` and `validate-static.php` against the uncommitted plugin edits
+  — NOT RUN.
+
+### Deferred quality items, held for the final fidelity pass
+
+- `/services` density: 12.73 screens at 1440 against the reference's 8.4.
+- Header renders 61px tall.
+- Contact hero leaves a large empty gap at 1440.
+- Unselected calculator chips had very low contrast at `border-brand-border`
+  (10% white). A stronger unselected border exists in the uncommitted tree only.
+- Forensic-artifact pruning so PR `#65` stays reviewable.
+
+### Unresolved blockers
+
+1. **`2C4-B09` multilingual gate** — owner decision; blocks all localization.
+2. **Digital's pre-launch hostname is not reconciled in the repository.** The
+   owner set `digital.siratrgroup.com` as the active public host on 2026-09-08;
+   the registry, the topology contract test, and the governance docs still
+   describe `sirahdigital.sa` as canonical. See the owner-decision section above.
+3. **`verify-no-seed-content.mjs` does not cover Digital's content** — launch
+   safety; engineering fix not yet made.
+4. **`sirahdigital.sa` has no hosting-panel vhost and no DNS** — owner action,
+   and no longer on the critical path for pre-launch.
+5. **Trading-name spelling** and **Digital brand mark** — owner deliverables.
+6. RB-009 restore rehearsal and the ADR-032 CDN 403 remain open from before this
+   workstream.
+
+### Recommended resume point for a fresh session
+
+1. Boot per `CLAUDE.md` and `templates/ai/BOOT-PROTOCOL.md`. Rediscover HEAD.
+2. **Reconcile the pre-launch hostname first** — it is independent of the
+   localization block and of the unpushed commits, and everything canonical
+   (canonical URLs, `metadataBase`, sitemap, robots, OG) derives from it.
+   Confirm with the owner whether `sirahdigital.sa` should redirect to the
+   subdomain pre-launch or simply not resolve, then update
+   `frontend/src/config/sites.ts` and
+   `frontend/tests/contract/digital-tenant-topology.test.ts` together, and author
+   the amending ADR.
+3. **Ask the owner to resolve `2C4-B09` before touching the localization work.**
+   Until then the Arabic tree is unshippable regardless of whether it compiles.
+4. If the owner defers `2C4-B09`: revert the working tree to `c72a4f0d`, push the
+   three unpushed commits, refresh draft PR `#65`, then go to step 6.
+5. If the owner resolves `2C4-B09`: author the ADR first, then finish in this
+   order — (a) fix `copy.ts`; (b) rewrite `contact/page.tsx` and create
+   `frontend/src/lib/i18n/contact-copy.ts`; (c) deploy the two backend files;
+   (d) re-capture introspection and re-run codegen; (e) update the calculator
+   assumptions test; (f) run the full gate; (g) seed Arabic content;
+   (h) browser-validate both directions at all six widths.
+6. Then, and only then, the ONE OWNER CHECKPOINT below.
+
+### The ONE OWNER CHECKPOINT remains in force
+
+It has **not** been reached and must not be skipped. When core implementation is
+substantially complete and ready for the final visual-fidelity / motion-
+refinement / interaction-polish pass, emit only a very short checkpoint message
+and ask exactly:
+
+```
+Ready for FINAL VISUAL FIDELITY / MOTION REFINEMENT.
+Switch Claude effort to MAX now?
+Reply: OK or NO OK.
+```
+
+Do not begin that pass before the reply. `OK` means effort is already MAX —
+continue immediately without asking again. `NO OK` means continue the same pass
+at the current setting, without asking again. It is a model-effort checkpoint
+only: not design, implementation, or architecture approval.
 
 ## New owner decision — Group staging first
 
@@ -270,9 +588,15 @@ Historical RB-001/RB-009 controls remain truthful evidence for direct production
 
 Before final Group cutover, establish appropriate recovery controls for the actual cutover, including preservation of the legacy Group environment and an appropriate final recovery point where applicable. Do not mark historical RB requirements complete unless they actually occurred.
 
-## Live CMS state as of 2026-09-06
+## Live CMS state as of 2026-09-08
 
 Read this before touching the CMS or judging a rendered page.
+
+- **There are now six tenants, not five.** SIRA Digital is blog 6, provisioned
+  2026-09-08, carrying its own seeded pre-launch content. **Do not delete or lose
+  it.** The five-tenant counts below predate it and were not re-measured during
+  the 2026-09-08 continuity checkpoint. See the Phase 2 section above for what is
+  on blog 6 and for the launch-gate coverage defect that hides it.
 
 - **Placeholder editorial is live in WordPress.** 37 records across the five
   tenants carry post meta `_sira_seed=1`. They are invented and were authorized
@@ -309,9 +633,10 @@ Do not without explicit owner authorization:
 - perform CMS/database mutations or destructive cleanup;
 - delete taxonomy terms;
 - rotate production secrets;
-- create the Digital WordPress site, register or point `sirahdigital.sa`, or
-  map the domain on the network (ADR-033 authorizes the tenant, not the
-  provisioning).
+- register or point `sirahdigital.sa`, or create its hosting-panel vhost.
+  Creating the Digital WordPress site is no longer on this list: the owner's
+  Phase 2 prompt authorized it and it was done on 2026-09-08 (blog 6). The
+  domain, DNS, and vhost remain protected owner actions.
 
 ## Current next gate
 

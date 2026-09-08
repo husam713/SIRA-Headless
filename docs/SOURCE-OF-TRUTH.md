@@ -218,13 +218,21 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED.
-- Digital WordPress site: NOT PROVISIONED. The tenant exists in this repository
-  ahead of the CMS site, which is deliberate and safe — a build with no Digital
-  environment configured degrades that one tenant to its brand preset. Creating
-  the site and mapping the domain are external admin actions; see
-  `docs/DIGITAL-TENANT-PROVISIONING.md`, which also records the investigation
-  finding that the existing Multisite has **no architectural blocker** to a
-  mapped external domain on a different TLD.
+- Digital WordPress site: **PROVISIONED** on 2026-09-08. Blog 6 on the existing
+  network, `blog_public 0`, Asia/Riyadh, week starting Sunday, created with
+  `wp site create` and moved onto its own domain with `update_blog_details()`
+  after a verified 7.2 MB / 134-table recovery point. The owner's Phase 2 prompt
+  widened ADR-033's authorization to include live site creation; it did not
+  authorize domain registration, DNS, or deployment, which remain protected.
+  `docs/DIGITAL-TENANT-PROVISIONING.md` records the preceding investigation,
+  including the finding that the existing Multisite has **no architectural
+  blocker** to a mapped external domain on a different TLD.
+  **Do not delete or lose this site.**
+- Digital public hostname (owner decision, 2026-09-08): pre-launch, the active
+  public frontend hostname is `digital.siratrgroup.com`. `sirahdigital.sa` is the
+  intended future canonical Saudi domain and is NOT active. The repository still
+  records `sirahdigital.sa` as `digital.canonicalHostname`; reconciling that, and
+  authoring the amending ADR for the phased hostname strategy, are both open.
 - Digital trading-name spelling (`SIRA Digital` vs `SIRAH DIGITAL`): OPEN owner
   confirmation. No prior canonical name existed in this repository, so the
   established `SIRA <Company>` convention was followed rather than a new name

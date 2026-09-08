@@ -5,7 +5,7 @@ import { useId, useRef, useState } from "react";
 // The only interactive part of the contact section. Everything around it stays
 // a Server Component; this exists because a form needs submission state.
 //
-// It posts to /api/contact, which validates again and forwards to the CMS. The
+// It posts to /api/contact/, which validates again and forwards to the CMS. The
 // browser never sees the WordPress origin, and client validation is a courtesy
 // only — the server rejects the same cases independently.
 
@@ -56,7 +56,12 @@ export function ContactForm({ services }: ContactFormProps) {
     setFormError(null);
 
     try {
-      const response = await fetch("/api/contact", {
+      // Trailing slash on purpose: this application runs with
+      // `trailingSlash: true`, so `/api/contact` answers 308. A POST does
+      // survive that redirect, but it costs a round trip on the one interaction
+      // the whole site exists to produce, and a redirected POST body is exactly
+      // the thing intermediaries handle inconsistently.
+      const response = await fetch("/api/contact/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({

@@ -37,7 +37,7 @@ const SITES = Object.freeze({
   healthcare: "healthcare.siratrgroup.com",
   lifestyle: "lifestyle.siratrgroup.com",
   realestate: "realestate.siratrgroup.com",
-  digital: "sirahdigital.sa",
+  digital: "digital.siratrgroup.com",
 });
 
 const WP_ROOT = "~/domains/siratrgroup.com/public_html";

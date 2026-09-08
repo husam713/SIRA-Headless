@@ -81,7 +81,7 @@ const HOSTNAME = Object.freeze({
   healthcare: "healthcare.siratrgroup.com",
   lifestyle: "lifestyle.siratrgroup.com",
   realestate: "realestate.siratrgroup.com",
-  digital: "sirahdigital.sa",
+  digital: "digital.siratrgroup.com",
 });
 
 // The WordPress root on the origin, needed only by the WP-CLI transport below.
@@ -89,11 +89,11 @@ const WP_ROOT = "~/domains/siratrgroup.com/public_html";
 
 // Tenants whose domain has no web-server vhost yet.
 //
-// SIRA Digital's WordPress site is real (blog 6, `wp_blogs.domain` =
-// sirahdigital.sa) but `sirahdigital.sa` is not yet added in the hosting panel
-// and its DNS does not point here, so an HTTP request for it lands on the
-// wrong site. Those are owner actions, and neither of them is a reason to be
-// unable to develop against the tenant's real data.
+// SIRA Digital's WordPress site is real — blog 6, `wp_blogs.domain` =
+// digital.siratrgroup.com since the 2026-09-08 CMS move — but that hostname has
+// no vhost of its own in the hosting panel, so an HTTP request for it lands on
+// the wrong site. That is an owner action, and it is not a reason to be unable
+// to develop against the tenant's real data.
 //
 // WPGraphQL does not need the web server. `graphql()` executes the schema
 // in-process, so WP-CLI reaches exactly the same resolvers, the same ACF field

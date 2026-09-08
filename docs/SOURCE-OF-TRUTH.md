@@ -229,6 +229,12 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
   including the finding that the existing Multisite has **no architectural
   blocker** to a mapped external domain on a different TLD.
   **Do not delete or lose this site.**
+- Digital CMS origin: `digital.siratrgroup.com` since 2026-09-08 (owner
+  decision). Blog 6 was created on `sirahdigital.sa` and moved with
+  `update_blog_details()` after a verified backup; no occurrence of the old
+  hostname remains anywhere in the database. **OPEN:** WordPress and the
+  intended pre-launch public frontend now claim the same hostname, which must be
+  resolved before the frontend is deployed there.
 - Digital public hostname (ADR-035): the active public frontend hostname is
   `digital.siratrgroup.com`. `sirahdigital.sa` is the future production domain,
   registered as the planned hostname and redirecting to the active one until it

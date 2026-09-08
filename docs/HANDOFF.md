@@ -176,7 +176,14 @@ collapsed into one:
 | Role | Hostname | Status |
 | --- | --- | --- |
 | Active public frontend, pre-launch | `digital.siratrgroup.com` | **Current** |
+| WordPress CMS origin | `digital.siratrgroup.com` | **Current**, moved 2026-09-08 |
 | Future public canonical, Saudi | `sirahdigital.sa` | Reserved, **not active** |
+
+**OPEN — that hostname is claimed twice.** WordPress answers on
+`digital.siratrgroup.com`, and so should the pre-launch public frontend. One
+hostname cannot serve both. Nothing is broken today because no deployment is
+authorized; it must be resolved before the frontend is deployed there. At the
+ADR-035 cutover the frontend takes `sirahdigital.sa` and the conflict ends.
 
 `sirahdigital.sa` remains the intended canonical domain. It is **not** the active
 public frontend hostname yet, and nothing should treat it as live.
@@ -254,7 +261,11 @@ themselves. Do not infer any line of this section from a previous conversation.
 
 ### CMS / WordPress state
 
-- Digital is **blog 6**, domain `sirahdigital.sa`, path `/`, `blog_public 0`.
+- Digital is **blog 6**, domain `digital.siratrgroup.com`, path `/`,
+  `blog_public 0`. It was created on `sirahdigital.sa` and MOVED on 2026-09-08
+  by owner decision, with `update_blog_details()` after a verified 7.59 MB /
+  155-table backup. No occurrence of the old hostname remains anywhere in the
+  database. **Do not delete or lose this site.**
 - Seeded pre-launch content exists on it: a front page, 4 pages
   (about / contact / privacy / terms), 8 `sira_service`, 5 `sira_project`,
   8 `sira_industry` terms, 3 menus. Seeder: `tools/seed/digital-seed.php` with
@@ -383,8 +394,11 @@ and is recorded above. That is the documented split, not a skipped check.
 2. **Legal review** of the PDPL-aware privacy and terms drafts. They are marked
    in the content itself as drafts requiring review and claim no certification,
    audit or regulatory approval.
-3. **`sirahdigital.sa` has no hosting-panel vhost and no DNS** — owner action,
-   and no longer on the critical path: the cutover is a configuration change.
+3. **`digital.siratrgroup.com` is claimed by both WordPress and the intended
+   pre-launch frontend.** See the hostname table above. It must be resolved
+   before the frontend is deployed there. Neither Digital hostname has a vhost
+   of its own in the hosting panel — owner action. DNS for both already resolves
+   to the origin.
 4. RB-009 restore rehearsal and the ADR-032 CDN 403 remain open from before this
    workstream.
 
@@ -585,10 +599,11 @@ Do not without explicit owner authorization:
 - perform CMS/database mutations or destructive cleanup;
 - delete taxonomy terms;
 - rotate production secrets;
-- register or point `sirahdigital.sa`, or create its hosting-panel vhost.
-  Creating the Digital WordPress site is no longer on this list: the owner's
-  Phase 2 prompt authorized it and it was done on 2026-09-08 (blog 6). The
-  domain, DNS, and vhost remain protected owner actions.
+- register or point `sirahdigital.sa`, or create a hosting-panel vhost for
+  either Digital hostname. Creating the Digital WordPress site is no longer on
+  this list: the owner's Phase 2 prompt authorized it and it was done on
+  2026-09-08 (blog 6), and the owner separately authorized moving its CMS origin
+  to `digital.siratrgroup.com`. DNS, vhosts and deployment remain protected.
 
 ## Current next gate
 

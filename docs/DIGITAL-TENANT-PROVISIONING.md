@@ -4,6 +4,23 @@ Companion to ADR-033. This answers the question the owner asked before any
 alternative CMS could be considered: **can the existing WordPress Multisite
 network serve `sirahdigital.sa`, a mapped external domain on a different TLD?**
 
+## What happened after this was written
+
+Two things, both owner decisions, both later than the investigation below.
+
+1. **The tenant was provisioned** on 2026-09-08 as blog 6, after a verified
+   backup. The finding below held: no architectural blocker, no separate
+   installation, no mapping plugin.
+2. **The CMS origin moved** the same day, from `sirahdigital.sa` to
+   `digital.siratrgroup.com`. Creating the site on the Saudi domain had put the
+   CMS on the exact hostname the public frontend is meant to take at cutover,
+   and one hostname cannot serve both. See ADR-035.
+
+Everything below is preserved as the investigation record. Where it names
+`sirahdigital.sa` as the tenant's domain, that was true when it was written and
+is no longer the CMS origin. The domain itself is unchanged in purpose: it is
+still Digital's future public hostname.
+
 ## Finding
 
 **Yes. There is no architectural blocker.** A separate WordPress installation is

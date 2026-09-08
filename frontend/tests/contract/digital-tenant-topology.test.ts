@@ -39,6 +39,7 @@ const state = JSON.parse(repositoryFile("project-state.json")) as {
       readonly canonicalHostname: string;
       readonly plannedCanonicalHostname: string;
       readonly hostnameStrategyAdr: string;
+      readonly cmsOriginHostname: string;
       readonly siteKey: string;
       readonly businessUnitSlug: string;
       readonly separateCodebase: boolean;
@@ -111,12 +112,26 @@ describe("ADR-033 / ADR-035 Digital tenant topology", () => {
   });
 
   it("keeps the Saudi cutover visible as an open gate", () => {
-    // Provisioning is done; the domain move is not. The gate that closed must
-    // not take the gate that is still open down with it.
+    // Provisioning is done and DNS resolves; the domain move is not done. A
+    // gate that closes must not take a gate that is still open down with it,
+    // which is the whole reason these are separate entries rather than one
+    // "Digital domain" status.
     expect(state.openGates["digitalWordPressSiteProvisioning"]).toMatch(/^CLOSED_/u);
+    expect(state.openGates["digitalDomainRegistrationAndDns"]).toMatch(/^CLOSED_/u);
     expect(state.openGates["digitalSaudiDomainCutover"]).toMatch(/^OPEN_/u);
-    expect(state.openGates["digitalDomainRegistrationAndDns"]).toMatch(/^OPEN_/u);
     expect(state.openGates["digitalTradingNameSpelling"]).toMatch(/^OPEN_/u);
+  });
+
+  it("keeps the pre-launch hostname collision visible", () => {
+    // The owner moved the CMS onto `digital.siratrgroup.com` on 2026-09-08,
+    // which frees the Saudi domain for the frontend at cutover but means
+    // WordPress and the intended pre-launch frontend now claim one hostname.
+    // Nothing is broken while no deployment is authorized; this must not be
+    // allowed to go quiet before one is.
+    expect(state.openGates["digitalCmsOriginHostnameCollision"]).toMatch(/^OPEN_/u);
+    expect(state.authorization.digitalTenant.cmsOriginHostname).toBe(
+      "digital.siratrgroup.com",
+    );
   });
 
   it("agrees with the code the application actually runs", () => {

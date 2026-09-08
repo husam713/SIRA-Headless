@@ -1190,3 +1190,294 @@ a {
 .record-prose code {
   font-size: 0.875em;
 }
+
+/* ---------------------------------------------------------------------------
+   SIRA Digital (ADR-033)
+   ---------------------------------------------------------------------------
+   Digital is the one company allowed a substantially more technology-forward
+   surface. Everything below is Layer C — progressive premium enhancement — and
+   ADR-028's constraint holds: none of it may be required for navigation,
+   comprehension, accessibility, forms, or core CTA behaviour.
+
+   It is built on scroll-driven CSS animations rather than on
+   IntersectionObserver, for three reasons in this order:
+
+     1. Content is visible by default. A reveal here is an animation that plays,
+        not a hidden state waiting to be released, so a browser without
+        scroll-driven animations — or a page whose JavaScript never runs — shows
+        a complete readable section rather than blank ground. A JS-gated reveal
+        gets this wrong the moment hydration fails.
+     2. Every section stays a Server Component. The architecture lock keeps
+        Client Components to required interaction, and a decorative reveal is
+        not required interaction.
+     3. It runs off the main thread.
+
+   Reduced motion is handled twice on purpose: the global kill switch earlier in
+   this file collapses durations, and each block below adds a STRUCTURAL
+   fallback, so the page becomes a shorter static document rather than a fast
+   version of a long animated one. */
+
+:root {
+  /* The house easing for this tenant. One curve for every reveal and nudge;
+     consistency of easing is most of what reads as craft. */
+  --digital-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --digital-reveal-distance: 1.25rem;
+  /* The kinetic band's scroll runway, as a multiple of the stage. */
+  --digital-kinetic-track: 220svh;
+  --digital-kinetic-size-start: clamp(3.5rem, 14vw, 13.5rem);
+  --digital-kinetic-size-end: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+/* --- Reveal ---------------------------------------------------------------
+   Opacity 0 to 1 with a 20px rise, played against the element's own view
+   timeline. The 6% entry point is what an observer threshold would otherwise
+   express, and finishing at 26% of cover means nothing is still animating while
+   it is being read.
+
+   --digital-reveal-offset staggers siblings by moving the START of the range
+   rather than by adding a delay: a scroll-driven animation has no wall-clock
+   delay to add, and offsetting the range is what produces the same cascade. */
+@keyframes digital-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(var(--digital-reveal-distance));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .digital-reveal {
+      animation: digital-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry calc(6% + var(--digital-reveal-offset, 0%)) cover
+        calc(26% + var(--digital-reveal-offset, 0%));
+    }
+  }
+}
+
+/* --- Capability rail ------------------------------------------------------ */
+.digital-rail__title,
+.digital-rail__arrow {
+  transition: transform 220ms var(--digital-ease), color 220ms var(--digital-ease);
+}
+
+.digital-rail__item:focus-within .digital-rail__arrow {
+  transform: translateX(0.375rem);
+  color: var(--brand-ink);
+}
+
+/* translateX is physical. Nudging the arrow "forward" is leftward in Arabic. */
+[dir="rtl"] .digital-rail__item:focus-within .digital-rail__arrow {
+  transform: translateX(-0.375rem);
+}
+
+@media (hover: hover) {
+  .digital-rail__item:hover .digital-rail__arrow {
+    transform: translateX(0.375rem);
+    color: var(--brand-ink);
+  }
+
+  .digital-rail__item:hover .digital-rail__title {
+    transform: translateY(-2px);
+  }
+
+  [dir="rtl"] .digital-rail__item:hover .digital-rail__arrow {
+    transform: translateX(-0.375rem);
+  }
+}
+
+/* --- Marquee --------------------------------------------------------------
+   Same two-keyframe RTL treatment as the Group ticker: the duplicated strip
+   overflows toward the inline end, which is the opposite physical direction in
+   Arabic, so a single -50% keyframe would animate RTL into blank space. */
+@keyframes digital-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes digital-marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+.digital-marquee {
+  --digital-marquee-fade: 10%;
+  overflow-x: clip;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--digital-marquee-fade),
+    #000 calc(100% - var(--digital-marquee-fade)),
+    transparent 100%
+  );
+}
+
+.digital-marquee__track {
+  display: flex;
+  inline-size: max-content;
+  animation: digital-marquee 60s linear infinite;
+  will-change: transform;
+}
+
+[dir="rtl"] .digital-marquee__track {
+  animation-name: digital-marquee-rtl;
+}
+
+/* Ambient motion yields to intent: a reader who reaches for an item, with a
+   pointer or with the keyboard, stops the strip. */
+.digital-marquee:hover .digital-marquee__track,
+.digital-marquee:focus-within .digital-marquee__track {
+  animation-play-state: paused;
+}
+
+/* --- Kinetic wordmark -----------------------------------------------------
+   A tall track with a sticky stage inside it. The word scales down and rises as
+   the track passes, and the lockup underneath arrives in the last third.
+
+   Size is driven by font-size rather than by scale() so the type stays crisply
+   hinted at every step instead of being resampled. */
+.digital-kinetic {
+  position: relative;
+  view-timeline-name: --digital-kinetic;
+  view-timeline-axis: block;
+}
+
+.digital-kinetic__stage {
+  position: sticky;
+  top: var(--layout-header-offset);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.25rem, 3.5svh, 2.75rem);
+  block-size: calc(100svh - var(--layout-header-offset));
+  overflow: hidden;
+}
+
+.digital-kinetic__word {
+  margin: 0;
+  font-size: var(--digital-kinetic-size-end);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.digital-kinetic__lockup {
+  max-inline-size: 46ch;
+  text-align: center;
+}
+
+@keyframes digital-kinetic-word {
+  from {
+    font-size: var(--digital-kinetic-size-start);
+    transform: translateY(0.8125rem);
+  }
+  to {
+    font-size: var(--digital-kinetic-size-end);
+    transform: translateY(-0.8125rem);
+  }
+}
+
+@keyframes digital-kinetic-lockup {
+  0%,
+  62% {
+    opacity: 0;
+    transform: translateY(2.125rem);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .digital-kinetic {
+      block-size: var(--digital-kinetic-track);
+    }
+
+    .digital-kinetic__word {
+      animation: digital-kinetic-word linear both;
+      animation-timeline: --digital-kinetic;
+      animation-range: contain 0% contain 100%;
+      will-change: font-size, transform;
+    }
+
+    .digital-kinetic__lockup {
+      animation: digital-kinetic-lockup linear both;
+      animation-timeline: --digital-kinetic;
+      animation-range: contain 0% contain 100%;
+      will-change: opacity, transform;
+    }
+  }
+}
+
+/* Structural reduced-motion fallbacks. Not the same page faster — a shorter
+   page. The kinetic band loses its whole scroll runway and becomes an ordinary
+   block, and the marquee stops being a strip and becomes a wrapped list, which
+   is why the duplicated half is hidden rather than merely halted. */
+@media (prefers-reduced-motion: reduce) {
+  .digital-kinetic {
+    block-size: auto;
+  }
+
+  .digital-kinetic__stage {
+    position: static;
+    block-size: auto;
+    padding-block: clamp(4rem, 12svh, 8.75rem);
+  }
+
+  .digital-marquee {
+    mask-image: none;
+    overflow-x: visible;
+  }
+
+  .digital-marquee__track {
+    inline-size: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 1.75rem;
+    animation-name: none;
+    transform: none;
+  }
+
+  .digital-marquee__item[data-duplicate="true"] {
+    display: none;
+  }
+}
+
+/* --- Arabic display metrics -----------------------------------------------
+   The Latin display settings here are deliberately tight: sub-1.0 leading and
+   negative tracking are most of what makes the Latin headline feel engineered.
+   Neither transfers. Arabic letterforms connect and carry ascenders and
+   descenders that tight leading clips, and negative tracking damages the joins.
+   Kufi is also optically smaller at the same point size, so the kinetic band is
+   driven a step smaller rather than merely relaxed — at the Latin size it
+   overflows the 1.15 line box inside the sticky stage. */
+html:lang(ar) .digital-display {
+  line-height: 1.28;
+  letter-spacing: 0;
+}
+
+html:lang(ar) .digital-kinetic__word {
+  line-height: 1.15;
+  letter-spacing: 0;
+  --digital-kinetic-size-start: clamp(3rem, 9vw, 8.5rem);
+}
+
+html:lang(ar) .digital-eyebrow {
+  letter-spacing: 0.12em;
+}

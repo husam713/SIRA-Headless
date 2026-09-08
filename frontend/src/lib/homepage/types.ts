@@ -1,7 +1,13 @@
 import type { SiteKey } from "@/types/site";
 
-export type BranchSiteKey = Exclude<SiteKey, "group">;
-export type HomepageVariant = "group" | "branch";
+// Three variants, three shapes. `branch` is the four companies that share the
+// tested BranchHomepage composition (ADR-020); `digital` is excluded from it
+// because ADR-033 gives SIRA Digital its own composition on its own ground, and
+// letting it fall into `branch` would have silently rendered it as a fifth
+// branch site.
+export type BranchSiteKey = Exclude<SiteKey, "group" | "digital">;
+export type DigitalSiteKey = Extract<SiteKey, "digital">;
+export type HomepageVariant = "group" | "branch" | "digital";
 
 export interface HomepageLink {
   readonly label: string | null;
@@ -278,7 +284,60 @@ export interface BranchHomepage {
   readonly diagnostics: readonly HomepageDiagnostic[];
 }
 
-export type Homepage = GroupHomepage | BranchHomepage;
+/**
+ * One entry in the Digital capability rail.
+ *
+ * The rail is a numbered editorial list rather than a card grid: an index, a
+ * title, one paragraph, and an optional anchor or link. Depth per item is what
+ * makes a capability list read as substance rather than as an icon wall.
+ */
+export interface DigitalCapability {
+  readonly title: string | null;
+  readonly summary: string | null;
+  readonly link: HomepageLink | null;
+}
+
+/**
+ * The scroll-driven wordmark band.
+ *
+ * `word` is the text that scales across the band. `lockup` is the line that
+ * arrives underneath once the scroll is most of the way through. Both are CMS
+ * content; the motion is presentation.
+ */
+export interface DigitalWordmarkSection {
+  readonly word: string | null;
+  readonly lockup: string | null;
+  readonly link: HomepageLink | null;
+}
+
+/** A marquee of names or sectors, and the heading that introduces it. */
+export interface DigitalMarqueeSection extends HomepageRichTextSection {
+  readonly items: readonly string[];
+}
+
+export interface DigitalHomepageHero extends HomepageHero {
+  readonly eyebrow: string | null;
+}
+
+export interface DigitalHomepage {
+  readonly siteKey: DigitalSiteKey;
+  readonly databaseId: number;
+  readonly uri: "/";
+  readonly title: string | null;
+  readonly variant: "digital";
+  /** Nullable for the same reason as `GroupHomepage.hero`. */
+  readonly hero: DigitalHomepageHero | null;
+  readonly capabilitiesEyebrow: string | null;
+  readonly capabilities: readonly DigitalCapability[];
+  readonly marquee: DigitalMarqueeSection | null;
+  readonly wordmark: DigitalWordmarkSection | null;
+  readonly insights: HomepageEditorialSection | null;
+  readonly contact: HomepageContactSection | null;
+  /** Page-level diagnostics, e.g. a section dropped by a GraphQL field error. */
+  readonly diagnostics: readonly HomepageDiagnostic[];
+}
+
+export type Homepage = GroupHomepage | BranchHomepage | DigitalHomepage;
 
 export type InvalidHomepageReason =
   | "invalid-page"

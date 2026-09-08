@@ -1,6 +1,11 @@
 import type {
   BranchHomepage,
   BranchHomepageHero,
+  DigitalCapability,
+  DigitalHomepage,
+  DigitalHomepageHero,
+  DigitalMarqueeSection,
+  DigitalWordmarkSection,
   GroupHomepage,
   GroupHomepageHero,
   GroupHomepageHeroSlide,
@@ -25,6 +30,7 @@ import type {
   HomepageSectionHeader,
   HomepageSectionName,
   HomepageTicker,
+  HomepageVariant,
   InvalidHomepageReason,
 } from "@/lib/homepage/types";
 import type { GraphQLErrorSummary } from "@/lib/graphql/errors";
@@ -504,6 +510,105 @@ function normalizeMetricsSection(value: unknown, maximum: number): HomepageMetri
   });
 }
 
+/**
+ * Reads a variant field group the checked-in schema does not expose yet.
+ *
+ * `digitalHomepage` is registered in backend source, but it is not in
+ * `frontend/schema/wpgraphql.graphql`: refreshing that schema needs the live
+ * endpoint, and generated files are regenerated from their source contracts
+ * rather than hand-edited. Until the backend ships and
+ * `pnpm schema:fetch && pnpm codegen` runs, the query cannot select the field
+ * and this returns undefined — which normalizes to `missing-variant-data`.
+ *
+ * That is the honest answer, not a workaround: the Digital tenant renders its
+ * unconfigured state rather than pretending to have content. Delete this helper
+ * and read `page.digitalHomepage` directly once the schema carries it.
+ */
+function readUnschemaedFieldGroup(page: unknown, name: string): unknown {
+  return isRecord(page) ? page[name] : undefined;
+}
+
+// ---------------------------------------------------------------------------
+// Digital variant sections (ADR-033)
+// ---------------------------------------------------------------------------
+// Same tolerance rules as every other section here: an absent group is null, a
+// group whose every field is empty normalizes to nothing renderable, and no
+// section can take the page down with it.
+
+/**
+ * The capability rail.
+ *
+ * Capped at twelve because the rail is a reading surface, not a catalogue: past
+ * a dozen entries a numbered list stops being scannable and the CMS should be
+ * splitting it. An entry with neither a title nor a summary is dropped rather
+ * than rendered as an empty numbered row.
+ */
+function normalizeCapabilities(value: unknown): readonly DigitalCapability[] {
+  if (!Array.isArray(value)) return Object.freeze([]);
+
+  const capabilities = value
+    .slice(0, 12)
+    .filter(isRecord)
+    .map((entry): DigitalCapability =>
+      Object.freeze({
+        title: normalizePlainText(entry["title"], 160),
+        summary: normalizePlainText(entry["summary"], 600),
+        link: normalizeLink(entry["link"]),
+      }),
+    )
+    .filter((entry) => hasAnyValue([entry.title, entry.summary]));
+
+  return Object.freeze(capabilities);
+}
+
+/**
+ * The marquee band.
+ *
+ * Items are plain strings, not links: this is a statement of reach, and a row
+ * of names that each navigate somewhere reads as a directory instead. Capped at
+ * forty because the track is duplicated for the loop and a longer list makes
+ * the cycle slow enough to look stalled.
+ */
+function normalizeMarquee(value: unknown): DigitalMarqueeSection | null {
+  if (!isRecord(value)) return null;
+
+  const rawItems = Array.isArray(value["items"]) ? value["items"] : [];
+  const items = rawItems
+    .slice(0, 40)
+    .map((entry) =>
+      isRecord(entry)
+        ? normalizePlainText(entry["label"], 120)
+        : normalizePlainText(entry, 120),
+    )
+    .filter((entry): entry is string => entry !== null);
+
+  return Object.freeze({
+    ...normalizeHeader(value),
+    body: normalizeRichText(value["body"]),
+    items: Object.freeze(items),
+  });
+}
+
+/**
+ * The scroll-driven wordmark band.
+ *
+ * Returns null without a `word`, because the band is one enormous piece of type
+ * and the lockup beneath it is a caption. A caption with nothing to caption is
+ * two screens of empty ground.
+ */
+function normalizeWordmark(value: unknown): DigitalWordmarkSection | null {
+  if (!isRecord(value)) return null;
+
+  const word = normalizePlainText(value["word"], 40);
+  if (word === null) return null;
+
+  return Object.freeze({
+    word,
+    lockup: normalizePlainText(value["lockup"], 300),
+    link: normalizeLink(value["link"]),
+  });
+}
+
 function normalizeContact(value: unknown): HomepageContactSection | null {
   if (!isRecord(value)) return null;
   return Object.freeze({
@@ -600,7 +705,12 @@ export function normalizeHomepage(
   }
   const fields = page["siraHomepage"];
   if (!isRecord(fields)) return invalid(siteKey, "missing-homepage-data");
-  const expectedVariant = siteKey === "group" ? "group" : "branch";
+  // Three variants now, so this is a mapping rather than a group/not-group
+  // test. Digital gets its own value deliberately: with the old expression it
+  // would have expected `branch` and rendered as a fifth branch site the moment
+  // its CMS returned that variant, which ADR-033 explicitly does not want.
+  const expectedVariant: HomepageVariant =
+    siteKey === "group" ? "group" : siteKey === "digital" ? "digital" : "branch";
   if (fields["variant"] !== expectedVariant) return invalid(siteKey, "variant-mismatch");
 
   const databaseId = Number(page["databaseId"]);
@@ -650,6 +760,54 @@ export function normalizeHomepage(
       partners: normalizeContentSection(groupSections["partners"], "selectedPartners", "SiraPartner"),
       contact: normalizeContact(groupSections["contact"]),
       diagnostics: fieldErrorDiagnostics(fieldErrors, "groupHomepage"),
+    });
+    return Object.freeze({ status: "ready", homepage });
+  }
+
+  if (siteKey === "digital") {
+    // Same field-group registration as the other two variants, and the same
+    // envelope/section split: the field group is critical, every section in it
+    // is tolerant.
+    const digitalGroup = readUnschemaedFieldGroup(page, "digitalHomepage");
+    if (!isRecord(digitalGroup)) return invalid(siteKey, "missing-variant-data");
+    const digitalSections: Record<string, unknown> = digitalGroup;
+    const digitalHeroSource = digitalSections["hero"];
+    const digitalHeroCandidate: DigitalHomepageHero | null = isRecord(digitalHeroSource)
+      ? Object.freeze({
+          ...normalizeHero(digitalHeroSource),
+          eyebrow: normalizePlainText(digitalHeroSource["eyebrow"], 160),
+        })
+      : null;
+    // Same keep-threshold reasoning as the branch hero: the Digital hero is a
+    // full-viewport panel gated on a heading, so an eyebrow alone cannot
+    // justify one screen of empty dark ground.
+    const digitalHero: DigitalHomepageHero | null =
+      digitalHeroCandidate !== null &&
+      hasAnyValue([
+        digitalHeroCandidate.headingBefore,
+        digitalHeroCandidate.headingHighlight,
+        digitalHeroCandidate.headingAfter,
+        digitalHeroCandidate.description,
+        digitalHeroCandidate.primaryCta,
+        digitalHeroCandidate.secondaryCta,
+      ])
+        ? digitalHeroCandidate
+        : null;
+
+    const homepage: DigitalHomepage = Object.freeze({
+      siteKey,
+      databaseId,
+      uri: "/",
+      title,
+      variant: "digital",
+      hero: digitalHero,
+      capabilitiesEyebrow: normalizePlainText(digitalSections["capabilitiesEyebrow"], 80),
+      capabilities: normalizeCapabilities(digitalSections["capabilities"]),
+      marquee: normalizeMarquee(digitalSections["marquee"]),
+      wordmark: normalizeWordmark(digitalSections["wordmark"]),
+      insights: normalizeEditorialSection(digitalSections["insights"]),
+      contact: normalizeContact(digitalSections["contact"]),
+      diagnostics: fieldErrorDiagnostics(fieldErrors, "digitalHomepage"),
     });
     return Object.freeze({ status: "ready", homepage });
   }

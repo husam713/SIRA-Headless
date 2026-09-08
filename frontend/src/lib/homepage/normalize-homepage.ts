@@ -510,24 +510,6 @@ function normalizeMetricsSection(value: unknown, maximum: number): HomepageMetri
   });
 }
 
-/**
- * Reads a variant field group the checked-in schema does not expose yet.
- *
- * `digitalHomepage` is registered in backend source, but it is not in
- * `frontend/schema/wpgraphql.graphql`: refreshing that schema needs the live
- * endpoint, and generated files are regenerated from their source contracts
- * rather than hand-edited. Until the backend ships and
- * `pnpm schema:fetch && pnpm codegen` runs, the query cannot select the field
- * and this returns undefined — which normalizes to `missing-variant-data`.
- *
- * That is the honest answer, not a workaround: the Digital tenant renders its
- * unconfigured state rather than pretending to have content. Delete this helper
- * and read `page.digitalHomepage` directly once the schema carries it.
- */
-function readUnschemaedFieldGroup(page: unknown, name: string): unknown {
-  return isRecord(page) ? page[name] : undefined;
-}
-
 // ---------------------------------------------------------------------------
 // Digital variant sections (ADR-033)
 // ---------------------------------------------------------------------------
@@ -768,9 +750,8 @@ export function normalizeHomepage(
     // Same field-group registration as the other two variants, and the same
     // envelope/section split: the field group is critical, every section in it
     // is tolerant.
-    const digitalGroup = readUnschemaedFieldGroup(page, "digitalHomepage");
-    if (!isRecord(digitalGroup)) return invalid(siteKey, "missing-variant-data");
-    const digitalSections: Record<string, unknown> = digitalGroup;
+    if (!isRecord(page["digitalHomepage"])) return invalid(siteKey, "missing-variant-data");
+    const digitalSections: Record<string, unknown> = page["digitalHomepage"];
     const digitalHeroSource = digitalSections["hero"];
     const digitalHeroCandidate: DigitalHomepageHero | null = isRecord(digitalHeroSource)
       ? Object.freeze({

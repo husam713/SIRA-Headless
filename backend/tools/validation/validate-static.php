@@ -48,7 +48,32 @@ foreach ( $iterator as $file ) {
 
 sort( $php_files );
 
+// The syntax sweep shells out, and a hardened host disables every function that
+// can. Hostinger's PHP disables exec, shell_exec, system, passthru, popen and
+// proc_open, so on the machine this plugin actually runs on the sweep used to
+// take the whole validator down with an uncaught Error before a single
+// definition check ran.
+//
+// A crash is not a result. When no process function is available the sweep is
+// reported as NOT RUN, naming the reason, and every remaining check still runs
+// and still gates. `php -l` must then be run separately — it is a one-line
+// sweep, and the run is recorded with the rest of the validation evidence.
+$can_spawn = function_exists( 'exec' ) && ! in_array(
+	'exec',
+	array_map( 'trim', explode( ',', (string) ini_get( 'disable_functions' ) ) ),
+	true
+);
+
+$skipped = array();
+
 foreach ( $php_files as $file ) {
+	$relative = str_replace( $plugin_dir . DIRECTORY_SEPARATOR, '', $file );
+
+	if ( ! $can_spawn ) {
+		$skipped[] = 'PHP syntax: ' . $relative;
+		continue;
+	}
+
 	$output = array();
 	$code   = 0;
 
@@ -58,10 +83,7 @@ foreach ( $php_files as $file ) {
 		$code
 	);
 
-	$check(
-		0 === $code,
-		'PHP syntax: ' . str_replace( $plugin_dir . DIRECTORY_SEPARATOR, '', $file )
-	);
+	$check( 0 === $code, 'PHP syntax: ' . $relative );
 }
 
 require_once $plugin_dir . '/src/Content/PostTypes.php';
@@ -162,9 +184,38 @@ $check(
 	'Typed banner ACF keys are present and unique.'
 );
 
+// This asserted a magic count of five. It has been wrong since the homepage
+// sections were split into their own `groupHomepage` and `branchHomepage` field
+// groups, and nobody saw it: the validator crashed on the syntax sweep above
+// before reaching here, on every host that disables process functions.
+// ADR-033 adding `digitalHomepage` made it wrong by one more.
+//
+// A count was never the invariant. WHICH groups exist is, so the expected set is
+// named. An accidental addition still fails, and a rename or deletion now fails
+// naming the offending key rather than a number.
+$expected_presentation_groups = array(
+	'group_sira_branch_homepage',
+	'group_sira_company_details',
+	'group_sira_digital_homepage',
+	'group_sira_group_homepage',
+	'group_sira_homepage',
+	'group_sira_investment_details',
+	'group_sira_partner_details',
+	'group_sira_testimonial_details',
+);
+
+$actual_presentation_groups = array_keys( $presentation_groups );
+sort( $actual_presentation_groups );
+
+$unexpected_groups = array_values( array_diff( $actual_presentation_groups, $expected_presentation_groups ) );
+$missing_groups    = array_values( array_diff( $expected_presentation_groups, $actual_presentation_groups ) );
+
 $check(
-	5 === count( $presentation_groups ),
-	'Exactly five Step 2C.2B presentation field groups are defined.'
+	array() === $unexpected_groups && array() === $missing_groups,
+	'Presentation field groups match the approved set'
+		. ( array() === $unexpected_groups ? '' : ' (unexpected: ' . implode( ', ', $unexpected_groups ) . ')' )
+		. ( array() === $missing_groups ? '' : ' (missing: ' . implode( ', ', $missing_groups ) . ')' )
+		. '.'
 );
 
 $expected_presentation_groups = array(
@@ -276,13 +327,31 @@ $homepage_fields = array_column(
 	'graphql_field_name'
 );
 
+// Also stale, and unseen for the same reason. `groupHomepage` and
+// `branchHomepage` stopped being fields OF SiraHomepage when they became
+// sibling top-level groups: ACF prefixes a group field's children with the
+// parent name, which made every stored row unreadable under the old nesting.
+// SiraHomepage now carries the discriminator and nothing else, and each
+// variant's sections live in their own group.
+$check(
+	isset( $homepage_fields['variant'] ),
+	'SiraHomepage carries the variant discriminator.'
+);
+
 $check(
 	isset(
-		$homepage_fields['variant'],
-		$homepage_fields['groupHomepage'],
-		$homepage_fields['branchHomepage']
+		$presentation_groups['group_sira_group_homepage'],
+		$presentation_groups['group_sira_branch_homepage'],
+		$presentation_groups['group_sira_digital_homepage']
 	),
-	'SiraHomepage defines variant, groupHomepage and branchHomepage.'
+	'Each homepage variant has its own top-level field group.'
+);
+
+$check(
+	'groupHomepage' === ( $presentation_groups['group_sira_group_homepage']['graphql_field_name'] ?? null )
+		&& 'branchHomepage' === ( $presentation_groups['group_sira_branch_homepage']['graphql_field_name'] ?? null )
+		&& 'digitalHomepage' === ( $presentation_groups['group_sira_digital_homepage']['graphql_field_name'] ?? null ),
+	'Each variant group exposes its expected GraphQL field name.'
 );
 
 $business_unit_types = (array) (
@@ -506,10 +575,23 @@ foreach ( $failures as $message ) {
 	echo "[FAIL] {$message}\n";
 }
 
+foreach ( $skipped as $message ) {
+	echo "[NOT RUN] {$message}\n";
+}
+
+if ( array() !== $skipped ) {
+	echo "\nThe syntax sweep needs a process function and this host "
+		. "disables all of them. Run it separately, and record the run with the "
+		. "rest of the validation evidence:\n"
+		. "  find . -name '*.php' -not -path './vendor/*' -exec php -l {} +" . "\n";
+}
+
 echo "\nSummary: "
 	. count( $passes )
 	. ' passed, '
 	. count( $failures )
-	. " failed.\n";
+	. ' failed, '
+	. count( $skipped )
+	. " not run.\n";
 
 exit( array() === $failures ? 0 : 1 );

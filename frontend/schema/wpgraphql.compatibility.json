@@ -2,24 +2,26 @@
   "branches": {
     "exactSchemaEquality": true,
     "hashes": {
-      "consulting": "7bd2a7885d79a70d2f9ff3eb55e3cc9102fa46d6ebef5fc4ce24c1b53e5cb314",
-      "healthcare": "7bd2a7885d79a70d2f9ff3eb55e3cc9102fa46d6ebef5fc4ce24c1b53e5cb314",
-      "lifestyle": "7bd2a7885d79a70d2f9ff3eb55e3cc9102fa46d6ebef5fc4ce24c1b53e5cb314",
-      "realestate": "7bd2a7885d79a70d2f9ff3eb55e3cc9102fa46d6ebef5fc4ce24c1b53e5cb314"
+      "consulting": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+      "digital": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+      "healthcare": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+      "lifestyle": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+      "realestate": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1"
     },
     "siteKeys": [
       "consulting",
+      "digital",
       "healthcare",
       "lifestyle",
       "realestate"
     ]
   },
   "canonical": {
-    "sha256": "7bd2a7885d79a70d2f9ff3eb55e3cc9102fa46d6ebef5fc4ce24c1b53e5cb314",
+    "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
     "siteKey": "consulting"
   },
   "compatible": true,
-  "generatedAt": "2026-09-01T01:12:38.279Z",
+  "generatedAt": "2026-09-08T03:37:04.148Z",
   "group": {
     "groupOnlyAdditions": {
       "arguments": [],
@@ -37,10 +39,6 @@
         {
           "enum": "ContentTypeEnum",
           "value": "SLIDER_IMAGE"
-        },
-        {
-          "enum": "MimeTypeEnum",
-          "value": "IMAGE_SVG_XML"
         },
         {
           "enum": "TaxonomyEnum",
@@ -1113,10 +1111,10 @@
       ]
     },
     "issues": [],
-    "sha256": "7fa18331b28dbbeffe3310c354973837019988b199cd3af39bc307af5bff2b9a",
+    "sha256": "de2ad45677a4b8a87e6f3fae36195e87fbe64fadfa0bc4ef68aeeca4b144dbba",
     "siteKey": "group",
     "structurallyContainsCanonical": true
   },
-  "policy": "four-branch-exact-group-structural-superset",
+  "policy": "branch-peers-exact-group-structural-superset",
   "source": "live-multisite-introspection"
 }

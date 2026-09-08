@@ -238,7 +238,11 @@ describe("approved SIRA GraphQL operation contracts", () => {
       }),
     );
 
-    expect(relationshipBounds).toHaveLength(16);
+    // Seventeen since ADR-033: the Digital variant contributes one more
+    // bounded editorial connection. The number is asserted rather than
+    // derived on purpose — an UNBOUNDED relationship must fail here, and a
+    // count that recomputed itself from the document could never notice one.
+    expect(relationshipBounds).toHaveLength(17);
     expect([...new Set(relationshipBounds)].sort((left, right) => left - right)).toEqual([
       1,
       6,

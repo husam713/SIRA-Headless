@@ -1,40 +1,46 @@
 {
-  "canonicalSha256": "7bd2a7885d79a70d2f9ff3eb55e3cc9102fa46d6ebef5fc4ce24c1b53e5cb314",
+  "canonicalSha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
   "canonicalSite": "consulting",
-  "fetchedAt": "2026-09-01T01:12:38.279Z",
+  "fetchedAt": "2026-09-08T03:37:04.148Z",
   "groupAuditSite": "group",
-  "groupSha256": "7fa18331b28dbbeffe3310c354973837019988b199cd3af39bc307af5bff2b9a",
-  "policy": "four-branch-exact-group-structural-superset",
+  "groupSha256": "de2ad45677a4b8a87e6f3fae36195e87fbe64fadfa0bc4ef68aeeca4b144dbba",
+  "policy": "branch-peers-exact-group-structural-superset",
   "sites": [
     {
       "hostname": "siratrgroup.com",
       "role": "group-audit",
-      "sha256": "7fa18331b28dbbeffe3310c354973837019988b199cd3af39bc307af5bff2b9a",
+      "sha256": "de2ad45677a4b8a87e6f3fae36195e87fbe64fadfa0bc4ef68aeeca4b144dbba",
       "siteKey": "group"
     },
     {
       "hostname": "consulting.siratrgroup.com",
       "role": "canonical-branch",
-      "sha256": "7bd2a7885d79a70d2f9ff3eb55e3cc9102fa46d6ebef5fc4ce24c1b53e5cb314",
+      "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
       "siteKey": "consulting"
     },
     {
       "hostname": "healthcare.siratrgroup.com",
       "role": "branch",
-      "sha256": "7bd2a7885d79a70d2f9ff3eb55e3cc9102fa46d6ebef5fc4ce24c1b53e5cb314",
+      "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
       "siteKey": "healthcare"
     },
     {
       "hostname": "lifestyle.siratrgroup.com",
       "role": "branch",
-      "sha256": "7bd2a7885d79a70d2f9ff3eb55e3cc9102fa46d6ebef5fc4ce24c1b53e5cb314",
+      "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
       "siteKey": "lifestyle"
     },
     {
       "hostname": "realestate.siratrgroup.com",
       "role": "branch",
-      "sha256": "7bd2a7885d79a70d2f9ff3eb55e3cc9102fa46d6ebef5fc4ce24c1b53e5cb314",
+      "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
       "siteKey": "realestate"
+    },
+    {
+      "hostname": "sirahdigital.sa",
+      "role": "branch",
+      "sha256": "f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1",
+      "siteKey": "digital"
     }
   ],
   "source": "live-multisite-introspection"

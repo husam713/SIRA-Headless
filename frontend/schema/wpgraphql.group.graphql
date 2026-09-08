@@ -4121,9 +4121,6 @@ input CreatePageInput {
   """
   date: String
 
-  """The excerpt of the object"""
-  excerpt: String
-
   """
   A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
   """
@@ -8166,6 +8163,552 @@ type DeleteUserPayload {
   user: User
 }
 
+"""
+The &quot;DigitalHomepage&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalHomepage implements AcfFieldGroup & AcfFieldGroupFields & DigitalHomepage_Fields {
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  capabilities: [DigitalHomepageCapabilities]
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  capabilitiesEyebrow: String
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  contact: DigitalHomepageContact
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  hero: DigitalHomepageHero
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  insights: DigitalHomepageInsights
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  marquee: DigitalHomepageMarquee
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  wordmark: DigitalHomepageWordmark
+}
+
+"""
+The &quot;DigitalHomepageCapabilities&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalHomepageCapabilities implements AcfFieldGroup & AcfFieldGroupFields & DigitalHomepageCapabilities_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageCapabilities&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageCapabilities&quot; Field Group
+  """
+  summary: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageCapabilities&quot; Field Group
+  """
+  title: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalHomepageCapabilities&quot; Field Group
+"""
+interface DigitalHomepageCapabilities_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageCapabilities&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageCapabilities&quot; Field Group
+  """
+  summary: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageCapabilities&quot; Field Group
+  """
+  title: String
+}
+
+"""
+The &quot;DigitalHomepageContact&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalHomepageContact implements AcfFieldGroup & AcfFieldGroupFields & DigitalHomepageContact_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageContact&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageContact&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  A non-secret routing context validated against the future frontend form registry.
+  """
+  formContext: String
+
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;DigitalHomepageContact&quot; Field Group
+  """
+  formVariant: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageContact&quot; Field Group
+  """
+  heading: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalHomepageContact&quot; Field Group
+"""
+interface DigitalHomepageContact_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageContact&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageContact&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  A non-secret routing context validated against the future frontend form registry.
+  """
+  formContext: String
+
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;DigitalHomepageContact&quot; Field Group
+  """
+  formVariant: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageContact&quot; Field Group
+  """
+  heading: String
+}
+
+"""
+The &quot;DigitalHomepageHero&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalHomepageHero implements AcfFieldGroup & AcfFieldGroupFields & DigitalHomepageHero_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  headingAfter: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  headingBefore: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  headingHighlight: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  primaryCta: AcfLink
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  secondaryCta: AcfLink
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalHomepageHero&quot; Field Group
+"""
+interface DigitalHomepageHero_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  headingAfter: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  headingBefore: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  headingHighlight: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  primaryCta: AcfLink
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageHero&quot; Field Group
+  """
+  secondaryCta: AcfLink
+}
+
+"""
+The &quot;DigitalHomepageInsights&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalHomepageInsights implements AcfFieldGroup & AcfFieldGroupFields & DigitalHomepageInsights_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  itemLimit: Float
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  selectedItems(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  sourceMode: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalHomepageInsights&quot; Field Group
+"""
+interface DigitalHomepageInsights_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  itemLimit: Float
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  selectedItems(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;DigitalHomepageInsights&quot; Field Group
+  """
+  sourceMode: String
+}
+
+"""
+The &quot;DigitalHomepageMarquee&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalHomepageMarquee implements AcfFieldGroup & AcfFieldGroupFields & DigitalHomepageMarquee_Fields {
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  body: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  items: [DigitalHomepageMarqueeItems]
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  link: AcfLink
+}
+
+"""
+The &quot;DigitalHomepageMarqueeItems&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalHomepageMarqueeItems implements AcfFieldGroup & AcfFieldGroupFields & DigitalHomepageMarqueeItems_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarqueeItems&quot; Field Group
+  """
+  label: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalHomepageMarqueeItems&quot; Field Group
+"""
+interface DigitalHomepageMarqueeItems_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarqueeItems&quot; Field Group
+  """
+  label: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalHomepageMarquee&quot; Field Group
+"""
+interface DigitalHomepageMarquee_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  body: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  items: [DigitalHomepageMarqueeItems]
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageMarquee&quot; Field Group
+  """
+  link: AcfLink
+}
+
+"""
+The &quot;DigitalHomepageWordmark&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalHomepageWordmark implements AcfFieldGroup & AcfFieldGroupFields & DigitalHomepageWordmark_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageWordmark&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageWordmark&quot; Field Group
+  """
+  lockup: String
+
+  """The band renders only when this is set."""
+  word: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalHomepageWordmark&quot; Field Group
+"""
+interface DigitalHomepageWordmark_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;DigitalHomepageWordmark&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalHomepageWordmark&quot; Field Group
+  """
+  lockup: String
+
+  """The band renders only when this is set."""
+  word: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalHomepage&quot; Field Group
+"""
+interface DigitalHomepage_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  capabilities: [DigitalHomepageCapabilities]
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  capabilitiesEyebrow: String
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  contact: DigitalHomepageContact
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  hero: DigitalHomepageHero
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  insights: DigitalHomepageInsights
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  marquee: DigitalHomepageMarquee
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;DigitalHomepage&quot; Field Group
+  """
+  wordmark: DigitalHomepageWordmark
+}
+
 """The discussion setting type"""
 type DiscussionSettings implements Node {
   """Allow people to submit comments on new posts."""
@@ -12081,9 +12624,6 @@ enum MimeTypeEnum {
   """application/java mime type."""
   APPLICATION_JAVA
 
-  """application/javascript mime type."""
-  APPLICATION_JAVASCRIPT
-
   """application/msword mime type."""
   APPLICATION_MSWORD
 
@@ -12274,15 +12814,6 @@ enum MimeTypeEnum {
   """audio/x-realaudio mime type."""
   AUDIO_X_REALAUDIO
 
-  """font/ttf mime type."""
-  FONT_TTF
-
-  """font/woff mime type."""
-  FONT_WOFF
-
-  """font/woff2 mime type."""
-  FONT_WOFF2
-
   """image/avif mime type."""
   IMAGE_AVIF
 
@@ -12310,9 +12841,6 @@ enum MimeTypeEnum {
   """image/png mime type."""
   IMAGE_PNG
 
-  """image/svg+xml mime type."""
-  IMAGE_SVG_XML
-
   """image/tiff mime type."""
   IMAGE_TIFF
 
@@ -12330,9 +12858,6 @@ enum MimeTypeEnum {
 
   """text/csv mime type."""
   TEXT_CSV
-
-  """text/html mime type."""
-  TEXT_HTML
 
   """text/plain mime type."""
   TEXT_PLAIN
@@ -12621,7 +13146,7 @@ enum OrderEnum {
 """
 A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages.
 """
-type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBranchHomepage & WithAcfGroupHomepage & WithAcfSiraHomepage {
+type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBranchHomepage & WithAcfDigitalHomepage & WithAcfGroupHomepage & WithAcfSiraHomepage {
   """
   Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -12736,6 +13261,9 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   """The desired slug of the post"""
   desiredSlug: String
 
+  """Fields of the DigitalHomepage ACF Field Group"""
+  digitalHomepage: DigitalHomepage
+
   """
   If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds
   """
@@ -12789,12 +13317,6 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
     """Arguments for filtering the connection"""
     where: ContentNodeToEnqueuedStylesheetConnectionWhereArgs
   ): ContentNodeToEnqueuedStylesheetConnection
-
-  """The excerpt of the post."""
-  excerpt(
-    """Format of the field output"""
-    format: PostObjectFieldFormatEnum
-  ): String
 
   """
   Connection between the NodeWithFeaturedImage type and the MediaItem type
@@ -66556,9 +67078,6 @@ input UpdatePageInput {
   """
   date: String
 
-  """The excerpt of the object"""
-  excerpt: String
-
   """The ID of the page object"""
   id: ID!
 
@@ -74427,6 +74946,14 @@ Provides access to fields of the &quot;CompanyDetails&quot; ACF Field Group via 
 interface WithAcfCompanyDetails {
   """Fields of the CompanyDetails ACF Field Group"""
   companyDetails: CompanyDetails
+}
+
+"""
+Provides access to fields of the &quot;DigitalHomepage&quot; ACF Field Group via the &quot;digitalHomepage&quot; field
+"""
+interface WithAcfDigitalHomepage {
+  """Fields of the DigitalHomepage ACF Field Group"""
+  digitalHomepage: DigitalHomepage
 }
 
 """

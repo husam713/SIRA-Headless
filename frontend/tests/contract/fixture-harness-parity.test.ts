@@ -38,6 +38,8 @@ const COMPOSER_PATH = join("tests", "harness", "homepage-fixture-composer.tsx");
 
 const GROUP_BRANCH_MARKER =
   'if (homepage.status === "ready" && homepage.homepage.variant === "group") {';
+const DIGITAL_BRANCH_MARKER =
+  'if (homepage.status === "ready" && homepage.homepage.variant === "digital") {';
 const BRANCH_BRANCH_MARKER =
   'if (homepage.status === "ready" && homepage.homepage.variant === "branch") {';
 const FALLBACK_MARKER = "const homepageTitle =";
@@ -48,12 +50,21 @@ const COMPOSE_BRANCH_MARKER = "export function composeBranchHomepage(";
 // The exact null guard each region must contain, in its own local terms.
 const PAGE_GROUP_HERO_GUARD = "homepage.homepage.hero !== null";
 const PAGE_BRANCH_HERO_GUARD = "branch.hero !== null";
+const PAGE_DIGITAL_HERO_GUARD = "digital.hero !== null";
 const COMPOSER_HERO_GUARD = "homepage.hero !== null";
 
 // Group sections reused by the branch page. Recorded explicitly so that
 // dropping one from the branch path is a visible failure rather than a quiet
 // divergence between the two variants.
 const SHARED_WITH_BRANCH = ["GroupProjects", "GroupInsights", "GroupContact"] as const;
+
+// ADR-033. Digital has its own composition and no fixture composer, so it is
+// not compared against one — but it still has to be scanned, or the group
+// region would swallow it and its own sections would go unasserted. These are
+// the group sections Digital deliberately reuses: the editorial rail and the
+// contact block are tenant-agnostic, and rebuilding them would have been
+// duplication rather than distinctness.
+const SHARED_WITH_DIGITAL = ["GroupInsights", "GroupContact"] as const;
 
 /**
  * Removes JSX comments, block comments, and standalone line comments so that
@@ -150,7 +161,8 @@ describe("fixture harness parity with the production page", () => {
   const composerImports = importedHomepageComponents(composerSource);
   const known = new Set([...pageImports, ...composerImports]);
 
-  const pageGroupRegion = slice(pageSource, GROUP_BRANCH_MARKER, BRANCH_BRANCH_MARKER);
+  const pageGroupRegion = slice(pageSource, GROUP_BRANCH_MARKER, DIGITAL_BRANCH_MARKER);
+  const pageDigitalRegion = slice(pageSource, DIGITAL_BRANCH_MARKER, BRANCH_BRANCH_MARKER);
   const pageBranchRegion = slice(pageSource, BRANCH_BRANCH_MARKER, FALLBACK_MARKER);
   const composerGroupRegion = slice(
     composerSource,
@@ -160,6 +172,7 @@ describe("fixture harness parity with the production page", () => {
   const composerBranchRegion = slice(composerSource, COMPOSE_BRANCH_MARKER, null);
 
   const pageGroup = renderedSequence(pageGroupRegion, known);
+  const pageDigital = renderedSequence(pageDigitalRegion, known);
   const pageBranch = renderedSequence(pageBranchRegion, known);
   const composerGroup = renderedSequence(composerGroupRegion, known);
   const composerBranch = renderedSequence(composerBranchRegion, known);
@@ -179,7 +192,7 @@ describe("fixture harness parity with the production page", () => {
   });
 
   it("renders every imported component in at least one branch", () => {
-    const rendered = new Set([...pageGroup, ...pageBranch]);
+    const rendered = new Set([...pageGroup, ...pageDigital, ...pageBranch]);
 
     // Catches an unused import as well as a component dropped from both
     // branches while its import survives.
@@ -199,7 +212,13 @@ describe("fixture harness parity with the production page", () => {
   });
 
   it("renders each component at most once per branch", () => {
-    for (const sequence of [pageGroup, pageBranch, composerGroup, composerBranch]) {
+    for (const sequence of [
+      pageGroup,
+      pageDigital,
+      pageBranch,
+      composerGroup,
+      composerBranch,
+    ]) {
       expect(new Set(sequence).size).toBe(sequence.length);
     }
   });
@@ -223,6 +242,26 @@ describe("fixture harness parity with the production page", () => {
     expect(pageBranch[0]).toBe("BranchHero");
   });
 
+  it("keeps the shared group sections on the Digital path", () => {
+    for (const name of SHARED_WITH_DIGITAL) {
+      expect(pageDigital).toContain(name);
+    }
+  });
+
+  it("does not let Digital fall back to the branch composition", () => {
+    // The failure this guards is silence: SIRA Digital rendering as a fifth
+    // branch site because its region reused BranchHero and the rest of that
+    // sequence. Its region must contain none of the branch-only sections.
+    expect(pageDigital).not.toContain("BranchHero");
+    expect(pageDigital).not.toContain("BranchStats");
+    expect(pageDigital).not.toContain("BranchOverview");
+  });
+
+  it("guards the production Digital hero inside the Digital branch", () => {
+    expect(pageDigitalRegion).toContain(PAGE_DIGITAL_HERO_GUARD);
+    expect(pageDigitalRegion).toContain("<DigitalHero");
+  });
+
   it("guards the composer group hero inside composeGroupHomepage", () => {
     expect(composerGroupRegion).toContain(COMPOSER_HERO_GUARD);
     expect(composerGroup[0]).toBe("GroupHero");
@@ -239,6 +278,7 @@ describe("fixture harness parity with the production page", () => {
     expect(fallback).toContain("<PageContainer");
     expect(known.has("PageContainer")).toBe(false);
     expect(pageGroup).not.toContain("PageContainer");
+    expect(pageDigital).not.toContain("PageContainer");
     expect(pageBranch).not.toContain("PageContainer");
   });
 });

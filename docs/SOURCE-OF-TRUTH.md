@@ -213,11 +213,40 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
   has never been restored.
 - `2C4-B07` media origin/delivery: UNRESOLVED / DEFERRED.
 - `2C4-B08` forms architecture: UNRESOLVED.
-- `2C4-B09` multilingual architecture: UNRESOLVED.
+- `2C4-B09` multilingual architecture: RESOLVED for `digital` only (ADR-034);
+  UNRESOLVED for `group`, `consulting`, `healthcare`, `lifestyle`, `realestate`.
 - `PREVIEW-AUTH-001`: DEFERRED.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED.
+- Digital WordPress site: **PROVISIONED** on 2026-09-08. Blog 6 on the existing
+  network, `blog_public 0`, Asia/Riyadh, week starting Sunday, created with
+  `wp site create` and moved onto its own domain with `update_blog_details()`
+  after a verified 7.2 MB / 134-table recovery point. The owner's Phase 2 prompt
+  widened ADR-033's authorization to include live site creation; it did not
+  authorize domain registration, DNS, or deployment, which remain protected.
+  `docs/DIGITAL-TENANT-PROVISIONING.md` records the preceding investigation,
+  including the finding that the existing Multisite has **no architectural
+  blocker** to a mapped external domain on a different TLD.
+  **Do not delete or lose this site.**
+- Digital CMS origin: `digital.siratrgroup.com` since 2026-09-08 (owner
+  decision). Blog 6 was created on `sirahdigital.sa` and moved with
+  `update_blog_details()` after a verified backup; no occurrence of the old
+  hostname remains anywhere in the database. **OPEN:** WordPress and the
+  intended pre-launch public frontend now claim the same hostname, which must be
+  resolved before the frontend is deployed there.
+- Digital public hostname (ADR-035): the active public frontend hostname is
+  `digital.siratrgroup.com`. `sirahdigital.sa` is the future production domain,
+  registered as the planned hostname and redirecting to the active one until it
+  is promoted. Promotion is configuration only, through
+  `SIRA_CANONICAL_HOSTNAMES_JSON`. The public frontend hostname and the
+  WordPress CMS origin are independent: the CMS origin is configured per tenant
+  through `SIRA_WP_<TENANT>_GRAPHQL_URL`, WordPress stays on Hostinger, and the
+  public hostname does not expose `/wp-admin`.
+- Digital trading-name spelling (`SIRA Digital` vs `SIRAH DIGITAL`): OPEN owner
+  confirmation. No prior canonical name existed in this repository, so the
+  established `SIRA <Company>` convention was followed rather than a new name
+  invented.
 
 PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance
 Foundation, and PR `#34` Acceptance-Gates maintenance are accepted canonical
@@ -228,7 +257,25 @@ WordPress mutation, external staging, deployment, DNS, or production cutover.
 
 ## Canonical public production topology
 
-The owner-approved public production apex is `siratrgroup.com`. The authoritative public hostname mapping is Group -> `siratrgroup.com`, Consulting -> `consulting.siratrgroup.com`, Healthcare -> `healthcare.siratrgroup.com`, Lifestyle -> `lifestyle.siratrgroup.com`, and Real Estate -> `realestate.siratrgroup.com`.
+**The topology spans two apexes, and that is owner-authorized (ADR-033).** A
+session that finds `sirahdigital.sa` here must treat it as canonical, not as
+unauthorized drift.
+
+The authoritative public hostname mapping is Group -> `siratrgroup.com`,
+Consulting -> `consulting.siratrgroup.com`, Healthcare ->
+`healthcare.siratrgroup.com`, Lifestyle -> `lifestyle.siratrgroup.com`, Real
+Estate -> `realestate.siratrgroup.com`, and **Digital -> `sirahdigital.sa`**.
+
+SIRA Digital is a first-class SIRA GROUP operating company inside this same
+platform: the same Multisite network, the same Next.js application, the same
+GraphQL contract, the same contact pipeline, the same site registry. Its
+canonical hostname is deliberately a separate Saudi apex rather than a
+`siratrgroup.com` subdomain, because it trades in the Saudi market. The
+hostname registry always matched whole hostnames rather than a parent domain,
+so this needed no new resolution mechanism.
+
+ADR-033 supersedes ADR-024 on the single-apex point ONLY. Everything below
+still holds.
 
 This is public-domain evidence only. It must not be used to infer WordPress backend, GraphQL endpoint, media origin, staging, Vercel preview, cookie-domain, CORS, or revalidation configuration. Those remain UNKNOWN until repository or live configuration evidence establishes them. Each branch hostname represents an independent WordPress Multisite tenant website and independent content/runtime/cache scope; only the tested React/Next.js `BranchHomepage` architecture is shared.
 

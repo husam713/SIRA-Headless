@@ -1,0 +1,2194 @@
+{
+  "about": {
+    "390": {
+      "docHeight": 6706,
+      "viewportHeight": 844,
+      "screensTall": 7.9,
+      "header": 98,
+      "footer": {
+        "y": 5123.4,
+        "h": 1582.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 730.3,
+          "height": 658.3,
+          "screens": 0.78,
+          "label": "Scale your business with Mohamed Riyaz"
+        },
+        {
+          "index": 2,
+          "startY": 794.3,
+          "endY": 1319.3,
+          "height": 525,
+          "screens": 0.62,
+          "label": "mt-16 md:mt-24"
+        },
+        {
+          "index": 3,
+          "startY": 1319.3,
+          "endY": 2514.4,
+          "height": 1195.1,
+          "screens": 1.42,
+          "label": "Meet Our Brains"
+        },
+        {
+          "index": 4,
+          "startY": 2594.4,
+          "endY": 3010.9,
+          "height": 416.5,
+          "screens": 0.49,
+          "label": "About SIRAH DIGITAL"
+        },
+        {
+          "index": 5,
+          "startY": 3011,
+          "endY": 3765,
+          "height": 754,
+          "screens": 0.89,
+          "label": "How we work"
+        },
+        {
+          "index": 6,
+          "startY": 3781,
+          "endY": 4732.7,
+          "height": 951.7,
+          "screens": 1.13,
+          "label": "Learn From Real AI Implementations"
+        },
+        {
+          "index": 7,
+          "startY": 4732.6,
+          "endY": 5123.4,
+          "height": 390.8,
+          "screens": 0.46,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    },
+    "768": {
+      "docHeight": 5618,
+      "viewportHeight": 1024,
+      "screensTall": 5.5,
+      "header": 98,
+      "footer": {
+        "y": 4635.7,
+        "h": 982.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 870.7,
+          "height": 798.7,
+          "screens": 0.78,
+          "label": "Scale your business with Mohamed Riyaz"
+        },
+        {
+          "index": 2,
+          "startY": 966.7,
+          "endY": 1270.5,
+          "height": 303.8,
+          "screens": 0.3,
+          "label": "mt-16 md:mt-24"
+        },
+        {
+          "index": 3,
+          "startY": 1270.5,
+          "endY": 2128.1,
+          "height": 857.6,
+          "screens": 0.84,
+          "label": "Meet Our Brains"
+        },
+        {
+          "index": 4,
+          "startY": 2240.1,
+          "endY": 2605.3,
+          "height": 365.2,
+          "screens": 0.36,
+          "label": "About SIRAH DIGITAL"
+        },
+        {
+          "index": 5,
+          "startY": 2605.3,
+          "endY": 3039.3,
+          "height": 434,
+          "screens": 0.42,
+          "label": "How we work"
+        },
+        {
+          "index": 6,
+          "startY": 3071.3,
+          "endY": 4234.1,
+          "height": 1162.8,
+          "screens": 1.14,
+          "label": "Learn From Real AI Implementations"
+        },
+        {
+          "index": 7,
+          "startY": 4234,
+          "endY": 4635.7,
+          "height": 401.7,
+          "screens": 0.39,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    },
+    "1024": {
+      "docHeight": 4507,
+      "viewportHeight": 768,
+      "screensTall": 5.9,
+      "header": 98,
+      "footer": {
+        "y": 4025.2,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 701.8,
+          "height": 629.8,
+          "screens": 0.82,
+          "label": "Scale your business with Mohamed Riyaz"
+        },
+        {
+          "index": 2,
+          "startY": 797.8,
+          "endY": 986.6,
+          "height": 188.8,
+          "screens": 0.25,
+          "label": "mt-16 md:mt-24"
+        },
+        {
+          "index": 3,
+          "startY": 986.5,
+          "endY": 1540.6,
+          "height": 554.1,
+          "screens": 0.72,
+          "label": "Meet Our Brains"
+        },
+        {
+          "index": 4,
+          "startY": 1652.6,
+          "endY": 2013.1,
+          "height": 360.5,
+          "screens": 0.47,
+          "label": "About SIRAH DIGITAL"
+        },
+        {
+          "index": 5,
+          "startY": 2013.2,
+          "endY": 2427.2,
+          "height": 414,
+          "screens": 0.54,
+          "label": "How we work"
+        },
+        {
+          "index": 6,
+          "startY": 2459.2,
+          "endY": 3675.4,
+          "height": 1216.2,
+          "screens": 1.58,
+          "label": "Learn From Real AI Implementations"
+        },
+        {
+          "index": 7,
+          "startY": 3675.3,
+          "endY": 4025.1,
+          "height": 349.8,
+          "screens": 0.46,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    },
+    "1280": {
+      "docHeight": 4553,
+      "viewportHeight": 800,
+      "screensTall": 5.7,
+      "header": 98,
+      "footer": {
+        "y": 4070.8,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 728,
+          "height": 656,
+          "screens": 0.82,
+          "label": "Scale your business with Mohamed Riyaz"
+        },
+        {
+          "index": 2,
+          "startY": 824,
+          "endY": 1008.8,
+          "height": 184.8,
+          "screens": 0.23,
+          "label": "mt-16 md:mt-24"
+        },
+        {
+          "index": 3,
+          "startY": 1008.8,
+          "endY": 1538.9,
+          "height": 530.1,
+          "screens": 0.66,
+          "label": "Meet Our Brains"
+        },
+        {
+          "index": 4,
+          "startY": 1650.9,
+          "endY": 1986.7,
+          "height": 335.8,
+          "screens": 0.42,
+          "label": "About SIRAH DIGITAL"
+        },
+        {
+          "index": 5,
+          "startY": 1986.7,
+          "endY": 2380.7,
+          "height": 394,
+          "screens": 0.49,
+          "label": "How we work"
+        },
+        {
+          "index": 6,
+          "startY": 2412.7,
+          "endY": 3720.9,
+          "height": 1308.2,
+          "screens": 1.64,
+          "label": "Learn From Real AI Implementations"
+        },
+        {
+          "index": 7,
+          "startY": 3720.9,
+          "endY": 4070.7,
+          "height": 349.8,
+          "screens": 0.44,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    },
+    "1440": {
+      "docHeight": 4730,
+      "viewportHeight": 900,
+      "screensTall": 5.3,
+      "header": 98,
+      "footer": {
+        "y": 4248.4,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 810,
+          "height": 738,
+          "screens": 0.82,
+          "label": "Scale your business with Mohamed Riyaz"
+        },
+        {
+          "index": 2,
+          "startY": 906,
+          "endY": 1090.8,
+          "height": 184.8,
+          "screens": 0.21,
+          "label": "mt-16 md:mt-24"
+        },
+        {
+          "index": 3,
+          "startY": 1090.8,
+          "endY": 1620.9,
+          "height": 530.1,
+          "screens": 0.59,
+          "label": "Meet Our Brains"
+        },
+        {
+          "index": 4,
+          "startY": 1732.9,
+          "endY": 2121.2,
+          "height": 388.3,
+          "screens": 0.43,
+          "label": "About SIRAH DIGITAL"
+        },
+        {
+          "index": 5,
+          "startY": 2121.1,
+          "endY": 2515.1,
+          "height": 394,
+          "screens": 0.44,
+          "label": "How we work"
+        },
+        {
+          "index": 6,
+          "startY": 2547.1,
+          "endY": 3898.5,
+          "height": 1351.4,
+          "screens": 1.5,
+          "label": "Learn From Real AI Implementations"
+        },
+        {
+          "index": 7,
+          "startY": 3898.5,
+          "endY": 4248.3,
+          "height": 349.8,
+          "screens": 0.39,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    },
+    "1920": {
+      "docHeight": 4889,
+      "viewportHeight": 1080,
+      "screensTall": 4.5,
+      "header": 98,
+      "footer": {
+        "y": 4406.9,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 957.6,
+          "height": 885.6,
+          "screens": 0.82,
+          "label": "Scale your business with Mohamed Riyaz"
+        },
+        {
+          "index": 2,
+          "startY": 1053.6,
+          "endY": 1238.4,
+          "height": 184.8,
+          "screens": 0.17,
+          "label": "mt-16 md:mt-24"
+        },
+        {
+          "index": 3,
+          "startY": 1238.4,
+          "endY": 1768.5,
+          "height": 530.1,
+          "screens": 0.49,
+          "label": "Meet Our Brains"
+        },
+        {
+          "index": 4,
+          "startY": 1880.5,
+          "endY": 2270.2,
+          "height": 389.7,
+          "screens": 0.36,
+          "label": "About SIRAH DIGITAL"
+        },
+        {
+          "index": 5,
+          "startY": 2270.2,
+          "endY": 2664.2,
+          "height": 394,
+          "screens": 0.36,
+          "label": "How we work"
+        },
+        {
+          "index": 6,
+          "startY": 2696.2,
+          "endY": 4057.1,
+          "height": 1360.9,
+          "screens": 1.26,
+          "label": "Learn From Real AI Implementations"
+        },
+        {
+          "index": 7,
+          "startY": 4057.1,
+          "endY": 4406.9,
+          "height": 349.8,
+          "screens": 0.32,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    }
+  },
+  "book": {
+    "390": {
+      "docHeight": 3376,
+      "viewportHeight": 3376,
+      "screensTall": 1,
+      "header": 74,
+      "footer": {
+        "y": 1475.9,
+        "h": 1582.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1475.9,
+          "height": 1403.9,
+          "screens": 0.42,
+          "label": "Book a free consultation."
+        }
+      ]
+    },
+    "768": {
+      "docHeight": 3483,
+      "viewportHeight": 3483,
+      "screensTall": 1,
+      "header": 74,
+      "footer": {
+        "y": 1391.9,
+        "h": 982.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1391.9,
+          "height": 1319.9,
+          "screens": 0.38,
+          "label": "Book a free consultation."
+        }
+      ]
+    },
+    "1024": {
+      "docHeight": 1918,
+      "viewportHeight": 768,
+      "screensTall": 2.5,
+      "header": 98,
+      "footer": {
+        "y": 1436.5,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1436.5,
+          "height": 1364.5,
+          "screens": 1.78,
+          "label": "Book a free consultation."
+        }
+      ]
+    },
+    "1280": {
+      "docHeight": 1921,
+      "viewportHeight": 800,
+      "screensTall": 2.4,
+      "header": 98,
+      "footer": {
+        "y": 1438.8,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1438.8,
+          "height": 1366.8,
+          "screens": 1.71,
+          "label": "Book a free consultation."
+        }
+      ]
+    },
+    "1440": {
+      "docHeight": 1921,
+      "viewportHeight": 900,
+      "screensTall": 2.1,
+      "header": 97.9,
+      "footer": {
+        "y": 1438.8,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1438.8,
+          "height": 1366.8,
+          "screens": 1.52,
+          "label": "Book a free consultation."
+        }
+      ]
+    },
+    "1920": {
+      "docHeight": 1921,
+      "viewportHeight": 1080,
+      "screensTall": 1.8,
+      "header": 98,
+      "footer": {
+        "y": 1438.8,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1438.8,
+          "height": 1366.8,
+          "screens": 1.27,
+          "label": "Book a free consultation."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "390": {
+      "docHeight": 7011,
+      "viewportHeight": 844,
+      "screensTall": 8.3,
+      "header": 98,
+      "footer": {
+        "y": 5429.2,
+        "h": 1582.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 517.7,
+          "height": 445.7,
+          "screens": 0.53,
+          "label": "Let’s discuss your next AI project."
+        },
+        {
+          "index": 2,
+          "startY": 597.7,
+          "endY": 2088.3,
+          "height": 1490.6,
+          "screens": 1.77,
+          "label": "Our office"
+        },
+        {
+          "index": 3,
+          "startY": 2188.3,
+          "endY": 2588.3,
+          "height": 400,
+          "screens": 0.47,
+          "label": "mx-auto mt-[100px] max-w-6xl px-6"
+        },
+        {
+          "index": 4,
+          "startY": 2588.3,
+          "endY": 5429.2,
+          "height": 2840.9,
+          "screens": 3.37,
+          "label": "See what automation could save."
+        }
+      ]
+    },
+    "768": {
+      "docHeight": 6088,
+      "viewportHeight": 1024,
+      "screensTall": 5.9,
+      "header": 98,
+      "footer": {
+        "y": 5105.9,
+        "h": 982.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 502.3,
+          "height": 430.3,
+          "screens": 0.42,
+          "label": "Let’s discuss your next AI project."
+        },
+        {
+          "index": 2,
+          "startY": 582.3,
+          "endY": 1784.4,
+          "height": 1202.1,
+          "screens": 1.17,
+          "label": "Our office"
+        },
+        {
+          "index": 3,
+          "startY": 1884.4,
+          "endY": 2284.4,
+          "height": 400,
+          "screens": 0.39,
+          "label": "mx-auto mt-[100px] max-w-6xl px-6"
+        },
+        {
+          "index": 4,
+          "startY": 2284.4,
+          "endY": 5105.9,
+          "height": 2821.5,
+          "screens": 2.76,
+          "label": "See what automation could save."
+        }
+      ]
+    },
+    "1024": {
+      "docHeight": 4648,
+      "viewportHeight": 768,
+      "screensTall": 6.1,
+      "header": 98,
+      "footer": {
+        "y": 4166.1,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 527.2,
+          "height": 455.2,
+          "screens": 0.59,
+          "label": "Let’s discuss your next AI project."
+        },
+        {
+          "index": 2,
+          "startY": 607.2,
+          "endY": 1333.5,
+          "height": 726.3,
+          "screens": 0.95,
+          "label": "Our office"
+        },
+        {
+          "index": 3,
+          "startY": 1433.5,
+          "endY": 1833.5,
+          "height": 400,
+          "screens": 0.52,
+          "label": "mx-auto mt-[100px] max-w-6xl px-6"
+        },
+        {
+          "index": 4,
+          "startY": 1833.5,
+          "endY": 4166.1,
+          "height": 2332.6,
+          "screens": 3.04,
+          "label": "See what automation could save."
+        }
+      ]
+    },
+    "1280": {
+      "docHeight": 4675,
+      "viewportHeight": 800,
+      "screensTall": 5.8,
+      "header": 98,
+      "footer": {
+        "y": 4193,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 549.8,
+          "height": 477.8,
+          "screens": 0.6,
+          "label": "Let’s discuss your next AI project."
+        },
+        {
+          "index": 2,
+          "startY": 629.8,
+          "endY": 1356.1,
+          "height": 726.3,
+          "screens": 0.91,
+          "label": "Our office"
+        },
+        {
+          "index": 3,
+          "startY": 1456.1,
+          "endY": 1856.1,
+          "height": 400,
+          "screens": 0.5,
+          "label": "mx-auto mt-[100px] max-w-6xl px-6"
+        },
+        {
+          "index": 4,
+          "startY": 1856.1,
+          "endY": 4193,
+          "height": 2336.9,
+          "screens": 2.92,
+          "label": "See what automation could save."
+        }
+      ]
+    },
+    "1440": {
+      "docHeight": 4679,
+      "viewportHeight": 900,
+      "screensTall": 5.2,
+      "header": 98,
+      "footer": {
+        "y": 4197.4,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 554.3,
+          "height": 482.3,
+          "screens": 0.54,
+          "label": "Let’s discuss your next AI project."
+        },
+        {
+          "index": 2,
+          "startY": 634.3,
+          "endY": 1360.6,
+          "height": 726.3,
+          "screens": 0.81,
+          "label": "Our office"
+        },
+        {
+          "index": 3,
+          "startY": 1460.5,
+          "endY": 1860.5,
+          "height": 400,
+          "screens": 0.44,
+          "label": "mx-auto mt-[100px] max-w-6xl px-6"
+        },
+        {
+          "index": 4,
+          "startY": 1860.5,
+          "endY": 4197.4,
+          "height": 2336.9,
+          "screens": 2.6,
+          "label": "See what automation could save."
+        }
+      ]
+    },
+    "1920": {
+      "docHeight": 4679,
+      "viewportHeight": 1080,
+      "screensTall": 4.3,
+      "header": 98,
+      "footer": {
+        "y": 4197.4,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 554.3,
+          "height": 482.3,
+          "screens": 0.45,
+          "label": "Let’s discuss your next AI project."
+        },
+        {
+          "index": 2,
+          "startY": 634.3,
+          "endY": 1360.6,
+          "height": 726.3,
+          "screens": 0.67,
+          "label": "Our office"
+        },
+        {
+          "index": 3,
+          "startY": 1460.5,
+          "endY": 1860.5,
+          "height": 400,
+          "screens": 0.37,
+          "label": "mx-auto mt-[100px] max-w-6xl px-6"
+        },
+        {
+          "index": 4,
+          "startY": 1860.5,
+          "endY": 4197.4,
+          "height": 2336.9,
+          "screens": 2.16,
+          "label": "See what automation could save."
+        }
+      ]
+    }
+  },
+  "home": {
+    "390": {
+      "docHeight": 6799,
+      "viewportHeight": 844,
+      "screensTall": 8.1,
+      "header": 98,
+      "footer": {
+        "y": 5216.9,
+        "h": 1582.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 844,
+          "height": 772,
+          "screens": 0.91,
+          "label": "Building intelligent systems that automa"
+        },
+        {
+          "index": 2,
+          "startY": 844,
+          "endY": 2238.9,
+          "height": 1394.9,
+          "screens": 1.65,
+          "label": "[ Products ]"
+        },
+        {
+          "index": 3,
+          "startY": 2238.9,
+          "endY": 2617.5,
+          "height": 378.6,
+          "screens": 0.45,
+          "label": "Trusted Across Industries"
+        },
+        {
+          "index": 4,
+          "startY": 2617.5,
+          "endY": 3149.1,
+          "height": 531.6,
+          "screens": 0.63,
+          "label": "relative py-20 md:py-28 [overflow-x:clip"
+        },
+        {
+          "index": 5,
+          "startY": 3149.1,
+          "endY": 4837.1,
+          "height": 1688,
+          "screens": 2,
+          "label": "SirahDigital"
+        },
+        {
+          "index": 6,
+          "startY": 4837.1,
+          "endY": 5216.9,
+          "height": 379.8,
+          "screens": 0.45,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    },
+    "768": {
+      "docHeight": 6783,
+      "viewportHeight": 1024,
+      "screensTall": 6.6,
+      "header": 98,
+      "footer": {
+        "y": 5800.3,
+        "h": 982.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1024,
+          "height": 952,
+          "screens": 0.93,
+          "label": "Building intelligent systems that automa"
+        },
+        {
+          "index": 2,
+          "startY": 1024,
+          "endY": 2021,
+          "height": 997,
+          "screens": 0.97,
+          "label": "[ Products ]"
+        },
+        {
+          "index": 3,
+          "startY": 2021,
+          "endY": 2444.5,
+          "height": 423.5,
+          "screens": 0.41,
+          "label": "Trusted Across Industries"
+        },
+        {
+          "index": 4,
+          "startY": 2444.6,
+          "endY": 3086.7,
+          "height": 642.1,
+          "screens": 0.63,
+          "label": "relative py-20 md:py-28 [overflow-x:clip"
+        },
+        {
+          "index": 5,
+          "startY": 3086.7,
+          "endY": 5339.5,
+          "height": 2252.8,
+          "screens": 2.2,
+          "label": "SirahDigital"
+        },
+        {
+          "index": 6,
+          "startY": 5339.5,
+          "endY": 5800.3,
+          "height": 460.8,
+          "screens": 0.45,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    },
+    "1024": {
+      "docHeight": 5535,
+      "viewportHeight": 768,
+      "screensTall": 7.2,
+      "header": 98,
+      "footer": {
+        "y": 5052.8,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 768,
+          "height": 696,
+          "screens": 0.91,
+          "label": "Building intelligent systems that automa"
+        },
+        {
+          "index": 2,
+          "startY": 768,
+          "endY": 1784.7,
+          "height": 1016.7,
+          "screens": 1.32,
+          "label": "[ Products ]"
+        },
+        {
+          "index": 3,
+          "startY": 1784.7,
+          "endY": 2216.7,
+          "height": 432,
+          "screens": 0.56,
+          "label": "Trusted Across Industries"
+        },
+        {
+          "index": 4,
+          "startY": 2216.8,
+          "endY": 3004.8,
+          "height": 788,
+          "screens": 1.03,
+          "label": "relative py-20 md:py-28 [overflow-x:clip"
+        },
+        {
+          "index": 5,
+          "startY": 3004.8,
+          "endY": 4694.4,
+          "height": 1689.6,
+          "screens": 2.2,
+          "label": "SirahDigital"
+        },
+        {
+          "index": 6,
+          "startY": 4694.3,
+          "endY": 5052.8,
+          "height": 358.5,
+          "screens": 0.47,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    },
+    "1280": {
+      "docHeight": 5166,
+      "viewportHeight": 800,
+      "screensTall": 6.5,
+      "header": 98,
+      "footer": {
+        "y": 4683.8,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 800,
+          "height": 728,
+          "screens": 0.91,
+          "label": "Building intelligent systems that automa"
+        },
+        {
+          "index": 2,
+          "startY": 800,
+          "endY": 1313.7,
+          "height": 513.7,
+          "screens": 0.64,
+          "label": "[ Products ]"
+        },
+        {
+          "index": 3,
+          "startY": 1313.7,
+          "endY": 1756.5,
+          "height": 442.8,
+          "screens": 0.55,
+          "label": "Trusted Across Industries"
+        },
+        {
+          "index": 4,
+          "startY": 1756.5,
+          "endY": 2544.5,
+          "height": 788,
+          "screens": 0.99,
+          "label": "relative py-20 md:py-28 [overflow-x:clip"
+        },
+        {
+          "index": 5,
+          "startY": 2544.5,
+          "endY": 4304.5,
+          "height": 1760,
+          "screens": 2.2,
+          "label": "SirahDigital"
+        },
+        {
+          "index": 6,
+          "startY": 4304.5,
+          "endY": 4683.8,
+          "height": 379.3,
+          "screens": 0.47,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    },
+    "1440": {
+      "docHeight": 5483,
+      "viewportHeight": 900,
+      "screensTall": 6.1,
+      "header": 98,
+      "footer": {
+        "y": 5000.5,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 900,
+          "height": 828,
+          "screens": 0.92,
+          "label": "Building intelligent systems that automa"
+        },
+        {
+          "index": 2,
+          "startY": 900,
+          "endY": 1384.7,
+          "height": 484.7,
+          "screens": 0.54,
+          "label": "[ Products ]"
+        },
+        {
+          "index": 3,
+          "startY": 1384.7,
+          "endY": 1827.5,
+          "height": 442.8,
+          "screens": 0.49,
+          "label": "Trusted Across Industries"
+        },
+        {
+          "index": 4,
+          "startY": 1827.5,
+          "endY": 2615.5,
+          "height": 788,
+          "screens": 0.88,
+          "label": "relative py-20 md:py-28 [overflow-x:clip"
+        },
+        {
+          "index": 5,
+          "startY": 2615.5,
+          "endY": 4595.5,
+          "height": 1980,
+          "screens": 2.2,
+          "label": "SirahDigital"
+        },
+        {
+          "index": 6,
+          "startY": 4595.5,
+          "endY": 5000.5,
+          "height": 405,
+          "screens": 0.45,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    },
+    "1920": {
+      "docHeight": 6141,
+      "viewportHeight": 1080,
+      "screensTall": 5.7,
+      "header": 98,
+      "footer": {
+        "y": 5658.8,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1080,
+          "height": 1008,
+          "screens": 0.93,
+          "label": "Building intelligent systems that automa"
+        },
+        {
+          "index": 2,
+          "startY": 1080,
+          "endY": 1566,
+          "height": 486,
+          "screens": 0.45,
+          "label": "[ Products ]"
+        },
+        {
+          "index": 3,
+          "startY": 1566,
+          "endY": 2008.8,
+          "height": 442.8,
+          "screens": 0.41,
+          "label": "Trusted Across Industries"
+        },
+        {
+          "index": 4,
+          "startY": 2008.8,
+          "endY": 2796.8,
+          "height": 788,
+          "screens": 0.73,
+          "label": "relative py-20 md:py-28 [overflow-x:clip"
+        },
+        {
+          "index": 5,
+          "startY": 2796.8,
+          "endY": 5172.8,
+          "height": 2376,
+          "screens": 2.2,
+          "label": "SirahDigital"
+        },
+        {
+          "index": 6,
+          "startY": 5172.8,
+          "endY": 5658.8,
+          "height": 486,
+          "screens": 0.45,
+          "label": "Ready to automate the busywork?"
+        }
+      ]
+    }
+  },
+  "industries": {
+    "390": {
+      "docHeight": 5920,
+      "viewportHeight": 844,
+      "screensTall": 7,
+      "header": 98,
+      "footer": {
+        "y": 4337.8,
+        "h": 1582.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 440.4,
+          "height": 368.4,
+          "screens": 0.44,
+          "label": "Automation, shaped around your industry."
+        },
+        {
+          "index": 2,
+          "startY": 440.4,
+          "endY": 3995,
+          "height": 3554.6,
+          "screens": 4.21,
+          "label": "Healthcare & Wellness"
+        },
+        {
+          "index": 3,
+          "startY": 3995,
+          "endY": 4337.8,
+          "height": 342.8,
+          "screens": 0.41,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    },
+    "768": {
+      "docHeight": 3773,
+      "viewportHeight": 1024,
+      "screensTall": 3.7,
+      "header": 98,
+      "footer": {
+        "y": 2791,
+        "h": 982.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 475.6,
+          "height": 403.6,
+          "screens": 0.39,
+          "label": "Automation, shaped around your industry."
+        },
+        {
+          "index": 2,
+          "startY": 475.6,
+          "endY": 2417.4,
+          "height": 1941.8,
+          "screens": 1.9,
+          "label": "Healthcare & Wellness"
+        },
+        {
+          "index": 3,
+          "startY": 2417.4,
+          "endY": 2791.1,
+          "height": 373.7,
+          "screens": 0.36,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    },
+    "1024": {
+      "docHeight": 2679,
+      "viewportHeight": 768,
+      "screensTall": 3.5,
+      "header": 98,
+      "footer": {
+        "y": 2197.1,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 490.8,
+          "height": 418.8,
+          "screens": 0.55,
+          "label": "Automation, shaped around your industry."
+        },
+        {
+          "index": 2,
+          "startY": 490.8,
+          "endY": 1875.3,
+          "height": 1384.5,
+          "screens": 1.8,
+          "label": "Healthcare & Wellness"
+        },
+        {
+          "index": 3,
+          "startY": 1875.3,
+          "endY": 2197.1,
+          "height": 321.8,
+          "screens": 0.42,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    },
+    "1280": {
+      "docHeight": 2516,
+      "viewportHeight": 800,
+      "screensTall": 3.1,
+      "header": 98,
+      "footer": {
+        "y": 2034.5,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 505.9,
+          "height": 433.9,
+          "screens": 0.54,
+          "label": "Automation, shaped around your industry."
+        },
+        {
+          "index": 2,
+          "startY": 505.9,
+          "endY": 1712.7,
+          "height": 1206.8,
+          "screens": 1.51,
+          "label": "Healthcare & Wellness"
+        },
+        {
+          "index": 3,
+          "startY": 1712.7,
+          "endY": 2034.5,
+          "height": 321.8,
+          "screens": 0.4,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    },
+    "1440": {
+      "docHeight": 2519,
+      "viewportHeight": 900,
+      "screensTall": 2.8,
+      "header": 98,
+      "footer": {
+        "y": 2037.1,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 508.5,
+          "height": 436.5,
+          "screens": 0.49,
+          "label": "Automation, shaped around your industry."
+        },
+        {
+          "index": 2,
+          "startY": 508.5,
+          "endY": 1715.3,
+          "height": 1206.8,
+          "screens": 1.34,
+          "label": "Healthcare & Wellness"
+        },
+        {
+          "index": 3,
+          "startY": 1715.3,
+          "endY": 2037.1,
+          "height": 321.8,
+          "screens": 0.36,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    },
+    "1920": {
+      "docHeight": 2519,
+      "viewportHeight": 1080,
+      "screensTall": 2.3,
+      "header": 98,
+      "footer": {
+        "y": 2037.1,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 508.5,
+          "height": 436.5,
+          "screens": 0.4,
+          "label": "Automation, shaped around your industry."
+        },
+        {
+          "index": 2,
+          "startY": 508.5,
+          "endY": 1715.3,
+          "height": 1206.8,
+          "screens": 1.12,
+          "label": "Healthcare & Wellness"
+        },
+        {
+          "index": 3,
+          "startY": 1715.3,
+          "endY": 2037.1,
+          "height": 321.8,
+          "screens": 0.3,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    }
+  },
+  "industries-healthcare": {
+    "390": {
+      "docHeight": 3828,
+      "viewportHeight": 844,
+      "screensTall": 4.5,
+      "header": 98,
+      "footer": {
+        "y": 2245.7,
+        "h": 1582.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 2245.7,
+          "height": 2173.7,
+          "screens": 2.58,
+          "label": "Healthcare & Wellness"
+        }
+      ]
+    },
+    "768": {
+      "docHeight": 2816,
+      "viewportHeight": 1024,
+      "screensTall": 2.8,
+      "header": 98,
+      "footer": {
+        "y": 1833.9,
+        "h": 982.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1833.9,
+          "height": 1761.9,
+          "screens": 1.72,
+          "label": "Healthcare & Wellness"
+        }
+      ]
+    },
+    "1024": {
+      "docHeight": 2264,
+      "viewportHeight": 768,
+      "screensTall": 2.9,
+      "header": 98,
+      "footer": {
+        "y": 1781.5,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1781.5,
+          "height": 1709.5,
+          "screens": 2.23,
+          "label": "Healthcare & Wellness"
+        }
+      ]
+    },
+    "1280": {
+      "docHeight": 2249,
+      "viewportHeight": 800,
+      "screensTall": 2.8,
+      "header": 98,
+      "footer": {
+        "y": 1767.1,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1767.1,
+          "height": 1695.1,
+          "screens": 2.12,
+          "label": "Healthcare & Wellness"
+        }
+      ]
+    },
+    "1440": {
+      "docHeight": 2249,
+      "viewportHeight": 900,
+      "screensTall": 2.5,
+      "header": 98,
+      "footer": {
+        "y": 1767.2,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1767.2,
+          "height": 1695.2,
+          "screens": 1.88,
+          "label": "Healthcare & Wellness"
+        }
+      ]
+    },
+    "1920": {
+      "docHeight": 2249,
+      "viewportHeight": 1080,
+      "screensTall": 2.1,
+      "header": 98,
+      "footer": {
+        "y": 1767.2,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1767.2,
+          "height": 1695.2,
+          "screens": 1.57,
+          "label": "Healthcare & Wellness"
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "1280": {
+      "docHeight": 2090,
+      "viewportHeight": 800,
+      "screensTall": 2.6,
+      "header": 98,
+      "footer": {
+        "y": 1607.8,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 267.8,
+          "height": 195.8,
+          "screens": 0.24,
+          "label": "Privacy Policy"
+        },
+        {
+          "index": 2,
+          "startY": 267.8,
+          "endY": 1607.8,
+          "height": 1340,
+          "screens": 1.68,
+          "label": "What we collect"
+        }
+      ]
+    },
+    "1440": {
+      "docHeight": 2090,
+      "viewportHeight": 900,
+      "screensTall": 2.3,
+      "header": 98,
+      "footer": {
+        "y": 1607.8,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 267.8,
+          "height": 195.8,
+          "screens": 0.22,
+          "label": "Privacy Policy"
+        },
+        {
+          "index": 2,
+          "startY": 267.8,
+          "endY": 1607.8,
+          "height": 1340,
+          "screens": 1.49,
+          "label": "What we collect"
+        }
+      ]
+    },
+    "1920": {
+      "docHeight": 2090,
+      "viewportHeight": 1080,
+      "screensTall": 1.9,
+      "header": 98,
+      "footer": {
+        "y": 1607.8,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 267.8,
+          "height": 195.8,
+          "screens": 0.18,
+          "label": "Privacy Policy"
+        },
+        {
+          "index": 2,
+          "startY": 267.8,
+          "endY": 1607.8,
+          "height": 1340,
+          "screens": 1.24,
+          "label": "What we collect"
+        }
+      ]
+    }
+  },
+  "products": {
+    "390": {
+      "docHeight": 5025,
+      "viewportHeight": 844,
+      "screensTall": 6,
+      "header": 98,
+      "footer": {
+        "y": 3442.4,
+        "h": 1582.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 425,
+          "height": 353,
+          "screens": 0.42,
+          "label": "Systems built around real operational pr"
+        },
+        {
+          "index": 2,
+          "startY": 425,
+          "endY": 1032,
+          "height": 607,
+          "screens": 0.72,
+          "label": "Products"
+        },
+        {
+          "index": 3,
+          "startY": 1032.1,
+          "endY": 2987.6,
+          "height": 1955.5,
+          "screens": 2.32,
+          "label": "[ Custom software ]"
+        },
+        {
+          "index": 4,
+          "startY": 3099.6,
+          "endY": 3442.4,
+          "height": 342.8,
+          "screens": 0.41,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    },
+    "768": {
+      "docHeight": 4864,
+      "viewportHeight": 1024,
+      "screensTall": 4.8,
+      "header": 98,
+      "footer": {
+        "y": 3881.4,
+        "h": 982.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 411.6,
+          "height": 339.6,
+          "screens": 0.33,
+          "label": "Systems built around real operational pr"
+        },
+        {
+          "index": 2,
+          "startY": 411.6,
+          "endY": 1063.5,
+          "height": 651.9,
+          "screens": 0.64,
+          "label": "Products"
+        },
+        {
+          "index": 3,
+          "startY": 1063.5,
+          "endY": 3363.8,
+          "height": 2300.3,
+          "screens": 2.25,
+          "label": "[ Custom software ]"
+        },
+        {
+          "index": 4,
+          "startY": 3507.8,
+          "endY": 3881.5,
+          "height": 373.7,
+          "screens": 0.36,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    },
+    "1024": {
+      "docHeight": 4808,
+      "viewportHeight": 768,
+      "screensTall": 6.3,
+      "header": 98,
+      "footer": {
+        "y": 4325.5,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 426.8,
+          "height": 354.8,
+          "screens": 0.46,
+          "label": "Systems built around real operational pr"
+        },
+        {
+          "index": 2,
+          "startY": 426.8,
+          "endY": 1088.6,
+          "height": 661.8,
+          "screens": 0.86,
+          "label": "Products"
+        },
+        {
+          "index": 3,
+          "startY": 1088.5,
+          "endY": 3859.7,
+          "height": 2771.2,
+          "screens": 3.61,
+          "label": "[ Custom software ]"
+        },
+        {
+          "index": 4,
+          "startY": 4003.7,
+          "endY": 4325.5,
+          "height": 321.8,
+          "screens": 0.42,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    },
+    "1280": {
+      "docHeight": 4951,
+      "viewportHeight": 800,
+      "screensTall": 6.2,
+      "header": 98,
+      "footer": {
+        "y": 4468.6,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 441.9,
+          "height": 369.9,
+          "screens": 0.46,
+          "label": "Systems built around real operational pr"
+        },
+        {
+          "index": 2,
+          "startY": 441.9,
+          "endY": 1122.8,
+          "height": 680.9,
+          "screens": 0.85,
+          "label": "Products"
+        },
+        {
+          "index": 3,
+          "startY": 1122.8,
+          "endY": 4002.8,
+          "height": 2880,
+          "screens": 3.6,
+          "label": "[ Custom software ]"
+        },
+        {
+          "index": 4,
+          "startY": 4146.8,
+          "endY": 4468.6,
+          "height": 321.8,
+          "screens": 0.4,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    },
+    "1440": {
+      "docHeight": 5293,
+      "viewportHeight": 900,
+      "screensTall": 5.9,
+      "header": 98,
+      "footer": {
+        "y": 4811.2,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 444.5,
+          "height": 372.5,
+          "screens": 0.41,
+          "label": "Systems built around real operational pr"
+        },
+        {
+          "index": 2,
+          "startY": 444.5,
+          "endY": 1125.4,
+          "height": 680.9,
+          "screens": 0.76,
+          "label": "Products"
+        },
+        {
+          "index": 3,
+          "startY": 1125.4,
+          "endY": 4345.4,
+          "height": 3220,
+          "screens": 3.58,
+          "label": "[ Custom software ]"
+        },
+        {
+          "index": 4,
+          "startY": 4489.4,
+          "endY": 4811.2,
+          "height": 321.8,
+          "screens": 0.36,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    },
+    "1920": {
+      "docHeight": 5905,
+      "viewportHeight": 1080,
+      "screensTall": 5.5,
+      "header": 98,
+      "footer": {
+        "y": 5423.2,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 444.5,
+          "height": 372.5,
+          "screens": 0.34,
+          "label": "Systems built around real operational pr"
+        },
+        {
+          "index": 2,
+          "startY": 444.5,
+          "endY": 1125.4,
+          "height": 680.9,
+          "screens": 0.63,
+          "label": "Products"
+        },
+        {
+          "index": 3,
+          "startY": 1125.4,
+          "endY": 4957.4,
+          "height": 3832,
+          "screens": 3.55,
+          "label": "[ Custom software ]"
+        },
+        {
+          "index": 4,
+          "startY": 5101.4,
+          "endY": 5423.2,
+          "height": 321.8,
+          "screens": 0.3,
+          "label": "Have a workflow worth automating?"
+        }
+      ]
+    }
+  },
+  "products-aura-transcriber": {
+    "390": {
+      "docHeight": 6601,
+      "viewportHeight": 844,
+      "screensTall": 7.8,
+      "header": 98,
+      "footer": {
+        "y": 5018.5,
+        "h": 1582.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 5018.5,
+          "height": 4946.5,
+          "screens": 5.86,
+          "label": "Aura Transcriber"
+        }
+      ]
+    },
+    "768": {
+      "docHeight": 5044,
+      "viewportHeight": 1024,
+      "screensTall": 4.9,
+      "header": 98,
+      "footer": {
+        "y": 4061.3,
+        "h": 982.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 4061.3,
+          "height": 3989.3,
+          "screens": 3.9,
+          "label": "Aura Transcriber"
+        }
+      ]
+    },
+    "1024": {
+      "docHeight": 4331,
+      "viewportHeight": 768,
+      "screensTall": 5.6,
+      "header": 98,
+      "footer": {
+        "y": 3849.3,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 3849.3,
+          "height": 3777.3,
+          "screens": 4.92,
+          "label": "Aura Transcriber"
+        }
+      ]
+    },
+    "1280": {
+      "docHeight": 4334,
+      "viewportHeight": 800,
+      "screensTall": 5.4,
+      "header": 98,
+      "footer": {
+        "y": 3851.6,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 3851.6,
+          "height": 3779.6,
+          "screens": 4.72,
+          "label": "Aura Transcriber"
+        }
+      ]
+    },
+    "1440": {
+      "docHeight": 4335,
+      "viewportHeight": 900,
+      "screensTall": 4.8,
+      "header": 98,
+      "footer": {
+        "y": 3852.9,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 3852.9,
+          "height": 3780.9,
+          "screens": 4.2,
+          "label": "Aura Transcriber"
+        }
+      ]
+    },
+    "1920": {
+      "docHeight": 4335,
+      "viewportHeight": 1080,
+      "screensTall": 4,
+      "header": 98,
+      "footer": {
+        "y": 3852.9,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 3852.9,
+          "height": 3780.9,
+          "screens": 3.5,
+          "label": "Aura Transcriber"
+        }
+      ]
+    }
+  },
+  "services": {
+    "390": {
+      "docHeight": 8873,
+      "viewportHeight": 844,
+      "screensTall": 10.5,
+      "header": 98,
+      "footer": {
+        "y": 7291,
+        "h": 1582.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 844,
+          "height": 772,
+          "screens": 0.91,
+          "label": "SYSTEMSTHAT THINK,AUTOMATEAND SCALE"
+        },
+        {
+          "index": 2,
+          "startY": 844,
+          "endY": 6447,
+          "height": 5603,
+          "screens": 6.64,
+          "label": "AI Agents & Virtual Employees"
+        },
+        {
+          "index": 3,
+          "startY": 6447,
+          "endY": 7291,
+          "height": 844,
+          "screens": 1,
+          "label": "Let us build yours."
+        }
+      ]
+    },
+    "768": {
+      "docHeight": 8181,
+      "viewportHeight": 1024,
+      "screensTall": 8,
+      "header": 98,
+      "footer": {
+        "y": 7199,
+        "h": 982.3
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1024,
+          "height": 952,
+          "screens": 0.93,
+          "label": "SYSTEMSTHAT THINK,AUTOMATEAND SCALE"
+        },
+        {
+          "index": 2,
+          "startY": 1024,
+          "endY": 6175,
+          "height": 5151,
+          "screens": 5.03,
+          "label": "AI Agents & Virtual Employees"
+        },
+        {
+          "index": 3,
+          "startY": 6175,
+          "endY": 7199,
+          "height": 1024,
+          "screens": 1,
+          "label": "Let us build yours."
+        }
+      ]
+    },
+    "1024": {
+      "docHeight": 8036,
+      "viewportHeight": 768,
+      "screensTall": 10.5,
+      "header": 98,
+      "footer": {
+        "y": 7554.5,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 786.3,
+          "height": 714.3,
+          "screens": 0.93,
+          "label": "SYSTEMSTHAT THINK,AUTOMATEAND SCALE"
+        },
+        {
+          "index": 2,
+          "startY": 786.3,
+          "endY": 6786.4,
+          "height": 6000.1,
+          "screens": 7.81,
+          "label": "AI Agents & Virtual Employees"
+        },
+        {
+          "index": 3,
+          "startY": 6786.5,
+          "endY": 7554.5,
+          "height": 768,
+          "screens": 1,
+          "label": "Let us build yours."
+        }
+      ]
+    },
+    "1280": {
+      "docHeight": 7422,
+      "viewportHeight": 800,
+      "screensTall": 9.3,
+      "header": 98,
+      "footer": {
+        "y": 6939.7,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 851.1,
+          "height": 779.1,
+          "screens": 0.97,
+          "label": "SYSTEMSTHAT THINK,AUTOMATEAND SCALE"
+        },
+        {
+          "index": 2,
+          "startY": 851.1,
+          "endY": 6139.7,
+          "height": 5288.6,
+          "screens": 6.61,
+          "label": "AI Agents & Virtual Employees"
+        },
+        {
+          "index": 3,
+          "startY": 6139.7,
+          "endY": 6939.7,
+          "height": 800,
+          "screens": 1,
+          "label": "Let us build yours."
+        }
+      ]
+    },
+    "1440": {
+      "docHeight": 7573,
+      "viewportHeight": 900,
+      "screensTall": 8.4,
+      "header": 98,
+      "footer": {
+        "y": 7090.9,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 900,
+          "height": 828,
+          "screens": 0.92,
+          "label": "SYSTEMSTHAT THINK,AUTOMATEAND SCALE"
+        },
+        {
+          "index": 2,
+          "startY": 900,
+          "endY": 6190.9,
+          "height": 5290.9,
+          "screens": 5.88,
+          "label": "AI Agents & Virtual Employees"
+        },
+        {
+          "index": 3,
+          "startY": 6190.9,
+          "endY": 7090.9,
+          "height": 900,
+          "screens": 1,
+          "label": "Let us build yours."
+        }
+      ]
+    },
+    "1920": {
+      "docHeight": 7933,
+      "viewportHeight": 1080,
+      "screensTall": 7.3,
+      "header": 98,
+      "footer": {
+        "y": 7450.9,
+        "h": 482
+      },
+      "sections": [
+        {
+          "index": 1,
+          "startY": 72,
+          "endY": 1080,
+          "height": 1008,
+          "screens": 0.93,
+          "label": "SYSTEMSTHAT THINK,AUTOMATEAND SCALE"
+        },
+        {
+          "index": 2,
+          "startY": 1080,
+          "endY": 6370.9,
+          "height": 5290.9,
+          "screens": 4.9,
+          "label": "AI Agents & Virtual Employees"
+        },
+        {
+          "index": 3,
+          "startY": 6370.9,
+          "endY": 7450.9,
+          "height": 1080,
+          "screens": 1,
+          "label": "Let us build yours."
+        }
+      ]
+    }
+  }
+}

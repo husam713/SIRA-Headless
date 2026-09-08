@@ -6,6 +6,7 @@
   --color-brand-accent: var(--brand-accent);
   --color-brand-accent-bright: var(--brand-accent-bright);
   --color-brand-on-accent: var(--brand-on-accent);
+  --color-brand-on-deep: var(--brand-on-deep);
   --color-brand-paper: var(--brand-paper);
   --color-brand-paper-glass: var(--brand-paper-glass);
   --color-brand-ink: var(--brand-ink);
@@ -35,6 +36,9 @@
 
   --brand-accent-bright: oklch(0.78 0.14 78);
   --brand-on-accent: #20242b;
+  /* Readable foreground on --brand-deep. Group's paper, because Group's deep is
+     dark; a brand set on a dark ground resolves this to its ink instead. */
+  --brand-on-deep: #f7f4ed;
   --brand-paper-glass: oklch(0.97 0.006 75 / 0.92);
   --brand-ink-soft: oklch(0.45 0.01 260);
   --brand-ink-faint: oklch(0.6 0.01 260);
@@ -119,6 +123,38 @@ html:lang(ar) {
     var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
   --font-sira-display:
     var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
+
+  /* Arabic sits lower and reads larger than Latin at the same nominal size, and
+     the ascender/descender pattern needs more room between lines than the tight
+     Latin leading this design uses. These are the two type facts that a mirrored
+     English system gets wrong most visibly. */
+  line-height: 1.85;
+  font-synthesis-weight: none;
+}
+
+/* Two Latin typographic habits that are not merely unnecessary in Arabic but
+   actively wrong:
+   - Arabic script has no letter case, so `text-transform: uppercase` is a no-op
+     at best and mangles transliterated Latin runs at worst.
+   - Letter-spacing severs the cursive joins that make Arabic legible. The
+     negative tracking this design applies to Latin display type is worse still.
+
+   Both are neutralised wherever the language is Arabic. An explicit `lang="en"`
+   island — the language switch, a Latin product name — keeps its own treatment,
+   which is why this is scoped by `:lang()` rather than by class. `!important` is
+   deliberate: these override utility classes, and they are correctness rules
+   rather than style preferences. */
+html:lang(ar) *:not(:lang(en)) {
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+/* Arabic-Indic digits are not universally preferred in Saudi business writing,
+   and mixing them with Latin numerals inside one page is worse than either. The
+   numerals stay Latin; only their font is corrected, because Noto Kufi's digits
+   are the ones that sit correctly beside Arabic text. */
+html:lang(ar) {
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 * {
@@ -139,7 +175,12 @@ html:lang(ar) {
 
 html {
   min-width: 320px;
-  /* Keeps anchor targets clear of the sticky header. */
+  /* Keeps anchor targets clear of the sticky header.
+     This is the ONLY place the header clearance is applied to an anchor. A
+     `scroll-margin` on the target adds to this rather than replacing it, so an
+     element also asking for `calc(header + 2rem)` landed a whole extra header
+     down the page — 192px below the fold on the services index. Targets that
+     want breathing room above them should ask for the breathing room only. */
   scroll-padding-block-start: var(--layout-header-offset);
   background: var(--brand-paper);
   color: var(--brand-ink);
@@ -1189,4 +1230,468 @@ a {
 
 .record-prose code {
   font-size: 0.875em;
+}
+
+/* ---------------------------------------------------------------------------
+   SIRA Digital (ADR-033)
+   ---------------------------------------------------------------------------
+   Digital is the one company allowed a substantially more technology-forward
+   surface. Everything below is Layer C — progressive premium enhancement — and
+   ADR-028's constraint holds: none of it may be required for navigation,
+   comprehension, accessibility, forms, or core CTA behaviour.
+
+   It is built on scroll-driven CSS animations rather than on
+   IntersectionObserver, for three reasons in this order:
+
+     1. Content is visible by default. A reveal here is an animation that plays,
+        not a hidden state waiting to be released, so a browser without
+        scroll-driven animations — or a page whose JavaScript never runs — shows
+        a complete readable section rather than blank ground. A JS-gated reveal
+        gets this wrong the moment hydration fails.
+     2. Every section stays a Server Component. The architecture lock keeps
+        Client Components to required interaction, and a decorative reveal is
+        not required interaction.
+     3. It runs off the main thread.
+
+   Reduced motion is handled twice on purpose: the global kill switch earlier in
+   this file collapses durations, and each block below adds a STRUCTURAL
+   fallback, so the page becomes a shorter static document rather than a fast
+   version of a long animated one. */
+
+:root {
+  /* The house easing for this tenant. One curve for every reveal and nudge;
+     consistency of easing is most of what reads as craft. */
+  --digital-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --digital-reveal-distance: 1.25rem;
+  /* The kinetic band's scroll runway, as a multiple of the stage. */
+  --digital-kinetic-track: 220svh;
+  --digital-kinetic-size-start: clamp(3.5rem, 14vw, 13.5rem);
+  --digital-kinetic-size-end: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+/* --- Reveal ---------------------------------------------------------------
+   Opacity 0 to 1 with a 20px rise, played against the element's own view
+   timeline. The 6% entry point is what an observer threshold would otherwise
+   express, and finishing at 26% of cover means nothing is still animating while
+   it is being read.
+
+   --digital-reveal-offset staggers siblings by moving the START of the range
+   rather than by adding a delay: a scroll-driven animation has no wall-clock
+   delay to add, and offsetting the range is what produces the same cascade. */
+@keyframes digital-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(var(--digital-reveal-distance));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .digital-reveal {
+      animation: digital-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry calc(6% + var(--digital-reveal-offset, 0%)) cover
+        calc(26% + var(--digital-reveal-offset, 0%));
+    }
+  }
+}
+
+/* --- Capability rail ------------------------------------------------------ */
+.digital-rail__title,
+.digital-rail__arrow {
+  transition: transform 220ms var(--digital-ease), color 220ms var(--digital-ease);
+}
+
+.digital-rail__item:focus-within .digital-rail__arrow {
+  transform: translateX(0.375rem);
+  color: var(--brand-ink);
+}
+
+/* translateX is physical. Nudging the arrow "forward" is leftward in Arabic. */
+[dir="rtl"] .digital-rail__item:focus-within .digital-rail__arrow {
+  transform: translateX(-0.375rem);
+}
+
+@media (hover: hover) {
+  .digital-rail__item:hover .digital-rail__arrow {
+    transform: translateX(0.375rem);
+    color: var(--brand-ink);
+  }
+
+  .digital-rail__item:hover .digital-rail__title {
+    transform: translateY(-2px);
+  }
+
+  [dir="rtl"] .digital-rail__item:hover .digital-rail__arrow {
+    transform: translateX(-0.375rem);
+  }
+}
+
+/* --- Service specification -------------------------------------------------
+   Each service body is a fixed six-part record — the problem, what changes,
+   what the system does, what it connects to, where a person stays in the loop,
+   what it is for — which the CMS stores as <h2>label</h2><p>value</p> pairs.
+
+   `record-prose` styles an ARTICLE, where an h2 is a real section heading and
+   34px is right. Here the same element is a two-word LABEL sitting under the
+   service's own 52px title, so the article scale inverts the hierarchy: the
+   label competes with the thing it belongs to, and six of them cost roughly
+   925px per service. This modifier gives those labels the site's own label
+   scale — the one already used for every eyebrow and field label — without
+   touching `record-prose`, which is still correct for the newsroom.
+
+   Spacing lives AFTER each value rather than BEFORE each label on purpose: in
+   the two-column mode below, a top margin on the first label of column two
+   would push that column's first line out of alignment with column one's, and
+   there is no selector for "first element in a column". */
+.digital-spec > h2 {
+  font-family: var(--font-sira-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-ink-faint);
+  margin-block: 0 0.625rem;
+  break-after: avoid;
+}
+
+/* The value, including the first one: `record-prose`'s opening-paragraph
+   treatment is an article's lead-in, and the first value of a specification is
+   not a lead-in. */
+.digital-spec > p,
+.digital-spec > p:first-of-type {
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  color: color-mix(in oklab, var(--brand-ink) 88%, var(--brand-paper) 12%);
+  margin-block: 0 1.875rem;
+  break-inside: avoid;
+  orphans: 2;
+  widows: 2;
+}
+
+.digital-spec > :last-child {
+  margin-block-end: 0;
+}
+
+/* Two columns from xl, because the space is already there and empty: the
+   content track measures 1000px at 1440 while the prose measure is 568px, so
+   43% of every service body was blank ground beside the text. Below xl the
+   track is too narrow to divide — 608px at 1024 — and it stays one column. */
+@media (min-width: 80rem) {
+  .digital-spec {
+    columns: 2;
+    column-gap: clamp(2.5rem, 4vw, 3.5rem);
+  }
+}
+
+/* --- Service index (scroll-spy) -------------------------------------------
+   The reference drives its services rail from a scroll-spy, and on a page this
+   long a rail that cannot say where you are is a list of links rather than an
+   index. This does it without a Client Component, so the architecture lock
+   holds and the page stays a Server Component: each service block publishes a
+   named view timeline, the grid puts those names in scope, and each rail entry
+   animates against its own block's timeline.
+
+   `view-timeline-inset` is what turns "in view" into "at the reading line".
+   It shrinks the timeline's scrollport to a narrow band just below the header,
+   so exactly one block — the one being read — is ever inside it.
+
+   What the animation drives is one registered number, not the colours
+   themselves. An animation outranks every author declaration in the cascade,
+   so animating `border-color` directly would have silently killed :hover and
+   :focus-visible on the same entry for the whole life of the page. Moving the
+   scroll signal into a custom property leaves the colours as ordinary
+   declarations that a pointer or the keyboard can still override.
+
+   The keyframes are 0 at both ends and 1 in between, because `fill: both`
+   would otherwise leave every entry stuck in its final state once its block
+   had passed. The 0.01% shoulders make the change read as a switch while
+   keeping the property interpolable. */
+@property --digital-index-spy {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@keyframes digital-index-spy {
+  0%,
+  100% {
+    --digital-index-spy: 0;
+  }
+
+  0.01%,
+  99.99% {
+    --digital-index-spy: 1;
+  }
+}
+
+.digital-index__link {
+  border-color: color-mix(
+    in oklab,
+    var(--brand-accent) calc(var(--digital-index-spy) * 100%),
+    var(--brand-border)
+  );
+  color: color-mix(
+    in oklab,
+    var(--brand-ink) calc(var(--digital-index-spy) * 100%),
+    var(--brand-ink-soft)
+  );
+  transition: border-color 300ms var(--digital-ease), color 300ms var(--digital-ease);
+}
+
+/* 0.15s against the entry's 0.3s, matching the reference's measured pair. */
+.digital-index__number {
+  color: color-mix(
+    in oklab,
+    var(--brand-accent) calc(var(--digital-index-spy) * 100%),
+    var(--brand-ink-faint)
+  );
+  transition: color 150ms var(--digital-ease);
+}
+
+/* Intent still outranks position: reaching for an entry lights it whether or
+   not it is the one being read. */
+.digital-index__link:focus-visible,
+.digital-index__link:focus-visible .digital-index__number {
+  color: var(--brand-ink);
+}
+
+.digital-index__link:focus-visible {
+  border-color: var(--brand-accent);
+}
+
+@media (hover: hover) {
+  .digital-index__link:hover {
+    border-color: var(--brand-accent);
+    color: var(--brand-ink);
+  }
+
+  .digital-index__link:hover .digital-index__number {
+    color: var(--brand-ink);
+  }
+}
+
+/* Not gated on prefers-reduced-motion, unlike every other block in this layer.
+   Nothing here moves: it swaps two colours to say which section is being read,
+   which is orientation on a page seven screens long, and a reader who has asked
+   for less motion needs that as much as anyone. The global kill switch earlier
+   in this file collapses the 300ms transition to nothing for them, so the
+   change lands instantly instead of easing.
+
+   The duration exemption is what keeps that true. That kill switch forces
+   `animation-duration: 0.01ms` on everything, and a scroll-driven animation
+   given an explicit duration finishes inside the first fraction of its range
+   and then sits in its fill state — which for these keyframes is the inactive
+   one, so every entry would have gone permanently dark. `auto` is the value
+   that means "take the duration from the timeline", and the class selector
+   outranks the universal one it is overriding. */
+@supports (animation-timeline: view()) and (timeline-scope: --sira) {
+  .digital-index__block {
+    view-timeline-name: var(--digital-index-timeline);
+    /* From just under the header to 15% of the way down the viewport. */
+    view-timeline-inset: var(--layout-header-offset) 85%;
+  }
+
+  .digital-index__link {
+    animation: digital-index-spy linear both;
+    animation-timeline: var(--digital-index-timeline);
+    animation-range: cover 0% cover 100%;
+    animation-duration: auto !important;
+  }
+}
+
+/* --- Marquee --------------------------------------------------------------
+   Same two-keyframe RTL treatment as the Group ticker: the duplicated strip
+   overflows toward the inline end, which is the opposite physical direction in
+   Arabic, so a single -50% keyframe would animate RTL into blank space. */
+@keyframes digital-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes digital-marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+.digital-marquee {
+  --digital-marquee-fade: 10%;
+  overflow-x: clip;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--digital-marquee-fade),
+    #000 calc(100% - var(--digital-marquee-fade)),
+    transparent 100%
+  );
+}
+
+.digital-marquee__track {
+  display: flex;
+  inline-size: max-content;
+  animation: digital-marquee 60s linear infinite;
+  will-change: transform;
+}
+
+[dir="rtl"] .digital-marquee__track {
+  animation-name: digital-marquee-rtl;
+}
+
+/* Ambient motion yields to intent: a reader who reaches for an item, with a
+   pointer or with the keyboard, stops the strip. */
+.digital-marquee:hover .digital-marquee__track,
+.digital-marquee:focus-within .digital-marquee__track {
+  animation-play-state: paused;
+}
+
+/* --- Kinetic wordmark -----------------------------------------------------
+   A tall track with a sticky stage inside it. The word scales down and rises as
+   the track passes, and the lockup underneath arrives in the last third.
+
+   Size is driven by font-size rather than by scale() so the type stays crisply
+   hinted at every step instead of being resampled. */
+.digital-kinetic {
+  position: relative;
+  view-timeline-name: --digital-kinetic;
+  view-timeline-axis: block;
+}
+
+.digital-kinetic__stage {
+  position: sticky;
+  top: var(--layout-header-offset);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.25rem, 3.5svh, 2.75rem);
+  block-size: calc(100svh - var(--layout-header-offset));
+  overflow: hidden;
+}
+
+.digital-kinetic__word {
+  margin: 0;
+  font-size: var(--digital-kinetic-size-end);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.digital-kinetic__lockup {
+  max-inline-size: 46ch;
+  text-align: center;
+}
+
+@keyframes digital-kinetic-word {
+  from {
+    font-size: var(--digital-kinetic-size-start);
+    transform: translateY(0.8125rem);
+  }
+  to {
+    font-size: var(--digital-kinetic-size-end);
+    transform: translateY(-0.8125rem);
+  }
+}
+
+@keyframes digital-kinetic-lockup {
+  0%,
+  62% {
+    opacity: 0;
+    transform: translateY(2.125rem);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .digital-kinetic {
+      block-size: var(--digital-kinetic-track);
+    }
+
+    .digital-kinetic__word {
+      animation: digital-kinetic-word linear both;
+      animation-timeline: --digital-kinetic;
+      animation-range: contain 0% contain 100%;
+      will-change: font-size, transform;
+    }
+
+    .digital-kinetic__lockup {
+      animation: digital-kinetic-lockup linear both;
+      animation-timeline: --digital-kinetic;
+      animation-range: contain 0% contain 100%;
+      will-change: opacity, transform;
+    }
+  }
+}
+
+/* Structural reduced-motion fallbacks. Not the same page faster — a shorter
+   page. The kinetic band loses its whole scroll runway and becomes an ordinary
+   block, and the marquee stops being a strip and becomes a wrapped list, which
+   is why the duplicated half is hidden rather than merely halted. */
+@media (prefers-reduced-motion: reduce) {
+  .digital-kinetic {
+    block-size: auto;
+  }
+
+  .digital-kinetic__stage {
+    position: static;
+    block-size: auto;
+    padding-block: clamp(4rem, 12svh, 8.75rem);
+  }
+
+  .digital-marquee {
+    mask-image: none;
+    overflow-x: visible;
+  }
+
+  .digital-marquee__track {
+    inline-size: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 1.75rem;
+    animation-name: none;
+    transform: none;
+  }
+
+  .digital-marquee__item[data-duplicate="true"] {
+    display: none;
+  }
+}
+
+/* --- Arabic display metrics -----------------------------------------------
+   The Latin display settings here are deliberately tight: sub-1.0 leading and
+   negative tracking are most of what makes the Latin headline feel engineered.
+   Neither transfers. Arabic letterforms connect and carry ascenders and
+   descenders that tight leading clips, and negative tracking damages the joins.
+   Kufi is also optically smaller at the same point size, so the kinetic band is
+   driven a step smaller rather than merely relaxed — at the Latin size it
+   overflows the 1.15 line box inside the sticky stage.
+
+   Only leading is set here. Tracking is handled once, further up, by the rule
+   that neutralises letter-spacing for Arabic text everywhere; the eyebrow used
+   to keep its 0.12em here and that was a mistake — wide tracking breaks the
+   joins on a short Arabic label more visibly than anywhere else on the page. */
+html:lang(ar) .digital-display {
+  line-height: 1.28;
+}
+
+html:lang(ar) .digital-kinetic__word {
+  line-height: 1.15;
+  --digital-kinetic-size-start: clamp(3rem, 9vw, 8.5rem);
 }

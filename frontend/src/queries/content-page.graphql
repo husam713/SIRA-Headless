@@ -1,0 +1,76 @@
+query SiraContentPage($uri: ID!, $asPreview: Boolean = false) {
+  page(id: $uri, idType: URI, asPreview: $asPreview) {
+    databaseId
+    uri
+    title
+    content
+    modified
+    siraLocale {
+      code
+    }
+    pageIntro {
+      eyebrow
+      heading
+      standfirst
+      ctaLabel
+      ctaHeading
+    }
+    seo: siraHomepage {
+      variant
+    }
+  }
+}
+
+query SiraServiceIndex {
+  siraServices(first: 48, where: { status: PUBLISH, orderby: [{ field: MENU_ORDER, order: ASC }, { field: DATE, order: ASC }] }) {
+    pageInfo {
+      hasNextPage
+    }
+    nodes {
+      databaseId
+      slug
+      uri
+      title
+      excerpt
+      content
+      siraLocale {
+        code
+      }
+    }
+  }
+}
+
+query SiraWorkIndex {
+  siraProjects(first: 48, where: { status: PUBLISH, orderby: [{ field: DATE, order: ASC }] }) {
+    pageInfo {
+      hasNextPage
+    }
+    nodes {
+      databaseId
+      slug
+      title
+      excerpt
+      content
+      siraLocale {
+        code
+      }
+    }
+  }
+}
+
+query SiraIndustryIndex {
+  siraIndustries(first: 48, where: { hideEmpty: false, orderby: NAME, order: ASC }) {
+    pageInfo {
+      hasNextPage
+    }
+    nodes {
+      databaseId
+      slug
+      name
+      description
+      siraLocale {
+        code
+      }
+    }
+  }
+}

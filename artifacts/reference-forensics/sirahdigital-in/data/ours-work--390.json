@@ -1,0 +1,109 @@
+{
+  "url": "/work/",
+  "lang": "en",
+  "dir": "ltr",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 6490,
+  "viewport": {
+    "w": 390,
+    "h": 844
+  },
+  "screens": 7.69,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 749.8,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 590.8,
+      "height": 510.8,
+      "screens": 0.61,
+      "heading": "Systems, not slide decks.",
+      "headingType": {
+        "size": 40,
+        "lineHeight": 39,
+        "weight": "700",
+        "tracking": -0.03,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 2,
+      "startY": 590.8,
+      "endY": 5359.4,
+      "height": 4768.6,
+      "screens": 5.65,
+      "heading": "Integration Fabric",
+      "headingType": {
+        "size": 28,
+        "lineHeight": 30,
+        "weight": "700",
+        "tracking": -0.025,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 3,
+      "startY": 5359.4,
+      "endY": 5740.2,
+      "height": 380.8,
+      "screens": 0.45,
+      "heading": "Have a process worth rebuilding?",
+      "headingType": {
+        "size": 38,
+        "lineHeight": 40,
+        "weight": "700",
+        "tracking": -0.025,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "Systems, not slide decks.",
+    "size": 40,
+    "lineHeight": 39,
+    "weight": "700",
+    "tracking": -0.03,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

@@ -1,0 +1,109 @@
+{
+  "url": "/ar/work/",
+  "lang": "ar",
+  "dir": "rtl",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 5428,
+  "viewport": {
+    "w": 768,
+    "h": 1024
+  },
+  "screens": 5.3,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 690.6,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 716.8,
+      "height": 636.8,
+      "screens": 0.62,
+      "heading": "أنظمة، لا عروضًا تقديمية.",
+      "headingType": {
+        "size": 45,
+        "lineHeight": 58,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 2,
+      "startY": 716.8,
+      "endY": 4275.5,
+      "height": 3558.7,
+      "screens": 3.48,
+      "heading": "نسيج التكامل",
+      "headingType": {
+        "size": 35,
+        "lineHeight": 44,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 3,
+      "startY": 4275.5,
+      "endY": 4737.3,
+      "height": 461.8,
+      "screens": 0.45,
+      "heading": "لديكم عملية تستحق إعادة البناء؟",
+      "headingType": {
+        "size": 52,
+        "lineHeight": 66,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "أنظمة، لا عروضًا تقديمية.",
+    "size": 45,
+    "lineHeight": 58,
+    "weight": "700",
+    "tracking": 0,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

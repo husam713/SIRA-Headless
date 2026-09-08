@@ -5,7 +5,12 @@ export type NavigationScope = "primary" | "footer" | "legal";
 export type NavigationTarget = "_self" | "_blank";
 export type NavigationLocation = Extract<
   MenuLocationEnum,
-  "PRIMARY" | "FOOTER" | "LEGAL"
+  | "PRIMARY"
+  | "FOOTER"
+  | "LEGAL"
+  | "PRIMARY_AR"
+  | "FOOTER_AR"
+  | "LEGAL_AR"
 >;
 
 export type NavigationDiagnosticCode =

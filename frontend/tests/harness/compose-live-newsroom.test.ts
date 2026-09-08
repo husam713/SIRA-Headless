@@ -45,6 +45,7 @@ const BRAND_NAME: Readonly<Record<SiteKey, string>> = {
   healthcare: "SIRA Healthcare",
   lifestyle: "SIRA Lifestyle",
   realestate: "SIRA Real Estate",
+  digital: "SIRA Digital",
 };
 
 interface Capture {

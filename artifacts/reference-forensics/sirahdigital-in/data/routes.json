@@ -1,0 +1,4008 @@
+{
+  "origin": "https://sirahdigital.in",
+  "crawledAt": "2026-09-07T11:38:24.302Z",
+  "count": 31,
+  "routes": [
+    {
+      "url": "https://sirahdigital.in/",
+      "pathname": "/",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/",
+      "title": "Sirah Digital | Intelligent Business Automation Systems",
+      "description": "We build AI agents, chatbots, workflow automation and custom software that let businesses automate, simplify, and scale. Based in Chennai, serving 10,000+ businesses.",
+      "canonical": "https://sirahdigital.in/",
+      "ogTitle": "Sirah Digital | Intelligent Business Automation Systems",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Building intelligent systems that automate, simplify, and scale."
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Building intelligent systems that automate, simplify, and scale."
+        },
+        {
+          "tag": "h2",
+          "text": "[ Products ]"
+        },
+        {
+          "tag": "h3",
+          "text": "Aura Transcriber"
+        },
+        {
+          "tag": "h3",
+          "text": "Analytics Agents"
+        },
+        {
+          "tag": "h3",
+          "text": "NUSI"
+        },
+        {
+          "tag": "h3",
+          "text": "TNPSC Mentors"
+        },
+        {
+          "tag": "h3",
+          "text": "LexDraft"
+        },
+        {
+          "tag": "h2",
+          "text": "Trusted Across Industries"
+        },
+        {
+          "tag": "h2",
+          "text": "SirahDigital"
+        },
+        {
+          "tag": "h2",
+          "text": "Ready to automate the busywork?"
+        }
+      ],
+      "docHeight": 5483,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "section",
+          "id": null,
+          "className": "relative flex min-h-[calc(100svh-72px)] items-start overflow-hidden pt-12 sm:pt-24 lg:items-center lg:pt-0",
+          "y": 72,
+          "height": 828,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Building intelligent systems that automate, simplify, and scale."
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Start an automation audit",
+              "href": "/contact"
+            },
+            {
+              "tag": "a",
+              "text": "See our work",
+              "href": "/products"
+            }
+          ],
+          "imgCount": 2,
+          "textLength": 243
+        },
+        {
+          "index": 2,
+          "tag": "section",
+          "id": null,
+          "className": "relative mx-auto w-full max-w-[1440px] px-6 pt-20 pb-14 md:pt-28 md:pb-20",
+          "y": 900,
+          "height": 485,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "[ Products ]"
+            },
+            {
+              "tag": "h3",
+              "text": "Aura Transcriber"
+            },
+            {
+              "tag": "h3",
+              "text": "Analytics Agents"
+            },
+            {
+              "tag": "h3",
+              "text": "NUSI"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "01Aura TranscriberEvery telecaller call transcribed in Tamil",
+              "href": "/products/aura-transcriber"
+            },
+            {
+              "tag": "a",
+              "text": "02Analytics AgentsWebsite measurement planned, built and mon",
+              "href": "/products/analytics-agents"
+            },
+            {
+              "tag": "a",
+              "text": "03NUSIA whole nutrition practice in one workspace: clients, ",
+              "href": "/products/nusi"
+            },
+            {
+              "tag": "a",
+              "text": "04TNPSC MentorsTNPSC exam prep in Tamil and English — solved",
+              "href": "/products/tnpsc-mentors"
+            },
+            {
+              "tag": "a",
+              "text": "05LexDraftPractice management for Indian advocates — cases, ",
+              "href": "/products/lexdraft"
+            }
+          ],
+          "imgCount": 0,
+          "textLength": 521
+        },
+        {
+          "index": 3,
+          "tag": "section",
+          "id": null,
+          "className": "relative py-16 md:py-[100px]",
+          "y": 1385,
+          "height": 443,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Trusted Across Industries"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 0,
+          "textLength": 626
+        },
+        {
+          "index": 4,
+          "tag": "section",
+          "id": null,
+          "className": "relative py-20 md:py-28 [overflow-x:clip]",
+          "y": 1828,
+          "height": 788,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [],
+          "ctas": [],
+          "imgCount": 11,
+          "textLength": 19
+        },
+        {
+          "index": 5,
+          "tag": "section",
+          "id": null,
+          "className": "kinetic-wordmark_track__Ix3op",
+          "y": 2616,
+          "height": 1980,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "SirahDigital"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "See what we build→",
+              "href": "/services"
+            }
+          ],
+          "imgCount": 0,
+          "textLength": 94
+        },
+        {
+          "index": 6,
+          "tag": "section",
+          "id": null,
+          "className": "relative min-h-[45vh] flex flex-col items-center justify-center text-center px-6 py-20 border-t border-white/10",
+          "y": 4596,
+          "height": 405,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Ready to automate the busywork?"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 53
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 57
+    },
+    {
+      "url": "https://sirahdigital.in/services",
+      "pathname": "/services",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/services",
+      "title": "AI Automation Services | Sirah Digital",
+      "description": "AI agents and virtual employees, chatbots and voice assistants, workflow automation, custom web and mobile apps, CRM and ERP, SaaS builds, WhatsApp automation, OCR, API integration and BI dashboards.",
+      "canonical": "https://sirahdigital.in/services",
+      "ogTitle": "AI Automation Services | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "SYSTEMSTHAT THINK,AUTOMATEAND SCALE"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "SYSTEMSTHAT THINK,AUTOMATEAND SCALE"
+        },
+        {
+          "tag": "h2",
+          "text": "AI Agents & Virtual Employees"
+        },
+        {
+          "tag": "h2",
+          "text": "AI Chatbots & Voice Assistants"
+        },
+        {
+          "tag": "h2",
+          "text": "Workflow & Process Automation"
+        },
+        {
+          "tag": "h2",
+          "text": "Custom Web & Mobile Apps"
+        },
+        {
+          "tag": "h2",
+          "text": "CRM & ERP Solutions"
+        },
+        {
+          "tag": "h2",
+          "text": "WhatsApp Business Automation"
+        },
+        {
+          "tag": "h2",
+          "text": "AI Document Processing & OCR"
+        },
+        {
+          "tag": "h2",
+          "text": "Business Intelligence Dashboards"
+        },
+        {
+          "tag": "h2",
+          "text": "API Dev & System Integration"
+        },
+        {
+          "tag": "h2",
+          "text": "SaaS Product Development"
+        },
+        {
+          "tag": "h2",
+          "text": "Let us build yours."
+        }
+      ],
+      "docHeight": 7573,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "section",
+          "id": null,
+          "className": "relative min-h-[calc(100svh-72px)] flex flex-col justify-center max-w-6xl mx-auto px-6 py-10",
+          "y": 72,
+          "height": 828,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "SYSTEMSTHAT THINK,AUTOMATEAND SCALE"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 0,
+          "textLength": 174
+        },
+        {
+          "index": 2,
+          "tag": "div",
+          "id": null,
+          "className": "relative",
+          "y": 900,
+          "height": 5291,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "AI Agents & Virtual Employees"
+            },
+            {
+              "tag": "h2",
+              "text": "AI Chatbots & Voice Assistants"
+            },
+            {
+              "tag": "h2",
+              "text": "Workflow & Process Automation"
+            },
+            {
+              "tag": "h2",
+              "text": "Custom Web & Mobile Apps"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "button",
+              "text": "01AI Agents",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "02Chatbots",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "03Workflow Automation",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "04Custom Software",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "05CRM & ERP",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "06WhatsApp Automation",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "07OCR",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "08Business Intelligence",
+              "href": null
+            }
+          ],
+          "imgCount": 10,
+          "textLength": 3146
+        },
+        {
+          "index": 3,
+          "tag": "section",
+          "id": null,
+          "className": "relative min-h-[100svh] flex flex-col items-center justify-center text-center px-6 overflow-hidden",
+          "y": 6191,
+          "height": 900,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Let us build yours."
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 41
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 59
+    },
+    {
+      "url": "https://sirahdigital.in/products",
+      "pathname": "/products",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/products",
+      "title": "Products & Work | Sirah Digital",
+      "description": "Aura Transcriber, Analytics Agents and NUSI - three products Sirah Digital has built - alongside the live client systems behind them: clinical workflow automation, multi-warehouse ERP integration and WhatsApp commerce infrastructure.",
+      "canonical": "https://sirahdigital.in/products",
+      "ogTitle": "Products & Work | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Systems built around real operational problems."
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Systems built around real operational problems."
+        },
+        {
+          "tag": "h2",
+          "text": "Products"
+        },
+        {
+          "tag": "h3",
+          "text": "Aura Transcriber"
+        },
+        {
+          "tag": "h3",
+          "text": "Analytics Agents"
+        },
+        {
+          "tag": "h3",
+          "text": "NUSI"
+        },
+        {
+          "tag": "h3",
+          "text": "TNPSC Mentors"
+        },
+        {
+          "tag": "h3",
+          "text": "LexDraft"
+        },
+        {
+          "tag": "h2",
+          "text": "[ Custom software ]"
+        },
+        {
+          "tag": "h3",
+          "text": "Healthcare Systems"
+        },
+        {
+          "tag": "h3",
+          "text": "Education Platforms"
+        },
+        {
+          "tag": "h3",
+          "text": "Operations & ERP"
+        },
+        {
+          "tag": "h3",
+          "text": "Marketing Automation"
+        },
+        {
+          "tag": "h3",
+          "text": "Digital Experiences"
+        },
+        {
+          "tag": "h2",
+          "text": "Have a workflow worth automating?"
+        }
+      ],
+      "docHeight": 5293,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "section",
+          "id": null,
+          "className": "mx-auto w-full max-w-[1100px] px-6 pb-4 pt-20 md:pt-28",
+          "y": 72,
+          "height": 373,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Systems built around real operational problems."
+            }
+          ],
+          "ctas": [],
+          "imgCount": 0,
+          "textLength": 182
+        },
+        {
+          "index": 2,
+          "tag": "div",
+          "id": "products",
+          "className": "scroll-mt-28 pt-16 md:pt-24",
+          "y": 445,
+          "height": 681,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Products"
+            },
+            {
+              "tag": "h3",
+              "text": "Aura Transcriber"
+            },
+            {
+              "tag": "h3",
+              "text": "Analytics Agents"
+            },
+            {
+              "tag": "h3",
+              "text": "NUSI"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Explore Aura Transcriber→",
+              "href": "/products/aura-transcriber"
+            },
+            {
+              "tag": "a",
+              "text": "Explore Analytics Agents→",
+              "href": "/products/analytics-agents"
+            },
+            {
+              "tag": "a",
+              "text": "Explore NUSI→",
+              "href": "/products/nusi"
+            },
+            {
+              "tag": "a",
+              "text": "Explore TNPSC Mentors→",
+              "href": "/products/tnpsc-mentors"
+            },
+            {
+              "tag": "a",
+              "text": "Explore LexDraft→",
+              "href": "/products/lexdraft"
+            }
+          ],
+          "imgCount": 0,
+          "textLength": 832
+        },
+        {
+          "index": 3,
+          "tag": "div",
+          "id": "portfolio",
+          "className": "scroll-mt-28 pt-28 md:pt-40",
+          "y": 1125,
+          "height": 3220,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "[ Custom software ]"
+            },
+            {
+              "tag": "h3",
+              "text": "Healthcare Systems"
+            },
+            {
+              "tag": "h3",
+              "text": "Education Platforms"
+            },
+            {
+              "tag": "h3",
+              "text": "Operations & ERP"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Enquire about a build→",
+              "href": "/contact"
+            },
+            {
+              "tag": "a",
+              "text": "Enquire about a build→",
+              "href": "/contact"
+            },
+            {
+              "tag": "a",
+              "text": "Enquire about a build→",
+              "href": "/contact"
+            },
+            {
+              "tag": "a",
+              "text": "Enquire about a build→",
+              "href": "/contact"
+            },
+            {
+              "tag": "a",
+              "text": "Enquire about a build→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 664
+        },
+        {
+          "index": 4,
+          "tag": "div",
+          "id": null,
+          "className": "mt-28 md:mt-36",
+          "y": 4489,
+          "height": 322,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Have a workflow worth automating?"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 88
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 59
+    },
+    {
+      "url": "https://sirahdigital.in/products/aura-transcriber",
+      "pathname": "/products/aura-transcriber",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/products/aura-transcriber",
+      "title": "Aura Transcriber | Sirah Digital",
+      "description": "Every telecaller call transcribed in Tamil and English, then read for what converts.",
+      "canonical": "https://sirahdigital.in/products/aura-transcriber",
+      "ogTitle": "Aura Transcriber | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Aura Transcriber"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Aura Transcriber"
+        },
+        {
+          "tag": "h3",
+          "text": "Nothing to install"
+        },
+        {
+          "tag": "h3",
+          "text": "Tamil and English, code-switched"
+        },
+        {
+          "tag": "h3",
+          "text": "Straight into your CRM"
+        },
+        {
+          "tag": "h2",
+          "text": "What you get"
+        },
+        {
+          "tag": "h3",
+          "text": "Which days actually convert"
+        },
+        {
+          "tag": "h3",
+          "text": "Which telecaller actually converts"
+        },
+        {
+          "tag": "h3",
+          "text": "The objections, counted"
+        },
+        {
+          "tag": "h3",
+          "text": "Something to train on"
+        },
+        {
+          "tag": "h2",
+          "text": "What that means for your data"
+        },
+        {
+          "tag": "h3",
+          "text": "Isolation enforced by the database"
+        },
+        {
+          "tag": "h3",
+          "text": "Recording announced by default"
+        },
+        {
+          "tag": "h3",
+          "text": "Retention you set, erasure you can prove"
+        },
+        {
+          "tag": "h3",
+          "text": "What it does not do"
+        },
+        {
+          "tag": "h2",
+          "text": "A read of your own calls, before you decide anything"
+        }
+      ],
+      "docHeight": 4335,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-8 pt-14 md:pt-20",
+          "y": 72,
+          "height": 3781,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Aura Transcriber"
+            },
+            {
+              "tag": "h3",
+              "text": "Nothing to install"
+            },
+            {
+              "tag": "h3",
+              "text": "Tamil and English, code-switched"
+            },
+            {
+              "tag": "h3",
+              "text": "Straight into your CRM"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Products",
+              "href": "/products"
+            },
+            {
+              "tag": "a",
+              "text": "Book a demo→",
+              "href": "/contact?product=aura-transcriber"
+            },
+            {
+              "tag": "a",
+              "text": "Get it now→",
+              "href": "https://aura.sirahagents.com/"
+            },
+            {
+              "tag": "a",
+              "text": "Phone compatibility ↗",
+              "href": "https://aura.sirahagents.com/compatibility"
+            },
+            {
+              "tag": "a",
+              "text": "How Aura handles your data ↗",
+              "href": "https://aura.sirahagents.com/security"
+            },
+            {
+              "tag": "a",
+              "text": "Call recording and consent ↗",
+              "href": "https://aura.sirahagents.com/consent"
+            },
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact?product=aura-transcriber"
+            }
+          ],
+          "imgCount": 8,
+          "textLength": 3313
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 51
+    },
+    {
+      "url": "https://sirahdigital.in/products/analytics-agents",
+      "pathname": "/products/analytics-agents",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/products/analytics-agents",
+      "title": "Analytics Agents | Sirah Digital",
+      "description": "Website measurement planned, built and monitored, with tracking that keeps itself correct.",
+      "canonical": "https://sirahdigital.in/products/analytics-agents",
+      "ogTitle": "Analytics Agents | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Analytics Agents"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Analytics Agents"
+        },
+        {
+          "tag": "h3",
+          "text": "Onboards a site in hours"
+        },
+        {
+          "tag": "h3",
+          "text": "Then watches it forever"
+        },
+        {
+          "tag": "h3",
+          "text": "Plugs into the stack you run"
+        },
+        {
+          "tag": "h2",
+          "text": "What you get"
+        },
+        {
+          "tag": "h3",
+          "text": "Anomalies inside thirty minutes"
+        },
+        {
+          "tag": "h3",
+          "text": "A cause, with the evidence"
+        },
+        {
+          "tag": "h3",
+          "text": "Fixes that route themselves"
+        },
+        {
+          "tag": "h3",
+          "text": "Reports without an analyst ticket"
+        },
+        {
+          "tag": "h2",
+          "text": "How it stays trustworthy"
+        },
+        {
+          "tag": "h3",
+          "text": "Nothing fires blind in production"
+        },
+        {
+          "tag": "h3",
+          "text": "Isolation is structural"
+        },
+        {
+          "tag": "h3",
+          "text": "Numbers trace back to a query"
+        },
+        {
+          "tag": "h3",
+          "text": "Where it is today"
+        },
+        {
+          "tag": "h2",
+          "text": "Bring us your messiest measurement setup"
+        }
+      ],
+      "docHeight": 3270,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-8 pt-14 md:pt-20",
+          "y": 72,
+          "height": 2716,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Analytics Agents"
+            },
+            {
+              "tag": "h3",
+              "text": "Onboards a site in hours"
+            },
+            {
+              "tag": "h3",
+              "text": "Then watches it forever"
+            },
+            {
+              "tag": "h3",
+              "text": "Plugs into the stack you run"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Products",
+              "href": "/products"
+            },
+            {
+              "tag": "a",
+              "text": "Book a demo→",
+              "href": "/contact?product=analytics-agents"
+            },
+            {
+              "tag": "a",
+              "text": "See our work",
+              "href": "/products"
+            },
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact?product=analytics-agents"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 3283
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 52
+    },
+    {
+      "url": "https://sirahdigital.in/products/nusi",
+      "pathname": "/products/nusi",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/products/nusi",
+      "title": "NUSI | Sirah Digital",
+      "description": "A whole nutrition practice in one workspace: clients, programs, AI coaching and billing.",
+      "canonical": "https://sirahdigital.in/products/nusi",
+      "ogTitle": "NUSI | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "NUSI"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "NUSI"
+        },
+        {
+          "tag": "h3",
+          "text": "The whole practice, one workspace"
+        },
+        {
+          "tag": "h3",
+          "text": "AI where the work already is"
+        },
+        {
+          "tag": "h3",
+          "text": "One subscription, clients never pay"
+        },
+        {
+          "tag": "h2",
+          "text": "What you get"
+        },
+        {
+          "tag": "h3",
+          "text": "Programs that practically design themselves"
+        },
+        {
+          "tag": "h3",
+          "text": "Booking, reminders and video, sorted"
+        },
+        {
+          "tag": "h3",
+          "text": "Analytics that read like a story"
+        },
+        {
+          "tag": "h3",
+          "text": "Billing the way India bills"
+        },
+        {
+          "tag": "h2",
+          "text": "What that means for your data"
+        },
+        {
+          "tag": "h3",
+          "text": "Every workspace is its own tenant"
+        },
+        {
+          "tag": "h3",
+          "text": "You control the AI"
+        },
+        {
+          "tag": "h3",
+          "text": "Your data stays exportable"
+        },
+        {
+          "tag": "h3",
+          "text": "What it does not do"
+        },
+        {
+          "tag": "h2",
+          "text": "Start free for 14 days"
+        }
+      ],
+      "docHeight": 3881,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-8 pt-14 md:pt-20",
+          "y": 72,
+          "height": 3327,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "NUSI"
+            },
+            {
+              "tag": "h3",
+              "text": "The whole practice, one workspace"
+            },
+            {
+              "tag": "h3",
+              "text": "AI where the work already is"
+            },
+            {
+              "tag": "h3",
+              "text": "One subscription, clients never pay"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Products",
+              "href": "/products"
+            },
+            {
+              "tag": "a",
+              "text": "Book a demo→",
+              "href": "/contact?product=nusi"
+            },
+            {
+              "tag": "a",
+              "text": "Get it now→",
+              "href": "https://nusi.in/"
+            },
+            {
+              "tag": "a",
+              "text": "Pricing ↗",
+              "href": "https://nusi.in/#pricing"
+            },
+            {
+              "tag": "a",
+              "text": "Security and trust ↗",
+              "href": "https://nusi.in/#security"
+            },
+            {
+              "tag": "a",
+              "text": "Questions, answered ↗",
+              "href": "https://nusi.in/#faq"
+            },
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact?product=nusi"
+            }
+          ],
+          "imgCount": 8,
+          "textLength": 2825
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 51
+    },
+    {
+      "url": "https://sirahdigital.in/products/tnpsc-mentors",
+      "pathname": "/products/tnpsc-mentors",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/products/tnpsc-mentors",
+      "title": "TNPSC Mentors | Sirah Digital",
+      "description": "TNPSC exam prep in Tamil and English — solved past papers, mocks and daily tests.",
+      "canonical": "https://sirahdigital.in/products/tnpsc-mentors",
+      "ogTitle": "TNPSC Mentors | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "TNPSC Mentors"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "TNPSC Mentors"
+        },
+        {
+          "tag": "h3",
+          "text": "Past papers first, mocks last"
+        },
+        {
+          "tag": "h3",
+          "text": "Bilingual, not translated"
+        },
+        {
+          "tag": "h3",
+          "text": "On the phone they already have"
+        },
+        {
+          "tag": "h2",
+          "text": "What you get"
+        },
+        {
+          "tag": "h3",
+          "text": "Previous-year questions, explained"
+        },
+        {
+          "tag": "h3",
+          "text": "A current affairs test every day"
+        },
+        {
+          "tag": "h3",
+          "text": "The Vettri Nichayam marathon"
+        },
+        {
+          "tag": "h3",
+          "text": "A trend report, not a syllabus"
+        },
+        {
+          "tag": "h2",
+          "text": "What it costs, and what it does not do"
+        },
+        {
+          "tag": "h3",
+          "text": "The free tier is usable on its own"
+        },
+        {
+          "tag": "h3",
+          "text": "One payment, not a subscription"
+        },
+        {
+          "tag": "h3",
+          "text": "Nothing tracks anyone before they agree"
+        },
+        {
+          "tag": "h3",
+          "text": "Worth knowing before you install"
+        },
+        {
+          "tag": "h2",
+          "text": "The engine under it is not exam-specific"
+        }
+      ],
+      "docHeight": 3972,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-8 pt-14 md:pt-20",
+          "y": 72,
+          "height": 3418,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "TNPSC Mentors"
+            },
+            {
+              "tag": "h3",
+              "text": "Past papers first, mocks last"
+            },
+            {
+              "tag": "h3",
+              "text": "Bilingual, not translated"
+            },
+            {
+              "tag": "h3",
+              "text": "On the phone they already have"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Products",
+              "href": "/products"
+            },
+            {
+              "tag": "a",
+              "text": "Book a demo→",
+              "href": "/contact?product=tnpsc-mentors"
+            },
+            {
+              "tag": "a",
+              "text": "Get it now→",
+              "href": "https://tnpscmentors.in/"
+            },
+            {
+              "tag": "a",
+              "text": "Privacy policy ↗",
+              "href": "https://tnpscmentors.in/privacy"
+            },
+            {
+              "tag": "a",
+              "text": "Payment policy ↗",
+              "href": "https://tnpscmentors.in/payment-policy"
+            },
+            {
+              "tag": "a",
+              "text": "Refunds and cancellation ↗",
+              "href": "https://tnpscmentors.in/refund-policy"
+            },
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact?product=tnpsc-mentors"
+            }
+          ],
+          "imgCount": 8,
+          "textLength": 2980
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 51
+    },
+    {
+      "url": "https://sirahdigital.in/products/lexdraft",
+      "pathname": "/products/lexdraft",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/products/lexdraft",
+      "title": "LexDraft | Sirah Digital",
+      "description": "Practice management for Indian advocates — cases, drafting, billing and research in one place.",
+      "canonical": "https://sirahdigital.in/products/lexdraft",
+      "ogTitle": "LexDraft | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "LexDraft"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "LexDraft"
+        },
+        {
+          "tag": "h3",
+          "text": "Drafting that knows the statute"
+        },
+        {
+          "tag": "h3",
+          "text": "The matter, on one timeline"
+        },
+        {
+          "tag": "h3",
+          "text": "Answers cited to their source"
+        },
+        {
+          "tag": "h2",
+          "text": "What you get"
+        },
+        {
+          "tag": "h3",
+          "text": "A client portal, not an email thread"
+        },
+        {
+          "tag": "h3",
+          "text": "Billing the way chambers bill"
+        },
+        {
+          "tag": "h3",
+          "text": "Contract and title work, reviewed"
+        },
+        {
+          "tag": "h3",
+          "text": "The chamber, measured"
+        },
+        {
+          "tag": "h2",
+          "text": "Built for the Indian regulatory context"
+        },
+        {
+          "tag": "h3",
+          "text": "Firm-scoped by construction"
+        },
+        {
+          "tag": "h3",
+          "text": "DPDP, handled as features"
+        },
+        {
+          "tag": "h3",
+          "text": "An audit trail with a retention clock"
+        },
+        {
+          "tag": "h3",
+          "text": "How it is sold, and what is still coming"
+        },
+        {
+          "tag": "h2",
+          "text": "See it against your own matters"
+        }
+      ],
+      "docHeight": 3852,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-8 pt-14 md:pt-20",
+          "y": 72,
+          "height": 3298,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "LexDraft"
+            },
+            {
+              "tag": "h3",
+              "text": "Drafting that knows the statute"
+            },
+            {
+              "tag": "h3",
+              "text": "The matter, on one timeline"
+            },
+            {
+              "tag": "h3",
+              "text": "Answers cited to their source"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Products",
+              "href": "/products"
+            },
+            {
+              "tag": "a",
+              "text": "Book a demo→",
+              "href": "/contact?product=lexdraft"
+            },
+            {
+              "tag": "a",
+              "text": "See our work",
+              "href": "/products"
+            },
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact?product=lexdraft"
+            }
+          ],
+          "imgCount": 8,
+          "textLength": 3174
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 52
+    },
+    {
+      "url": "https://sirahdigital.in/industries",
+      "pathname": "/industries",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries",
+      "title": "Industries We Transform | Sirah Digital",
+      "description": "Custom AI automation for healthcare, manufacturing, education, real estate, retail and e-commerce, logistics, professional services, hospitality, HR, legal, construction and automotive.",
+      "canonical": "https://sirahdigital.in/industries",
+      "ogTitle": "Industries We Transform | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Automation, shaped around your industry."
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Automation, shaped around your industry."
+        },
+        {
+          "tag": "h2",
+          "text": "Healthcare & Wellness"
+        },
+        {
+          "tag": "h2",
+          "text": "Manufacturing"
+        },
+        {
+          "tag": "h2",
+          "text": "Education & EdTech"
+        },
+        {
+          "tag": "h2",
+          "text": "Real Estate"
+        },
+        {
+          "tag": "h2",
+          "text": "Retail & E-commerce"
+        },
+        {
+          "tag": "h2",
+          "text": "Logistics & Supply Chain"
+        },
+        {
+          "tag": "h2",
+          "text": "Professional Services"
+        },
+        {
+          "tag": "h2",
+          "text": "Hospitality & Travel"
+        },
+        {
+          "tag": "h2",
+          "text": "Human Resources & Recruitment"
+        },
+        {
+          "tag": "h2",
+          "text": "Legal Services"
+        },
+        {
+          "tag": "h2",
+          "text": "Construction & Engineering"
+        },
+        {
+          "tag": "h2",
+          "text": "Automotive"
+        },
+        {
+          "tag": "h2",
+          "text": "Have a workflow worth automating?"
+        }
+      ],
+      "docHeight": 2519,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "section",
+          "id": null,
+          "className": "mx-auto w-full max-w-[1280px] px-6 pb-16 pt-20 md:pb-20 md:pt-28",
+          "y": 72,
+          "height": 437,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Automation, shaped around your industry."
+            }
+          ],
+          "ctas": [],
+          "imgCount": 0,
+          "textLength": 146
+        },
+        {
+          "index": 2,
+          "tag": "section",
+          "id": null,
+          "className": "pb-28 md:pb-36",
+          "y": 509,
+          "height": 1207,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Healthcare & Wellness"
+            },
+            {
+              "tag": "h2",
+              "text": "Manufacturing"
+            },
+            {
+              "tag": "h2",
+              "text": "Education & EdTech"
+            },
+            {
+              "tag": "h2",
+              "text": "Real Estate"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Healthcare & WellnessAutomate patient journeys from enquiry ",
+              "href": "/industries/healthcare"
+            },
+            {
+              "tag": "a",
+              "text": "ManufacturingMove a quote to dispatch without the paperwork ",
+              "href": "/industries/manufacturing"
+            },
+            {
+              "tag": "a",
+              "text": "Education & EdTechTurn enquiries into enrolments without man",
+              "href": "/industries/education"
+            },
+            {
+              "tag": "a",
+              "text": "Real EstateQualify leads and fill the site-visit calendar on",
+              "href": "/industries/real-estate"
+            },
+            {
+              "tag": "a",
+              "text": "Retail & E-commerceAnswer, recommend and reorder across ever",
+              "href": "/industries/retail-ecommerce"
+            },
+            {
+              "tag": "a",
+              "text": "Logistics & Supply ChainTrack every order from processing to",
+              "href": "/industries/logistics"
+            },
+            {
+              "tag": "a",
+              "text": "Professional ServicesTake a lead to a signed proposal withou",
+              "href": "/industries/professional-services"
+            },
+            {
+              "tag": "a",
+              "text": "Hospitality & TravelConfirm bookings and follow up with ever",
+              "href": "/industries/hospitality-travel"
+            }
+          ],
+          "imgCount": 12,
+          "textLength": 1378
+        },
+        {
+          "index": 3,
+          "tag": "section",
+          "id": null,
+          "className": "max-w-6xl mx-auto px-6 py-20 border-t border-b border-white/10",
+          "y": 1715,
+          "height": 322,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Have a workflow worth automating?"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 88
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 61
+    },
+    {
+      "url": "https://sirahdigital.in/industries/healthcare",
+      "pathname": "/industries/healthcare",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/healthcare",
+      "title": "Healthcare & Wellness | Sirah Digital",
+      "description": "Automated clinic workflows, smart patient scheduling, and OCR record processing.",
+      "canonical": "https://sirahdigital.in/industries/healthcare",
+      "ogTitle": "Healthcare & Wellness | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Healthcare & Wellness"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Healthcare & Wellness"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2249,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1695,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Healthcare & Wellness"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 895
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/manufacturing",
+      "pathname": "/industries/manufacturing",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/manufacturing",
+      "title": "Manufacturing | Sirah Digital",
+      "description": "Predictive maintenance scheduling, production dashboards, and IoT system integrations.",
+      "canonical": "https://sirahdigital.in/industries/manufacturing",
+      "ogTitle": "Manufacturing | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Manufacturing"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Manufacturing"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2220,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1666,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Manufacturing"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 836
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/education",
+      "pathname": "/industries/education",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/education",
+      "title": "Education & EdTech | Sirah Digital",
+      "description": "Interactive custom learning portals, AI grading assistants, and student management applications.",
+      "canonical": "https://sirahdigital.in/industries/education",
+      "ogTitle": "Education & EdTech | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Education & EdTech"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Education & EdTech"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2220,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1666,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Education & EdTech"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 858
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/real-estate",
+      "pathname": "/industries/real-estate",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/real-estate",
+      "title": "Real Estate | Sirah Digital",
+      "description": "Automated lead tracking systems, custom CRM workflows, and property portfolio analytics portals.",
+      "canonical": "https://sirahdigital.in/industries/real-estate",
+      "ogTitle": "Real Estate | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Real Estate"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Real Estate"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2220,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1666,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Real Estate"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 831
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/retail-ecommerce",
+      "pathname": "/industries/retail-ecommerce",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/retail-ecommerce",
+      "title": "Retail & E-commerce | Sirah Digital",
+      "description": "SaaS inventory prediction dashboards, automated WhatsApp support channels, and custom checkout apps.",
+      "canonical": "https://sirahdigital.in/industries/retail-ecommerce",
+      "ogTitle": "Retail & E-commerce | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Retail & E-commerce"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Retail & E-commerce"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2220,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1666,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Retail & E-commerce"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 831
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/logistics",
+      "pathname": "/industries/logistics",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/logistics",
+      "title": "Logistics & Supply Chain | Sirah Digital",
+      "description": "Live route optimization networks, delivery tracking architectures, and cargo data hubs.",
+      "canonical": "https://sirahdigital.in/industries/logistics",
+      "ogTitle": "Logistics & Supply Chain | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Logistics & Supply Chain"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Logistics & Supply Chain"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2220,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1666,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Logistics & Supply Chain"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 860
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/professional-services",
+      "pathname": "/industries/professional-services",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/professional-services",
+      "title": "Professional Services | Sirah Digital",
+      "description": "AI document processing, automated legal/accounting operations, and custom BI dashboards.",
+      "canonical": "https://sirahdigital.in/industries/professional-services",
+      "ogTitle": "Professional Services | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Professional Services"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Professional Services"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2184,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1630,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Professional Services"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 836
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/hospitality-travel",
+      "pathname": "/industries/hospitality-travel",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/hospitality-travel",
+      "title": "Hospitality & Travel | Sirah Digital",
+      "description": "Autonomous guest booking bots, virtual concierge systems, and automated billing operations.",
+      "canonical": "https://sirahdigital.in/industries/hospitality-travel",
+      "ogTitle": "Hospitality & Travel | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Hospitality & Travel"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Hospitality & Travel"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2184,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1630,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Hospitality & Travel"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 821
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/human-resources",
+      "pathname": "/industries/human-resources",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/human-resources",
+      "title": "Human Resources & Recruitment | Sirah Digital",
+      "description": "Automated CV screening tools, intelligent interview loops, and employee onboarding apps.",
+      "canonical": "https://sirahdigital.in/industries/human-resources",
+      "ogTitle": "Human Resources & Recruitment | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Human Resources & Recruitment"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Human Resources & Recruitment"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2220,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1666,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Human Resources & Recruitment"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 856
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/legal",
+      "pathname": "/industries/legal",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/legal",
+      "title": "Legal Services | Sirah Digital",
+      "description": "Smart AI contract analysis systems, discovery document processing tools, and legal workflow engines.",
+      "canonical": "https://sirahdigital.in/industries/legal",
+      "ogTitle": "Legal Services | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Legal Services"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Legal Services"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2184,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1630,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Legal Services"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 804
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/construction",
+      "pathname": "/industries/construction",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/construction",
+      "title": "Construction & Engineering | Sirah Digital",
+      "description": "Live project tracking tools, material supply dashboards, and custom blueprints systems.",
+      "canonical": "https://sirahdigital.in/industries/construction",
+      "ogTitle": "Construction & Engineering | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Construction & Engineering"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Construction & Engineering"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2220,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1666,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Construction & Engineering"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 829
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/industries/automotive",
+      "pathname": "/industries/automotive",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/industries/automotive",
+      "title": "Automotive | Sirah Digital",
+      "description": "Inventory telemetry dashboards, customer garage CRM integrations, and predictive parts procurement dashboards.",
+      "canonical": "https://sirahdigital.in/industries/automotive",
+      "ogTitle": "Automotive | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Automotive"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Automotive"
+        },
+        {
+          "tag": "h2",
+          "text": "What we build"
+        },
+        {
+          "tag": "h2",
+          "text": "Typical stack"
+        }
+      ],
+      "docHeight": 2184,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "article",
+          "id": null,
+          "className": "pb-28 pt-14 md:pb-36 md:pt-20",
+          "y": 72,
+          "height": 1630,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Automotive"
+            },
+            {
+              "tag": "h2",
+              "text": "What we build"
+            },
+            {
+              "tag": "h2",
+              "text": "Typical stack"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "← Industries",
+              "href": "/industries"
+            },
+            {
+              "tag": "a",
+              "text": "Book a free consultation→",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 7,
+          "textLength": 778
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/about",
+      "pathname": "/about",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/about",
+      "title": "About Us | Sirah Digital",
+      "description": "How Sirah Digital works - automate, simplify, scale - and the team behind it. Founded by Mohamed Riyaz, AI automation engineers and digital growth specialists based in Chennai.",
+      "canonical": "https://sirahdigital.in/about",
+      "ogTitle": "About Us | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Scale your business with Mohamed Riyaz"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Scale your business with Mohamed Riyaz"
+        },
+        {
+          "tag": "h2",
+          "text": "Meet Our Brains"
+        },
+        {
+          "tag": "h2",
+          "text": "About SIRAH DIGITAL"
+        },
+        {
+          "tag": "h2",
+          "text": "How we work"
+        },
+        {
+          "tag": "h3",
+          "text": "Automate"
+        },
+        {
+          "tag": "h3",
+          "text": "Simplify"
+        },
+        {
+          "tag": "h3",
+          "text": "Scale"
+        },
+        {
+          "tag": "h2",
+          "text": "Learn From Real AI Implementations"
+        },
+        {
+          "tag": "h3",
+          "text": "Latest Insights"
+        },
+        {
+          "tag": "h2",
+          "text": "Ready to automate the busywork?"
+        }
+      ],
+      "docHeight": 4730,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "section",
+          "id": null,
+          "className": "about-hero_bleed__m9Lms",
+          "y": 72,
+          "height": 738,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Scale your business with Mohamed Riyaz"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Get in touch→",
+              "href": "/contact"
+            },
+            {
+              "tag": "a",
+              "text": "Explore services",
+              "href": "/services"
+            }
+          ],
+          "imgCount": 0,
+          "textLength": 219
+        },
+        {
+          "index": 2,
+          "tag": "div",
+          "id": null,
+          "className": "mt-16 md:mt-24",
+          "y": 906,
+          "height": 185,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [],
+          "ctas": [],
+          "imgCount": 0,
+          "textLength": 82
+        },
+        {
+          "index": 3,
+          "tag": "section",
+          "id": "team",
+          "className": "max-w-7xl mx-auto px-6 pt-20 pb-4 md:pt-28 scroll-mt-28",
+          "y": 1091,
+          "height": 530,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Meet Our Brains"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "M. Jesheeba FathimaAI Automation EngineerDriving strategic d",
+              "href": "/jesheeba"
+            },
+            {
+              "tag": "a",
+              "text": "SS. MonishaAI Automation EngineerBuilding intelligent AI-dri",
+              "href": "/monisha"
+            },
+            {
+              "tag": "a",
+              "text": "S. Sayed SalmanAI Solution EngineerHelping business automate",
+              "href": "/salman"
+            },
+            {
+              "tag": "a",
+              "text": "Abdul SamadAI Solution EngineerDeveloping intelligent automa",
+              "href": "/samad"
+            },
+            {
+              "tag": "a",
+              "text": "I. Aakash KummarAI Automation EngineerCreating scalable AI w",
+              "href": "/aakash"
+            }
+          ],
+          "imgCount": 5,
+          "textLength": 612
+        },
+        {
+          "index": 4,
+          "tag": "div",
+          "id": null,
+          "className": "mt-20 md:mt-28",
+          "y": 1733,
+          "height": 388,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "About SIRAH DIGITAL"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 5,
+          "textLength": 279
+        },
+        {
+          "index": 5,
+          "tag": "section",
+          "id": "process",
+          "className": "max-w-7xl mx-auto px-6 pt-20 md:pt-28 scroll-mt-28",
+          "y": 2121,
+          "height": 394,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "How we work"
+            },
+            {
+              "tag": "h3",
+              "text": "Automate"
+            },
+            {
+              "tag": "h3",
+              "text": "Simplify"
+            },
+            {
+              "tag": "h3",
+              "text": "Scale"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 0,
+          "textLength": 360
+        },
+        {
+          "index": 6,
+          "tag": "div",
+          "id": null,
+          "className": "mt-4 md:mt-8",
+          "y": 2547,
+          "height": 1351,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Learn From Real AI Implementations"
+            },
+            {
+              "tag": "h3",
+              "text": "Latest Insights"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Building Autonomous AI Agents for Enterprise WorkflowsA deep",
+              "href": "https://www.youtube.com/@SirahDigital"
+            },
+            {
+              "tag": "a",
+              "text": "Automating Complex OCR & Document Processing at ScaleHow LLM",
+              "href": "https://www.youtube.com/@SirahDigital"
+            },
+            {
+              "tag": "a",
+              "text": "Replacing Legacy CRM Workflows with Smart Voice & ChatbotsTr",
+              "href": "https://www.youtube.com/@SirahDigital"
+            },
+            {
+              "tag": "a",
+              "text": "Explore More→Watch the full channel on YouTube",
+              "href": "https://www.youtube.com/@SirahDigital"
+            }
+          ],
+          "imgCount": 9,
+          "textLength": 741
+        },
+        {
+          "index": 7,
+          "tag": "section",
+          "id": null,
+          "className": "max-w-6xl mx-auto px-6 py-20 border-t border-b border-white/10",
+          "y": 3899,
+          "height": 350,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Ready to automate the busywork?"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 150
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 56
+    },
+    {
+      "url": "https://sirahdigital.in/jesheeba",
+      "pathname": "/jesheeba",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/jesheeba",
+      "title": "M. Jesheeba Fathima | Sirah Digital",
+      "description": "M. Jesheeba Fathima - AI Automation Engineer at Sirah Digital. Driving strategic digital transformation and growth initiatives for businesses.",
+      "canonical": "https://sirahdigital.in/jesheeba",
+      "ogTitle": "M. Jesheeba Fathima | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "M. Jesheeba Fathima"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "M. Jesheeba Fathima"
+        },
+        {
+          "tag": "h2",
+          "text": "[ Built ]"
+        },
+        {
+          "tag": "h3",
+          "text": "InstalltecIn development"
+        },
+        {
+          "tag": "h3",
+          "text": "Combo Dress"
+        },
+        {
+          "tag": "h3",
+          "text": "GV MartIn development"
+        },
+        {
+          "tag": "h3",
+          "text": "WasiIn development"
+        },
+        {
+          "tag": "h2",
+          "text": "Want a system like these?"
+        }
+      ],
+      "docHeight": 2582,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "header",
+          "id": null,
+          "className": "member_head__BvDUZ",
+          "y": 72,
+          "height": 554,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "M. Jesheeba Fathima"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "←Meet our brains",
+              "href": "/about#team"
+            }
+          ],
+          "imgCount": 6,
+          "textLength": 372
+        },
+        {
+          "index": 2,
+          "tag": "section",
+          "id": null,
+          "className": "member_work__lrpPC",
+          "y": 626,
+          "height": 1025,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "[ Built ]"
+            },
+            {
+              "tag": "h3",
+              "text": "InstalltecIn development"
+            },
+            {
+              "tag": "h3",
+              "text": "Combo Dress"
+            },
+            {
+              "tag": "h3",
+              "text": "GV MartIn development"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 1,
+          "textLength": 285
+        },
+        {
+          "index": 3,
+          "tag": "div",
+          "id": null,
+          "className": "mt-24 md:mt-32",
+          "y": 1778,
+          "height": 322,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Want a system like these?"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 119
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/monisha",
+      "pathname": "/monisha",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/monisha",
+      "title": "SS. Monisha | Sirah Digital",
+      "description": "SS. Monisha - AI Automation Engineer at Sirah Digital. Building intelligent AI-driven automation & delivering AI-enabled automation systems.",
+      "canonical": "https://sirahdigital.in/monisha",
+      "ogTitle": "SS. Monisha | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "SS. Monisha"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "SS. Monisha"
+        },
+        {
+          "tag": "h2",
+          "text": "[ Built ]"
+        },
+        {
+          "tag": "h3",
+          "text": "Alshifa Ayush"
+        },
+        {
+          "tag": "h3",
+          "text": "Fortune Innovatives Website"
+        },
+        {
+          "tag": "h3",
+          "text": "RD Interlocks"
+        },
+        {
+          "tag": "h3",
+          "text": "Evokz Marketing"
+        },
+        {
+          "tag": "h3",
+          "text": "Knowmind Universe"
+        },
+        {
+          "tag": "h3",
+          "text": "IWISIn development"
+        },
+        {
+          "tag": "h2",
+          "text": "Want a system like these?"
+        }
+      ],
+      "docHeight": 3002,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "header",
+          "id": null,
+          "className": "member_head__BvDUZ",
+          "y": 72,
+          "height": 554,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "SS. Monisha"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "←Meet our brains",
+              "href": "/about#team"
+            }
+          ],
+          "imgCount": 6,
+          "textLength": 294
+        },
+        {
+          "index": 2,
+          "tag": "section",
+          "id": null,
+          "className": "member_work__lrpPC",
+          "y": 626,
+          "height": 1445,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "[ Built ]"
+            },
+            {
+              "tag": "h3",
+              "text": "Alshifa Ayush"
+            },
+            {
+              "tag": "h3",
+              "text": "Fortune Innovatives Website"
+            },
+            {
+              "tag": "h3",
+              "text": "RD Interlocks"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 1,
+          "textLength": 451
+        },
+        {
+          "index": 3,
+          "tag": "div",
+          "id": null,
+          "className": "mt-24 md:mt-32",
+          "y": 2198,
+          "height": 322,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Want a system like these?"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 119
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/salman",
+      "pathname": "/salman",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/salman",
+      "title": "S. Sayed Salman | Sirah Digital",
+      "description": "S. Sayed Salman - AI Solution Engineer at Sirah Digital. Helping business automate workflows & uncover insights with Data + AI",
+      "canonical": "https://sirahdigital.in/salman",
+      "ogTitle": "S. Sayed Salman | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "S. Sayed Salman"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "S. Sayed Salman"
+        },
+        {
+          "tag": "h2",
+          "text": "[ Built ]"
+        },
+        {
+          "tag": "h3",
+          "text": "Analytics AgentIn development"
+        },
+        {
+          "tag": "h3",
+          "text": "LexDraftIn development"
+        },
+        {
+          "tag": "h2",
+          "text": "Want a system like these?"
+        }
+      ],
+      "docHeight": 2162,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "header",
+          "id": null,
+          "className": "member_head__BvDUZ",
+          "y": 72,
+          "height": 554,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "S. Sayed Salman"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "←Meet our brains",
+              "href": "/about#team"
+            }
+          ],
+          "imgCount": 6,
+          "textLength": 293
+        },
+        {
+          "index": 2,
+          "tag": "section",
+          "id": null,
+          "className": "member_work__lrpPC",
+          "y": 626,
+          "height": 605,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "[ Built ]"
+            },
+            {
+              "tag": "h3",
+              "text": "Analytics AgentIn development"
+            },
+            {
+              "tag": "h3",
+              "text": "LexDraftIn development"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 1,
+          "textLength": 167
+        },
+        {
+          "index": 3,
+          "tag": "div",
+          "id": null,
+          "className": "mt-24 md:mt-32",
+          "y": 1358,
+          "height": 322,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Want a system like these?"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 119
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/samad",
+      "pathname": "/samad",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/samad",
+      "title": "Abdul Samad | Sirah Digital",
+      "description": "Abdul Samad - AI Solution Engineer at Sirah Digital. Developing intelligent automation systems and AI-powered solutions.",
+      "canonical": "https://sirahdigital.in/samad",
+      "ogTitle": "Abdul Samad | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Abdul Samad"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Abdul Samad"
+        },
+        {
+          "tag": "h2",
+          "text": "[ Built ]"
+        },
+        {
+          "tag": "h3",
+          "text": "Sheizen Wellness"
+        },
+        {
+          "tag": "h3",
+          "text": "Aura Transcriber"
+        },
+        {
+          "tag": "h3",
+          "text": "LexDraft"
+        },
+        {
+          "tag": "h3",
+          "text": "Alshifa Ayush"
+        },
+        {
+          "tag": "h3",
+          "text": "A1 Sivakasi"
+        },
+        {
+          "tag": "h3",
+          "text": "B2 Consultancy"
+        },
+        {
+          "tag": "h3",
+          "text": "TNPSC Mentors"
+        },
+        {
+          "tag": "h3",
+          "text": "Evokz"
+        },
+        {
+          "tag": "h2",
+          "text": "Want a system like these?"
+        }
+      ],
+      "docHeight": 3422,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "header",
+          "id": null,
+          "className": "member_head__BvDUZ",
+          "y": 72,
+          "height": 554,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Abdul Samad"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "←Meet our brains",
+              "href": "/about#team"
+            }
+          ],
+          "imgCount": 6,
+          "textLength": 333
+        },
+        {
+          "index": 2,
+          "tag": "section",
+          "id": null,
+          "className": "member_work__lrpPC",
+          "y": 626,
+          "height": 1865,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "[ Built ]"
+            },
+            {
+              "tag": "h3",
+              "text": "Sheizen Wellness"
+            },
+            {
+              "tag": "h3",
+              "text": "Aura Transcriber"
+            },
+            {
+              "tag": "h3",
+              "text": "LexDraft"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 1,
+          "textLength": 518
+        },
+        {
+          "index": 3,
+          "tag": "div",
+          "id": null,
+          "className": "mt-24 md:mt-32",
+          "y": 2618,
+          "height": 322,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Want a system like these?"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 119
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/aakash",
+      "pathname": "/aakash",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/aakash",
+      "title": "I. Aakash Kummar | Sirah Digital",
+      "description": "I. Aakash Kummar - AI Automation Engineer at Sirah Digital. Creating scalable AI workflows and automation systems.",
+      "canonical": "https://sirahdigital.in/aakash",
+      "ogTitle": "I. Aakash Kummar | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "I. Aakash Kummar"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "I. Aakash Kummar"
+        },
+        {
+          "tag": "h2",
+          "text": "[ Built ]"
+        },
+        {
+          "tag": "h3",
+          "text": "Sheizen Wellness"
+        },
+        {
+          "tag": "h3",
+          "text": "Fortune Innovatives"
+        },
+        {
+          "tag": "h3",
+          "text": "Sansfort International School"
+        },
+        {
+          "tag": "h3",
+          "text": "Garden Sip"
+        },
+        {
+          "tag": "h3",
+          "text": "NUSI"
+        },
+        {
+          "tag": "h3",
+          "text": "BrainLit"
+        },
+        {
+          "tag": "h2",
+          "text": "Want a system like these?"
+        }
+      ],
+      "docHeight": 3002,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "header",
+          "id": null,
+          "className": "member_head__BvDUZ",
+          "y": 72,
+          "height": 554,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "I. Aakash Kummar"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "←Meet our brains",
+              "href": "/about#team"
+            }
+          ],
+          "imgCount": 6,
+          "textLength": 287
+        },
+        {
+          "index": 2,
+          "tag": "section",
+          "id": null,
+          "className": "member_work__lrpPC",
+          "y": 626,
+          "height": 1445,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "[ Built ]"
+            },
+            {
+              "tag": "h3",
+              "text": "Sheizen Wellness"
+            },
+            {
+              "tag": "h3",
+              "text": "Fortune Innovatives"
+            },
+            {
+              "tag": "h3",
+              "text": "Sansfort International School"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 1,
+          "textLength": 392
+        },
+        {
+          "index": 3,
+          "tag": "div",
+          "id": null,
+          "className": "mt-24 md:mt-32",
+          "y": 2198,
+          "height": 322,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Want a system like these?"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation",
+              "href": "/contact"
+            }
+          ],
+          "imgCount": 1,
+          "textLength": 119
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/contact",
+      "pathname": "/contact",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/contact",
+      "title": "Contact & Free Consultation | Sirah Digital",
+      "description": "Book a free 45-minute AI strategy consultation with Sirah Digital. Chennai-based AI automation engineers. Reach us by email, phone or WhatsApp.",
+      "canonical": "https://sirahdigital.in/contact",
+      "ogTitle": "Contact & Free Consultation | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Let’s discuss your next AI project."
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Let’s discuss your next AI project."
+        },
+        {
+          "tag": "h2",
+          "text": "Our office"
+        },
+        {
+          "tag": "h2",
+          "text": "See what automation could save."
+        },
+        {
+          "tag": "h2",
+          "text": "Your business"
+        },
+        {
+          "tag": "h2",
+          "text": "Estimated impact"
+        },
+        {
+          "tag": "h3",
+          "text": "Automation coverage"
+        },
+        {
+          "tag": "h3",
+          "text": "Productivity improvement"
+        },
+        {
+          "tag": "h3",
+          "text": "Manual hours per year"
+        },
+        {
+          "tag": "h3",
+          "text": "Potential savings over 12 months"
+        },
+        {
+          "tag": "h2",
+          "text": "Recommended automations"
+        }
+      ],
+      "docHeight": 4679,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "section",
+          "id": null,
+          "className": "mx-auto max-w-6xl px-6 pt-20",
+          "y": 72,
+          "height": 482,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Let’s discuss your next AI project."
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "Book Free Consultation→",
+              "href": "#contact-form"
+            }
+          ],
+          "imgCount": 0,
+          "textLength": 256
+        },
+        {
+          "index": 2,
+          "tag": "section",
+          "id": null,
+          "className": "mx-auto mt-20 max-w-6xl px-6",
+          "y": 634,
+          "height": 726,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Our office"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "button",
+              "text": "Aura Transcriber",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "Analytics Agents",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "NUSI",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "TNPSC Mentors",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "LexDraft",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "Custom Software",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "Not sure yet",
+              "href": null
+            },
+            {
+              "tag": "button",
+              "text": "Continue to calendar→",
+              "href": null
+            }
+          ],
+          "imgCount": 0,
+          "textLength": 719
+        },
+        {
+          "index": 3,
+          "tag": "section",
+          "id": null,
+          "className": "mx-auto mt-[100px] max-w-6xl px-6",
+          "y": 1461,
+          "height": 400,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [],
+          "ctas": [],
+          "imgCount": 0,
+          "textLength": 0
+        },
+        {
+          "index": 4,
+          "tag": "div",
+          "id": null,
+          "className": "pb-[120px]",
+          "y": 1861,
+          "height": 2337,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "See what automation could save."
+            },
+            {
+              "tag": "h2",
+              "text": "Your business"
+            },
+            {
+              "tag": "h2",
+              "text": "Estimated impact"
+            },
+            {
+              "tag": "h3",
+              "text": "Automation coverage"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "button",
+              "text": "Advanced assumptions",
+              "href": null
+            },
+            {
+              "tag": "a",
+              "text": "Book a free AI strategy session",
+              "href": "/contact"
+            },
+            {
+              "tag": "button",
+              "text": "Download the automation report→",
+              "href": null
+            }
+          ],
+          "imgCount": 3,
+          "textLength": 1514
+        }
+      ],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "tag": "input",
+              "type": "text",
+              "name": "firstName",
+              "required": true,
+              "placeholder": " "
+            },
+            {
+              "tag": "input",
+              "type": "text",
+              "name": "lastName",
+              "required": false,
+              "placeholder": " "
+            },
+            {
+              "tag": "input",
+              "type": "email",
+              "name": "email",
+              "required": true,
+              "placeholder": " "
+            },
+            {
+              "tag": "input",
+              "type": "tel",
+              "name": "phone",
+              "required": true,
+              "placeholder": " "
+            },
+            {
+              "tag": "input",
+              "type": "text",
+              "name": "company",
+              "required": false,
+              "placeholder": " "
+            },
+            {
+              "tag": "fieldset",
+              "type": "fieldset",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "button",
+              "type": "button",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "button",
+              "type": "button",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "button",
+              "type": "button",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "button",
+              "type": "button",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "button",
+              "type": "button",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "button",
+              "type": "button",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "button",
+              "type": "button",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "textarea",
+              "type": "textarea",
+              "name": "message",
+              "required": true,
+              "placeholder": " "
+            },
+            {
+              "tag": "input",
+              "type": "checkbox",
+              "name": "consent",
+              "required": true,
+              "placeholder": null
+            },
+            {
+              "tag": "input",
+              "type": "text",
+              "name": "website",
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "button",
+              "type": "submit",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            }
+          ]
+        }
+      ],
+      "internalLinkCount": 50
+    },
+    {
+      "url": "https://sirahdigital.in/book",
+      "pathname": "/book",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/book",
+      "title": "Book a Consultation | Sirah Digital",
+      "description": "Pick a time for a free 45-minute AI strategy consultation with the Sirah Digital team.",
+      "canonical": "https://sirahdigital.in/book",
+      "ogTitle": "Book a Consultation | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Book a free consultation."
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Book a free consultation."
+        }
+      ],
+      "docHeight": 1739,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "section",
+          "id": null,
+          "className": "mx-auto max-w-[880px] px-6 py-20 md:py-28",
+          "y": 72,
+          "height": 1185,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Book a free consultation."
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "button",
+              "text": "Confirm booking",
+              "href": null
+            },
+            {
+              "tag": "a",
+              "text": "support@sirahdigital.in",
+              "href": "mailto:support@sirahdigital.in"
+            },
+            {
+              "tag": "a",
+              "text": "+91 97899 61631",
+              "href": "tel:+919789961631"
+            }
+          ],
+          "imgCount": 0,
+          "textLength": 770
+        }
+      ],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "tag": "fieldset",
+              "type": "fieldset",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "input",
+              "type": "text",
+              "name": "firstName",
+              "required": true,
+              "placeholder": "First name *"
+            },
+            {
+              "tag": "input",
+              "type": "text",
+              "name": "lastName",
+              "required": false,
+              "placeholder": "Last name"
+            },
+            {
+              "tag": "input",
+              "type": "email",
+              "name": "email",
+              "required": true,
+              "placeholder": "Email *"
+            },
+            {
+              "tag": "input",
+              "type": "tel",
+              "name": "phone",
+              "required": true,
+              "placeholder": "WhatsApp number *"
+            },
+            {
+              "tag": "input",
+              "type": "text",
+              "name": "company",
+              "required": false,
+              "placeholder": "Company (optional)"
+            },
+            {
+              "tag": "input",
+              "type": "text",
+              "name": "website",
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "fieldset",
+              "type": "fieldset",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "tag": "input",
+              "type": "checkbox",
+              "name": "consent",
+              "required": true,
+              "placeholder": null
+            },
+            {
+              "tag": "button",
+              "type": "submit",
+              "name": null,
+              "required": false,
+              "placeholder": null
+            }
+          ]
+        }
+      ],
+      "internalLinkCount": 48
+    },
+    {
+      "url": "https://sirahdigital.in/privacy",
+      "pathname": "/privacy",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/privacy",
+      "title": "Privacy Policy | Sirah Digital",
+      "description": "How Sirah Digital collects, uses and protects the information you share with us.",
+      "canonical": "https://sirahdigital.in/privacy",
+      "ogTitle": "Privacy Policy | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Privacy Policy"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Privacy Policy"
+        },
+        {
+          "tag": "h2",
+          "text": "What we collect"
+        },
+        {
+          "tag": "h2",
+          "text": "Analytics and cookies"
+        },
+        {
+          "tag": "h2",
+          "text": "How we use it"
+        },
+        {
+          "tag": "h2",
+          "text": "Who we share it with"
+        },
+        {
+          "tag": "h2",
+          "text": "How long we keep it"
+        },
+        {
+          "tag": "h2",
+          "text": "Your rights"
+        },
+        {
+          "tag": "h2",
+          "text": "Contact"
+        }
+      ],
+      "docHeight": 2090,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "header",
+          "id": null,
+          "className": "max-w-6xl mx-auto px-6 pt-16 pb-4",
+          "y": 72,
+          "height": 196,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Privacy Policy"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 0,
+          "textLength": 19
+        },
+        {
+          "index": 2,
+          "tag": "section",
+          "id": null,
+          "className": "max-w-3xl mx-auto px-6 py-16",
+          "y": 268,
+          "height": 1340,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "What we collect"
+            },
+            {
+              "tag": "h2",
+              "text": "Analytics and cookies"
+            },
+            {
+              "tag": "h2",
+              "text": "How we use it"
+            },
+            {
+              "tag": "h2",
+              "text": "Who we share it with"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "support@sirahdigital.in",
+              "href": "mailto:support@sirahdigital.in"
+            },
+            {
+              "tag": "a",
+              "text": "support@sirahdigital.in",
+              "href": "mailto:support@sirahdigital.in"
+            }
+          ],
+          "imgCount": 0,
+          "textLength": 2062
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 48
+    },
+    {
+      "url": "https://sirahdigital.in/terms",
+      "pathname": "/terms",
+      "status": 200,
+      "finalUrl": "https://sirahdigital.in/terms",
+      "title": "Terms of Service | Sirah Digital",
+      "description": "The terms under which Sirah Digital provides this website and its services.",
+      "canonical": "https://sirahdigital.in/terms",
+      "ogTitle": "Terms of Service | Sirah Digital",
+      "lang": "en",
+      "dir": null,
+      "h1": [
+        "Terms of Service"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Terms of Service"
+        },
+        {
+          "tag": "h2",
+          "text": "Using this site"
+        },
+        {
+          "tag": "h2",
+          "text": "Enquiries and consultations"
+        },
+        {
+          "tag": "h2",
+          "text": "Intellectual property"
+        },
+        {
+          "tag": "h2",
+          "text": "No warranty"
+        },
+        {
+          "tag": "h2",
+          "text": "Limitation of liability"
+        },
+        {
+          "tag": "h2",
+          "text": "Governing law"
+        }
+      ],
+      "docHeight": 1724,
+      "sections": [
+        {
+          "index": 1,
+          "tag": "header",
+          "id": null,
+          "className": "max-w-6xl mx-auto px-6 pt-16 pb-4",
+          "y": 72,
+          "height": 196,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h1",
+              "text": "Terms of Service"
+            }
+          ],
+          "ctas": [],
+          "imgCount": 0,
+          "textLength": 21
+        },
+        {
+          "index": 2,
+          "tag": "section",
+          "id": null,
+          "className": "max-w-3xl mx-auto px-6 py-16",
+          "y": 268,
+          "height": 974,
+          "background": "rgba(0, 0, 0, 0)",
+          "headings": [
+            {
+              "tag": "h2",
+              "text": "Using this site"
+            },
+            {
+              "tag": "h2",
+              "text": "Enquiries and consultations"
+            },
+            {
+              "tag": "h2",
+              "text": "Intellectual property"
+            },
+            {
+              "tag": "h2",
+              "text": "No warranty"
+            }
+          ],
+          "ctas": [
+            {
+              "tag": "a",
+              "text": "support@sirahdigital.in",
+              "href": "mailto:support@sirahdigital.in"
+            }
+          ],
+          "imgCount": 0,
+          "textLength": 1122
+        }
+      ],
+      "forms": [],
+      "internalLinkCount": 48
+    }
+  ]
+}

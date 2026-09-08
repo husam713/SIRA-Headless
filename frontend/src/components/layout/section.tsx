@@ -20,7 +20,7 @@ export type SectionSpace = "default" | "tight" | "flush";
 const TONE_CLASS: Readonly<Record<SectionTone, string>> = Object.freeze({
   none: "",
   paper: "bg-brand-paper text-brand-ink",
-  deep: "bg-brand-deep text-brand-paper",
+  deep: "bg-brand-deep text-brand-on-deep",
   accent: "bg-brand-accent text-brand-on-accent",
 });
 

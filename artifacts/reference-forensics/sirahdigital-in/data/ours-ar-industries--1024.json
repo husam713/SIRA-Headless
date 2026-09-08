@@ -1,0 +1,97 @@
+{
+  "url": "/ar/industries/",
+  "lang": "ar",
+  "dir": "rtl",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 2939,
+  "viewport": {
+    "w": 1024,
+    "h": 768
+  },
+  "screens": 3.83,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 409.5,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 482.3,
+      "height": 402.3,
+      "screens": 0.52,
+      "heading": "كل قطاع يفقد وقته في موضع مختلف.",
+      "headingType": {
+        "size": 54,
+        "lineHeight": 69,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 2,
+      "startY": 482.3,
+      "endY": 2059.3,
+      "height": 1577,
+      "screens": 2.05,
+      "heading": "التجزئة والتوزيع",
+      "headingType": {
+        "size": 22,
+        "lineHeight": 26,
+        "weight": "600",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 3,
+      "startY": 2059.3,
+      "endY": 2529.7,
+      "height": 470.5,
+      "screens": 0.61,
+      "heading": "قطاعكم غير مذكور؟ عنق الزجاجة عادةً بالشكل نفسه.",
+      "headingType": {
+        "size": 61,
+        "lineHeight": 78,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "كل قطاع يفقد وقته في موضع مختلف.",
+    "size": 54,
+    "lineHeight": 69,
+    "weight": "700",
+    "tracking": 0,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

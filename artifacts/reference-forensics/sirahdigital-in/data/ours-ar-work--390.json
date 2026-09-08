@@ -1,0 +1,109 @@
+{
+  "url": "/ar/work/",
+  "lang": "ar",
+  "dir": "rtl",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 5811,
+  "viewport": {
+    "w": 390,
+    "h": 844
+  },
+  "screens": 6.89,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 813.4,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 590.8,
+      "height": 510.8,
+      "screens": 0.61,
+      "heading": "أنظمة، لا عروضًا تقديمية.",
+      "headingType": {
+        "size": 40,
+        "lineHeight": 51,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 2,
+      "startY": 590.8,
+      "endY": 4616.8,
+      "height": 4026,
+      "screens": 4.77,
+      "heading": "نسيج التكامل",
+      "headingType": {
+        "size": 28,
+        "lineHeight": 36,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 3,
+      "startY": 4616.8,
+      "endY": 4997.6,
+      "height": 380.8,
+      "screens": 0.45,
+      "heading": "لديكم عملية تستحق إعادة البناء؟",
+      "headingType": {
+        "size": 38,
+        "lineHeight": 49,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "أنظمة، لا عروضًا تقديمية.",
+    "size": 40,
+    "lineHeight": 51,
+    "weight": "700",
+    "tracking": 0,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

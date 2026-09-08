@@ -1,0 +1,155 @@
+{
+  "origin": "https://sirahdigital.in",
+  "discoveredVia": ["sitemap.xml", "breadth-first crawl of same-origin links"],
+  "sitemapUrlCount": 31,
+  "crawledCount": 31,
+  "robots": {
+    "allow": "/",
+    "disallow": ["/animations", "/api/"],
+    "sitemap": "https://sirahdigital.in/sitemap.xml",
+    "note": "/animations is disallowed for crawlers and was NOT fetched by this audit. Its existence is recorded from robots.txt only; its content is UNKNOWN."
+  },
+  "routeGroups": {
+    "top": ["/", "/services", "/products", "/industries", "/about", "/contact", "/book"],
+    "productDetail": [
+      "/products/aura-transcriber",
+      "/products/analytics-agents",
+      "/products/nusi",
+      "/products/tnpsc-mentors",
+      "/products/lexdraft"
+    ],
+    "industryDetail": [
+      "/industries/healthcare",
+      "/industries/manufacturing",
+      "/industries/education",
+      "/industries/real-estate",
+      "/industries/retail-ecommerce",
+      "/industries/logistics",
+      "/industries/professional-services",
+      "/industries/hospitality-travel",
+      "/industries/human-resources",
+      "/industries/legal",
+      "/industries/construction",
+      "/industries/automotive"
+    ],
+    "personProfile": ["/jesheeba", "/monisha", "/salman", "/samad", "/aakash"],
+    "legal": ["/privacy", "/terms"]
+  },
+  "routes": [
+    {
+      "pathname": "/",
+      "purpose": "Positioning + product proof + trust + brand statement, funnelling to the consultation CTA.",
+      "sections": ["hero", "product rail", "trusted-across-industries + client marquee", "image flow (studio photography)", "kinetic wordmark (scroll-pinned)", "closing CTA"],
+      "primaryCta": "Start an automation audit -> /contact",
+      "secondaryCta": "See our work -> /products",
+      "notableInteraction": "220svh sticky kinetic-wordmark section driving a --kt-p custom property; 9-slide coverflow with 2.8s autoplay and pointer steering; 60s client-name marquee that pauses on hover/focus",
+      "reusablePatterns": ["numbered editorial rail with hairline rules", "eyebrow token", "arrow-translate CTA", "persistent WebGL background"],
+      "documentHeight1440": 5483
+    },
+    {
+      "pathname": "/services",
+      "purpose": "Full capability catalogue as one long anchored page rather than per-service routes.",
+      "sections": ["full-viewport line-revealed hero", "sticky index rail + 10 anchored service blocks", "full-viewport closing CTA"],
+      "primaryCta": "Book Free Consultation -> /contact",
+      "notableInteraction": "260px sticky index rail with scroll-spy; a separate md:hidden sticky chip bar at top:72px on small screens",
+      "reusablePatterns": ["anchored long-form catalogue", "scroll-spy index", "Current Challenge -> capability narrative"],
+      "documentHeight1440": 7573,
+      "anchors": ["#ai-agents", "#chatbots-voice", "#workflow-automation", "#web-mobile-apps", "#crm-erp"],
+      "items": [
+        "AI Agents & Virtual Employees",
+        "AI Chatbots & Voice Assistants",
+        "Workflow & Process Automation",
+        "Custom Web & Mobile Apps",
+        "CRM & ERP Solutions",
+        "WhatsApp Business Automation",
+        "AI Document Processing & OCR",
+        "Business Intelligence Dashboards",
+        "API Dev & System Integration",
+        "SaaS Product Development"
+      ]
+    },
+    {
+      "pathname": "/products",
+      "purpose": "Own-product portfolio plus client custom-software categories.",
+      "sections": ["hero", "#products 3D cylinder carousel (5 products)", "#portfolio SVG-arc product stage (5 categories)", "closing CTA"],
+      "primaryCta": "Have a workflow worth automating? -> /contact",
+      "notableInteraction": "perspective:1100px rotateY cylinder; SVG arc navigation with animated lead stroke and 0.42s dot transitions",
+      "reusablePatterns": ["3D cylinder discovery", "arc progress navigation", "uppercase category titles"],
+      "documentHeight1440": 5293
+    },
+    {
+      "pathname": "/industries",
+      "purpose": "Twelve industry entry points, each linking to a detail route.",
+      "sections": ["hero", "12-card grid", "closing CTA band"],
+      "primaryCta": "Have a workflow worth automating? -> /contact",
+      "notableInteraction": "ind-card hover: translateY(-3px), border white/16%, background rgba(0,0,0,.36), media opacity -> .15, arrow tint",
+      "reusablePatterns": ["image-backed card with headline + one-line promise + workflow flow strip"],
+      "documentHeight1440": 2519
+    },
+    {
+      "pathname": "/industries/<slug>",
+      "purpose": "Industry detail: what we build + typical stack.",
+      "sections": ["hero", "What we build", "Typical stack", "closing CTA"],
+      "primaryCta": "consultation",
+      "notableInteraction": "standard reveal only",
+      "documentHeight1440": 2249,
+      "count": 12
+    },
+    {
+      "pathname": "/products/<slug>",
+      "purpose": "Product detail: capability, outputs, data handling, and an explicit 'what it does not do' section.",
+      "sections": ["hero", "3 capability cards", "What you get (4 outcome blocks)", "What that means for your data (3 blocks + limits)", "closing CTA"],
+      "primaryCta": "A read of your own calls, before you decide anything -> consultation",
+      "notableInteraction": "standard reveal only",
+      "documentHeight1440": 4335,
+      "count": 5
+    },
+    {
+      "pathname": "/about",
+      "purpose": "Founder-led narrative, team, philosophy, process and an insights rail.",
+      "sections": ["bleed hero", "4-up stat band", "#team 5-up grid", "about statement + socials", "#process 3-up (Automate / Simplify / Scale)", "insights horizontal snap rail", "closing CTA band"],
+      "primaryCta": "Get in touch -> /contact",
+      "secondaryCta": "Explore services -> /services",
+      "notableInteraction": "horizontal scroll-snap insights rail (snap-x mandatory, scrollWidth 2198 in a 1344 viewport)",
+      "reusablePatterns": ["stat band", "person card grid linking to person routes", "3-step process", "snap rail"],
+      "documentHeight1440": 4730
+    },
+    {
+      "pathname": "/<person-slug>",
+      "purpose": "Individual profile: role, bio, and the projects that person built.",
+      "sections": ["member head", "[ Built ] project rows", "closing CTA"],
+      "notableInteraction": "work-row hover: border white/14%, title translateX(3px), metric -> #fff",
+      "documentHeight1440": 2582,
+      "count": 5
+    },
+    {
+      "pathname": "/contact",
+      "purpose": "Primary conversion surface: enquiry form, office details and the automation-impact calculator.",
+      "sections": ["hero", "form + office panel", "calculator inputs", "calculator results + recommended automations"],
+      "primaryCta": "Continue to calendar -> /book",
+      "notableInteraction": "live-recalculating impact calculator; chip fieldset; native constraint validation",
+      "documentHeight1440": 4679
+    },
+    {
+      "pathname": "/book",
+      "purpose": "Second conversion step: details + day + time slot.",
+      "sections": ["single 880px form panel with two numbered fieldsets"],
+      "primaryCta": "Confirm booking",
+      "notableInteraction": "day rail with prev/next and a 25-slot time grid",
+      "defect": "The 25-slot time grid renders as one non-wrapping 2588px row at every audited width and is clipped by body overflow-x:hidden.",
+      "documentHeight1440": 1921
+    },
+    {
+      "pathname": "/privacy",
+      "purpose": "Privacy policy.",
+      "sections": ["title band", "prose column (max-w-3xl)"],
+      "documentHeight1440": 2090
+    },
+    {
+      "pathname": "/terms",
+      "purpose": "Terms of service.",
+      "sections": ["title band", "prose column"],
+      "documentHeight1440": null
+    }
+  ]
+}

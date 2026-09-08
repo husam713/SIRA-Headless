@@ -6,6 +6,7 @@
   --color-brand-accent: var(--brand-accent);
   --color-brand-accent-bright: var(--brand-accent-bright);
   --color-brand-on-accent: var(--brand-on-accent);
+  --color-brand-on-deep: var(--brand-on-deep);
   --color-brand-paper: var(--brand-paper);
   --color-brand-paper-glass: var(--brand-paper-glass);
   --color-brand-ink: var(--brand-ink);
@@ -35,6 +36,9 @@
 
   --brand-accent-bright: oklch(0.78 0.14 78);
   --brand-on-accent: #20242b;
+  /* Readable foreground on --brand-deep. Group's paper, because Group's deep is
+     dark; a brand set on a dark ground resolves this to its ink instead. */
+  --brand-on-deep: #f7f4ed;
   --brand-paper-glass: oklch(0.97 0.006 75 / 0.92);
   --brand-ink-soft: oklch(0.45 0.01 260);
   --brand-ink-faint: oklch(0.6 0.01 260);

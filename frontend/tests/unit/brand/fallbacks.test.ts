@@ -60,6 +60,24 @@ describe("approved SIRA fallback presets", () => {
     );
   });
 
+  // The deep surfaces used to hardcode `paper` as their foreground, which held
+  // only while every brand had light paper over a dark deep. This asserts the
+  // property that made repointing them safe: for the five light companies
+  // `onDeep` IS `paper`, so their rendering is unchanged, and only Digital
+  // resolves differently.
+  it("resolves onDeep to paper for every light company and to ink for Digital", () => {
+    for (const siteKey of SITE_KEYS.filter((key) => key !== "digital")) {
+      const brand = createFallbackBrand(siteKey);
+
+      expect(brand.semantic.onDeep).toBe(brand.identity.paper);
+    }
+
+    const digital = createFallbackBrand("digital");
+
+    expect(digital.semantic.onDeep).toBe(digital.identity.ink);
+    expect(digital.semantic.onDeep).not.toBe(digital.identity.paper);
+  });
+
   // ADR-033. Digital is the only company set on a dark ground. The shell reads
   // `paper` as the page ground and `ink` as the text on it, so this inversion
   // is the entire mechanism — if a later edit lightened `paper` here, the

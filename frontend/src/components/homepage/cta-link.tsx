@@ -22,10 +22,10 @@ const VARIANT_CLASSES: Readonly<Record<CtaVariant, string>> = Object.freeze({
   solid:
     "rounded-sm bg-brand-accent px-6 py-3 text-brand-on-accent hover:bg-brand-accent-bright",
   outline:
-    "rounded-sm border border-brand-paper/40 px-6 py-3 text-brand-paper hover:border-brand-paper",
+    "rounded-sm border border-brand-on-deep/40 px-6 py-3 text-brand-on-deep hover:border-brand-on-deep",
   // For use over dark/image chapters (the hero, dark sections).
   "ghost-dark":
-    "text-brand-paper underline decoration-brand-paper/40 underline-offset-4 hover:decoration-brand-paper",
+    "text-brand-on-deep underline decoration-brand-on-deep/40 underline-offset-4 hover:decoration-brand-on-deep",
   // For use over the default paper/light chapters.
   "ghost-light":
     "text-brand-ink underline decoration-brand-ink/30 underline-offset-4 hover:decoration-brand-ink",

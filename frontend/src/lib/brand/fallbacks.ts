@@ -2,7 +2,10 @@ import type {
   BrandPreset,
   ResolvedBrand,
 } from "@/lib/brand/types";
-import { selectReadableForeground } from "@/lib/brand/contrast";
+import {
+  selectForegroundForDarkSurface,
+  selectReadableForeground,
+} from "@/lib/brand/contrast";
 import type { SiteKey } from "@/types/site";
 
 const WHITE_MARK = Object.freeze({
@@ -254,6 +257,10 @@ export function createFallbackBrand(
     preset.identity.paper,
     preset.identity.ink,
   );
+  const onDeep = selectForegroundForDarkSurface(
+    preset.identity.paper,
+    preset.identity.ink,
+  );
 
   return Object.freeze({
     siteKey,
@@ -264,6 +271,7 @@ export function createFallbackBrand(
     semantic: Object.freeze({
       ...preset.semantic,
       onAccent,
+      onDeep,
     }),
     assets: preset.assets,
     remoteLogo: null,

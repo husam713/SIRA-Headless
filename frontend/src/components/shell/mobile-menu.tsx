@@ -75,12 +75,12 @@ export function MobileMenu({ items, groupLink }: MobileMenuProps) {
         aria-label="Site menu"
         className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none border-0 bg-transparent p-0 backdrop:bg-brand-ink/50"
       >
-        <div className="ms-auto flex h-dvh w-[min(85vw,22rem)] flex-col gap-1 bg-brand-deep p-6 text-brand-paper">
+        <div className="ms-auto flex h-dvh w-[min(85vw,22rem)] flex-col gap-1 bg-brand-deep p-6 text-brand-on-deep">
           <button
             type="button"
             aria-label="Close menu"
             onClick={() => dialogRef.current?.close()}
-            className="self-end text-3xl leading-none text-brand-paper/80"
+            className="self-end text-3xl leading-none text-brand-on-deep/80"
           >
             &times;
           </button>
@@ -94,7 +94,7 @@ export function MobileMenu({ items, groupLink }: MobileMenuProps) {
                   target={item.target ?? undefined}
                   rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                   onClick={() => dialogRef.current?.close()}
-                  className="border-b border-brand-paper/15 py-4 text-lg font-medium uppercase tracking-wide text-brand-paper/90"
+                  className="border-b border-brand-on-deep/15 py-4 text-lg font-medium uppercase tracking-wide text-brand-on-deep/90"
                 >
                   {item.label}
                 </a>

@@ -61,7 +61,7 @@ export function GroupContact({ section, email, address }: GroupContactProps) {
             </h2>
           ) : null}
           {hasCopy ? (
-            <p className="mt-6 max-w-md text-base leading-relaxed text-brand-paper/75">
+            <p className="mt-6 max-w-md text-base leading-relaxed text-brand-on-deep/75">
               {section.description}
             </p>
           ) : null}
@@ -71,13 +71,13 @@ export function GroupContact({ section, email, address }: GroupContactProps) {
               {email !== null ? (
                 <a
                   href={`mailto:${email}`}
-                  className="text-[15px] text-brand-paper transition-colors hover:text-brand-accent-bright"
+                  className="text-[15px] text-brand-on-deep transition-colors hover:text-brand-accent-bright"
                 >
                   {email}
                 </a>
               ) : null}
               {address !== null ? (
-                <p className="text-[15px] text-brand-paper/70">{address}</p>
+                <p className="text-[15px] text-brand-on-deep/70">{address}</p>
               ) : null}
             </div>
           ) : null}

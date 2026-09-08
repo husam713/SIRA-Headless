@@ -33,9 +33,9 @@ const ERROR_MESSAGES: Readonly<Record<string, string>> = Object.freeze({
 });
 
 const inputClass =
-  "border-0 border-b border-brand-paper/20 bg-transparent py-2 text-sm text-brand-paper outline-none transition-colors focus:border-brand-accent-bright";
+  "border-0 border-b border-brand-on-deep/20 bg-transparent py-2 text-sm text-brand-on-deep outline-none transition-colors focus:border-brand-accent-bright";
 const labelClass =
-  "flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-paper/60";
+  "flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-on-deep/60";
 
 export function ContactForm({ services }: ContactFormProps) {
   const formId = useId();
@@ -108,11 +108,11 @@ export function ContactForm({ services }: ContactFormProps) {
           // outcome without being thrown out of their reading position.
           role="status"
           aria-live="polite"
-          className="font-display text-2xl leading-snug text-brand-paper"
+          className="font-display text-2xl leading-snug text-brand-on-deep"
         >
           Thank you — your message has reached us.
         </p>
-        <p className="mt-4 text-sm leading-relaxed text-brand-paper/70">
+        <p className="mt-4 text-sm leading-relaxed text-brand-on-deep/70">
           A member of the SIRA GROUP team will respond directly, usually within
           two working days.
         </p>

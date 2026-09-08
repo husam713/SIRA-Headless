@@ -17,6 +17,17 @@ export interface BrandIdentityTokens {
 export interface BrandSemanticTokens {
   readonly accentBright: string;
   readonly onAccent: string;
+  /**
+   * Readable foreground on the `deep` surface.
+   *
+   * Computed by contrast, never declared, for the same reason as `onAccent`.
+   * Deep sections used to hardcode `paper` as their foreground, which held only
+   * while every brand had light paper over a dark deep. SIRA Digital inverts
+   * that pair (ADR-033), and `paper` on `deep` became dark-on-dark. This
+   * resolves to `paper` for every light brand — a literal no-op for them — and
+   * to `ink` for a brand set on a dark ground.
+   */
+  readonly onDeep: string;
   readonly paperGlass: string;
   readonly inkSoft: string;
   readonly inkFaint: string;
@@ -125,6 +136,6 @@ export interface BrandPreset {
   readonly name: string;
   readonly tagline: string;
   readonly identity: BrandIdentityTokens;
-  readonly semantic: Omit<BrandSemanticTokens, "onAccent">;
+  readonly semantic: Omit<BrandSemanticTokens, "onAccent" | "onDeep">;
   readonly assets: BrandAssetSet;
 }

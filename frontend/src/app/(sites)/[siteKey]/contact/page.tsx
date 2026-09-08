@@ -85,22 +85,40 @@ export default async function ContactPage({ params }: ContactPageProps) {
   return (
     <>
       <section aria-labelledby="contact-heading">
-        <PageContainer className="digital-reveal grid gap-12 pb-[clamp(3rem,6vw,5rem)] pt-[clamp(4rem,8vw,7rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-16">
-          <div>
+        {/* The intro track was 940px holding 440px of text, so the page opened
+            on an L-shaped hole: dead width beside the headline and dead height
+            under the contact details. Three things close it without inventing
+            a single business fact — a wider form track, type that uses the
+            measure it is given, and details that sit at the foot of the column
+            so the space becomes the gap between two blocks rather than the
+            leftover under one. */}
+        <PageContainer className="digital-reveal grid gap-12 pb-[clamp(3rem,6vw,5rem)] pt-[clamp(4rem,8vw,7rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-16">
+          <div className="flex flex-col">
             <SectionEyebrow tone="accent" className="digital-eyebrow">
               {intro?.eyebrow ?? copy.eyebrow}
             </SectionEyebrow>
             <h1
               id="contact-heading"
-              className="digital-display mt-7 max-w-[16ch] text-balance text-[clamp(2.5rem,1.2rem+3.4vw,3.375rem)] font-bold leading-[0.98] tracking-[-0.03em]"
+              className="digital-display mt-7 max-w-[15ch] text-balance text-[clamp(2.5rem,1.1rem+3.9vw,3.75rem)] font-bold leading-[0.98] tracking-[-0.03em]"
             >
               {intro?.heading ?? copy.heading}
             </h1>
-            <p className="mt-7 max-w-[46ch] text-[1.0625rem] leading-[1.7] text-brand-ink-soft">
+            <p className="mt-7 max-w-[52ch] text-[1.0625rem] leading-[1.7] text-brand-ink-soft">
               {intro?.standfirst ?? copy.standfirst}
             </p>
 
-            <dl className="mt-12 grid gap-6 sm:grid-cols-2">
+            {/* Pushed to the foot of the column at lg, so the details baseline
+                with the bottom of the form instead of leaving a hole beneath
+                themselves. `mt-12` stays as the floor for the stacked case.
+
+                Two columns only when there are two entries. A tenant with no
+                published address gets one entry, and halving the track for it
+                wrapped a single line of opening hours in two. */}
+            <dl
+              className={`mt-12 grid gap-6 lg:mt-auto lg:pt-12 ${
+                brand.email !== null ? "sm:grid-cols-2" : ""
+              }`}
+            >
               {brand.email !== null ? (
                 <div>
                   <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">

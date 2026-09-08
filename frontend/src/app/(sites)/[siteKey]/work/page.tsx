@@ -88,7 +88,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
             <li
               key={entry.databaseId}
               id={neutralSlug(entry.slug)}
-              className="digital-reveal scroll-mt-[calc(var(--layout-header-offset)+2rem)] border-t border-brand-border py-[clamp(2.5rem,5vw,4rem)] first:border-t-0 first:pt-0"
+              className="digital-reveal scroll-mt-8 border-t border-brand-border py-[clamp(2.5rem,5vw,4rem)] first:border-t-0 first:pt-0"
               style={
                 { "--digital-reveal-offset": `${String(Math.min(index, 3) * 2)}%` } as CSSProperties
               }

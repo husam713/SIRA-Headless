@@ -45,10 +45,25 @@ export function SiteHeader({
   const chrome = CHROME[locale];
 
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-border bg-brand-paper-glass backdrop-blur-md">
+    // The header owns --layout-header-offset rather than being described by it.
+    //
+    // That token is the anchor scroll offset, the sticky top for every rail and
+    // index, and the subtrahend in every `100svh - header` band. It said 80px
+    // while the header actually rendered 67px at >=lg and 77px at the mobile
+    // touch-target floor. Nothing looked broken, which is why it survived: an
+    // anchored heading simply stopped 13px lower than it should, and every
+    // full-viewport band came out 13px short. Both drift with the header, and
+    // the header drifts with its content.
+    //
+    // A min-height here ends that. The token now sets the box and the padding
+    // only sets a floor beneath it, so the two cannot disagree; `py-3` leaves
+    // headroom for a taller logo or a larger touch target before the content
+    // could push past the token again. Border-box sizing keeps the hairline
+    // inside the measurement.
+    <header className="sticky top-0 z-40 flex min-h-[var(--layout-header-offset)] items-center border-b border-brand-border bg-brand-paper-glass backdrop-blur-md">
       {/* Same container primitive as every section, so the header content
           column cannot drift from the page beneath it. */}
-      <PageContainer className="flex items-center justify-between gap-6 py-4">
+      <PageContainer className="flex w-full items-center justify-between gap-6 py-3">
         <Link href={homeHref} className="flex flex-shrink-0 items-center gap-3">
           {brand.assets.logo !== null ? (
             // Local static asset (not remote WordPress media, so 2C4-B07 does

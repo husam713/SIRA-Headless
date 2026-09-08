@@ -89,7 +89,7 @@ export default async function IndustriesPage({ params }: IndustriesPageProps) {
             <li
               key={industry.databaseId}
               id={neutralSlug(industry.slug)}
-              className="digital-reveal scroll-mt-[calc(var(--layout-header-offset)+2rem)] border-t border-brand-border py-9"
+              className="digital-reveal scroll-mt-8 border-t border-brand-border py-9"
               style={
                 { "--digital-reveal-offset": `${String(Math.min(index, 5) * 1.5)}%` } as CSSProperties
               }

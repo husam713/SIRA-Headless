@@ -39,6 +39,17 @@ import { buildSiteMetadata } from "@/lib/seo/metadata";
 
 const ROUTE = "/services";
 
+// The scroll-spy wiring (see `.digital-index__*` in globals.css).
+//
+// Each service block publishes a view timeline under this name and the matching
+// rail entry animates against it, which is what lets the index say where the
+// reader is without a Client Component and without a scroll listener. The names
+// have to be generated because the number of services is editorial, so they are
+// passed as inline properties rather than written into the stylesheet.
+function timelineName(index: number): string {
+  return `--sira-service-${String(index + 1)}`;
+}
+
 interface ServicesPageProps {
   readonly params: Promise<{ readonly siteKey: string }>;
 }
@@ -100,7 +111,20 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
       />
 
       <PageContainer className="pb-[clamp(4rem,8vw,7rem)]">
-        <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[16rem_minmax(0,1fr)]">
+        <div
+          className="grid gap-x-16 gap-y-12 lg:grid-cols-[16rem_minmax(0,1fr)]"
+          // The common ancestor of the blocks that publish the timelines and
+          // the rail entries that consume them, which is what `timeline-scope`
+          // requires. A browser without it drops the property, the names never
+          // resolve, and every entry simply keeps its resting state.
+          style={
+            {
+              timelineScope: services
+                .map((_, index) => timelineName(index))
+                .join(", "),
+            } as CSSProperties
+          }
+        >
           {/* Sticky beside the content only where there is room for it to be
               beside anything. Below lg it is a plain list, which is navigable
               with a keyboard and does not overflow. */}
@@ -117,13 +141,19 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
             <ol className="mt-5 grid gap-0">
               {services.map((service, index) => (
                 <li key={service.databaseId}>
+                  {/* Colour and border are owned by `.digital-index__link`, not
+                      by utilities here: the resting, read-now, hover and focus
+                      states have to resolve against each other in one place. */}
                   <a
                     href={`#${neutralSlug(service.slug)}`}
-                    className="digital-rail__item flex items-baseline gap-3 border-s-2 border-brand-border py-2 ps-3.5 text-sm text-brand-ink-soft transition-colors hover:border-brand-accent hover:text-brand-ink focus-visible:border-brand-accent focus-visible:text-brand-ink"
+                    className="digital-index__link flex items-baseline gap-3 border-s-2 py-2 ps-3.5 text-sm"
+                    style={
+                      { "--digital-index-timeline": timelineName(index) } as CSSProperties
+                    }
                   >
                     <span
                       aria-hidden="true"
-                      className="font-display text-[0.6875rem] tabular-nums text-brand-ink-faint"
+                      className="digital-index__number font-display text-[0.6875rem] tabular-nums"
                     >
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -139,9 +169,12 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
               <article
                 key={service.databaseId}
                 id={neutralSlug(service.slug)}
-                className="digital-reveal scroll-mt-[calc(var(--layout-header-offset)+2rem)]"
+                className="digital-reveal digital-index__block scroll-mt-8"
                 style={
-                  { "--digital-reveal-offset": `${String(Math.min(index, 3) * 2)}%` } as CSSProperties
+                  {
+                    "--digital-reveal-offset": `${String(Math.min(index, 3) * 2)}%`,
+                    "--digital-index-timeline": timelineName(index),
+                  } as CSSProperties
                 }
                 aria-labelledby={`${neutralSlug(service.slug)}-heading`}
               >
@@ -162,9 +195,14 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
                     {service.excerpt}
                   </p>
                 ) : null}
+                {/* `digital-spec` is what makes this read as a specification
+                    rather than as an article: label-scale headings, and two
+                    columns from xl, where the measure cap alone was leaving 43%
+                    of the track empty. The cap stays below xl, where the track
+                    is too narrow to divide. */}
                 {service.html !== null ? (
                   <div
-                    className="record-prose mt-8 max-w-[62ch]"
+                    className="record-prose digital-spec mt-8 max-w-[62ch] xl:max-w-none"
                     dangerouslySetInnerHTML={{ __html: service.html }}
                   />
                 ) : null}

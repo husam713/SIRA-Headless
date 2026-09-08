@@ -175,7 +175,12 @@ html:lang(ar) {
 
 html {
   min-width: 320px;
-  /* Keeps anchor targets clear of the sticky header. */
+  /* Keeps anchor targets clear of the sticky header.
+     This is the ONLY place the header clearance is applied to an anchor. A
+     `scroll-margin` on the target adds to this rather than replacing it, so an
+     element also asking for `calc(header + 2rem)` landed a whole extra header
+     down the page — 192px below the fold on the services index. Targets that
+     want breathing room above them should ask for the breathing room only. */
   scroll-padding-block-start: var(--layout-header-offset);
   background: var(--brand-paper);
   color: var(--brand-ink);
@@ -1323,6 +1328,180 @@ a {
 
   [dir="rtl"] .digital-rail__item:hover .digital-rail__arrow {
     transform: translateX(-0.375rem);
+  }
+}
+
+/* --- Service specification -------------------------------------------------
+   Each service body is a fixed six-part record — the problem, what changes,
+   what the system does, what it connects to, where a person stays in the loop,
+   what it is for — which the CMS stores as <h2>label</h2><p>value</p> pairs.
+
+   `record-prose` styles an ARTICLE, where an h2 is a real section heading and
+   34px is right. Here the same element is a two-word LABEL sitting under the
+   service's own 52px title, so the article scale inverts the hierarchy: the
+   label competes with the thing it belongs to, and six of them cost roughly
+   925px per service. This modifier gives those labels the site's own label
+   scale — the one already used for every eyebrow and field label — without
+   touching `record-prose`, which is still correct for the newsroom.
+
+   Spacing lives AFTER each value rather than BEFORE each label on purpose: in
+   the two-column mode below, a top margin on the first label of column two
+   would push that column's first line out of alignment with column one's, and
+   there is no selector for "first element in a column". */
+.digital-spec > h2 {
+  font-family: var(--font-sira-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-ink-faint);
+  margin-block: 0 0.625rem;
+  break-after: avoid;
+}
+
+/* The value, including the first one: `record-prose`'s opening-paragraph
+   treatment is an article's lead-in, and the first value of a specification is
+   not a lead-in. */
+.digital-spec > p,
+.digital-spec > p:first-of-type {
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  color: color-mix(in oklab, var(--brand-ink) 88%, var(--brand-paper) 12%);
+  margin-block: 0 1.875rem;
+  break-inside: avoid;
+  orphans: 2;
+  widows: 2;
+}
+
+.digital-spec > :last-child {
+  margin-block-end: 0;
+}
+
+/* Two columns from xl, because the space is already there and empty: the
+   content track measures 1000px at 1440 while the prose measure is 568px, so
+   43% of every service body was blank ground beside the text. Below xl the
+   track is too narrow to divide — 608px at 1024 — and it stays one column. */
+@media (min-width: 80rem) {
+  .digital-spec {
+    columns: 2;
+    column-gap: clamp(2.5rem, 4vw, 3.5rem);
+  }
+}
+
+/* --- Service index (scroll-spy) -------------------------------------------
+   The reference drives its services rail from a scroll-spy, and on a page this
+   long a rail that cannot say where you are is a list of links rather than an
+   index. This does it without a Client Component, so the architecture lock
+   holds and the page stays a Server Component: each service block publishes a
+   named view timeline, the grid puts those names in scope, and each rail entry
+   animates against its own block's timeline.
+
+   `view-timeline-inset` is what turns "in view" into "at the reading line".
+   It shrinks the timeline's scrollport to a narrow band just below the header,
+   so exactly one block — the one being read — is ever inside it.
+
+   What the animation drives is one registered number, not the colours
+   themselves. An animation outranks every author declaration in the cascade,
+   so animating `border-color` directly would have silently killed :hover and
+   :focus-visible on the same entry for the whole life of the page. Moving the
+   scroll signal into a custom property leaves the colours as ordinary
+   declarations that a pointer or the keyboard can still override.
+
+   The keyframes are 0 at both ends and 1 in between, because `fill: both`
+   would otherwise leave every entry stuck in its final state once its block
+   had passed. The 0.01% shoulders make the change read as a switch while
+   keeping the property interpolable. */
+@property --digital-index-spy {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@keyframes digital-index-spy {
+  0%,
+  100% {
+    --digital-index-spy: 0;
+  }
+
+  0.01%,
+  99.99% {
+    --digital-index-spy: 1;
+  }
+}
+
+.digital-index__link {
+  border-color: color-mix(
+    in oklab,
+    var(--brand-accent) calc(var(--digital-index-spy) * 100%),
+    var(--brand-border)
+  );
+  color: color-mix(
+    in oklab,
+    var(--brand-ink) calc(var(--digital-index-spy) * 100%),
+    var(--brand-ink-soft)
+  );
+  transition: border-color 300ms var(--digital-ease), color 300ms var(--digital-ease);
+}
+
+/* 0.15s against the entry's 0.3s, matching the reference's measured pair. */
+.digital-index__number {
+  color: color-mix(
+    in oklab,
+    var(--brand-accent) calc(var(--digital-index-spy) * 100%),
+    var(--brand-ink-faint)
+  );
+  transition: color 150ms var(--digital-ease);
+}
+
+/* Intent still outranks position: reaching for an entry lights it whether or
+   not it is the one being read. */
+.digital-index__link:focus-visible,
+.digital-index__link:focus-visible .digital-index__number {
+  color: var(--brand-ink);
+}
+
+.digital-index__link:focus-visible {
+  border-color: var(--brand-accent);
+}
+
+@media (hover: hover) {
+  .digital-index__link:hover {
+    border-color: var(--brand-accent);
+    color: var(--brand-ink);
+  }
+
+  .digital-index__link:hover .digital-index__number {
+    color: var(--brand-ink);
+  }
+}
+
+/* Not gated on prefers-reduced-motion, unlike every other block in this layer.
+   Nothing here moves: it swaps two colours to say which section is being read,
+   which is orientation on a page seven screens long, and a reader who has asked
+   for less motion needs that as much as anyone. The global kill switch earlier
+   in this file collapses the 300ms transition to nothing for them, so the
+   change lands instantly instead of easing.
+
+   The duration exemption is what keeps that true. That kill switch forces
+   `animation-duration: 0.01ms` on everything, and a scroll-driven animation
+   given an explicit duration finishes inside the first fraction of its range
+   and then sits in its fill state — which for these keyframes is the inactive
+   one, so every entry would have gone permanently dark. `auto` is the value
+   that means "take the duration from the timeline", and the class selector
+   outranks the universal one it is overriding. */
+@supports (animation-timeline: view()) and (timeline-scope: --sira) {
+  .digital-index__block {
+    view-timeline-name: var(--digital-index-timeline);
+    /* From just under the header to 15% of the way down the viewport. */
+    view-timeline-inset: var(--layout-header-offset) 85%;
+  }
+
+  .digital-index__link {
+    animation: digital-index-spy linear both;
+    animation-timeline: var(--digital-index-timeline);
+    animation-range: cover 0% cover 100%;
+    animation-duration: auto !important;
   }
 }
 

@@ -103,6 +103,27 @@ hosting-panel access.
      logs `SIRA brand fallback activated { siteKey: 'digital' }` and renders the
      preset — which is the designed behaviour, not a failure.
 
+## The one ordering dependency
+
+The Digital homepage cannot render its CMS content until the schema catches up,
+and the order is not negotiable:
+
+1. `sira-core` ships to the network, so `digitalHomepage` exists in WPGraphQL.
+   The field group is already registered in
+   `backend/src/Integrations/PresentationFields.php`.
+2. `pnpm schema:fetch` against the live endpoint, then `pnpm codegen`. Generated
+   files are regenerated from their source contracts, never hand-edited, which
+   is why this repository cannot shortcut the step.
+3. Add the `digitalHomepage` selection to `src/queries/homepage.graphql`, and
+   delete `readUnschemaedFieldGroup` in `normalize-homepage.ts` — the comment on
+   that helper says so at the point a future session will read it.
+
+Until step 3, `sirahdigital.sa` resolves `invalid / missing-variant-data` and
+renders the unconfigured-tenant panel. That is the honest state: the tenant does
+not pretend to have content it has not been given. Everything else about the
+tenant — resolution, brand, contact routing, SEO, the composition itself and its
+tests — is already exercised.
+
 ## Until then
 
 Nothing in this repository is blocked by the site not existing. A production

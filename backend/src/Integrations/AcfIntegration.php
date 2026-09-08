@@ -96,6 +96,7 @@ final class AcfIntegration {
 							'healthcare' => 'Healthcare',
 							'lifestyle'  => 'Lifestyle',
 							'consulting' => 'Consulting',
+							'digital'    => 'Digital',
 						),
 					),
 					array(

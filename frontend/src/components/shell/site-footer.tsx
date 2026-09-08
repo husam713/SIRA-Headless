@@ -33,6 +33,22 @@ interface SiteFooterProps {
   readonly brand: ResolvedBrand;
   /** Top-level footer-menu items only — same scope note as SiteHeader. */
   readonly items: readonly NavigationItem[];
+  /**
+   * Which footer this tenant gets.
+   *
+   * `compact` is the four branch companies' measured design: a brand block
+   * and a link back to Group, and nothing else. `full` is the navigable
+   * footer with columns.
+   *
+   * This used to be inferred as `groupLink !== null` — "a branch site is
+   * exactly the site that has a link back to the group". That was true while
+   * the only non-Group tenants were the four branches. ADR-033 broke it:
+   * SIRA Digital is a GROUP company, so it has the cross-link, but it has
+   * its own composition and its own navigation and was silently getting a
+   * footer with no menu in it. The shape now comes from the same place the
+   * page composition does.
+   */
+  readonly layout: "compact" | "full";
   /** Cross-link back to SIRA GROUP, present on branch sites only. */
   readonly groupLink: GroupCrossLink | null;
   /**
@@ -125,11 +141,15 @@ function portfolioCompanies(currentSite: SiteKey) {
   });
 }
 
-export function SiteFooter({ brand, items, groupLink, taglineOverride }: SiteFooterProps) {
+export function SiteFooter({
+  brand,
+  items,
+  groupLink,
+  taglineOverride,
+  layout,
+}: SiteFooterProps) {
   const year = new Date().getFullYear();
-  // A branch site is exactly the site that has a link back to the group, so
-  // the footer's shape follows from data it already has rather than a new flag.
-  const isBranch = groupLink !== null;
+  const isBranch = layout === "compact";
   const companies = portfolioCompanies(brand.siteKey);
 
   const social = [

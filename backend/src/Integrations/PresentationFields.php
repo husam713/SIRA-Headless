@@ -66,8 +66,9 @@ final class PresentationFields {
 					'sira_homepage_variant',
 					'variant',
 					array(
-						'group'  => 'Group homepage',
-						'branch' => 'Branch homepage',
+						'group'   => 'Group homepage',
+						'branch'  => 'Branch homepage',
+						'digital' => 'Digital homepage',
 					),
 					'group',
 					array(

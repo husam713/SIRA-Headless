@@ -186,6 +186,26 @@ describe("the Digital motion layer", () => {
   });
 });
 
+describe("the shell adapts to a company that is neither Group nor a branch", () => {
+  const layout = readFileSync(
+    join("src", "app", "(sites)", "[siteKey]", "layout.tsx"),
+    "utf8",
+  );
+  const footer = readFileSync(join("src", "components", "shell", "site-footer.tsx"), "utf8");
+
+  it("chooses the footer shape from the composition, not from the Group cross-link", () => {
+    // The regression this guards is silent and was found in a browser, not by a
+    // test: the footer inferred "is a branch site" from "has a link back to
+    // Group". SIRA Digital is a GROUP company with its own navigation, so it
+    // had the cross-link, took the compact branch footer, and rendered with no
+    // menu in it at all.
+    expect(footer).not.toContain("const isBranch = groupLink !== null");
+    expect(footer).toContain('const isBranch = layout === "compact"');
+    expect(layout).toMatch(/footerLayout[\s\S]{0,160}variant === "branch"/u);
+    expect(layout).toContain("layout={footerLayout}");
+  });
+});
+
 describe("the Digital components stay Server Components", () => {
   // The architecture lock keeps Client Components to required interaction. A
   // decorative reveal is not required interaction, and the whole reason the

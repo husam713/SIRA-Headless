@@ -1,0 +1,225 @@
+{
+  "$comment": "Pre-launch placeholder content for the SIRA Digital tenant (ADR-030 governance, ADR-033 tenant). Every record written from this file carries post meta _sira_seed=1. It describes CAPABILITY, never a verified fact: there are no client names, no metrics, no certifications, no partnerships, no revenue, no headcount, no offices and no testimonials anywhere in it, because none of those have been supplied by the owner. An editor replaces this with SIRA's own copy before launch; tools/verify-no-seed-content.mjs blocks launch while any of it survives.",
+
+  "homepage": {
+    "title": "SIRA Digital",
+    "hero": {
+      "eyebrow": "SIRA Digital",
+      "heading_before": "Operations software for",
+      "heading_highlight": "the work that repeats",
+      "heading_after": "",
+      "description": "We build the systems that move a business's daily work — quotes, approvals, documents, handovers — out of spreadsheets and inboxes and into software that reports on itself.",
+      "primary_cta": { "title": "Book an operations review", "url": "/contact", "target": "" },
+      "secondary_cta": { "title": "See what we build", "url": "/work", "target": "" }
+    },
+    "capabilities_eyebrow": "Capabilities",
+    "capabilities": [
+      {
+        "title": "Workflow automation",
+        "summary": "Approvals, handovers and status chasing move into a system that records who did what and when. The bottleneck stops being one person's inbox.",
+        "link": { "title": "Workflow automation", "url": "/services#workflow-automation", "target": "" }
+      },
+      {
+        "title": "Document intelligence",
+        "summary": "Contracts, invoices and official documents read into structured data, with Arabic and English handled in the same pass and a human check where the cost of being wrong is real.",
+        "link": { "title": "Document intelligence", "url": "/services#document-intelligence", "target": "" }
+      },
+      {
+        "title": "Systems integration",
+        "summary": "One record instead of five. We connect the ERP, the CRM, the finance system and the field app that were never designed to speak to each other.",
+        "link": { "title": "Systems integration", "url": "/services#systems-integration", "target": "" }
+      },
+      {
+        "title": "Customer operations",
+        "summary": "WhatsApp, phone and web enquiries arrive in one queue with an owner, a due time and a history — instead of three places where nobody is accountable.",
+        "link": { "title": "Customer operations", "url": "/services#customer-operations", "target": "" }
+      },
+      {
+        "title": "Internal platforms",
+        "summary": "Software shaped around the process a business actually runs, rather than the process a licensed package assumed. Built to be handed over, not rented indefinitely.",
+        "link": { "title": "Internal platforms", "url": "/services#internal-platforms", "target": "" }
+      },
+      {
+        "title": "Reporting that reconciles",
+        "summary": "Numbers a finance team will put their name to. The dashboard is the easy part; agreeing what a number means across departments is the work.",
+        "link": { "title": "Reporting that reconciles", "url": "/services#reporting", "target": "" }
+      },
+      {
+        "title": "AI with an audit trail",
+        "summary": "Systems that draft, classify and route — and record every decision with its inputs, so an operator can see why and overrule it.",
+        "link": { "title": "AI with an audit trail", "url": "/services#applied-ai", "target": "" }
+      },
+      {
+        "title": "Field and site operations",
+        "summary": "Work that happens away from a desk: inspections, deliveries and site handovers captured once on a phone and reconciled the same day.",
+        "link": { "title": "Field and site operations", "url": "/services#field-operations", "target": "" }
+      }
+    ],
+    "marquee": {
+      "eyebrow": "Sectors",
+      "heading": "Built for how businesses here actually operate",
+      "description": "",
+      "body": "<p>Every sector has a different bottleneck. A clinic loses time to scheduling and records; a contractor loses it to approvals and site paperwork; a distributor loses it to order entry and reconciliation. We start from the bottleneck, not from the software.</p>",
+      "link": { "title": "Industries", "url": "/industries", "target": "" },
+      "items": [
+        "Healthcare",
+        "Real estate",
+        "Hospitality",
+        "Retail and distribution",
+        "Logistics",
+        "Construction",
+        "Professional services",
+        "Education",
+        "Manufacturing",
+        "Facilities management"
+      ]
+    },
+    "wordmark": {
+      "word": "SIRA DIGITAL",
+      "lockup": "Systems that run the work.",
+      "link": { "title": "See what we build", "url": "/work", "target": "" }
+    },
+    "contact": {
+      "eyebrow": "Start here",
+      "heading": "Tell us where the time goes.",
+      "description": "An operations review is a conversation, not a pitch. Describe the process that costs you the most hours and we will tell you honestly whether software is the answer.",
+      "form_variant": "contact",
+      "form_context": "digital-operations-review"
+    }
+  },
+
+  "services": [
+    {
+      "slug": "workflow-automation",
+      "title": "Workflow automation",
+      "excerpt": "Approvals, handovers and status chasing, moved into a system that records who did what and when.",
+      "problem": "The process exists, but it lives in a chain of emails, a WhatsApp group and a spreadsheet somebody owns personally. Nobody can say where a request is without asking, and the answer depends on who is at their desk.",
+      "changes": "Each step gets an owner, a due time and a record. Work that was waiting on a person waits on a queue instead, and the queue is visible to everyone who needs it.",
+      "capability": "Routing rules, conditional approvals, escalation on time, structured handover between departments, and a full history of every state change with the person and timestamp attached.",
+      "integrates": "Existing ERP and CRM systems, shared mailboxes, WhatsApp Business, file storage, and the finance system that ultimately has to agree with it.",
+      "oversight": "A person approves anything with financial or contractual consequence. The system proposes, records and chases; it does not sign.",
+      "outcome": "Fewer status meetings, a shorter cycle time on repeating requests, and an audit trail that already exists when somebody asks for one."
+    },
+    {
+      "slug": "document-intelligence",
+      "title": "Document intelligence",
+      "excerpt": "Contracts, invoices and official documents read into structured data, in Arabic and English.",
+      "problem": "Information a business already owns is trapped in PDFs and photographs. Somebody re-types it into a system, and the re-typing is where the errors and the delay come from.",
+      "changes": "Documents are read once on arrival and become records. The person who used to re-key them checks exceptions instead.",
+      "capability": "Extraction from scans and photographs, mixed Arabic and English in the same document, table and line-item recognition, validation against existing records, and confidence scoring that decides what a human sees.",
+      "integrates": "Document storage, accounting and ERP systems, and whatever the operations team currently uses to track what has arrived.",
+      "oversight": "Low-confidence extractions and anything above a value threshold route to a person by design. The point is to remove typing, not judgement.",
+      "outcome": "Faster intake, fewer transcription errors, and a searchable record of documents that were previously only findable by the person who filed them."
+    },
+    {
+      "slug": "systems-integration",
+      "title": "Systems integration",
+      "excerpt": "One record instead of five, across systems that were never designed to speak to each other.",
+      "problem": "The ERP, the CRM, the finance system and the field application each hold part of the truth, and reconciling them is somebody's monthly job.",
+      "changes": "The systems exchange the records they each need, on a schedule or on an event, with a clear owner for each field.",
+      "capability": "API and file-based integration, event and batch synchronisation, field-level ownership rules, conflict handling, retry with backoff, and monitoring that tells an operator when a feed stopped.",
+      "integrates": "Whatever is already in place. Replacing a working system is a last resort, not a starting position.",
+      "oversight": "Conflicts and failed syncs surface to a person rather than being resolved silently. A quiet integration is an integration nobody can trust.",
+      "outcome": "Reporting that agrees with itself, and a month-end that stops being a reconciliation exercise."
+    },
+    {
+      "slug": "customer-operations",
+      "title": "Customer operations",
+      "excerpt": "Enquiries from WhatsApp, phone and web in one queue, with an owner and a due time.",
+      "problem": "Enquiries arrive in three or four places. Some get answered twice, some not at all, and nobody can say how many came in last week.",
+      "changes": "Every channel lands in one queue. Each enquiry has an owner, a response clock and a history that survives the person who handled it.",
+      "capability": "Channel consolidation, assignment rules, response-time tracking, templated and assisted replies, and a record that stays with the customer rather than with an individual's phone.",
+      "integrates": "WhatsApp Business, telephony, web forms, and the CRM the sales team already lives in.",
+      "oversight": "Assisted replies are drafts until a person sends them, unless a business explicitly chooses otherwise for a narrow, well-understood category.",
+      "outcome": "A measurable response time, fewer dropped enquiries, and a handover that does not depend on one person's memory."
+    },
+    {
+      "slug": "internal-platforms",
+      "title": "Internal platforms",
+      "excerpt": "Software shaped around the process a business actually runs.",
+      "problem": "The licensed package assumes a process the business does not follow, so the real process happens in spreadsheets beside it.",
+      "changes": "The software matches the operation. The spreadsheets stop being the system of record.",
+      "capability": "Web and mobile applications, role-based access, offline-tolerant capture for work away from a desk, and an administrative surface the business can run without us.",
+      "integrates": "Existing identity, finance and reporting systems, so a new platform does not create a new island.",
+      "oversight": "Documentation, handover and the source code belong to the client. Software built to be handed over is built differently from software built to be rented.",
+      "outcome": "A system the operations team recognises, and one fewer spreadsheet that only one person understands."
+    },
+    {
+      "slug": "reporting",
+      "title": "Reporting that reconciles",
+      "excerpt": "Numbers a finance team will put their name to.",
+      "problem": "Two departments report the same metric and get different answers, so the number becomes a matter of opinion and the meeting becomes an argument about the data.",
+      "changes": "Definitions are agreed once, written down, and computed in one place. The dashboard becomes a view of that, not a second source.",
+      "capability": "A defined metric layer, scheduled and event-driven refresh, drill-through to the underlying records, and a visible last-updated time so nobody presents a stale number by accident.",
+      "integrates": "Finance, operational and customer systems, and existing reporting tools where they are already trusted.",
+      "oversight": "Every headline number can be opened to the rows behind it. A figure that cannot be traced is a figure that should not be presented.",
+      "outcome": "Less time spent proving numbers, and reporting that survives being questioned."
+    },
+    {
+      "slug": "applied-ai",
+      "title": "AI with an audit trail",
+      "excerpt": "Systems that draft, classify and route — and record why.",
+      "problem": "The interesting AI demonstrations are the ones nobody can put into an operation, because a system that cannot explain a decision cannot be trusted with one.",
+      "changes": "Models do the narrow, repetitive judgement — classify this, draft that, route the other — inside a process that records inputs, outputs and the human who confirmed them.",
+      "capability": "Classification and routing, drafting with review, extraction with confidence thresholds, retrieval over a business's own documents, and evaluation against a held-back set before anything goes live.",
+      "integrates": "The systems the work already happens in. An assistant in a separate window is a demonstration, not an operation.",
+      "oversight": "Human-in-the-loop by default, with the threshold set per use case rather than globally. Every decision is logged with its inputs so it can be reviewed and reversed.",
+      "outcome": "Capacity released on repetitive judgement, without a decision anybody has to take on faith."
+    },
+    {
+      "slug": "field-operations",
+      "title": "Field and site operations",
+      "excerpt": "Inspections, deliveries and handovers captured once, on a phone, and reconciled the same day.",
+      "problem": "Work that happens away from a desk is recorded on paper and typed up later — if it is typed up at all. The office finds out what happened on site days after it happened.",
+      "changes": "Capture happens where the work is, on a device the team already carries, and reaches the office as a record rather than as a photograph of a form.",
+      "capability": "Mobile capture with photographs and signatures, offline tolerance for sites without coverage, structured checklists, and reconciliation against the order or work instruction it belongs to.",
+      "integrates": "Scheduling, inventory and finance systems, so a completed job becomes an invoice without a second data entry.",
+      "oversight": "Supervisors review exceptions rather than every record. The system escalates what does not match.",
+      "outcome": "Same-day visibility of work in the field, and a shorter gap between work done and work invoiced."
+    }
+  ],
+
+  "pages": [
+    {
+      "slug": "about",
+      "title": "About",
+      "content": "<p class=\"lead\">SIRA Digital builds the operational software that a business runs on. We are the technology company inside SIRA GROUP.</p><h2>Why we exist</h2><p>Most businesses do not have a technology problem. They have a process that grew faster than the tools around it, and the gap is being absorbed by people — re-typing, chasing, reconciling, and remembering things the system should have remembered for them. That absorbed effort is invisible on a balance sheet and enormous in practice.</p><p>Our work is to find that effort and move it into software.</p><h2>How we work</h2><h3>We start at the bottleneck, not at the software</h3><p>The first engagement is a review of where time actually goes. Sometimes the answer is a system. Sometimes it is a process change that costs nothing, and we will say so — a project that should not have been built is worse for both sides than one that was never sold.</p><h3>We build to hand over</h3><p>Documentation, administrative access and source code belong to the client. Software built to be handed over is built differently from software built to be rented, and the difference shows in year three.</p><h3>We keep the human where judgement lives</h3><p>Automation is right for work that repeats and wrong for work that requires accountability. We are explicit about which is which, and we log every automated decision so it can be reviewed and reversed.</p><h3>We integrate before we replace</h3><p>A working system is an asset, even an inconvenient one. Replacing it is a last resort, not an opening position.</p><h2>Part of SIRA GROUP</h2><p>SIRA Digital is one of the operating companies of SIRA GROUP. That relationship gives us something an independent software firm rarely has: sister companies running real operations in healthcare, real estate and hospitality, and the ability to see how a process behaves in practice rather than in a requirements document.</p>"
+    },
+    {
+      "slug": "contact",
+      "title": "Contact",
+      "content": "<p class=\"lead\">Describe the process that costs you the most hours. We will tell you honestly whether software is the answer.</p><p>An operations review is a conversation, not a pitch. It usually takes forty-five minutes, and the useful version of it happens with somebody who does the work rather than only with somebody who reports on it.</p>"
+    },
+    {
+      "slug": "privacy",
+      "title": "Privacy Policy",
+      "content": "<p><strong>Draft pending legal review.</strong> This text has not been reviewed or approved by a qualified legal adviser and makes no claim of certified compliance.</p><h2>Who we are</h2><p>SIRA Digital is an operating company of SIRA GROUP. This policy covers information collected through this website.</p><h2>What we collect</h2><p>Only what you send us. If you complete an enquiry form, we receive the name, contact details, organisation and message you provide, together with the date of submission. We do not require any information beyond what is needed to reply.</p><h2>Why we collect it</h2><p>To answer your enquiry and to arrange a conversation about it. We do not sell your details, and we do not share them for anyone else's marketing.</p><h2>How long we keep it</h2><p>Enquiry records are retained for twenty-four months from the date of submission, then deleted. If a commercial relationship begins, records move under the retention terms of that relationship.</p><h2>Where it is stored</h2><p>Enquiries are stored privately and are accessible only to authorised personnel. They are not published and are not exposed by any public interface of this website.</p><h2>Your rights</h2><p>Saudi Arabia's Personal Data Protection Law gives you rights over personal data about you, including the right to be informed, to access, to request correction and to request destruction. To exercise any of them, contact us using the details on the contact page.</p><h2>Analytics and cookies</h2><p>This site does not set advertising or cross-site tracking cookies. Where measurement is used, it is limited to understanding which pages are read.</p><h2>Changes</h2><p>Material changes to this policy will be reflected here with a revised date.</p>"
+    },
+    {
+      "slug": "terms",
+      "title": "Terms of Service",
+      "content": "<p><strong>Draft pending legal review.</strong> This text has not been reviewed or approved by a qualified legal adviser.</p><h2>Using this site</h2><p>This website describes the services of SIRA Digital, an operating company of SIRA GROUP. Its content is provided for information and does not constitute a commercial offer.</p><h2>Enquiries and consultations</h2><p>Submitting an enquiry does not create a contract. Any engagement is governed by a separate written agreement.</p><h2>Estimates and indicative figures</h2><p>Tools on this site that produce estimates, including any impact or savings calculator, are illustrative models based on the assumptions shown alongside them. They are not quotations, forecasts or guarantees of any outcome.</p><h2>Intellectual property</h2><p>The content, design and code of this website belong to SIRA GROUP unless stated otherwise.</p><h2>No warranty</h2><p>This website is provided as it stands, without warranty of uninterrupted availability or freedom from error.</p><h2>Limitation of liability</h2><p>To the extent permitted by applicable law, SIRA Digital is not liable for indirect or consequential loss arising from use of this website.</p><h2>Governing law</h2><p>These terms are governed by the laws of the Kingdom of Saudi Arabia.</p>"
+    }
+  ],
+
+  "menus": {
+    "primary": [
+      { "title": "Services", "url": "/services" },
+      { "title": "Work", "url": "/work" },
+      { "title": "Industries", "url": "/industries" },
+      { "title": "About", "url": "/about" },
+      { "title": "Contact", "url": "/contact" }
+    ],
+    "footer": [
+      { "title": "Services", "url": "/services" },
+      { "title": "Work", "url": "/work" },
+      { "title": "Industries", "url": "/industries" },
+      { "title": "About", "url": "/about" },
+      { "title": "Contact", "url": "/contact" }
+    ],
+    "legal": [
+      { "title": "Privacy", "url": "/privacy" },
+      { "title": "Terms", "url": "/terms" }
+    ]
+  }
+}

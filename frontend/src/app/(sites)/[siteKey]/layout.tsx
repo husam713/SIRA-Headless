@@ -99,6 +99,16 @@ export default async function SiteLayout({
       ? homepage.homepage.footer
       : null;
 
+  // The compact footer belongs to the four companies that share the branch
+  // composition. Every other tenant — Group, and SIRA Digital since ADR-033 —
+  // gets the navigable one. Derived from the resolved variant rather than from
+  // the presence of a Group cross-link, which stopped meaning "is a branch"
+  // the moment a GROUP company had its own site.
+  const footerLayout =
+    homepage.status === "ready" && homepage.homepage.variant === "branch"
+      ? "compact"
+      : "full";
+
   const groupSite = resolveGroupCrossLink(site.key);
   const groupHeaderLink = groupSite === null
     ? null
@@ -151,6 +161,7 @@ export default async function SiteLayout({
         items={scopeItems(navigation, "footer")}
         groupLink={groupFooterLink}
         taglineOverride={branchFooter?.taglineOverride ?? null}
+        layout={footerLayout}
       />
     </BrandDocument>
   );

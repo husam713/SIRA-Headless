@@ -4,12 +4,12 @@
   "dir": "ltr",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 3041,
+  "docHeight": 2991,
   "viewport": {
-    "w": 1440,
-    "h": 900
+    "w": 1280,
+    "h": 800
   },
-  "screens": 3.38,
+  "screens": 3.74,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
@@ -17,16 +17,16 @@
     "navLinks": 10
   },
   "footer": {
-    "height": 398.5,
+    "height": 390.5,
     "links": 10
   },
   "sections": [
     {
       "index": 1,
       "startY": 80,
-      "endY": 505,
-      "height": 425,
-      "screens": 0.47,
+      "endY": 495.4,
+      "height": 415.4,
+      "screens": 0.52,
       "heading": "Every sector loses time somewhere different.",
       "headingType": {
         "size": 54,
@@ -39,10 +39,10 @@
     },
     {
       "index": 2,
-      "startY": 505,
-      "endY": 2195.9,
-      "height": 1690.9,
-      "screens": 1.88,
+      "startY": 495.4,
+      "endY": 2176.7,
+      "height": 1681.3,
+      "screens": 2.1,
       "heading": "Construction",
       "headingType": {
         "size": 22,
@@ -55,14 +55,14 @@
     },
     {
       "index": 3,
-      "startY": 2195.9,
-      "endY": 2642.6,
-      "height": 446.8,
-      "screens": 0.5,
+      "startY": 2176.7,
+      "endY": 2600.2,
+      "height": 423.5,
+      "screens": 0.53,
       "heading": "Not listed? The bottleneck is usually the same shape.",
       "headingType": {
-        "size": 72,
-        "lineHeight": 75,
+        "size": 70,
+        "lineHeight": 73,
         "weight": "700",
         "tracking": -0.025,
         "transform": "none",

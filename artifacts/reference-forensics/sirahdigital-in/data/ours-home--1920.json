@@ -4,12 +4,12 @@
   "dir": "ltr",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 5352,
+  "docHeight": 5928,
   "viewport": {
-    "w": 1440,
-    "h": 900
+    "w": 1920,
+    "h": 1080
   },
-  "screens": 5.95,
+  "screens": 5.49,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
@@ -24,9 +24,9 @@
     {
       "index": 1,
       "startY": 80,
-      "endY": 900,
-      "height": 820,
-      "screens": 0.91,
+      "endY": 1080,
+      "height": 1000,
+      "screens": 0.93,
       "heading": "Operations software for the work that repeats",
       "headingType": {
         "size": 54,
@@ -39,10 +39,10 @@
     },
     {
       "index": 2,
-      "startY": 900,
-      "endY": 1697.2,
+      "startY": 1080,
+      "endY": 1877.2,
       "height": 797.2,
-      "screens": 0.89,
+      "screens": 0.74,
       "heading": "Capabilities",
       "headingType": {
         "size": 11,
@@ -55,10 +55,10 @@
     },
     {
       "index": 3,
-      "startY": 1697.2,
-      "endY": 2250.1,
+      "startY": 1877.2,
+      "endY": 2430.1,
       "height": 553,
-      "screens": 0.61,
+      "screens": 0.51,
       "heading": "Built for how businesses here actually operate",
       "headingType": {
         "size": 52,
@@ -71,26 +71,26 @@
     },
     {
       "index": 4,
-      "startY": 2250.1,
-      "endY": 4230.1,
-      "height": 1980,
+      "startY": 2430.1,
+      "endY": 4806.1,
+      "height": 2376,
       "screens": 2.2,
       "heading": "SIRA DIGITAL",
       "headingType": {
-        "size": 202,
-        "lineHeight": 173,
+        "size": 216,
+        "lineHeight": 186,
         "weight": "900",
-        "tracking": -0.0399,
+        "tracking": -0.04,
         "transform": "uppercase",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 5,
-      "startY": 4230.1,
-      "endY": 4953.6,
+      "startY": 4806.1,
+      "endY": 5529.6,
       "height": 723.5,
-      "screens": 0.8,
+      "screens": 0.67,
       "heading": "Tell us where the time goes.",
       "headingType": {
         "size": 48,

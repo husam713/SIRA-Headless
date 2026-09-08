@@ -4,12 +4,12 @@
   "dir": "ltr",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 5352,
+  "docHeight": 7262,
   "viewport": {
-    "w": 1440,
-    "h": 900
+    "w": 390,
+    "h": 844
   },
-  "screens": 5.95,
+  "screens": 8.6,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
@@ -17,20 +17,20 @@
     "navLinks": 10
   },
   "footer": {
-    "height": 398.5,
+    "height": 749.8,
     "links": 10
   },
   "sections": [
     {
       "index": 1,
       "startY": 80,
-      "endY": 900,
-      "height": 820,
+      "endY": 844,
+      "height": 764,
       "screens": 0.91,
       "heading": "Operations software for the work that repeats",
       "headingType": {
-        "size": 54,
-        "lineHeight": 53,
+        "size": 40,
+        "lineHeight": 39,
         "weight": "700",
         "tracking": -0.03,
         "transform": "none",
@@ -39,10 +39,10 @@
     },
     {
       "index": 2,
-      "startY": 900,
-      "endY": 1697.2,
-      "height": 797.2,
-      "screens": 0.89,
+      "startY": 844,
+      "endY": 3204.6,
+      "height": 2360.6,
+      "screens": 2.8,
       "heading": "Capabilities",
       "headingType": {
         "size": 11,
@@ -55,14 +55,14 @@
     },
     {
       "index": 3,
-      "startY": 1697.2,
-      "endY": 2250.1,
-      "height": 553,
-      "screens": 0.61,
+      "startY": 3204.6,
+      "endY": 3736.1,
+      "height": 531.5,
+      "screens": 0.63,
       "heading": "Built for how businesses here actually operate",
       "headingType": {
-        "size": 52,
-        "lineHeight": 55,
+        "size": 31,
+        "lineHeight": 33,
         "weight": "700",
         "tracking": -0.02,
         "transform": "none",
@@ -71,30 +71,30 @@
     },
     {
       "index": 4,
-      "startY": 2250.1,
-      "endY": 4230.1,
-      "height": 1980,
+      "startY": 3736.1,
+      "endY": 5592.9,
+      "height": 1856.8,
       "screens": 2.2,
       "heading": "SIRA DIGITAL",
       "headingType": {
-        "size": 202,
-        "lineHeight": 173,
+        "size": 56,
+        "lineHeight": 48,
         "weight": "900",
-        "tracking": -0.0399,
+        "tracking": -0.04,
         "transform": "uppercase",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 5,
-      "startY": 4230.1,
-      "endY": 4953.6,
-      "height": 723.5,
-      "screens": 0.8,
+      "startY": 5592.9,
+      "endY": 6512.1,
+      "height": 919.2,
+      "screens": 1.09,
       "heading": "Tell us where the time goes.",
       "headingType": {
-        "size": 48,
-        "lineHeight": 50,
+        "size": 32,
+        "lineHeight": 34,
         "weight": "400",
         "tracking": 0,
         "transform": "none",
@@ -104,8 +104,8 @@
   ],
   "h1": {
     "text": "Operations software for the work that repeats",
-    "size": 54,
-    "lineHeight": 53,
+    "size": 40,
+    "lineHeight": 39,
     "weight": "700",
     "tracking": -0.03,
     "transform": "none",

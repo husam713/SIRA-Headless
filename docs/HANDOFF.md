@@ -340,11 +340,25 @@ amended in place with a scoped carve-out rather than left to contradict the code
   are neutralised wherever the document language is Arabic, with `lang="en"`
   islands keeping their own treatment.
 
-### Interrupted work — none
+### Interrupted work — none of this pass's, but the tree is NOT clean
 
-The tree is clean and every gate is green. The previous checkpoint's list of
-twelve typecheck errors, the half-converted contact route and the missing
+Every gate is green and this pass left nothing half-done. The previous
+checkpoint's twelve typecheck errors, half-converted contact route and missing
 `contact-copy.ts` are all resolved.
+
+**Correction to the previous checkpoint.** It recorded the working tree as
+clean. It was not, and still is not — two things predate this pass, were NOT
+touched by it, and are NOT verified by it:
+
+- `backend/src/Integrations/PresentationFields.php` carries an uncommitted
+  +56-line change adding `homepage_location()` in place of
+  `front_page_location()` on three field groups, so a localized homepage page
+  can be edited as well as resolved. It looks deliberate and correct on reading,
+  but it is PHP, this pass was frontend-only, and no PHP gate was run against it.
+- `.github/workflows/backend-ci.yml` is untracked.
+
+Both are somebody else's in-flight work. Decide on them before the next commit,
+and do not sweep them in with `git add -A`.
 
 ### Validation actually run
 
@@ -367,10 +381,33 @@ All at the current branch head unless stated.
 host disables by disabling every process function. `php -l` was run separately
 and is recorded above. That is the documented split, not a skipped check.
 
+### Validation added by the final fidelity pass (2026-09-08)
+
+All at the pass's head, in Chromium against the live CMS unless stated.
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | PASS |
+| `pnpm typecheck` | PASS — after `rm -rf .next`; see the note below |
+| `pnpm test:run` | PASS — 614 tests, 61 files |
+| `pnpm build` | PASS |
+| `pnpm verify:layout` | PASS — 75/75, LTR and RTL, 375-1920 |
+| Header height vs its token, 6 viewports x 2 languages | PASS — 80px everywhere, token 80px |
+| Anchor landing, `/services` `/work` `/industries` | PASS — 112px = header + 32px, was 192px |
+| Scroll-spy, EN + AR, normal + reduced motion | PASS — exactly one entry active at every position |
+| Motion audit, 5 routes | PASS — 0 elements left below opacity 1; 1 infinite animation (the marquee) |
+| Reduced motion, 5 routes | PASS — 0 animations of any kind; homepage 5352 -> 3784px (-29%) |
+| Horizontal overflow, 74 captures | PASS — 0 on every one |
+
+**`pnpm typecheck` needs a clean `.next`.** `tsconfig.json` includes both
+`.next/types/**` and `.next/dev/types/**`, so once `next dev` and `next build`
+have both run in the same tree, tsc reports four duplicate-identifier errors from
+the generated files. It is not a source error and it is not new; CI never runs
+`next dev`, so CI never sees it. `rm -rf frontend/.next` before typechecking
+locally. Recorded, not repaired — it is outside this pass's scope.
+
 ### Validation still pending
 
-- The final visual-fidelity pass has not run. Density, motion refinement and
-  interaction polish are its subject, not this checkpoint's.
 - `verify-no-seed-content.mjs` has not been run against the live CMS since it was
   repaired. It is expected to BLOCK — Digital's seeded content is deliberately
   still there — and that is now the correct answer rather than a false PASS.
@@ -378,14 +415,46 @@ and is recorded above. That is the documented split, not a skipped check.
   validation path is verified; the delivery leg is inherited unchanged from the
   existing pipeline and was verified before this workstream.
 
-### Deferred quality items, held for the final fidelity pass
+### Deferred quality items — CLOSED by the final fidelity pass (2026-09-08)
 
-- `/services` density: 12.73 screens at 1440 against the reference's 8.4.
-- Header renders 61px tall.
-- Contact hero leaves a large empty gap at 1440.
-- Unselected calculator chips had very low contrast at `border-brand-border`
-  (10% white). A stronger unselected border exists in the uncommitted tree only.
-- Forensic-artifact pruning so PR `#65` stays reviewable.
+All five are addressed. Every number below was measured in a real browser
+against the live CMS, before and after; the full record with method, per-route
+tables and the residual-gap analysis is
+`artifacts/reference-forensics/sirahdigital-in/FIDELITY-PASS.md`.
+
+- **`/services` density.** 12.73 screens at 1440 against the reference's 8.4 →
+  **7.70**. At and above `xl` the page is now shorter than the reference at
+  every width. Below `xl` it remains 13-31% longer, and that residue is content
+  shape rather than layout: our service record carries six authored fields where
+  the reference carries about three, and per authored block we are already
+  denser than the reference. Shortening it further is an editorial decision and
+  was NOT taken.
+- **Header height.** It rendered 67px at `>=lg` and 77px below it while
+  `--layout-header-offset` declared 80px. The header now carries
+  `min-block-size: var(--layout-header-offset)` and measures **80px at every
+  width in both languages**, so the token and the box cannot disagree again.
+  The earlier "61px" reading came from a capture taken before the mobile menu's
+  44px touch target landed; 67/77 are the measured values at the branch head.
+  This is shared chrome — the other five tenants gain 13px at `>=lg`, 3px below.
+- **A second, related defect found and fixed.** `html` already carries
+  `scroll-padding-block-start: var(--layout-header-offset)`, and `/services`,
+  `/work` and `/industries` each ALSO asked their anchor targets for
+  `calc(header + 2rem)`. Scroll margin adds to scroll padding, so every anchored
+  block landed 192px down the page. Now 112px: the header plus 32px.
+- **Contact hero gap.** Closed by a wider form track, type that uses the measure
+  it is given, and details footed to the column so they baseline with the form.
+  No business fact was invented to fill it.
+- **Calculator chip contrast.** Already fixed and already committed at
+  `impact-calculator.tsx` — the unselected chip is `border-brand-ink-faint/60`,
+  not the 10% hairline. The note above that it existed "in the uncommitted tree
+  only" was wrong. No change was needed.
+- **Forensic-artifact pruning.** Non-destructive. The Phase 1 measurement dumps
+  are primary evidence of a third-party site on the day it was measured and
+  cannot be re-derived, so they are kept and marked `linguist-generated` in a new
+  root `.gitattributes`, which collapses them in the pull-request diff instead of
+  deleting them. `.gitignore` now also excludes the 63MB of evidence zips, the
+  17MB of Step 4 responsive-QA PNGs, and the chat transcript sitting in the
+  repository root — none of which should ever reach a commit.
 
 ### Unresolved blockers
 
@@ -408,22 +477,42 @@ Resolved since the last checkpoint: `2C4-B09` (ADR-034), the hostname contract
 ### Recommended resume point for a fresh session
 
 1. Boot per `CLAUDE.md` and `templates/ai/BOOT-PROTOCOL.md`. Rediscover HEAD.
-2. Core implementation is substantially complete and every gate is green, so the
-   next work is the FINAL VISUAL FIDELITY / MOTION REFINEMENT / INTERACTION
-   POLISH pass — gated by the owner checkpoint below.
-3. The known targets for that pass are in "Deferred quality items" above, led by
-   `/services` density: 12.73 screens at 1440 against the reference's 8.4.
-4. Do not re-seed. The CMS already holds both languages; `--remove` on
+2. Core implementation and the final visual-fidelity / motion-refinement /
+   interaction-polish pass are both complete, and every gate is green. There is
+   no engineering work queued behind them. What is left is owner decisions and
+   the launch gates listed under "Unresolved blockers".
+3. The three fidelity items deliberately NOT taken are recorded in
+   `artifacts/reference-forensics/sirahdigital-in/FIDELITY-PASS.md` §7. All three
+   are changes to SHARED chrome — the header pill morph, the full-screen closing
+   CTA, the primary-button lift — so each is a cross-tenant art-direction
+   decision for the owner, not a Digital fidelity correction. Do not take them on
+   your own authority.
+4. `pnpm typecheck` needs `rm -rf frontend/.next` first if a dev server has run.
+   See the note above; it is a tsconfig artefact, not a source error.
+5. Do not re-seed. The CMS already holds both languages; `--remove` on
    `tools/seed/digital-seed.php` is the only reversal and it deletes everything
    carrying the marker.
-5. Do not merge or deploy. The Digital WordPress site must not be deleted.
+6. Do not merge or deploy. The Digital WordPress site must not be deleted.
+7. Leave `backend/src/Integrations/PresentationFields.php` and
+   `.github/workflows/backend-ci.yml` alone until their owner decides — see
+   "Interrupted work" above.
 
-### The ONE OWNER CHECKPOINT remains in force
+### The ONE OWNER CHECKPOINT — REACHED AND ANSWERED (2026-09-08)
 
-It has **not** been reached and must not be skipped. When core implementation is
-substantially complete and ready for the final visual-fidelity / motion-
-refinement / interaction-polish pass, emit only a very short checkpoint message
-and ask exactly:
+It was emitted at the start of the session that ran the fidelity pass, and the
+owner answered **`ok`**. Per its own terms that means effort was already at MAX
+and the pass proceeded immediately, without asking again.
+
+It is a model-effort checkpoint only. It is **not** design, implementation or
+architecture approval, and the fidelity pass it released is still unaccepted
+work on an unmerged branch.
+
+**It is now spent. Do not re-emit it.** It gated one transition, that transition
+has happened, and a future session asking the question again would be asking the
+owner to re-authorize something already authorized. It is preserved below as the
+historical record of what was asked.
+
+The question that was asked:
 
 ```
 Ready for FINAL VISUAL FIDELITY / MOTION REFINEMENT.
@@ -431,10 +520,9 @@ Switch Claude effort to MAX now?
 Reply: OK or NO OK.
 ```
 
-Do not begin that pass before the reply. `OK` means effort is already MAX —
-continue immediately without asking again. `NO OK` means continue the same pass
-at the current setting, without asking again. It is a model-effort checkpoint
-only: not design, implementation, or architecture approval.
+Its terms were: do not begin the pass before the reply; `OK` means effort is
+already MAX, so continue immediately without asking again; `NO OK` means
+continue at the current setting, also without asking again.
 
 ## New owner decision — Group staging first
 

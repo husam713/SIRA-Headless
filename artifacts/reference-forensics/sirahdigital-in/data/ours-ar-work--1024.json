@@ -1,15 +1,15 @@
 {
-  "url": "/work/",
-  "lang": "en",
-  "dir": "ltr",
+  "url": "/ar/work/",
+  "lang": "ar",
+  "dir": "rtl",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 4831,
+  "docHeight": 4078,
   "viewport": {
-    "w": 1440,
-    "h": 900
+    "w": 1024,
+    "h": 768
   },
-  "screens": 5.37,
+  "screens": 5.31,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
@@ -17,65 +17,65 @@
     "navLinks": 10
   },
   "footer": {
-    "height": 398.5,
+    "height": 409.5,
     "links": 10
   },
   "sections": [
     {
       "index": 1,
       "startY": 80,
-      "endY": 630,
-      "height": 550,
-      "screens": 0.61,
-      "heading": "Systems, not slide decks.",
+      "endY": 537.6,
+      "height": 457.6,
+      "screens": 0.6,
+      "heading": "أنظمة، لا عروضًا تقديمية.",
       "headingType": {
         "size": 54,
-        "lineHeight": 53,
+        "lineHeight": 69,
         "weight": "700",
-        "tracking": -0.03,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 2,
-      "startY": 630,
-      "endY": 3985.3,
-      "height": 3355.3,
-      "screens": 3.73,
-      "heading": "Integration Fabric",
+      "startY": 537.6,
+      "endY": 3276.1,
+      "height": 2738.5,
+      "screens": 3.57,
+      "heading": "نسيج التكامل",
       "headingType": {
-        "size": 44,
-        "lineHeight": 47,
+        "size": 40,
+        "lineHeight": 51,
         "weight": "700",
-        "tracking": -0.025,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 3,
-      "startY": 3985.3,
-      "endY": 4432.1,
-      "height": 446.8,
-      "screens": 0.5,
-      "heading": "Have a process worth rebuilding?",
+      "startY": 3276.1,
+      "endY": 3668.7,
+      "height": 392.6,
+      "screens": 0.51,
+      "heading": "لديكم عملية تستحق إعادة البناء؟",
       "headingType": {
-        "size": 72,
-        "lineHeight": 75,
+        "size": 61,
+        "lineHeight": 78,
         "weight": "700",
-        "tracking": -0.025,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     }
   ],
   "h1": {
-    "text": "Systems, not slide decks.",
+    "text": "أنظمة، لا عروضًا تقديمية.",
     "size": 54,
-    "lineHeight": 53,
+    "lineHeight": 69,
     "weight": "700",
-    "tracking": -0.03,
+    "tracking": 0,
     "transform": "none",
     "color": "rgb(242, 246, 252)"
   },

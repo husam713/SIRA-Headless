@@ -4,12 +4,12 @@
   "dir": "ltr",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 4831,
+  "docHeight": 5746,
   "viewport": {
-    "w": 1440,
-    "h": 900
+    "w": 768,
+    "h": 1024
   },
-  "screens": 5.37,
+  "screens": 5.61,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
@@ -17,54 +17,54 @@
     "navLinks": 10
   },
   "footer": {
-    "height": 398.5,
+    "height": 627,
     "links": 10
   },
   "sections": [
     {
       "index": 1,
       "startY": 80,
-      "endY": 630,
-      "height": 550,
-      "screens": 0.61,
+      "endY": 716.8,
+      "height": 636.8,
+      "screens": 0.62,
       "heading": "Systems, not slide decks.",
       "headingType": {
-        "size": 54,
-        "lineHeight": 53,
+        "size": 45,
+        "lineHeight": 44,
         "weight": "700",
-        "tracking": -0.03,
+        "tracking": -0.030199999999999998,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 2,
-      "startY": 630,
-      "endY": 3985.3,
-      "height": 3355.3,
-      "screens": 3.73,
+      "startY": 716.8,
+      "endY": 4657.3,
+      "height": 3940.5,
+      "screens": 3.85,
       "heading": "Integration Fabric",
       "headingType": {
-        "size": 44,
-        "lineHeight": 47,
+        "size": 35,
+        "lineHeight": 37,
         "weight": "700",
-        "tracking": -0.025,
+        "tracking": -0.0247,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 3,
-      "startY": 3985.3,
-      "endY": 4432.1,
-      "height": 446.8,
-      "screens": 0.5,
+      "startY": 4657.3,
+      "endY": 5119.1,
+      "height": 461.8,
+      "screens": 0.45,
       "heading": "Have a process worth rebuilding?",
       "headingType": {
-        "size": 72,
-        "lineHeight": 75,
+        "size": 52,
+        "lineHeight": 54,
         "weight": "700",
-        "tracking": -0.025,
+        "tracking": -0.0248,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
@@ -72,10 +72,10 @@
   ],
   "h1": {
     "text": "Systems, not slide decks.",
-    "size": 54,
-    "lineHeight": 53,
+    "size": 45,
+    "lineHeight": 44,
     "weight": "700",
-    "tracking": -0.03,
+    "tracking": -0.030199999999999998,
     "transform": "none",
     "color": "rgb(242, 246, 252)"
   },

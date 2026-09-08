@@ -1,15 +1,15 @@
 {
-  "url": "/industries/",
-  "lang": "en",
-  "dir": "ltr",
+  "url": "/ar/industries/",
+  "lang": "ar",
+  "dir": "rtl",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 3041,
+  "docHeight": 4749,
   "viewport": {
-    "w": 1440,
-    "h": 900
+    "w": 390,
+    "h": 844
   },
-  "screens": 3.38,
+  "screens": 5.63,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
@@ -17,65 +17,65 @@
     "navLinks": 10
   },
   "footer": {
-    "height": 398.5,
+    "height": 813.4,
     "links": 10
   },
   "sections": [
     {
       "index": 1,
       "startY": 80,
-      "endY": 505,
-      "height": 425,
-      "screens": 0.47,
-      "heading": "Every sector loses time somewhere different.",
+      "endY": 508.6,
+      "height": 428.6,
+      "screens": 0.51,
+      "heading": "كل قطاع يفقد وقته في موضع مختلف.",
       "headingType": {
-        "size": 54,
-        "lineHeight": 53,
+        "size": 40,
+        "lineHeight": 51,
         "weight": "700",
-        "tracking": -0.03,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 2,
-      "startY": 505,
-      "endY": 2195.9,
-      "height": 1690.9,
-      "screens": 1.88,
-      "heading": "Construction",
+      "startY": 508.6,
+      "endY": 3539.7,
+      "height": 3031.1,
+      "screens": 3.59,
+      "heading": "التجزئة والتوزيع",
       "headingType": {
         "size": 22,
         "lineHeight": 26,
         "weight": "600",
-        "tracking": -0.015,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 3,
-      "startY": 2195.9,
-      "endY": 2642.6,
-      "height": 446.8,
-      "screens": 0.5,
-      "heading": "Not listed? The bottleneck is usually the same shape.",
+      "startY": 3539.7,
+      "endY": 3935.4,
+      "height": 395.8,
+      "screens": 0.47,
+      "heading": "قطاعكم غير مذكور؟ عنق الزجاجة عادةً بالشكل نفسه.",
       "headingType": {
-        "size": 72,
-        "lineHeight": 75,
+        "size": 38,
+        "lineHeight": 49,
         "weight": "700",
-        "tracking": -0.025,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     }
   ],
   "h1": {
-    "text": "Every sector loses time somewhere different.",
-    "size": 54,
-    "lineHeight": 53,
+    "text": "كل قطاع يفقد وقته في موضع مختلف.",
+    "size": 40,
+    "lineHeight": 51,
     "weight": "700",
-    "tracking": -0.03,
+    "tracking": 0,
     "transform": "none",
     "color": "rgb(242, 246, 252)"
   },

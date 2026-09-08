@@ -1,15 +1,15 @@
 {
-  "url": "/privacy/",
+  "url": "/about/",
   "lang": "en",
   "dir": "ltr",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 2178,
+  "docHeight": 2814,
   "viewport": {
-    "w": 1440,
-    "h": 900
+    "w": 390,
+    "h": 844
   },
-  "screens": 2.42,
+  "screens": 3.33,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
@@ -17,20 +17,20 @@
     "navLinks": 10
   },
   "footer": {
-    "height": 398.5,
+    "height": 749.8,
     "links": 10
   },
   "sections": [
     {
       "index": 1,
       "startY": 80,
-      "endY": 1779.6,
-      "height": 1699.6,
-      "screens": 1.89,
-      "heading": "Privacy Policy",
+      "endY": 2063.9,
+      "height": 1983.9,
+      "screens": 2.35,
+      "heading": "About",
       "headingType": {
-        "size": 72,
-        "lineHeight": 75,
+        "size": 38,
+        "lineHeight": 40,
         "weight": "700",
         "tracking": -0.025,
         "transform": "none",
@@ -39,9 +39,9 @@
     }
   ],
   "h1": {
-    "text": "Privacy Policy",
-    "size": 72,
-    "lineHeight": 75,
+    "text": "About",
+    "size": 38,
+    "lineHeight": 40,
     "weight": "700",
     "tracking": -0.025,
     "transform": "none",
@@ -51,11 +51,10 @@
     "H1",
     "H2",
     "H2",
-    "H2",
-    "H2",
-    "H2",
-    "H2",
-    "H2",
+    "H3",
+    "H3",
+    "H3",
+    "H3",
     "H2",
     "H2",
     "H2"

@@ -1,15 +1,15 @@
 {
-  "url": "/",
-  "lang": "en",
-  "dir": "ltr",
+  "url": "/ar/",
+  "lang": "ar",
+  "dir": "rtl",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 5352,
+  "docHeight": 6019,
   "viewport": {
-    "w": 1440,
-    "h": 900
+    "w": 1920,
+    "h": 1080
   },
-  "screens": 5.95,
+  "screens": 5.57,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
@@ -17,81 +17,81 @@
     "navLinks": 10
   },
   "footer": {
-    "height": 398.5,
+    "height": 430.3,
     "links": 10
   },
   "sections": [
     {
       "index": 1,
       "startY": 80,
-      "endY": 900,
-      "height": 820,
-      "screens": 0.91,
-      "heading": "Operations software for the work that repeats",
+      "endY": 1080,
+      "height": 1000,
+      "screens": 0.93,
+      "heading": "برمجيات تشغيلية للعمل الذي يتكرر",
       "headingType": {
         "size": 54,
-        "lineHeight": 53,
+        "lineHeight": 69,
         "weight": "700",
-        "tracking": -0.03,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 2,
-      "startY": 900,
-      "endY": 1697.2,
-      "height": 797.2,
-      "screens": 0.89,
-      "heading": "Capabilities",
+      "startY": 1080,
+      "endY": 1899,
+      "height": 819,
+      "screens": 0.76,
+      "heading": "القدرات",
       "headingType": {
         "size": 11,
-        "lineHeight": 17,
+        "lineHeight": 20,
         "weight": "700",
-        "tracking": 0.12,
-        "transform": "uppercase",
+        "tracking": 0,
+        "transform": "none",
         "color": "oklch(0.66 0.02 255)"
       }
     },
     {
       "index": 3,
-      "startY": 1697.2,
-      "endY": 2250.1,
-      "height": 553,
-      "screens": 0.61,
-      "heading": "Built for how businesses here actually operate",
+      "startY": 1899,
+      "endY": 2457.5,
+      "height": 558.4,
+      "screens": 0.52,
+      "heading": "مبنيّة على الطريقة التي تعمل بها المنشآت هنا فعلًا",
       "headingType": {
         "size": 52,
-        "lineHeight": 55,
+        "lineHeight": 67,
         "weight": "700",
-        "tracking": -0.02,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 4,
-      "startY": 2250.1,
-      "endY": 4230.1,
-      "height": 1980,
+      "startY": 2457.5,
+      "endY": 4833.5,
+      "height": 2376,
       "screens": 2.2,
-      "heading": "SIRA DIGITAL",
+      "heading": "سيرة الرقمية",
       "headingType": {
-        "size": 202,
-        "lineHeight": 173,
+        "size": 136,
+        "lineHeight": 156,
         "weight": "900",
-        "tracking": -0.0399,
-        "transform": "uppercase",
+        "tracking": 0,
+        "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 5,
-      "startY": 4230.1,
-      "endY": 4953.6,
-      "height": 723.5,
-      "screens": 0.8,
-      "heading": "Tell us where the time goes.",
+      "startY": 4833.5,
+      "endY": 5588.2,
+      "height": 754.7,
+      "screens": 0.7,
+      "heading": "أخبرنا أين يضيع وقتكم.",
       "headingType": {
         "size": 48,
         "lineHeight": 50,
@@ -103,11 +103,11 @@
     }
   ],
   "h1": {
-    "text": "Operations software for the work that repeats",
+    "text": "برمجيات تشغيلية للعمل الذي يتكرر",
     "size": 54,
-    "lineHeight": 53,
+    "lineHeight": 69,
     "weight": "700",
-    "tracking": -0.03,
+    "tracking": 0,
     "transform": "none",
     "color": "rgb(242, 246, 252)"
   },

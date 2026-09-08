@@ -1,15 +1,15 @@
 {
-  "url": "/privacy/",
-  "lang": "en",
-  "dir": "ltr",
+  "url": "/ar/about/",
+  "lang": "ar",
+  "dir": "rtl",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 2178,
+  "docHeight": 2049,
   "viewport": {
-    "w": 1440,
-    "h": 900
+    "w": 1024,
+    "h": 768
   },
-  "screens": 2.42,
+  "screens": 2.67,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
@@ -17,33 +17,33 @@
     "navLinks": 10
   },
   "footer": {
-    "height": 398.5,
+    "height": 409.5,
     "links": 10
   },
   "sections": [
     {
       "index": 1,
       "startY": 80,
-      "endY": 1779.6,
-      "height": 1699.6,
-      "screens": 1.89,
-      "heading": "Privacy Policy",
+      "endY": 1639.7,
+      "height": 1559.7,
+      "screens": 2.03,
+      "heading": "About",
       "headingType": {
-        "size": 72,
-        "lineHeight": 75,
+        "size": 61,
+        "lineHeight": 78,
         "weight": "700",
-        "tracking": -0.025,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     }
   ],
   "h1": {
-    "text": "Privacy Policy",
-    "size": 72,
-    "lineHeight": 75,
+    "text": "About",
+    "size": 61,
+    "lineHeight": 78,
     "weight": "700",
-    "tracking": -0.025,
+    "tracking": 0,
     "transform": "none",
     "color": "rgb(242, 246, 252)"
   },
@@ -51,11 +51,10 @@
     "H1",
     "H2",
     "H2",
-    "H2",
-    "H2",
-    "H2",
-    "H2",
-    "H2",
+    "H3",
+    "H3",
+    "H3",
+    "H3",
     "H2",
     "H2",
     "H2"

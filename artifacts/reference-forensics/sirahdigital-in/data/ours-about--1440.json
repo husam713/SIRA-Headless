@@ -4,16 +4,16 @@
   "dir": "ltr",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 2535,
+  "docHeight": 2554,
   "viewport": {
     "w": 1440,
     "h": 900
   },
-  "screens": 2.82,
+  "screens": 2.84,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
-    "height": 61,
+    "height": 80,
     "navLinks": 10
   },
   "footer": {
@@ -23,8 +23,8 @@
   "sections": [
     {
       "index": 1,
-      "startY": 61,
-      "endY": 2136.8,
+      "startY": 80,
+      "endY": 2155.8,
       "height": 2075.8,
       "screens": 2.31,
       "heading": "About",

@@ -1,15 +1,15 @@
 {
-  "url": "/industries/",
-  "lang": "en",
-  "dir": "ltr",
+  "url": "/ar/work/",
+  "lang": "ar",
+  "dir": "rtl",
   "brandKey": "digital",
   "brandSource": "wordpress",
-  "docHeight": 3041,
+  "docHeight": 4477,
   "viewport": {
     "w": 1440,
     "h": 900
   },
-  "screens": 3.38,
+  "screens": 4.97,
   "horizontalOverflow": 0,
   "ground": "rgb(10, 15, 26)",
   "header": {
@@ -17,70 +17,82 @@
     "navLinks": 10
   },
   "footer": {
-    "height": 398.5,
+    "height": 430.3,
     "links": 10
   },
   "sections": [
     {
       "index": 1,
       "startY": 80,
-      "endY": 505,
-      "height": 425,
-      "screens": 0.47,
-      "heading": "Every sector loses time somewhere different.",
+      "endY": 630,
+      "height": 550,
+      "screens": 0.61,
+      "heading": "أنظمة، لا عروضًا تقديمية.",
       "headingType": {
         "size": 54,
-        "lineHeight": 53,
+        "lineHeight": 69,
         "weight": "700",
-        "tracking": -0.03,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 2,
-      "startY": 505,
-      "endY": 2195.9,
-      "height": 1690.9,
-      "screens": 1.88,
-      "heading": "Construction",
+      "startY": 630,
+      "endY": 3565.5,
+      "height": 2935.5,
+      "screens": 3.26,
+      "heading": "نسيج التكامل",
       "headingType": {
-        "size": 22,
-        "lineHeight": 26,
-        "weight": "600",
-        "tracking": -0.015,
+        "size": 44,
+        "lineHeight": 56,
+        "weight": "700",
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     },
     {
       "index": 3,
-      "startY": 2195.9,
-      "endY": 2642.6,
-      "height": 446.8,
-      "screens": 0.5,
-      "heading": "Not listed? The bottleneck is usually the same shape.",
+      "startY": 3565.5,
+      "endY": 4046.8,
+      "height": 481.3,
+      "screens": 0.53,
+      "heading": "لديكم عملية تستحق إعادة البناء؟",
       "headingType": {
         "size": 72,
-        "lineHeight": 75,
+        "lineHeight": 92,
         "weight": "700",
-        "tracking": -0.025,
+        "tracking": 0,
         "transform": "none",
         "color": "rgb(242, 246, 252)"
       }
     }
   ],
   "h1": {
-    "text": "Every sector loses time somewhere different.",
+    "text": "أنظمة، لا عروضًا تقديمية.",
     "size": 54,
-    "lineHeight": 53,
+    "lineHeight": 69,
     "weight": "700",
-    "tracking": -0.03,
+    "tracking": 0,
     "transform": "none",
     "color": "rgb(242, 246, 252)"
   },
   "headingOrder": [
     "H1",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
     "H2",
     "H2",
     "H2",

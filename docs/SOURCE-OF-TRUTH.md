@@ -218,6 +218,17 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED.
+- Digital WordPress site: NOT PROVISIONED. The tenant exists in this repository
+  ahead of the CMS site, which is deliberate and safe — a build with no Digital
+  environment configured degrades that one tenant to its brand preset. Creating
+  the site and mapping the domain are external admin actions; see
+  `docs/DIGITAL-TENANT-PROVISIONING.md`, which also records the investigation
+  finding that the existing Multisite has **no architectural blocker** to a
+  mapped external domain on a different TLD.
+- Digital trading-name spelling (`SIRA Digital` vs `SIRAH DIGITAL`): OPEN owner
+  confirmation. No prior canonical name existed in this repository, so the
+  established `SIRA <Company>` convention was followed rather than a new name
+  invented.
 
 PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance
 Foundation, and PR `#34` Acceptance-Gates maintenance are accepted canonical
@@ -228,7 +239,25 @@ WordPress mutation, external staging, deployment, DNS, or production cutover.
 
 ## Canonical public production topology
 
-The owner-approved public production apex is `siratrgroup.com`. The authoritative public hostname mapping is Group -> `siratrgroup.com`, Consulting -> `consulting.siratrgroup.com`, Healthcare -> `healthcare.siratrgroup.com`, Lifestyle -> `lifestyle.siratrgroup.com`, and Real Estate -> `realestate.siratrgroup.com`.
+**The topology spans two apexes, and that is owner-authorized (ADR-033).** A
+session that finds `sirahdigital.sa` here must treat it as canonical, not as
+unauthorized drift.
+
+The authoritative public hostname mapping is Group -> `siratrgroup.com`,
+Consulting -> `consulting.siratrgroup.com`, Healthcare ->
+`healthcare.siratrgroup.com`, Lifestyle -> `lifestyle.siratrgroup.com`, Real
+Estate -> `realestate.siratrgroup.com`, and **Digital -> `sirahdigital.sa`**.
+
+SIRA Digital is a first-class SIRA GROUP operating company inside this same
+platform: the same Multisite network, the same Next.js application, the same
+GraphQL contract, the same contact pipeline, the same site registry. Its
+canonical hostname is deliberately a separate Saudi apex rather than a
+`siratrgroup.com` subdomain, because it trades in the Saudi market. The
+hostname registry always matched whole hostnames rather than a parent domain,
+so this needed no new resolution mechanism.
+
+ADR-033 supersedes ADR-024 on the single-apex point ONLY. Everything below
+still holds.
 
 This is public-domain evidence only. It must not be used to infer WordPress backend, GraphQL endpoint, media origin, staging, Vercel preview, cookie-domain, CORS, or revalidation configuration. Those remain UNKNOWN until repository or live configuration evidence establishes them. Each branch hostname represents an independent WordPress Multisite tenant website and independent content/runtime/cache scope; only the tested React/Next.js `BranchHomepage` architecture is shared.
 

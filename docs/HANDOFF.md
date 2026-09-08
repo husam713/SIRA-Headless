@@ -120,6 +120,38 @@ lifecycle separately as implementation completed, independent verification
 passed, merged, post-merge verified, and canonical. Validator/CI enforcement
 and AI Engineering OS product/runtime work remain NOT AUTHORIZED.
 
+## New owner decision — SIRA Digital is a first-class company (ADR-033)
+
+The canonical public production topology now spans **two apexes**. SIRA Digital
+trades on `sirahdigital.sa`, a separate Saudi domain, and is a first-class
+tenant of this same platform: the same WordPress Multisite network, the same
+Next.js application, the same GraphQL contract, the same contact pipeline, the
+same site registry. It is **not** a separate codebase and **not** a separate
+CMS.
+
+If you find `sirahdigital.sa` in the registry, it is canonical and authorized.
+Do not report it as topology drift.
+
+Implementation lives on the unmerged branch `feat/sirahdigital-sa`. The site
+key is `digital`, the Business Unit slug is `digital`, and Digital is the only
+company set on a dark ground — which took no fork of the shell, because `paper`
+is the page ground and `ink` is the text on it.
+
+Three things are open and must not be assumed finished:
+
+- **The WordPress site is NOT provisioned.** The tenant exists in the
+  repository ahead of the CMS site. That is deliberate: a build with no Digital
+  environment configured degrades that one tenant to its brand preset.
+  `docs/DIGITAL-TENANT-PROVISIONING.md` records the investigation — the
+  existing Multisite has **no architectural blocker** to a mapped external
+  domain on a different TLD — and carries the external admin action card.
+- **The trading-name spelling.** `SIRA Digital` follows the established
+  `SIRA <Company>` convention; the domain spells it `sirahdigital`. No prior
+  canonical name existed in this repository. Owner confirmation needed.
+- **The brand mark.** Digital uses the shared white SIRA mark, which is correct
+  for a GROUP company on a dark ground. A Digital-specific mark is an owner
+  deliverable.
+
 ## New owner decision — Group staging first
 
 The replacement public Group frontend for `siratrgroup.com` must be developed, integrated, QA'd, and owner-accepted on staging before production cutover.
@@ -276,7 +308,10 @@ Do not without explicit owner authorization:
 - destroy the legacy Group site;
 - perform CMS/database mutations or destructive cleanup;
 - delete taxonomy terms;
-- rotate production secrets.
+- rotate production secrets;
+- create the Digital WordPress site, register or point `sirahdigital.sa`, or
+  map the domain on the network (ADR-033 authorizes the tenant, not the
+  provisioning).
 
 ## Current next gate
 

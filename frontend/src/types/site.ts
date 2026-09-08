@@ -22,8 +22,25 @@ export type HostnameRole = "canonical" | "redirect-alias" | "deployment";
 export interface SiteDefinition {
   readonly key: SiteKey;
   readonly name: string;
+  /**
+   * The hostname this site is served on TODAY. Canonical URLs, `metadataBase`,
+   * the sitemap and the alias redirects all derive from it.
+   */
   readonly canonicalHostname: string;
   readonly aliases: readonly string[];
+  /**
+   * A hostname this site is expected to move to, registered now as a redirect
+   * alias and promoted to canonical by configuration rather than by a code
+   * change (ADR-035).
+   *
+   * A domain a company owns but has not launched on is a real, ordinary state,
+   * and it is not the same thing as an alias: an alias is a spelling of the
+   * current address, whereas this is the next address. Keeping them distinct is
+   * what lets the cutover be a configuration change instead of a migration.
+   */
+  readonly plannedCanonicalHostname: string | null;
+  /** Aliases that belong to `plannedCanonicalHostname`, not to the current one. */
+  readonly plannedAliases: readonly string[];
   readonly deploymentHostnames: readonly string[];
   readonly defaultLocale: LocaleCode;
   readonly supportedLocales: readonly LocaleCode[];

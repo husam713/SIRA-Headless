@@ -269,7 +269,9 @@ reviewers can see unpublished content on the real frontend today.
 
 ### WS8 — Multilingual: a separate decision gate
 
-**This is `2C4-B09` and must not be bundled into any other workstream.**
+**This is `2C4-B09`. It must not be bundled into any other workstream — except where an owner decision record says otherwise.**
+
+**Resolved for `digital` by ADR-034 (owner decision, 2026-09-08).** SIRA Digital serves English and Arabic from one site: explicit `sira_locale` metadata, an explicit one-directional `sira_translation_of` pointer, and `/ar/...` routing. That is closest to model 3 below and explicitly rejects models 1 and 2 for that tenant. Arabic content authoring is authorized for Digital. **Everything in this section still stands for the other five tenants**, including the prohibition on authoring Arabic text for them.
 
 Current state: `LocaleCode = "en" | "ar"` exists in types; all five sites are
 `defaultLocale: "en"`; there is no locale route, switcher, or `hreflang`; the
@@ -282,8 +284,10 @@ Three viable models, each with different editorial consequences:
 2. **Translation plugin** (WPML/Polylang) with WPGraphQL support
 3. **Per-field translation** in `sira-core`
 
-**Owner decision required before any Arabic content is created.** No Arabic text
-will be authored here.
+**Owner decision required before any Arabic content is created**, tenant by
+tenant. That decision has been given for `digital` (ADR-034) and for no other
+tenant. No Arabic text will be authored for `group`, `consulting`, `healthcare`,
+`lifestyle` or `realestate`.
 
 ### WS9 — SIRA Headless companion theme
 

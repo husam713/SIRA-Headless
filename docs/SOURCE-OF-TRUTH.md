@@ -213,7 +213,8 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
   has never been restored.
 - `2C4-B07` media origin/delivery: UNRESOLVED / DEFERRED.
 - `2C4-B08` forms architecture: UNRESOLVED.
-- `2C4-B09` multilingual architecture: UNRESOLVED.
+- `2C4-B09` multilingual architecture: RESOLVED for `digital` only (ADR-034);
+  UNRESOLVED for `group`, `consulting`, `healthcare`, `lifestyle`, `realestate`.
 - `PREVIEW-AUTH-001`: DEFERRED.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
@@ -228,11 +229,14 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
   including the finding that the existing Multisite has **no architectural
   blocker** to a mapped external domain on a different TLD.
   **Do not delete or lose this site.**
-- Digital public hostname (owner decision, 2026-09-08): pre-launch, the active
-  public frontend hostname is `digital.siratrgroup.com`. `sirahdigital.sa` is the
-  intended future canonical Saudi domain and is NOT active. The repository still
-  records `sirahdigital.sa` as `digital.canonicalHostname`; reconciling that, and
-  authoring the amending ADR for the phased hostname strategy, are both open.
+- Digital public hostname (ADR-035): the active public frontend hostname is
+  `digital.siratrgroup.com`. `sirahdigital.sa` is the future production domain,
+  registered as the planned hostname and redirecting to the active one until it
+  is promoted. Promotion is configuration only, through
+  `SIRA_CANONICAL_HOSTNAMES_JSON`. The public frontend hostname and the
+  WordPress CMS origin are independent: the CMS origin is configured per tenant
+  through `SIRA_WP_<TENANT>_GRAPHQL_URL`, WordPress stays on Hostinger, and the
+  public hostname does not expose `/wp-admin`.
 - Digital trading-name spelling (`SIRA Digital` vs `SIRAH DIGITAL`): OPEN owner
   confirmation. No prior canonical name existed in this repository, so the
   established `SIRA <Company>` convention was followed rather than a new name

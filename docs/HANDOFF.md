@@ -192,28 +192,34 @@ premise — that Digital is the first company whose canonical hostname is not a
 An amending or superseding ADR must be authored to record the phased hostname
 strategy; that is a durable decision and has not been written yet.
 
-**Not yet implemented.** As of this checkpoint the repository still records
-`sirahdigital.sa` as `digital.canonicalHostname` in
-`frontend/src/config/sites.ts`, and the two-apex language in the governance docs
-still describes it as active. The following are open and deliberately untouched
-during this continuity checkpoint:
+**Implemented on 2026-09-08 as ADR-035.** `SiteDefinition` gained
+`plannedCanonicalHostname` and `plannedAliases`, so a domain a company owns but
+has not launched on is modelled as the NEXT address rather than as another
+spelling of the current one. `digital.siratrgroup.com` is canonical;
+`sirahdigital.sa` and `www.sirahdigital.sa` are registered now as redirect
+aliases, so the day DNS points at us they land on Digital instead of being
+rejected as unknown hosts.
 
-- `frontend/src/config/sites.ts` — make `digital.siratrgroup.com` the canonical
-  hostname for now and keep `sirahdigital.sa` recorded as future-canonical. Note
-  that listing it as a plain alias would make it 308-redirect to the subdomain,
-  which may or may not be what the owner wants before the domain resolves at all;
-  confirm before choosing.
-- The tenant-topology contract test
-  `frontend/tests/contract/digital-tenant-topology.test.ts` asserts the current
-  hostname and will need updating with the decision, not around it.
-- `wp_blogs.domain` for blog 6 is a **CMS mutation** and remains protected. The
-  frontend resolves the tenant from the request host and reaches WordPress
-  through `SIRA_WP_DIGITAL_GRAPHQL_URL`, so WordPress's stored domain and the
-  public frontend hostname are separable; changing the row is a separate,
-  explicitly authorized action. If it is changed, use `update_blog_details()`
-  rather than a raw `UPDATE`, so the site cache is invalidated.
-- Canonical URLs, `metadataBase`, sitemap, and robots all derive from the site
-  registry, so they follow the registry change and must be re-verified after it.
+The cutover is configuration only:
+
+```
+SIRA_CANONICAL_HOSTNAMES_JSON={"digital":"sirahdigital.sa"}
+```
+
+That promotes the planned hostname to canonical, carries `www.sirahdigital.sa`
+with it, and demotes `digital.siratrgroup.com` to a redirect alias so no indexed
+URL is orphaned. No rebuild, no content migration, no second deployment. A
+promotion target must be a hostname the site already declares, so a typo fails
+loudly instead of silently repointing a company.
+
+The public frontend hostname and the WordPress CMS origin remain independent:
+the CMS origin is `SIRA_WP_<TENANT>_GRAPHQL_URL`, never derived from the public
+hostname. WordPress stays on Hostinger and the public hostname does not expose
+`/wp-admin`. `tests/contract/digital-tenant-topology.test.ts` asserts that
+separation so a later change cannot quietly couple them.
+
+Still NOT authorized by this: domain registration, public DNS, the WordPress
+CMS-domain migration, and deployment.
 
 ## Phase 2 — SIRA Digital implementation: resumable state
 

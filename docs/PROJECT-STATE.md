@@ -271,7 +271,8 @@ Known separate observation: backend source declares SiraProjectDetails while the
 
 - `2C4-B07` media-origin policy: UNRESOLVED / DEFERRED.
 - `2C4-B08` forms architecture: UNRESOLVED.
-- `2C4-B09` multilingual architecture: UNRESOLVED.
+- `2C4-B09` multilingual architecture: RESOLVED for `digital` only (ADR-034);
+  UNRESOLVED for the other five tenants.
 - `PREVIEW-AUTH-001`: DEFERRED.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED; the human backup/admin evidence gate remains required.
@@ -284,13 +285,20 @@ Known separate observation: backend source declares SiraProjectDetails while the
   spelling and brand mark remain open owner confirmations. See
   `docs/DIGITAL-TENANT-PROVISIONING.md` and the Phase 2 section of
   `docs/HANDOFF.md`.
-- Digital hostnames (owner decision, 2026-09-08): the active pre-launch public
-  frontend hostname is `digital.siratrgroup.com`. `sirahdigital.sa` remains the
-  intended future canonical domain but is NOT active, is not registered or
-  pointed by this work, and must not be treated as live. The repository has NOT
-  yet been updated to reflect this; `frontend/src/config/sites.ts` still records
-  `sirahdigital.sa` as the canonical hostname. An amending or superseding ADR for
-  the phased hostname strategy has NOT been authored.
+- Digital hostnames (ADR-035, owner decision 2026-09-08): the active public
+  frontend hostname is `digital.siratrgroup.com`. `sirahdigital.sa` is the
+  intended future production domain, is registered in the site registry as the
+  planned hostname, and currently redirects to the active one. The repository is
+  reconciled: `frontend/src/config/sites.ts`, the topology block of
+  `project-state.json`, `tests/contract/digital-tenant-topology.test.ts` and
+  `tests/unit/site-registry.test.ts` all agree. The cutover is configuration
+  only — `SIRA_CANONICAL_HOSTNAMES_JSON={"digital":"sirahdigital.sa"}` — and
+  needs no rebuild or content migration. Domain registration, DNS, the WordPress
+  CMS-domain migration and deployment remain NOT AUTHORIZED.
+- `2C4-B09` is RESOLVED for the `digital` tenant only (ADR-034): Arabic is a
+  first-class locale inside the same Digital site, with explicit `sira_locale`
+  metadata and an explicit `sira_translation_of` pointer. It remains UNRESOLVED
+  for the other five tenants, which must not have Arabic content authored.
 - Digital seeded content is NOT covered by the launch gate.
   `tools/verify-no-seed-content.mjs` checks only the four editorial post types
   and post meta, so Digital's seeded pages, services, projects, and industry

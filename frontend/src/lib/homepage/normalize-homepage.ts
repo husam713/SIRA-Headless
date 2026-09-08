@@ -678,11 +678,26 @@ export function normalizeHomepage(
   siteKey: SiteKey,
   data: SiraHomepageQueryData,
   fieldErrors: readonly GraphQLErrorSummary[] = [],
+  /**
+   * The URI this homepage was asked for.
+   *
+   * The guard below exists to prove the CMS returned the page we requested
+   * rather than some other page, and it used to do that by pinning the URI to
+   * the site root. ADR-034 gives each language its own homepage — Arabic lives
+   * at `/ar/` — so the comparison is now against what was requested. Pinning it
+   * to `/` did not fail loudly; it resolved `invalid-page` and rendered the
+   * not-ready shell, which is a much quieter way to lose a whole language.
+   */
+  expectedUri: string = "/",
 ): HomepageResolution {
   if (!isRecord(data) || !("page" in data)) return invalid(siteKey, "invalid-page");
   const page = data["page"];
   if (page === null) return Object.freeze({ status: "not-found", siteKey, reason: "homepage-not-configured" });
-  if (!isRecord(page) || normalizePositiveInteger(page["databaseId"]) === null || page["uri"] !== "/") {
+  if (
+    !isRecord(page) ||
+    normalizePositiveInteger(page["databaseId"]) === null ||
+    page["uri"] !== expectedUri
+  ) {
     return invalid(siteKey, "invalid-page");
   }
   const fields = page["siraHomepage"];
@@ -722,7 +737,7 @@ export function normalizeHomepage(
     const homepage: GroupHomepage = Object.freeze({
       siteKey,
       databaseId,
-      uri: "/",
+      uri: expectedUri,
       title,
       variant: "group",
       // Tolerant from here down. An absent or failed hero is omitted like any
@@ -778,7 +793,7 @@ export function normalizeHomepage(
     const homepage: DigitalHomepage = Object.freeze({
       siteKey,
       databaseId,
-      uri: "/",
+      uri: expectedUri,
       title,
       variant: "digital",
       hero: digitalHero,
@@ -870,7 +885,7 @@ export function normalizeHomepage(
   const homepage: BranchHomepage = Object.freeze({
     siteKey,
     databaseId,
-    uri: "/",
+    uri: expectedUri,
     title,
     variant: "branch",
     hero: branchHero,

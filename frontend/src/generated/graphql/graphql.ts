@@ -39,22 +39,22 @@ export type SiraContentPageQueryVariables = Exact<{
 }>;
 
 
-export type SiraContentPageQuery = { readonly page: { readonly databaseId: number, readonly uri: string | null, readonly title: string | null, readonly content: string | null, readonly modified: string | null, readonly pageIntro: { readonly eyebrow: string | null, readonly heading: string | null, readonly standfirst: string | null, readonly ctaLabel: string | null, readonly ctaHeading: string | null } | null, readonly seo: { readonly variant: string | null } | null } | null };
+export type SiraContentPageQuery = { readonly page: { readonly databaseId: number, readonly uri: string | null, readonly title: string | null, readonly content: string | null, readonly modified: string | null, readonly siraLocale: { readonly code: string | null } | null, readonly pageIntro: { readonly eyebrow: string | null, readonly heading: string | null, readonly standfirst: string | null, readonly ctaLabel: string | null, readonly ctaHeading: string | null } | null, readonly seo: { readonly variant: string | null } | null } | null };
 
 export type SiraServiceIndexQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiraServiceIndexQuery = { readonly siraServices: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly uri: string | null, readonly title: string | null, readonly excerpt: string | null, readonly content: string | null }> } | null };
+export type SiraServiceIndexQuery = { readonly siraServices: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly uri: string | null, readonly title: string | null, readonly excerpt: string | null, readonly content: string | null, readonly siraLocale: { readonly code: string | null } | null }> } | null };
 
 export type SiraWorkIndexQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiraWorkIndexQuery = { readonly siraProjects: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly title: string | null, readonly excerpt: string | null, readonly content: string | null }> } | null };
+export type SiraWorkIndexQuery = { readonly siraProjects: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly title: string | null, readonly excerpt: string | null, readonly content: string | null, readonly siraLocale: { readonly code: string | null } | null }> } | null };
 
 export type SiraIndustryIndexQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiraIndustryIndexQuery = { readonly siraIndustries: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly name: string | null, readonly description: string | null }> } | null };
+export type SiraIndustryIndexQuery = { readonly siraIndustries: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly name: string | null, readonly description: string | null, readonly siraLocale: { readonly code: string | null } | null }> } | null };
 
 type EditorialFeedDesks_RootQueryToSiraBusinessUnitConnection_Fragment = { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null }> };
 
@@ -1312,6 +1312,9 @@ export const SiraContentPageDocument = new TypedDocumentString(`
     title
     content
     modified
+    siraLocale {
+      code
+    }
     pageIntro {
       eyebrow
       heading
@@ -1341,6 +1344,9 @@ export const SiraServiceIndexDocument = new TypedDocumentString(`
       title
       excerpt
       content
+      siraLocale {
+        code
+      }
     }
   }
 }
@@ -1360,6 +1366,9 @@ export const SiraWorkIndexDocument = new TypedDocumentString(`
       title
       excerpt
       content
+      siraLocale {
+        code
+      }
     }
   }
 }
@@ -1375,6 +1384,9 @@ export const SiraIndustryIndexDocument = new TypedDocumentString(`
       slug
       name
       description
+      siraLocale {
+        code
+      }
     }
   }
 }

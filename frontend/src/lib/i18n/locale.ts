@@ -80,17 +80,25 @@ export function resolveLocale(
   return site.defaultLocale;
 }
 
-/** A public href for this locale. The default locale carries no prefix. */
+/**
+ * A public href for this locale. The default locale carries no prefix.
+ *
+ * The trailing slash is not cosmetic: this application runs with
+ * `trailingSlash: true`, so `/ar` answers 308 to `/ar/`. Emitting the canonical
+ * form here means the language switch — the one control a reader uses precisely
+ * because they are struggling — costs one request rather than two.
+ */
 export function localeHref(
   site: SiteDefinition,
   locale: LocaleCode,
   path: string,
 ): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;
+  const withSlash = normalized.endsWith("/") ? normalized : `${normalized}/`;
 
-  if (locale === site.defaultLocale) return normalized;
+  if (locale === site.defaultLocale) return withSlash;
 
-  return normalized === "/" ? `/${locale}` : `/${locale}${normalized}`;
+  return `/${locale}${withSlash}`;
 }
 
 /**

@@ -233,7 +233,12 @@
     {
       "slug": "contact",
       "title": "Contact",
-      "content": "<p class=\"lead\">Describe the process that costs you the most hours. We will tell you honestly whether software is the answer.</p><p>An operations review is a conversation, not a pitch. It usually takes forty-five minutes, and the useful version of it happens with somebody who does the work rather than only with somebody who reports on it.</p>"
+      "content": "<p class=\"lead\">Describe the process that costs you the most hours. We will tell you honestly whether software is the answer.</p><p>An operations review is a conversation, not a pitch. It usually takes forty-five minutes, and the useful version of it happens with somebody who does the work rather than only with somebody who reports on it.</p>",
+      "intro": {
+        "eyebrow": "Start here",
+        "heading": "Tell us where the time goes.",
+        "standfirst": "An operations review is a conversation, not a pitch. Describe the process that costs you the most hours and we will tell you honestly whether software is the answer."
+      }
     },
     {
       "slug": "privacy",
@@ -405,6 +410,51 @@
       "excerpt": "Admissions and student administration at intake scale.",
       "bottleneck": "Admissions arrive in bursts, and the administrative load per applicant is identical whether or not they enrol.",
       "opportunity": "Application intake with document validation, status communication that does not require a person to send it, and reconciliation between admissions, finance and the student record."
+    }
+  ],
+  "labels": {
+    "problem": "The problem",
+    "changes": "What changes",
+    "capability": "What the system does",
+    "integrates": "What it connects to",
+    "oversight": "Where a person stays in the loop",
+    "outcome": "What it is for",
+    "built": "What we built",
+    "detail": "How it works"
+  },
+  "indexPages": [
+    {
+      "slug": "services",
+      "title": "Services",
+      "intro": {
+        "eyebrow": "Capabilities",
+        "heading": "What we build.",
+        "standfirst": "Each capability is scoped, built, integrated and handed over. Every entry below says what changes operationally, not what the technology is called.",
+        "ctaHeading": "Let us look at yours.",
+        "ctaLabel": "Book an operations review"
+      }
+    },
+    {
+      "slug": "work",
+      "title": "Work",
+      "intro": {
+        "eyebrow": "What we build",
+        "heading": "Systems, not slide decks.",
+        "standfirst": "Each of these is a working system. They are described by what was broken, what replaced it and how it holds up — not by a client name, because the interesting part was never the logo.",
+        "ctaHeading": "Have a process worth rebuilding?",
+        "ctaLabel": "Book an operations review"
+      }
+    },
+    {
+      "slug": "industries",
+      "title": "Industries",
+      "intro": {
+        "eyebrow": "Sectors",
+        "heading": "Every sector loses time somewhere different.",
+        "standfirst": "We start from the bottleneck, not from the software. Below is where it usually sits, sector by sector, and what can realistically be done about it.",
+        "ctaHeading": "Not listed? The bottleneck is usually the same shape.",
+        "ctaLabel": "Book an operations review"
+      }
     }
   ]
 }

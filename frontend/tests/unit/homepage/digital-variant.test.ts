@@ -16,17 +16,19 @@ interface DigitalFixtureOptions {
   readonly variant?: string;
   readonly withFieldGroup?: boolean;
   readonly sections?: Readonly<Record<string, unknown>>;
+  readonly uri?: string;
 }
 
 function digitalData({
   variant = "digital",
   withFieldGroup = true,
   sections = {},
+  uri = "/",
 }: DigitalFixtureOptions = {}): SiraHomepageQueryData {
   return {
     page: {
       databaseId: 77,
-      uri: "/",
+      uri,
       title: "SIRA Digital",
       siraHomepage: { variant },
       groupHomepage: null,
@@ -37,6 +39,49 @@ function digitalData({
 }
 
 describe("the Digital homepage variant", () => {
+  // ADR-034 gives each language its own homepage, so the envelope guard has to
+  // check the URI that was ASKED FOR rather than a hard-coded "/". This is the
+  // regression that cost the entire Arabic homepage: the page resolved, the CMS
+  // returned it, and the normalizer rejected it as `invalid-page` because its
+  // URI was `/ar/`. Nothing threw and nothing logged — the site simply rendered
+  // the not-ready shell in Arabic.
+  describe("localized homepages", () => {
+    it("accepts the localized homepage it was asked for", () => {
+      const resolution = normalizeHomepage(
+        "digital",
+        digitalData({ uri: "/ar/" }),
+        [],
+        "/ar/",
+      );
+
+      expect(resolution).toMatchObject({ status: "ready" });
+      expect(resolution).toHaveProperty("homepage.uri", "/ar/");
+      expect(resolution).toHaveProperty("homepage.variant", "digital");
+    });
+
+    it("still rejects a page that is not the one requested", () => {
+      // The guard's actual job: proving the CMS returned the page we asked for.
+      // Widening it for locales must not turn it into no check at all.
+      expect(
+        normalizeHomepage("digital", digitalData({ uri: "/somewhere-else/" }), [], "/ar/"),
+      ).toMatchObject({ status: "invalid", reason: "invalid-page" });
+
+      expect(
+        normalizeHomepage("digital", digitalData({ uri: "/ar/" })),
+      ).toMatchObject({ status: "invalid", reason: "invalid-page" });
+    });
+
+    it("defaults to the site root, so every existing caller is unchanged", () => {
+      expect(normalizeHomepage("digital", digitalData())).toMatchObject({
+        status: "ready",
+      });
+      expect(normalizeHomepage("digital", digitalData())).toHaveProperty(
+        "homepage.uri",
+        "/",
+      );
+    });
+  });
+
   it("expects its own variant rather than falling through to branch", () => {
     // The regression this guards: `siteKey === "group" ? "group" : "branch"`
     // would have accepted a branch payload here and rendered the branch

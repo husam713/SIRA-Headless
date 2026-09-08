@@ -80,13 +80,14 @@ function logToleratedFieldErrors(
 export async function resolveHomepage(
   siteKey: SiteKey,
   execute: HomepageQueryExecutor,
+  uri: string = DEFAULT_HOMEPAGE_URI,
 ): Promise<HomepageResolution> {
   try {
     const result = await execute();
 
     logToleratedFieldErrors(siteKey, result);
 
-    return normalizeHomepage(siteKey, result.data, result.errors);
+    return normalizeHomepage(siteKey, result.data, result.errors, uri);
   } catch (error) {
     logHomepageFailure(siteKey, error);
 
@@ -114,6 +115,7 @@ async function resolvePublishedHomepage(
         { asPreview: false, uri },
         { tags: ["homepage"] },
       ),
+    uri,
   );
 }
 
@@ -131,6 +133,7 @@ async function resolvePreviewHomepage(
         SIRA_HOMEPAGE_QUERY,
         { asPreview: true, uri },
       ),
+    uri,
   );
 }
 

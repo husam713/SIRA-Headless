@@ -223,7 +223,14 @@ export interface HomepageInvestorSection extends HomepageMetricsSection {
 export interface GroupHomepage {
   readonly siteKey: "group";
   readonly databaseId: number;
-  readonly uri: "/";
+  /**
+   * The URI this homepage was resolved from.
+   *
+   * `"/"` for a site's default language, `"/ar/"` for a localized one
+   * (ADR-034). It was pinned to the literal `"/"` when a site could only have
+   * one homepage; widening it is what lets a second language have one too.
+   */
+  readonly uri: string;
   readonly title: string | null;
   readonly variant: "group";
   /**
@@ -268,7 +275,14 @@ export interface BranchHomepageFooter {
 export interface BranchHomepage {
   readonly siteKey: BranchSiteKey;
   readonly databaseId: number;
-  readonly uri: "/";
+  /**
+   * The URI this homepage was resolved from.
+   *
+   * `"/"` for a site's default language, `"/ar/"` for a localized one
+   * (ADR-034). It was pinned to the literal `"/"` when a site could only have
+   * one homepage; widening it is what lets a second language have one too.
+   */
+  readonly uri: string;
   readonly title: string | null;
   readonly variant: "branch";
   /** Nullable for the same reason as `GroupHomepage.hero`. */
@@ -322,7 +336,14 @@ export interface DigitalHomepageHero extends HomepageHero {
 export interface DigitalHomepage {
   readonly siteKey: DigitalSiteKey;
   readonly databaseId: number;
-  readonly uri: "/";
+  /**
+   * The URI this homepage was resolved from.
+   *
+   * `"/"` for a site's default language, `"/ar/"` for a localized one
+   * (ADR-034). It was pinned to the literal `"/"` when a site could only have
+   * one homepage; widening it is what lets a second language have one too.
+   */
+  readonly uri: string;
   readonly title: string | null;
   readonly variant: "digital";
   /** Nullable for the same reason as `GroupHomepage.hero`. */

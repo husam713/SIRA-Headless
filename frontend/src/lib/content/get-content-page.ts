@@ -48,6 +48,8 @@ export interface ServiceEntry {
   readonly title: string;
   readonly excerpt: string | null;
   readonly html: string | null;
+  /** Declared by the CMS. `null` predates the field; see `recordLocale`. */
+  readonly locale: LocaleCode | null;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -157,6 +159,7 @@ function normalizeServiceIndex(data: unknown): readonly ServiceEntry[] {
         title,
         excerpt: plainText(node["excerpt"], 400),
         html: editorialHtml(node["content"]),
+        locale: normalizeLocale(node["siraLocale"]),
       });
     })
     .filter((entry): entry is ServiceEntry => entry !== null);
@@ -223,6 +226,7 @@ export interface WorkEntry {
   readonly title: string;
   readonly excerpt: string | null;
   readonly html: string | null;
+  readonly locale: LocaleCode | null;
 }
 
 /**
@@ -241,6 +245,7 @@ export interface IndustryEntry {
   readonly summary: string | null;
   readonly bottleneck: string | null;
   readonly opportunity: string | null;
+  readonly locale: LocaleCode | null;
 }
 
 function normalizeWorkIndex(data: unknown): readonly WorkEntry[] {
@@ -268,6 +273,7 @@ function normalizeWorkIndex(data: unknown): readonly WorkEntry[] {
           title,
           excerpt: plainText(node["excerpt"], 400),
           html: editorialHtml(node["content"]),
+          locale: normalizeLocale(node["siraLocale"]),
         });
       })
       .filter((entry): entry is WorkEntry => entry !== null),
@@ -304,6 +310,7 @@ function normalizeIndustryIndex(data: unknown): readonly IndustryEntry[] {
           summary: parts[0] ?? null,
           bottleneck: parts[1] ?? null,
           opportunity: parts[2] ?? null,
+          locale: normalizeLocale(node["siraLocale"]),
         });
       })
       .filter((entry): entry is IndustryEntry => entry !== null),
@@ -360,10 +367,25 @@ export const getServiceIndex = cache(resolveServiceIndex);
  */
 const ARABIC_SLUG_PREFIX = "ar-";
 
-export function isSlugForLocale(slug: string, locale: LocaleCode): boolean {
-  return locale === "ar"
-    ? slug.startsWith(ARABIC_SLUG_PREFIX)
-    : !slug.startsWith(ARABIC_SLUG_PREFIX);
+/**
+ * Which language a record is written in.
+ *
+ * The explicit `sira_locale` field is the source of truth. An earlier design
+ * inferred this from the slug prefix alone and that was wrong for an ordinary
+ * reason: slugs are editor-editable, so renaming a record would have moved it
+ * between languages silently, and nothing in WordPress would have said so.
+ *
+ * The slug prefix survives only as a fallback for records created before the
+ * field existed. It is a migration aid, not the contract — which is why it is
+ * consulted second and never overrides an explicit value.
+ */
+export function recordLocale(record: {
+  readonly slug: string;
+  readonly locale: LocaleCode | null;
+}): LocaleCode {
+  if (record.locale !== null) return record.locale;
+
+  return record.slug.startsWith(ARABIC_SLUG_PREFIX) ? "ar" : "en";
 }
 
 /** The slug without its language marker, so anchors match across languages. */
@@ -373,11 +395,19 @@ export function neutralSlug(slug: string): string {
     : slug;
 }
 
-function forLocale<T extends { readonly slug: string }>(
-  entries: readonly T[],
-  locale: LocaleCode,
-): readonly T[] {
-  const selected = entries.filter((entry) => isSlugForLocale(entry.slug, locale));
+/** Reads the explicit locale off a record, tolerating its absence. */
+function normalizeLocale(value: unknown): LocaleCode | null {
+  if (!isRecord(value)) return null;
+
+  const code = value["code"];
+
+  return code === "en" || code === "ar" ? code : null;
+}
+
+function forLocale<
+  T extends { readonly slug: string; readonly locale: LocaleCode | null },
+>(entries: readonly T[], locale: LocaleCode): readonly T[] {
+  const selected = entries.filter((entry) => recordLocale(entry) === locale);
 
   // An untranslated index is shown in the language it does exist in rather than
   // as an empty page. A missing translation is a content gap; an empty section

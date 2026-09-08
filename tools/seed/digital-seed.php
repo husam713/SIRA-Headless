@@ -130,7 +130,26 @@ if ( $remove ) {
 		wp_delete_post( (int) $post_id, true );
 	}
 
-	WP_CLI::success( 'Removed ' . count( $seeded ) . ' seeded record(s).' );
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'sira_industry',
+			'hide_empty' => false,
+			'meta_key'   => SIRA_SEED_MARKER,
+			'meta_value' => '1',
+			'fields'     => 'ids',
+		)
+	);
+
+	if ( ! is_wp_error( $terms ) ) {
+		foreach ( $terms as $term_id ) {
+			wp_delete_term( (int) $term_id, 'sira_industry' );
+		}
+	}
+
+	WP_CLI::success(
+		'Removed ' . count( $seeded ) . ' seeded record(s) and '
+		. ( is_wp_error( $terms ) ? 0 : count( $terms ) ) . ' seeded term(s).'
+	);
 	return;
 }
 
@@ -161,6 +180,91 @@ foreach ( (array) ( $seed['services'] ?? array() ) as $service ) {
 }
 
 WP_CLI::log( 'Services: ' . count( $service_ids ) );
+
+// ---------------------------------------------------------------------------
+// Work
+// ---------------------------------------------------------------------------
+// `sira_project` already exists network-wide and already has a typed frontend
+// contract, so Digital's work reuses it rather than introducing a Digital-only
+// post type for the same idea.
+
+$work_ids = array();
+
+foreach ( (array) ( $seed['work'] ?? array() ) as $item ) {
+	$body = sprintf(
+		'<h2>The problem</h2><p>%s</p><h2>What we built</h2><p>%s</p><h2>How it works</h2><p>%s</p>',
+		esc_html( (string) $item['problem'] ),
+		esc_html( (string) $item['built'] ),
+		esc_html( (string) $item['detail'] )
+	);
+
+	$work_id = sira_seed_upsert(
+		'sira_project',
+		(string) $item['slug'],
+		(string) $item['title'],
+		$body,
+		(string) $item['excerpt']
+	);
+
+	update_post_meta( $work_id, '_sira_work_kind', (string) $item['kind'] );
+	$work_ids[] = $work_id;
+}
+
+WP_CLI::log( 'Work: ' . count( $work_ids ) );
+
+// ---------------------------------------------------------------------------
+// Industries
+// ---------------------------------------------------------------------------
+// Terms of the existing `sira_industry` taxonomy, with the narrative in the
+// term description. An industry is a classification before it is a page, and
+// modelling it as a term keeps it reusable by services and work later.
+
+$industry_terms = array();
+
+foreach ( (array) ( $seed['industries'] ?? array() ) as $industry ) {
+	$slug = (string) $industry['slug'];
+	$description = sprintf(
+		'%s|%s|%s',
+		(string) $industry['excerpt'],
+		(string) $industry['bottleneck'],
+		(string) $industry['opportunity']
+	);
+
+	$existing = term_exists( $slug, 'sira_industry' );
+
+	if ( $existing ) {
+		$term_id = is_array( $existing ) ? (int) $existing['term_id'] : (int) $existing;
+		wp_update_term(
+			$term_id,
+			'sira_industry',
+			array(
+				'name'        => (string) $industry['title'],
+				'description' => $description,
+			)
+		);
+	} else {
+		$created = wp_insert_term(
+			(string) $industry['title'],
+			'sira_industry',
+			array( 'slug' => $slug, 'description' => $description )
+		);
+
+		if ( is_wp_error( $created ) ) {
+			WP_CLI::warning( "Industry {$slug}: " . $created->get_error_message() );
+			continue;
+		}
+
+		$term_id = (int) $created['term_id'];
+	}
+
+	// Terms have no post meta, so the seed marker goes in term meta under the
+	// same name. The launch gate reads posts; this is recorded so a human can
+	// find and remove them with the same marker.
+	update_term_meta( $term_id, SIRA_SEED_MARKER, '1' );
+	$industry_terms[] = $term_id;
+}
+
+WP_CLI::log( 'Industries: ' . count( $industry_terms ) );
 
 // ---------------------------------------------------------------------------
 // Standalone pages

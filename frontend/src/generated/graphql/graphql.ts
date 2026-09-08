@@ -27,6 +27,29 @@ export type SiraBrandQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SiraBrandQuery = { readonly siraBrand: { readonly name: string, readonly key: string, readonly tagline: string | null, readonly primaryColor: string, readonly secondaryColor: string, readonly accentColor: string, readonly paperColor: string, readonly inkColor: string, readonly email: string | null, readonly phone: string | null, readonly address: string | null, readonly description: string | null, readonly mission: string | null, readonly vision: string | null, readonly announcementBanner: string | null, readonly emergencyBanner: string | null, readonly logo: { readonly databaseId: number, readonly sourceUrl: string, readonly altText: string | null, readonly width: number | null, readonly height: number | null, readonly mediaItem: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null } | null } | null, readonly mark: { readonly databaseId: number, readonly sourceUrl: string, readonly altText: string | null, readonly width: number | null, readonly height: number | null, readonly mediaItem: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null } | null } | null, readonly values: ReadonlyArray<{ readonly title: string, readonly description: string | null } | null> | null, readonly officeLocations: ReadonlyArray<{ readonly name: string, readonly address: string | null, readonly phone: string | null, readonly email: string | null } | null> | null, readonly socialProfiles: { readonly linkedin: string | null, readonly instagram: string | null, readonly x: string | null, readonly youtube: string | null } | null, readonly announcement: { readonly message: string, readonly severity: SiraBrandBannerSeverity, readonly startsAt: string | null, readonly endsAt: string | null, readonly dismissible: boolean, readonly revisionKey: string, readonly link: { readonly label: string, readonly url: string, readonly target: string | null } | null } | null, readonly emergency: { readonly message: string, readonly severity: SiraBrandBannerSeverity, readonly startsAt: string | null, readonly endsAt: string | null, readonly dismissible: boolean, readonly revisionKey: string, readonly link: { readonly label: string, readonly url: string, readonly target: string | null } | null } | null } };
 
+export type SiraContentPageQueryVariables = Exact<{
+  uri: string | number;
+  asPreview?: boolean | null | undefined;
+}>;
+
+
+export type SiraContentPageQuery = { readonly page: { readonly databaseId: number, readonly uri: string | null, readonly title: string | null, readonly content: string | null, readonly modified: string | null, readonly seo: { readonly variant: string | null } | null } | null };
+
+export type SiraServiceIndexQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SiraServiceIndexQuery = { readonly siraServices: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly uri: string | null, readonly title: string | null, readonly excerpt: string | null, readonly content: string | null }> } | null };
+
+export type SiraWorkIndexQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SiraWorkIndexQuery = { readonly siraProjects: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly title: string | null, readonly excerpt: string | null, readonly content: string | null }> } | null };
+
+export type SiraIndustryIndexQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SiraIndustryIndexQuery = { readonly siraIndustries: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly name: string | null, readonly description: string | null }> } | null };
+
 type EditorialFeedDesks_RootQueryToSiraBusinessUnitConnection_Fragment = { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null }> };
 
 type EditorialFeedDesks_SiraArticleToSiraBusinessUnitConnection_Fragment = { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null }> };
@@ -1270,6 +1293,74 @@ export const SiraBrandDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<SiraBrandQuery, SiraBrandQueryVariables>;
+export const SiraContentPageDocument = new TypedDocumentString(`
+    query SiraContentPage($uri: ID!, $asPreview: Boolean = false) {
+  page(id: $uri, idType: URI, asPreview: $asPreview) {
+    databaseId
+    uri
+    title
+    content
+    modified
+    seo: siraHomepage {
+      variant
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SiraContentPageQuery, SiraContentPageQueryVariables>;
+export const SiraServiceIndexDocument = new TypedDocumentString(`
+    query SiraServiceIndex {
+  siraServices(
+    first: 24
+    where: {status: PUBLISH, orderby: [{field: MENU_ORDER, order: ASC}, {field: DATE, order: ASC}]}
+  ) {
+    pageInfo {
+      hasNextPage
+    }
+    nodes {
+      databaseId
+      slug
+      uri
+      title
+      excerpt
+      content
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SiraServiceIndexQuery, SiraServiceIndexQueryVariables>;
+export const SiraWorkIndexDocument = new TypedDocumentString(`
+    query SiraWorkIndex {
+  siraProjects(
+    first: 24
+    where: {status: PUBLISH, orderby: [{field: DATE, order: ASC}]}
+  ) {
+    pageInfo {
+      hasNextPage
+    }
+    nodes {
+      databaseId
+      slug
+      title
+      excerpt
+      content
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SiraWorkIndexQuery, SiraWorkIndexQueryVariables>;
+export const SiraIndustryIndexDocument = new TypedDocumentString(`
+    query SiraIndustryIndex {
+  siraIndustries(first: 24, where: {hideEmpty: false, orderby: NAME, order: ASC}) {
+    pageInfo {
+      hasNextPage
+    }
+    nodes {
+      databaseId
+      slug
+      name
+      description
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SiraIndustryIndexQuery, SiraIndustryIndexQueryVariables>;
 export const SiraEditorialFeedDocument = new TypedDocumentString(`
     query SiraEditorialFeed($first: Int!, $after: String) {
   contentNodes(

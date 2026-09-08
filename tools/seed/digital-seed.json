@@ -1,6 +1,5 @@
 {
   "$comment": "Pre-launch placeholder content for the SIRA Digital tenant (ADR-030 governance, ADR-033 tenant). Every record written from this file carries post meta _sira_seed=1. It describes CAPABILITY, never a verified fact: there are no client names, no metrics, no certifications, no partnerships, no revenue, no headcount, no offices and no testimonials anywhere in it, because none of those have been supplied by the owner. An editor replaces this with SIRA's own copy before launch; tools/verify-no-seed-content.mjs blocks launch while any of it survives.",
-
   "homepage": {
     "title": "SIRA Digital",
     "hero": {
@@ -9,50 +8,90 @@
       "heading_highlight": "the work that repeats",
       "heading_after": "",
       "description": "We build the systems that move a business's daily work — quotes, approvals, documents, handovers — out of spreadsheets and inboxes and into software that reports on itself.",
-      "primary_cta": { "title": "Book an operations review", "url": "/contact", "target": "" },
-      "secondary_cta": { "title": "See what we build", "url": "/work", "target": "" }
+      "primary_cta": {
+        "title": "Book an operations review",
+        "url": "/contact",
+        "target": ""
+      },
+      "secondary_cta": {
+        "title": "See what we build",
+        "url": "/work",
+        "target": ""
+      }
     },
     "capabilities_eyebrow": "Capabilities",
     "capabilities": [
       {
         "title": "Workflow automation",
         "summary": "Approvals, handovers and status chasing move into a system that records who did what and when. The bottleneck stops being one person's inbox.",
-        "link": { "title": "Workflow automation", "url": "/services#workflow-automation", "target": "" }
+        "link": {
+          "title": "Workflow automation",
+          "url": "/services#workflow-automation",
+          "target": ""
+        }
       },
       {
         "title": "Document intelligence",
         "summary": "Contracts, invoices and official documents read into structured data, with Arabic and English handled in the same pass and a human check where the cost of being wrong is real.",
-        "link": { "title": "Document intelligence", "url": "/services#document-intelligence", "target": "" }
+        "link": {
+          "title": "Document intelligence",
+          "url": "/services#document-intelligence",
+          "target": ""
+        }
       },
       {
         "title": "Systems integration",
         "summary": "One record instead of five. We connect the ERP, the CRM, the finance system and the field app that were never designed to speak to each other.",
-        "link": { "title": "Systems integration", "url": "/services#systems-integration", "target": "" }
+        "link": {
+          "title": "Systems integration",
+          "url": "/services#systems-integration",
+          "target": ""
+        }
       },
       {
         "title": "Customer operations",
         "summary": "WhatsApp, phone and web enquiries arrive in one queue with an owner, a due time and a history — instead of three places where nobody is accountable.",
-        "link": { "title": "Customer operations", "url": "/services#customer-operations", "target": "" }
+        "link": {
+          "title": "Customer operations",
+          "url": "/services#customer-operations",
+          "target": ""
+        }
       },
       {
         "title": "Internal platforms",
         "summary": "Software shaped around the process a business actually runs, rather than the process a licensed package assumed. Built to be handed over, not rented indefinitely.",
-        "link": { "title": "Internal platforms", "url": "/services#internal-platforms", "target": "" }
+        "link": {
+          "title": "Internal platforms",
+          "url": "/services#internal-platforms",
+          "target": ""
+        }
       },
       {
         "title": "Reporting that reconciles",
         "summary": "Numbers a finance team will put their name to. The dashboard is the easy part; agreeing what a number means across departments is the work.",
-        "link": { "title": "Reporting that reconciles", "url": "/services#reporting", "target": "" }
+        "link": {
+          "title": "Reporting that reconciles",
+          "url": "/services#reporting",
+          "target": ""
+        }
       },
       {
         "title": "AI with an audit trail",
         "summary": "Systems that draft, classify and route — and record every decision with its inputs, so an operator can see why and overrule it.",
-        "link": { "title": "AI with an audit trail", "url": "/services#applied-ai", "target": "" }
+        "link": {
+          "title": "AI with an audit trail",
+          "url": "/services#applied-ai",
+          "target": ""
+        }
       },
       {
         "title": "Field and site operations",
         "summary": "Work that happens away from a desk: inspections, deliveries and site handovers captured once on a phone and reconciled the same day.",
-        "link": { "title": "Field and site operations", "url": "/services#field-operations", "target": "" }
+        "link": {
+          "title": "Field and site operations",
+          "url": "/services#field-operations",
+          "target": ""
+        }
       }
     ],
     "marquee": {
@@ -60,7 +99,11 @@
       "heading": "Built for how businesses here actually operate",
       "description": "",
       "body": "<p>Every sector has a different bottleneck. A clinic loses time to scheduling and records; a contractor loses it to approvals and site paperwork; a distributor loses it to order entry and reconciliation. We start from the bottleneck, not from the software.</p>",
-      "link": { "title": "Industries", "url": "/industries", "target": "" },
+      "link": {
+        "title": "Industries",
+        "url": "/industries",
+        "target": ""
+      },
       "items": [
         "Healthcare",
         "Real estate",
@@ -77,7 +120,11 @@
     "wordmark": {
       "word": "SIRA DIGITAL",
       "lockup": "Systems that run the work.",
-      "link": { "title": "See what we build", "url": "/work", "target": "" }
+      "link": {
+        "title": "See what we build",
+        "url": "/work",
+        "target": ""
+      }
     },
     "contact": {
       "eyebrow": "Start here",
@@ -87,7 +134,6 @@
       "form_context": "digital-operations-review"
     }
   },
-
   "services": [
     {
       "slug": "workflow-automation",
@@ -178,7 +224,6 @@
       "outcome": "Same-day visibility of work in the field, and a shorter gap between work done and work invoiced."
     }
   ],
-
   "pages": [
     {
       "slug": "about",
@@ -201,25 +246,165 @@
       "content": "<p><strong>Draft pending legal review.</strong> This text has not been reviewed or approved by a qualified legal adviser.</p><h2>Using this site</h2><p>This website describes the services of SIRA Digital, an operating company of SIRA GROUP. Its content is provided for information and does not constitute a commercial offer.</p><h2>Enquiries and consultations</h2><p>Submitting an enquiry does not create a contract. Any engagement is governed by a separate written agreement.</p><h2>Estimates and indicative figures</h2><p>Tools on this site that produce estimates, including any impact or savings calculator, are illustrative models based on the assumptions shown alongside them. They are not quotations, forecasts or guarantees of any outcome.</p><h2>Intellectual property</h2><p>The content, design and code of this website belong to SIRA GROUP unless stated otherwise.</p><h2>No warranty</h2><p>This website is provided as it stands, without warranty of uninterrupted availability or freedom from error.</p><h2>Limitation of liability</h2><p>To the extent permitted by applicable law, SIRA Digital is not liable for indirect or consequential loss arising from use of this website.</p><h2>Governing law</h2><p>These terms are governed by the laws of the Kingdom of Saudi Arabia.</p>"
     }
   ],
-
   "menus": {
     "primary": [
-      { "title": "Services", "url": "/services" },
-      { "title": "Work", "url": "/work" },
-      { "title": "Industries", "url": "/industries" },
-      { "title": "About", "url": "/about" },
-      { "title": "Contact", "url": "/contact" }
+      {
+        "title": "Services",
+        "url": "/services"
+      },
+      {
+        "title": "Work",
+        "url": "/work"
+      },
+      {
+        "title": "Industries",
+        "url": "/industries"
+      },
+      {
+        "title": "About",
+        "url": "/about"
+      },
+      {
+        "title": "Contact",
+        "url": "/contact"
+      }
     ],
     "footer": [
-      { "title": "Services", "url": "/services" },
-      { "title": "Work", "url": "/work" },
-      { "title": "Industries", "url": "/industries" },
-      { "title": "About", "url": "/about" },
-      { "title": "Contact", "url": "/contact" }
+      {
+        "title": "Services",
+        "url": "/services"
+      },
+      {
+        "title": "Work",
+        "url": "/work"
+      },
+      {
+        "title": "Industries",
+        "url": "/industries"
+      },
+      {
+        "title": "About",
+        "url": "/about"
+      },
+      {
+        "title": "Contact",
+        "url": "/contact"
+      }
     ],
     "legal": [
-      { "title": "Privacy", "url": "/privacy" },
-      { "title": "Terms", "url": "/terms" }
+      {
+        "title": "Privacy",
+        "url": "/privacy"
+      },
+      {
+        "title": "Terms",
+        "url": "/terms"
+      }
     ]
-  }
+  },
+  "work": [
+    {
+      "slug": "operations-console",
+      "title": "Operations Console",
+      "kind": "Internal platform",
+      "excerpt": "One queue for work that arrives from five places, with an owner and a clock on every item.",
+      "problem": "Requests reached the operations team through email, WhatsApp, a web form and the phone. Each channel had its own informal rules and none of them had a queue, so the honest answer to “where is my request” was to ask whoever remembered it.",
+      "built": "A single intake that accepts every channel, assigns an owner, starts a response clock and keeps the whole history against the request rather than against a person. Supervisors see the queue; everyone else sees their own work.",
+      "detail": "Routing rules by request type and value, escalation when a clock runs out, structured handover between departments, and an export the finance team can reconcile against."
+    },
+    {
+      "slug": "document-desk",
+      "title": "Document Desk",
+      "kind": "Applied AI",
+      "excerpt": "Arabic and English documents read on arrival, checked by a person only where it matters.",
+      "problem": "Invoices, contracts and official documents arrived as scans and photographs. Somebody re-typed them into the finance system, and the re-typing was the source of both the delay and the errors.",
+      "built": "Extraction on arrival, with Arabic and English handled in the same pass, validated against records the business already holds. Confidence scoring decides what a person sees, so review is an exception rather than a step.",
+      "detail": "Line-item and table recognition, duplicate detection against existing records, a review queue for low-confidence extractions, and a full audit trail of what was read, what was changed and by whom."
+    },
+    {
+      "slug": "site-capture",
+      "title": "Site Capture",
+      "kind": "Field operations",
+      "excerpt": "Inspections and handovers recorded where the work happens, reconciled the same day.",
+      "problem": "Work done away from a desk was recorded on paper and typed up later, if at all. The office learned what had happened on site days after it happened, and invoicing waited on the same gap.",
+      "built": "Structured capture on the phone people already carry, tolerant of sites with no coverage, with photographs and signatures attached to the job rather than to a camera roll.",
+      "detail": "Offline-first capture with conflict-safe sync, checklists per job type, and reconciliation against the work instruction so a completed job becomes an invoice without a second data entry."
+    },
+    {
+      "slug": "reconciled-reporting",
+      "title": "Reconciled Reporting",
+      "kind": "Business intelligence",
+      "excerpt": "One definition per number, computed once, traceable to the rows behind it.",
+      "problem": "Two departments reported the same metric and got different answers. The monthly meeting became an argument about the data rather than a decision about the business.",
+      "built": "A defined metric layer where each number has one agreed definition and one computation. The dashboard became a view of that rather than a second, competing source.",
+      "detail": "Drill-through from any headline figure to the underlying rows, a visible last-updated time so nobody presents a stale number by accident, and scheduled plus event-driven refresh."
+    },
+    {
+      "slug": "integration-fabric",
+      "title": "Integration Fabric",
+      "kind": "Systems integration",
+      "excerpt": "Systems that were never meant to talk, exchanging exactly the records they each need.",
+      "problem": "The ERP, the CRM and the field application each held part of the truth. Reconciling them was a monthly job for a person, and the reconciliation itself was never quite trusted.",
+      "built": "Field-level ownership rules, so each system is the authority for what it is actually the authority for, and event-driven exchange for everything else.",
+      "detail": "Retry with backoff, conflict surfacing rather than silent resolution, and monitoring that tells an operator when a feed stopped instead of letting a quiet failure look like quiet success."
+    }
+  ],
+  "industries": [
+    {
+      "slug": "healthcare",
+      "title": "Healthcare",
+      "excerpt": "Patient journeys, records and referrals — the administrative half of care.",
+      "bottleneck": "Scheduling, records and referrals absorb clinical time. Coordination happens by phone and paper, and the patient experiences the gaps as waiting.",
+      "opportunity": "Intake and scheduling that reconcile with the clinical system, referral handover with a status a patient can be told, and document extraction for insurance and identity paperwork."
+    },
+    {
+      "slug": "real-estate",
+      "title": "Real estate",
+      "excerpt": "Enquiry to lease: qualification, documents and handover.",
+      "bottleneck": "Enquiries arrive faster than they can be qualified, and the paperwork between an agreed deal and an occupied unit is handled by whoever is free.",
+      "opportunity": "One qualified pipeline across channels, document collection with validation, and a handover checklist that finance and facilities can both see."
+    },
+    {
+      "slug": "hospitality",
+      "title": "Hospitality",
+      "excerpt": "Guest operations that survive a full house.",
+      "bottleneck": "Requests reach the front desk from a dozen directions and are held in somebody's head until they are done or forgotten.",
+      "opportunity": "Request capture with an owner and a clock, housekeeping and maintenance dispatch that reconciles with the property system, and reporting a general manager can act on the same day."
+    },
+    {
+      "slug": "retail-and-distribution",
+      "title": "Retail and distribution",
+      "excerpt": "Order to delivery, without the re-typing in the middle.",
+      "bottleneck": "Orders arrive as messages and are re-entered by hand. Stock truth lives in two systems that disagree by the time anybody checks.",
+      "opportunity": "Order intake straight into the system of record, exception-based review, and reconciliation between stock, sales and finance that runs without a person driving it."
+    },
+    {
+      "slug": "logistics",
+      "title": "Logistics",
+      "excerpt": "Dispatch, proof of delivery and the paperwork behind both.",
+      "bottleneck": "Dispatch is planned in one place, executed in another and invoiced from a third. Proof of delivery is a photograph in a chat thread.",
+      "opportunity": "Structured capture at the point of delivery, automatic reconciliation to the job, and document extraction for customs and carrier paperwork."
+    },
+    {
+      "slug": "construction",
+      "title": "Construction",
+      "excerpt": "Approvals, site records and the gap between them.",
+      "bottleneck": "Approvals wait in inboxes and site records arrive late, so the commercial picture is always describing last week.",
+      "opportunity": "Approval workflows with escalation, site capture that reaches the office the same day, and document handling for submittals and variations."
+    },
+    {
+      "slug": "professional-services",
+      "title": "Professional services",
+      "excerpt": "Engagement admin that stops eating billable time.",
+      "bottleneck": "Senior people spend hours on engagement administration — onboarding, document collection, status reporting — that follows the same steps every time.",
+      "opportunity": "Templated engagement setup, client document collection with chasing, and reporting assembled from the systems rather than from a person."
+    },
+    {
+      "slug": "education",
+      "title": "Education",
+      "excerpt": "Admissions and student administration at intake scale.",
+      "bottleneck": "Admissions arrive in bursts, and the administrative load per applicant is identical whether or not they enrol.",
+      "opportunity": "Application intake with document validation, status communication that does not require a person to send it, and reconciliation between admissions, finance and the student record."
+    }
+  ]
 }

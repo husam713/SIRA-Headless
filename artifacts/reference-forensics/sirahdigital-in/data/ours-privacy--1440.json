@@ -1,0 +1,64 @@
+{
+  "url": "/privacy/",
+  "lang": "en",
+  "dir": "ltr",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 2159,
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  },
+  "screens": 2.4,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 61,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 398.5,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 61,
+      "endY": 1760.6,
+      "height": 1699.6,
+      "screens": 1.89,
+      "heading": "Privacy Policy",
+      "headingType": {
+        "size": 72,
+        "lineHeight": 75,
+        "weight": "700",
+        "tracking": -0.025,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "Privacy Policy",
+    "size": 72,
+    "lineHeight": 75,
+    "weight": "700",
+    "tracking": -0.025,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

@@ -1,0 +1,21 @@
+# Machine-generated evidence, kept in the repository but collapsed in pull
+# request diffs.
+#
+# The Phase 1 reference forensics under `artifacts/reference-forensics/` are raw
+# per-viewport DOM dumps taken against a third-party site. They are primary
+# evidence of how that site was built on the day it was measured, they cannot be
+# re-derived once that site changes, and they are therefore NOT deletable — but
+# 195,000 lines of them in a diff makes a pull request unreviewable.
+#
+# `linguist-generated` collapses them by default on GitHub while leaving the
+# files themselves tracked, whole and readable. It changes presentation only.
+artifacts/reference-forensics/**/data/**/*.json linguist-generated=true
+artifacts/homepage-fidelity/**/*.json          linguist-generated=true
+artifacts/branch-fidelity/**/*.json            linguist-generated=true
+artifacts/editorial/**/*.json                  linguist-generated=true
+
+# Captured GraphQL schemas are generated from the live CMS by
+# `frontend/scripts/fetch-schema.mjs`; the contract that matters is asserted by
+# the schema-compatibility tests, not read line by line in a review.
+frontend/schema/*.json                         linguist-generated=true
+frontend/schema/*.graphql                      linguist-generated=true

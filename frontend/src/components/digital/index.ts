@@ -7,3 +7,4 @@ export { DigitalStatBand } from "@/components/digital/digital-stat-band";
 export { DigitalStatement } from "@/components/digital/digital-statement";
 export { DigitalTeamGrid } from "@/components/digital/digital-team-grid";
 export { DigitalWordmark } from "@/components/digital/digital-wordmark";
+export { DigitalWorkflow } from "@/components/digital/digital-workflow";

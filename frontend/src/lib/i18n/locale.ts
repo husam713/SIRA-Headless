@@ -136,10 +136,30 @@ interface Chrome {
   readonly closeMenu: string;
   readonly onThisPage: string;
   /**
+   * The lead-in on every services block.
+   *
+   * It repeats on all ten, so no single service owns it editorially - which is
+   * the test for whether a string belongs in here rather than in the CMS.
+   */
+  readonly currentChallenge: string;
+  /**
    * Column labels on the industries register. They repeat on every row, so no
    * single row owns them editorially and they cannot come from a term's own
    * fields — which is the test for whether a string belongs in here at all.
    */
+  /**
+   * Furniture on the sector pages.
+   *
+   * All six repeat across every one of the twelve sectors, so no single sector
+   * owns them editorially - the same test the labels below meet. A sector is a
+   * taxonomy term and has no page-intro fields of its own to carry them.
+   */
+  readonly allIndustries: string;
+  readonly automationWorkflow: string;
+  readonly whatWeBuild: string;
+  readonly typicalStack: string;
+  readonly industryCtaHeading: string;
+  readonly industryCtaLabel: string;
   readonly bottleneckLabel: string;
   readonly opportunityLabel: string;
   readonly previewMode: string;
@@ -167,6 +187,13 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     openMenu: "Open menu",
     closeMenu: "Close menu",
     onThisPage: "On this page",
+    currentChallenge: "Current challenge:",
+    allIndustries: "Industries",
+    automationWorkflow: "Automation workflow",
+    whatWeBuild: "What we build",
+    typicalStack: "Typical stack",
+    industryCtaHeading: "Have a workflow worth automating?",
+    industryCtaLabel: "Book a free consultation",
     bottleneckLabel: "Where the time goes",
     opportunityLabel: "What can be done",
     previewMode: "Preview Mode",
@@ -184,6 +211,13 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     openMenu: "افتح القائمة",
     closeMenu: "أغلق القائمة",
     onThisPage: "في هذه الصفحة",
+    currentChallenge: "التحدي الحالي:",
+    allIndustries: "القطاعات",
+    automationWorkflow: "مسار الأتمتة",
+    whatWeBuild: "ما الذي نبنيه",
+    typicalStack: "المنظومة التقنية",
+    industryCtaHeading: "لديك عملية تستحق الأتمتة؟",
+    industryCtaLabel: "احجز استشارة مجانية",
     bottleneckLabel: "أين يضيع الوقت",
     opportunityLabel: "ما الذي يمكن عمله",
     previewMode: "وضع المعاينة",

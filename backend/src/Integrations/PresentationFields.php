@@ -41,6 +41,8 @@ final class PresentationFields {
 			'group_sira_branch_homepage'    => self::branch_homepage_group(),
 			'group_sira_digital_homepage'   => self::digital_homepage_group(),
 			'group_sira_digital_about'      => self::digital_about_group(),
+			'group_sira_digital_service'    => self::digital_service_group(),
+			'group_sira_digital_industry'   => self::digital_industry_group(),
 			'group_sira_company_details'    => self::company_group(),
 			'group_sira_investment_details' => self::investment_group(),
 			'group_sira_testimonial_details' => self::testimonial_group(),
@@ -247,6 +249,245 @@ final class PresentationFields {
 			'label_placement'                      => 'top',
 			'instruction_placement'                => 'label',
 			'active'                               => true,
+		);
+	}
+
+	/**
+	 * What a service record carries beyond its title, excerpt and body.
+	 *
+	 * The services page leads each capability with the problem it solves before
+	 * it says what the thing is, so the challenge is a field rather than the
+	 * first paragraph of the body: it is set differently, it is the one line a
+	 * skimming reader is guaranteed to read, and a page that styles it has to be
+	 * able to find it.
+	 *
+	 * The call to action is per service for the same reason. "Automate My
+	 * Conversations" under the chatbot capability converts better than one
+	 * generic button repeated ten times, and which verb belongs to which
+	 * capability is an editorial judgement, not a layout constant.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function digital_service_group(): array {
+		return array_merge(
+			self::content_group(
+				'group_sira_digital_service',
+				'SIRA Service - Digital',
+				'digitalService',
+				'DigitalService',
+				'SiraService',
+				'sira_service',
+				array(
+					self::textarea(
+						'field_sira_digital_service_challenge',
+						'Current Challenge',
+						'challenge',
+						'challenge',
+						array(
+							'rows'         => 2,
+							'instructions' => 'The problem in the reader own words, before any solution is named.',
+						)
+					),
+					self::textarea(
+						'field_sira_digital_service_outcome',
+						'Outcome',
+						'outcome',
+						'outcome',
+						array(
+							'rows'         => 2,
+							'instructions' => 'What is true afterwards, in plain language.',
+						)
+					),
+					self::text(
+						'field_sira_digital_service_cta_label',
+						'Call To Action Label',
+						'cta_label',
+						'ctaLabel'
+					),
+				)
+			),
+			array( 'location' => self::digital_post_type_location( 'sira_service' ) )
+		);
+	}
+
+	/**
+	 * What an industry carries beyond its name.
+	 *
+	 * Industries were modelled as a taxonomy long before this page existed, and
+	 * that is still the right shape: an industry classifies work, it is not a
+	 * piece of work. But a term has exactly one description field, and the
+	 * detail page needs a seven-step workflow, a headline statistic, what gets
+	 * built, and what it is built with.
+	 *
+	 * The previous encoding packed three parts into that description separated
+	 * by pipes. Serviceable for three strings, indefensible for this: a repeater
+	 * of seven ordered pairs does not survive being flattened into a delimiter
+	 * an editor can type by accident.
+	 *
+	 * `stat` is deliberately optional. Five of the twelve industries publish a
+	 * headline figure and seven do not. Inventing one for the other seven so the
+	 * layout looks even would be fabricating a business claim.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function digital_industry_group(): array {
+		return array(
+			'key'                                  => 'group_sira_digital_industry',
+			'title'                                => 'SIRA Industry - Digital',
+			'show_in_graphql'                      => true,
+			'graphql_field_name'                   => 'digitalIndustry',
+			'graphql_type_name'                    => 'DigitalIndustry',
+			'map_graphql_types_from_location_rules' => false,
+			'graphql_types'                        => array( 'SiraIndustry' ),
+			'fields'                               => array(
+				self::text(
+					'field_sira_digital_industry_eyebrow',
+					'Eyebrow',
+					'eyebrow',
+					'eyebrow'
+				),
+				self::textarea(
+					'field_sira_digital_industry_standfirst',
+					'Standfirst',
+					'standfirst',
+					'standfirst',
+					array( 'rows' => 3 )
+				),
+				self::repeater(
+					'field_sira_digital_industry_workflow',
+					'Automation Workflow',
+					'workflow',
+					'workflow',
+					array(
+						self::text(
+							'field_sira_digital_industry_step_title',
+							'Step',
+							'title',
+							'title'
+						),
+						self::text(
+							'field_sira_digital_industry_step_detail',
+							'Detail',
+							'detail',
+							'detail'
+						),
+					),
+					array(
+						'max'          => 10,
+						'instructions' => 'The order here is the order a reader walks the process in.',
+					)
+				),
+				self::group_field(
+					'field_sira_digital_industry_stat',
+					'Headline Figure',
+					'stat',
+					'stat',
+					array(
+						self::text(
+							'field_sira_digital_industry_stat_value',
+							'Value',
+							'value',
+							'value',
+							array( 'maxlength' => 12 )
+						),
+						self::text(
+							'field_sira_digital_industry_stat_label',
+							'Label',
+							'label',
+							'label'
+						),
+					),
+					array( 'instructions' => 'Optional. Leave it empty rather than estimating one: the block is omitted when it is blank.' )
+				),
+				self::repeater(
+					'field_sira_digital_industry_build',
+					'What We Build',
+					'build',
+					'build',
+					array(
+						self::text(
+							'field_sira_digital_industry_build_item',
+							'Item',
+							'item',
+							'item'
+						),
+					),
+					array( 'max' => 8 )
+				),
+				self::textarea(
+					'field_sira_digital_industry_build_note',
+					'What We Build - Note',
+					'build_note',
+					'buildNote',
+					array( 'rows' => 2 )
+				),
+				self::repeater(
+					'field_sira_digital_industry_stack',
+					'Typical Stack',
+					'stack',
+					'stack',
+					array(
+						self::text(
+							'field_sira_digital_industry_stack_item',
+							'Tool',
+							'item',
+							'item'
+						),
+					),
+					array( 'max' => 10 )
+				),
+			),
+			'location'                             => self::digital_taxonomy_location( 'sira_industry' ),
+			'menu_order'                           => 15,
+			'position'                             => 'normal',
+			'style'                                => 'default',
+			'label_placement'                      => 'top',
+			'instruction_placement'                => 'label',
+			'active'                               => true,
+		);
+	}
+
+	/**
+	 * A post-type location that only applies on the Digital tenant.
+	 *
+	 * @param string $post_type Post type.
+	 * @return array<int,array<int,array<string,string>>>
+	 */
+	private static function digital_post_type_location( string $post_type ): array {
+		if ( ! self::is_digital_site() ) {
+			return self::unmatchable_location();
+		}
+
+		return array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => $post_type,
+				),
+			),
+		);
+	}
+
+	/**
+	 * A taxonomy location that only applies on the Digital tenant.
+	 *
+	 * @param string $taxonomy Taxonomy.
+	 * @return array<int,array<int,array<string,string>>>
+	 */
+	private static function digital_taxonomy_location( string $taxonomy ): array {
+		if ( ! self::is_digital_site() ) {
+			return self::unmatchable_location();
+		}
+
+		return array(
+			array(
+				array(
+					'param'    => 'taxonomy',
+					'operator' => '==',
+					'value'    => $taxonomy,
+				),
+			),
 		);
 	}
 

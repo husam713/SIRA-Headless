@@ -198,6 +198,8 @@ $expected_presentation_groups = array(
 	'group_sira_company_details',
 	'group_sira_digital_about',
 	'group_sira_digital_homepage',
+	'group_sira_digital_industry',
+	'group_sira_digital_service',
 	'group_sira_group_homepage',
 	'group_sira_homepage',
 	'group_sira_investment_details',
@@ -241,6 +243,16 @@ $expected_presentation_groups = array(
 		'graphql_field_name' => 'testimonialDetails',
 		'graphql_type_name'  => 'SiraTestimonialDetails',
 		'graphql_types'      => array( 'SiraTestimonial' ),
+	),
+	'group_sira_digital_service' => array(
+		'graphql_field_name' => 'digitalService',
+		'graphql_type_name'  => 'DigitalService',
+		'graphql_types'      => array( 'SiraService' ),
+	),
+	'group_sira_digital_industry' => array(
+		'graphql_field_name' => 'digitalIndustry',
+		'graphql_type_name'  => 'DigitalIndustry',
+		'graphql_types'      => array( 'SiraIndustry' ),
 	),
 	'group_sira_partner_details' => array(
 		'graphql_field_name' => 'partnerDetails',

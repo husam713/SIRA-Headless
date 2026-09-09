@@ -657,27 +657,31 @@ pointing at types that no longer exist.
 
 ### NOT yet done — the real remaining work
 
-1. **No browser QA pass.** Nothing has been rendered in a real browser against
-   the live CMS. No screenshots, no density tables, no horizontal-overflow
-   sweep, no RTL or reduced-motion run. Every previous increment on this project
-   carried that evidence and this one does not yet. **This is the first thing
-   to do.** The tooling exists: `tools/graphql-ssh-proxy.mjs` for the transport
-   (ADR-032 means direct fetches from a developer machine get a bot challenge),
-   and `pnpm verify:layout`.
-2. `pnpm verify:layout` has not been run since the new pages landed.
-3. `node tools/verify-no-seed-content.mjs` has not been re-run. It is expected to
-   BLOCK — the seeded content is deliberately still there — and that is the
-   correct answer, not a failure.
-4. Home and contact refinements beyond the calculator were not taken.
-5. `/products` — see above.
-6. Nothing is pushed and no PR exists.
+Items 1 to 3 are CLOSED by the Phase 5 QA pass below; the evidence is in
+`artifacts/reference-forensics/sirahdigital-in/QA-PASS.md`. What is left:
+
+1. Home and contact refinements beyond the calculator were not taken.
+2. `/products` — see above.
+3. ~~Nothing is pushed and no PR exists.~~ Pushed; see Phase 5 for the PR.
 
 ### Owner deliverables that block launch, not development
 
 1. The five team members' real names, roles, one-liners and **portraits**. The
    grid renders a monogram from initials where a photograph is missing; no stock
-   face is ever generated.
+   face is ever generated. **Sharper than previously recorded:** the seed did
+   not leave placeholders here. `/about` currently carries five REAL named
+   individuals from the `.in` entity — M. Jesheeba Fathima, SS. Monisha,
+   S. Sayed Salman, Abdul Samad and one more — with real roles and biographies.
 2. Whether the Saudi entity leads with a named founder, and their portrait.
+   **Sharper than previously recorded:** it already does. The `/about` H1 reads
+   "Scale your business with Mohamed Riyaz", and the pulled quote is attributed
+   to him as Founder & Technical Architect. That is the reference's headline,
+   naming a real person, on the Saudi entity's About page. Nothing is deployed
+   and `blog_public` is `0`, and every one of these records carries
+   `_sira_seed=1` so `tools/verify-no-seed-content.mjs` BLOCKS launch while they
+   exist — but this is personal data about identified individuals, not a lorem
+   placeholder, and it needs an owner decision rather than a rewrite by an
+   agent.
 3. The four stat-band figures for the Saudi entity.
 4. Social profile URLs. The section renders without them today rather than
    linking to the `.in` profiles.
@@ -687,7 +691,7 @@ pointing at types that no longer exist.
    for the latter. Not changed silently; needs an explicit answer and an ADR.
 7. `REPORT.md` §9 amendment recording the corrected provenance.
 
-## Phase 4 — the impact calculator: derived, not yet rebuilt
+## Phase 4 — the impact calculator: derived, then rebuilt
 
 Verified on 2026-09-09 against the live reference and the working tree.
 
@@ -734,36 +738,191 @@ automation input; a quadratic fits to only ±0.0086) and the **implementation
 cost constants** behind ROI and payback (two derivations agree to ~3%). Both are
 fittable from data already captured — neither needs another browser run.
 
-### What is NOT done — the rebuild itself
+### The rebuild: DONE
 
-Nothing in `frontend/` has been changed for this yet. Still to do:
-
-1. **`frontend/src/lib/calculator/model.ts`** — replace, do not extend.
-   `CURRENCY` becomes USD; `formatSar` becomes `formatMoney`; `CalculatorInput`
-   gains `hourlyCost` and `currentAutomation` and loses the `workflows` chip
-   array (the reference has no such control); outputs become **single figures,
-   not ranges**, and gain first-year ROI, revenue opportunity and the constant
-   720× lead response. Name every derived constant with the sweep it came from.
-2. **`frontend/src/components/digital/impact-calculator.tsx`** — rebuild to the
-   reference's exact control set and output order. The projection chart and the
-   before/after bar built earlier this session already match its structure and
-   should be kept; the workflow chips and every `NumericRange` go.
-3. **`frontend/src/lib/calculator/copy.ts`** — the new labels in both languages.
-   The English strings are the owner's own and must be used verbatim, especially
-   the two honesty devices: "Realised cost avoidance - not the notional value of
-   every freed hour" and the "Indicative estimate." disclaimer.
-4. **`frontend/tests/unit/calculator/model.test.ts`** — rewrite around the
-   held-out samples as fixtures, asserting our model reproduces the reference's
-   observed output for each. That turns "it looks the same" into an executable
-   claim.
-5. **"Download the automation report"** — plan is a print-optimised view behind
-   `window.print()` and a `@media print` block. No PDF dependency, works
-   everywhere, and produces something the visitor can actually keep.
+All five items are implemented and verified. Detail is in Phase 5 below and in
+`artifacts/reference-forensics/sirahdigital-in/CALCULATOR-MODEL.md`, which is
+now marked CLOSED. The section that used to stand here listed the work; keeping
+it as a to-do list after the fact would misreport project state.
 
 ### Carried over, still owed
 
-The browser QA pass on the About and sector pages from Phase 3 has still not
-happened. It remains the first thing to do before this branch is pushed.
+~~The browser QA pass on the About and sector pages from Phase 3.~~ Done in
+Phase 5.
+
+## Phase 5 — the calculator rebuilt, and the QA pass that was owed
+
+Verified 2026-09-09 against the live CMS and the working tree. Do not infer any
+line of this section from a previous conversation.
+
+### Coordinates
+
+- Branch: `feat/digital-about-and-catalogue`, unchanged. HEAD: rediscover it
+  from Git rather than trusting a SHA written here.
+- Base for the pull request is **`feat/sirahdigital-sa`**, not `main`. The chain
+  is `feat/newsroom-ledger` → `feat/sirahdigital-sa` (PR #65) →
+  `feat/digital-about-and-catalogue`. Opening this against `main` would present
+  the Newsroom and Phase 2 work as part of it.
+- Pushed, with a **draft** pull request. Draft is not accepted; the merge is the
+  owner's.
+
+### The calculator model is CLOSED
+
+Both items `CALCULATOR-MODEL.md` left open are solved from data already
+captured. No second browser run was needed, and that file is now the record —
+read it rather than this summary.
+
+- **The coverage meter** is `min(0.99, a + base × (1 − a)²)`. The 21-point
+  automation sweep has a constant second difference at every step, which makes
+  it exactly quadratic; the coefficients then give the form away. Max residual
+  4.4e-7, which is the meter's own four-decimal-place rounding.
+- **The implementation cost** is `SETUP[size] + 1146 × team`, with SETUP at
+  7500 / 15000 / 30000 / 60000. It depends on team and size ONLY.
+
+Four errors in the first write-up are corrected there rather than overwritten,
+because three of them were reasonable readings of the data at the time:
+
+1. ROI and payback are charged against the **twelve-month total**, not the
+   annual saving. That single mistake is why the implied cost seemed to vary by
+   industry and hourly rate, and why the two derivations disagreed by 3%.
+2. Revenue carries a `(1 − a)` factor, so the old revenue table had the default
+   0.85 baked into it.
+3. `hourly` clamps at the slider maximum of 150 — the one apparent outlier.
+4. `base` factors exactly as `0.62 × industry × size` with two-decimal
+   multipliers, which the old six-decimal table hid.
+
+**The model reproduces all 1,380 observed display fields across all 115 samples,
+with zero mismatches.** The held-out samples — never used to fit anything — are
+committed at `frontend/tests/fixtures/calculator/reference-observations.json`
+and are the fixtures for `frontend/tests/unit/calculator/model.test.ts`, so "it
+looks the same" is now an executable claim.
+
+One constant is honest about being inexact: `INDUSTRY_REVENUE_PER_PERSON`. The
+reference prints revenue to three significant figures, so each entry is pinned
+to an interval (widest 0.11%) rather than a point, and the author's own values
+are `UNKNOWN`. Do not round them to look tidier — several of them stop
+reproducing the observations if you do.
+
+### What was rebuilt
+
+- `frontend/src/lib/calculator/model.ts` — replaced. USD, single figures, the
+  workflow chips gone, `hourlyCost` and `currentAutomation` in, first-year ROI,
+  revenue opportunity and the constant 720× lead response added.
+- `frontend/src/components/digital/impact-calculator.tsx` — the reference's
+  exact control set, label wording and output order. The projection chart and
+  before/after bar are the ones built in Phase 3, now plotting the reference's
+  quantity and split at payback.
+- `frontend/src/lib/calculator/copy.ts` — both languages. The English is the
+  owner's own, verbatim, **including its punctuation**: the reference sets a
+  hyphen where a typographer would set an em dash, in "Realised cost avoidance -
+  not the notional value of every freed hour." and in the "Indicative estimate."
+  disclaimer. A silent improvement is still a change to somebody else's words.
+- "Download the automation report" — `window.print()` and a `@media print`
+  block. No PDF dependency.
+- `frontend/src/app/(sites)/[siteKey]/contact/page.tsx` — the section eyebrow is
+  gone. The reference opens the calculator on the headline, and the two
+  uppercase micro-labels inside it already carry that register.
+
+### Two bugs found by looking rather than by reasoning
+
+Both were invisible in the unit suite and only appeared in a browser.
+
+1. **The `hidden` attribute does not hide.** The advanced-assumptions panel used
+   `hidden={!open}` with a `grid` class. Tailwind v4 puts utilities in a later
+   cascade layer than the preflight rule that implements `[hidden]`, so `.grid`
+   wins and the panel stayed on screen. It switches a `display` utility now.
+   The same pattern exists nowhere else in `frontend/src` — checked.
+2. **The print stylesheet printed white on white**, and left the first page
+   blank. Digital's identity tokens are inline on `<html>`, which outranks any
+   stylesheet, so they are repainted for print with `!important`; and
+   `visibility: hidden` leaves the hidden box in the flow, so isolation is
+   `display: none` on `main > section:not(:has([data-automation-report]))`. No
+   shared shell component was touched.
+
+### The QA pass — the evidence Phase 3 did not have
+
+Full record: `artifacts/reference-forensics/sirahdigital-in/QA-PASS.md`.
+
+60 captures — 5 routes × 2 languages × 6 viewports — rendered by the real
+application against the live CMS through `tools/graphql-ssh-proxy.mjs`.
+
+| Check | Result |
+| --- | --- |
+| HTTP status, all 60 | PASS — 200 |
+| Horizontal overflow, all 60 | **PASS — 0px on every one** |
+| Direction and language, all 60 | PASS — `en/ltr`, `ar/rtl` |
+| Content from live WordPress, all 60 | PASS — `brandSource=wordpress` |
+| `prefers-reduced-motion: reduce`, 10 routes | **PASS — zero still animating** |
+| Density vs the Phase 1 reference | PASS — at or under it at every viewport, both languages |
+| `pnpm verify:layout` | PASS — 75/75 |
+| `tools/13-calculator-live.mjs` | PASS — 14/14, both languages |
+| `node tools/verify-no-seed-content.mjs` | **BLOCKED**, exit 1 — the correct answer |
+| Control size ≥ 44px | **WARNING** — see below |
+
+Two captures came back from the partial-data path — the SSH transport times out
+under a sweep this size — and measured a fifth of their real height. Both had no
+`h1`, which is a clean detector. The harness now retries on that signal, flags
+`degraded` if it never resolves, and takes `--route` / `--locale` / `--vp` so one
+bad capture can be re-shot and merged. Both were re-shot; the recorded values are
+the clean ones. **On Windows, pass those filters with `MSYS_NO_PATHCONV=1`** or
+Git Bash rewrites `/contact/` into a Windows path and the run silently captures
+nothing.
+
+### Reported, not repaired
+
+**Three `/contact` form controls are under the 44px minimum:** the name and
+email inputs at 37px, and the English service `select` at 34px. Pre-existing —
+`components/homepage/contact-form.tsx` was last touched three commits before
+this branch began — and **shared by all six tenants**, so raising it changes
+what the other five companies see. That is outside what this task authorized.
+The fix is a one-line `min-h-[44px]` on the three fields, in a task allowed to
+move shared chrome. Every control in the rebuilt calculator passes.
+
+### Sharper than previously recorded: who is on `/about`
+
+The Phase 3 owner-deliverable list read as though placeholders were waiting to
+be filled in. They are not. `/about` carries five real named individuals from
+the `.in` entity with real roles and biographies, and its `h1` reads "Scale your
+business with Mohamed Riyaz" with a pulled quote attributed to him as Founder &
+Technical Architect.
+
+Nothing is deployed, `blog_public` is `0`, and every one of those records
+carries `_sira_seed=1` so the launch gate BLOCKS while they exist — the
+safeguards are real and were verified. It is still personal data about
+identified individuals rather than lorem, and which of it belongs to the Saudi
+entity is an owner decision. No CMS content was changed by this task.
+
+### Validation actually run — all at the branch head
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | PASS |
+| `pnpm typecheck` | PASS |
+| `pnpm build` | PASS |
+| `pnpm test:run` | PASS — 657 tests, 61 files (was 618) |
+| `pnpm verify:layout` | PASS — 75/75 |
+| Browser QA, 60 captures | PASS — see above |
+| `tools/verify-no-seed-content.mjs` | BLOCKED, exit 1 — expected |
+
+`pnpm typecheck` still needs `rm -rf frontend/.next` **followed by a build** if
+the generated route types are stale; running the dev server leaves a second copy
+under `.next/dev/types` that conflicts with the built one.
+
+### Still open after this phase
+
+1. `/products` — the route was never built, and building one would mean
+   inventing a product line. The `sira_product` CPT is deployed and empty.
+2. Home refinements beyond the calculator were not taken.
+3. `REPORT.md` §9 still needs the provenance amendment recorded in Phase 3.
+4. The `/contact` form control sizes, above.
+5. Everything in the owner-deliverable list under Phase 3, which the `/about`
+   finding above sharpens rather than replaces.
+
+### No authorization is inherited
+
+Nothing in this phase authorizes a merge, a deployment, a DNS change, a CMS
+mutation, or deleting the Digital WordPress site. The draft pull request is a
+candidate for review, not an accepted result.
 
 ## New owner decision — Group staging first
 

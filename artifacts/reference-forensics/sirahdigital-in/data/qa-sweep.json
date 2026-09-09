@@ -1,0 +1,3800 @@
+{
+  "capturedAt": "2026-09-09T15:42:24.964Z",
+  "base": "http://digital.localhost:3000",
+  "transport": "tools/graphql-ssh-proxy.mjs (ADR-032)",
+  "partialRun": {
+    "routes": "/services/",
+    "locales": "ar",
+    "viewports": "390"
+  },
+  "routes": [
+    "/about/",
+    "/services/",
+    "/industries/",
+    "/industries/healthcare/",
+    "/contact/"
+  ],
+  "locales": [
+    "en",
+    "ar"
+  ],
+  "viewports": [
+    "390",
+    "768",
+    "1024",
+    "1280",
+    "1440",
+    "1920"
+  ],
+  "totals": {
+    "captures": 60,
+    "nonOkStatuses": 0,
+    "degraded": 0,
+    "withHorizontalOverflow": 0,
+    "withSmallControls": 12,
+    "wrongDirection": 0,
+    "reducedMotionStillAnimating": 0
+  },
+  "results": [
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "docHeight": 4588,
+      "screensTall": 5.44,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "Scale your business with Mohamed Riyaz",
+        "size": 40,
+        "lineHeight": 41
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "en",
+      "viewportName": "390",
+      "reference": {
+        "docHeight": 6706,
+        "screensTall": 7.9,
+        "deltaScreens": -2.46
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 768,
+        "h": 1024
+      },
+      "docHeight": 3729,
+      "screensTall": 3.64,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "Scale your business with Mohamed Riyaz",
+        "size": 46,
+        "lineHeight": 48
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "en",
+      "viewportName": "768",
+      "reference": {
+        "docHeight": 5618,
+        "screensTall": 5.5,
+        "deltaScreens": -1.86
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "docHeight": 3115,
+      "screensTall": 4.06,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "Scale your business with Mohamed Riyaz",
+        "size": 54,
+        "lineHeight": 56
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "en",
+      "viewportName": "1024",
+      "reference": {
+        "docHeight": 4507,
+        "screensTall": 5.9,
+        "deltaScreens": -1.84
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1280,
+        "h": 800
+      },
+      "docHeight": 3378,
+      "screensTall": 4.22,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "Scale your business with Mohamed Riyaz",
+        "size": 62,
+        "lineHeight": 64
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "en",
+      "viewportName": "1280",
+      "reference": {
+        "docHeight": 4553,
+        "screensTall": 5.7,
+        "deltaScreens": -1.48
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "docHeight": 3519,
+      "screensTall": 3.91,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "Scale your business with Mohamed Riyaz",
+        "size": 64,
+        "lineHeight": 66
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "en",
+      "viewportName": "1440",
+      "reference": {
+        "docHeight": 4730,
+        "screensTall": 5.3,
+        "deltaScreens": -1.39
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "docHeight": 3625,
+      "screensTall": 3.36,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "Scale your business with Mohamed Riyaz",
+        "size": 64,
+        "lineHeight": 66
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "en",
+      "viewportName": "1920",
+      "reference": {
+        "docHeight": 4889,
+        "screensTall": 4.5,
+        "deltaScreens": -1.14
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "docHeight": 7713,
+      "screensTall": 9.14,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Systems that think, automate and scale",
+        "size": 44,
+        "lineHeight": 42
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "en",
+      "viewportName": "390",
+      "reference": {
+        "docHeight": 8873,
+        "screensTall": 10.5,
+        "deltaScreens": -1.36
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 768,
+        "h": 1024
+      },
+      "docHeight": 7451,
+      "screensTall": 7.28,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Systems that think, automate and scale",
+        "size": 58,
+        "lineHeight": 55
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "en",
+      "viewportName": "768",
+      "reference": {
+        "docHeight": 8181,
+        "screensTall": 8,
+        "deltaScreens": -0.72
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "docHeight": 6811,
+      "screensTall": 8.87,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Systems that think, automate and scale",
+        "size": 70,
+        "lineHeight": 67
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "en",
+      "viewportName": "1024",
+      "reference": {
+        "docHeight": 8036,
+        "screensTall": 10.5,
+        "deltaScreens": -1.63
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1280,
+        "h": 800
+      },
+      "docHeight": 6789,
+      "screensTall": 8.49,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Systems that think, automate and scale",
+        "size": 80,
+        "lineHeight": 76
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "en",
+      "viewportName": "1280",
+      "reference": {
+        "docHeight": 7422,
+        "screensTall": 9.3,
+        "deltaScreens": -0.81
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "docHeight": 7064,
+      "screensTall": 7.85,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Systems that think, automate and scale",
+        "size": 80,
+        "lineHeight": 76
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "en",
+      "viewportName": "1440",
+      "reference": {
+        "docHeight": 7573,
+        "screensTall": 8.4,
+        "deltaScreens": -0.55
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "docHeight": 7424,
+      "screensTall": 6.87,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Systems that think, automate and scale",
+        "size": 80,
+        "lineHeight": 76
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "en",
+      "viewportName": "1920",
+      "reference": {
+        "docHeight": 7933,
+        "screensTall": 7.3,
+        "deltaScreens": -0.43
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "docHeight": 5294,
+      "screensTall": 6.27,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Automation, shaped around your industry.",
+        "size": 40,
+        "lineHeight": 39
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "en",
+      "viewportName": "390",
+      "reference": {
+        "docHeight": 5920,
+        "screensTall": 7,
+        "deltaScreens": -0.73
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 768,
+        "h": 1024
+      },
+      "docHeight": 3604,
+      "screensTall": 3.52,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Automation, shaped around your industry.",
+        "size": 45,
+        "lineHeight": 44
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "en",
+      "viewportName": "768",
+      "reference": {
+        "docHeight": 3773,
+        "screensTall": 3.7,
+        "deltaScreens": -0.18
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "docHeight": 2593,
+      "screensTall": 3.38,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Automation, shaped around your industry.",
+        "size": 54,
+        "lineHeight": 53
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "en",
+      "viewportName": "1024",
+      "reference": {
+        "docHeight": 2679,
+        "screensTall": 3.5,
+        "deltaScreens": -0.12
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1280,
+        "h": 800
+      },
+      "docHeight": 2521,
+      "screensTall": 3.15,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Automation, shaped around your industry.",
+        "size": 54,
+        "lineHeight": 53
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "en",
+      "viewportName": "1280",
+      "reference": {
+        "docHeight": 2516,
+        "screensTall": 3.1,
+        "deltaScreens": 0.05
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "docHeight": 2555,
+      "screensTall": 2.84,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Automation, shaped around your industry.",
+        "size": 54,
+        "lineHeight": 53
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "en",
+      "viewportName": "1440",
+      "reference": {
+        "docHeight": 2519,
+        "screensTall": 2.8,
+        "deltaScreens": 0.04
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "docHeight": 2694,
+      "screensTall": 2.49,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "Automation, shaped around your industry.",
+        "size": 54,
+        "lineHeight": 53
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "en",
+      "viewportName": "1920",
+      "reference": {
+        "docHeight": 2519,
+        "screensTall": 2.3,
+        "deltaScreens": 0.19
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "docHeight": 3085,
+      "screensTall": 3.66,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "Healthcare & Wellness",
+        "size": 36,
+        "lineHeight": 39
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "en",
+      "viewportName": "390",
+      "reference": {
+        "docHeight": 3828,
+        "screensTall": 4.5,
+        "deltaScreens": -0.84
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 768,
+        "h": 1024
+      },
+      "docHeight": 2567,
+      "screensTall": 2.51,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "Healthcare & Wellness",
+        "size": 47,
+        "lineHeight": 51
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "en",
+      "viewportName": "768",
+      "reference": {
+        "docHeight": 2816,
+        "screensTall": 2.8,
+        "deltaScreens": -0.29
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "docHeight": 2075,
+      "screensTall": 2.7,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "Healthcare & Wellness",
+        "size": 55,
+        "lineHeight": 59
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "en",
+      "viewportName": "1024",
+      "reference": {
+        "docHeight": 2264,
+        "screensTall": 2.9,
+        "deltaScreens": -0.2
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1280,
+        "h": 800
+      },
+      "docHeight": 2114,
+      "screensTall": 2.64,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "Healthcare & Wellness",
+        "size": 56,
+        "lineHeight": 60
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "en",
+      "viewportName": "1280",
+      "reference": {
+        "docHeight": 2249,
+        "screensTall": 2.8,
+        "deltaScreens": -0.16
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "docHeight": 2123,
+      "screensTall": 2.36,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "Healthcare & Wellness",
+        "size": 56,
+        "lineHeight": 60
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "en",
+      "viewportName": "1440",
+      "reference": {
+        "docHeight": 2249,
+        "screensTall": 2.5,
+        "deltaScreens": -0.14
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "docHeight": 2195,
+      "screensTall": 2.03,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "Healthcare & Wellness",
+        "size": 56,
+        "lineHeight": 60
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "en",
+      "viewportName": "1920",
+      "reference": {
+        "docHeight": 2249,
+        "screensTall": 2.1,
+        "deltaScreens": -0.07
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "docHeight": 4555,
+      "screensTall": 5.4,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "select#_R_4pbn5rmitpetb_-service.border-0.border-b.border-brand-on-deep/20",
+          "height": 34
+        }
+      ],
+      "smallControlCount": 3,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "Tell us where the time goes.",
+        "size": 40,
+        "lineHeight": 39
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "attempts": 1,
+      "degraded": false,
+      "status": 200,
+      "route": "/contact/",
+      "locale": "en",
+      "viewportName": "390",
+      "reference": {
+        "docHeight": 7011,
+        "screensTall": 8.3,
+        "deltaScreens": -2.9
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 768,
+        "h": 1024
+      },
+      "docHeight": 4274,
+      "screensTall": 4.17,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "select#_R_4pbn5rmitpetb_-service.border-0.border-b.border-brand-on-deep/20",
+          "height": 34
+        }
+      ],
+      "smallControlCount": 3,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "Tell us where the time goes.",
+        "size": 48,
+        "lineHeight": 47
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "en",
+      "viewportName": "768",
+      "reference": {
+        "docHeight": 6088,
+        "screensTall": 5.9,
+        "deltaScreens": -1.73
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "docHeight": 3117,
+      "screensTall": 4.06,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "select#_R_4pbn5rmitpetb_-service.border-0.border-b.border-brand-on-deep/20",
+          "height": 34
+        }
+      ],
+      "smallControlCount": 3,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "Tell us where the time goes.",
+        "size": 58,
+        "lineHeight": 56
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "en",
+      "viewportName": "1024",
+      "reference": {
+        "docHeight": 4648,
+        "screensTall": 6.1,
+        "deltaScreens": -2.04
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1280,
+        "h": 800
+      },
+      "docHeight": 3219,
+      "screensTall": 4.02,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "select#_R_4pbn5rmitpetb_-service.border-0.border-b.border-brand-on-deep/20",
+          "height": 34
+        }
+      ],
+      "smallControlCount": 3,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "Tell us where the time goes.",
+        "size": 60,
+        "lineHeight": 59
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "en",
+      "viewportName": "1280",
+      "reference": {
+        "docHeight": 4675,
+        "screensTall": 5.8,
+        "deltaScreens": -1.78
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "docHeight": 3259,
+      "screensTall": 3.62,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "select#_R_4pbn5rmitpetb_-service.border-0.border-b.border-brand-on-deep/20",
+          "height": 34
+        }
+      ],
+      "smallControlCount": 3,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "Tell us where the time goes.",
+        "size": 60,
+        "lineHeight": 59
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "en",
+      "viewportName": "1440",
+      "reference": {
+        "docHeight": 4679,
+        "screensTall": 5.2,
+        "deltaScreens": -1.58
+      }
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "docHeight": 3259,
+      "screensTall": 3.02,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "select#_R_4pbn5rmitpetb_-service.border-0.border-b.border-brand-on-deep/20",
+          "height": 34
+        }
+      ],
+      "smallControlCount": 3,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "Tell us where the time goes.",
+        "size": 60,
+        "lineHeight": 59
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "en",
+      "viewportName": "1920",
+      "reference": {
+        "docHeight": 4679,
+        "screensTall": 4.3,
+        "deltaScreens": -1.28
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "docHeight": 4577,
+      "screensTall": 5.42,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "طوّر أعمالك مع محمد رياض",
+        "size": 40,
+        "lineHeight": 51
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "ar",
+      "viewportName": "390",
+      "reference": {
+        "docHeight": 6706,
+        "screensTall": 7.9,
+        "deltaScreens": -2.48
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 768,
+        "h": 1024
+      },
+      "docHeight": 3729,
+      "screensTall": 3.64,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "طوّر أعمالك مع محمد رياض",
+        "size": 46,
+        "lineHeight": 59
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "ar",
+      "viewportName": "768",
+      "reference": {
+        "docHeight": 5618,
+        "screensTall": 5.5,
+        "deltaScreens": -1.86
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "docHeight": 3186,
+      "screensTall": 4.15,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "طوّر أعمالك مع محمد رياض",
+        "size": 54,
+        "lineHeight": 69
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "ar",
+      "viewportName": "1024",
+      "reference": {
+        "docHeight": 4507,
+        "screensTall": 5.9,
+        "deltaScreens": -1.75
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1280,
+        "h": 800
+      },
+      "docHeight": 3494,
+      "screensTall": 4.37,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "طوّر أعمالك مع محمد رياض",
+        "size": 62,
+        "lineHeight": 79
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "ar",
+      "viewportName": "1280",
+      "reference": {
+        "docHeight": 4553,
+        "screensTall": 5.7,
+        "deltaScreens": -1.33
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "docHeight": 3571,
+      "screensTall": 3.97,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "طوّر أعمالك مع محمد رياض",
+        "size": 64,
+        "lineHeight": 82
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "ar",
+      "viewportName": "1440",
+      "reference": {
+        "docHeight": 4730,
+        "screensTall": 5.3,
+        "deltaScreens": -1.33
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "docHeight": 3672,
+      "screensTall": 3.4,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 6,
+      "h1": {
+        "text": "طوّر أعمالك مع محمد رياض",
+        "size": 64,
+        "lineHeight": 82
+      },
+      "headingOrder": "H1 H2 H2 H2 H3 H3 H3 H2 H2 H2",
+      "status": 200,
+      "route": "/about/",
+      "locale": "ar",
+      "viewportName": "1920",
+      "reference": {
+        "docHeight": 4889,
+        "screensTall": 4.5,
+        "deltaScreens": -1.1
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "docHeight": 8010,
+      "screensTall": 9.49,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أنظمة تفكّر وتُؤتمت وتتوسّع",
+        "size": 44,
+        "lineHeight": 56
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "attempts": 1,
+      "degraded": false,
+      "status": 200,
+      "route": "/services/",
+      "locale": "ar",
+      "viewportName": "390",
+      "reference": {
+        "docHeight": 8873,
+        "screensTall": 10.5,
+        "deltaScreens": -1.01
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 768,
+        "h": 1024
+      },
+      "docHeight": 7639,
+      "screensTall": 7.46,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أنظمة تفكّر وتُؤتمت وتتوسّع",
+        "size": 58,
+        "lineHeight": 74
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "ar",
+      "viewportName": "768",
+      "reference": {
+        "docHeight": 8181,
+        "screensTall": 8,
+        "deltaScreens": -0.54
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "docHeight": 6844,
+      "screensTall": 8.91,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أنظمة تفكّر وتُؤتمت وتتوسّع",
+        "size": 70,
+        "lineHeight": 90
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "ar",
+      "viewportName": "1024",
+      "reference": {
+        "docHeight": 8036,
+        "screensTall": 10.5,
+        "deltaScreens": -1.59
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1280,
+        "h": 800
+      },
+      "docHeight": 7096,
+      "screensTall": 8.87,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أنظمة تفكّر وتُؤتمت وتتوسّع",
+        "size": 80,
+        "lineHeight": 102
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "ar",
+      "viewportName": "1280",
+      "reference": {
+        "docHeight": 7422,
+        "screensTall": 9.3,
+        "deltaScreens": -0.43
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "docHeight": 7305,
+      "screensTall": 8.12,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أنظمة تفكّر وتُؤتمت وتتوسّع",
+        "size": 80,
+        "lineHeight": 102
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "ar",
+      "viewportName": "1440",
+      "reference": {
+        "docHeight": 7573,
+        "screensTall": 8.4,
+        "deltaScreens": -0.28
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "docHeight": 7665,
+      "screensTall": 7.1,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 48,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أنظمة تفكّر وتُؤتمت وتتوسّع",
+        "size": 80,
+        "lineHeight": 102
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/services/",
+      "locale": "ar",
+      "viewportName": "1920",
+      "reference": {
+        "docHeight": 7933,
+        "screensTall": 7.3,
+        "deltaScreens": -0.2
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "docHeight": 5058,
+      "screensTall": 5.99,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أتمتة مصمّمة على مقاس قطاعك.",
+        "size": 40,
+        "lineHeight": 51
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "ar",
+      "viewportName": "390",
+      "reference": {
+        "docHeight": 5920,
+        "screensTall": 7,
+        "deltaScreens": -1.01
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 768,
+        "h": 1024
+      },
+      "docHeight": 3468,
+      "screensTall": 3.39,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أتمتة مصمّمة على مقاس قطاعك.",
+        "size": 45,
+        "lineHeight": 58
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "ar",
+      "viewportName": "768",
+      "reference": {
+        "docHeight": 3773,
+        "screensTall": 3.7,
+        "deltaScreens": -0.31
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "docHeight": 2537,
+      "screensTall": 3.3,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أتمتة مصمّمة على مقاس قطاعك.",
+        "size": 54,
+        "lineHeight": 69
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "ar",
+      "viewportName": "1024",
+      "reference": {
+        "docHeight": 2679,
+        "screensTall": 3.5,
+        "deltaScreens": -0.2
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1280,
+        "h": 800
+      },
+      "docHeight": 2602,
+      "screensTall": 3.25,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أتمتة مصمّمة على مقاس قطاعك.",
+        "size": 54,
+        "lineHeight": 69
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "ar",
+      "viewportName": "1280",
+      "reference": {
+        "docHeight": 2516,
+        "screensTall": 3.1,
+        "deltaScreens": 0.15
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "docHeight": 2581,
+      "screensTall": 2.87,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أتمتة مصمّمة على مقاس قطاعك.",
+        "size": 54,
+        "lineHeight": 69
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "ar",
+      "viewportName": "1440",
+      "reference": {
+        "docHeight": 2519,
+        "screensTall": 2.8,
+        "deltaScreens": 0.07
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "docHeight": 2668,
+      "screensTall": 2.47,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 30,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 3,
+      "h1": {
+        "text": "أتمتة مصمّمة على مقاس قطاعك.",
+        "size": 54,
+        "lineHeight": 69
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/",
+      "locale": "ar",
+      "viewportName": "1920",
+      "reference": {
+        "docHeight": 2519,
+        "screensTall": 2.3,
+        "deltaScreens": 0.17
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "docHeight": 3225,
+      "screensTall": 3.82,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "الرعاية الصحية والعافية",
+        "size": 36,
+        "lineHeight": 46
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "ar",
+      "viewportName": "390",
+      "reference": {
+        "docHeight": 3828,
+        "screensTall": 4.5,
+        "deltaScreens": -0.68
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 768,
+        "h": 1024
+      },
+      "docHeight": 2656,
+      "screensTall": 2.59,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "الرعاية الصحية والعافية",
+        "size": 47,
+        "lineHeight": 60
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "ar",
+      "viewportName": "768",
+      "reference": {
+        "docHeight": 2816,
+        "screensTall": 2.8,
+        "deltaScreens": -0.21
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "docHeight": 2179,
+      "screensTall": 2.84,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "الرعاية الصحية والعافية",
+        "size": 55,
+        "lineHeight": 70
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "ar",
+      "viewportName": "1024",
+      "reference": {
+        "docHeight": 2264,
+        "screensTall": 2.9,
+        "deltaScreens": -0.06
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1280,
+        "h": 800
+      },
+      "docHeight": 2203,
+      "screensTall": 2.75,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "الرعاية الصحية والعافية",
+        "size": 56,
+        "lineHeight": 72
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "ar",
+      "viewportName": "1280",
+      "reference": {
+        "docHeight": 2249,
+        "screensTall": 2.8,
+        "deltaScreens": -0.05
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "docHeight": 2229,
+      "screensTall": 2.48,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "الرعاية الصحية والعافية",
+        "size": 56,
+        "lineHeight": 72
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "ar",
+      "viewportName": "1440",
+      "reference": {
+        "docHeight": 2249,
+        "screensTall": 2.5,
+        "deltaScreens": -0.02
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "docHeight": 2301,
+      "screensTall": 2.13,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [],
+      "smallControlCount": 0,
+      "animatingCount": 20,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 1,
+      "h1": {
+        "text": "الرعاية الصحية والعافية",
+        "size": 56,
+        "lineHeight": 72
+      },
+      "headingOrder": "H1 H2 H2 H2 H2 H2",
+      "status": 200,
+      "route": "/industries/healthcare/",
+      "locale": "ar",
+      "viewportName": "1920",
+      "reference": {
+        "docHeight": 2249,
+        "screensTall": 2.1,
+        "deltaScreens": 0.03
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "docHeight": 4791,
+      "screensTall": 5.68,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        }
+      ],
+      "smallControlCount": 2,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "أخبرنا أين يضيع وقتكم.",
+        "size": 40,
+        "lineHeight": 51
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "ar",
+      "viewportName": "390",
+      "reference": {
+        "docHeight": 7011,
+        "screensTall": 8.3,
+        "deltaScreens": -2.62
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 768,
+        "h": 1024
+      },
+      "docHeight": 4460,
+      "screensTall": 4.36,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        }
+      ],
+      "smallControlCount": 2,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "أخبرنا أين يضيع وقتكم.",
+        "size": 48,
+        "lineHeight": 61
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "ar",
+      "viewportName": "768",
+      "reference": {
+        "docHeight": 6088,
+        "screensTall": 5.9,
+        "deltaScreens": -1.54
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "docHeight": 3242,
+      "screensTall": 4.22,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        }
+      ],
+      "smallControlCount": 2,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "أخبرنا أين يضيع وقتكم.",
+        "size": 58,
+        "lineHeight": 74
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "ar",
+      "viewportName": "1024",
+      "reference": {
+        "docHeight": 4648,
+        "screensTall": 6.1,
+        "deltaScreens": -1.88
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1280,
+        "h": 800
+      },
+      "docHeight": 3347,
+      "screensTall": 4.18,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        }
+      ],
+      "smallControlCount": 2,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "أخبرنا أين يضيع وقتكم.",
+        "size": 60,
+        "lineHeight": 77
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "ar",
+      "viewportName": "1280",
+      "reference": {
+        "docHeight": 4675,
+        "screensTall": 5.8,
+        "deltaScreens": -1.62
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "docHeight": 3387,
+      "screensTall": 3.76,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        }
+      ],
+      "smallControlCount": 2,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "أخبرنا أين يضيع وقتكم.",
+        "size": 60,
+        "lineHeight": 77
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "ar",
+      "viewportName": "1440",
+      "reference": {
+        "docHeight": 4679,
+        "screensTall": 5.2,
+        "deltaScreens": -1.44
+      }
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "brandKey": "digital",
+      "brandSource": "wordpress",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "docHeight": 3387,
+      "screensTall": 3.14,
+      "horizontalOverflow": 0,
+      "overflowOffenders": [],
+      "smallControls": [
+        {
+          "element": "input#_R_4pbn5rmitpetb_-name.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        },
+        {
+          "element": "input#_R_4pbn5rmitpetb_-email.border-0.border-b.border-brand-on-deep/20",
+          "height": 37
+        }
+      ],
+      "smallControlCount": 2,
+      "animatingCount": 29,
+      "animating": [
+        {
+          "element": "a.fixed.start-4.top-4",
+          "properties": "transform, translate, scale, rotate none"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        },
+        {
+          "element": "a.text-xs.font-semibold.uppercase",
+          "properties": "color, background-color, border-color, outline-color, text-d"
+        }
+      ],
+      "sections": 2,
+      "h1": {
+        "text": "أخبرنا أين يضيع وقتكم.",
+        "size": 60,
+        "lineHeight": 77
+      },
+      "headingOrder": "H1 H2 H3 H3 H4 H4 H4 H4 H3 H3 H2 H2",
+      "status": 200,
+      "route": "/contact/",
+      "locale": "ar",
+      "viewportName": "1920",
+      "reference": {
+        "docHeight": 4679,
+        "screensTall": 4.3,
+        "deltaScreens": -1.16
+      }
+    }
+  ],
+  "reducedMotion": [
+    {
+      "locale": "en",
+      "route": "/about/",
+      "animatingCount": 0,
+      "animating": [],
+      "horizontalOverflow": 0,
+      "docHeight": 3519
+    },
+    {
+      "locale": "en",
+      "route": "/services/",
+      "animatingCount": 0,
+      "animating": [],
+      "horizontalOverflow": 0,
+      "docHeight": 7064
+    },
+    {
+      "locale": "en",
+      "route": "/industries/",
+      "animatingCount": 0,
+      "animating": [],
+      "horizontalOverflow": 0,
+      "docHeight": 2555
+    },
+    {
+      "locale": "en",
+      "route": "/industries/healthcare/",
+      "animatingCount": 0,
+      "animating": [],
+      "horizontalOverflow": 0,
+      "docHeight": 2123
+    },
+    {
+      "locale": "en",
+      "route": "/contact/",
+      "viewportName": "reduce",
+      "animatingCount": 0,
+      "animating": [],
+      "horizontalOverflow": 0,
+      "docHeight": 3259
+    },
+    {
+      "locale": "ar",
+      "route": "/about/",
+      "animatingCount": 0,
+      "animating": [],
+      "horizontalOverflow": 0,
+      "docHeight": 3571
+    },
+    {
+      "locale": "ar",
+      "route": "/services/",
+      "viewportName": "reduce",
+      "animatingCount": 0,
+      "animating": [],
+      "horizontalOverflow": 0,
+      "docHeight": 7305
+    },
+    {
+      "locale": "ar",
+      "route": "/industries/",
+      "animatingCount": 0,
+      "animating": [],
+      "horizontalOverflow": 0,
+      "docHeight": 2581
+    },
+    {
+      "locale": "ar",
+      "route": "/industries/healthcare/",
+      "animatingCount": 0,
+      "animating": [],
+      "horizontalOverflow": 0,
+      "docHeight": 2229
+    },
+    {
+      "locale": "ar",
+      "route": "/contact/",
+      "animatingCount": 0,
+      "animating": [],
+      "horizontalOverflow": 0,
+      "docHeight": 3387
+    }
+  ]
+}

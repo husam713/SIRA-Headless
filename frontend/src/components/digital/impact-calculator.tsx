@@ -88,11 +88,6 @@ export function ImpactCalculator({ locale, bookHref }: ImpactCalculatorProps) {
     [industry, size, team, hoursPerWeek, hourlyCost, currentAutomation],
   );
 
-  const hours = useCallback(
-    (value: number) => formatHours(value, copy.hourUnit),
-    [copy.hourUnit],
-  );
-
   const payback = formatPaybackMonths(result.paybackMonths);
   const twelveMonthTotal = formatMoney(result.twelveMonthTotal);
   const print = usePrintReport(setGeneratedOn, intl);
@@ -185,7 +180,14 @@ export function ImpactCalculator({ locale, bookHref }: ImpactCalculatorProps) {
               </svg>
               {copy.advanced}
             </button>
-            <div id={`${id}-advanced`} hidden={!advancedOpen} className="mt-7 grid gap-7">
+            {/* `display` is switched with a utility rather than the `hidden`
+                attribute. Tailwind v4 puts utilities in a later cascade layer
+                than preflight, so `.grid` beats preflight's `[hidden]` rule and
+                the attribute alone would leave the panel on screen. */}
+            <div
+              id={`${id}-advanced`}
+              className={advancedOpen ? "mt-7 grid gap-7" : "hidden"}
+            >
               <Slider
                 id={`${id}-hourly`}
                 label={copy.hourlyCost}
@@ -242,23 +244,36 @@ export function ImpactCalculator({ locale, bookHref }: ImpactCalculatorProps) {
 
           <div className="mt-9">
             <p className="text-[clamp(1.6rem,1.2rem+1.4vw,2rem)] font-bold leading-none">
-              <Numeric>{hours(result.hoursSavedPerYear)}</Numeric>
+              {/* The NUMERAL is pinned LTR; the unit beside it is a word and
+                  flows in the paragraph direction. Inside the isolate, an
+                  Arabic reader meets "ساعة" before the number it belongs to. */}
+              <Numeric>{formatHours(result.hoursSavedPerYear, "")}</Numeric>
+              {copy.hourUnit}
             </p>
             <p className="mt-2 text-[13px] text-brand-ink-soft">{copy.hoursSaved}</p>
           </div>
 
           <dl className="mt-10 border-y border-brand-border">
-            <Row label={copy.roi} value={formatPercent(result.firstYearRoi)} />
-            <Row
-              label={copy.payback}
-              value={payback === null ? copy.paybackBeyond : `${payback} ${copy.monthUnit}`}
-            />
-            <Row label={copy.revenue} value={formatMoney(result.revenueOpportunity)} />
-            <Row
-              label={copy.leadResponse}
-              value={`${formatCount(result.leadResponseMultiple)}×`}
-              suffix={copy.leadResponseSuffix}
-            />
+            <Row label={copy.roi}>
+              <Numeric>{formatPercent(result.firstYearRoi)}</Numeric>
+            </Row>
+            <Row label={copy.payback}>
+              {payback === null ? (
+                // Past the ceiling this is a sentence, not a figure, so it is
+                // not pinned LTR.
+                copy.paybackBeyond
+              ) : (
+                <>
+                  <Numeric>{payback}</Numeric> {copy.monthUnit}
+                </>
+              )}
+            </Row>
+            <Row label={copy.revenue}>
+              <Numeric>{formatMoney(result.revenueOpportunity)}</Numeric>
+            </Row>
+            <Row label={copy.leadResponse} suffix={copy.leadResponseSuffix}>
+              <Numeric>{`${formatCount(result.leadResponseMultiple)}×`}</Numeric>
+            </Row>
           </dl>
 
           <section aria-labelledby={`${id}-coverage`} className="mt-11">
@@ -299,7 +314,8 @@ export function ImpactCalculator({ locale, bookHref }: ImpactCalculatorProps) {
                 <div className="flex items-baseline justify-between gap-4">
                   <dt className="text-[13px] text-brand-ink-soft">{copy.manualToday}</dt>
                   <dd className="shrink-0 text-[15px] font-semibold tabular-nums">
-                    <Numeric>{`${formatCount(result.manualHoursPerYear)}${copy.hourUnit}`}</Numeric>
+                    <Numeric>{formatCount(result.manualHoursPerYear)}</Numeric>
+                    {copy.hourUnit}
                   </dd>
                 </div>
                 <div
@@ -311,7 +327,8 @@ export function ImpactCalculator({ locale, bookHref }: ImpactCalculatorProps) {
                 <div className="flex items-baseline justify-between gap-4">
                   <dt className="text-[13px] text-brand-ink-soft">{copy.manualAfter}</dt>
                   <dd className="shrink-0 text-[15px] font-semibold tabular-nums text-brand-accent">
-                    <Numeric>{`${formatCount(result.manualHoursAfter)}${copy.hourUnit}`}</Numeric>
+                    <Numeric>{formatCount(result.manualHoursAfter)}</Numeric>
+                    {copy.hourUnit}
                   </dd>
                 </div>
                 <div aria-hidden="true" className="mt-2.5 h-[2px] rounded-sm bg-brand-ink/10">
@@ -373,7 +390,7 @@ export function ImpactCalculator({ locale, bookHref }: ImpactCalculatorProps) {
                 />
               ))}
             </ol>
-            <div className="mt-3 flex items-center justify-between text-[12px] text-brand-ink-faint">
+            <div className="digital-print-hide mt-3 flex items-center justify-between text-[12px] text-brand-ink-faint">
               <span>{copy.firstMonth}</span>
               <span>{copy.lastMonth}</span>
             </div>
@@ -507,22 +524,26 @@ function Numeric({ children }: { readonly children: ReactNode }) {
   );
 }
 
+/**
+ * One label/figure row.
+ *
+ * The value arrives as children rather than as a string, because only part of
+ * it belongs in an LTR isolate: the numeral does, the unit beside it does not.
+ */
 function Row({
   label,
-  value,
+  children,
   suffix,
 }: {
   readonly label: string;
-  readonly value: string;
+  readonly children: ReactNode;
   readonly suffix?: string;
 }) {
   return (
     <div className="flex items-baseline justify-between gap-4 border-b border-brand-border py-3.5 last:border-b-0">
       <dt className="text-[13px] text-brand-ink-soft">{label}</dt>
       <dd className="flex shrink-0 items-baseline gap-1.5">
-        <span className="text-[16px] font-semibold">
-          <Numeric>{value}</Numeric>
-        </span>
+        <span className="text-[16px] font-semibold">{children}</span>
         {suffix === undefined ? null : (
           <span className="text-[12px] text-brand-ink-faint">{suffix}</span>
         )}

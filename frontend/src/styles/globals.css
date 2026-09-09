@@ -2137,56 +2137,76 @@ html[dir="rtl"] [aria-expanded="true"] > .digital-disclosure__icon {
    dependency: every browser can already save a printed page as one, it works
    offline, it needs no server, and it prints correctly from a phone.
 
-   Isolation is done with visibility rather than by hiding the shell's own
-   elements, because the header and footer belong to five other companies too
-   and a print concern is not a reason to reach into shared components. The
-   class is added by the button and removed on `afterprint`, so a reader who
-   presses Ctrl+P themselves still gets the ordinary page. */
+   The class is added by the button and removed on `afterprint`, so a reader who
+   presses Ctrl+P themselves still gets the ordinary page. Nothing in the shared
+   shell is touched: the header and footer belong to five other companies too,
+   and a print concern is not a reason to reach into them.
+
+   `:has()` selects the page sections that are NOT the report. Where it is
+   unsupported the rule is dropped and the enquiry form prints along with the
+   report — longer than intended, but still a correct document. That is the
+   right way round for a progressive enhancement. */
 
 .digital-print-only {
   display: none;
 }
 
 @media print {
-  html.digital-printing,
+  /* Digital is the one tenant on a dark ground, and its identity tokens are
+     INLINE on <html>, which outranks any stylesheet rule. Paper is white, so
+     the dark palette would print an unreadable sheet and empty a cartridge
+     doing it. Repainted here, with !important, because an inline style is the
+     only thing these could otherwise lose to. The accent stays recognisably the
+     brand hue rather than becoming black — dark enough to read on white, still
+     gold. */
+  html.digital-printing {
+    --brand-paper: #ffffff !important;
+    --brand-deep: #ffffff !important;
+    --brand-deep-card: #ffffff !important;
+    --brand-footer: #ffffff !important;
+    --brand-tint: #f4f4f4 !important;
+    --brand-ink: #111111 !important;
+    --brand-ink-soft: #3f3f3f !important;
+    --brand-ink-faint: #666666 !important;
+    --brand-on-deep: #111111 !important;
+    --brand-border: #cfcfcf !important;
+    --brand-accent: #7a5c12 !important;
+    --brand-accent-bright: #7a5c12 !important;
+  }
+
   html.digital-printing body {
-    background: #fff;
-    color: #000;
+    background: #ffffff !important;
+    color: #111111 !important;
   }
 
-  /* Hide everything, then reveal the report's subtree. `visibility` rather than
-     `display` because only visibility inherits back down past the ancestors
-     that have to stay in the box tree to position it. */
-  html.digital-printing body {
-    visibility: hidden;
+  /* Everything that is not the report. `display` rather than `visibility`:
+     a hidden element still occupies its box, which left the first printed page
+     blank down to where the shell used to end. */
+  html.digital-printing header,
+  html.digital-printing footer,
+  html.digital-printing main > section:not(:has([data-automation-report])) {
+    display: none !important;
   }
 
-  html.digital-printing [data-automation-report],
-  html.digital-printing [data-automation-report] * {
-    visibility: visible;
-  }
-
-  html.digital-printing [data-automation-report] {
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline: 0;
-    display: block;
-    padding: 0;
-    color: #000;
-  }
-
+  /* The controls themselves are meaningless on paper — a slider cannot be
+     moved there. The inputs summary below restates their values instead. */
+  html.digital-printing [data-automation-report] form,
   html.digital-printing .digital-print-hide,
   html.digital-printing .digital-projection,
-  html.digital-printing .digital-slider {
-    display: none;
+  html.digital-printing .digital-meter {
+    display: none !important;
   }
 
-  /* On paper the sliders are gone, so the assumptions behind the figures have
-     to be restated or the report is unreadable a week later. */
+  /* Two columns become one flow once the input column is gone. */
+  html.digital-printing [data-automation-report],
+  html.digital-printing [data-automation-report] > div {
+    display: block !important;
+  }
+
   html.digital-printing .digital-print-only {
-    display: block;
+    display: block !important;
     margin-block-start: 1.5rem;
-    border-block-start: 1px solid #ccc;
+    border-block-start: 1px solid #cfcfcf;
     padding-block-start: 1rem;
     break-inside: avoid;
   }
@@ -2200,19 +2220,12 @@ html[dir="rtl"] [aria-expanded="true"] > .digital-disclosure__icon {
 
   html.digital-printing .digital-print-only dt {
     font-size: 10px;
-    color: #555;
+    color: #666666;
   }
 
   html.digital-printing .digital-print-only dd {
     margin: 0;
     font-weight: 600;
-  }
-
-  /* Meters and rules read as grey smears on paper; the figures beside them are
-     the report. */
-  html.digital-printing .digital-meter,
-  html.digital-printing .digital-bar {
-    display: none;
   }
 
   html.digital-printing [data-automation-report] section,

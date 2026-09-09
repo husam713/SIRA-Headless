@@ -1,0 +1,3615 @@
+{
+  "capturedAt": "2026-09-09T06:15:49.895Z",
+  "url": "https://sirahdigital.in/contact",
+  "note": "Observed behaviour of the reference calculator. `samples` is the fitting set; `holdout` was never used to fit anything and is the verification set.",
+  "contract": {
+    "industry": {
+      "kind": "select",
+      "options": [
+        "healthcare",
+        "real-estate",
+        "manufacturing",
+        "retail",
+        "education",
+        "finance",
+        "hospitality",
+        "construction",
+        "professional-services",
+        "automotive",
+        "logistics",
+        "technology"
+      ],
+      "value": "professional-services"
+    },
+    "size": {
+      "kind": "select",
+      "options": [
+        "startup",
+        "small",
+        "growing",
+        "enterprise"
+      ],
+      "value": "growing"
+    },
+    "team": {
+      "kind": "range",
+      "min": "5",
+      "max": "1000",
+      "step": "5",
+      "value": "40"
+    },
+    "hours": {
+      "kind": "range",
+      "min": "1",
+      "max": "60",
+      "step": "1",
+      "value": "14"
+    },
+    "hourly": {
+      "kind": "range",
+      "min": "10",
+      "max": "150",
+      "step": "1",
+      "value": "32"
+    },
+    "automation": {
+      "kind": "range",
+      "min": "0",
+      "max": "100",
+      "step": "1",
+      "value": "15"
+    }
+  },
+  "defaults": {
+    "industry": "professional-services",
+    "size": "growing",
+    "team": "40",
+    "hours": "14",
+    "hourly": "32",
+    "automation": "15"
+  },
+  "samples": [
+    {
+      "label": "baseline",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$204K",
+        "hoursSaved": "18.2Kh",
+        "roi": "509%",
+        "payback": "2.0 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.773215999999998,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$462K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $462K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=5",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 5,
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$25.5K",
+        "hoursSaved": "2.3Kh",
+        "roi": "62%",
+        "payback": "7.4 mo",
+        "revenue": "$32.2K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.773215999999998,
+        "manualToday": "3,680h",
+        "manualAfter": "1,401h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$57.7K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $57.7K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=10",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 10,
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$51.1K",
+        "hoursSaved": "4.6Kh",
+        "roi": "178%",
+        "payback": "4.3 mo",
+        "revenue": "$64.4K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.773215999999998,
+        "manualToday": "7,360h",
+        "manualAfter": "2,802h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$115K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $115K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=20",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 20,
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$102K",
+        "hoursSaved": "9.1Kh",
+        "roi": "336%",
+        "payback": "2.8 mo",
+        "revenue": "$129K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.773215999999998,
+        "manualToday": "14,720h",
+        "manualAfter": "5,603h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$231K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $231K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=40",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$204K",
+        "hoursSaved": "18.2Kh",
+        "roi": "509%",
+        "payback": "2.0 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.773215999999998,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$462K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $462K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=80",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 80,
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$408K",
+        "hoursSaved": "36.5Kh",
+        "roi": "659%",
+        "payback": "1.6 mo",
+        "revenue": "$515K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.773215999999998,
+        "manualToday": "58,880h",
+        "manualAfter": "22,414h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$924K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $924K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=160",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 160,
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$817K",
+        "hoursSaved": "72.9Kh",
+        "roi": "766%",
+        "payback": "1.4 mo",
+        "revenue": "$1.0M",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.773215999999998,
+        "manualToday": "117,760h",
+        "manualAfter": "44,828h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$1.8M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.8M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=320",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 320,
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$1.6M",
+        "hoursSaved": "146Kh",
+        "roi": "831%",
+        "payback": "1.3 mo",
+        "revenue": "$2.1M",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.773215999999998,
+        "manualToday": "235,520h",
+        "manualAfter": "89,655h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$3.7M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $3.7M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=640",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 640,
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$3.3M",
+        "hoursSaved": "292Kh",
+        "roi": "868%",
+        "payback": "1.2 mo",
+        "revenue": "$4.1M",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.773215999999998,
+        "manualToday": "471,040h",
+        "manualAfter": "179,311h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$7.4M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $7.4M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=1000",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 1000,
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$5.1M",
+        "hoursSaved": "456Kh",
+        "roi": "882%",
+        "payback": "1.2 mo",
+        "revenue": "$6.4M",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.773215999999998,
+        "manualToday": "736,000h",
+        "manualAfter": "280,173h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$12M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $12M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hours=1",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": 1,
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$38.3K",
+        "hoursSaved": "3.4Kh",
+        "roi": "290%",
+        "payback": "3.1 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+4.6%",
+        "productivityExact": 4.64498,
+        "manualToday": "5,520h",
+        "manualAfter": "2,101h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$296K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $296K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hours=2",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": 2,
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$51.1K",
+        "hoursSaved": "4.6Kh",
+        "roi": "307%",
+        "payback": "2.9 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+6.2%",
+        "productivityExact": 6.1933,
+        "manualToday": "7,360h",
+        "manualAfter": "2,802h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$309K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $309K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hours=5",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": 5,
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$89.3K",
+        "hoursSaved": "8.0Kh",
+        "roi": "357%",
+        "payback": "2.6 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+10.8%",
+        "productivityExact": 10.8383,
+        "manualToday": "12,878h",
+        "manualAfter": "4,902h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$347K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $347K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hours=10",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": 10,
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$153K",
+        "hoursSaved": "13.7Kh",
+        "roi": "442%",
+        "payback": "2.2 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+18.6%",
+        "productivityExact": 18.5799,
+        "manualToday": "22,080h",
+        "manualAfter": "8,405h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$411K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $411K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hours=14",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": 14,
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$204K",
+        "hoursSaved": "18.2Kh",
+        "roi": "509%",
+        "payback": "2.0 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.06696000000001,
+        "twelveMonth": "$462K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $462K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hours=20",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": 20,
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$281K",
+        "hoursSaved": "25.1Kh",
+        "roi": "610%",
+        "payback": "1.7 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+34.1%",
+        "productivityExact": 34.0632,
+        "manualToday": "40,480h",
+        "manualAfter": "15,410h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$538K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $538K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hours=30",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": 30,
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$408K",
+        "hoursSaved": "36.5Kh",
+        "roi": "778%",
+        "payback": "1.4 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+49.5%",
+        "productivityExact": 49.5464,
+        "manualToday": "58,880h",
+        "manualAfter": "22,414h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$666K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $666K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hours=45",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": 45,
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$600K",
+        "hoursSaved": "53.6Kh",
+        "roi": "1031%",
+        "payback": "1.1 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+72.8%",
+        "productivityExact": 72.7713,
+        "manualToday": "86,480h",
+        "manualAfter": "32,920h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$857K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $857K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hours=60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": 60,
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$791K",
+        "hoursSaved": "70.7Kh",
+        "roi": "1283%",
+        "payback": "0.9 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+96.0%",
+        "productivityExact": 95.9962,
+        "manualToday": "114,080h",
+        "manualAfter": "43,427h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$1.0M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.0M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=10",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": 10,
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$63.8K",
+        "hoursSaved": "18.2Kh",
+        "roi": "324%",
+        "payback": "2.8 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$321K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $321K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=28",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": 28,
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$179K",
+        "hoursSaved": "18.2Kh",
+        "roi": "475%",
+        "payback": "2.1 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$436K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $436K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=45",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": 45,
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$287K",
+        "hoursSaved": "18.2Kh",
+        "roi": "618%",
+        "payback": "1.7 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$545K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $545K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=63",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": 63,
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$402K",
+        "hoursSaved": "18.2Kh",
+        "roi": "770%",
+        "payback": "1.4 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$660K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $660K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=80",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": 80,
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$511K",
+        "hoursSaved": "18.2Kh",
+        "roi": "913%",
+        "payback": "1.2 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$768K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $768K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=98",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": 98,
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$625K",
+        "hoursSaved": "18.2Kh",
+        "roi": "1064%",
+        "payback": "1.0 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$883K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $883K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=115",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": 115,
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$734K",
+        "hoursSaved": "18.2Kh",
+        "roi": "1207%",
+        "payback": "0.9 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$991K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $991K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=133",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": 133,
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$849K",
+        "hoursSaved": "18.2Kh",
+        "roi": "1359%",
+        "payback": "0.8 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$1.1M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.1M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=150",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": 150,
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$957K",
+        "hoursSaved": "18.2Kh",
+        "roi": "1502%",
+        "payback": "0.7 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.64308399999999,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$1.2M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.2M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": 0
+      },
+      "output": {
+        "headline": "$240K",
+        "hoursSaved": "21.5Kh",
+        "roi": "616%",
+        "payback": "1.7 mo",
+        "revenue": "$303K",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 72.8624,
+        "productivityText": "+29.1%",
+        "productivityExact": 29.145,
+        "manualToday": "29,440h",
+        "manualAfter": "7,989h",
+        "manualRatioExact": 27.1376,
+        "twelveMonth": "$543K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $543K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=17",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": 17
+      },
+      "output": {
+        "headline": "$199K",
+        "hoursSaved": "17.8Kh",
+        "roi": "495%",
+        "payback": "2.0 mo",
+        "revenue": "$252K",
+        "leadResponse": "720×faster",
+        "coverageText": "67%",
+        "coverageExact": 67.1949,
+        "productivityText": "+24.2%",
+        "productivityExact": 24.1903,
+        "manualToday": "29,440h",
+        "manualAfter": "11,635h",
+        "manualRatioExact": 39.5242,
+        "twelveMonth": "$451K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $451K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=33",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": 33
+      },
+      "output": {
+        "headline": "$161K",
+        "hoursSaved": "14.4Kh",
+        "roi": "380%",
+        "payback": "2.5 mo",
+        "revenue": "$203K",
+        "leadResponse": "720×faster",
+        "coverageText": "66%",
+        "coverageExact": 65.7079,
+        "productivityText": "+19.5%",
+        "productivityExact": 19.5271,
+        "manualToday": "29,440h",
+        "manualAfter": "15,068h",
+        "manualRatioExact": 51.1822,
+        "twelveMonth": "$364K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $364K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=50",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": 50
+      },
+      "output": {
+        "headline": "$120K",
+        "hoursSaved": "10.7Kh",
+        "roi": "258%",
+        "payback": "3.4 mo",
+        "revenue": "$152K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 68.2156,
+        "productivityText": "+14.6%",
+        "productivityExact": 14.5725,
+        "manualToday": "29,440h",
+        "manualAfter": "18,713h",
+        "manualRatioExact": 63.5688,
+        "twelveMonth": "$272K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $272K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=67",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": 67
+      },
+      "output": {
+        "headline": "$79.3K",
+        "hoursSaved": "7.1Kh",
+        "roi": "136%",
+        "payback": "5.1 mo",
+        "revenue": "$100K",
+        "leadResponse": "720×faster",
+        "coverageText": "75%",
+        "coverageExact": 74.9347,
+        "productivityText": "+9.6%",
+        "productivityExact": 9.61784,
+        "manualToday": "29,440h",
+        "manualAfter": "22,361h",
+        "manualRatioExact": 75.9554,
+        "twelveMonth": "$179K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $179K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=83",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": 83
+      },
+      "output": {
+        "headline": "$40.9K",
+        "hoursSaved": "3.7Kh",
+        "roi": "22%",
+        "payback": "9.8 mo",
+        "revenue": "$51.6K",
+        "leadResponse": "720×faster",
+        "coverageText": "85%",
+        "coverageExact": 85.1057,
+        "productivityText": "+5.0%",
+        "productivityExact": 4.95464,
+        "manualToday": "29,440h",
+        "manualAfter": "25,789h",
+        "manualRatioExact": 87.6134,
+        "twelveMonth": "$92.4K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $92.4K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=100",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": 100
+      },
+      "output": {
+        "headline": "$89",
+        "hoursSaved": "8h",
+        "roi": "-100%",
+        "payback": "0.0 mo",
+        "revenue": "$112",
+        "leadResponse": "720×faster",
+        "coverageText": "99%",
+        "coverageExact": 99,
+        "productivityText": "+0.0%",
+        "productivityExact": 0,
+        "manualToday": "29,440h",
+        "manualAfter": "29,432h",
+        "manualRatioExact": 100,
+        "twelveMonth": "$0",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $0 by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "industry=healthcare",
+      "input": {
+        "industry": "healthcare",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$202K",
+        "hoursSaved": "18.1Kh",
+        "roi": "310%",
+        "payback": "2.9 mo",
+        "revenue": "$109K",
+        "leadResponse": "720×faster",
+        "coverageText": "67%",
+        "coverageExact": 67.1772,
+        "productivityText": "+24.5%",
+        "productivityExact": 24.554,
+        "manualToday": "29,440h",
+        "manualAfter": "11,371h",
+        "manualRatioExact": 38.615,
+        "twelveMonth": "$311K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $311K by month twelve.",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    },
+    {
+      "label": "industry=real-estate",
+      "input": {
+        "industry": "real-estate",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$195K",
+        "hoursSaved": "17.4Kh",
+        "roi": "359%",
+        "payback": "2.6 mo",
+        "revenue": "$153K",
+        "leadResponse": "720×faster",
+        "coverageText": "65%",
+        "coverageExact": 65.3137,
+        "productivityText": "+23.7%",
+        "productivityExact": 23.6771,
+        "manualToday": "29,440h",
+        "manualAfter": "12,014h",
+        "manualRatioExact": 40.8074,
+        "twelveMonth": "$348K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $348K by month twelve.",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "industry=manufacturing",
+      "input": {
+        "industry": "manufacturing",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$190K",
+        "hoursSaved": "16.9Kh",
+        "roi": "591%",
+        "payback": "1.7 mo",
+        "revenue": "$334K",
+        "leadResponse": "720×faster",
+        "coverageText": "64%",
+        "coverageExact": 63.9161,
+        "productivityText": "+23.0%",
+        "productivityExact": 23.0194,
+        "manualToday": "29,440h",
+        "manualAfter": "12,498h",
+        "manualRatioExact": 42.4516,
+        "twelveMonth": "$524K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $524K by month twelve.",
+        "recommended": "Production Dashboards · Predictive Maintenance · Supplier Workflow Automation · Purchase Order OCR"
+      }
+    },
+    {
+      "label": "industry=retail",
+      "input": {
+        "industry": "retail",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$199K",
+        "hoursSaved": "17.7Kh",
+        "roi": "196%",
+        "payback": "4.1 mo",
+        "revenue": "$25.8K",
+        "leadResponse": "720×faster",
+        "coverageText": "66%",
+        "coverageExact": 66.2455,
+        "productivityText": "+24.1%",
+        "productivityExact": 24.1155,
+        "manualToday": "29,440h",
+        "manualAfter": "11,691h",
+        "manualRatioExact": 39.7112,
+        "twelveMonth": "$225K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $225K by month twelve.",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "industry=education",
+      "input": {
+        "industry": "education",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$184K",
+        "hoursSaved": "16.5Kh",
+        "roi": "304%",
+        "payback": "3.0 mo",
+        "revenue": "$122K",
+        "leadResponse": "720×faster",
+        "coverageText": "63%",
+        "coverageExact": 62.5185,
+        "productivityText": "+22.4%",
+        "productivityExact": 22.3617,
+        "manualToday": "29,440h",
+        "manualAfter": "12,982h",
+        "manualRatioExact": 44.0958,
+        "twelveMonth": "$307K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $307K by month twelve.",
+        "recommended": "Admissions AI · Student Records OCR · Enrolment Workflow · Parent Communication Bot"
+      }
+    },
+    {
+      "label": "industry=finance",
+      "input": {
+        "industry": "finance",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$208K",
+        "hoursSaved": "18.6Kh",
+        "roi": "496%",
+        "payback": "2.0 mo",
+        "revenue": "$244K",
+        "leadResponse": "720×faster",
+        "coverageText": "69%",
+        "coverageExact": 68.5748,
+        "productivityText": "+25.2%",
+        "productivityExact": 25.2117,
+        "manualToday": "29,440h",
+        "manualAfter": "10,884h",
+        "manualRatioExact": 36.9708,
+        "twelveMonth": "$452K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $452K by month twelve.",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "industry=hospitality",
+      "input": {
+        "industry": "hospitality",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$192K",
+        "hoursSaved": "17.1Kh",
+        "roi": "212%",
+        "payback": "3.8 mo",
+        "revenue": "$45.0K",
+        "leadResponse": "720×faster",
+        "coverageText": "64%",
+        "coverageExact": 64.382,
+        "productivityText": "+23.2%",
+        "productivityExact": 23.2386,
+        "manualToday": "29,440h",
+        "manualAfter": "12,336h",
+        "manualRatioExact": 41.9035,
+        "twelveMonth": "$237K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $237K by month twelve.",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "industry=construction",
+      "input": {
+        "industry": "construction",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$170K",
+        "hoursSaved": "15.2Kh",
+        "roi": "523%",
+        "payback": "1.9 mo",
+        "revenue": "$303K",
+        "leadResponse": "720×faster",
+        "coverageText": "59%",
+        "coverageExact": 58.7916,
+        "productivityText": "+20.6%",
+        "productivityExact": 20.6078,
+        "manualToday": "29,440h",
+        "manualAfter": "14,273h",
+        "manualRatioExact": 48.4805,
+        "twelveMonth": "$473K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $473K by month twelve.",
+        "recommended": "Project Tracking · Material Ordering Automation · Blueprint Document AI · Subcontractor Workflow"
+      }
+    },
+    {
+      "label": "industry=professional-services",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$204K",
+        "hoursSaved": "18.2Kh",
+        "roi": "509%",
+        "payback": "2.0 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$462K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $462K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "industry=automotive",
+      "input": {
+        "industry": "automotive",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$181K",
+        "hoursSaved": "16.1Kh",
+        "roi": "322%",
+        "payback": "2.8 mo",
+        "revenue": "$140K",
+        "leadResponse": "720×faster",
+        "coverageText": "62%",
+        "coverageExact": 61.5868,
+        "productivityText": "+21.9%",
+        "productivityExact": 21.9232,
+        "manualToday": "29,440h",
+        "manualAfter": "13,304h",
+        "manualRatioExact": 45.192,
+        "twelveMonth": "$320K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $320K by month twelve.",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "industry=logistics",
+      "input": {
+        "industry": "logistics",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$197K",
+        "hoursSaved": "17.6Kh",
+        "roi": "369%",
+        "payback": "2.6 mo",
+        "revenue": "$159K",
+        "leadResponse": "720×faster",
+        "coverageText": "66%",
+        "coverageExact": 65.7796,
+        "productivityText": "+23.9%",
+        "productivityExact": 23.8963,
+        "manualToday": "29,440h",
+        "manualAfter": "11,852h",
+        "manualRatioExact": 40.2593,
+        "twelveMonth": "$356K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $356K by month twelve.",
+        "recommended": "Route Optimisation · Shipment Tracking AI · Delivery Notification Bot · Freight Document OCR"
+      }
+    },
+    {
+      "label": "industry=technology",
+      "input": {
+        "industry": "technology",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$201K",
+        "hoursSaved": "17.9Kh",
+        "roi": "497%",
+        "payback": "2.0 mo",
+        "revenue": "$252K",
+        "leadResponse": "720×faster",
+        "coverageText": "67%",
+        "coverageExact": 66.7113,
+        "productivityText": "+24.3%",
+        "productivityExact": 24.3348,
+        "manualToday": "29,440h",
+        "manualAfter": "11,530h",
+        "manualRatioExact": 39.1631,
+        "twelveMonth": "$453K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $453K by month twelve.",
+        "recommended": "Support Triage AI · API Integration Layer · Onboarding Automation · Usage Analytics"
+      }
+    },
+    {
+      "label": "size=startup",
+      "input": {
+        "industry": "professional-services",
+        "size": "startup",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$177K",
+        "hoursSaved": "15.8Kh",
+        "roi": "649%",
+        "payback": "1.6 mo",
+        "revenue": "$223K",
+        "leadResponse": "720×faster",
+        "coverageText": "61%",
+        "coverageExact": 60.5565,
+        "productivityText": "+21.4%",
+        "productivityExact": 21.4384,
+        "manualToday": "29,440h",
+        "manualAfter": "13,661h",
+        "manualRatioExact": 46.4041,
+        "twelveMonth": "$400K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $400K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "size=small",
+      "input": {
+        "industry": "professional-services",
+        "size": "small",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$189K",
+        "hoursSaved": "16.8Kh",
+        "roi": "601%",
+        "payback": "1.7 mo",
+        "revenue": "$238K",
+        "leadResponse": "720×faster",
+        "coverageText": "64%",
+        "coverageExact": 63.5936,
+        "productivityText": "+22.9%",
+        "productivityExact": 22.8676,
+        "manualToday": "29,440h",
+        "manualAfter": "12,609h",
+        "manualRatioExact": 42.831,
+        "twelveMonth": "$426K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $426K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "size=growing",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$204K",
+        "hoursSaved": "18.2Kh",
+        "roi": "509%",
+        "payback": "2.0 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,207h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$462K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $462K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "size=enterprise",
+      "input": {
+        "industry": "professional-services",
+        "size": "enterprise",
+        "team": "40",
+        "hours": "14",
+        "hourly": "32",
+        "automation": "15"
+      },
+      "output": {
+        "headline": "$216K",
+        "hoursSaved": "19.3Kh",
+        "roi": "361%",
+        "payback": "2.6 mo",
+        "revenue": "$272K",
+        "leadResponse": "720×faster",
+        "coverageText": "71%",
+        "coverageExact": 70.6802,
+        "productivityText": "+26.2%",
+        "productivityExact": 26.2024,
+        "manualToday": "29,440h",
+        "manualAfter": "10,155h",
+        "manualRatioExact": 34.4939,
+        "twelveMonth": "$488K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $488K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t20 h5 a0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 20,
+        "hours": 5,
+        "hourly": "32",
+        "automation": 0
+      },
+      "output": {
+        "headline": "$52.6K",
+        "hoursSaved": "4.7Kh",
+        "roi": "286%",
+        "payback": "3.1 mo",
+        "revenue": "$152K",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 72.8624,
+        "productivityText": "+12.8%",
+        "productivityExact": 12.7509,
+        "manualToday": "6,440h",
+        "manualAfter": "1,749h",
+        "manualRatioExact": 27.1376,
+        "twelveMonth": "$204K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $204K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t20 h5 a15",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 20,
+        "hours": 5,
+        "hourly": "32",
+        "automation": 15
+      },
+      "output": {
+        "headline": "$44.7K",
+        "hoursSaved": "4.0Kh",
+        "roi": "228%",
+        "payback": "3.7 mo",
+        "revenue": "$129K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+10.8%",
+        "productivityExact": 10.8383,
+        "manualToday": "6,440h",
+        "manualAfter": "2,451h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$173K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $173K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t20 h5 a60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 20,
+        "hours": 5,
+        "hourly": "32",
+        "automation": 60
+      },
+      "output": {
+        "headline": "$21.0K",
+        "hoursSaved": "1.9Kh",
+        "roi": "54%",
+        "payback": "7.8 mo",
+        "revenue": "$60.6K",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.658,
+        "productivityText": "+5.1%",
+        "productivityExact": 5.10037,
+        "manualToday": "6,440h",
+        "manualAfter": "4,563h",
+        "manualRatioExact": 70.855,
+        "twelveMonth": "$81.6K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $81.6K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t20 h14 a0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 20,
+        "hours": 14,
+        "hourly": "32",
+        "automation": 0
+      },
+      "output": {
+        "headline": "$120K",
+        "hoursSaved": "10.7Kh",
+        "roi": "413%",
+        "payback": "2.3 mo",
+        "revenue": "$151K",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 72.8624,
+        "productivityText": "+29.1%",
+        "productivityExact": 29.145,
+        "manualToday": "14,720h",
+        "manualAfter": "3,995h",
+        "manualRatioExact": 27.1376,
+        "twelveMonth": "$272K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $272K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t20 h14 a15",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 20,
+        "hours": 14,
+        "hourly": "32",
+        "automation": 15
+      },
+      "output": {
+        "headline": "$102K",
+        "hoursSaved": "9.1Kh",
+        "roi": "336%",
+        "payback": "2.8 mo",
+        "revenue": "$129K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "14,720h",
+        "manualAfter": "5,603h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$231K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $231K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t20 h14 a60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 20,
+        "hours": 14,
+        "hourly": "32",
+        "automation": 60
+      },
+      "output": {
+        "headline": "$48.1K",
+        "hoursSaved": "4.3Kh",
+        "roi": "105%",
+        "payback": "5.8 mo",
+        "revenue": "$60.6K",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.658,
+        "productivityText": "+11.7%",
+        "productivityExact": 11.658,
+        "manualToday": "14,720h",
+        "manualAfter": "10,428h",
+        "manualRatioExact": 70.855,
+        "twelveMonth": "$109K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $109K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t20 h40 a0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 20,
+        "hours": 40,
+        "hourly": "32",
+        "automation": 0
+      },
+      "output": {
+        "headline": "$315K",
+        "hoursSaved": "28.1Kh",
+        "roi": "782%",
+        "payback": "1.4 mo",
+        "revenue": "$151K",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 72.8624,
+        "productivityText": "+76.5%",
+        "productivityExact": 76.5055,
+        "manualToday": "38,640h",
+        "manualAfter": "10,486h",
+        "manualRatioExact": 27.1376,
+        "twelveMonth": "$467K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $467K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t20 h40 a15",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 20,
+        "hours": 40,
+        "hourly": "32",
+        "automation": 15
+      },
+      "output": {
+        "headline": "$268K",
+        "hoursSaved": "23.9Kh",
+        "roi": "650%",
+        "payback": "1.6 mo",
+        "revenue": "$129K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+65.0%",
+        "productivityExact": 65.0297,
+        "manualToday": "38,640h",
+        "manualAfter": "14,708h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$397K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $397K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t20 h40 a60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 20,
+        "hours": 40,
+        "hourly": "32",
+        "automation": 60
+      },
+      "output": {
+        "headline": "$126K",
+        "hoursSaved": "11.3Kh",
+        "roi": "253%",
+        "payback": "3.4 mo",
+        "revenue": "$60.6K",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.658,
+        "productivityText": "+30.6%",
+        "productivityExact": 30.6022,
+        "manualToday": "38,640h",
+        "manualAfter": "27,378h",
+        "manualRatioExact": 70.855,
+        "twelveMonth": "$187K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $187K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t40 h5 a0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hours": 5,
+        "hourly": "32",
+        "automation": 0
+      },
+      "output": {
+        "headline": "$105K",
+        "hoursSaved": "9.4Kh",
+        "roi": "438%",
+        "payback": "2.2 mo",
+        "revenue": "$303K",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 72.8624,
+        "productivityText": "+12.8%",
+        "productivityExact": 12.7509,
+        "manualToday": "12,880h",
+        "manualAfter": "3,499h",
+        "manualRatioExact": 27.1376,
+        "twelveMonth": "$408K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $408K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t40 h5 a15",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hours": 5,
+        "hourly": "32",
+        "automation": 15
+      },
+      "output": {
+        "headline": "$89.3K",
+        "hoursSaved": "8.0Kh",
+        "roi": "357%",
+        "payback": "2.6 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+10.8%",
+        "productivityExact": 10.8383,
+        "manualToday": "12,880h",
+        "manualAfter": "4,903h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$347K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $347K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t40 h5 a60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hours": 5,
+        "hourly": "32",
+        "automation": 60
+      },
+      "output": {
+        "headline": "$42.0K",
+        "hoursSaved": "3.8Kh",
+        "roi": "115%",
+        "payback": "5.6 mo",
+        "revenue": "$121K",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.658,
+        "productivityText": "+5.1%",
+        "productivityExact": 5.10037,
+        "manualToday": "12,880h",
+        "manualAfter": "9,126h",
+        "manualRatioExact": 70.855,
+        "twelveMonth": "$163K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $163K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t40 h14 a0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hours": 14,
+        "hourly": "32",
+        "automation": 0
+      },
+      "output": {
+        "headline": "$240K",
+        "hoursSaved": "21.4Kh",
+        "roi": "616%",
+        "payback": "1.7 mo",
+        "revenue": "$303K",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 72.8624,
+        "productivityText": "+29.1%",
+        "productivityExact": 29.145,
+        "manualToday": "29,440h",
+        "manualAfter": "7,990h",
+        "manualRatioExact": 27.1376,
+        "twelveMonth": "$543K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $543K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t40 h14 a15",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hours": 14,
+        "hourly": "32",
+        "automation": 15
+      },
+      "output": {
+        "headline": "$204K",
+        "hoursSaved": "18.2Kh",
+        "roi": "509%",
+        "payback": "2.0 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "29,440h",
+        "manualAfter": "11,206h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$462K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $462K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t40 h14 a60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hours": 14,
+        "hourly": "32",
+        "automation": 60
+      },
+      "output": {
+        "headline": "$96.2K",
+        "hoursSaved": "8.6Kh",
+        "roi": "187%",
+        "payback": "4.2 mo",
+        "revenue": "$121K",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.658,
+        "productivityText": "+11.7%",
+        "productivityExact": 11.658,
+        "manualToday": "29,440h",
+        "manualAfter": "20,852h",
+        "manualRatioExact": 70.855,
+        "twelveMonth": "$217K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $217K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t40 h40 a0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hours": 40,
+        "hourly": "32",
+        "automation": 0
+      },
+      "output": {
+        "headline": "$630K",
+        "hoursSaved": "56.3Kh",
+        "roi": "1131%",
+        "payback": "1.0 mo",
+        "revenue": "$303K",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 72.8624,
+        "productivityText": "+76.5%",
+        "productivityExact": 76.5055,
+        "manualToday": "77,280h",
+        "manualAfter": "20,972h",
+        "manualRatioExact": 27.1376,
+        "twelveMonth": "$934K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $934K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t40 h40 a15",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hours": 40,
+        "hourly": "32",
+        "automation": 15
+      },
+      "output": {
+        "headline": "$536K",
+        "hoursSaved": "47.9Kh",
+        "roi": "946%",
+        "payback": "1.1 mo",
+        "revenue": "$258K",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+65.0%",
+        "productivityExact": 65.0297,
+        "manualToday": "77,280h",
+        "manualAfter": "29,417h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$794K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $794K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t40 h40 a60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hours": 40,
+        "hourly": "32",
+        "automation": 60
+      },
+      "output": {
+        "headline": "$252K",
+        "hoursSaved": "22.5Kh",
+        "roi": "392%",
+        "payback": "2.4 mo",
+        "revenue": "$121K",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.658,
+        "productivityText": "+30.6%",
+        "productivityExact": 30.6022,
+        "manualToday": "77,280h",
+        "manualAfter": "54,755h",
+        "manualRatioExact": 70.855,
+        "twelveMonth": "$373K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $373K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t200 h5 a0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 200,
+        "hours": 5,
+        "hourly": "32",
+        "automation": 0
+      },
+      "output": {
+        "headline": "$525K",
+        "hoursSaved": "46.9Kh",
+        "roi": "687%",
+        "payback": "1.5 mo",
+        "revenue": "$1.5M",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 72.8624,
+        "productivityText": "+12.8%",
+        "productivityExact": 12.7509,
+        "manualToday": "64,400h",
+        "manualAfter": "17,492h",
+        "manualRatioExact": 27.1376,
+        "twelveMonth": "$2.0M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $2.0M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t200 h5 a15",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 200,
+        "hours": 5,
+        "hourly": "32",
+        "automation": 15
+      },
+      "output": {
+        "headline": "$447K",
+        "hoursSaved": "39.9Kh",
+        "roi": "569%",
+        "payback": "1.8 mo",
+        "revenue": "$1.3M",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+10.8%",
+        "productivityExact": 10.8383,
+        "manualToday": "64,400h",
+        "manualAfter": "24,515h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$1.7M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.7M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t200 h5 a60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 200,
+        "hours": 5,
+        "hourly": "32",
+        "automation": 60
+      },
+      "output": {
+        "headline": "$210K",
+        "hoursSaved": "18.8Kh",
+        "roi": "215%",
+        "payback": "3.8 mo",
+        "revenue": "$606K",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.658,
+        "productivityText": "+5.1%",
+        "productivityExact": 5.10037,
+        "manualToday": "64,400h",
+        "manualAfter": "45,622h",
+        "manualRatioExact": 70.855,
+        "twelveMonth": "$816K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $816K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t200 h14 a0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 200,
+        "hours": 14,
+        "hourly": "32",
+        "automation": 0
+      },
+      "output": {
+        "headline": "$1.2M",
+        "hoursSaved": "107Kh",
+        "roi": "948%",
+        "payback": "1.1 mo",
+        "revenue": "$1.5M",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 72.8624,
+        "productivityText": "+29.1%",
+        "productivityExact": 29.145,
+        "manualToday": "147,200h",
+        "manualAfter": "39,947h",
+        "manualRatioExact": 27.1376,
+        "twelveMonth": "$2.7M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $2.7M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t200 h14 a15",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 200,
+        "hours": 14,
+        "hourly": "32",
+        "automation": 15
+      },
+      "output": {
+        "headline": "$1.0M",
+        "hoursSaved": "91.2Kh",
+        "roi": "791%",
+        "payback": "1.3 mo",
+        "revenue": "$1.3M",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+24.8%",
+        "productivityExact": 24.7732,
+        "manualToday": "147,200h",
+        "manualAfter": "56,032h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$2.3M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $2.3M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t200 h14 a60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 200,
+        "hours": 14,
+        "hourly": "32",
+        "automation": 60
+      },
+      "output": {
+        "headline": "$481K",
+        "hoursSaved": "42.9Kh",
+        "roi": "319%",
+        "payback": "2.9 mo",
+        "revenue": "$606K",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.658,
+        "productivityText": "+11.7%",
+        "productivityExact": 11.658,
+        "manualToday": "147,200h",
+        "manualAfter": "104,290h",
+        "manualRatioExact": 70.855,
+        "twelveMonth": "$1.1M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.1M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t200 h40 a0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 200,
+        "hours": 40,
+        "hourly": "32",
+        "automation": 0
+      },
+      "output": {
+        "headline": "$3.2M",
+        "hoursSaved": "281Kh",
+        "roi": "1700%",
+        "payback": "0.7 mo",
+        "revenue": "$1.5M",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 72.8624,
+        "productivityText": "+76.5%",
+        "productivityExact": 76.5055,
+        "manualToday": "386,400h",
+        "manualAfter": "104,859h",
+        "manualRatioExact": 27.1376,
+        "twelveMonth": "$4.7M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $4.7M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t200 h40 a15",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 200,
+        "hours": 40,
+        "hourly": "32",
+        "automation": 15
+      },
+      "output": {
+        "headline": "$2.7M",
+        "hoursSaved": "239Kh",
+        "roi": "1431%",
+        "payback": "0.8 mo",
+        "revenue": "$1.3M",
+        "leadResponse": "720×faster",
+        "coverageText": "68%",
+        "coverageExact": 67.6431,
+        "productivityText": "+65.0%",
+        "productivityExact": 65.0297,
+        "manualToday": "386,400h",
+        "manualAfter": "147,033h",
+        "manualRatioExact": 38.067,
+        "twelveMonth": "$4.0M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $4.0M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid t200 h40 a60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 200,
+        "hours": 40,
+        "hourly": "32",
+        "automation": 60
+      },
+      "output": {
+        "headline": "$1.3M",
+        "hoursSaved": "113Kh",
+        "roi": "621%",
+        "payback": "1.7 mo",
+        "revenue": "$607K",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.658,
+        "productivityText": "+30.6%",
+        "productivityExact": 30.6022,
+        "manualToday": "386,400h",
+        "manualAfter": "273,683h",
+        "manualRatioExact": 70.855,
+        "twelveMonth": "$1.9M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.9M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    }
+  ],
+  "holdout": [
+    {
+      "label": "holdout-0",
+      "input": {
+        "industry": "construction",
+        "size": "small",
+        "team": 60,
+        "hours": 47,
+        "hourly": 148,
+        "automation": 72
+      },
+      "output": {
+        "headline": "$1.1M",
+        "hoursSaved": "21.3Kh",
+        "roi": "1375%",
+        "payback": "0.8 mo",
+        "revenue": "$139K",
+        "leadResponse": "720×faster",
+        "coverageText": "76%",
+        "coverageExact": 76.3864,
+        "productivityText": "+19.2%",
+        "productivityExact": 19.1904,
+        "manualToday": "135,240h",
+        "manualAfter": "114,067h",
+        "manualRatioExact": 84.3343,
+        "twelveMonth": "$1.2M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.2M by month twelve.",
+        "recommended": "Project Tracking · Material Ordering Automation · Blueprint Document AI · Subcontractor Workflow"
+      }
+    },
+    {
+      "label": "holdout-1",
+      "input": {
+        "industry": "real-estate",
+        "size": "enterprise",
+        "team": 110,
+        "hours": 48,
+        "hourly": 35,
+        "automation": 83
+      },
+      "output": {
+        "headline": "$389K",
+        "hoursSaved": "31.8Kh",
+        "roi": "157%",
+        "payback": "4.7 mo",
+        "revenue": "$89.3K",
+        "leadResponse": "720×faster",
+        "coverageText": "85%",
+        "coverageExact": 85.1287,
+        "productivityText": "+15.7%",
+        "productivityExact": 15.6519,
+        "manualToday": "253,000h",
+        "manualAfter": "221,290h",
+        "manualRatioExact": 87.4785,
+        "twelveMonth": "$477K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $477K by month twelve.",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "holdout-2",
+      "input": {
+        "industry": "hospitality",
+        "size": "enterprise",
+        "team": 560,
+        "hours": 43,
+        "hourly": 138,
+        "automation": 23
+      },
+      "output": {
+        "headline": "$31M",
+        "hoursSaved": "645Kh",
+        "roi": "4426%",
+        "payback": "0.3 mo",
+        "revenue": "$604K",
+        "leadResponse": "720×faster",
+        "coverageText": "66%",
+        "coverageExact": 65.8619,
+        "productivityText": "+62.6%",
+        "productivityExact": 62.6229,
+        "manualToday": "1,159,200h",
+        "manualAfter": "513,785h",
+        "manualRatioExact": 44.3352,
+        "twelveMonth": "$32M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $32M by month twelve.",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "holdout-3",
+      "input": {
+        "industry": "retail",
+        "size": "startup",
+        "team": 120,
+        "hours": 30,
+        "hourly": 48,
+        "automation": 35
+      },
+      "output": {
+        "headline": "$1.2M",
+        "hoursSaved": "70.7Kh",
+        "roi": "753%",
+        "payback": "1.4 mo",
+        "revenue": "$53.0K",
+        "leadResponse": "720×faster",
+        "coverageText": "61%",
+        "coverageExact": 60.9331,
+        "productivityText": "+32.0%",
+        "productivityExact": 31.9176,
+        "manualToday": "176,640h",
+        "manualAfter": "106,222h",
+        "manualRatioExact": 60.103,
+        "twelveMonth": "$1.2M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.2M by month twelve.",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "holdout-4",
+      "input": {
+        "industry": "retail",
+        "size": "startup",
+        "team": 795,
+        "hours": 2,
+        "hourly": 118,
+        "automation": 29
+      },
+      "output": {
+        "headline": "$2.6M",
+        "hoursSaved": "63.8Kh",
+        "roi": "227%",
+        "payback": "3.7 mo",
+        "revenue": "$371K",
+        "leadResponse": "720×faster",
+        "coverageText": "60%",
+        "coverageExact": 59.9417,
+        "productivityText": "+4.4%",
+        "productivityExact": 4.35798,
+        "manualToday": "146,280h",
+        "manualAfter": "82,550h",
+        "manualRatioExact": 56.4202,
+        "twelveMonth": "$3.0M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $3.0M by month twelve.",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "holdout-5",
+      "input": {
+        "industry": "manufacturing",
+        "size": "startup",
+        "team": 160,
+        "hours": 29,
+        "hourly": 147,
+        "automation": 16
+      },
+      "output": {
+        "headline": "$5.8M",
+        "hoursSaved": "112Kh",
+        "roi": "3525%",
+        "payback": "0.3 mo",
+        "revenue": "$1.1M",
+        "leadResponse": "720×faster",
+        "coverageText": "57%",
+        "coverageExact": 57.3411,
+        "productivityText": "+38.1%",
+        "productivityExact": 38.1421,
+        "manualToday": "228,127h",
+        "manualAfter": "115,866h",
+        "manualRatioExact": 50.7844,
+        "twelveMonth": "$6.9M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $6.9M by month twelve.",
+        "recommended": "Production Dashboards · Predictive Maintenance · Supplier Workflow Automation · Purchase Order OCR"
+      }
+    },
+    {
+      "label": "holdout-6",
+      "input": {
+        "industry": "technology",
+        "size": "startup",
+        "team": 600,
+        "hours": 58,
+        "hourly": 27,
+        "automation": 66
+      },
+      "output": {
+        "headline": "$3.3M",
+        "hoursSaved": "349Kh",
+        "roi": "563%",
+        "payback": "1.8 mo",
+        "revenue": "$1.3M",
+        "leadResponse": "720×faster",
+        "coverageText": "73%",
+        "coverageExact": 73.16,
+        "productivityText": "+31.6%",
+        "productivityExact": 31.5884,
+        "manualToday": "1,656,000h",
+        "manualAfter": "1,307,058h",
+        "manualRatioExact": 78.9411,
+        "twelveMonth": "$4.6M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $4.6M by month twelve.",
+        "recommended": "Support Triage AI · API Integration Layer · Onboarding Automation · Usage Analytics"
+      }
+    },
+    {
+      "label": "holdout-7",
+      "input": {
+        "industry": "logistics",
+        "size": "growing",
+        "team": 500,
+        "hours": 58,
+        "hourly": 49,
+        "automation": 76
+      },
+      "output": {
+        "headline": "$4.0M",
+        "hoursSaved": "233Kh",
+        "roi": "655%",
+        "payback": "1.6 mo",
+        "revenue": "$561K",
+        "leadResponse": "720×faster",
+        "coverageText": "80%",
+        "coverageExact": 80.0483,
+        "productivityText": "+25.3%",
+        "productivityExact": 25.302,
+        "manualToday": "1,380,000h",
+        "manualAfter": "1,147,249h",
+        "manualRatioExact": 83.132,
+        "twelveMonth": "$4.6M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $4.6M by month twelve.",
+        "recommended": "Route Optimisation · Shipment Tracking AI · Delivery Notification Bot · Freight Document OCR"
+      }
+    },
+    {
+      "label": "holdout-8",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 940,
+        "hours": 1,
+        "hourly": 56,
+        "automation": 60
+      },
+      "output": {
+        "headline": "$742K",
+        "hoursSaved": "37.9Kh",
+        "roi": "224%",
+        "payback": "3.7 mo",
+        "revenue": "$2.8M",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.658,
+        "productivityText": "+2.2%",
+        "productivityExact": 2.18587,
+        "manualToday": "129,720h",
+        "manualAfter": "92,345h",
+        "manualRatioExact": 70.855,
+        "twelveMonth": "$3.6M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $3.6M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "holdout-9",
+      "input": {
+        "industry": "finance",
+        "size": "growing",
+        "team": 210,
+        "hours": 25,
+        "hourly": 117,
+        "automation": 91
+      },
+      "output": {
+        "headline": "$714K",
+        "hoursSaved": "17.5Kh",
+        "roi": "214%",
+        "payback": "3.8 mo",
+        "revenue": "$136K",
+        "leadResponse": "720×faster",
+        "coverageText": "92%",
+        "coverageExact": 91.6006,
+        "productivityText": "+4.5%",
+        "productivityExact": 4.50473,
+        "manualToday": "260,820h",
+        "manualAfter": "243,783h",
+        "manualRatioExact": 93.3263,
+        "twelveMonth": "$848K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $848K by month twelve.",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "holdout-10",
+      "input": {
+        "industry": "professional-services",
+        "size": "small",
+        "team": 880,
+        "hours": 38,
+        "hourly": 150,
+        "automation": 17
+      },
+      "output": {
+        "headline": "$47M",
+        "hoursSaved": "904Kh",
+        "roi": "5034%",
+        "payback": "0.2 mo",
+        "revenue": "$5.1M",
+        "leadResponse": "720×faster",
+        "coverageText": "63%",
+        "coverageExact": 63.3338,
+        "productivityText": "+55.8%",
+        "productivityExact": 55.8238,
+        "manualToday": "1,619,200h",
+        "manualAfter": "715,109h",
+        "manualRatioExact": 44.1762,
+        "twelveMonth": "$53M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $53M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "holdout-11",
+      "input": {
+        "industry": "hospitality",
+        "size": "growing",
+        "team": 660,
+        "hours": 42,
+        "hourly": 77,
+        "automation": 62
+      },
+      "output": {
+        "headline": "$9.3M",
+        "hoursSaved": "347Kh",
+        "roi": "1131%",
+        "payback": "1.0 mo",
+        "revenue": "$332K",
+        "leadResponse": "720×faster",
+        "coverageText": "72%",
+        "coverageExact": 71.8696,
+        "productivityText": "+28.6%",
+        "productivityExact": 28.5698,
+        "manualToday": "1,335,840h",
+        "manualAfter": "988,761h",
+        "manualRatioExact": 74.0275,
+        "twelveMonth": "$9.7M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $9.7M by month twelve.",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "holdout-12",
+      "input": {
+        "industry": "professional-services",
+        "size": "enterprise",
+        "team": 225,
+        "hours": 12,
+        "hourly": 84,
+        "automation": 51
+      },
+      "output": {
+        "headline": "$1.6M",
+        "hoursSaved": "54.7Kh",
+        "roi": "684%",
+        "payback": "1.5 mo",
+        "revenue": "$883K",
+        "leadResponse": "720×faster",
+        "coverageText": "70%",
+        "coverageExact": 69.5035,
+        "productivityText": "+13.2%",
+        "productivityExact": 13.2168,
+        "manualToday": "144,900h",
+        "manualAfter": "90,228h",
+        "manualRatioExact": 62.2377,
+        "twelveMonth": "$2.5M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $2.5M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "holdout-13",
+      "input": {
+        "industry": "professional-services",
+        "size": "enterprise",
+        "team": 685,
+        "hours": 56,
+        "hourly": 136,
+        "automation": 49
+      },
+      "output": {
+        "headline": "$34M",
+        "hoursSaved": "718Kh",
+        "roi": "4275%",
+        "payback": "0.3 mo",
+        "revenue": "$2.8M",
+        "leadResponse": "720×faster",
+        "coverageText": "69%",
+        "coverageExact": 69.0449,
+        "productivityText": "+57.0%",
+        "productivityExact": 56.9903,
+        "manualToday": "1,827,580h",
+        "manualAfter": "1,109,178h",
+        "manualRatioExact": 60.6963,
+        "twelveMonth": "$37M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $37M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "holdout-14",
+      "input": {
+        "industry": "construction",
+        "size": "enterprise",
+        "team": 240,
+        "hours": 2,
+        "hourly": 124,
+        "automation": 57
+      },
+      "output": {
+        "headline": "$529K",
+        "hoursSaved": "12.2Kh",
+        "roi": "348%",
+        "payback": "2.7 mo",
+        "revenue": "$972K",
+        "leadResponse": "720×faster",
+        "coverageText": "69%",
+        "coverageExact": 68.8536,
+        "productivityText": "+2.8%",
+        "productivityExact": 2.75664,
+        "manualToday": "44,160h",
+        "manualAfter": "32,035h",
+        "manualRatioExact": 72.4336,
+        "twelveMonth": "$1.5M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.5M by month twelve.",
+        "recommended": "Project Tracking · Material Ordering Automation · Blueprint Document AI · Subcontractor Workflow"
+      }
+    },
+    {
+      "label": "holdout-15",
+      "input": {
+        "industry": "professional-services",
+        "size": "small",
+        "team": 720,
+        "hours": 33,
+        "hourly": 72,
+        "automation": 98
+      },
+      "output": {
+        "headline": "$397K",
+        "hoursSaved": "15.7Kh",
+        "roi": "-41%",
+        "payback": "20.4 mo",
+        "revenue": "$101K",
+        "leadResponse": "720×faster",
+        "coverageText": "98%",
+        "coverageExact": 98.0269,
+        "productivityText": "+1.2%",
+        "productivityExact": 1.17701,
+        "manualToday": "1,159,200h",
+        "manualAfter": "1,143,544h",
+        "manualRatioExact": 98.6548,
+        "twelveMonth": "$494K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $494K by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "holdout-16",
+      "input": {
+        "industry": "automotive",
+        "size": "enterprise",
+        "team": 770,
+        "hours": 32,
+        "hourly": 147,
+        "automation": 72
+      },
+      "output": {
+        "headline": "$12M",
+        "hoursSaved": "230Kh",
+        "roi": "1255%",
+        "payback": "0.9 mo",
+        "revenue": "$936K",
+        "leadResponse": "720×faster",
+        "coverageText": "77%",
+        "coverageExact": 77.3469,
+        "productivityText": "+16.2%",
+        "productivityExact": 16.2316,
+        "manualToday": "1,204,280h",
+        "manualAfter": "974,313h",
+        "manualRatioExact": 80.904,
+        "twelveMonth": "$13M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $13M by month twelve.",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "holdout-17",
+      "input": {
+        "industry": "automotive",
+        "size": "growing",
+        "team": 960,
+        "hours": 44,
+        "hourly": 22,
+        "automation": 11
+      },
+      "output": {
+        "headline": "$9.0M",
+        "hoursSaved": "1.2Mh",
+        "roi": "1005%",
+        "payback": "1.1 mo",
+        "revenue": "$3.5M",
+        "leadResponse": "720×faster",
+        "coverageText": "62%",
+        "coverageExact": 62.0746,
+        "productivityText": "+66.0%",
+        "productivityExact": 65.9953,
+        "manualToday": "2,031,360h",
+        "manualAfter": "865,717h",
+        "manualRatioExact": 42.6128,
+        "twelveMonth": "$12M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $12M by month twelve.",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "holdout-18",
+      "input": {
+        "industry": "healthcare",
+        "size": "small",
+        "team": 605,
+        "hours": 46,
+        "hourly": 116,
+        "automation": 49
+      },
+      "output": {
+        "headline": "$18M",
+        "hoursSaved": "454Kh",
+        "roi": "2632%",
+        "payback": "0.4 mo",
+        "revenue": "$912K",
+        "leadResponse": "720×faster",
+        "coverageText": "66%",
+        "coverageExact": 66.3389,
+        "productivityText": "+40.8%",
+        "productivityExact": 40.7974,
+        "manualToday": "1,335,840h",
+        "manualAfter": "881,689h",
+        "manualRatioExact": 66.0022,
+        "twelveMonth": "$19M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $19M by month twelve.",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    },
+    {
+      "label": "holdout-19",
+      "input": {
+        "industry": "healthcare",
+        "size": "enterprise",
+        "team": 455,
+        "hours": 47,
+        "hourly": 54,
+        "automation": 39
+      },
+      "output": {
+        "headline": "$9.0M",
+        "hoursSaved": "478Kh",
+        "roi": "1615%",
+        "payback": "0.7 mo",
+        "revenue": "$940K",
+        "leadResponse": "720×faster",
+        "coverageText": "67%",
+        "coverageExact": 67.4225,
+        "productivityText": "+57.1%",
+        "productivityExact": 57.0779,
+        "manualToday": "1,025,570h",
+        "manualAfter": "547,849h",
+        "manualRatioExact": 53.4058,
+        "twelveMonth": "$10.0M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $10.0M by month twelve.",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    },
+    {
+      "label": "holdout-20",
+      "input": {
+        "industry": "technology",
+        "size": "startup",
+        "team": 630,
+        "hours": 17,
+        "hourly": 141,
+        "automation": 27
+      },
+      "output": {
+        "headline": "$12M",
+        "hoursSaved": "249Kh",
+        "roi": "1989%",
+        "payback": "0.6 mo",
+        "revenue": "$3.0M",
+        "leadResponse": "720×faster",
+        "coverageText": "60%",
+        "coverageExact": 60.0068,
+        "productivityText": "+21.5%",
+        "productivityExact": 21.477,
+        "manualToday": "550,623h",
+        "manualAfter": "301,758h",
+        "manualRatioExact": 54.7853,
+        "twelveMonth": "$15M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $15M by month twelve.",
+        "recommended": "Support Triage AI · API Integration Layer · Onboarding Automation · Usage Analytics"
+      }
+    },
+    {
+      "label": "holdout-21",
+      "input": {
+        "industry": "automotive",
+        "size": "growing",
+        "team": 905,
+        "hours": 53,
+        "hourly": 83,
+        "automation": 50
+      },
+      "output": {
+        "headline": "$21M",
+        "hoursSaved": "738Kh",
+        "roi": "2084%",
+        "payback": "0.5 mo",
+        "revenue": "$1.9M",
+        "leadResponse": "720×faster",
+        "coverageText": "66%",
+        "coverageExact": 66.12,
+        "productivityText": "+44.3%",
+        "productivityExact": 44.33,
+        "manualToday": "2,289,650h",
+        "manualAfter": "1,551,194h",
+        "manualRatioExact": 67.76,
+        "twelveMonth": "$23M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $23M by month twelve.",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "holdout-22",
+      "input": {
+        "industry": "professional-services",
+        "size": "enterprise",
+        "team": 985,
+        "hours": 41,
+        "hourly": 68,
+        "automation": 6
+      },
+      "output": {
+        "headline": "$34M",
+        "hoursSaved": "1.4Mh",
+        "roi": "3350%",
+        "payback": "0.3 mo",
+        "revenue": "$7.4M",
+        "leadResponse": "720×faster",
+        "coverageText": "74%",
+        "coverageExact": 74.0955,
+        "productivityText": "+77.9%",
+        "productivityExact": 77.8752,
+        "manualToday": "1,948,330h",
+        "manualAfter": "536,937h",
+        "manualRatioExact": 27.558,
+        "twelveMonth": "$41M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $41M by month twelve.",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "holdout-23",
+      "input": {
+        "industry": "manufacturing",
+        "size": "small",
+        "team": 135,
+        "hours": 35,
+        "hourly": 105,
+        "automation": 77
+      },
+      "output": {
+        "headline": "$1.2M",
+        "hoursSaved": "33.3Kh",
+        "roi": "782%",
+        "payback": "1.4 mo",
+        "revenue": "$283K",
+        "leadResponse": "720×faster",
+        "coverageText": "80%",
+        "coverageExact": 80.306,
+        "productivityText": "+13.3%",
+        "productivityExact": 13.296,
+        "manualToday": "229,770h",
+        "manualAfter": "196,801h",
+        "manualRatioExact": 85.6259,
+        "twelveMonth": "$1.5M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.5M by month twelve.",
+        "recommended": "Production Dashboards · Predictive Maintenance · Supplier Workflow Automation · Purchase Order OCR"
+      }
+    },
+    {
+      "label": "holdout-24",
+      "input": {
+        "industry": "finance",
+        "size": "small",
+        "team": 395,
+        "hours": 32,
+        "hourly": 63,
+        "automation": 72
+      },
+      "output": {
+        "headline": "$2.6M",
+        "hoursSaved": "118Kh",
+        "roi": "615%",
+        "payback": "1.7 mo",
+        "revenue": "$732K",
+        "leadResponse": "720×faster",
+        "coverageText": "77%",
+        "coverageExact": 77.3663,
+        "productivityText": "+16.3%",
+        "productivityExact": 16.2906,
+        "manualToday": "617,780h",
+        "manualAfter": "499,140h",
+        "manualRatioExact": 80.8346,
+        "twelveMonth": "$3.3M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $3.3M by month twelve.",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "holdout-25",
+      "input": {
+        "industry": "automotive",
+        "size": "startup",
+        "team": 695,
+        "hours": 29,
+        "hourly": 108,
+        "automation": 39
+      },
+      "output": {
+        "headline": "$13M",
+        "hoursSaved": "337Kh",
+        "roi": "1673%",
+        "payback": "0.7 mo",
+        "revenue": "$1.5M",
+        "leadResponse": "720×faster",
+        "coverageText": "60%",
+        "coverageExact": 59.7632,
+        "productivityText": "+26.4%",
+        "productivityExact": 26.3794,
+        "manualToday": "991,070h",
+        "manualAfter": "653,706h",
+        "manualRatioExact": 65.962,
+        "twelveMonth": "$14M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $14M by month twelve.",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "holdout-26",
+      "input": {
+        "industry": "manufacturing",
+        "size": "enterprise",
+        "team": 660,
+        "hours": 12,
+        "hourly": 79,
+        "automation": 95
+      },
+      "output": {
+        "headline": "$426K",
+        "hoursSaved": "15.3Kh",
+        "roi": "-6%",
+        "payback": "12.8 mo",
+        "revenue": "$343K",
+        "leadResponse": "720×faster",
+        "coverageText": "95%",
+        "coverageExact": 95.179,
+        "productivityText": "+1.3%",
+        "productivityExact": 1.25318,
+        "manualToday": "425,040h",
+        "manualAfter": "409,921h",
+        "manualRatioExact": 96.4195,
+        "twelveMonth": "$764K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $764K by month twelve.",
+        "recommended": "Production Dashboards · Predictive Maintenance · Supplier Workflow Automation · Purchase Order OCR"
+      }
+    },
+    {
+      "label": "holdout-27",
+      "input": {
+        "industry": "healthcare",
+        "size": "enterprise",
+        "team": 225,
+        "hours": 37,
+        "hourly": 75,
+        "automation": 79
+      },
+      "output": {
+        "headline": "$1.7M",
+        "hoursSaved": "64.8Kh",
+        "roi": "485%",
+        "payback": "2.1 mo",
+        "revenue": "$160K",
+        "leadResponse": "720×faster",
+        "coverageText": "82%",
+        "coverageExact": 82.3685,
+        "productivityText": "+15.6%",
+        "productivityExact": 15.6396,
+        "manualToday": "403,650h",
+        "manualAfter": "338,956h",
+        "manualRatioExact": 83.9594,
+        "twelveMonth": "$1.9M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.9M by month twelve.",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    },
+    {
+      "label": "holdout-28",
+      "input": {
+        "industry": "logistics",
+        "size": "growing",
+        "team": 885,
+        "hours": 30,
+        "hourly": 134,
+        "automation": 92
+      },
+      "output": {
+        "headline": "$3.4M",
+        "hoursSaved": "73.3Kh",
+        "roi": "261%",
+        "payback": "3.3 mo",
+        "revenue": "$331K",
+        "leadResponse": "720×faster",
+        "coverageText": "92%",
+        "coverageExact": 92.4498,
+        "productivityText": "+4.5%",
+        "productivityExact": 4.49812,
+        "manualToday": "1,302,720h",
+        "manualAfter": "1,229,443h",
+        "manualRatioExact": 94.3773,
+        "twelveMonth": "$3.8M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $3.8M by month twelve.",
+        "recommended": "Route Optimisation · Shipment Tracking AI · Delivery Notification Bot · Freight Document OCR"
+      }
+    },
+    {
+      "label": "holdout-29",
+      "input": {
+        "industry": "real-estate",
+        "size": "startup",
+        "team": 545,
+        "hours": 28,
+        "hourly": 46,
+        "automation": 17
+      },
+      "output": {
+        "headline": "$6.1M",
+        "hoursSaved": "376Kh",
+        "roi": "1136%",
+        "payback": "1.0 mo",
+        "revenue": "$1.8M",
+        "leadResponse": "720×faster",
+        "coverageText": "59%",
+        "coverageExact": 58.5159,
+        "productivityText": "+37.5%",
+        "productivityExact": 37.5143,
+        "manualToday": "752,100h",
+        "manualAfter": "376,583h",
+        "manualRatioExact": 49.9809,
+        "twelveMonth": "$7.8M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $7.8M by month twelve.",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "holdout-30",
+      "input": {
+        "industry": "education",
+        "size": "startup",
+        "team": 240,
+        "hours": 13,
+        "hourly": 33,
+        "automation": 15
+      },
+      "output": {
+        "headline": "$926K",
+        "hoursSaved": "80.1Kh",
+        "roi": "452%",
+        "payback": "2.2 mo",
+        "revenue": "$635K",
+        "leadResponse": "720×faster",
+        "coverageText": "56%",
+        "coverageExact": 56.1218,
+        "productivityText": "+18.1%",
+        "productivityExact": 18.142,
+        "manualToday": "165,604h",
+        "manualAfter": "85,951h",
+        "manualRatioExact": 51.6214,
+        "twelveMonth": "$1.6M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.6M by month twelve.",
+        "recommended": "Admissions AI · Student Records OCR · Enrolment Workflow · Parent Communication Bot"
+      }
+    },
+    {
+      "label": "holdout-31",
+      "input": {
+        "industry": "education",
+        "size": "startup",
+        "team": 895,
+        "hours": 16,
+        "hourly": 120,
+        "automation": 95
+      },
+      "output": {
+        "headline": "$886K",
+        "hoursSaved": "21.1Kh",
+        "roi": "-1%",
+        "payback": "12.1 mo",
+        "revenue": "$139K",
+        "leadResponse": "720×faster",
+        "coverageText": "95%",
+        "coverageExact": 95.1423,
+        "productivityText": "+1.3%",
+        "productivityExact": 1.28061,
+        "manualToday": "741,060h",
+        "manualAfter": "719,938h",
+        "manualRatioExact": 97.1542,
+        "twelveMonth": "$1.0M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.0M by month twelve.",
+        "recommended": "Admissions AI · Student Records OCR · Enrolment Workflow · Parent Communication Bot"
+      }
+    },
+    {
+      "label": "holdout-32",
+      "input": {
+        "industry": "healthcare",
+        "size": "growing",
+        "team": 570,
+        "hours": 37,
+        "hourly": 63,
+        "automation": 96
+      },
+      "output": {
+        "headline": "$651K",
+        "hoursSaved": "29.5Kh",
+        "roi": "6%",
+        "payback": "11.3 mo",
+        "revenue": "$73.1K",
+        "leadResponse": "720×faster",
+        "coverageText": "96%",
+        "coverageExact": 96.1155,
+        "productivityText": "+2.8%",
+        "productivityExact": 2.81649,
+        "manualToday": "1,022,580h",
+        "manualAfter": "992,930h",
+        "manualRatioExact": 97.1113,
+        "twelveMonth": "$724K",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $724K by month twelve.",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    },
+    {
+      "label": "holdout-33",
+      "input": {
+        "industry": "retail",
+        "size": "growing",
+        "team": 940,
+        "hours": 28,
+        "hourly": 16,
+        "automation": 67
+      },
+      "output": {
+        "headline": "$1.7M",
+        "hoursSaved": "304Kh",
+        "roi": "75%",
+        "payback": "6.9 mo",
+        "revenue": "$236K",
+        "leadResponse": "720×faster",
+        "coverageText": "75%",
+        "coverageExact": 74.7241,
+        "productivityText": "+17.5%",
+        "productivityExact": 17.5547,
+        "manualToday": "1,297,088h",
+        "manualAfter": "993,574h",
+        "manualRatioExact": 76.5938,
+        "twelveMonth": "$1.9M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.9M by month twelve.",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "holdout-34",
+      "input": {
+        "industry": "technology",
+        "size": "small",
+        "team": 890,
+        "hours": 32,
+        "hourly": 12,
+        "automation": 73
+      },
+      "output": {
+        "headline": "$1.0M",
+        "hoursSaved": "248Kh",
+        "roi": "160%",
+        "payback": "4.6 mo",
+        "revenue": "$1.6M",
+        "leadResponse": "720×faster",
+        "coverageText": "78%",
+        "coverageExact": 77.8163,
+        "productivityText": "+15.2%",
+        "productivityExact": 15.1624,
+        "manualToday": "1,391,960h",
+        "manualAfter": "1,143,599h",
+        "manualRatioExact": 82.1619,
+        "twelveMonth": "$2.7M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $2.7M by month twelve.",
+        "recommended": "Support Triage AI · API Integration Layer · Onboarding Automation · Usage Analytics"
+      }
+    },
+    {
+      "label": "holdout-35",
+      "input": {
+        "industry": "manufacturing",
+        "size": "growing",
+        "team": 515,
+        "hours": 59,
+        "hourly": 147,
+        "automation": 18
+      },
+      "output": {
+        "headline": "$41M",
+        "hoursSaved": "802Kh",
+        "roi": "7222%",
+        "payback": "0.2 mo",
+        "revenue": "$4.1M",
+        "leadResponse": "720×faster",
+        "coverageText": "64%",
+        "coverageExact": 63.5242,
+        "productivityText": "+84.6%",
+        "productivityExact": 84.6639,
+        "manualToday": "1,445,090h",
+        "manualAfter": "643,020h",
+        "manualRatioExact": 44.4827,
+        "twelveMonth": "$45M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $45M by month twelve.",
+        "recommended": "Production Dashboards · Predictive Maintenance · Supplier Workflow Automation · Purchase Order OCR"
+      }
+    },
+    {
+      "label": "holdout-36",
+      "input": {
+        "industry": "automotive",
+        "size": "enterprise",
+        "team": 725,
+        "hours": 16,
+        "hourly": 82,
+        "automation": 86
+      },
+      "output": {
+        "headline": "$1.6M",
+        "hoursSaved": "57.5Kh",
+        "roi": "134%",
+        "payback": "5.1 mo",
+        "revenue": "$442K",
+        "leadResponse": "720×faster",
+        "coverageText": "87%",
+        "coverageExact": 87.3367,
+        "productivityText": "+4.3%",
+        "productivityExact": 4.2966,
+        "manualToday": "600,300h",
+        "manualAfter": "543,461h",
+        "manualRatioExact": 90.452,
+        "twelveMonth": "$2.1M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $2.1M by month twelve.",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "holdout-37",
+      "input": {
+        "industry": "technology",
+        "size": "growing",
+        "team": 340,
+        "hours": 12,
+        "hourly": 56,
+        "automation": 22
+      },
+      "output": {
+        "headline": "$2.4M",
+        "hoursSaved": "122Kh",
+        "roi": "940%",
+        "payback": "1.2 mo",
+        "revenue": "$2.0M",
+        "leadResponse": "720×faster",
+        "coverageText": "66%",
+        "coverageExact": 65.5449,
+        "productivityText": "+19.5%",
+        "productivityExact": 19.5394,
+        "manualToday": "218,960h",
+        "manualAfter": "97,148h",
+        "manualRatioExact": 44.1732,
+        "twelveMonth": "$4.4M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $4.4M by month twelve.",
+        "recommended": "Support Triage AI · API Integration Layer · Onboarding Automation · Usage Analytics"
+      }
+    },
+    {
+      "label": "holdout-38",
+      "input": {
+        "industry": "hospitality",
+        "size": "enterprise",
+        "team": 210,
+        "hours": 15,
+        "hourly": 40,
+        "automation": 44
+      },
+      "output": {
+        "headline": "$932K",
+        "hoursSaved": "66.5Kh",
+        "roi": "265%",
+        "payback": "3.3 mo",
+        "revenue": "$166K",
+        "leadResponse": "720×faster",
+        "coverageText": "67%",
+        "coverageExact": 66.6708,
+        "productivityText": "+17.2%",
+        "productivityExact": 17.2055,
+        "manualToday": "164,220h",
+        "manualAfter": "97,737h",
+        "manualRatioExact": 59.5165,
+        "twelveMonth": "$1.1M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $1.1M by month twelve.",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "holdout-39",
+      "input": {
+        "industry": "finance",
+        "size": "enterprise",
+        "team": 515,
+        "hours": 27,
+        "hourly": 132,
+        "automation": 17
+      },
+      "output": {
+        "headline": "$21M",
+        "hoursSaved": "445Kh",
+        "roi": "3560%",
+        "payback": "0.3 mo",
+        "revenue": "$3.2M",
+        "leadResponse": "720×faster",
+        "coverageText": "71%",
+        "coverageExact": 71.0304,
+        "productivityText": "+47.0%",
+        "productivityExact": 47.1953,
+        "manualToday": "686,797h",
+        "manualAfter": "238,877h",
+        "manualRatioExact": 34.9031,
+        "twelveMonth": "$24M",
+        "curvePath": "M0.0,140.0 L50.0,129.2 L100.0,118.3 L150.0,107.5 L200.0,96.7 L250.0,85.8 L300.0,75.0 L350.0,64.2 L400.0,53.3 L450.0,42.5 L500.0,31.7 L550.0,20.8 L600.0,10.0 L600,150 L0,150 Z",
+        "curveLabel": "Cumulative benefit rising to approximately $24M by month twelve.",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    }
+  ]
+}

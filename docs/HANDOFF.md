@@ -906,13 +906,14 @@ entity is an owner decision. No CMS content was changed by this task.
 | `pnpm test:run` | PASS — 657 tests, 61 files (was 618) |
 | `pnpm verify:layout` | PASS — 75/75 |
 | Browser QA, 60 captures | PASS — see above |
+| **Frontend CI, run 34386667855** | **PASS — every step, none skipped** |
 | `tools/verify-no-seed-content.mjs` | BLOCKED, exit 1 — expected |
 
 `pnpm typecheck` still needs `rm -rf frontend/.next` **followed by a build** if
 the generated route types are stale; running the dev server leaves a second copy
 under `.next/dev/types` that conflicts with the built one.
 
-### Frontend CI was RED, and not from this work — now fixed, with owner approval
+### Frontend CI was RED, and not from this work — now GREEN, end to end
 
 Run 34372991585 at head `bf9363eb` fails on one step: **Verify patch
 whitespace**, which runs `git diff --check HEAD^1 HEAD` — on a pull request that
@@ -967,6 +968,38 @@ Scope verified with `git check-attr` rather than assumed:
 Nothing outside `frontend/schema/` loses the check. Both
 `git diff --check b5144cc6^ b5144cc6` and the whole-branch-against-base
 comparison CI actually runs return **0**.
+
+#### And behind it, a second defect the short-circuit had been hiding
+
+With the whitespace step passing, the job reached step 9 and failed there
+instead: **Verify generated GraphQL output is deterministic**. Regenerating from
+the committed schema and the committed documents did not reproduce the committed
+output.
+
+The generated file was stale against its own source. Phase 3 added
+`isRestricted` to the `DigitalAboutMedia` fragment in
+`frontend/src/queries/digital-about.graphql` (commit `9b24bb6c`) and committed a
+generated file that predated the edit. The entire regeneration is that one
+field, verified line by line across both generated files — nothing else moved.
+
+Regenerating is the prescribed remedy rather than a judgement call: `AGENTS.md`
+requires generated files to be regenerated from their source contracts, and
+editing the generated file to match the stale state would have been the actual
+violation. The runtime document string now requests `isRestricted` on About
+media, which the source document has asked for since Phase 3; the field is in
+the checked-in schema and the editorial normalizers already use it as a
+restriction gate, so the About query joins an established pattern rather than
+introducing a field nobody reads.
+
+**Frontend CI now passes end to end at `b0c6918d`** — run 34386667855, 1m35s,
+with every step `success` and none skipped: whitespace, schema artifacts, codegen
+determinism, lint, typecheck, tests, production build, layout primitives,
+homepage fixtures and the Draft Mode runtime check. The pull request has CI
+evidence for the code for the first time.
+
+**The lesson worth keeping:** a cheap first step that can fail on generated
+content will hide every expensive check behind it. Two real defects sat
+undetected on this branch for exactly that reason.
 
 **Reported, not repaired, in the same file:** `.gitattributes` opens by
 describing the reference forensics as "taken against a third-party site". That

@@ -204,7 +204,6 @@ $expected_presentation_groups = array(
 	'group_sira_locale',
 	'group_sira_page_intro',
 	'group_sira_partner_details',
-	'group_sira_profile',
 	'group_sira_testimonial_details',
 );
 
@@ -247,11 +246,6 @@ $expected_presentation_groups = array(
 		'graphql_field_name' => 'partnerDetails',
 		'graphql_type_name'  => 'SiraPartnerDetails',
 		'graphql_types'      => array( 'SiraPartner' ),
-	),
-	'group_sira_profile' => array(
-		'graphql_field_name' => 'siraProfile',
-		'graphql_type_name'  => 'SiraProfile',
-		'graphql_types'      => array( 'SiraLeadershipProfile' ),
 	),
 );
 

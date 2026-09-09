@@ -45,7 +45,6 @@ final class PresentationFields {
 			'group_sira_investment_details' => self::investment_group(),
 			'group_sira_testimonial_details' => self::testimonial_group(),
 			'group_sira_partner_details'    => self::partner_group(),
-			'group_sira_profile'            => self::profile_group(),
 			'group_sira_page_intro'         => self::page_intro_group(),
 			'group_sira_locale'             => self::locale_group(),
 		);
@@ -1720,46 +1719,6 @@ final class PresentationFields {
 						'maxlength'    => 300,
 						'instructions' => 'Use only when the Media Library alternative text is unsuitable for this approved public context.',
 					)
-				),
-			)
-		);
-	}
-
-	/**
-	 * What a Leader record carries beyond title, excerpt and portrait.
-	 *
-	 * The team grid needs a role line under the name, and optionally a link to
-	 * that person's work. Everything else it renders — the name, the one-line
-	 * description, the portrait — is already native WordPress, so only the two
-	 * genuinely missing fields are added here.
-	 *
-	 * Registered network-wide on `sira_leadership`, which every site already has.
-	 * A tenant that publishes no Leader records is unaffected.
-	 *
-	 * @return array<string,mixed>
-	 */
-	private static function profile_group(): array {
-		return self::content_group(
-			'group_sira_profile',
-			'SIRA Profile',
-			'siraProfile',
-			'SiraProfile',
-			'SiraLeadershipProfile',
-			'sira_leadership',
-			array(
-				self::text(
-					'field_sira_profile_role',
-					'Role',
-					'role',
-					'role',
-					array( 'instructions' => 'The line under the name. Kept short: it sets beside four others.' )
-				),
-				self::link_field(
-					'field_sira_profile_link',
-					'Link',
-					'link',
-					'link',
-					array( 'instructions' => 'Optional. Without it the card renders as text rather than as a dead link.' )
 				),
 			)
 		);

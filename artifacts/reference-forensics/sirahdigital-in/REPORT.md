@@ -517,6 +517,77 @@ What actually makes this reference feel expensive, ranked by how much of the eff
 
 ## 9. DO-NOT-COPY LIST
 
+> ### AMENDED 2026-09-09 — the provenance premise below is wrong
+>
+> **This section was written in Phase 1 on the premise that `sirahdigital.in`
+> belongs to a third party.** It does not. The owner stated at the start of the
+> Phase 3 workstream that it is **their own company**, and that the Saudi entity
+> gets its own team, figures and product line while layout and section order are
+> matched. That answer is recorded in `docs/HANDOFF.md`, Phase 3, "What the
+> owner authorized".
+>
+> The list below is preserved exactly as written, because it is what was true to
+> the evidence available in Phase 1 and later work referred to it. It is no
+> longer the operative guardrail. What follows is.
+>
+> #### Lifted, by explicit owner instruction
+>
+> - **The calculator's constants and outputs.** Phase 4 was instructed to
+>   reproduce the reference's impact calculator *exactly* — every control, every
+>   label, and the published figures themselves. `509%`, `2.0 mo`, `720×`,
+>   `68%`, `$204K`, `$258K`, `$462K` and the 400 leads / 880 calls / 2,480
+>   documents note are therefore **required**, not forbidden. The derivation is
+>   in `CALCULATOR-MODEL.md` and the reproduction is asserted in
+>   `frontend/tests/unit/calculator/model.test.ts`.
+> - **Layout, section order and interaction patterns**, per "same final look
+>   except the header, same motion where we can".
+> - **The English copy of the calculator**, which is the owner's own writing and
+>   is used verbatim, punctuation included.
+>
+> #### Still forbidden, and NOT because of provenance
+>
+> Common ownership of the two companies does not make these portable. Each has
+> its own reason:
+>
+> - **Client names and wordmarks** (Fortune Innovatives, Interlock Bricks,
+>   Stansford International School, B² Consultants, and the rest of the
+>   marquee). These belong to *third parties*, not to the owner. Owning the
+>   `.in` company grants nothing over its clients' marks, and a Saudi entity
+>   listing clients it has not served is false regardless of who owns it.
+> - **The "10,000+ businesses" claim and every volume or track-record figure
+>   presented as fact.** These describe the Indian entity's history. Asserting
+>   them for the Saudi entity would be untrue whoever owns both.
+> - **Indian market specifics** — the Chennai address,
+>   `support@sirahdigital.in`, `+91 97899 61631`, the WhatsApp link, INR/₹
+>   pricing, IST scheduling, Tamil language claims, Indian regulatory
+>   references, and TNPSC. Wrong for a Saudi market, not unlicensed.
+> - **The `sirahdigital.in` domain** in any link, canonical, sitemap or
+>   structured-data field. ADR-035 governs the hostname.
+> - **Photography and third-party assets.** Licensing is granted per entity and
+>   the Saudi entity's rights are `UNKNOWN`.
+> - **Minified bundles, CSS-module class output and copied source.** Everything
+>   in this report is a *measurement* to build against, not code to transplant.
+>   That was never a provenance rule.
+>
+> #### Open, and the reason this amendment matters
+>
+> **Team member names, roles, biographies and the founder narrative.** Phase 1
+> forbade them as a third party's data. That reason is gone; a different one is
+> not. The Digital tenant's seeded `/about` currently carries five real named
+> individuals from the `.in` entity, and its `h1` names the founder — see
+> `QA-PASS.md` §5 and the Phase 5 handoff. These are identified real people, and
+> whether they staff the Saudi entity is a fact about the business that only the
+> owner can state. Nothing is deployed and the launch gate blocks the records,
+> but this is an **open owner decision**, not a resolved one.
+>
+> **Anything that would misrepresent either company still applies.** The Saudi
+> site is a different company in the SIRA GROUP and must read as one — that
+> clause survives the correction intact, and is now the load-bearing one.
+
+---
+
+*Preserved below as originally written, under the superseded premise.*
+
 This is a guardrail for Phase 2. None of the following may enter the SIRA Saudi implementation, in code, content, fixtures, seed data, screenshots, or design comps.
 
 **Content and claims**

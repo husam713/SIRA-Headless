@@ -164,13 +164,15 @@ export default async function ContactPage({ params }: ContactPageProps) {
         className="border-t border-brand-border"
         aria-labelledby="calculator-heading"
       >
+        {/* No eyebrow above this heading, unlike every other section on the
+            site. The reference opens the calculator on the headline itself, and
+            the two uppercase micro-labels inside it — "Your business" and
+            "Estimated impact" — already carry that register. A third would make
+            three competing labels in one screen. */}
         <PageContainer className="digital-reveal py-[clamp(4rem,8vw,7rem)]">
-          <SectionEyebrow tone="faint" className="digital-eyebrow">
-            {calculator.sectionEyebrow}
-          </SectionEyebrow>
           <h2
             id="calculator-heading"
-            className="digital-display mt-6 max-w-[20ch] text-balance text-[clamp(1.875rem,1.35rem+2.4vw,3.25rem)] font-bold leading-[1.06] tracking-[-0.02em]"
+            className="digital-display max-w-[20ch] text-balance text-[clamp(1.875rem,1.35rem+2.4vw,3.25rem)] font-bold leading-[1.06] tracking-[-0.02em]"
           >
             {calculator.sectionHeading}
           </h2>
@@ -179,7 +181,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
           </p>
 
           <div className="mt-12">
-            <ImpactCalculator locale={request.locale} />
+            <ImpactCalculator locale={request.locale} bookHref="#contact-heading" />
           </div>
         </PageContainer>
       </section>

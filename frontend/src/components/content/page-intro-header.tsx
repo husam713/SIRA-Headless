@@ -13,9 +13,23 @@ interface PageIntroHeaderProps {
   readonly fallbackHeading: string;
   /** Shown when the CMS supplies no standfirst. Omitted entirely when null. */
   readonly fallbackStandfirst?: string | null;
-  /** Height of the band, as a fraction of the viewport. */
-  readonly height?: "tall" | "medium";
+  /**
+   * Height of the band, as a fraction of the viewport.
+   *
+   * `full` gives the band the whole first screen. It is deliberately scarce:
+   * the audit's clearest finding about the reference is that it spends one
+   * expensive moment per page and is restrained everywhere else, and a page
+   * that opens on a full screen of four words has spent it.
+   */
+  readonly height?: "full" | "tall" | "medium";
 }
+
+const HEIGHT_CLASSES: Readonly<Record<"full" | "tall" | "medium", string>> =
+  Object.freeze({
+    full: "min-h-[calc(100svh-var(--layout-header-offset))] items-center",
+    tall: "min-h-[calc(70svh-var(--layout-header-offset))] items-end",
+    medium: "min-h-[calc(55svh-var(--layout-header-offset))] items-end",
+  });
 
 /**
  * The heading band at the top of an index route.
@@ -44,20 +58,23 @@ export function PageIntroHeader({
 
   return (
     <section
-      className={
-        height === "tall"
-          ? "relative flex min-h-[calc(70svh-var(--layout-header-offset))] items-end"
-          : "relative flex min-h-[calc(55svh-var(--layout-header-offset))] items-end"
-      }
+      className={`relative flex ${HEIGHT_CLASSES[height]}`}
       aria-labelledby={headingId}
     >
       <PageContainer className="digital-reveal pb-12 pt-[clamp(4rem,8vw,7rem)]">
         <SectionEyebrow tone="accent" className="digital-eyebrow">
           {intro?.eyebrow ?? fallbackEyebrow}
         </SectionEyebrow>
+        {/* The display line grows a step at `full`, where it is carrying a whole
+            screen on its own and the `tall` size reads as an ordinary heading
+            floating in space. Everything else about the band is unchanged. */}
         <h1
           id={headingId}
-          className="digital-display mt-7 max-w-[20ch] text-balance text-[clamp(2.5rem,1.2rem+3.4vw,3.375rem)] font-bold leading-[0.98] tracking-[-0.03em]"
+          className={
+            height === "full"
+              ? "digital-display mt-7 max-w-[16ch] text-balance text-[clamp(2.75rem,1.2rem+5vw,5rem)] font-bold uppercase leading-[0.95] tracking-[-0.035em]"
+              : "digital-display mt-7 max-w-[20ch] text-balance text-[clamp(2.5rem,1.2rem+3.4vw,3.375rem)] font-bold leading-[0.98] tracking-[-0.03em]"
+          }
         >
           {heading}
         </h1>

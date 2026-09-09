@@ -1,0 +1,77 @@
+{
+  "capturedAt": "2026-09-09T15:34:14.488Z",
+  "base": "http://digital.localhost:3000",
+  "failed": 0,
+  "findings": [
+    {
+      "check": "en calculator present",
+      "result": "PASS",
+      "detail": "6 controls, 4 visible"
+    },
+    {
+      "check": "en advanced assumptions start collapsed",
+      "result": "PASS",
+      "detail": "4 of 6 controls visible"
+    },
+    {
+      "check": "en published defaults render",
+      "result": "PASS",
+      "detail": "$204K 18.2Kh 509% 2.0 mo $258K 720× 68% +24.8% 29,440h 11,207h $462K"
+    },
+    {
+      "check": "en projection splits at payback",
+      "result": "PASS",
+      "detail": "unpaid,paid,paid,paid,paid,paid,paid,paid,paid,paid,paid,paid"
+    },
+    {
+      "check": "en the disclosure reveals both assumptions",
+      "result": "PASS",
+      "detail": "6 of 6 controls visible"
+    },
+    {
+      "check": "en controls move the figures",
+      "result": "PASS",
+      "detail": "automation=0 -> $240K 21.5Kh 616% 73%"
+    },
+    {
+      "check": "en print report isolates and restates its inputs",
+      "result": "PASS",
+      "detail": "What this was calculated fromIndustryProfessional ServicesBusiness sizeGrowing BusinessTeam Size40Manual Hours Per Week14Average Employee Hourly Cost$32Current "
+    },
+    {
+      "check": "ar calculator present",
+      "result": "PASS",
+      "detail": "6 controls, 4 visible"
+    },
+    {
+      "check": "ar advanced assumptions start collapsed",
+      "result": "PASS",
+      "detail": "4 of 6 controls visible"
+    },
+    {
+      "check": "ar published defaults render",
+      "result": "PASS",
+      "detail": "$204K 18.2K ساعة 509% 2.0 شهر $258K 720× 68% +24.8% 29,440 ساعة 11,207 ساعة $462K"
+    },
+    {
+      "check": "ar projection splits at payback",
+      "result": "PASS",
+      "detail": "unpaid,paid,paid,paid,paid,paid,paid,paid,paid,paid,paid,paid"
+    },
+    {
+      "check": "ar the disclosure reveals both assumptions",
+      "result": "PASS",
+      "detail": "6 of 6 controls visible"
+    },
+    {
+      "check": "ar controls move the figures",
+      "result": "PASS",
+      "detail": "automation=0 -> $240K 21.5K ساعة 616% 73%"
+    },
+    {
+      "check": "ar print report isolates and restates its inputs",
+      "result": "PASS",
+      "detail": "ما حُسب هذا التقرير بناءً عليهالقطاعالخدمات المهنيةحجم المنشأةمنشأة ناميةعدد الموظفين40الساعات اليدوية أسبوعيًا14متوسط تكلفة ساعة الموظف$32مستوى الأتمتة الحالي0"
+    }
+  ]
+}

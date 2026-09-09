@@ -524,6 +524,169 @@ Its terms were: do not begin the pass before the reply; `OK` means effort is
 already MAX, so continue immediately without asking again; `NO OK` means
 continue at the current setting, also without asking again.
 
+## Phase 3 — About, services, sectors and the calculator: resumable state
+
+Verified against the working tree and the live CMS on 2026-09-09. Do not infer
+any line of this section from a previous conversation.
+
+### Coordinates
+
+- Branch: `feat/digital-about-and-catalogue`, cut from `feat/sirahdigital-sa`.
+- Depends on `feat/sirahdigital-sa`, which depends on `feat/newsroom-ledger`.
+  Keep that chain explicit; do not ship Newsroom or Phase 2 changes as part of
+  this.
+- **Not pushed. No pull request opened yet.**
+- HEAD: rediscover from Git rather than trusting a SHA written here.
+- Last safe point: the branch head. Every gate is green.
+
+### What the owner authorized
+
+Three answers given at the start of this workstream, and one instruction:
+
+1. **Provenance.** `sirahdigital.in` is the owner's own company, not a third
+   party. The Saudi entity gets its own team, figures and product line; layout
+   and section order are matched. `REPORT.md` §9 was written on the opposite
+   premise and **still needs amending on the record** — that is outstanding.
+2. **Scope.** `/about`, `/services`, `/products`, and home/contact refinements.
+3. **CMS extension authorized** — new ACF groups deployed to the live origin and
+   content seeded onto blog 6.
+4. Later: *"same final look except the header, same motion where we can, decide
+   the rest yourself."* The shared header was deliberately left untouched.
+
+Sixteen reference pages were then saved to `.local-reference/Digital/`. They are
+reference-only per `AGENTS.md` — read, never a runtime dependency, never
+committed.
+
+### Commits on this branch, oldest first
+
+| Commit | What it landed |
+| --- | --- |
+| `1a4af351` | The in-flight `homepage_location()` fix, committed on `feat/sirahdigital-sa` before branching |
+| `90051dbb` | `sira_product` CPT, the About field group, locale coverage for products and people |
+| `695aff63` | Removed a redundant profile group — `personDetails.role` already existed |
+| `b5144cc6` | Schema recapture after that deployment |
+| `7c112b1c` | Pinned Digital's field groups to the Digital tenant |
+| `3b0d6ee5` | Service and sector field groups |
+| `d802d30c` | Schema recapture after those |
+| `9b24bb6c` | The About page composition |
+| `72861da4` | Services rebuild and the twelve sector pages |
+| `29146ab2` | The seed: ten services, twelve sectors, About, five people, both languages |
+| `09050de9` | Calculator: before/after, capacity, twelve-month projection, where-to-start |
+
+### Backend state — DEPLOYED
+
+`PostTypes.php` and `PresentationFields.php` are installed on the origin with
+timestamped `.bak-*` copies beside them. The last deployment is
+`.bak-20260909T021006Z`; the file checksum on the origin matches the committed
+blob exactly, so drift is a plain `sha256sum` comparison from now on.
+
+Registered and live on blog 6 only:
+
+- `group_sira_digital_about` on the About page in both languages (page 11 and
+  page 80, resolved by path at registration time);
+- `group_sira_digital_service` on `sira_service`;
+- `group_sira_digital_industry` on the `sira_industry` taxonomy;
+- `sira_product` — the 29th CPT, network-wide like every other, empty everywhere
+  but Digital. **The `/products` route was NOT built**: no products page was
+  among the sixteen saved, and building one would have meant inventing a product
+  line. The type is deployed and harmless; the route is outstanding work.
+
+`is_digital_site()` resolves the tenant through `BrandManager::infer_brand_key()`
+— from the site's own host, deliberately not a blog id, so the ADR-035 move to
+`sirahdigital.sa` does not silently break it.
+
+**Reported, not repaired:** `group_sira_group_homepage` and
+`group_sira_branch_homepage` are still offered to all six tenants, so every
+tenant's front page shows all the variant groups it does not use. That predates
+this work and scoping it changes what the other five companies see, which is
+outside what was authorized here.
+
+### CMS content state
+
+Seeded on blog 6 in both languages, against a verified **7.84 MB / 155-table**
+recovery point taken immediately beforehand
+(`sira-backups/sira-multisite-db-20260909T050404Z.sql.gz`, sha256
+`63a54cb1…`, mode 600 in a 700 directory outside the web root).
+
+- 10 services per language, replacing 8 placeholders.
+- 12 sectors per language, 84 workflow steps each language, 5 carrying a
+  headline figure and 7 deliberately carrying none.
+- The About composition and 5 team members per language.
+
+**Nothing was deleted.** Two renamed sectors were repurposed in place so their
+term ids survived (`hospitality` → `hospitality-travel`,
+`retail-and-distribution` → `retail-ecommerce`, plus their `ar-` counterparts).
+The seven superseded services in each language were set to **draft**, which takes
+them out of the published query while leaving them inspectable and one status
+change from returning. Their ids are 4–10 and 68–74.
+
+A destructive `--remove` and reseed was attempted first and correctly refused by
+the tooling. The non-destructive path above is what ran.
+
+### Frontend state
+
+New routes: `/about` and `/industries/[slug]`. Both are in the build's route
+table. `/services` and `/industries` were rebuilt; `/contact` gained the extended
+calculator.
+
+New components under `components/digital/`: about hero, stat band, team grid,
+statement, process, workflow. New CSS lives in the digital layer of
+`styles/globals.css` — stat band, ghost word, process grid, social circles, back
+link, sector card, workflow serpentine, projection chart.
+
+The team grid ships **without per-person links**. The reference puts profiles at
+root-level paths, which the Phase 1 audit flags as certain to collide with
+content namespaces, and that template is not among the sixteen saved pages.
+
+### Validation actually run — all at the branch head
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | PASS |
+| `pnpm typecheck` | PASS |
+| `pnpm build` | PASS |
+| `pnpm test:run` | PASS — 618 tests, 61 files |
+| `php -l`, whole backend | PASS — 34 files, 0 failures |
+| `validate-static.php` | PASS — 183 passed, 0 failed, 34 not run |
+| Schema, six tenants | PASS — branch peers exact, Group a superset, 165 Group-only types |
+| GraphQL field resolution | PASS — About, services and sectors populated in both languages |
+
+`pnpm typecheck` needs `rm -rf frontend/.next` **followed by a build** if the
+generated route types are stale. Deleting `.next` alone leaves `next-env.d.ts`
+pointing at types that no longer exist.
+
+### NOT yet done — the real remaining work
+
+1. **No browser QA pass.** Nothing has been rendered in a real browser against
+   the live CMS. No screenshots, no density tables, no horizontal-overflow
+   sweep, no RTL or reduced-motion run. Every previous increment on this project
+   carried that evidence and this one does not yet. **This is the first thing
+   to do.** The tooling exists: `tools/graphql-ssh-proxy.mjs` for the transport
+   (ADR-032 means direct fetches from a developer machine get a bot challenge),
+   and `pnpm verify:layout`.
+2. `pnpm verify:layout` has not been run since the new pages landed.
+3. `node tools/verify-no-seed-content.mjs` has not been re-run. It is expected to
+   BLOCK — the seeded content is deliberately still there — and that is the
+   correct answer, not a failure.
+4. Home and contact refinements beyond the calculator were not taken.
+5. `/products` — see above.
+6. Nothing is pushed and no PR exists.
+
+### Owner deliverables that block launch, not development
+
+1. The five team members' real names, roles, one-liners and **portraits**. The
+   grid renders a monogram from initials where a photograph is missing; no stock
+   face is ever generated.
+2. Whether the Saudi entity leads with a named founder, and their portrait.
+3. The four stat-band figures for the Saudi entity.
+4. Social profile URLs. The section renders without them today rather than
+   linking to the `.in` profiles.
+5. The KSA product line, if `/products` is wanted.
+6. **Trading-name spelling** — `SIRA Digital` is implemented; the reference and
+   the domain both spell it `SIRAH DIGITAL`. "Same company" is strong evidence
+   for the latter. Not changed silently; needs an explicit answer and an ADR.
+7. `REPORT.md` §9 amendment recording the corrected provenance.
+
 ## New owner decision — Group staging first
 
 The replacement public Group frontend for `siratrgroup.com` must be developed, integrated, QA'd, and owner-accepted on staging before production cutover.

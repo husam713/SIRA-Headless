@@ -912,7 +912,7 @@ entity is an owner decision. No CMS content was changed by this task.
 the generated route types are stale; running the dev server leaves a second copy
 under `.next/dev/types` that conflicts with the built one.
 
-### Frontend CI is RED, and not from this work
+### Frontend CI was RED, and not from this work — now fixed, with owner approval
 
 Run 34372991585 at head `bf9363eb` fails on one step: **Verify patch
 whitespace**, which runs `git diff --check HEAD^1 HEAD` — on a pull request that
@@ -940,12 +940,41 @@ field description, which ends in a space. Faithful generated output.
 file. The check passes today only because those lines sit in no diff. **Every
 future schema recapture will fail it**, not just this one.
 
-Not repaired, deliberately. `AGENTS.md` forbids hand-editing generated files,
-and the next `pnpm schema:fetch` would reintroduce the spaces anyway. The real
-fixes are a `.gitattributes` `-whitespace` attribute for
-`frontend/schema/*.graphql`, or scoping the CI step to exclude generated paths —
-both repository-hygiene or CI-workflow changes this task was not authorized to
-make. Classified **`BLOCKED_SCOPE_EXPANSION_REQUIRED`**.
+Hand-stripping the spaces was never an option: `AGENTS.md` requires generated
+files to be regenerated from their source contracts rather than edited, and the
+next `pnpm schema:fetch` would reintroduce them.
+
+This was raised as `BLOCKED_SCOPE_EXPANSION_REQUIRED` and **the owner authorized
+the `.gitattributes` option** on 2026-09-09, in preference to editing the
+workflow. One line, beside the entries that already mark those same two files
+`linguist-generated`, so it extends an existing decision about generated schema
+rather than making a new one:
+
+```
+frontend/schema/*.graphql                      -whitespace
+```
+
+Scope verified with `git check-attr` rather than assumed:
+
+| path | `whitespace` |
+| --- | --- |
+| `frontend/schema/wpgraphql.graphql` | **unset** |
+| `frontend/schema/wpgraphql.group.graphql` | **unset** |
+| `frontend/src/lib/calculator/model.ts` | unspecified |
+| `.gitattributes` | unspecified |
+| `docs/HANDOFF.md` | unspecified |
+
+Nothing outside `frontend/schema/` loses the check. Both
+`git diff --check b5144cc6^ b5144cc6` and the whole-branch-against-base
+comparison CI actually runs return **0**.
+
+**Reported, not repaired, in the same file:** `.gitattributes` opens by
+describing the reference forensics as "taken against a third-party site". That
+is the premise `REPORT.md` §9 was amended to correct in this same branch — the
+reference is the owner's own company. It is a comment and changes no behaviour,
+but the repository now asserts two provenances. Correcting prose that describes
+governance provenance was not part of the authorization given, so it is recorded
+here instead.
 
 ### Still open after this phase
 
@@ -955,8 +984,8 @@ make. Classified **`BLOCKED_SCOPE_EXPANSION_REQUIRED`**.
 3. Which named individuals, if any, belong to the Saudi entity — the one part
    of the `REPORT.md` §9 amendment that only the owner can close.
 4. The `/contact` form control sizes, above.
-5. **Frontend CI's whitespace step**, above — it will fail every schema
-   recapture until it is fixed.
+5. ~~Frontend CI's whitespace step.~~ Fixed with owner approval, above. The
+   stale third-party provenance sentence in `.gitattributes` is not.
 6. Everything in the owner-deliverable list under Phase 3, which the `/about`
    finding above sharpens rather than replaces.
 

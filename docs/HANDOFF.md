@@ -546,7 +546,9 @@ Three answers given at the start of this workstream, and one instruction:
 1. **Provenance.** `sirahdigital.in` is the owner's own company, not a third
    party. The Saudi entity gets its own team, figures and product line; layout
    and section order are matched. `REPORT.md` §9 was written on the opposite
-   premise and **still needs amending on the record** — that is outstanding.
+   premise and **has been amended on the record** (Phase 5): the original list
+   is preserved, with the lifted items, the ones that still stand for reasons
+   other than provenance, and the one that is still an open owner decision.
 2. **Scope.** `/about`, `/services`, `/products`, and home/contact refinements.
 3. **CMS extension authorized** — new ACF groups deployed to the live origin and
    content seeded onto blog 6.
@@ -689,7 +691,9 @@ Items 1 to 3 are CLOSED by the Phase 5 QA pass below; the evidence is in
 6. **Trading-name spelling** — `SIRA Digital` is implemented; the reference and
    the domain both spell it `SIRAH DIGITAL`. "Same company" is strong evidence
    for the latter. Not changed silently; needs an explicit answer and an ADR.
-7. `REPORT.md` §9 amendment recording the corrected provenance.
+7. ~~`REPORT.md` §9 amendment recording the corrected provenance.~~ Done in
+   Phase 5. What remains of it is item 1 above: which named people, if any,
+   belong to the Saudi entity.
 
 ## Phase 4 — the impact calculator: derived, then rebuilt
 
@@ -910,9 +914,16 @@ under `.next/dev/types` that conflicts with the built one.
 
 ### Frontend CI is RED, and not from this work
 
-Run 34372680077 at head `83eb5bb2` fails on one step: **Verify patch
+Run 34372991585 at head `bf9363eb` fails on one step: **Verify patch
 whitespace**, which runs `git diff --check HEAD^1 HEAD` — on a pull request that
 diffs the whole branch against its base.
+
+**It is the FIRST step, and it short-circuits the whole job.** Lint, typecheck,
+tests, the production build, the schema-determinism check, the layout verifier
+and the fixture render are all reported `skipped`, not passing. The pull request
+therefore carries **no CI evidence for any of the code**. All of those gates were
+run locally at this head and pass — recorded below — but a local run is
+`TRANSFERRED_EVIDENCE` and must not be read as CI.
 
 Four `+` lines trip it, all the same string, in `frontend/schema/wpgraphql.graphql`
 and `frontend/schema/wpgraphql.group.graphql`: WordPress core's own `post_date`
@@ -941,7 +952,8 @@ make. Classified **`BLOCKED_SCOPE_EXPANSION_REQUIRED`**.
 1. `/products` — the route was never built, and building one would mean
    inventing a product line. The `sira_product` CPT is deployed and empty.
 2. Home refinements beyond the calculator were not taken.
-3. `REPORT.md` §9 still needs the provenance amendment recorded in Phase 3.
+3. Which named individuals, if any, belong to the Saudi entity — the one part
+   of the `REPORT.md` §9 amendment that only the owner can close.
 4. The `/contact` form control sizes, above.
 5. **Frontend CI's whitespace step**, above — it will fail every schema
    recapture until it is fixed.

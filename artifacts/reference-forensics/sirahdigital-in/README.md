@@ -8,7 +8,7 @@ Start with **[`REPORT.md`](./REPORT.md)** — the full forensic report.
 
 A measured study of a public reference site: layout, typography, colour, motion, interaction, responsive behaviour, information architecture and conversion flow. Everything here is a *measurement* taken from a real browser, so a later implementation is built to numbers rather than to impressions.
 
-It contains no source code from the reference. Proprietary content, imagery, client names, team identities, product names and factual claims are listed in `REPORT.md` §9 as explicitly out of bounds.
+It contains no source code from the reference. Client names, imagery, product names and factual claims are listed in `REPORT.md` §9 as out of bounds. **§9 carries a 2026-09-09 amendment**: it was written on the premise that the reference belongs to a third party, and the owner has since confirmed it is their own company. Read the amendment first — several of its prohibitions are lifted, several stand for reasons that were never about provenance, and one is an open owner decision.
 
 ## Layout
 

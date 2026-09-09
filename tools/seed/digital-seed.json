@@ -136,99 +136,98 @@
   },
   "services": [
     {
+      "slug": "ai-agents",
+      "title": "AI Agents & Virtual Employees",
+      "excerpt": "Autonomous cognitive systems built to execute end-to-end operational loops.",
+      "challenge": "Your best people spend their day being the glue between systems.",
+      "outcome": "Entire operational loops run without a person in the middle.",
+      "ctaLabel": "Build My AI Workforce"
+    },
+    {
+      "slug": "chatbots-voice",
+      "title": "AI Chatbots & Voice Assistants",
+      "excerpt": "Context-aware LLM agents handling natural multi-lingual customer pipelines.",
+      "challenge": "Enquiries arrive at midnight, in three languages, and wait until Monday.",
+      "outcome": "Customer conversations handled in any language, around the clock.",
+      "ctaLabel": "Automate My Conversations"
+    },
+    {
       "slug": "workflow-automation",
-      "title": "Workflow automation",
-      "excerpt": "Approvals, handovers and status chasing, moved into a system that records who did what and when.",
-      "problem": "The process exists, but it lives in a chain of emails, a WhatsApp group and a spreadsheet somebody owns personally. Nobody can say where a request is without asking, and the answer depends on who is at their desk.",
-      "changes": "Each step gets an owner, a due time and a record. Work that was waiting on a person waits on a queue instead, and the queue is visible to everyone who needs it.",
-      "capability": "Routing rules, conditional approvals, escalation on time, structured handover between departments, and a full history of every state change with the person and timestamp attached.",
-      "integrates": "Existing ERP and CRM systems, shared mailboxes, WhatsApp Business, file storage, and the finance system that ultimately has to agree with it.",
-      "oversight": "A person approves anything with financial or contractual consequence. The system proposes, records and chases; it does not sign.",
-      "outcome": "Fewer status meetings, a shorter cycle time on repeating requests, and an audit trail that already exists when somebody asks for one."
+      "title": "Workflow & Process Automation",
+      "excerpt": "Connecting fragmented legacy systems to run fully untethered loops.",
+      "challenge": "Work stalls in the gaps between tools nobody ever connected.",
+      "outcome": "Systems that could not talk to each other now run as one.",
+      "ctaLabel": "Automate My Business"
     },
     {
-      "slug": "document-intelligence",
-      "title": "Document intelligence",
-      "excerpt": "Contracts, invoices and official documents read into structured data, in Arabic and English.",
-      "problem": "Information a business already owns is trapped in PDFs and photographs. Somebody re-types it into a system, and the re-typing is where the errors and the delay come from.",
-      "changes": "Documents are read once on arrival and become records. The person who used to re-key them checks exceptions instead.",
-      "capability": "Extraction from scans and photographs, mixed Arabic and English in the same document, table and line-item recognition, validation against existing records, and confidence scoring that decides what a human sees.",
-      "integrates": "Document storage, accounting and ERP systems, and whatever the operations team currently uses to track what has arrived.",
-      "oversight": "Low-confidence extractions and anything above a value threshold route to a person by design. The point is to remove typing, not judgement.",
-      "outcome": "Faster intake, fewer transcription errors, and a searchable record of documents that were previously only findable by the person who filed them."
+      "slug": "web-mobile-apps",
+      "title": "Custom Web & Mobile Apps",
+      "excerpt": "High-performance enterprise dashboards and bespoke cross-platform setups.",
+      "challenge": "Off-the-shelf software forces your process to fit its assumptions.",
+      "outcome": "One system your team actually wants to open, on every device.",
+      "ctaLabel": "Design My Platform"
     },
     {
-      "slug": "systems-integration",
-      "title": "Systems integration",
-      "excerpt": "One record instead of five, across systems that were never designed to speak to each other.",
-      "problem": "The ERP, the CRM, the finance system and the field application each hold part of the truth, and reconciling them is somebody's monthly job.",
-      "changes": "The systems exchange the records they each need, on a schedule or on an event, with a clear owner for each field.",
-      "capability": "API and file-based integration, event and batch synchronisation, field-level ownership rules, conflict handling, retry with backoff, and monitoring that tells an operator when a feed stopped.",
-      "integrates": "Whatever is already in place. Replacing a working system is a last resort, not a starting position.",
-      "oversight": "Conflicts and failed syncs surface to a person rather than being resolved silently. A quiet integration is an integration nobody can trust.",
-      "outcome": "Reporting that agrees with itself, and a month-end that stops being a reconciliation exercise."
+      "slug": "crm-erp",
+      "title": "CRM & ERP Solutions",
+      "excerpt": "Tailored databases tracking resource orchestration and operational lifecycles.",
+      "challenge": "The real numbers live in four systems and one spreadsheet.",
+      "outcome": "Every resource, deal and lifecycle in a single source of truth.",
+      "ctaLabel": "Unify My Operations"
     },
     {
-      "slug": "customer-operations",
-      "title": "Customer operations",
-      "excerpt": "Enquiries from WhatsApp, phone and web in one queue, with an owner and a due time.",
-      "problem": "Enquiries arrive in three or four places. Some get answered twice, some not at all, and nobody can say how many came in last week.",
-      "changes": "Every channel lands in one queue. Each enquiry has an owner, a response clock and a history that survives the person who handled it.",
-      "capability": "Channel consolidation, assignment rules, response-time tracking, templated and assisted replies, and a record that stays with the customer rather than with an individual's phone.",
-      "integrates": "WhatsApp Business, telephony, web forms, and the CRM the sales team already lives in.",
-      "oversight": "Assisted replies are drafts until a person sends them, unless a business explicitly chooses otherwise for a narrow, well-understood category.",
-      "outcome": "A measurable response time, fewer dropped enquiries, and a handover that does not depend on one person's memory."
+      "slug": "whatsapp-automation",
+      "title": "WhatsApp Business Automation",
+      "excerpt": "Massive scale automated outreach and customer interactive transaction channels.",
+      "challenge": "Customers message the channel they like; nobody is staffed for it.",
+      "outcome": "Sales and support at scale on the channel customers already use.",
+      "ctaLabel": "Scale My Channel"
     },
     {
-      "slug": "internal-platforms",
-      "title": "Internal platforms",
-      "excerpt": "Software shaped around the process a business actually runs.",
-      "problem": "The licensed package assumes a process the business does not follow, so the real process happens in spreadsheets beside it.",
-      "changes": "The software matches the operation. The spreadsheets stop being the system of record.",
-      "capability": "Web and mobile applications, role-based access, offline-tolerant capture for work away from a desk, and an administrative surface the business can run without us.",
-      "integrates": "Existing identity, finance and reporting systems, so a new platform does not create a new island.",
-      "oversight": "Documentation, handover and the source code belong to the client. Software built to be handed over is built differently from software built to be rented.",
-      "outcome": "A system the operations team recognises, and one fewer spreadsheet that only one person understands."
+      "slug": "document-processing",
+      "title": "AI Document Processing & OCR",
+      "excerpt": "Extracting structured data parameters straight from chaotic text layouts.",
+      "challenge": "The information you need is trapped in PDFs and scans.",
+      "outcome": "Structured, searchable data out of documents nobody had time to read.",
+      "ctaLabel": "Digitise My Documents"
     },
     {
-      "slug": "reporting",
-      "title": "Reporting that reconciles",
-      "excerpt": "Numbers a finance team will put their name to.",
-      "problem": "Two departments report the same metric and get different answers, so the number becomes a matter of opinion and the meeting becomes an argument about the data.",
-      "changes": "Definitions are agreed once, written down, and computed in one place. The dashboard becomes a view of that, not a second source.",
-      "capability": "A defined metric layer, scheduled and event-driven refresh, drill-through to the underlying records, and a visible last-updated time so nobody presents a stale number by accident.",
-      "integrates": "Finance, operational and customer systems, and existing reporting tools where they are already trusted.",
-      "oversight": "Every headline number can be opened to the rows behind it. A figure that cannot be traced is a figure that should not be presented.",
-      "outcome": "Less time spent proving numbers, and reporting that survives being questioned."
+      "slug": "bi-dashboards",
+      "title": "Business Intelligence Dashboards",
+      "excerpt": "Aggregating telemetry maps to render clean, actionable real-time insights.",
+      "challenge": "Every decision waits on someone rebuilding the same report.",
+      "outcome": "The number you need to decide, ready before you ask for it.",
+      "ctaLabel": "See My Numbers Live"
     },
     {
-      "slug": "applied-ai",
-      "title": "AI with an audit trail",
-      "excerpt": "Systems that draft, classify and route — and record why.",
-      "problem": "The interesting AI demonstrations are the ones nobody can put into an operation, because a system that cannot explain a decision cannot be trusted with one.",
-      "changes": "Models do the narrow, repetitive judgement — classify this, draft that, route the other — inside a process that records inputs, outputs and the human who confirmed them.",
-      "capability": "Classification and routing, drafting with review, extraction with confidence thresholds, retrieval over a business's own documents, and evaluation against a held-back set before anything goes live.",
-      "integrates": "The systems the work already happens in. An assistant in a separate window is a demonstration, not an operation.",
-      "oversight": "Human-in-the-loop by default, with the threshold set per use case rather than globally. Every decision is logged with its inputs so it can be reviewed and reversed.",
-      "outcome": "Capacity released on repetitive judgement, without a decision anybody has to take on faith."
+      "slug": "api-integration",
+      "title": "API Dev & System Integration",
+      "excerpt": "Writing clean, future-ready microservices that glue core operations together.",
+      "challenge": "Each new tool adds another island to your stack.",
+      "outcome": "New tools plug into your stack instead of fragmenting it.",
+      "ctaLabel": "Connect My Stack"
     },
     {
-      "slug": "field-operations",
-      "title": "Field and site operations",
-      "excerpt": "Inspections, deliveries and handovers captured once, on a phone, and reconciled the same day.",
-      "problem": "Work that happens away from a desk is recorded on paper and typed up later — if it is typed up at all. The office finds out what happened on site days after it happened.",
-      "changes": "Capture happens where the work is, on a device the team already carries, and reaches the office as a record rather than as a photograph of a form.",
-      "capability": "Mobile capture with photographs and signatures, offline tolerance for sites without coverage, structured checklists, and reconciliation against the order or work instruction it belongs to.",
-      "integrates": "Scheduling, inventory and finance systems, so a completed job becomes an invoice without a second data entry.",
-      "oversight": "Supervisors review exceptions rather than every record. The system escalates what does not match.",
-      "outcome": "Same-day visibility of work in the field, and a shorter gap between work done and work invoiced."
+      "slug": "saas-development",
+      "title": "SaaS Product Development",
+      "excerpt": "Multi-tenant cloud architectures engineered for rapid customer onboarding.",
+      "challenge": "Every new customer costs you engineering time to onboard.",
+      "outcome": "A product that onboards customers without onboarding engineers.",
+      "ctaLabel": "Launch My Platform"
     }
   ],
   "pages": [
     {
       "slug": "about",
       "title": "About",
-      "content": "<p class=\"lead\">SIRA Digital builds the operational software that a business runs on. We are the technology company inside SIRA GROUP.</p><h2>Why we exist</h2><p>Most businesses do not have a technology problem. They have a process that grew faster than the tools around it, and the gap is being absorbed by people — re-typing, chasing, reconciling, and remembering things the system should have remembered for them. That absorbed effort is invisible on a balance sheet and enormous in practice.</p><p>Our work is to find that effort and move it into software.</p><h2>How we work</h2><h3>We start at the bottleneck, not at the software</h3><p>The first engagement is a review of where time actually goes. Sometimes the answer is a system. Sometimes it is a process change that costs nothing, and we will say so — a project that should not have been built is worse for both sides than one that was never sold.</p><h3>We build to hand over</h3><p>Documentation, administrative access and source code belong to the client. Software built to be handed over is built differently from software built to be rented, and the difference shows in year three.</p><h3>We keep the human where judgement lives</h3><p>Automation is right for work that repeats and wrong for work that requires accountability. We are explicit about which is which, and we log every automated decision so it can be reviewed and reversed.</p><h3>We integrate before we replace</h3><p>A working system is an asset, even an inconvenient one. Replacing it is a last resort, not an opening position.</p><h2>Part of SIRA GROUP</h2><p>SIRA Digital is one of the operating companies of SIRA GROUP. That relationship gives us something an independent software firm rarely has: sister companies running real operations in healthcare, real estate and hospitality, and the ability to see how a process behaves in practice rather than in a requirements document.</p>"
+      "content": "<p class=\"lead\">SIRA Digital builds the operational software that a business runs on. We are the technology company inside SIRA GROUP.</p><h2>Why we exist</h2><p>Most businesses do not have a technology problem. They have a process that grew faster than the tools around it, and the gap is being absorbed by people — re-typing, chasing, reconciling, and remembering things the system should have remembered for them. That absorbed effort is invisible on a balance sheet and enormous in practice.</p><p>Our work is to find that effort and move it into software.</p><h2>How we work</h2><h3>We start at the bottleneck, not at the software</h3><p>The first engagement is a review of where time actually goes. Sometimes the answer is a system. Sometimes it is a process change that costs nothing, and we will say so — a project that should not have been built is worse for both sides than one that was never sold.</p><h3>We build to hand over</h3><p>Documentation, administrative access and source code belong to the client. Software built to be handed over is built differently from software built to be rented, and the difference shows in year three.</p><h3>We keep the human where judgement lives</h3><p>Automation is right for work that repeats and wrong for work that requires accountability. We are explicit about which is which, and we log every automated decision so it can be reviewed and reversed.</p><h3>We integrate before we replace</h3><p>A working system is an asset, even an inconvenient one. Replacing it is a last resort, not an opening position.</p><h2>Part of SIRA GROUP</h2><p>SIRA Digital is one of the operating companies of SIRA GROUP. That relationship gives us something an independent software firm rarely has: sister companies running real operations in healthcare, real estate and hospitality, and the ability to see how a process behaves in practice rather than in a requirements document.</p>",
+      "intro": {
+        "eyebrow": "About",
+        "heading": "About SIRAH DIGITAL",
+        "standfirst": "",
+        "ctaHeading": "Ready to automate the busywork?",
+        "ctaLabel": "Book a free consultation"
+      }
     },
     {
       "slug": "contact",
@@ -356,60 +355,619 @@
   ],
   "industries": [
     {
-      "slug": "healthcare",
-      "title": "Healthcare",
-      "excerpt": "Patient journeys, records and referrals — the administrative half of care.",
-      "bottleneck": "Scheduling, records and referrals absorb clinical time. Coordination happens by phone and paper, and the patient experiences the gaps as waiting.",
-      "opportunity": "Intake and scheduling that reconcile with the clinical system, referral handover with a status a patient can be told, and document extraction for insurance and identity paperwork."
-    },
-    {
-      "slug": "real-estate",
-      "title": "Real estate",
-      "excerpt": "Enquiry to lease: qualification, documents and handover.",
-      "bottleneck": "Enquiries arrive faster than they can be qualified, and the paperwork between an agreed deal and an occupied unit is handled by whoever is free.",
-      "opportunity": "One qualified pipeline across channels, document collection with validation, and a handover checklist that finance and facilities can both see."
-    },
-    {
-      "slug": "hospitality",
-      "title": "Hospitality",
-      "excerpt": "Guest operations that survive a full house.",
-      "bottleneck": "Requests reach the front desk from a dozen directions and are held in somebody's head until they are done or forgotten.",
-      "opportunity": "Request capture with an owner and a clock, housekeeping and maintenance dispatch that reconciles with the property system, and reporting a general manager can act on the same day."
-    },
-    {
-      "slug": "retail-and-distribution",
-      "title": "Retail and distribution",
-      "excerpt": "Order to delivery, without the re-typing in the middle.",
-      "bottleneck": "Orders arrive as messages and are re-entered by hand. Stock truth lives in two systems that disagree by the time anybody checks.",
-      "opportunity": "Order intake straight into the system of record, exception-based review, and reconciliation between stock, sales and finance that runs without a person driving it."
-    },
-    {
-      "slug": "logistics",
-      "title": "Logistics",
-      "excerpt": "Dispatch, proof of delivery and the paperwork behind both.",
-      "bottleneck": "Dispatch is planned in one place, executed in another and invoiced from a third. Proof of delivery is a photograph in a chat thread.",
-      "opportunity": "Structured capture at the point of delivery, automatic reconciliation to the job, and document extraction for customs and carrier paperwork."
+      "slug": "automotive",
+      "title": "Automotive",
+      "eyebrow": "Dealer Telemetry & Service CRM",
+      "standfirst": "Inventory telemetry dashboards, garage CRM integrations and predictive parts procurement that keep bays full and stock lean.",
+      "workflow": [
+        {
+          "title": "Vehicle Booking",
+          "detail": "Slot held against bay capacity"
+        },
+        {
+          "title": "Inspection",
+          "detail": "Condition captured on arrival"
+        },
+        {
+          "title": "Diagnosis",
+          "detail": "Fault codes read and priced"
+        },
+        {
+          "title": "Repair",
+          "detail": "Parts reserved, work authorised"
+        },
+        {
+          "title": "Testing",
+          "detail": "Road and bench verification"
+        },
+        {
+          "title": "Delivery",
+          "detail": "Handed back with the record"
+        },
+        {
+          "title": "Service Reminder",
+          "detail": "Next due, predicted"
+        }
+      ],
+      "stat": null,
+      "build": [
+        "Service due prediction and automated recall",
+        "Parts demand forecasting per model",
+        "Workshop bay scheduling and load balancing",
+        "Customer lifetime value by vehicle"
+      ],
+      "buildNote": "Vehicle, owner and service history resolve to a single record.",
+      "stack": [
+        "Zoho CRM",
+        "BigQuery",
+        "Twilio",
+        "Looker"
+      ]
     },
     {
       "slug": "construction",
-      "title": "Construction",
-      "excerpt": "Approvals, site records and the gap between them.",
-      "bottleneck": "Approvals wait in inboxes and site records arrive late, so the commercial picture is always describing last week.",
-      "opportunity": "Approval workflows with escalation, site capture that reaches the office the same day, and document handling for submittals and variations."
-    },
-    {
-      "slug": "professional-services",
-      "title": "Professional services",
-      "excerpt": "Engagement admin that stops eating billable time.",
-      "bottleneck": "Senior people spend hours on engagement administration — onboarding, document collection, status reporting — that follows the same steps every time.",
-      "opportunity": "Templated engagement setup, client document collection with chasing, and reporting assembled from the systems rather than from a person."
+      "title": "Construction & Engineering",
+      "eyebrow": "Project Control & Site Intelligence",
+      "standfirst": "Live project tracking tools, material supply dashboards and custom blueprint systems that keep site, office and supplier on one programme.",
+      "workflow": [
+        {
+          "title": "Project Planning",
+          "detail": "Scope, programme and budget"
+        },
+        {
+          "title": "Material Procurement",
+          "detail": "Ordered against the schedule"
+        },
+        {
+          "title": "Site Execution",
+          "detail": "Daily logs from the field"
+        },
+        {
+          "title": "Progress Tracking",
+          "detail": "Measured against the plan"
+        },
+        {
+          "title": "Quality Check",
+          "detail": "Snags raised and closed"
+        },
+        {
+          "title": "Handover",
+          "detail": "Drawings and certificates issued"
+        },
+        {
+          "title": "Maintenance",
+          "detail": "Planned against asset life"
+        }
+      ],
+      "stat": {
+        "value": "34%",
+        "label": "Fewer Schedule Overruns"
+      },
+      "build": [
+        "Programme slippage flagged as it happens",
+        "Material demand forecasting per phase",
+        "Site progress capture from mobile",
+        "Subcontractor compliance and cost tracking"
+      ],
+      "buildNote": "Drawings, revisions and approvals stay version-locked.",
+      "stack": [
+        "Procore API",
+        "Power BI",
+        "AutoCAD",
+        "Azure"
+      ]
     },
     {
       "slug": "education",
-      "title": "Education",
-      "excerpt": "Admissions and student administration at intake scale.",
-      "bottleneck": "Admissions arrive in bursts, and the administrative load per applicant is identical whether or not they enrol.",
-      "opportunity": "Application intake with document validation, status communication that does not require a person to send it, and reconciliation between admissions, finance and the student record."
+      "title": "Education & EdTech",
+      "eyebrow": "Learning Platforms & Academic AI",
+      "standfirst": "Interactive learning portals, AI grading assistants and student management applications that carry a cohort from enrolment through to results.",
+      "workflow": [
+        {
+          "title": "Student Enquiry",
+          "detail": "Captured from any channel"
+        },
+        {
+          "title": "Admission Automation",
+          "detail": "Forms, fees and verification"
+        },
+        {
+          "title": "Course Allocation",
+          "detail": "Batches and electives assigned"
+        },
+        {
+          "title": "Attendance Tracking",
+          "detail": "Marked and reconciled daily"
+        },
+        {
+          "title": "Learning Analytics",
+          "detail": "Risk surfaced early"
+        },
+        {
+          "title": "Parent Notifications",
+          "detail": "Scheduled and event-driven"
+        },
+        {
+          "title": "Reports",
+          "detail": "Termly records, generated once"
+        }
+      ],
+      "stat": null,
+      "build": [
+        "AI-assisted grading with tutor override",
+        "Personalised learning path generation",
+        "Attendance and progress alerting to parents",
+        "Single portal for staff, students and admin"
+      ],
+      "buildNote": "Every AI-graded submission keeps a reviewable human-decision trail.",
+      "stack": [
+        "Next.js",
+        "OpenAI",
+        "Moodle API",
+        "Postgres"
+      ]
+    },
+    {
+      "slug": "healthcare",
+      "title": "Healthcare & Wellness",
+      "eyebrow": "Clinical Operations & Patient Flow",
+      "standfirst": "Automated clinic workflows, intelligent appointment scheduling, OCR-driven record digitisation and consent-aware follow-up journeys across every patient touchpoint.",
+      "workflow": [
+        {
+          "title": "Patient Appointment",
+          "detail": "Booked online or by phone"
+        },
+        {
+          "title": "AI Reception",
+          "detail": "Queries answered, intent captured"
+        },
+        {
+          "title": "Doctor Scheduling",
+          "detail": "Matched to the right slot"
+        },
+        {
+          "title": "Visit & Consultation",
+          "detail": "Clinician sees the full history"
+        },
+        {
+          "title": "Digital Records",
+          "detail": "Notes and scans filed by OCR"
+        },
+        {
+          "title": "Follow-up Automation",
+          "detail": "Reminders and no-show recovery"
+        },
+        {
+          "title": "Analytics Dashboard",
+          "detail": "Load, outcomes and gaps"
+        }
+      ],
+      "stat": {
+        "value": "64%",
+        "label": "Reduction in Admin Hours"
+      },
+      "build": [
+        "Automated reminders & no-show recovery",
+        "OCR intake from scans, forms and lab reports",
+        "Smart triage routing across departments",
+        "Audit-ready patient communication logs"
+      ],
+      "buildNote": "Encrypted record pipelines with role-scoped access on every hop.",
+      "stack": [
+        "Twilio",
+        "FHIR",
+        "Azure OCR",
+        "Supabase"
+      ]
+    },
+    {
+      "slug": "hospitality-travel",
+      "title": "Hospitality & Travel",
+      "eyebrow": "Guest Journey & Revenue Automation",
+      "standfirst": "Autonomous guest booking bots, virtual concierge systems and automated billing operations that run from first enquiry to post-stay review.",
+      "workflow": [
+        {
+          "title": "Booking",
+          "detail": "Direct or through any OTA"
+        },
+        {
+          "title": "Confirmation",
+          "detail": "Instant, on the guest’s channel"
+        },
+        {
+          "title": "Room Allocation",
+          "detail": "Assigned on preference and load"
+        },
+        {
+          "title": "Guest Check-in",
+          "detail": "Digital, ahead of arrival"
+        },
+        {
+          "title": "Service Requests",
+          "detail": "Routed to the right team"
+        },
+        {
+          "title": "Check-out",
+          "detail": "Billed and settled automatically"
+        },
+        {
+          "title": "Feedback",
+          "detail": "Collected while it still matters"
+        }
+      ],
+      "stat": null,
+      "build": [
+        "Multilingual booking and concierge agents",
+        "Automated upsell at the right moment",
+        "Channel-manager and PMS synchronisation",
+        "Post-stay review and feedback capture"
+      ],
+      "buildNote": "Rate and availability stay in sync across every channel.",
+      "stack": [
+        "Cloudbeds",
+        "WhatsApp API",
+        "Stripe",
+        "Twilio"
+      ]
+    },
+    {
+      "slug": "human-resources",
+      "title": "Human Resources & Recruitment",
+      "eyebrow": "Talent Pipelines & Onboarding Systems",
+      "standfirst": "Automated CV screening, intelligent interview loops and employee onboarding applications that get a new hire productive in their first week.",
+      "workflow": [
+        {
+          "title": "Candidate Applied",
+          "detail": "Sourced from every channel"
+        },
+        {
+          "title": "Resume Screening",
+          "detail": "Ranked against the role"
+        },
+        {
+          "title": "Interview",
+          "detail": "Scheduled, scored and recorded"
+        },
+        {
+          "title": "Offer",
+          "detail": "Generated and tracked to signature"
+        },
+        {
+          "title": "Onboarding",
+          "detail": "Accounts, assets and paperwork"
+        },
+        {
+          "title": "Training",
+          "detail": "Assigned by role and progress"
+        },
+        {
+          "title": "Performance Review",
+          "detail": "Cycles run without chasing"
+        }
+      ],
+      "stat": {
+        "value": "72%",
+        "label": "Less Time-to-Shortlist"
+      },
+      "build": [
+        "CV screening ranked against the live role",
+        "Interview scheduling without the back-and-forth",
+        "Offer, contract and e-signature flow",
+        "Day-one provisioning across every system"
+      ],
+      "buildNote": "Screening criteria are explicit, logged and reviewable per candidate.",
+      "stack": [
+        "Greenhouse",
+        "OpenAI",
+        "DocuSign",
+        "Slack"
+      ]
+    },
+    {
+      "slug": "legal",
+      "title": "Legal Services",
+      "eyebrow": "Contract Analysis & Matter Workflows",
+      "standfirst": "AI contract analysis systems, discovery document processing tools and legal workflow engines that surface the clause that matters first.",
+      "workflow": [
+        {
+          "title": "Case Intake",
+          "detail": "Conflicts checked at the door"
+        },
+        {
+          "title": "Document Review",
+          "detail": "Clauses extracted and compared"
+        },
+        {
+          "title": "Legal Drafting",
+          "detail": "Built from approved precedent"
+        },
+        {
+          "title": "Approval",
+          "detail": "Routed by matter and value"
+        },
+        {
+          "title": "Court Process",
+          "detail": "Dates, filings and bundles"
+        },
+        {
+          "title": "Compliance",
+          "detail": "Obligations tracked to deadline"
+        },
+        {
+          "title": "Closure",
+          "detail": "Archived with an audit trail"
+        }
+      ],
+      "stat": null,
+      "build": [
+        "Clause extraction with risk flagging",
+        "Discovery search across whole matters",
+        "Matter and deadline tracking dashboards",
+        "Precedent library that stays current"
+      ],
+      "buildNote": "Every extraction cites the source document and page.",
+      "stack": [
+        "Claude",
+        "Elasticsearch",
+        "DocuSign",
+        "Postgres"
+      ]
+    },
+    {
+      "slug": "logistics",
+      "title": "Logistics & Supply Chain",
+      "eyebrow": "Route Intelligence & Fleet Orchestration",
+      "standfirst": "Live route optimisation networks, delivery tracking architectures and cargo data hubs that keep dispatch, driver and customer on the same clock.",
+      "workflow": [
+        {
+          "title": "Order Received",
+          "detail": "Booked across every channel"
+        },
+        {
+          "title": "Warehouse Allocation",
+          "detail": "Nearest node holding stock"
+        },
+        {
+          "title": "Route Optimization",
+          "detail": "Sequenced against live traffic"
+        },
+        {
+          "title": "Shipment",
+          "detail": "Manifested and released"
+        },
+        {
+          "title": "Live Tracking",
+          "detail": "Position and ETA per consignment"
+        },
+        {
+          "title": "Delivery",
+          "detail": "Proof captured at the door"
+        },
+        {
+          "title": "Performance Dashboard",
+          "detail": "Cost per drop and SLA"
+        }
+      ],
+      "stat": {
+        "value": "27%",
+        "label": "Lower Cost Per Delivery"
+      },
+      "build": [
+        "Continuous route re-optimisation on traffic",
+        "Customer-facing live tracking links",
+        "Proof-of-delivery capture and reconciliation",
+        "Fleet utilisation and idle-time analytics"
+      ],
+      "buildNote": "Position and status events reconcile even after offline stretches.",
+      "stack": [
+        "Google Maps",
+        "Kafka",
+        "PostGIS",
+        "Redis"
+      ]
+    },
+    {
+      "slug": "manufacturing",
+      "title": "Manufacturing",
+      "eyebrow": "Predictive Operations & Plant Telemetry",
+      "standfirst": "Predictive maintenance scheduling, live production dashboards and IoT integrations that pull machine telemetry into one operational picture.",
+      "workflow": [
+        {
+          "title": "Production Request",
+          "detail": "Lands from sales or ERP"
+        },
+        {
+          "title": "AI Planning",
+          "detail": "Line and shift plan generated"
+        },
+        {
+          "title": "Inventory Check",
+          "detail": "Stock and lead times reconciled"
+        },
+        {
+          "title": "Machine Monitoring",
+          "detail": "Live telemetry off the floor"
+        },
+        {
+          "title": "Quality Inspection",
+          "detail": "Defects caught before dispatch"
+        },
+        {
+          "title": "Dispatch",
+          "detail": "Loads built and released"
+        },
+        {
+          "title": "Performance Analytics",
+          "detail": "Yield, downtime and OEE"
+        }
+      ],
+      "stat": null,
+      "build": [
+        "Failure prediction from live sensor drift",
+        "Line-level OEE dashboards in real time",
+        "Automated work-order dispatch",
+        "Supplier and inventory reorder triggers"
+      ],
+      "buildNote": "Edge-buffered ingestion - no telemetry lost during network drops.",
+      "stack": [
+        "MQTT",
+        "InfluxDB",
+        "Grafana",
+        "Node-RED"
+      ]
+    },
+    {
+      "slug": "professional-services",
+      "title": "Professional Services",
+      "eyebrow": "Document Intelligence & Practice Automation",
+      "standfirst": "AI document processing, automated accounting and advisory operations, and custom BI dashboards that show utilisation before the month closes.",
+      "workflow": [
+        {
+          "title": "Client Enquiry",
+          "detail": "Qualified before it reaches you"
+        },
+        {
+          "title": "Discovery Call",
+          "detail": "Notes and actions transcribed"
+        },
+        {
+          "title": "Proposal",
+          "detail": "Scoped, priced and sent"
+        },
+        {
+          "title": "Project Kickoff",
+          "detail": "Workspace and plan provisioned"
+        },
+        {
+          "title": "Execution",
+          "detail": "Time, tasks and approvals tracked"
+        },
+        {
+          "title": "Delivery",
+          "detail": "Handover pack assembled"
+        },
+        {
+          "title": "Client Success",
+          "detail": "Renewals and referrals prompted"
+        }
+      ],
+      "stat": null,
+      "build": [
+        "Structured data out of client PDFs and scans",
+        "Automated engagement and billing workflows",
+        "Utilisation and realisation dashboards",
+        "Deadline tracking across every client file"
+      ],
+      "buildNote": "Client data stays partitioned per engagement, end to end.",
+      "stack": [
+        "Claude",
+        "Xero",
+        "Power BI",
+        "S3"
+      ]
+    },
+    {
+      "slug": "real-estate",
+      "title": "Real Estate",
+      "eyebrow": "Lead Intelligence & Portfolio Analytics",
+      "standfirst": "Automated lead tracking, custom CRM workflows and property portfolio analytics that route a serious buyer to the right agent within minutes.",
+      "workflow": [
+        {
+          "title": "Lead Captured",
+          "detail": "Portal, advert or walk-in"
+        },
+        {
+          "title": "AI Qualification",
+          "detail": "Budget and intent scored"
+        },
+        {
+          "title": "Property Matching",
+          "detail": "Inventory ranked per buyer"
+        },
+        {
+          "title": "Site Visit Booking",
+          "detail": "Slots held and confirmed"
+        },
+        {
+          "title": "Negotiation",
+          "detail": "Offers tracked in one thread"
+        },
+        {
+          "title": "Documentation",
+          "detail": "Agreements drafted and signed"
+        },
+        {
+          "title": "Deal Closed",
+          "detail": "Handover and payout recorded"
+        }
+      ],
+      "stat": null,
+      "build": [
+        "Instant lead scoring and agent routing",
+        "Automated viewing scheduling and reminders",
+        "Portfolio yield and occupancy dashboards",
+        "Document collection through to handover"
+      ],
+      "buildNote": "Every enquiry is attributed to source, agent and outcome.",
+      "stack": [
+        "HubSpot",
+        "WhatsApp API",
+        "Mapbox",
+        "Supabase"
+      ]
+    },
+    {
+      "slug": "retail-ecommerce",
+      "title": "Retail & E-commerce",
+      "eyebrow": "Commerce Automation & Demand Forecasting",
+      "standfirst": "Inventory prediction dashboards, automated WhatsApp support channels and custom checkout applications tuned to how your catalogue actually sells.",
+      "workflow": [
+        {
+          "title": "Customer Visit",
+          "detail": "Storefront or shop floor"
+        },
+        {
+          "title": "Product Recommendation",
+          "detail": "Ranked on behaviour and stock"
+        },
+        {
+          "title": "Cart",
+          "detail": "Held, recovered, re-priced"
+        },
+        {
+          "title": "Payment",
+          "detail": "Any method, one reconciliation"
+        },
+        {
+          "title": "Order Processing",
+          "detail": "Picked, packed and allocated"
+        },
+        {
+          "title": "Delivery",
+          "detail": "Dispatched and tracked"
+        },
+        {
+          "title": "Customer Feedback",
+          "detail": "Collected and routed"
+        }
+      ],
+      "stat": {
+        "value": "41%",
+        "label": "Lift in Repeat Purchases"
+      },
+      "build": [
+        "Stock-out forecasting before it costs a sale",
+        "Automated cart recovery across channels",
+        "Returns and RMA handled without a ticket",
+        "Live margin view by SKU and channel"
+      ],
+      "buildNote": "Catalogue, stock and order state stay consistent across channels.",
+      "stack": [
+        "Shopify",
+        "Klaviyo",
+        "BigQuery",
+        "Stripe"
+      ]
     }
   ],
   "labels": {
@@ -428,10 +986,10 @@
       "title": "Services",
       "intro": {
         "eyebrow": "Capabilities",
-        "heading": "What we build.",
-        "standfirst": "Each capability is scoped, built, integrated and handed over. Every entry below says what changes operationally, not what the technology is called.",
-        "ctaHeading": "Let us look at yours.",
-        "ctaLabel": "Book an operations review"
+        "heading": "Systems that think, automate and scale",
+        "standfirst": "Ten core capabilities, delivered end to end — scoped, built, deployed and handed over running.",
+        "ctaHeading": "Let us build yours.",
+        "ctaLabel": "Book a free consultation"
       }
     },
     {
@@ -450,11 +1008,110 @@
       "title": "Industries",
       "intro": {
         "eyebrow": "Sectors",
-        "heading": "Every sector loses time somewhere different.",
-        "standfirst": "We start from the bottleneck, not from the software. Below is where it usually sits, sector by sector, and what can realistically be done about it.",
-        "ctaHeading": "Not listed? The bottleneck is usually the same shape.",
-        "ctaLabel": "Book an operations review"
+        "heading": "Automation, shaped around your industry.",
+        "standfirst": "We design AI-powered systems around the workflows, teams and challenges unique to your industry.",
+        "ctaHeading": "Have a workflow worth automating?",
+        "ctaLabel": "Book a free consultation"
       }
+    }
+  ],
+  "about": {
+    "hero": {
+      "eyebrow": "Founder & Technical Architect",
+      "heading_before": "Scale your business with",
+      "heading_highlight": "Mohamed Riyaz",
+      "heading_after": "",
+      "description": "Helping businesses move from manual operations to intelligent automation — and to the hours, clarity and scale that follow.",
+      "primary_cta": {
+        "title": "Get in touch",
+        "url": "/contact"
+      },
+      "secondary_cta": {
+        "title": "Explore services",
+        "url": "/services"
+      }
+    },
+    "stats": [
+      {
+        "value": "14+",
+        "label": "Years of experience"
+      },
+      {
+        "value": "50+",
+        "label": "Happy clients"
+      },
+      {
+        "value": "20+",
+        "label": "Customised softwares"
+      },
+      {
+        "value": "24/7",
+        "label": "Support available"
+      }
+    ],
+    "team": {
+      "eyebrow": "The people",
+      "heading": "Meet our brains",
+      "standfirst": ""
+    },
+    "statement": {
+      "ghost_word": "About",
+      "body": "<p>Transforming businesses with intelligent AI automation solutions. We help you work smarter, scale faster, and grow without limits.</p>",
+      "quote": "The purpose of Sirah Digital is not to replace people with AI, but to support them.",
+      "attribution_name": "Mohamed Riyaz",
+      "attribution_role": "Founder & Technical Architect",
+      "socials": []
+    },
+    "process": {
+      "eyebrow": "How we work",
+      "heading": "How we work",
+      "standfirst": "Every engagement runs the same three stages, so you always know which one you are in.",
+      "steps": [
+        {
+          "title": "Automate",
+          "body": "Eliminate repetitive workflow structures with high-availability enterprise AI agents."
+        },
+        {
+          "title": "Simplify",
+          "body": "Deconstruct complex operations into intuitive, custom software applications."
+        },
+        {
+          "title": "Scale",
+          "body": "Launch cloud-ready API infrastructures positioned to grow alongside your business."
+        }
+      ]
+    }
+  },
+  "team": [
+    {
+      "slug": "jesheeba-fathima",
+      "name": "M. Jesheeba Fathima",
+      "role": "AI Automation Engineer",
+      "summary": "Driving strategic digital transformation and growth initiatives for businesses."
+    },
+    {
+      "slug": "ss-monisha",
+      "name": "SS. Monisha",
+      "role": "AI Automation Engineer",
+      "summary": "Building intelligent AI-driven automation and delivering AI-enabled automation systems."
+    },
+    {
+      "slug": "sayed-salman",
+      "name": "S. Sayed Salman",
+      "role": "AI Solution Engineer",
+      "summary": "Helping businesses automate workflows and uncover insights with data and AI."
+    },
+    {
+      "slug": "abdul-samad",
+      "name": "Abdul Samad",
+      "role": "AI Solution Engineer",
+      "summary": "Developing intelligent automation systems and AI-powered solutions."
+    },
+    {
+      "slug": "aakash-kummar",
+      "name": "I. Aakash Kummar",
+      "role": "AI Automation Engineer",
+      "summary": "Creating scalable AI workflows and automation systems."
     }
   ]
 }

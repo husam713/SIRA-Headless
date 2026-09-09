@@ -1,45 +1,45 @@
 {
-  "canonicalSha256": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
+  "canonicalSha256": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
   "canonicalSite": "consulting",
-  "fetchedAt": "2026-09-09T01:11:25.999Z",
+  "fetchedAt": "2026-09-09T02:11:17.576Z",
   "groupAuditSite": "group",
-  "groupSha256": "6770994e4047b1a93f34d4233273aeae39d083ea69365651f9d22a0fa3729fd2",
+  "groupSha256": "677022d610d22d76b5dfe5fd4e7d07dab1930040a2411e9064f526d2853634c7",
   "policy": "branch-peers-exact-group-structural-superset",
   "sites": [
     {
       "hostname": "siratrgroup.com",
       "role": "group-audit",
-      "sha256": "6770994e4047b1a93f34d4233273aeae39d083ea69365651f9d22a0fa3729fd2",
+      "sha256": "677022d610d22d76b5dfe5fd4e7d07dab1930040a2411e9064f526d2853634c7",
       "siteKey": "group"
     },
     {
       "hostname": "consulting.siratrgroup.com",
       "role": "canonical-branch",
-      "sha256": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
+      "sha256": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
       "siteKey": "consulting"
     },
     {
       "hostname": "healthcare.siratrgroup.com",
       "role": "branch",
-      "sha256": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
+      "sha256": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
       "siteKey": "healthcare"
     },
     {
       "hostname": "lifestyle.siratrgroup.com",
       "role": "branch",
-      "sha256": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
+      "sha256": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
       "siteKey": "lifestyle"
     },
     {
       "hostname": "realestate.siratrgroup.com",
       "role": "branch",
-      "sha256": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
+      "sha256": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
       "siteKey": "realestate"
     },
     {
       "hostname": "127.0.0.1",
       "role": "branch",
-      "sha256": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
+      "sha256": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
       "siteKey": "digital"
     }
   ],

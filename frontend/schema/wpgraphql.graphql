@@ -8331,6 +8331,250 @@ interface DigitalHomepage_Fields implements AcfFieldGroup & AcfFieldGroupFields 
   wordmark: DigitalHomepageWordmark
 }
 
+"""
+The &quot;DigitalIndustry&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalIndustry implements AcfFieldGroup & AcfFieldGroupFields & DigitalIndustry_Fields {
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;DigitalIndustry&quot; Field Group
+  """
+  build: [DigitalIndustryBuild]
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalIndustry&quot; Field Group
+  """
+  buildNote: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustry&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;DigitalIndustry&quot; Field Group
+  """
+  stack: [DigitalIndustryStack]
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalIndustry&quot; Field Group
+  """
+  standfirst: String
+
+  """
+  Optional. Leave it empty rather than estimating one: the block is omitted when it is blank.
+  """
+  stat: DigitalIndustryStat
+
+  """The order here is the order a reader walks the process in."""
+  workflow: [DigitalIndustryWorkflow]
+}
+
+"""
+The &quot;DigitalIndustryBuild&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalIndustryBuild implements AcfFieldGroup & AcfFieldGroupFields & DigitalIndustryBuild_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryBuild&quot; Field Group
+  """
+  item: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalIndustryBuild&quot; Field Group
+"""
+interface DigitalIndustryBuild_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryBuild&quot; Field Group
+  """
+  item: String
+}
+
+"""
+The &quot;DigitalIndustryStack&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalIndustryStack implements AcfFieldGroup & AcfFieldGroupFields & DigitalIndustryStack_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryStack&quot; Field Group
+  """
+  item: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalIndustryStack&quot; Field Group
+"""
+interface DigitalIndustryStack_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryStack&quot; Field Group
+  """
+  item: String
+}
+
+"""
+The &quot;DigitalIndustryStat&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalIndustryStat implements AcfFieldGroup & AcfFieldGroupFields & DigitalIndustryStat_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryStat&quot; Field Group
+  """
+  label: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryStat&quot; Field Group
+  """
+  value: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalIndustryStat&quot; Field Group
+"""
+interface DigitalIndustryStat_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryStat&quot; Field Group
+  """
+  label: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryStat&quot; Field Group
+  """
+  value: String
+}
+
+"""
+The &quot;DigitalIndustryWorkflow&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalIndustryWorkflow implements AcfFieldGroup & AcfFieldGroupFields & DigitalIndustryWorkflow_Fields {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryWorkflow&quot; Field Group
+  """
+  detail: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryWorkflow&quot; Field Group
+  """
+  title: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalIndustryWorkflow&quot; Field Group
+"""
+interface DigitalIndustryWorkflow_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryWorkflow&quot; Field Group
+  """
+  detail: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustryWorkflow&quot; Field Group
+  """
+  title: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalIndustry&quot; Field Group
+"""
+interface DigitalIndustry_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;DigitalIndustry&quot; Field Group
+  """
+  build: [DigitalIndustryBuild]
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalIndustry&quot; Field Group
+  """
+  buildNote: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalIndustry&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;DigitalIndustry&quot; Field Group
+  """
+  stack: [DigitalIndustryStack]
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;DigitalIndustry&quot; Field Group
+  """
+  standfirst: String
+
+  """
+  Optional. Leave it empty rather than estimating one: the block is omitted when it is blank.
+  """
+  stat: DigitalIndustryStat
+
+  """The order here is the order a reader walks the process in."""
+  workflow: [DigitalIndustryWorkflow]
+}
+
+"""
+The &quot;DigitalService&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type DigitalService implements AcfFieldGroup & AcfFieldGroupFields & DigitalService_Fields {
+  """The problem in the reader own words, before any solution is named."""
+  challenge: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalService&quot; Field Group
+  """
+  ctaLabel: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """What is true afterwards, in plain language."""
+  outcome: String
+}
+
+"""
+Interface representing fields of the ACF &quot;DigitalService&quot; Field Group
+"""
+interface DigitalService_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The problem in the reader own words, before any solution is named."""
+  challenge: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;DigitalService&quot; Field Group
+  """
+  ctaLabel: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """What is true afterwards, in plain language."""
+  outcome: String
+}
+
 """The discussion setting type"""
 type DiscussionSettings implements Node {
   """Allow people to submit comments on new posts."""
@@ -39894,7 +40138,7 @@ interface SiraHomepage_Fields implements AcfFieldGroup & AcfFieldGroupFields {
 }
 
 """The SiraIndustry type"""
-type SiraIndustry implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfSiraLocale {
+type SiraIndustry implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfDigitalIndustry & WithAcfSiraLocale {
   """
   The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -39970,6 +40214,9 @@ type SiraIndustry implements DatabaseIdentifier & HierarchicalNode & Hierarchica
 
   """The description of the object"""
   description: String
+
+  """Fields of the DigitalIndustry ACF Field Group"""
+  digitalIndustry: DigitalIndustry
 
   """Connection between the TermNode type and the EnqueuedScript type"""
   enqueuedScripts(
@@ -59761,7 +60008,7 @@ type SiraSectorToTaxonomyConnectionEdge implements Edge & OneToOneConnection & T
 }
 
 """The SiraService type"""
-type SiraService implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSiraLocale {
+type SiraService implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfDigitalService & WithAcfSiraLocale {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -59813,6 +60060,9 @@ type SiraService implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
 
   """The desired slug of the post"""
   desiredSlug: String
+
+  """Fields of the DigitalService ACF Field Group"""
+  digitalService: DigitalService
 
   """
   If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds
@@ -70965,6 +71215,22 @@ Provides access to fields of the &quot;DigitalHomepage&quot; ACF Field Group via
 interface WithAcfDigitalHomepage {
   """Fields of the DigitalHomepage ACF Field Group"""
   digitalHomepage: DigitalHomepage
+}
+
+"""
+Provides access to fields of the &quot;DigitalIndustry&quot; ACF Field Group via the &quot;digitalIndustry&quot; field
+"""
+interface WithAcfDigitalIndustry {
+  """Fields of the DigitalIndustry ACF Field Group"""
+  digitalIndustry: DigitalIndustry
+}
+
+"""
+Provides access to fields of the &quot;DigitalService&quot; ACF Field Group via the &quot;digitalService&quot; field
+"""
+interface WithAcfDigitalService {
+  """Fields of the DigitalService ACF Field Group"""
+  digitalService: DigitalService
 }
 
 """

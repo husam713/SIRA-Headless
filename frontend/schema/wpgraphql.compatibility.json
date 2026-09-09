@@ -2,11 +2,11 @@
   "branches": {
     "exactSchemaEquality": true,
     "hashes": {
-      "consulting": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
-      "digital": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
-      "healthcare": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
-      "lifestyle": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
-      "realestate": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8"
+      "consulting": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
+      "digital": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
+      "healthcare": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
+      "lifestyle": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
+      "realestate": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6"
     },
     "siteKeys": [
       "consulting",
@@ -17,11 +17,11 @@
     ]
   },
   "canonical": {
-    "sha256": "6bfff0f9dd6cea6d45545a7f4a6b41f70a5226b2b0ed810c9ce4f7880a9086c8",
+    "sha256": "623c5a64f243c18d2fd7e3a65e1b7dcd2827d74509031ab7055cd214e1b91ef6",
     "siteKey": "consulting"
   },
   "compatible": true,
-  "generatedAt": "2026-09-09T01:11:25.999Z",
+  "generatedAt": "2026-09-09T02:11:17.576Z",
   "group": {
     "groupOnlyAdditions": {
       "arguments": [],
@@ -1111,7 +1111,7 @@
       ]
     },
     "issues": [],
-    "sha256": "6770994e4047b1a93f34d4233273aeae39d083ea69365651f9d22a0fa3729fd2",
+    "sha256": "677022d610d22d76b5dfe5fd4e7d07dab1930040a2411e9064f526d2853634c7",
     "siteKey": "group",
     "structurallyContainsCanonical": true
   },

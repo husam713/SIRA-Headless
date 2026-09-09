@@ -44,7 +44,7 @@ export type SiraContentPageQuery = { readonly page: { readonly databaseId: numbe
 export type SiraServiceIndexQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiraServiceIndexQuery = { readonly siraServices: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly uri: string | null, readonly title: string | null, readonly excerpt: string | null, readonly content: string | null, readonly siraLocale: { readonly code: string | null } | null }> } | null };
+export type SiraServiceIndexQuery = { readonly siraServices: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly uri: string | null, readonly title: string | null, readonly excerpt: string | null, readonly content: string | null, readonly siraLocale: { readonly code: string | null } | null, readonly digitalService: { readonly challenge: string | null, readonly outcome: string | null, readonly ctaLabel: string | null } | null }> } | null };
 
 export type SiraWorkIndexQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -54,7 +54,26 @@ export type SiraWorkIndexQuery = { readonly siraProjects: { readonly pageInfo: {
 export type SiraIndustryIndexQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiraIndustryIndexQuery = { readonly siraIndustries: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly name: string | null, readonly description: string | null, readonly siraLocale: { readonly code: string | null } | null }> } | null };
+export type SiraIndustryIndexQuery = { readonly siraIndustries: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly name: string | null, readonly description: string | null, readonly siraLocale: { readonly code: string | null } | null, readonly digitalIndustry: { readonly eyebrow: string | null, readonly standfirst: string | null, readonly workflow: ReadonlyArray<{ readonly title: string | null } | null> | null, readonly stat: { readonly value: string | null, readonly label: string | null } | null } | null }> } | null };
+
+export type DigitalAboutLinkFragment = { readonly title: string | null, readonly url: string | null, readonly target: string | null };
+
+export type DigitalAboutMediaFragment = { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null };
+
+export type SiraDigitalAboutQueryVariables = Exact<{
+  uri: string | number;
+  asPreview?: boolean | null | undefined;
+}>;
+
+
+export type SiraDigitalAboutQuery = { readonly page: { readonly databaseId: number, readonly uri: string | null, readonly title: string | null, readonly content: string | null, readonly modified: string | null, readonly siraLocale: { readonly code: string | null } | null, readonly pageIntro: { readonly eyebrow: string | null, readonly heading: string | null, readonly standfirst: string | null, readonly ctaLabel: string | null, readonly ctaHeading: string | null } | null, readonly digitalAbout: { readonly hero: { readonly eyebrow: string | null, readonly headingBefore: string | null, readonly headingHighlight: string | null, readonly headingAfter: string | null, readonly description: string | null, readonly primaryCta: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly secondaryCta: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly portrait: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null } | null, readonly stats: ReadonlyArray<{ readonly value: string | null, readonly label: string | null } | null> | null, readonly team: { readonly eyebrow: string | null, readonly heading: string | null, readonly standfirst: string | null } | null, readonly statement: { readonly ghostWord: string | null, readonly body: string | null, readonly quote: string | null, readonly attributionName: string | null, readonly attributionRole: string | null, readonly socials: ReadonlyArray<{ readonly network: string | null, readonly url: string | null } | null> | null } | null, readonly process: { readonly eyebrow: string | null, readonly heading: string | null, readonly standfirst: string | null, readonly steps: ReadonlyArray<{ readonly title: string | null, readonly body: string | null } | null> | null } | null } | null } | null, readonly siraLeadershipProfiles: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly title: string | null, readonly excerpt: string | null, readonly siraLocale: { readonly code: string | null } | null, readonly personDetails: { readonly role: string | null, readonly linkedin: string | null } | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null }> } | null };
+
+export type SiraIndustryDetailQueryVariables = Exact<{
+  id: string | number;
+}>;
+
+
+export type SiraIndustryDetailQuery = { readonly siraIndustry: { readonly databaseId: number, readonly slug: string | null, readonly name: string | null, readonly description: string | null, readonly siraLocale: { readonly code: string | null } | null, readonly digitalIndustry: { readonly eyebrow: string | null, readonly standfirst: string | null, readonly buildNote: string | null, readonly workflow: ReadonlyArray<{ readonly title: string | null, readonly detail: string | null } | null> | null, readonly stat: { readonly value: string | null, readonly label: string | null } | null, readonly build: ReadonlyArray<{ readonly item: string | null } | null> | null, readonly stack: ReadonlyArray<{ readonly item: string | null } | null> | null } | null } | null };
 
 type EditorialFeedDesks_RootQueryToSiraBusinessUnitConnection_Fragment = { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null }> };
 
@@ -778,6 +797,24 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const DigitalAboutLinkFragmentDoc = new TypedDocumentString(`
+    fragment DigitalAboutLink on AcfLink {
+  title
+  url
+  target
+}
+    `, {"fragmentName":"DigitalAboutLink"}) as unknown as TypedDocumentString<DigitalAboutLinkFragment, unknown>;
+export const DigitalAboutMediaFragmentDoc = new TypedDocumentString(`
+    fragment DigitalAboutMedia on MediaItem {
+  databaseId
+  sourceUrl
+  altText
+  mediaDetails {
+    width
+    height
+  }
+}
+    `, {"fragmentName":"DigitalAboutMedia"}) as unknown as TypedDocumentString<DigitalAboutMediaFragment, unknown>;
 export const EditorialFeedDesksFragmentDoc = new TypedDocumentString(`
     fragment EditorialFeedDesks on SiraBusinessUnitConnection {
   nodes {
@@ -1362,6 +1399,11 @@ export const SiraServiceIndexDocument = new TypedDocumentString(`
       siraLocale {
         code
       }
+      digitalService {
+        challenge
+        outcome
+        ctaLabel
+      }
     }
   }
 }
@@ -1402,10 +1444,162 @@ export const SiraIndustryIndexDocument = new TypedDocumentString(`
       siraLocale {
         code
       }
+      digitalIndustry {
+        eyebrow
+        standfirst
+        workflow {
+          title
+        }
+        stat {
+          value
+          label
+        }
+      }
     }
   }
 }
     `) as unknown as TypedDocumentString<SiraIndustryIndexQuery, SiraIndustryIndexQueryVariables>;
+export const SiraDigitalAboutDocument = new TypedDocumentString(`
+    query SiraDigitalAbout($uri: ID!, $asPreview: Boolean = false) {
+  page(id: $uri, idType: URI, asPreview: $asPreview) {
+    databaseId
+    uri
+    title
+    content
+    modified
+    siraLocale {
+      code
+    }
+    pageIntro {
+      eyebrow
+      heading
+      standfirst
+      ctaLabel
+      ctaHeading
+    }
+    digitalAbout {
+      hero {
+        eyebrow
+        headingBefore
+        headingHighlight
+        headingAfter
+        description
+        primaryCta {
+          ...DigitalAboutLink
+        }
+        secondaryCta {
+          ...DigitalAboutLink
+        }
+        portrait {
+          node {
+            ...DigitalAboutMedia
+          }
+        }
+      }
+      stats {
+        value
+        label
+      }
+      team {
+        eyebrow
+        heading
+        standfirst
+      }
+      statement {
+        ghostWord
+        body
+        quote
+        attributionName
+        attributionRole
+        socials {
+          network
+          url
+        }
+      }
+      process {
+        eyebrow
+        heading
+        standfirst
+        steps {
+          title
+          body
+        }
+      }
+    }
+  }
+  siraLeadershipProfiles(
+    first: 24
+    where: {status: PUBLISH, orderby: [{field: MENU_ORDER, order: ASC}, {field: TITLE, order: ASC}]}
+  ) {
+    pageInfo {
+      hasNextPage
+    }
+    nodes {
+      databaseId
+      slug
+      title
+      excerpt
+      siraLocale {
+        code
+      }
+      personDetails {
+        role
+        linkedin
+      }
+      featuredImage {
+        node {
+          ...DigitalAboutMedia
+        }
+      }
+    }
+  }
+}
+    fragment DigitalAboutLink on AcfLink {
+  title
+  url
+  target
+}
+fragment DigitalAboutMedia on MediaItem {
+  databaseId
+  sourceUrl
+  altText
+  mediaDetails {
+    width
+    height
+  }
+}`) as unknown as TypedDocumentString<SiraDigitalAboutQuery, SiraDigitalAboutQueryVariables>;
+export const SiraIndustryDetailDocument = new TypedDocumentString(`
+    query SiraIndustryDetail($id: ID!) {
+  siraIndustry(id: $id, idType: SLUG) {
+    databaseId
+    slug
+    name
+    description
+    siraLocale {
+      code
+    }
+    digitalIndustry {
+      eyebrow
+      standfirst
+      workflow {
+        title
+        detail
+      }
+      stat {
+        value
+        label
+      }
+      build {
+        item
+      }
+      buildNote
+      stack {
+        item
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SiraIndustryDetailQuery, SiraIndustryDetailQueryVariables>;
 export const SiraEditorialFeedDocument = new TypedDocumentString(`
     query SiraEditorialFeed($first: Int!, $after: String) {
   contentNodes(

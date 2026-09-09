@@ -77,7 +77,10 @@ function isRecord(value: unknown): value is RecordValue {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function normalizePlainText(value: unknown, maximumLength: number): string | null {
+/**
+ * Shared with the Digital content normalizers.
+ */
+export function normalizePlainText(value: unknown, maximumLength: number): string | null {
   if (typeof value !== "string") return null;
 
   const normalized = value
@@ -92,13 +95,22 @@ function normalizePlainText(value: unknown, maximumLength: number): string | nul
   return normalized === "" ? null : normalized.slice(0, maximumLength);
 }
 
-function normalizeRichText(value: unknown): string | null {
+/**
+ * Shared with the Digital content normalizers.
+ */
+export function normalizeRichText(value: unknown): string | null {
   if (typeof value !== "string") return null;
   const normalized = value.trim();
   return normalized === "" ? null : normalized.slice(0, 20_000);
 }
 
-function normalizePublicHref(value: unknown): string | null {
+/**
+ * Shared with the Digital content normalizers.
+ *
+ * Exported rather than copied: this encodes a security decision about what an
+ * href may be, and a second copy is a second place to forget to fix it.
+ */
+export function normalizePublicHref(value: unknown): string | null {
   if (typeof value !== "string") return null;
   const href = value.trim();
 
@@ -145,7 +157,13 @@ function normalizePositiveInteger(value: unknown): number | null {
   return Number.isSafeInteger(value) && Number(value) > 0 ? Number(value) : null;
 }
 
-function normalizeLink(value: unknown): HomepageLink | null {
+/**
+ * Shared with the Digital content normalizers.
+ *
+ * Exported rather than copied: this encodes a security decision about what an
+ * href may be, and a second copy is a second place to forget to fix it.
+ */
+export function normalizeLink(value: unknown): HomepageLink | null {
   if (!isRecord(value)) return null;
   const href = normalizePublicHref(value["url"]);
   if (href === null) return null;
@@ -156,7 +174,13 @@ function normalizeLink(value: unknown): HomepageLink | null {
   });
 }
 
-function normalizeMedia(value: unknown): HomepageMedia | null {
+/**
+ * Shared with the Digital content normalizers.
+ *
+ * Exported rather than copied: this encodes a security decision about what an
+ * href may be, and a second copy is a second place to forget to fix it.
+ */
+export function normalizeMedia(value: unknown): HomepageMedia | null {
   if (!isRecord(value) || !isRecord(value["node"])) return null;
   const node = value["node"];
   const databaseId = normalizePositiveInteger(node["databaseId"]);

@@ -1674,6 +1674,105 @@ a {
   }
 }
 
+
+/* --- About: figures band --------------------------------------------------
+   Four columns at the reference's proportions, but driven by how many figures
+   the CMS actually holds so three do not leave a hole and five do not wrap into
+   a ragged second row.
+
+   The dividers are borders on the cells rather than a background trick, because
+   the count is dynamic: `:not(:first-child)` puts a rule between every pair and
+   never on the outside, at any count, in either direction. `border-inline-start`
+   rather than `border-left` is what makes that survive RTL. */
+.digital-stat-band {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.digital-stat-band__cell {
+  padding-inline: 0;
+}
+
+@media (min-width: 48rem) {
+  .digital-stat-band {
+    grid-template-columns: repeat(var(--digital-stat-columns, 4), minmax(0, 1fr));
+  }
+
+  .digital-stat-band__cell:not(:first-child) {
+    border-inline-start: 1px solid var(--brand-border);
+    padding-inline-start: clamp(1.25rem, 2.5vw, 2.5rem);
+  }
+}
+
+/* --- About: the ghost word ------------------------------------------------
+   One word at a size nothing else on the page uses, at a contrast that stops it
+   competing with the text set over it. `10vw` rather than a fixed size so it
+   scales with the column it sits behind; `clamp` caps it so it does not become
+   a texture on very wide screens.
+
+   `aria-hidden` in the markup, decorative here: it repeats a word the section
+   already says. It is also `overflow: hidden` at the section, so the descender
+   bleeding past the bottom edge is a crop rather than a scrollbar. */
+.digital-ghost-word {
+  font-size: clamp(5rem, 18vw, 15rem);
+  color: color-mix(in oklab, var(--brand-ink) 5%, transparent);
+  text-transform: uppercase;
+}
+
+/* The statement body is CMS rich text, so it arrives as paragraphs rather than
+   as a single string. Spacing lives here because the component cannot reach
+   inside `dangerouslySetInnerHTML`. */
+.digital-statement__lede > p + p {
+  margin-block-start: 1.25em;
+}
+
+/* --- About: the method ----------------------------------------------------
+   Three equal columns at the reference's proportions, again driven by the step
+   count. Below md it is one column: at 2 columns the cards are too narrow for
+   a 45-character measure and the text ladders. */
+.digital-process {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 48rem) {
+  .digital-process {
+    grid-template-columns: repeat(var(--digital-process-columns, 3), minmax(0, 1fr));
+  }
+}
+
+/* --- About: social circles ------------------------------------------------
+   The arrow micro-motion the rest of the tenant uses, applied to a target that
+   has nowhere to travel: the circle lifts instead. Hover is gated so a touch
+   device never gets a stuck state, and focus-visible gets the same treatment so
+   a keyboard reader sees what a pointer reader sees. */
+.digital-social {
+  transition:
+    color 220ms var(--digital-ease),
+    border-color 220ms var(--digital-ease),
+    transform 220ms var(--digital-ease);
+}
+
+.digital-social:focus-visible {
+  color: var(--brand-ink);
+  border-color: var(--brand-accent);
+}
+
+@media (hover: hover) {
+  .digital-social:hover {
+    color: var(--brand-ink);
+    border-color: var(--brand-accent);
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digital-social {
+    transition: none;
+  }
+
+  .digital-social:hover {
+    transform: none;
+  }
+}
 /* --- Arabic display metrics -----------------------------------------------
    The Latin display settings here are deliberately tight: sub-1.0 leading and
    negative tracking are most of what makes the Latin headline feel engineered.

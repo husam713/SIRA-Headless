@@ -131,7 +131,7 @@ final class PresentationFields {
 			'map_graphql_types_from_location_rules' => false,
 			'graphql_types'                        => array( 'Page' ),
 			'fields'                               => self::group_homepage_fields(),
-			'location'                             => self::front_page_location(),
+			'location'                             => self::homepage_location(),
 			'menu_order'                           => 11,
 			'position'                             => 'normal',
 			'style'                                => 'default',
@@ -161,7 +161,7 @@ final class PresentationFields {
 			'map_graphql_types_from_location_rules' => false,
 			'graphql_types'                        => array( 'Page' ),
 			'fields'                               => self::branch_homepage_fields(),
-			'location'                             => self::front_page_location(),
+			'location'                             => self::homepage_location(),
 			'menu_order'                           => 12,
 			'position'                             => 'normal',
 			'style'                                => 'default',
@@ -196,7 +196,7 @@ final class PresentationFields {
 			'map_graphql_types_from_location_rules' => false,
 			'graphql_types'                        => array( 'Page' ),
 			'fields'                               => self::digital_homepage_fields(),
-			'location'                             => self::front_page_location(),
+			'location'                             => self::homepage_location(),
 			'menu_order'                           => 13,
 			'position'                             => 'normal',
 			'style'                                => 'default',
@@ -553,6 +553,56 @@ final class PresentationFields {
 	 *
 	 * @return array<int,array<int,array<string,string>>>
 	 */
+	/**
+	 * Where the homepage section groups appear.
+	 *
+	 * The front page, plus each localized homepage.
+	 *
+	 * ADR-034 gives a locale its own page in the same site, so the Arabic
+	 * homepage is an ordinary page at `/ar/` rather than the site's front page —
+	 * and a `page_type == front_page` rule alone would therefore have left an
+	 * editor with no way to fill in the Arabic hero, capabilities, marquee or
+	 * wordmark. The fields would still have RESOLVED over GraphQL, because the
+	 * type mapping is declared rather than derived from these rules, which is the
+	 * worst version of the problem: content that renders but cannot be edited.
+	 *
+	 * The page is looked up by path at registration time. Guarded because
+	 * `definitions()` is also read by the static validator with no WordPress
+	 * loaded, where the rule is simply omitted.
+	 *
+	 * @return array<int,array<int,array<string,mixed>>>
+	 */
+	private static function homepage_location(): array {
+		$rules = self::front_page_location();
+
+		if ( ! function_exists( 'get_page_by_path' ) ) {
+			return $rules;
+		}
+
+		foreach ( array( 'ar' ) as $locale ) {
+			$page = get_page_by_path( $locale );
+
+			if ( ! $page instanceof \WP_Post ) {
+				continue;
+			}
+
+			$rules[] = array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'page',
+				),
+				array(
+					'param'    => 'page',
+					'operator' => '==',
+					'value'    => (string) $page->ID,
+				),
+			);
+		}
+
+		return $rules;
+	}
+
 	private static function front_page_location(): array {
 		return array(
 			array(

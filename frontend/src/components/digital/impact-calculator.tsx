@@ -1,6 +1,12 @@
 "use client";
 
-import { useId, useMemo, useState, type ReactNode } from "react";
+import {
+  useId,
+  useMemo,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 
 import { CALCULATOR_COPY, type NumberFormatters } from "@/lib/calculator/copy";
 import {
@@ -233,18 +239,136 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
                 value={format.percent(Math.round(result.coverage * 100))}
               />
               <Metric
-                label={copy.payback}
-                value={
-                  <>
-                    <NumericRange
-                      low={format.count(result.paybackMonths.low)}
-                      high={format.count(result.paybackMonths.high)}
-                    />{" "}
-                    {copy.monthsAbbreviation}
-                  </>
-                }
+                label={copy.productivity}
+                value={format.percent(
+                  Math.round(result.productivityGain * 1000) / 10,
+                )}
               />
             </dl>
+
+            {/* Before and after, as one bar rather than two numbers.
+                A reader who does not trust a currency figure still recognises
+                their own hours, and the width IS the argument — the remaining
+                bar is drawn to scale against today's, so a modest coverage
+                looks modest. */}
+            <div className="border-t border-brand-border pt-6">
+              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
+                {copy.manualHoursTitle}
+              </p>
+              <dl className="mt-4 grid gap-3">
+                <div className="grid gap-1.5">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <dt className="text-sm text-brand-ink-soft">{copy.manualToday}</dt>
+                    <dd className="text-[0.9375rem] font-semibold tabular-nums text-brand-ink">
+                      {format.count(result.manualHoursPerYear)}
+                    </dd>
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    className="h-2 rounded-full bg-brand-ink/15"
+                  />
+                </div>
+                <div className="grid gap-1.5">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <dt className="text-sm text-brand-ink-soft">{copy.manualAfter}</dt>
+                    <dd className="text-[0.9375rem] font-semibold tabular-nums text-brand-accent">
+                      {format.count(result.manualHoursAfter)}
+                    </dd>
+                  </div>
+                  <div aria-hidden="true" className="h-2 rounded-full bg-brand-ink/10">
+                    <div
+                      className="h-full rounded-full bg-brand-accent"
+                      style={{
+                        inlineSize: `${String(
+                          result.manualHoursPerYear > 0
+                            ? Math.max(
+                                2,
+                                Math.round(
+                                  (result.manualHoursAfter /
+                                    result.manualHoursPerYear) *
+                                    100,
+                                ),
+                              )
+                            : 0,
+                        )}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+              </dl>
+            </div>
+
+            {/* The twelve-month position, net of the build.
+                It starts below zero and crosses at payback, which is the whole
+                reason to plot it: a chart that only ever goes up is a sales
+                device. Bars are grid rows rather than an SVG so it inherits the
+                type, the tokens and the direction without a chart library. */}
+            <div className="border-t border-brand-border pt-6">
+              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
+                {copy.projectionTitle}
+              </p>
+              <ol className="digital-projection mt-5" aria-hidden="true">
+                {result.projection.map((month, index) => {
+                  const span = Math.max(
+                    Math.abs(result.projection[0]?.low ?? 0),
+                    Math.abs(result.projection[11]?.high ?? 1),
+                    1,
+                  );
+                  const height = Math.min(
+                    100,
+                    Math.max(2, Math.round((Math.abs(month.high) / span) * 100)),
+                  );
+
+                  return (
+                    <li
+                      key={index}
+                      className="digital-projection__bar"
+                      data-sign={month.high < 0 ? "negative" : "positive"}
+                      style={{ "--bar": `${String(height)}%` } as CSSProperties}
+                    >
+                      <span className="digital-projection__label">
+                        {copy.monthAbbrev}
+                        {index + 1}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ol>
+              {/* The chart is decorative; this sentence and the payback metric
+                  above carry the same fact for a screen reader. */}
+              <p className="mt-4 max-w-[46ch] text-sm leading-[1.6] text-brand-ink-soft">
+                {copy.projectionNote}
+              </p>
+            </div>
+
+            {result.contributions.length > 0 ? (
+              <div className="border-t border-brand-border pt-6">
+                <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
+                  {copy.recommendedTitle}
+                </p>
+                <ol className="mt-4 grid gap-2.5">
+                  {[...result.contributions]
+                    .sort((a, b) => b.coverage - a.coverage)
+                    .map((entry, index) => (
+                      <li
+                        key={entry.workflow}
+                        className="flex items-baseline gap-3 text-[0.9375rem] leading-[1.5] text-brand-ink"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="font-display text-[0.6875rem] tabular-nums text-brand-ink-faint"
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        {copy.workflows[entry.workflow]}
+                      </li>
+                    ))}
+                </ol>
+                <p className="mt-4 max-w-[46ch] text-sm leading-[1.6] text-brand-ink-soft">
+                  {copy.recommendedNote}
+                </p>
+              </div>
+            ) : null}
 
             <div className="border-t border-brand-border pt-6">
               <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
@@ -256,6 +380,16 @@ export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
                   high={format.money(result.indicativeBuildSar.high)}
                 />{" "}
                 {copy.buildAcross(result.contributions.length)}
+              </p>
+              <p className="mt-4 text-[1.0625rem] text-brand-ink">
+                <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
+                  {copy.payback}
+                </span>{" "}
+                <NumericRange
+                  low={format.count(result.paybackMonths.low)}
+                  high={format.count(result.paybackMonths.high)}
+                />{" "}
+                {copy.monthsAbbreviation}
               </p>
             </div>
           </>

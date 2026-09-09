@@ -41,6 +41,15 @@ interface CalculatorCopy {
   readonly hoursReleased: string;
   readonly ofWorkload: string;
   readonly payback: string;
+  readonly productivity: string;
+  readonly manualHoursTitle: string;
+  readonly manualToday: string;
+  readonly manualAfter: string;
+  readonly projectionTitle: string;
+  readonly projectionNote: string;
+  readonly recommendedTitle: string;
+  readonly recommendedNote: string;
+  readonly monthAbbrev: string;
   readonly monthsAbbreviation: string;
   readonly buildLabel: string;
   readonly buildAcross: (count: number) => string;
@@ -137,6 +146,16 @@ const EN: CalculatorCopy = Object.freeze<CalculatorCopy>({
   hoursReleased: "Hours released a year",
   ofWorkload: "Of the manual workload",
   payback: "Payback",
+  productivity: "Capacity released",
+  manualHoursTitle: "Manual hours a year",
+  manualToday: "Today",
+  manualAfter: "After",
+  projectionTitle: "Cumulative position over 12 months",
+  projectionNote:
+    "Net of the indicative build cost, so the line starts below zero and crosses it at payback.",
+  recommendedTitle: "Where to start",
+  recommendedNote: "Ordered by how much of the manual workload each one removes.",
+  monthAbbrev: "M",
   monthsAbbreviation: "mo",
   buildLabel: "Indicative build",
   buildAcross: (count) =>
@@ -199,6 +218,16 @@ const AR: CalculatorCopy = Object.freeze<CalculatorCopy>({
   hoursReleased: "ساعات مُحرَّرة سنويًا",
   ofWorkload: "من العمل اليدوي",
   payback: "فترة الاسترداد",
+  productivity: "طاقة مُحرَّرة",
+  manualHoursTitle: "الساعات اليدوية سنويًا",
+  manualToday: "اليوم",
+  manualAfter: "بعد الأتمتة",
+  projectionTitle: "الوضع التراكمي خلال 12 شهرًا",
+  projectionNote:
+    "بعد خصم التكلفة التقديرية للبناء، فيبدأ الخط تحت الصفر ويعبره عند نقطة الاسترداد.",
+  recommendedTitle: "من أين تبدأ",
+  recommendedNote: "مرتّبة حسب حجم العمل اليدوي الذي يزيله كل منها.",
+  monthAbbrev: "ش",
   monthsAbbreviation: "شهرًا",
   buildLabel: "كلفة التنفيذ التقديرية",
   buildAcross: (count) =>

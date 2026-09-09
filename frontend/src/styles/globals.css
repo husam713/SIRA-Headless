@@ -2035,6 +2035,72 @@ a {
     transition: none;
   }
 }
+
+/* --- Calculator: the twelve-month position --------------------------------
+   Twelve bars on a shared baseline, drawn with grid rows rather than an SVG so
+   they inherit the type scale, the brand tokens and the writing direction for
+   free. There is no chart library on this site and this did not justify adding
+   one.
+
+   The months before payback sit BELOW the baseline in the faint ink, the ones
+   after sit above it in the accent. That inversion is the entire point of
+   plotting it: a projection that only ever climbs is a sales device.
+
+   The whole list is aria-hidden. The payback range and the note beneath it
+   carry the same fact in text, so a screen reader gets the argument without
+   twelve unlabelled bars. */
+.digital-projection {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: center;
+  gap: 0.25rem;
+  block-size: 6.5rem;
+  border-block-start: 1px solid var(--brand-border);
+  padding-block-start: 0.25rem;
+}
+
+.digital-projection__bar {
+  position: relative;
+  display: flex;
+  block-size: 100%;
+  align-items: center;
+}
+
+.digital-projection__bar::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  block-size: var(--bar, 2%);
+  border-radius: 2px;
+}
+
+/* Above the line once the build is paid back. */
+.digital-projection__bar[data-sign="positive"]::before {
+  inset-block-end: 50%;
+  background: var(--brand-accent);
+}
+
+/* Below it while it is not. */
+.digital-projection__bar[data-sign="negative"]::before {
+  inset-block-start: 50%;
+  background: color-mix(in oklab, var(--brand-ink) 22%, transparent);
+}
+
+.digital-projection__label {
+  position: absolute;
+  inset-block-end: -1.25rem;
+  inset-inline-start: 0;
+  font-size: 0.5625rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--brand-ink-faint);
+}
+
+/* Only the quarters are labelled. Twelve labels at this width collide, and the
+   first, fourth, seventh and tenth are enough to read the axis. */
+.digital-projection__bar:not(:nth-child(3n + 1)) .digital-projection__label {
+  display: none;
+}
 /* --- Arabic display metrics -----------------------------------------------
    The Latin display settings here are deliberately tight: sub-1.0 leading and
    negative tracking are most of what makes the Latin headline feel engineered.

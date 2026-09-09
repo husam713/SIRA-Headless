@@ -96,6 +96,32 @@ export interface CalculatorResult {
   readonly indicativeBuildSar: Range;
   /** Months to recover the indicative build cost, as a range. */
   readonly paybackMonths: Range;
+  /**
+   * Manual hours left per year once the released hours are gone.
+   *
+   * The before-and-after pair is the most legible thing this model produces: a
+   * reader who does not trust a currency figure still recognises their own
+   * hours. It uses RELEASED hours rather than realised ones, because the work
+   * really does stop happening even where the freed time is not converted into
+   * cost.
+   */
+  readonly manualHoursAfter: number;
+  /**
+   * Released capacity as a share of the affected team total working hours.
+   *
+   * Deliberately measured against the whole year rather than against the
+   * repetitive slice, which would produce a much larger and much less honest
+   * number.
+   */
+  readonly productivityGain: number;
+  /**
+   * Cumulative realised saving, net of the build, month by month for a year.
+   *
+   * Net rather than gross so the line starts below zero and crosses it at
+   * payback. A chart that only ever goes up is a sales device; this one shows
+   * what the first months actually look like.
+   */
+  readonly projection: readonly Range[];
   /** The workflows that contributed, with their individual coverage. */
   readonly contributions: readonly { readonly workflow: WorkflowKey; readonly coverage: number }[];
   /**
@@ -281,9 +307,29 @@ export function calculate(input: CalculatorInput): CalculatorResult {
         : 0,
   });
 
+  const monthlyRealised = Object.freeze({
+    low: annualSavingSar.low / 12,
+    high: annualSavingSar.high / 12,
+  });
+
+  const projection = Object.freeze(
+    Array.from({ length: 12 }, (_, index) =>
+      Object.freeze({
+        low: round(monthlyRealised.low * (index + 1) - indicativeBuildSar.high, -3),
+        high: round(monthlyRealised.high * (index + 1) - indicativeBuildSar.low, -3),
+      }),
+    ),
+  );
+
   return Object.freeze({
     currency: CURRENCY,
     manualHoursPerYear: round(manualHoursPerYear),
+    manualHoursAfter: round(manualHoursPerYear - hoursReleasedPerYear),
+    productivityGain:
+      people > 0
+        ? round(realisedHours / (people * WORKING_HOURS_PER_YEAR), 4)
+        : 0,
+    projection,
     coverage: round(coverage, 3),
     hoursReleasedPerYear: round(hoursReleasedPerYear),
     annualSavingSar,

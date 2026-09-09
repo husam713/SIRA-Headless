@@ -130,6 +130,65 @@ describe("the automation impact model", () => {
     expect(two.indicativeBuildSar.low).toBeGreaterThan(one.indicativeBuildSar.low);
   });
 
+
+  it("leaves the hours it cannot remove on the table", () => {
+    const result = calculate(base);
+
+    // The before-and-after pair has to reconcile exactly, or the bar chart
+    // drawn from it is telling a different story to the number beside it.
+    expect(result.manualHoursAfter).toBe(
+      result.manualHoursPerYear - result.hoursReleasedPerYear,
+    );
+    expect(result.manualHoursAfter).toBeGreaterThan(0);
+  });
+
+  it("measures released capacity against the whole year, not the manual slice", () => {
+    const result = calculate(base);
+
+    // Measured against the repetitive hours alone this figure would be several
+    // times larger and would mean nothing. The guard is that it stays a small
+    // single-digit share for an ordinary team.
+    expect(result.productivityGain).toBeGreaterThan(0);
+    expect(result.productivityGain).toBeLessThan(0.15);
+  });
+
+  it("starts the projection under water and only then climbs", () => {
+    const result = calculate(base);
+
+    expect(result.projection).toHaveLength(12);
+
+    const first = result.projection[0];
+    const last = result.projection[11];
+
+    if (first === undefined || last === undefined) {
+      throw new Error("The projection must cover twelve months.");
+    }
+
+    // Month one is the build cost against one month of saving, so it is
+    // negative. If this ever passes with a positive first month, the build cost
+    // has stopped being subtracted and the chart has become a sales device.
+    expect(first.high).toBeLessThan(0);
+    expect(last.high).toBeGreaterThan(first.high);
+
+    // Cumulative, so every month is at least as good as the one before it.
+    for (let index = 1; index < result.projection.length; index += 1) {
+      const previous = result.projection[index - 1];
+      const current = result.projection[index];
+
+      if (previous === undefined || current === undefined) continue;
+
+      expect(current.low).toBeGreaterThanOrEqual(previous.low);
+      expect(current.high).toBeGreaterThanOrEqual(previous.high);
+    }
+  });
+
+  it("produces no projection worth plotting when nothing is selected", () => {
+    const result = calculate({ ...base, workflows: [] });
+
+    expect(result.manualHoursAfter).toBe(result.manualHoursPerYear);
+    expect(result.productivityGain).toBe(0);
+    expect(result.projection.every((month) => month.high === 0)).toBe(true);
+  });
   it("states every assumption it used, as facts rather than as sentences", () => {
     // The model used to return finished English prose here, which quietly made
     // it a presentation module and made a second language impossible without

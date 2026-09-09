@@ -908,6 +908,34 @@ entity is an owner decision. No CMS content was changed by this task.
 the generated route types are stale; running the dev server leaves a second copy
 under `.next/dev/types` that conflicts with the built one.
 
+### Frontend CI is RED, and not from this work
+
+Run 34372680077 at head `83eb5bb2` fails on one step: **Verify patch
+whitespace**, which runs `git diff --check HEAD^1 HEAD` — on a pull request that
+diffs the whole branch against its base.
+
+Four `+` lines trip it, all the same string, in `frontend/schema/wpgraphql.graphql`
+and `frontend/schema/wpgraphql.group.graphql`: WordPress core's own `post_date`
+field description, which ends in a space. Faithful generated output.
+
+| commit | `git diff --check` |
+| --- | --- |
+| `b5144cc6` — Phase 3 schema recapture | **8 whitespace errors** |
+| `d802d30c` — Phase 3 schema recapture | clean |
+| `a4c21c07` — Phase 5, the calculator | **clean** |
+| `83eb5bb2` — Phase 5, the QA pass | **clean** |
+
+`main` already carries **62** trailing-whitespace lines in that same generated
+file. The check passes today only because those lines sit in no diff. **Every
+future schema recapture will fail it**, not just this one.
+
+Not repaired, deliberately. `AGENTS.md` forbids hand-editing generated files,
+and the next `pnpm schema:fetch` would reintroduce the spaces anyway. The real
+fixes are a `.gitattributes` `-whitespace` attribute for
+`frontend/schema/*.graphql`, or scoping the CI step to exclude generated paths —
+both repository-hygiene or CI-workflow changes this task was not authorized to
+make. Classified **`BLOCKED_SCOPE_EXPANSION_REQUIRED`**.
+
 ### Still open after this phase
 
 1. `/products` — the route was never built, and building one would mean
@@ -915,7 +943,9 @@ under `.next/dev/types` that conflicts with the built one.
 2. Home refinements beyond the calculator were not taken.
 3. `REPORT.md` §9 still needs the provenance amendment recorded in Phase 3.
 4. The `/contact` form control sizes, above.
-5. Everything in the owner-deliverable list under Phase 3, which the `/about`
+5. **Frontend CI's whitespace step**, above — it will fail every schema
+   recapture until it is fixed.
+6. Everything in the owner-deliverable list under Phase 3, which the `/about`
    finding above sharpens rather than replaces.
 
 ### No authorization is inherited

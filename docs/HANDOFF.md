@@ -687,6 +687,84 @@ pointing at types that no longer exist.
    for the latter. Not changed silently; needs an explicit answer and an ADR.
 7. `REPORT.md` §9 amendment recording the corrected provenance.
 
+## Phase 4 — the impact calculator: derived, not yet rebuilt
+
+Verified on 2026-09-09 against the live reference and the working tree.
+
+### The owner's instruction
+
+Reproduce the reference's impact calculator **exactly** — every control, every
+label, every output tile, and the published figures themselves: `$204K`,
+`18.2Kh`, `509%`, `2.0 mo`, `$258K`, `720×`, `68%`, `+24.8%`, `29,440h` →
+`11,207h`, `$462K`.
+
+Two decisions taken:
+
+1. **Currency is USD**, exactly as the reference shows. This replaces the SAR
+   model for the Digital tenant.
+2. **The model is derived by measurement.** The owner suggested driving the live
+   site rather than guessing, which is what made an exact reproduction possible.
+
+### What is DONE
+
+The model is derived and written up in
+[`artifacts/reference-forensics/sirahdigital-in/CALCULATOR-MODEL.md`](../artifacts/reference-forensics/sirahdigital-in/CALCULATOR-MODEL.md).
+**Read that file first** — it carries the formulas, the constant tables for all
+12 industries and 4 sizes, and a check that the derived model reproduces every
+published default.
+
+Two committed harnesses, both aborting every non-GET to the origin so no
+enquiry, booking or lead can be created:
+
+- `tools/10-calculator.mjs` — first pass, establishes the shape.
+- `tools/11-calculator-precise.mjs` — reads each sample twice 400ms apart and
+  accepts only a stable reading. 115 samples, **zero unsettled**.
+
+Datasets: `data/calculator-model.json`, `data/calculator-precise.json`. Each
+holds a **held-out set** that was never used to fit anything; those are the
+verification fixtures for the rebuild.
+
+Confirmed exactly: the workload (`team × 46 × (hours + 2)`, error 0 across 115
+rows), coverage separability (0.0068% across 48 cells), the remaining workload,
+productivity (1.5e-5), revenue, and the twelve-month total.
+
+Two items are flagged open in that file and must not be quietly treated as
+settled: the **coverage meter's displayed percentage** (U-shaped in the
+automation input; a quadratic fits to only ±0.0086) and the **implementation
+cost constants** behind ROI and payback (two derivations agree to ~3%). Both are
+fittable from data already captured — neither needs another browser run.
+
+### What is NOT done — the rebuild itself
+
+Nothing in `frontend/` has been changed for this yet. Still to do:
+
+1. **`frontend/src/lib/calculator/model.ts`** — replace, do not extend.
+   `CURRENCY` becomes USD; `formatSar` becomes `formatMoney`; `CalculatorInput`
+   gains `hourlyCost` and `currentAutomation` and loses the `workflows` chip
+   array (the reference has no such control); outputs become **single figures,
+   not ranges**, and gain first-year ROI, revenue opportunity and the constant
+   720× lead response. Name every derived constant with the sweep it came from.
+2. **`frontend/src/components/digital/impact-calculator.tsx`** — rebuild to the
+   reference's exact control set and output order. The projection chart and the
+   before/after bar built earlier this session already match its structure and
+   should be kept; the workflow chips and every `NumericRange` go.
+3. **`frontend/src/lib/calculator/copy.ts`** — the new labels in both languages.
+   The English strings are the owner's own and must be used verbatim, especially
+   the two honesty devices: "Realised cost avoidance - not the notional value of
+   every freed hour" and the "Indicative estimate." disclaimer.
+4. **`frontend/tests/unit/calculator/model.test.ts`** — rewrite around the
+   held-out samples as fixtures, asserting our model reproduces the reference's
+   observed output for each. That turns "it looks the same" into an executable
+   claim.
+5. **"Download the automation report"** — plan is a print-optimised view behind
+   `window.print()` and a `@media print` block. No PDF dependency, works
+   everywhere, and produces something the visitor can actually keep.
+
+### Carried over, still owed
+
+The browser QA pass on the About and sector pages from Phase 3 has still not
+happened. It remains the first thing to do before this branch is pushed.
+
 ## New owner decision — Group staging first
 
 The replacement public Group frontend for `siratrgroup.com` must be developed, integrated, QA'd, and owner-accepted on staging before production cutover.

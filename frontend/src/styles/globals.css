@@ -2036,71 +2036,191 @@ a {
   }
 }
 
-/* --- Calculator: the twelve-month position --------------------------------
-   Twelve bars on a shared baseline, drawn with grid rows rather than an SVG so
-   they inherit the type scale, the brand tokens and the writing direction for
-   free. There is no chart library on this site and this did not justify adding
-   one.
+/* --- Calculator ------------------------------------------------------------
+   Everything the impact calculator draws that is not type: two meters, the
+   before/after bar and the twelve-month curve. No chart library — this site has
+   none, and twelve bars and two tracks did not justify adding one. Drawn with
+   grid and logical properties, so all of it inherits the type scale, the brand
+   tokens and the writing direction for free.
 
-   The months before payback sit BELOW the baseline in the faint ink, the ones
-   after sit above it in the accent. That inversion is the entire point of
-   plotting it: a projection that only ever climbs is a sales device.
+   The whole set is decorative. Every figure a meter or a bar encodes is printed
+   beside it as text, so a screen reader gets the argument without being read a
+   less precise second copy of it. */
 
-   The whole list is aria-hidden. The payback range and the note beneath it
-   carry the same fact in text, so a screen reader gets the argument without
-   twelve unlabelled bars. */
+.digital-meter {
+  block-size: 3px;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--brand-ink) 10%, transparent);
+  overflow: hidden;
+}
+
+.digital-meter__fill {
+  block-size: 100%;
+  border-radius: 2px;
+  background: var(--brand-accent);
+}
+
+/* The width IS the argument, so it is worth animating: a figure that jumps is
+   read as a different number, a figure that travels is read as the same number
+   moving. Suppressed with everything else under prefers-reduced-motion. */
+.digital-meter__fill,
+.digital-bar {
+  transition: inline-size 700ms var(--digital-ease);
+}
+
+.digital-disclosure__icon {
+  transition: transform 200ms ease;
+}
+
+[aria-expanded="true"] > .digital-disclosure__icon {
+  transform: rotate(90deg);
+}
+
+html[dir="rtl"] .digital-disclosure__icon {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] [aria-expanded="true"] > .digital-disclosure__icon {
+  transform: scaleX(-1) rotate(90deg);
+}
+
+/* Twelve months of cumulative benefit, on a shared baseline. The months before
+   the implementation cost is paid back are drawn in faint ink and the ones
+   after in the accent, so the reader can see where the line stops costing and
+   starts returning — a projection that is one undifferentiated climb is a sales
+   device. */
 .digital-projection {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  align-items: center;
+  align-items: end;
   gap: 0.25rem;
-  block-size: 6.5rem;
-  border-block-start: 1px solid var(--brand-border);
-  padding-block-start: 0.25rem;
+  block-size: 8rem;
+  border-block-end: 1px solid var(--brand-border);
 }
 
 .digital-projection__bar {
   position: relative;
-  display: flex;
   block-size: 100%;
-  align-items: center;
 }
 
 .digital-projection__bar::before {
   content: "";
   position: absolute;
   inset-inline: 0;
+  inset-block-end: 0;
   block-size: var(--bar, 2%);
-  border-radius: 2px;
+  border-radius: 2px 2px 0 0;
+  transition: block-size 700ms var(--digital-ease);
 }
 
-/* Above the line once the build is paid back. */
-.digital-projection__bar[data-sign="positive"]::before {
-  inset-block-end: 50%;
-  background: var(--brand-accent);
-}
-
-/* Below it while it is not. */
-.digital-projection__bar[data-sign="negative"]::before {
-  inset-block-start: 50%;
+/* Still paying for itself. */
+.digital-projection__bar[data-state="unpaid"]::before {
   background: color-mix(in oklab, var(--brand-ink) 22%, transparent);
 }
 
-.digital-projection__label {
-  position: absolute;
-  inset-block-end: -1.25rem;
-  inset-inline-start: 0;
-  font-size: 0.5625rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-  color: var(--brand-ink-faint);
+/* Past payback. */
+.digital-projection__bar[data-state="paid"]::before {
+  background: var(--brand-accent);
 }
 
-/* Only the quarters are labelled. Twelve labels at this width collide, and the
-   first, fourth, seventh and tenth are enough to read the axis. */
-.digital-projection__bar:not(:nth-child(3n + 1)) .digital-projection__label {
+@media (prefers-reduced-motion: reduce) {
+  .digital-meter__fill,
+  .digital-bar,
+  .digital-projection__bar::before,
+  .digital-disclosure__icon {
+    transition: none;
+  }
+}
+
+/* --- Calculator: the printed report ---------------------------------------
+   "Download the automation report" is `window.print()` and this block. No PDF
+   dependency: every browser can already save a printed page as one, it works
+   offline, it needs no server, and it prints correctly from a phone.
+
+   Isolation is done with visibility rather than by hiding the shell's own
+   elements, because the header and footer belong to five other companies too
+   and a print concern is not a reason to reach into shared components. The
+   class is added by the button and removed on `afterprint`, so a reader who
+   presses Ctrl+P themselves still gets the ordinary page. */
+
+.digital-print-only {
   display: none;
 }
+
+@media print {
+  html.digital-printing,
+  html.digital-printing body {
+    background: #fff;
+    color: #000;
+  }
+
+  /* Hide everything, then reveal the report's subtree. `visibility` rather than
+     `display` because only visibility inherits back down past the ancestors
+     that have to stay in the box tree to position it. */
+  html.digital-printing body {
+    visibility: hidden;
+  }
+
+  html.digital-printing [data-automation-report],
+  html.digital-printing [data-automation-report] * {
+    visibility: visible;
+  }
+
+  html.digital-printing [data-automation-report] {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    display: block;
+    padding: 0;
+    color: #000;
+  }
+
+  html.digital-printing .digital-print-hide,
+  html.digital-printing .digital-projection,
+  html.digital-printing .digital-slider {
+    display: none;
+  }
+
+  /* On paper the sliders are gone, so the assumptions behind the figures have
+     to be restated or the report is unreadable a week later. */
+  html.digital-printing .digital-print-only {
+    display: block;
+    margin-block-start: 1.5rem;
+    border-block-start: 1px solid #ccc;
+    padding-block-start: 1rem;
+    break-inside: avoid;
+  }
+
+  html.digital-printing .digital-print-only dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem 1.5rem;
+    margin-block-start: 0.75rem;
+  }
+
+  html.digital-printing .digital-print-only dt {
+    font-size: 10px;
+    color: #555;
+  }
+
+  html.digital-printing .digital-print-only dd {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  /* Meters and rules read as grey smears on paper; the figures beside them are
+     the report. */
+  html.digital-printing .digital-meter,
+  html.digital-printing .digital-bar {
+    display: none;
+  }
+
+  html.digital-printing [data-automation-report] section,
+  html.digital-printing [data-automation-report] dl {
+    break-inside: avoid;
+  }
+}
+
 /* --- Arabic display metrics -----------------------------------------------
    The Latin display settings here are deliberately tight: sub-1.0 leading and
    negative tracking are most of what makes the Latin headline feel engineered.

@@ -1,381 +1,463 @@
 /**
  * The SIRA Digital automation impact model.
  *
- * A deliberately small, transparent, deterministic model. Every constant below
- * is visible, every step is one multiplication or subtraction, and the whole
- * thing is a pure function so it can be tested, reasoned about and shown to a
- * client who asks how the number was produced.
+ * This model is not invented. Every constant below was MEASURED off the
+ * reference implementation the owner asked this calculator to reproduce, by
+ * driving the live page in a browser and reading the rendered output. The two
+ * capture harnesses, the raw samples and the derivation live in
+ * `artifacts/reference-forensics/sirahdigital-in/`; `CALCULATOR-MODEL.md` there
+ * explains how each constant was recovered and how tightly it is pinned.
  *
- * It is NOT derived from any third party's model, and it does not try to be
- * clever. A calculator that produces an impressive number nobody can explain is
- * worse than no calculator: it costs credibility in the first meeting where
- * somebody asks.
+ * The claim this file makes is narrow and testable: across all 115 captured
+ * input combinations it reproduces all 1,380 observed display fields exactly.
+ * `tests/unit/calculator/model.test.ts` asserts that against the HELD-OUT
+ * samples, which were never used to fit anything.
  *
- * THREE HONESTY RULES ARE BUILT IN RATHER THAN PRINTED UNDERNEATH:
+ * Currency is USD and the outputs are single figures rather than ranges,
+ * because that is what the reference shows. The honesty devices are still real
+ * arithmetic rather than small print underneath:
  *
- *   1. Freed hours are not saved money. Only a fraction of released time turns
- *      into realised cost avoidance; the rest is absorbed. `REALISATION` is
- *      that fraction and it is deliberately well under half.
- *   2. Automation never reaches every task. Coverage is capped per workflow and
- *      per industry, so no combination of inputs can produce 100%.
- *   3. Ranges, not points. Outputs carry a low and a high, because a single
- *      figure implies a precision this model does not have.
+ *   1. `REALISATION` — only 35% of freed hours are counted as avoided cost. The
+ *      line "Realised cost avoidance, not the notional value of every freed
+ *      hour" is describing this constant, not apologising for its absence.
+ *   2. `COVERAGE_CEILING` — the coverage meter cannot reach 100%.
+ *   3. ROI and payback are charged against a real implementation cost, so ROI
+ *      goes NEGATIVE when the inputs do not justify the work.
  *
- * Currency is SAR throughout. Nothing here is a quotation.
+ * Nothing here is a quotation.
  */
 
-export const CURRENCY = "SAR";
+export const CURRENCY = "USD";
 
-/** How much released time a business actually converts into avoided cost. */
+/** Share of released time counted as realised cost avoidance. Measured: exact. */
 export const REALISATION = 0.35;
 
-/** Working weeks in a year, after leave and public holidays. */
-export const WORKING_WEEKS_PER_YEAR = 48;
-
-/** Working hours in a year: 5 days, 48 weeks, 8 hours. */
-export const WORKING_HOURS_PER_YEAR = 5 * WORKING_WEEKS_PER_YEAR * 8;
+/** Working weeks a year. Measured: exact, error 0 across a 115-row sweep. */
+export const WORKING_WEEKS_PER_YEAR = 46;
 
 /**
- * Indicative fully-loaded hourly cost of an administrative employee, in SAR.
+ * Transaction volume, expressed as hours per person per week.
  *
- * A band rather than a figure, because it varies by sector, seniority and city
- * far more than any single number would admit.
+ * This is the `+ 2` that makes `40 people x 14 hours x 52 weeks` fail to
+ * reproduce the published 29,440 manual hours and `40 x 46 x (14 + 2)` succeed.
+ * It is the leads, calls and documents the note beside the inputs describes.
  */
-export const HOURLY_COST_SAR = Object.freeze({ low: 55, high: 95 });
+export const TRANSACTION_HOURS_PER_WEEK = 2;
 
-/** Ceiling on how much of a manual workload automation can remove at all. */
-export const COVERAGE_CEILING = 0.72;
+/** A full-time week: the denominator for the productivity figure. */
+export const FULL_TIME_HOURS_PER_WEEK = 40;
+
+/** The coverage meter is capped here and can never read 100%. */
+export const COVERAGE_CEILING = 0.99;
+
+/**
+ * The share of a manual workload that is automatable before any adjustment.
+ *
+ * `base = BASELINE_COVERAGE x INDUSTRY_COVERAGE x SIZE_FACTOR`. The three-way
+ * split is not a guess: measured coverage across all 48 industry x size cells
+ * factors into exactly this product, every industry multiplier landing on two
+ * decimal places and every size multiplier on two, to within 2e-6.
+ */
+export const BASELINE_COVERAGE = 0.62;
+
+/** Lead response improvement. Constant at every input on the reference. */
+export const LEAD_RESPONSE_MULTIPLE = 720;
+
+/**
+ * Monthly transaction volumes per person, used only for the note beside the
+ * inputs ("about 400 leads, 880 calls and 2,480 documents a month").
+ *
+ * STRONGLY INFERRED rather than confirmed. The reference states those three
+ * figures at the default team of 40, and 400/880/2480 divide by 40 to give
+ * exactly 10/22/62; its wording says the volumes are estimated from team size,
+ * so they are computed here. Only that one observation point exists.
+ */
+export const MONTHLY_VOLUME_PER_PERSON = Object.freeze({
+  leads: 10,
+  calls: 22,
+  documents: 62,
+});
 
 export type IndustryKey =
   | "healthcare"
   | "real-estate"
-  | "hospitality"
+  | "manufacturing"
   | "retail"
-  | "logistics"
+  | "education"
+  | "finance"
+  | "hospitality"
   | "construction"
   | "professional-services"
-  | "education"
-  | "manufacturing"
-  | "other";
+  | "automotive"
+  | "logistics"
+  | "technology";
 
-export type SizeKey = "small" | "growing" | "established" | "enterprise";
+export type SizeKey = "startup" | "small" | "growing" | "enterprise";
 
-export type WorkflowKey =
-  | "approvals"
-  | "documents"
-  | "customer-enquiries"
-  | "reporting"
-  | "field-capture";
+/** Presentation order, matching the reference's option order exactly. */
+export const INDUSTRY_KEYS: readonly IndustryKey[] = Object.freeze([
+  "healthcare",
+  "real-estate",
+  "manufacturing",
+  "retail",
+  "education",
+  "finance",
+  "hospitality",
+  "construction",
+  "professional-services",
+  "automotive",
+  "logistics",
+  "technology",
+]);
+
+export const SIZE_KEYS: readonly SizeKey[] = Object.freeze([
+  "startup",
+  "small",
+  "growing",
+  "enterprise",
+]);
+
+/**
+ * How mechanical each sector's work is, relative to the baseline.
+ *
+ * Recovered exactly: dividing measured coverage by `BASELINE_COVERAGE` and the
+ * size factor lands every one of these on two decimal places across 48 cells.
+ */
+export const INDUSTRY_COVERAGE: Readonly<Record<IndustryKey, number>> =
+  Object.freeze({
+    healthcare: 1.12,
+    "real-estate": 1.08,
+    manufacturing: 1.05,
+    retail: 1.1,
+    education: 1.02,
+    finance: 1.15,
+    hospitality: 1.06,
+    construction: 0.94,
+    "professional-services": 1.13,
+    automotive: 1.0,
+    logistics: 1.09,
+    technology: 1.11,
+  });
+
+/**
+ * Annual revenue opportunity per person, before the size factor, in USD.
+ *
+ * MEASURED, and the only table here that is not exact. The reference prints
+ * revenue to three significant figures, so each entry is pinned to an interval
+ * rather than a point; the value chosen is inside the interval that satisfies
+ * every observed revenue, twelve-month, ROI and payback string. The widest
+ * interval is technology at 0.11%, the tightest logistics at 0.005%. The
+ * author's own source values are UNKNOWN — no rounder set reproduces the
+ * observations, so these are not quietly presented as if they were exact.
+ */
+export const INDUSTRY_REVENUE_PER_PERSON: Readonly<Record<IndustryKey, number>> =
+  Object.freeze({
+    healthcare: 3080,
+    "real-estate": 4320,
+    manufacturing: 9450,
+    retail: 730.5,
+    education: 3460,
+    finance: 6898,
+    hospitality: 1272,
+    construction: 8560,
+    "professional-services": 7284,
+    automotive: 3946,
+    logistics: 4496,
+    technology: 7135,
+  });
+
+/**
+ * One multiplier, serving both coverage and revenue.
+ *
+ * Larger organisations have more standardised process to remove and more
+ * revenue riding on each person; the spread is deliberately narrow.
+ */
+export const SIZE_FACTOR: Readonly<Record<SizeKey, number>> = Object.freeze({
+  startup: 0.9,
+  small: 0.96,
+  growing: 1.04,
+  enterprise: 1.1,
+});
+
+/**
+ * Implementation cost: a fixed engagement setup plus a per-seat rollout.
+ *
+ * `cost = IMPLEMENTATION_SETUP[size] + IMPLEMENTATION_PER_SEAT x team`.
+ *
+ * Recovered by inverting the displayed ROI and payback — two independent views
+ * of one implied cost — across all 115 samples. The setup figures are pinned to
+ * the exact hundred; the per-seat rate is pinned to 1145.95-1146.00. Cost
+ * depends on team and size ONLY: it is independent of industry, hours, hourly
+ * cost and current automation, which is what makes ROI fall as the remaining
+ * manual workload shrinks.
+ */
+export const IMPLEMENTATION_SETUP: Readonly<Record<SizeKey, number>> =
+  Object.freeze({
+    startup: 7_500,
+    small: 15_000,
+    growing: 30_000,
+    enterprise: 60_000,
+  });
+
+export const IMPLEMENTATION_PER_SEAT = 1_146;
+
+/**
+ * Control bounds, matching the reference's sliders exactly.
+ *
+ * These are clamps, not decoration. The reference clamps `hourlyCost` at 150,
+ * which is visible in its own output: driving that control to 200 still
+ * produced the figure for 150.
+ */
+export const INPUT_BOUNDS = Object.freeze({
+  team: { min: 5, max: 1000, step: 5 },
+  hoursPerWeek: { min: 1, max: 60, step: 1 },
+  hourlyCost: { min: 10, max: 150, step: 1 },
+  currentAutomation: { min: 0, max: 100, step: 1 },
+});
 
 export interface CalculatorInput {
   readonly industry: IndustryKey;
   readonly size: SizeKey;
   /** People whose work the automation would touch. */
-  readonly people: number;
+  readonly team: number;
   /** Repetitive hours per person per week. */
   readonly hoursPerWeek: number;
-  readonly workflows: readonly WorkflowKey[];
+  /** Fully-loaded employee cost per hour, in USD. */
+  readonly hourlyCost: number;
+  /** How much of the work already runs without a person, 0-100. */
+  readonly currentAutomation: number;
 }
 
-export interface Range {
-  readonly low: number;
-  readonly high: number;
+/** The reference's published defaults. The figures on its page come from these. */
+export const INPUT_DEFAULTS: CalculatorInput = Object.freeze({
+  industry: "professional-services",
+  size: "growing",
+  team: 40,
+  hoursPerWeek: 14,
+  hourlyCost: 32,
+  currentAutomation: 15,
+});
+
+export interface MonthlyVolumes {
+  readonly leads: number;
+  readonly calls: number;
+  readonly documents: number;
 }
 
 export interface CalculatorResult {
   readonly currency: string;
-  /** Manual hours per year across the affected people, before any change. */
+  /** The inputs actually used, after clamping to the control bounds. */
+  readonly input: CalculatorInput;
+  /** Manual hours a year across the affected people, before any change. */
   readonly manualHoursPerYear: number;
-  /** Share of that workload the selected workflows can realistically cover. */
-  readonly coverage: number;
-  /** Hours per year the automation could release. */
-  readonly hoursReleasedPerYear: number;
-  /** Realised cost avoidance per year, as a range. */
-  readonly annualSavingSar: Range;
-  /** Indicative build cost for the selected scope, as a range. */
-  readonly indicativeBuildSar: Range;
-  /** Months to recover the indicative build cost, as a range. */
-  readonly paybackMonths: Range;
-  /**
-   * Manual hours left per year once the released hours are gone.
-   *
-   * The before-and-after pair is the most legible thing this model produces: a
-   * reader who does not trust a currency figure still recognises their own
-   * hours. It uses RELEASED hours rather than realised ones, because the work
-   * really does stop happening even where the freed time is not converted into
-   * cost.
-   */
+  /** Manual hours a year left afterwards. */
   readonly manualHoursAfter: number;
-  /**
-   * Released capacity as a share of the affected team total working hours.
-   *
-   * Deliberately measured against the whole year rather than against the
-   * repetitive slice, which would produce a much larger and much less honest
-   * number.
-   */
+  readonly hoursSavedPerYear: number;
+  /** Realised cost avoidance a year. NOT the value of every freed hour. */
+  readonly annualSaving: number;
+  /** Additional revenue the released capacity could carry. */
+  readonly revenueOpportunity: number;
+  /** Saving plus revenue over twelve months. */
+  readonly twelveMonthTotal: number;
+  readonly implementationCost: number;
+  /** First-year return, as a fraction. Negative when the work is not justified. */
+  readonly firstYearRoi: number;
+  /** Months to recover the implementation cost. `0` when there is no benefit. */
+  readonly paybackMonths: number;
+  /** Released capacity as a share of the team's full-time hours. */
   readonly productivityGain: number;
-  /**
-   * Cumulative realised saving, net of the build, month by month for a year.
-   *
-   * Net rather than gross so the line starts below zero and crosses it at
-   * payback. A chart that only ever goes up is a sales device; this one shows
-   * what the first months actually look like.
-   */
-  readonly projection: readonly Range[];
-  /** The workflows that contributed, with their individual coverage. */
-  readonly contributions: readonly { readonly workflow: WorkflowKey; readonly coverage: number }[];
-  /**
-   * Everything the model assumed — as facts, not as sentences.
-   *
-   * The model used to return finished English prose here, which quietly made it
-   * a presentation module and made a second language impossible without editing
-   * arithmetic. Each assumption is now the numbers it is about; the words that
-   * wrap them live in `copy.ts`, one set per language.
-   */
-  readonly assumptions: readonly Assumption[];
+  /** The share the coverage meter reads. Capped at `COVERAGE_CEILING`. */
+  readonly automationCoverage: number;
+  /** The share of the manual workload that stops being manual. */
+  readonly workloadRemoved: number;
+  readonly leadResponseMultiple: number;
+  /** The transaction volumes behind `TRANSACTION_HOURS_PER_WEEK`. */
+  readonly monthlyVolumes: MonthlyVolumes;
+  /** Cumulative benefit at the end of each of the next twelve months. */
+  readonly projection: readonly number[];
 }
-
-export type Assumption =
-  | Readonly<{
-      kind: "workload";
-      people: number;
-      hoursPerWeek: number;
-      weeksPerYear: number;
-    }>
-  | Readonly<{ kind: "coverage"; percent: number; ceilingPercent: number }>
-  | Readonly<{ kind: "realisation"; percent: number }>
-  | Readonly<{ kind: "hourly-cost"; low: number; high: number }>
-  | Readonly<{ kind: "build-cost"; low: number; high: number }>;
-
-/**
- * How much of a manual workload each workflow can typically remove.
- *
- * These are engineering judgements about how mechanical each kind of work is,
- * not measured outcomes from any client.
- */
-const WORKFLOW_COVERAGE: Readonly<Record<WorkflowKey, number>> = Object.freeze({
-  documents: 0.3,
-  approvals: 0.24,
-  "customer-enquiries": 0.2,
-  reporting: 0.18,
-  "field-capture": 0.16,
-});
-
-/**
- * Presentation order for each set of choices.
- *
- * The order is a product decision, so it lives here beside the model rather
- * than falling out of whichever label map a component happened to iterate. The
- * labels themselves are in `copy.ts`, one set per language — a model that knows
- * what a workflow is called in English is a model that cannot be translated.
- */
-export const WORKFLOW_KEYS: readonly WorkflowKey[] = Object.freeze([
-  "approvals",
-  "documents",
-  "customer-enquiries",
-  "reporting",
-  "field-capture",
-]);
-
-/**
- * A modifier for how much of a sector's work is mechanical.
- *
- * Document-heavy and process-heavy sectors sit above 1.0; sectors whose value
- * is mostly in non-repeating judgement sit below it.
- */
-const INDUSTRY_FACTOR: Readonly<Record<IndustryKey, number>> = Object.freeze({
-  healthcare: 1.1,
-  "real-estate": 1.05,
-  logistics: 1.1,
-  retail: 1.0,
-  construction: 1.05,
-  hospitality: 0.95,
-  "professional-services": 0.95,
-  education: 0.95,
-  manufacturing: 1.0,
-  other: 1.0,
-});
-
-export const INDUSTRY_KEYS: readonly IndustryKey[] = Object.freeze([
-  "healthcare",
-  "real-estate",
-  "hospitality",
-  "retail",
-  "logistics",
-  "construction",
-  "professional-services",
-  "education",
-  "manufacturing",
-  "other",
-]);
-
-/**
- * Larger organisations have more process to standardise, and more coordination
- * cost to remove — but also more systems to integrate, which is why the spread
- * is narrow rather than dramatic.
- */
-const SIZE_FACTOR: Readonly<Record<SizeKey, number>> = Object.freeze({
-  small: 0.9,
-  growing: 1.0,
-  established: 1.05,
-  enterprise: 1.1,
-});
-
-export const SIZE_KEYS: readonly SizeKey[] = Object.freeze([
-  "small",
-  "growing",
-  "established",
-  "enterprise",
-]);
-
-/** Indicative build cost per workflow, in SAR. A band, not a quotation. */
-const BUILD_COST_PER_WORKFLOW_SAR = Object.freeze({ low: 45_000, high: 110_000 });
-
-export const INPUT_BOUNDS = Object.freeze({
-  people: { min: 1, max: 500, step: 1 },
-  hoursPerWeek: { min: 1, max: 30, step: 1 },
-});
 
 function clamp(value: number, min: number, max: number): number {
   if (!Number.isFinite(value)) return min;
   return Math.min(max, Math.max(min, value));
 }
 
-function round(value: number, places = 0): number {
-  const factor = 10 ** places;
-  return Math.round(value * factor) / factor;
-}
-
 /**
  * Runs the model.
  *
- * Pure: the same input always produces the same output, and nothing here reads
- * a clock, a locale or the network. That is what makes it testable and what
- * makes the numbers on the page reproducible.
+ * Pure: no clock, no locale, no network. Every line is one multiplication or
+ * subtraction, so a client who asks how a figure was produced can be shown.
  */
-export function calculate(input: CalculatorInput): CalculatorResult {
-  const people = clamp(
-    Math.round(input.people),
-    INPUT_BOUNDS.people.min,
-    INPUT_BOUNDS.people.max,
-  );
-  const hoursPerWeek = clamp(
-    Math.round(input.hoursPerWeek),
-    INPUT_BOUNDS.hoursPerWeek.min,
-    INPUT_BOUNDS.hoursPerWeek.max,
-  );
-
-  // Deduplicated so selecting the same workflow twice cannot inflate coverage.
-  const workflows = [...new Set(input.workflows)].filter((workflow) =>
-    Object.hasOwn(WORKFLOW_COVERAGE, workflow),
-  );
-
-  const manualHoursPerYear = people * hoursPerWeek * WORKING_WEEKS_PER_YEAR;
-
-  const rawCoverage = workflows.reduce(
-    (total, workflow) => total + WORKFLOW_COVERAGE[workflow],
-    0,
-  );
-  const adjusted =
-    rawCoverage * INDUSTRY_FACTOR[input.industry] * SIZE_FACTOR[input.size];
-  const coverage = Math.min(adjusted, COVERAGE_CEILING);
-
-  const hoursReleasedPerYear = manualHoursPerYear * coverage;
-  const realisedHours = hoursReleasedPerYear * REALISATION;
-
-  const annualSavingSar = Object.freeze({
-    low: round(realisedHours * HOURLY_COST_SAR.low, -3),
-    high: round(realisedHours * HOURLY_COST_SAR.high, -3),
+export function calculate(raw: CalculatorInput): CalculatorResult {
+  const input: CalculatorInput = Object.freeze({
+    industry: raw.industry,
+    size: raw.size,
+    team: clamp(Math.round(raw.team), INPUT_BOUNDS.team.min, INPUT_BOUNDS.team.max),
+    hoursPerWeek: clamp(
+      Math.round(raw.hoursPerWeek),
+      INPUT_BOUNDS.hoursPerWeek.min,
+      INPUT_BOUNDS.hoursPerWeek.max,
+    ),
+    hourlyCost: clamp(
+      Math.round(raw.hourlyCost),
+      INPUT_BOUNDS.hourlyCost.min,
+      INPUT_BOUNDS.hourlyCost.max,
+    ),
+    currentAutomation: clamp(
+      Math.round(raw.currentAutomation),
+      INPUT_BOUNDS.currentAutomation.min,
+      INPUT_BOUNDS.currentAutomation.max,
+    ),
   });
 
-  const indicativeBuildSar = Object.freeze({
-    low: workflows.length * BUILD_COST_PER_WORKFLOW_SAR.low,
-    high: workflows.length * BUILD_COST_PER_WORKFLOW_SAR.high,
-  });
+  const automated = input.currentAutomation / 100;
+  const remaining = 1 - automated;
 
-  // Payback pairs the pessimistic saving with the expensive build and the
-  // optimistic saving with the cheap one, so the range is a real range rather
-  // than two variations on the same assumption.
-  const paybackMonths = Object.freeze({
-    low:
-      annualSavingSar.high > 0
-        ? round((indicativeBuildSar.low / annualSavingSar.high) * 12, 1)
-        : 0,
-    high:
-      annualSavingSar.low > 0
-        ? round((indicativeBuildSar.high / annualSavingSar.low) * 12, 1)
-        : 0,
-  });
+  const base =
+    BASELINE_COVERAGE *
+    INDUSTRY_COVERAGE[input.industry] *
+    SIZE_FACTOR[input.size];
 
-  const monthlyRealised = Object.freeze({
-    low: annualSavingSar.low / 12,
-    high: annualSavingSar.high / 12,
-  });
+  const manualHoursPerYear =
+    input.team *
+    WORKING_WEEKS_PER_YEAR *
+    (input.hoursPerWeek + TRANSACTION_HOURS_PER_WEEK);
+
+  // Coverage only ever applies to the part that is still manual, which is why
+  // raising "current automation" lowers the saving rather than raising it.
+  const workloadRemoved = base * remaining;
+  const hoursSavedPerYear = manualHoursPerYear * workloadRemoved;
+  const manualHoursAfter = manualHoursPerYear - hoursSavedPerYear;
+
+  const annualSaving = hoursSavedPerYear * input.hourlyCost * REALISATION;
+  const revenueOpportunity =
+    input.team *
+    INDUSTRY_REVENUE_PER_PERSON[input.industry] *
+    SIZE_FACTOR[input.size] *
+    remaining;
+  const twelveMonthTotal = annualSaving + revenueOpportunity;
+
+  const implementationCost =
+    IMPLEMENTATION_SETUP[input.size] + IMPLEMENTATION_PER_SEAT * input.team;
+
+  // Both are charged against the twelve-month total, and both are guarded: with
+  // no benefit at all the return is a total loss and payback is not a number,
+  // so it is reported as zero rather than as infinity.
+  const firstYearRoi = twelveMonthTotal / implementationCost - 1;
+  const paybackMonths =
+    twelveMonthTotal > 0 ? (implementationCost / twelveMonthTotal) * 12 : 0;
+
+  const productivityGain =
+    hoursSavedPerYear /
+    (input.team * WORKING_WEEKS_PER_YEAR * FULL_TIME_HOURS_PER_WEEK);
+
+  /*
+   * The coverage meter.
+   *
+   * Not `base`, and not the removed fraction: work already running without a
+   * person counts as covered too, and what the project adds is the coverage
+   * rate applied to what is left. Hence `automated + base x remaining^2`, which
+   * dips before it climbs — its minimum sits near 31% current automation, where
+   * the ground already covered has not yet outgrown the ground given up.
+   *
+   * Recovered exactly. Across all 21 sweep points the residual is 4.4e-7, which
+   * is the meter's own four-decimal-place rounding and nothing else.
+   */
+  const automationCoverage = Math.min(
+    COVERAGE_CEILING,
+    automated + base * remaining * remaining,
+  );
 
   const projection = Object.freeze(
-    Array.from({ length: 12 }, (_, index) =>
-      Object.freeze({
-        low: round(monthlyRealised.low * (index + 1) - indicativeBuildSar.high, -3),
-        high: round(monthlyRealised.high * (index + 1) - indicativeBuildSar.low, -3),
-      }),
-    ),
+    Array.from({ length: 12 }, (_, index) => (twelveMonthTotal * (index + 1)) / 12),
   );
 
   return Object.freeze({
     currency: CURRENCY,
-    manualHoursPerYear: round(manualHoursPerYear),
-    manualHoursAfter: round(manualHoursPerYear - hoursReleasedPerYear),
-    productivityGain:
-      people > 0
-        ? round(realisedHours / (people * WORKING_HOURS_PER_YEAR), 4)
-        : 0,
-    projection,
-    coverage: round(coverage, 3),
-    hoursReleasedPerYear: round(hoursReleasedPerYear),
-    annualSavingSar,
-    indicativeBuildSar,
+    input,
+    manualHoursPerYear,
+    manualHoursAfter,
+    hoursSavedPerYear,
+    annualSaving,
+    revenueOpportunity,
+    twelveMonthTotal,
+    implementationCost,
+    firstYearRoi,
     paybackMonths,
-    contributions: Object.freeze(
-      workflows.map((workflow) =>
-        Object.freeze({ workflow, coverage: WORKFLOW_COVERAGE[workflow] }),
-      ),
-    ),
-    assumptions: Object.freeze<Assumption[]>([
-      Object.freeze({
-        kind: "workload",
-        people,
-        hoursPerWeek,
-        weeksPerYear: WORKING_WEEKS_PER_YEAR,
-      }),
-      Object.freeze({
-        kind: "coverage",
-        percent: round(coverage * 100, 1),
-        ceilingPercent: COVERAGE_CEILING * 100,
-      }),
-      Object.freeze({ kind: "realisation", percent: REALISATION * 100 }),
-      Object.freeze({
-        kind: "hourly-cost",
-        low: HOURLY_COST_SAR.low,
-        high: HOURLY_COST_SAR.high,
-      }),
-      Object.freeze({
-        kind: "build-cost",
-        low: BUILD_COST_PER_WORKFLOW_SAR.low,
-        high: BUILD_COST_PER_WORKFLOW_SAR.high,
-      }),
-    ]),
+    productivityGain,
+    automationCoverage,
+    workloadRemoved,
+    leadResponseMultiple: LEAD_RESPONSE_MULTIPLE,
+    monthlyVolumes: Object.freeze({
+      leads: input.team * MONTHLY_VOLUME_PER_PERSON.leads,
+      calls: input.team * MONTHLY_VOLUME_PER_PERSON.calls,
+      documents: input.team * MONTHLY_VOLUME_PER_PERSON.documents,
+    }),
+    projection,
   });
 }
 
-/** SAR, grouped, no decimals. Money in a range never needs halalas. */
-export function formatSar(value: number, locale: string): string {
-  return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency: CURRENCY,
-    maximumFractionDigits: 0,
-  }).format(value);
+/*
+ * Formatting.
+ *
+ * Deliberately hand-rolled rather than `Intl.NumberFormat` with compact
+ * notation. Two reasons, and the second is the binding one:
+ *
+ *   - the reference's thresholds are specific — three significant figures until
+ *     the number is large enough to lose its decimal — and compact notation
+ *     does not produce them;
+ *   - ADR-034 keeps numerals Latin in Arabic, and `Intl` would localise both
+ *     the digits and the magnitude word. A figure stays one uninterrupted Latin
+ *     numeral run in both languages; only the unit after it is a word, and that
+ *     is passed in by the caller from `copy.ts`.
+ */
+
+/** `$204K`, `$96.1K`, `$1.3M`, `$18M`. Money, three significant figures. */
+export function formatMoney(value: number): string {
+  const sign = value < 0 ? "-" : "";
+  const magnitude = Math.abs(value);
+  if (magnitude >= 1e6) {
+    return `${sign}$${(magnitude / 1e6).toFixed(magnitude >= 1e7 ? 0 : 1)}M`;
+  }
+  if (magnitude >= 1e3) {
+    return `${sign}$${(magnitude / 1e3).toFixed(magnitude >= 1e5 ? 0 : 1)}K`;
+  }
+  return `${sign}$${String(Math.round(magnitude))}`;
 }
 
-export function formatNumber(value: number, locale: string): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(value);
+/** `18.2Kh`, `271Kh`, `640h`. The unit is a word, so the caller supplies it. */
+export function formatHours(value: number, unit: string): string {
+  if (value >= 1e3) {
+    return `${(value / 1e3).toFixed(value >= 1e5 ? 0 : 1)}K${unit}`;
+  }
+  return `${String(Math.round(value))}${unit}`;
+}
+
+/** `29,440`. Grouped, Latin digits, in both languages. */
+export function formatCount(value: number): string {
+  return Math.round(value).toLocaleString("en-US");
+}
+
+/** `509%`, `-28%`. */
+export function formatPercent(fraction: number): string {
+  return `${String(Math.round(fraction * 100))}%`;
+}
+
+/** `+24.8%`. Signed, because a gain that reads as a level is not a gain. */
+export function formatSignedPercent(fraction: number): string {
+  return `+${(fraction * 100).toFixed(1)}%`;
+}
+
+/**
+ * Beyond two years, payback stops being a number.
+ *
+ * A payback of thirty-one months is not a more precise version of one at
+ * twenty-nine months; both mean "not this year". The reference stops counting
+ * at 24 and so does this.
+ */
+export const PAYBACK_CEILING_MONTHS = 24;
+
+/** `2.0`, or `null` past the ceiling, where the caller substitutes a word. */
+export function formatPaybackMonths(months: number): string | null {
+  return months >= PAYBACK_CEILING_MONTHS ? null : months.toFixed(1);
 }

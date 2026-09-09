@@ -1,25 +1,32 @@
 "use client";
 
 import {
+  useCallback,
+  useEffect,
   useId,
   useMemo,
+  useRef,
   useState,
   type CSSProperties,
   type ReactNode,
 } from "react";
 
-import { CALCULATOR_COPY, type NumberFormatters } from "@/lib/calculator/copy";
+import { CtaLink } from "@/components/homepage/cta-link";
+import { CALCULATOR_COPY } from "@/lib/calculator/copy";
 import {
   calculate,
-  formatNumber,
-  formatSar,
+  formatCount,
+  formatHours,
+  formatMoney,
+  formatPaybackMonths,
+  formatPercent,
+  formatSignedPercent,
   INDUSTRY_KEYS,
   INPUT_BOUNDS,
+  INPUT_DEFAULTS,
   SIZE_KEYS,
-  WORKFLOW_KEYS,
   type IndustryKey,
   type SizeKey,
-  type WorkflowKey,
 } from "@/lib/calculator/model";
 import { intlLocale } from "@/lib/i18n/locale";
 import type { LocaleCode } from "@/types/site";
@@ -31,521 +38,628 @@ import type { LocaleCode } from "@/types/site";
 // the model is a pure function with no dependencies and no network — so the
 // whole feature costs one small module and no request.
 //
-// The presentation makes three promises the model already keeps:
+// Control set, label wording and output order are the reference's, exactly. The
+// two things this build does NOT copy are the header, which the owner excluded,
+// and the chart library: the twelve-month curve and the before/after bar are
+// drawn with grid rows and brand tokens, so they inherit the type scale, the
+// theme and the writing direction for free.
 //
-//   - every figure is a RANGE, because a single number implies a precision
-//     nobody has;
-//   - the assumptions are on the page, not behind a tooltip, and not in
-//     smaller type than the number they qualify;
-//   - the headline is realised cost avoidance, which is much less than the
-//     notional value of the freed hours, and it says so next to itself.
+// Two honesty devices survive from the earlier SAR model because the reference
+// has them too, in its own words: the headline is realised cost avoidance and
+// says so beside itself, and ROI is charged against a real implementation cost
+// so it can — and does — go negative.
 //
-// It exists to start an honest conversation. A calculator that flatters the
-// reader costs the meeting it was supposed to win.
-//
-// Bilingual throughout, and the RTL work here is not cosmetic. Ranges are the
-// one place a naive mirror goes wrong: "45,000 – 110,000" must keep its numbers
-// in that order in Arabic too, so every range is emitted as an isolated LTR run
-// rather than left to the bidi algorithm to guess at.
+// Bidi: every figure is a Latin numeral run, and several of them sit inside
+// Arabic sentences or beside Arabic labels. Each is emitted through `Numeric`,
+// which pins the run LTR rather than leaving the order to the bidi algorithm.
 
 interface ImpactCalculatorProps {
   readonly locale: LocaleCode;
+  /** Where the primary call to action points. */
+  readonly bookHref: string;
 }
 
-export function ImpactCalculator({ locale }: ImpactCalculatorProps) {
+export function ImpactCalculator({ locale, bookHref }: ImpactCalculatorProps) {
   const id = useId();
   const copy = CALCULATOR_COPY[locale];
   const intl = intlLocale(locale);
 
-  const [industry, setIndustry] = useState<IndustryKey>("professional-services");
-  const [size, setSize] = useState<SizeKey>("growing");
-  const [people, setPeople] = useState(40);
-  const [hoursPerWeek, setHoursPerWeek] = useState(10);
-  const [workflows, setWorkflows] = useState<readonly WorkflowKey[]>([
-    "approvals",
-    "documents",
-  ]);
-  const [showAssumptions, setShowAssumptions] = useState(false);
+  const [industry, setIndustry] = useState<IndustryKey>(INPUT_DEFAULTS.industry);
+  const [size, setSize] = useState<SizeKey>(INPUT_DEFAULTS.size);
+  const [team, setTeam] = useState(INPUT_DEFAULTS.team);
+  const [hoursPerWeek, setHoursPerWeek] = useState(INPUT_DEFAULTS.hoursPerWeek);
+  const [hourlyCost, setHourlyCost] = useState(INPUT_DEFAULTS.hourlyCost);
+  const [currentAutomation, setCurrentAutomation] = useState(
+    INPUT_DEFAULTS.currentAutomation,
+  );
+  const [advancedOpen, setAdvancedOpen] = useState(false);
+  const [generatedOn, setGeneratedOn] = useState("");
 
   const result = useMemo(
-    () => calculate({ industry, size, people, hoursPerWeek, workflows }),
-    [industry, size, people, hoursPerWeek, workflows],
+    () =>
+      calculate({
+        industry,
+        size,
+        team,
+        hoursPerWeek,
+        hourlyCost,
+        currentAutomation,
+      }),
+    [industry, size, team, hoursPerWeek, hourlyCost, currentAutomation],
   );
 
-  const format: NumberFormatters = useMemo(
-    () => ({
-      count: (value) => formatNumber(value, intl),
-      money: (value) => formatSar(value, intl),
-      percent: (value) => `${formatNumber(value, intl)}%`,
-    }),
-    [intl],
+  const hours = useCallback(
+    (value: number) => formatHours(value, copy.hourUnit),
+    [copy.hourUnit],
   );
 
-  const hasScope = workflows.length > 0;
-
-  function toggleWorkflow(workflow: WorkflowKey): void {
-    setWorkflows((current) =>
-      current.includes(workflow)
-        ? current.filter((entry) => entry !== workflow)
-        : [...current, workflow],
-    );
-  }
+  const payback = formatPaybackMonths(result.paybackMonths);
+  const twelveMonthTotal = formatMoney(result.twelveMonthTotal);
+  const print = usePrintReport(setGeneratedOn, intl);
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
-      {/* ---------------------------------------------------------------- inputs */}
-      <form
-        className="grid content-start gap-7"
-        // Nothing is submitted: the result updates as the inputs change, so a
-        // submit would only reload the page.
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-      >
-        <div className="grid gap-2">
-          <label
-            htmlFor={`${id}-industry`}
-            className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint"
-          >
-            {copy.industry}
-          </label>
-          <select
-            id={`${id}-industry`}
-            value={industry}
-            onChange={(event) => {
-              setIndustry(event.target.value as IndustryKey);
-            }}
-            className="min-h-[44px] rounded-xl border border-brand-border bg-brand-deep-card px-4 text-[0.9375rem] text-brand-ink"
-          >
-            {INDUSTRY_KEYS.map((key) => (
-              <option key={key} value={key}>
-                {copy.industries[key]}
-              </option>
-            ))}
-          </select>
-        </div>
+    <div data-automation-report="" className="grid gap-14">
+      <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        {/* -------------------------------------------------------- inputs */}
+        <form
+          className="min-w-0"
+          // Nothing is submitted: the result updates as the inputs change, so a
+          // submit would only reload the page.
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}
+        >
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-ink-faint">
+            {copy.inputsTitle}
+          </h3>
 
-        <div className="grid gap-2">
-          <label
-            htmlFor={`${id}-size`}
-            className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint"
-          >
-            {copy.size}
-          </label>
-          <select
-            id={`${id}-size`}
-            value={size}
-            onChange={(event) => {
-              setSize(event.target.value as SizeKey);
-            }}
-            className="min-h-[44px] rounded-xl border border-brand-border bg-brand-deep-card px-4 text-[0.9375rem] text-brand-ink"
-          >
-            {SIZE_KEYS.map((key) => (
-              <option key={key} value={key}>
-                {copy.sizes[key]}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <NumberField
-          id={`${id}-people`}
-          label={copy.people}
-          hint={copy.peopleHint}
-          exactSuffix={copy.exactSuffix}
-          value={people}
-          bounds={INPUT_BOUNDS.people}
-          onChange={setPeople}
-          format={format.count}
-        />
-
-        <NumberField
-          id={`${id}-hours`}
-          label={copy.hours}
-          hint={copy.hoursHint}
-          exactSuffix={copy.exactSuffix}
-          value={hoursPerWeek}
-          bounds={INPUT_BOUNDS.hoursPerWeek}
-          onChange={setHoursPerWeek}
-          format={format.count}
-        />
-
-        <fieldset className="grid gap-3 border-0 p-0">
-          <legend className="mb-1 text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-            {copy.scope}
-          </legend>
-          <div className="flex flex-wrap gap-2">
-            {WORKFLOW_KEYS.map((workflow) => {
-              const selected = workflows.includes(workflow);
-
-              return (
-                <button
-                  key={workflow}
-                  type="button"
-                  aria-pressed={selected}
-                  onClick={() => {
-                    toggleWorkflow(workflow);
-                  }}
-                  // The unselected border is deliberately stronger than the
-                  // hairline used elsewhere: these are the only controls on the
-                  // page whose *unselected* state still has to read as a
-                  // control, and at 10% white it did not.
-                  className={`min-h-[44px] rounded-full border px-4 text-sm font-medium transition-colors ${
-                    selected
-                      ? "border-brand-accent bg-brand-accent/15 text-brand-ink"
-                      : "border-brand-ink-faint/60 bg-transparent text-brand-ink-soft hover:border-brand-ink-soft hover:text-brand-ink"
-                  }`}
-                >
-                  {copy.workflows[workflow]}
-                </button>
-              );
-            })}
+          <div className="mt-8 grid grid-cols-1 gap-7 sm:grid-cols-2">
+            <Choice
+              id={`${id}-industry`}
+              label={copy.industry}
+              value={industry}
+              options={INDUSTRY_KEYS}
+              labels={copy.industries}
+              onChange={setIndustry}
+            />
+            <Choice
+              id={`${id}-size`}
+              label={copy.size}
+              value={size}
+              options={SIZE_KEYS}
+              labels={copy.sizes}
+              onChange={setSize}
+            />
           </div>
-        </fieldset>
-      </form>
 
-      {/* --------------------------------------------------------------- results */}
-      <div
-        // Polite rather than assertive: the numbers change on every slider
-        // step, and an assertive region would interrupt a screen-reader user
-        // continuously while they drag.
-        aria-live="polite"
-        className="grid content-start gap-8 rounded-2xl border border-brand-border bg-brand-deep-card/60 p-7 sm:p-9"
-      >
-        {hasScope ? (
-          <>
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                {copy.headlineLabel}
-              </p>
-              <p className="mt-3 text-balance text-[clamp(1.875rem,1.35rem+2.4vw,3.25rem)] font-bold leading-[1.06] tracking-[-0.02em]">
-                <NumericRange
-                  low={format.money(result.annualSavingSar.low)}
-                  high={format.money(result.annualSavingSar.high)}
+          <div className="mt-9 grid gap-7">
+            <Slider
+              id={`${id}-team`}
+              label={copy.team}
+              hint={copy.teamHint}
+              bounds={INPUT_BOUNDS.team}
+              value={team}
+              display={formatCount(team)}
+              valueText={copy.teamValueText(String(team))}
+              onChange={setTeam}
+            />
+            <Slider
+              id={`${id}-hours`}
+              label={copy.hours}
+              hint={copy.hoursHint}
+              bounds={INPUT_BOUNDS.hoursPerWeek}
+              value={hoursPerWeek}
+              display={formatCount(hoursPerWeek)}
+              valueText={copy.hoursValueText(String(hoursPerWeek))}
+              onChange={setHoursPerWeek}
+            />
+          </div>
+
+          {/* The two assumptions most people should not have to think about,
+              behind a disclosure rather than removed: someone who does want to
+              argue with the hourly rate must be able to find it and change it,
+              or the figure below is not theirs. */}
+          <div className="mt-9">
+            <button
+              type="button"
+              aria-expanded={advancedOpen}
+              aria-controls={`${id}-advanced`}
+              onClick={() => {
+                setAdvancedOpen((open) => !open);
+              }}
+              className="digital-disclosure inline-flex min-h-[44px] items-center gap-2 text-[13px] font-medium text-brand-accent"
+            >
+              <svg
+                viewBox="0 0 12 12"
+                className="digital-disclosure__icon h-3 w-3"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4.5 2.5L8 6l-3.5 3.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-              </p>
-              <p className="mt-3 max-w-[46ch] text-sm leading-[1.6] text-brand-ink-soft">
-                {copy.headlineNote}
+              </svg>
+              {copy.advanced}
+            </button>
+            <div id={`${id}-advanced`} hidden={!advancedOpen} className="mt-7 grid gap-7">
+              <Slider
+                id={`${id}-hourly`}
+                label={copy.hourlyCost}
+                hint={copy.hourlyCostHint}
+                bounds={INPUT_BOUNDS.hourlyCost}
+                value={hourlyCost}
+                display={`$${formatCount(hourlyCost)}`}
+                valueText={copy.hourlyCostValueText(String(hourlyCost))}
+                onChange={setHourlyCost}
+              />
+              <Slider
+                id={`${id}-automation`}
+                label={copy.currentAutomation}
+                hint={copy.currentAutomationHint}
+                bounds={INPUT_BOUNDS.currentAutomation}
+                value={currentAutomation}
+                display={`${formatCount(currentAutomation)}%`}
+                valueText={copy.currentAutomationValueText(String(currentAutomation))}
+                onChange={setCurrentAutomation}
+              />
+            </div>
+          </div>
+
+          <p className="mt-9 max-w-[46ch] text-[12px] leading-relaxed text-brand-ink-faint">
+            {copy.volumeNote({
+              leads: formatCount(result.monthlyVolumes.leads),
+              calls: formatCount(result.monthlyVolumes.calls),
+              documents: formatCount(result.monthlyVolumes.documents),
+            })}
+          </p>
+        </form>
+
+        {/* ------------------------------------------------------- outputs */}
+        <div
+          // Polite rather than assertive: the numbers change on every slider
+          // step, and an assertive region would interrupt a screen-reader user
+          // continuously while they drag.
+          aria-live="polite"
+          className="min-w-0"
+        >
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-ink-faint">
+            {copy.outputsTitle}
+          </h3>
+
+          <div className="mt-8">
+            <p className="text-[13px] text-brand-ink-soft">{copy.savingLabel}</p>
+            <p className="digital-display mt-2 font-bold leading-[0.95] tracking-[-0.02em] text-[clamp(3rem,1.9rem+4.4vw,4rem)]">
+              <Numeric>{formatMoney(result.annualSaving)}</Numeric>
+            </p>
+            <p className="mt-3 max-w-[42ch] text-[12px] leading-relaxed text-brand-ink-faint">
+              {copy.savingNote}
+            </p>
+          </div>
+
+          <div className="mt-9">
+            <p className="text-[clamp(1.6rem,1.2rem+1.4vw,2rem)] font-bold leading-none">
+              <Numeric>{hours(result.hoursSavedPerYear)}</Numeric>
+            </p>
+            <p className="mt-2 text-[13px] text-brand-ink-soft">{copy.hoursSaved}</p>
+          </div>
+
+          <dl className="mt-10 border-y border-brand-border">
+            <Row label={copy.roi} value={formatPercent(result.firstYearRoi)} />
+            <Row
+              label={copy.payback}
+              value={payback === null ? copy.paybackBeyond : `${payback} ${copy.monthUnit}`}
+            />
+            <Row label={copy.revenue} value={formatMoney(result.revenueOpportunity)} />
+            <Row
+              label={copy.leadResponse}
+              value={`${formatCount(result.leadResponseMultiple)}×`}
+              suffix={copy.leadResponseSuffix}
+            />
+          </dl>
+
+          <section aria-labelledby={`${id}-coverage`} className="mt-11">
+            <p className="text-[clamp(1.9rem,1.4rem+1.8vw,2.4rem)] font-bold leading-none">
+              <Numeric>{formatPercent(result.automationCoverage)}</Numeric>
+            </p>
+            <h4 id={`${id}-coverage`} className="mt-2 text-[13px] text-brand-ink-soft">
+              {copy.coverage}
+            </h4>
+            <Meter fraction={result.automationCoverage} />
+            <p className="mt-3 max-w-[46ch] text-[12px] leading-relaxed text-brand-ink-faint">
+              {copy.coverageNote}
+            </p>
+          </section>
+
+          <section aria-labelledby={`${id}-productivity`} className="mt-9">
+            <div className="flex items-baseline justify-between gap-4">
+              <h4 id={`${id}-productivity`} className="text-[13px] text-brand-ink-soft">
+                {copy.productivity}
+              </h4>
+              <p className="shrink-0 text-[16px] font-semibold">
+                <Numeric>{formatSignedPercent(result.productivityGain)}</Numeric>
               </p>
             </div>
+            <Meter fraction={result.productivityGain} />
+          </section>
 
-            <dl className="grid gap-6 sm:grid-cols-3">
-              <Metric
-                label={copy.hoursReleased}
-                value={format.count(result.hoursReleasedPerYear)}
-              />
-              <Metric
-                label={copy.ofWorkload}
-                value={format.percent(Math.round(result.coverage * 100))}
-              />
-              <Metric
-                label={copy.productivity}
-                value={format.percent(
-                  Math.round(result.productivityGain * 1000) / 10,
-                )}
-              />
-            </dl>
-
-            {/* Before and after, as one bar rather than two numbers.
-                A reader who does not trust a currency figure still recognises
-                their own hours, and the width IS the argument — the remaining
-                bar is drawn to scale against today's, so a modest coverage
-                looks modest. */}
-            <div className="border-t border-brand-border pt-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                {copy.manualHoursTitle}
-              </p>
-              <dl className="mt-4 grid gap-3">
-                <div className="grid gap-1.5">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <dt className="text-sm text-brand-ink-soft">{copy.manualToday}</dt>
-                    <dd className="text-[0.9375rem] font-semibold tabular-nums text-brand-ink">
-                      {format.count(result.manualHoursPerYear)}
-                    </dd>
-                  </div>
+          {/* Before and after, as one bar rather than two numbers. A reader who
+              does not trust a currency figure still recognises their own hours,
+              and the width IS the argument: the remaining bar is drawn to scale
+              against today's, so a modest coverage looks modest. */}
+          <section aria-labelledby={`${id}-manual`} className="mt-11">
+            <h4 id={`${id}-manual`} className="text-[13px] text-brand-ink-soft">
+              {copy.manualHoursTitle}
+            </h4>
+            <dl className="mt-5 grid gap-4">
+              <div>
+                <div className="flex items-baseline justify-between gap-4">
+                  <dt className="text-[13px] text-brand-ink-soft">{copy.manualToday}</dt>
+                  <dd className="shrink-0 text-[15px] font-semibold tabular-nums">
+                    <Numeric>{`${formatCount(result.manualHoursPerYear)}${copy.hourUnit}`}</Numeric>
+                  </dd>
+                </div>
+                <div
+                  aria-hidden="true"
+                  className="mt-2.5 h-[2px] rounded-sm bg-brand-ink/25"
+                />
+              </div>
+              <div>
+                <div className="flex items-baseline justify-between gap-4">
+                  <dt className="text-[13px] text-brand-ink-soft">{copy.manualAfter}</dt>
+                  <dd className="shrink-0 text-[15px] font-semibold tabular-nums text-brand-accent">
+                    <Numeric>{`${formatCount(result.manualHoursAfter)}${copy.hourUnit}`}</Numeric>
+                  </dd>
+                </div>
+                <div aria-hidden="true" className="mt-2.5 h-[2px] rounded-sm bg-brand-ink/10">
                   <div
-                    aria-hidden="true"
-                    className="h-2 rounded-full bg-brand-ink/15"
+                    className="digital-bar h-full rounded-sm bg-brand-accent"
+                    style={{
+                      inlineSize: `${String(
+                        Math.max(
+                          0,
+                          Math.min(
+                            100,
+                            (result.manualHoursAfter / result.manualHoursPerYear) * 100,
+                          ),
+                        ),
+                      )}%`,
+                    }}
                   />
                 </div>
-                <div className="grid gap-1.5">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <dt className="text-sm text-brand-ink-soft">{copy.manualAfter}</dt>
-                    <dd className="text-[0.9375rem] font-semibold tabular-nums text-brand-accent">
-                      {format.count(result.manualHoursAfter)}
-                    </dd>
-                  </div>
-                  <div aria-hidden="true" className="h-2 rounded-full bg-brand-ink/10">
-                    <div
-                      className="h-full rounded-full bg-brand-accent"
-                      style={{
-                        inlineSize: `${String(
-                          result.manualHoursPerYear > 0
-                            ? Math.max(
-                                2,
-                                Math.round(
-                                  (result.manualHoursAfter /
-                                    result.manualHoursPerYear) *
-                                    100,
-                                ),
-                              )
-                            : 0,
-                        )}%`,
-                      }}
-                    />
-                  </div>
-                </div>
-              </dl>
-            </div>
-
-            {/* The twelve-month position, net of the build.
-                It starts below zero and crosses at payback, which is the whole
-                reason to plot it: a chart that only ever goes up is a sales
-                device. Bars are grid rows rather than an SVG so it inherits the
-                type, the tokens and the direction without a chart library. */}
-            <div className="border-t border-brand-border pt-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                {copy.projectionTitle}
-              </p>
-              <ol className="digital-projection mt-5" aria-hidden="true">
-                {result.projection.map((month, index) => {
-                  const span = Math.max(
-                    Math.abs(result.projection[0]?.low ?? 0),
-                    Math.abs(result.projection[11]?.high ?? 1),
-                    1,
-                  );
-                  const height = Math.min(
-                    100,
-                    Math.max(2, Math.round((Math.abs(month.high) / span) * 100)),
-                  );
-
-                  return (
-                    <li
-                      key={index}
-                      className="digital-projection__bar"
-                      data-sign={month.high < 0 ? "negative" : "positive"}
-                      style={{ "--bar": `${String(height)}%` } as CSSProperties}
-                    >
-                      <span className="digital-projection__label">
-                        {copy.monthAbbrev}
-                        {index + 1}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ol>
-              {/* The chart is decorative; this sentence and the payback metric
-                  above carry the same fact for a screen reader. */}
-              <p className="mt-4 max-w-[46ch] text-sm leading-[1.6] text-brand-ink-soft">
-                {copy.projectionNote}
-              </p>
-            </div>
-
-            {result.contributions.length > 0 ? (
-              <div className="border-t border-brand-border pt-6">
-                <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                  {copy.recommendedTitle}
-                </p>
-                <ol className="mt-4 grid gap-2.5">
-                  {[...result.contributions]
-                    .sort((a, b) => b.coverage - a.coverage)
-                    .map((entry, index) => (
-                      <li
-                        key={entry.workflow}
-                        className="flex items-baseline gap-3 text-[0.9375rem] leading-[1.5] text-brand-ink"
-                      >
-                        <span
-                          aria-hidden="true"
-                          className="font-display text-[0.6875rem] tabular-nums text-brand-ink-faint"
-                        >
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        {copy.workflows[entry.workflow]}
-                      </li>
-                    ))}
-                </ol>
-                <p className="mt-4 max-w-[46ch] text-sm leading-[1.6] text-brand-ink-soft">
-                  {copy.recommendedNote}
-                </p>
               </div>
-            ) : null}
+            </dl>
+          </section>
 
-            <div className="border-t border-brand-border pt-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                {copy.buildLabel}
-              </p>
-              <p className="mt-2 text-[1.0625rem] text-brand-ink">
-                <NumericRange
-                  low={format.money(result.indicativeBuildSar.low)}
-                  high={format.money(result.indicativeBuildSar.high)}
-                />{" "}
-                {copy.buildAcross(result.contributions.length)}
-              </p>
-              <p className="mt-4 text-[1.0625rem] text-brand-ink">
-                <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                  {copy.payback}
-                </span>{" "}
-                <NumericRange
-                  low={format.count(result.paybackMonths.low)}
-                  high={format.count(result.paybackMonths.high)}
-                />{" "}
-                {copy.monthsAbbreviation}
+          {/* The twelve-month position. Bars are grid rows rather than an SVG
+              so the chart inherits the type, the tokens and the direction
+              without a chart library — this site has none and this did not
+              justify adding one. The months before the build is paid back are
+              drawn in faint ink and the ones after in the accent, so the reader
+              can see where the line stops costing and starts returning. */}
+          <section aria-labelledby={`${id}-projection`} className="mt-11">
+            <div className="flex items-baseline justify-between gap-4">
+              <h4 id={`${id}-projection`} className="text-[13px] text-brand-ink-soft">
+                {copy.projectionTitle}
+              </h4>
+              <p className="shrink-0 text-[15px] font-semibold tabular-nums">
+                <Numeric>{twelveMonthTotal}</Numeric>
               </p>
             </div>
-          </>
-        ) : (
-          <p className="max-w-[42ch] text-[1.0625rem] leading-[1.7] text-brand-ink-soft">
-            {copy.noScope}
-          </p>
-        )}
+            <ol
+              className="digital-projection mt-5"
+              role="img"
+              aria-label={copy.projectionChartLabel(twelveMonthTotal)}
+            >
+              {result.projection.map((cumulative, index) => (
+                <li
+                  key={index}
+                  className="digital-projection__bar"
+                  data-state={
+                    cumulative < result.implementationCost ? "unpaid" : "paid"
+                  }
+                  style={
+                    {
+                      "--bar": `${String(
+                        result.twelveMonthTotal > 0
+                          ? Math.max(2, (cumulative / result.twelveMonthTotal) * 100)
+                          : 2,
+                      )}%`,
+                    } as CSSProperties
+                  }
+                />
+              ))}
+            </ol>
+            <div className="mt-3 flex items-center justify-between text-[12px] text-brand-ink-faint">
+              <span>{copy.firstMonth}</span>
+              <span>{copy.lastMonth}</span>
+            </div>
+          </section>
+        </div>
+      </div>
 
-        <div className="border-t border-brand-border pt-6">
+      <div className="border-t border-brand-border pt-8">
+        <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-ink-faint">
+          {copy.recommendedTitle}
+        </h3>
+        <p className="mt-4 max-w-[70ch] text-[15px] leading-relaxed text-brand-ink-soft">
+          {copy.recommended[industry].join(" · ")}
+        </p>
+      </div>
+
+      <div>
+        <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
+          <span className="digital-print-hide">
+            <CtaLink
+              link={{ label: copy.bookSession, href: bookHref, target: null }}
+              variant="solid"
+            />
+          </span>
+          {/* Not a PDF. `window.print()` with a print stylesheet produces a
+              document every browser can already save as one, works offline,
+              needs no dependency and no server, and prints correctly from a
+              phone. What it costs is control over the page furniture, which is
+              why the report renders its own inputs summary below. */}
           <button
             type="button"
-            aria-expanded={showAssumptions}
-            aria-controls={`${id}-assumptions`}
-            onClick={() => {
-              setShowAssumptions((current) => !current);
-            }}
-            className="min-h-[44px] text-[11px] font-bold uppercase tracking-[0.12em] text-brand-accent"
+            onClick={print}
+            className="digital-print-hide group inline-flex min-h-[44px] items-center gap-2 text-[14px] font-medium text-brand-ink-soft transition-colors hover:text-brand-ink"
           >
-            {showAssumptions ? copy.hideAssumptions : copy.showAssumptions}
+            {copy.downloadReport}
+            <span
+              aria-hidden="true"
+              className="digital-arrow transition-transform duration-300 group-hover:translate-x-1"
+            >
+              &rarr;
+            </span>
           </button>
-          <ul
-            id={`${id}-assumptions`}
-            hidden={!showAssumptions}
-            className="mt-4 grid gap-2 text-sm leading-[1.6] text-brand-ink-soft"
-          >
-            {result.assumptions.map((assumption) => (
-              <li key={assumption.kind}>{copy.assumption(assumption, format)}</li>
-            ))}
-          </ul>
         </div>
 
-        <p className="text-xs leading-[1.6] text-brand-ink-faint">
+        <p className="mt-8 max-w-[62ch] text-[12px] leading-relaxed text-brand-ink-faint">
+          <strong className="font-medium text-brand-ink-soft">
+            {copy.disclaimerLead}
+          </strong>{" "}
           {copy.disclaimer}
         </p>
+      </div>
+
+      {/* Print only. On paper the sliders are gone, so the assumptions behind
+          the figures have to be restated or the report is unreadable a week
+          later. */}
+      <div className="digital-print-only" aria-hidden="true">
+        <h3>{copy.reportInputsTitle}</h3>
+        <dl>
+          <Fact label={copy.industry} value={copy.industries[industry]} />
+          <Fact label={copy.size} value={copy.sizes[size]} />
+          <Fact label={copy.team} value={formatCount(result.input.team)} />
+          <Fact label={copy.hours} value={formatCount(result.input.hoursPerWeek)} />
+          <Fact label={copy.hourlyCost} value={`$${formatCount(result.input.hourlyCost)}`} />
+          <Fact
+            label={copy.currentAutomation}
+            value={`${formatCount(result.input.currentAutomation)}%`}
+          />
+        </dl>
+        {generatedOn === "" ? null : <p>{copy.reportGeneratedOn(generatedOn)}</p>}
       </div>
     </div>
   );
 }
 
 /**
- * A low–high pair that keeps its order in both writing directions.
+ * Prints the report, and puts the page back afterwards.
  *
- * Left to itself, the bidi algorithm reorders a Latin-numeral range inside an
- * Arabic paragraph and the reader is shown the high figure first. `dir="ltr"`
- * with `unicode-bidi: isolate` (Tailwind's `isolate` here is the CSS isolation
- * property, so the explicit style is the one that matters) pins the run.
+ * The isolation is a class on the root element plus a print stylesheet, rather
+ * than anything that edits the shared shell: the header and footer belong to
+ * five other companies as well, and a print concern is not a reason to reach
+ * into them.
+ *
+ * `afterprint` is the signal to clean up because `window.print()` returns
+ * before the dialog closes in Safari. A timeout backs it up, since a browser
+ * that never fires the event would otherwise leave the page in report mode.
  */
-function NumericRange({
-  low,
-  high,
-}: {
-  readonly low: string;
-  readonly high: string;
-}) {
+function usePrintReport(
+  setGeneratedOn: (value: string) => void,
+  intl: string,
+): () => void {
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  const restore = useCallback(() => {
+    document.documentElement.classList.remove("digital-printing");
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("afterprint", restore);
+    return () => {
+      window.removeEventListener("afterprint", restore);
+      if (timer.current !== undefined) clearTimeout(timer.current);
+      restore();
+    };
+  }, [restore]);
+
+  return useCallback(() => {
+    // Rendered only now, so the server and the first client render agree.
+    setGeneratedOn(
+      new Intl.DateTimeFormat(intl, { dateStyle: "long" }).format(new Date()),
+    );
+    document.documentElement.classList.add("digital-printing");
+    // One frame, so the print stylesheet applies to a laid-out page.
+    requestAnimationFrame(() => {
+      window.print();
+      timer.current = setTimeout(restore, 1_000);
+    });
+  }, [intl, restore, setGeneratedOn]);
+}
+
+/**
+ * A Latin numeral run that keeps its order in both writing directions.
+ *
+ * Left to itself the bidi algorithm reorders `$204K` and `720x` inside an
+ * Arabic line. `dir="ltr"` with `unicode-bidi: isolate` pins the run.
+ */
+function Numeric({ children }: { readonly children: ReactNode }) {
   return (
-    <span dir="ltr" style={{ unicodeBidi: "isolate" }}>
-      {low} – {high}
+    <span dir="ltr" style={{ unicodeBidi: "isolate" }} className="tabular-nums">
+      {children}
     </span>
   );
 }
 
-function Metric({
+function Row({
   label,
   value,
+  suffix,
 }: {
   readonly label: string;
-  readonly value: ReactNode;
+  readonly value: string;
+  readonly suffix?: string;
 }) {
   return (
-    <div>
-      <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-        {label}
-      </dt>
-      <dd className="mt-2 text-[1.375rem] font-bold leading-tight text-brand-ink">
-        {value}
+    <div className="flex items-baseline justify-between gap-4 border-b border-brand-border py-3.5 last:border-b-0">
+      <dt className="text-[13px] text-brand-ink-soft">{label}</dt>
+      <dd className="flex shrink-0 items-baseline gap-1.5">
+        <span className="text-[16px] font-semibold">
+          <Numeric>{value}</Numeric>
+        </span>
+        {suffix === undefined ? null : (
+          <span className="text-[12px] text-brand-ink-faint">{suffix}</span>
+        )}
       </dd>
     </div>
   );
 }
 
-interface NumberFieldProps {
-  readonly id: string;
-  readonly label: string;
-  readonly hint: string;
-  readonly exactSuffix: string;
-  readonly value: number;
-  readonly bounds: { readonly min: number; readonly max: number; readonly step: number };
-  readonly onChange: (value: number) => void;
-  readonly format: (value: number) => string;
+function Fact({ label, value }: { readonly label: string; readonly value: string }) {
+  return (
+    <div>
+      <dt>{label}</dt>
+      <dd>{value}</dd>
+    </div>
+  );
 }
 
 /**
- * A range paired with a number input.
+ * A proportion, drawn.
  *
- * The slider alone is not enough: it is imprecise, it is hard to use with a
- * keyboard at this granularity, and on a touch screen it competes with page
- * scrolling. The number input makes the value typeable and gives the field a
- * real, focusable, labelled control.
+ * Decorative: the same number is printed beside it as text, so it carries
+ * `aria-hidden` rather than a meter role that would announce a second, less
+ * precise copy of the figure.
+ */
+function Meter({ fraction }: { readonly fraction: number }) {
+  return (
+    <div className="digital-meter mt-4" aria-hidden="true">
+      <div
+        className="digital-meter__fill"
+        style={{
+          inlineSize: `${String(Math.max(0, Math.min(100, fraction * 100)))}%`,
+        }}
+      />
+    </div>
+  );
+}
+
+interface ChoiceProps<Key extends string> {
+  readonly id: string;
+  readonly label: string;
+  readonly value: Key;
+  readonly options: readonly Key[];
+  readonly labels: Readonly<Record<Key, string>>;
+  readonly onChange: (value: Key) => void;
+}
+
+function Choice<Key extends string>({
+  id,
+  label,
+  value,
+  options,
+  labels,
+  onChange,
+}: ChoiceProps<Key>) {
+  return (
+    <div className="min-w-0">
+      <label htmlFor={id} className="block text-[13px] text-brand-ink-soft">
+        {label}
+      </label>
+      <select
+        id={id}
+        value={value}
+        onChange={(event) => {
+          onChange(event.target.value as Key);
+        }}
+        className="mt-2 min-h-[44px] w-full rounded-xl border border-brand-border bg-brand-deep-card px-4 text-[16px] font-medium text-brand-ink"
+      >
+        {options.map((key) => (
+          <option key={key} value={key}>
+            {labels[key]}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+interface SliderProps {
+  readonly id: string;
+  readonly label: string;
+  readonly hint: string;
+  readonly bounds: { readonly min: number; readonly max: number; readonly step: number };
+  readonly value: number;
+  readonly display: string;
+  readonly valueText: string;
+  readonly onChange: (value: number) => void;
+}
+
+/**
+ * One slider, its label and its live readout.
  *
  * The slider is NOT mirrored for Arabic. A range input is a magnitude axis, not
  * a reading order: browsers already run it right-to-left under `dir="rtl"`, and
  * forcing it back would put the maximum where a reader expects the minimum.
- * This is the "mirror only semantically directional interactions" rule — the
- * numeric readout beside it is what disambiguates either way.
+ * This is the "mirror only semantically directional interactions" rule; the
+ * numeric readout beside it disambiguates either way.
  */
-function NumberField({
+function Slider({
   id,
   label,
   hint,
-  exactSuffix,
-  value,
   bounds,
+  value,
+  display,
+  valueText,
   onChange,
-  format,
-}: NumberFieldProps) {
+}: SliderProps) {
   return (
-    <div className="grid gap-2">
+    <div className="min-w-0">
       <div className="flex items-baseline justify-between gap-4">
-        <label
-          htmlFor={id}
-          className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint"
-        >
+        <label htmlFor={id} className="text-[13px] leading-snug text-brand-ink-soft">
           {label}
         </label>
-        <output htmlFor={id} className="text-[1.0625rem] font-bold text-brand-ink">
-          {format(value)}
+        <output
+          htmlFor={id}
+          className="shrink-0 text-[19px] font-semibold leading-none text-brand-ink"
+        >
+          <Numeric>{display}</Numeric>
         </output>
       </div>
-      <div className="flex items-center gap-4">
-        <input
-          id={id}
-          type="range"
-          min={bounds.min}
-          max={bounds.max}
-          step={bounds.step}
-          value={value}
-          onChange={(event) => {
-            onChange(Number(event.target.value));
-          }}
-          className="h-11 w-full accent-[var(--brand-accent)]"
-        />
-        <input
-          type="number"
-          aria-label={`${label} (${exactSuffix})`}
-          min={bounds.min}
-          max={bounds.max}
-          step={bounds.step}
-          value={value}
-          onChange={(event) => {
-            onChange(Number(event.target.value));
-          }}
-          className="min-h-[44px] w-24 rounded-xl border border-brand-border bg-brand-deep-card px-3 text-center text-[0.9375rem] text-brand-ink"
-        />
-      </div>
-      <p className="text-xs leading-[1.5] text-brand-ink-faint">{hint}</p>
+      <input
+        id={id}
+        type="range"
+        min={bounds.min}
+        max={bounds.max}
+        step={bounds.step}
+        value={value}
+        aria-describedby={`${id}-hint`}
+        aria-valuetext={valueText}
+        onChange={(event) => {
+          onChange(Number(event.target.value));
+        }}
+        className="digital-slider mt-3 h-11 w-full accent-[var(--brand-accent)]"
+      />
+      <p id={`${id}-hint`} className="-mt-1 text-[12px] leading-snug text-brand-ink-faint">
+        {hint}
+      </p>
     </div>
   );
 }

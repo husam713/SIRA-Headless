@@ -102,7 +102,7 @@ $approval_rules = \Sira\Core\GraphQL\PresentationVisibility::approval_rules();
 $banner_severities = \Sira\Core\Brand\BannerContract::severity_values();
 $banner_fields = \Sira\Core\Integrations\BrandBannerFields::definitions();
 
-$check( 28 === count( $post_types ), 'Exactly 28 custom post types are defined.' );
+$check( 29 === count( $post_types ), 'Exactly 29 custom post types are defined.' );
 $check( 10 === count( $taxonomies ), 'Exactly 10 custom taxonomies are defined.' );
 $check( 12 === count( $meta ), 'Exactly 12 legacy native meta keys are defined.' );
 
@@ -196,6 +196,7 @@ $check(
 $expected_presentation_groups = array(
 	'group_sira_branch_homepage',
 	'group_sira_company_details',
+	'group_sira_digital_about',
 	'group_sira_digital_homepage',
 	'group_sira_group_homepage',
 	'group_sira_homepage',
@@ -203,6 +204,7 @@ $expected_presentation_groups = array(
 	'group_sira_locale',
 	'group_sira_page_intro',
 	'group_sira_partner_details',
+	'group_sira_profile',
 	'group_sira_testimonial_details',
 );
 
@@ -245,6 +247,11 @@ $expected_presentation_groups = array(
 		'graphql_field_name' => 'partnerDetails',
 		'graphql_type_name'  => 'SiraPartnerDetails',
 		'graphql_types'      => array( 'SiraPartner' ),
+	),
+	'group_sira_profile' => array(
+		'graphql_field_name' => 'siraProfile',
+		'graphql_type_name'  => 'SiraProfile',
+		'graphql_types'      => array( 'SiraLeadershipProfile' ),
 	),
 );
 

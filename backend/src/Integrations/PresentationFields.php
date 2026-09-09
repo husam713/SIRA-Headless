@@ -197,7 +197,7 @@ final class PresentationFields {
 			'map_graphql_types_from_location_rules' => false,
 			'graphql_types'                        => array( 'Page' ),
 			'fields'                               => self::digital_homepage_fields(),
-			'location'                             => self::homepage_location(),
+			'location'                             => self::digital_homepage_location(),
 			'menu_order'                           => 13,
 			'position'                             => 'normal',
 			'style'                                => 'default',
@@ -880,6 +880,58 @@ final class PresentationFields {
 	}
 
 	/**
+	 * Whether the current site is the SIRA Digital tenant.
+	 *
+	 * One WordPress network serves six companies from one network-activated
+	 * plugin, so a field group is offered to every site unless it says otherwise.
+	 * A group named for one company has to say otherwise, or an editor on
+	 * Consulting is handed fields belonging to a company they do not run.
+	 *
+	 * Resolved through `BrandManager::infer_brand_key()`, which derives the
+	 * tenant from the site's own host. That is deliberate rather than a blog id:
+	 * ADR-035 moves Digital to `sirahdigital.sa` by configuration, and a
+	 * hardcoded `6` would have quietly stopped being true on the day it moved.
+	 *
+	 * Returns true when WordPress is absent. `definitions()` is also read by the
+	 * static validator with no WordPress loaded, and the CONTRACT is identical on
+	 * every site — only where the fields ATTACH differs. Hiding the group from
+	 * the validator would make the contract look tenant-specific when it is not.
+	 *
+	 * @return bool
+	 */
+	private static function is_digital_site(): bool {
+		if ( ! function_exists( 'home_url' ) ) {
+			return true;
+		}
+
+		return 'digital' === ( new \Sira\Core\Brand\BrandManager() )->infer_brand_key();
+	}
+
+	/**
+	 * Where Digital's homepage sections appear: Digital's homepages, and no one
+	 * else's.
+	 *
+	 * Before this, all three homepage variant groups were located on every
+	 * tenant's front page, so an editor on any of the six saw the Group hero, the
+	 * branch panels and Digital's kinetic wordmark stacked on one screen. The
+	 * frontend was never confused — it selects the variant by site key — but the
+	 * admin was, and the admin is where a person actually works.
+	 *
+	 * Scoping the location changes nothing about the GraphQL contract:
+	 * `map_graphql_types_from_location_rules` is false, so the type mapping is
+	 * declared rather than derived from these rules. Existing values are also
+	 * untouched; ACF stores them in post meta, and hiding a group does not delete
+	 * anything.
+	 *
+	 * @return array<int,array<int,array<string,mixed>>>
+	 */
+	private static function digital_homepage_location(): array {
+		return self::is_digital_site()
+			? self::homepage_location()
+			: self::unmatchable_location();
+	}
+
+	/**
 	 * Where the About composition appears: the About page in each language.
 	 *
 	 * `/ar/about/` is a child of the `ar` page rather than a record on a separate
@@ -890,7 +942,9 @@ final class PresentationFields {
 	 * @return array<int,array<int,array<string,mixed>>>
 	 */
 	private static function about_location(): array {
-		return self::pages_by_path_location( array( 'about', 'ar/about' ) );
+		return self::is_digital_site()
+			? self::pages_by_path_location( array( 'about', 'ar/about' ) )
+			: self::unmatchable_location();
 	}
 
 	/**

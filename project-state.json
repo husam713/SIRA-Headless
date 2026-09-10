@@ -150,9 +150,15 @@
       "plannedCanonicalHostnameStatus": "FUTURE_PRODUCTION_PUBLIC_HOSTNAME_NOT_ACTIVE_NO_DNS",
       "cutoverMechanism": "SIRA_CANONICAL_HOSTNAMES_JSON",
       "cmsOriginConfiguredSeparatelyFromPublicHostname": true,
-      "cmsOriginHostname": "digital.siratrgroup.com",
-      "cmsOriginMovedOn": "2026-09-08",
-      "cmsOriginMoveAuthorization": "OWNER_DECISION_2026_09_08_CHOSE_DIGITAL_SIRATRGROUP_COM_FOR_THE_CMS_ORIGIN"
+      "cmsOriginHostname": "cms-digital.siratrgroup.com",
+      "cmsOriginHostnameHistory": [
+        "sirahdigital.sa -> digital.siratrgroup.com on 2026-09-08 (owner decision, ADR-035)",
+        "digital.siratrgroup.com -> cms-digital.siratrgroup.com on 2026-09-10 (ADR-036)"
+      ],
+      "cmsOriginMovedOn": "2026-09-10",
+      "cmsOriginMoveAuthorization": "ADR_036_DIRECT_OWNER_AUTHORIZATION_REALTIME_SSH_SESSION_2026_09_10_RECORDED_AFTER_THE_FACT_NOT_PRE_AUTHORIZED_VIA_TASK_PACKET",
+      "cmsOriginRelocationResolvesCollision": true,
+      "cmsOriginRelocationEvidence": "artifacts/migration-blog6-redacted.md"
     }
   },
   "parallelTracks": {
@@ -354,7 +360,8 @@
     "seedVerifierCoverageDefect": "CLOSED_GATE_NOW_ENUMERATES_EVERY_REGISTERED_POST_TYPE_AND_TAXONOMY_PER_TENANT_AND_REPORTS_AN_UNREADABLE_COUNT_AS_INDETERMINATE_RATHER_THAN_CLEAN",
     "searchEngineIndexingReenableBeforeLaunch": "OPEN_BLOCKS_LAUNCH_AND_BLOCKS_SEEDING_NOW_SPANS_SIX_TENANTS_DIGITAL_BLOG_6_WAS_CREATED_WITH_BLOG_PUBLIC_0_TO_MATCH_THE_OTHERS_LIVE_VALUE_NOT_REVERIFIED_IN_THIS_CHECKPOINT",
     "rb009RestoreRehearsal": "OPEN_BACKUP_EXISTS_BUT_HAS_NEVER_BEEN_RESTORED",
-    "platformEgressReachabilityUnverified": "OPEN_NOT_LAUNCH_BLOCKING_VERIFY_ONE_SERVER_SIDE_GRAPHQL_FETCH_FROM_THE_DEPLOY_PLATFORM_BEFORE_CUTOVER",
+    "platformEgressReachabilityUnverified": "OPEN_NOT_LAUNCH_BLOCKING_VERIFY_ONE_SERVER_SIDE_GRAPHQL_FETCH_FROM_THE_DEPLOY_PLATFORM_BEFORE_CUTOVER_LOCAL_DEV_EGRESS_TO_THE_CMS_HOSTS_VERIFIED_2026_09_10_DEPLOY_PLATFORM_EGRESS_STILL_UNVERIFIED",
+    "groupCmsOriginRelocation": "OPEN_DEFERRED_ADR_036_BLOG_1_THE_NETWORK_MAIN_SITE_STAYS_ON_SIRATRGROUP_COM_UNTIL_THE_FRONTEND_PRODUCTION_CUTOVER_WHICH_TOUCHES_DOMAIN_CURRENT_SITE_THE_WP_SITE_ROW_AND_THE_APEX_IN_ONE_WINDOW_SIRATRGROUP_COM_CURRENTLY_SERVES_THE_LIVE_LEGACY_GROUP_SITE_ADR_025_REQUIRES_KEPT_LIVE",
     "digitalWordPressSiteProvisioning": "CLOSED_PROVISIONED_2026_09_08_AS_BLOG_6_DO_NOT_DELETE_OR_LOSE_THIS_SITE",
     "digitalPublicHostname": "CLOSED_ADR_035_ACTIVE_HOST_IS_DIGITAL_SIRATRGROUP_COM_AND_SIRAHDIGITAL_SA_IS_REGISTERED_AS_THE_PLANNED_HOSTNAME_PROMOTED_BY_SIRA_CANONICAL_HOSTNAMES_JSON",
     "digitalDomainRegistrationAndDns": "CLOSED_SIRAHDIGITAL_SA_RESOLVES_TO_THE_HOSTINGER_ORIGIN_VERIFIED_2026_09_08",
@@ -362,7 +369,7 @@
     "digitalTradingNameSpelling": "OPEN_OWNER_CONFIRMATION_SIRA_DIGITAL_IS_IMPLEMENTED_FOLLOWING_THE_ESTABLISHED_COMPANY_NAME_CONVENTION",
     "digitalBrandMark": "OPEN_OWNER_DELIVERABLE_SHARED_WHITE_SIRA_MARK_USED_DELIBERATELY_IN_THE_MEANTIME",
     "digitalSaudiDomainCutover": "OPEN_NOT_BLOCKING_REPOSITORY_WORK_REQUIRES_DOMAIN_REGISTRATION_DNS_AND_A_CONFIGURATION_CHANGE_NOT_A_REBUILD",
-    "digitalCmsOriginHostnameCollision": "OPEN_NOT_BLOCKING_REPOSITORY_WORK_PRELAUNCH_WORDPRESS_BLOG_6_AND_THE_INTENDED_PUBLIC_FRONTEND_BOTH_CLAIM_DIGITAL_SIRATRGROUP_COM_ONE_HOSTNAME_CANNOT_SERVE_BOTH_SO_THIS_MUST_BE_RESOLVED_BEFORE_THE_FRONTEND_IS_DEPLOYED_THERE_AT_ADR_035_CUTOVER_THE_FRONTEND_TAKES_SIRAHDIGITAL_SA_AND_THE_CONFLICT_ENDS"
+    "digitalCmsOriginHostnameCollision": "CLOSED_ADR_036_WORDPRESS_ORIGIN_RELOCATED_2026_09_10_FROM_DIGITAL_SIRATRGROUP_COM_TO_CMS_DIGITAL_SIRATRGROUP_COM_WHICH_IS_EXACTLY_WHAT_FREES_DIGITAL_SIRATRGROUP_COM_FOR_THE_FRONTEND"
   },
   "nextOwnerGate": {
     "authorizationBoundary": "NO_SUBSEQUENT_TASK_INHERITS_AUTHORITY_FROM_CANONICAL_GOVERNANCE_WORK",
@@ -457,6 +464,39 @@
         "cmsTrackAffected": false,
         "contractLockedCoordinatesChanged": false,
         "note": "This closure records implementation history only. It does not authorize production deployment, DNS, cutover, CMS mutation, or merge of PR 44."
+      }
+    },
+    {
+      "id": "SOT-003",
+      "subsystem": "cms-origin-topology",
+      "status": "CLOSED",
+      "summary": "The durable-state carriers and frontend/tests/contract/digital-tenant-topology.test.ts asserted the Digital WordPress CMS origin was digital.siratrgroup.com and that the pre-launch hostname collision was OPEN. On 2026-09-10, under direct real-time owner authorization in a bare SSH session against live production WordPress (not a pre-authorized Task Packet, and beyond the bounded cmsMutationAuthorization scope), the CMS origin for the five non-Group tenants was relocated to cms-<tenant>.siratrgroup.com. Group (blog 1, the network main site) was deliberately excluded. Repository/live evidence governs; the carriers and the contract test are reconciled.",
+      "resolution": {
+        "decisionRecord": "ADR-036",
+        "executedOn": "2026-09-10",
+        "authorization": "DIRECT_OWNER_REALTIME_SSH_SESSION_RECORDED_AFTER_THE_FACT_NOT_PRE_AUTHORIZED_VIA_TASK_PACKET",
+        "tenantsRelocated": ["consulting", "healthcare", "realestate", "lifestyle", "digital"],
+        "tenantExcluded": "group",
+        "newOriginPattern": "https://cms-<tenant>.siratrgroup.com/graphql",
+        "evidence": "artifacts/migration-blog6-redacted.md",
+        "replacementsTotal": 567,
+        "everyTenantDryRunReconciledExactlyAgainstSqlRowCounts": true,
+        "guidRewritten": ["digital"],
+        "guidPreserved": ["consulting", "healthcare", "realestate", "lifestyle"],
+        "carriersUpdated": [
+          "project-state.json",
+          "docs/PROJECT-STATE.md",
+          "docs/SOURCE-OF-TRUTH.md",
+          "docs/HANDOFF.md",
+          "docs/DECISIONS.md",
+          "frontend/tests/contract/digital-tenant-topology.test.ts",
+          "frontend/.env.example"
+        ],
+        "resolvesGate": "digitalCmsOriginHostnameCollision",
+        "opensGate": "groupCmsOriginRelocation",
+        "wordpressMutationOccurred": true,
+        "destructiveDatabaseOperationOccurred": false,
+        "note": "The five old subdomains are parked (WordPress unknown-site signup redirect) until DNS points them at the frontend. This closure records an executed CMS mutation; it does not authorize the Group / blog-1 relocation, any DNS change, production deployment, or deleting the parked subdomains. ADR-032's deploy-platform egress question is unchanged and remains OPEN; only local-dev egress to the cms- hosts was verified, on 2026-09-10."
       }
     }
   ],

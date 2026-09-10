@@ -229,12 +229,26 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
   including the finding that the existing Multisite has **no architectural
   blocker** to a mapped external domain on a different TLD.
   **Do not delete or lose this site.**
-- Digital CMS origin: `digital.siratrgroup.com` since 2026-09-08 (owner
-  decision). Blog 6 was created on `sirahdigital.sa` and moved with
-  `update_blog_details()` after a verified backup; no occurrence of the old
-  hostname remains anywhere in the database. **OPEN:** WordPress and the
-  intended pre-launch public frontend now claim the same hostname, which must be
-  resolved before the frontend is deployed there.
+- Digital CMS origin (ADR-036): relocated to `cms-digital.siratrgroup.com` on
+  2026-09-10. It was on `digital.siratrgroup.com` from 2026-09-08 (moved there
+  from `sirahdigital.sa`); ADR-036 moved it again, to a dedicated `cms-`
+  subdomain. That **resolves** the collision this bullet used to flag —
+  WordPress off `digital.siratrgroup.com` is exactly what frees that hostname
+  for the frontend. `openGates.digitalCmsOriginHostnameCollision` is now CLOSED.
+- CMS origins for the five non-Group tenants (ADR-036, SOT-003): relocated on
+  2026-09-10 from `<tenant>.siratrgroup.com` to `cms-<tenant>.siratrgroup.com`,
+  under direct real-time owner authorization in a bare SSH session against live
+  production WordPress, recorded after the fact — **not** a pre-authorized Task
+  Packet, and beyond the bounded `cmsMutationAuthorization` scope. `consulting`,
+  `healthcare`, `realestate`, `lifestyle` and `digital` moved; **Group (blog 1,
+  the network main site) was deliberately excluded** and stays on
+  `siratrgroup.com` until the frontend production cutover
+  (`openGates.groupCmsOriginRelocation`). Evidence:
+  `artifacts/migration-blog6-redacted.md`. The five previous subdomains are
+  parked (WordPress unknown-site signup redirect) until DNS points them at the
+  frontend. Every deployment environment's `SIRA_WP_<non-Group>_GRAPHQL_URL`
+  must name the `cms-` host over HTTPS. ADR-032's deploy-platform egress
+  question is unchanged; only local-dev egress to the `cms-` hosts is verified.
 - Digital public hostname (ADR-035): the active public frontend hostname is
   `digital.siratrgroup.com`. `sirahdigital.sa` is the future production domain,
   registered as the planned hostname and redirecting to the active one until it
@@ -330,6 +344,43 @@ the full contract suite passes unchanged.
 This closure records implementation history only. It does not authorize merge of
 PR `#44`, production deployment, DNS, Group cutover, CMS mutation, or any
 subsequent increment. The prototype remains NON-PRODUCTION reference evidence.
+
+## Current CMS origin topology
+
+### SOT-003 — CMS origin relocation
+
+**Status: CLOSED**
+
+The durable-state carriers and `frontend/tests/contract/digital-tenant-topology.test.ts`
+asserted the Digital WordPress CMS origin was `digital.siratrgroup.com` and that
+the pre-launch hostname collision was OPEN.
+
+On 2026-09-10, under direct real-time owner authorization in a bare SSH session
+against live production WordPress — **not** a pre-authorized Task Packet, and
+beyond the bounded `cmsMutationAuthorization` scope — the CMS origin for the
+five non-Group tenants was relocated from `<tenant>.siratrgroup.com` to
+`cms-<tenant>.siratrgroup.com`:
+
+- `consulting`, `healthcare`, `realestate`, `lifestyle`, `digital` moved.
+- **Group (blog 1, the network main site) was deliberately excluded.** Its
+  relocation touches `DOMAIN_CURRENT_SITE` and the `wp_site` row, has no safe
+  intermediate state, and `siratrgroup.com` serves the live legacy Group site
+  ADR-025 requires kept live. It belongs in the frontend production-cutover
+  window (`openGates.groupCmsOriginRelocation`).
+- Method: fresh verified `mysqldump` before each write; scoped
+  `wp search-replace` with `--all-tables-with-prefix` and `--skip-columns=guid`
+  for the four live tenants (`guid` rewritten only for pre-launch Digital);
+  routing row via `wp_update_site()`, never a bare `UPDATE`; every dry-run count
+  reconciled exactly against SQL row counts. 567 replacements, all exact.
+- Evidence: `artifacts/migration-blog6-redacted.md` (redacted, safe to commit).
+
+Per the conflict protocol, repository/live evidence governs. The carriers and
+the contract test are reconciled here and in ADR-036. This closure records an
+executed CMS mutation; it does not authorize the Group relocation, any DNS
+change, production deployment, or deleting the parked subdomains. The five
+previous subdomains return the WordPress unknown-site signup redirect until DNS
+points them at the frontend. `openGates.platformEgressReachabilityUnverified`
+is unchanged — only local-dev egress to the `cms-` hosts has been verified.
 
 ## Historical / reference-only sources
 

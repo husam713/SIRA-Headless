@@ -15,6 +15,13 @@ import { SITE_KEYS } from "@/types/site";
 // The two things most likely to be "tidied" by someone working from memory:
 // that the ACTIVE hostname is the subdomain today, and that the Saudi domain is
 // registered as planned rather than deleted for not resolving yet.
+//
+// ADR-036 (2026-09-10) then relocated the Digital WordPress CMS origin from
+// `digital.siratrgroup.com` to `cms-digital.siratrgroup.com`, which is exactly
+// what frees `digital.siratrgroup.com` for the frontend. The pre-launch
+// hostname collision ADR-035 flagged is therefore CLOSED, not open. The public
+// hostname trajectory (`digital.siratrgroup.com` today, `sirahdigital.sa`
+// later, by configuration) is unchanged.
 
 function repositoryFile(relativePath: string): string {
   return readFileSync(new URL(`../../../${relativePath}`, import.meta.url), "utf8");
@@ -122,16 +129,27 @@ describe("ADR-033 / ADR-035 Digital tenant topology", () => {
     expect(state.openGates["digitalTradingNameSpelling"]).toMatch(/^OPEN_/u);
   });
 
-  it("keeps the pre-launch hostname collision visible", () => {
-    // The owner moved the CMS onto `digital.siratrgroup.com` on 2026-09-08,
-    // which frees the Saudi domain for the frontend at cutover but means
-    // WordPress and the intended pre-launch frontend now claim one hostname.
-    // Nothing is broken while no deployment is authorized; this must not be
-    // allowed to go quiet before one is.
-    expect(state.openGates["digitalCmsOriginHostnameCollision"]).toMatch(/^OPEN_/u);
+  it("records the pre-launch hostname collision as resolved by the CMS-origin relocation", () => {
+    // ADR-035 flagged that WordPress and the intended pre-launch frontend both
+    // wanted `digital.siratrgroup.com`. ADR-036 resolved it on 2026-09-10 by
+    // relocating the Digital WordPress origin to `cms-digital.siratrgroup.com`,
+    // which is precisely what frees `digital.siratrgroup.com` for the frontend.
+    // The gate is CLOSED, and the CMS origin is the dedicated `cms-` host — the
+    // separation ADR-035 requires, now realised at the DNS layer.
+    expect(state.openGates["digitalCmsOriginHostnameCollision"]).toMatch(/^CLOSED_/u);
     expect(state.authorization.digitalTenant.cmsOriginHostname).toBe(
-      "digital.siratrgroup.com",
+      "cms-digital.siratrgroup.com",
     );
+  });
+
+  it("keeps the deferred Group main-site relocation visible", () => {
+    // ADR-036 relocated the five non-Group tenants and deliberately left blog 1
+    // alone: it is the network main site, its relocation touches
+    // DOMAIN_CURRENT_SITE and the wp_site row, and `siratrgroup.com` still
+    // serves the live legacy Group site ADR-025 requires kept live. That work
+    // belongs in the frontend production-cutover window, not before it.
+    expect(state.openGates["groupCmsOriginRelocation"]).toMatch(/^OPEN_/u);
+    expect(state.openGates["groupCmsOriginRelocation"]).toContain("ADR_036");
   });
 
   it("agrees with the code the application actually runs", () => {

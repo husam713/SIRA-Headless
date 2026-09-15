@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-09-08",
+  "updatedAt": "2026-09-15",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -341,10 +341,10 @@
     "sharedProductionShell": "MERGED_PR44",
     "groupHomepageVisualComposition": "MERGED_PR44",
     "branchHomepageVisualComposition": "MERGED_PR44",
-    "newsroomVisualRouteWork": "NOT_STARTED",
+    "newsroomVisualRouteWork": "MERGED_PR64_2026_09_15_NOT_OWNER_ACCEPTED",
     "prototypeImplementation": "ART_DIRECTION_PROTOTYPE_RETAINED_NON_PRODUCTION",
     "responsiveLayoutPrimitives": "MERGED_PR47_PR48",
-    "digitalTenant": "IN_PROGRESS_ON_UNMERGED_BRANCH_FEAT_SIRAHDIGITAL_SA"
+    "digitalTenant": "MERGED_PR65_PR66_2026_09_15_NOT_OWNER_ACCEPTED_PRE_LAUNCH_HOST"
   },
   "openGates": {
     "mediaOriginB07": "UNRESOLVED_DEFERRED",
@@ -383,11 +383,11 @@
     "g0cMergeCommit": "e2a0d425cd7fe435981427d9be33a6e6f9d8f436",
     "canonicalBranch": "main",
     "defaultBranch": "main",
-    "branchProtection": "CONFIGURED_NOT_ENFORCED",
-    "branchProtectionReason": "GitHub plan limitation for this private repository",
+    "branchProtection": "ENFORCED_RULESETS",
+    "branchProtectionReason": "Repository is public; rulesets on main (PR required, frontend status check required, no force-push, no deletion) and on step-* branches/tags (immutable) verified via the GitHub API on 2026-09-15; see docs/GITHUB-GOVERNANCE.md",
     "compensatingControls": [
       "pull-request workflow",
-      "frontend CI",
+      "frontend CI (required status check)",
       "owner approval before merge",
       "no direct agent merge to main"
     ],
@@ -419,7 +419,7 @@
     }
   },
   "nextMajorStages": [
-    "Digital company: ADR-033 owner-authorized topology expansion; tenant registered in the repository on the unmerged branch feat/sirahdigital-sa. The live WordPress site, the domain, DNS and deployment all remain separately gated.",
+    "Digital company: ADR-033 owner-authorized topology expansion; tenant merged on main through PRs 65/66 (2026-09-15) on its pre-launch host. The live WordPress site is provisioned (blog 6, ADR-035) with its CMS origin on cms-digital.siratrgroup.com (ADR-036); the Saudi domain, DNS and deployment all remain separately gated.",
     "Step 4 frontend: Group homepage sections merged through PRs 36/38/40/41; shared shell and branch homepage merged through PR 44; shared responsive layout primitives merged through PRs 47/48; see step4MergedIncrements and its acceptanceEvidenceCaveat",
     "Step 4 frontend: the shared responsive layout primitives are merged; the next increment is separately authorized and is not implied by this record",
     "Step 4 architecture: ADR-029 is owner accepted after implementation through the pull request 48 comment; the acceptance covers the architecture decision only and authorizes no subsequent task",
@@ -475,14 +475,27 @@
         "decisionRecord": "ADR-036",
         "executedOn": "2026-09-10",
         "authorization": "DIRECT_OWNER_REALTIME_SSH_SESSION_RECORDED_AFTER_THE_FACT_NOT_PRE_AUTHORIZED_VIA_TASK_PACKET",
-        "tenantsRelocated": ["consulting", "healthcare", "realestate", "lifestyle", "digital"],
+        "tenantsRelocated": [
+          "consulting",
+          "healthcare",
+          "realestate",
+          "lifestyle",
+          "digital"
+        ],
         "tenantExcluded": "group",
         "newOriginPattern": "https://cms-<tenant>.siratrgroup.com/graphql",
         "evidence": "artifacts/migration-blog6-redacted.md",
         "replacementsTotal": 567,
         "everyTenantDryRunReconciledExactlyAgainstSqlRowCounts": true,
-        "guidRewritten": ["digital"],
-        "guidPreserved": ["consulting", "healthcare", "realestate", "lifestyle"],
+        "guidRewritten": [
+          "digital"
+        ],
+        "guidPreserved": [
+          "consulting",
+          "healthcare",
+          "realestate",
+          "lifestyle"
+        ],
         "carriersUpdated": [
           "project-state.json",
           "docs/PROJECT-STATE.md",
@@ -513,8 +526,14 @@
     },
     {
       "id": "GOV-003",
+      "status": "CLOSED",
+      "summary": "A main branch protection rule is configured but GitHub reports it is not enforced for this private repository under the current plan; PR + CI + owner approval remain compensating controls.",
+      "resolution": "Repository is public and rulesets are enforced on main and step-* (verified via the GitHub API on 2026-09-15, docs/GITHUB-GOVERNANCE.md). The historical summary is preserved as written."
+    },
+    {
+      "id": "GOV-004",
       "status": "WARNING",
-      "summary": "A main branch protection rule is configured but GitHub reports it is not enforced for this private repository under the current plan; PR + CI + owner approval remain compensating controls."
+      "summary": "docs/STATE.md records Vercel as no longer used, but the Vercel GitHub app is still installed and deploys a preview and posts checks on every pull request (observed on PRs 68-70, 2026-09-15). Uninstalling is an owner external-admin action."
     }
   ],
   "openImplementationIncrements": {},
@@ -663,7 +682,7 @@
   "nonDurableTerminology": {
     "phase3_5": "Not a durable project phase. Individual behaviors require traceability to an approved charter requirement or an explicit owner decision.",
     "phase3_5ObservedSource": "Appears only in the body text of GitHub pull request 48, written by the implementing agent and marked there blocked on owner decision. It appears nowhere in the repository.",
-    "step4PhaseNumbering": "The Phase 1 to Phase 4 labels exist only in commit subjects and two source comments. There is no Phase 0. The approved sequence is the A to O list in docs/STEP-4-EXACT-DESIGN-FIDELITY-IMPLEMENTATION.md section 20."
+    "step4PhaseNumbering": "The Phase 1 to Phase 4 labels exist only in commit subjects and two source comments. There is no Phase 0. The approved sequence is the A to O list in docs/history/STEP-4-EXACT-DESIGN-FIDELITY-IMPLEMENTATION.md section 20."
   },
   "durableTerminology": {
     "layerC": {
@@ -671,7 +690,7 @@
       "meaning": "Progressive premium enhancement.",
       "definedBy": [
         "docs/SIRA-EDITORIAL-ARCHITECTURE-SPEC.md",
-        "docs/STEP-4-DESIGN-DIRECTION-RECONCILIATION.md"
+        "docs/history/STEP-4-DESIGN-DIRECTION-RECONCILIATION.md"
       ],
       "specificationAuthority": "ADR-028 editorial architecture specification, recorded as owner accepted, merged, and canonical.",
       "constraint": "Layer C must never be required for navigation, comprehension, accessibility, forms, or core CTA behavior.",
@@ -687,5 +706,66 @@
     "note": "The TP-STEP4-R0 observation that implementation preceded acceptance is preserved as written history in docs/DECISIONS.md and is resolved by owner acceptance rather than by rewriting it. The acceptance covers the architecture decision only: owner acceptance of the pull request 47/48 implementation detail remains absent, L to O responsive, RTL, reduced-motion, accessibility, and visual-regression completion is not established, and no downstream task is authorized.",
     "recordedBy": "TP-STEP4-R0",
     "reconciledBy": "TP-ADR029-ACCEPTANCE-RECONCILIATION"
+  },
+  "stateCarriers": {
+    "current": [
+      "project-state.json",
+      "docs/STATE.md"
+    ],
+    "resumePointer": "docs/HANDOFF.md",
+    "handoffLog": "docs/handoff-log/",
+    "history": "docs/history/",
+    "retired": {
+      "docs/PROJECT-STATE.md": "docs/history/PROJECT-STATE-2026-09-03.md"
+    },
+    "consolidatedBy": "TP-P3-STATE-CONSOLIDATION",
+    "consolidatedOn": "2026-09-15"
+  },
+  "mergedIncrements2026_09_15": {
+    "coordinateScope": "MERGE_COMMITS_ON_MAIN_HISTORICAL_PROVENANCE_NOT_CURRENT_GIT_HEAD",
+    "authorization": "EXPLICIT_OWNER_MERGE_AUTHORIZATION_GIVEN_IN_SESSION_2026_09_15_NO_REPOSITORY_ARTIFACT",
+    "acceptanceEvidenceCaveat": "A merge is not owner acceptance. None of these pull requests carries an owner-acceptance comment or review. Post-merge verification is recorded in PR 70: performed by the merging session on owner instruction, then independently verified on 2026-09-15 by a separately spawned read-only agent (VERIFIED WITH WARNINGS; findings fixed at 054a03a5).",
+    "increments": [
+      {
+        "pullRequest": 64,
+        "scope": "Newsroom — THE SIRA RECORD, card motion, authenticated mail, branch design pass",
+        "mergedHead": "cbadf6eec0f9d2198d145b9cb344491d994d034d",
+        "mergeCommit": "4a999bb0c765e144533905e0c3426aeb16333ba8",
+        "frontendCi": "PASS",
+        "backendCi": "PASS"
+      },
+      {
+        "pullRequest": 65,
+        "scope": "SIRA Digital — bilingual, on its pre-launch host (ADR-033/034/035)",
+        "mergedHead": "69834bcea47ce90c49751c9b5cb5a80fcdabaf46",
+        "mergeCommit": "8723f9600545c5410a19d79612b0cc27d749a395",
+        "frontendCi": "PASS",
+        "backendCi": "PASS"
+      },
+      {
+        "pullRequest": 66,
+        "scope": "SIRA Digital — About, services, sectors, calculator reproduced; browser QA pass",
+        "mergedHead": "9549eb12303651e514938a6650db450def6516d3",
+        "mergeCommit": "e0ef2f74e20b7414399ff571eb2e912f7ac5e972",
+        "frontendCi": "PASS",
+        "backendCi": "PASS"
+      },
+      {
+        "pullRequest": 68,
+        "scope": "Durable state reconciled to the executed CMS-origin relocation (ADR-036 / SOT-003) + Group cutover plan",
+        "mergedHead": "0a2d2f4090388da20c9a39db8ac03aa935fedbee",
+        "mergeCommit": "db090be62aaca76b2730ea3970b884b7d302e4cc",
+        "frontendCi": "PASS",
+        "backendCi": "NOT APPLICABLE"
+      },
+      {
+        "pullRequest": 69,
+        "scope": "docs/STATE.md refresh",
+        "mergedHead": "199c7b78fbc63ffae97b454b2af14e86dd2bc82b",
+        "mergeCommit": "8e34efefc51dd0db80e4508bed9114b758338a79",
+        "frontendCi": "PASS",
+        "backendCi": "NOT APPLICABLE"
+      }
+    ]
   }
 }

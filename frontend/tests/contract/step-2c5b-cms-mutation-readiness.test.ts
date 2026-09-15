@@ -128,7 +128,7 @@ const ledger = readJson<LedgerTemplate>("artifacts/step-2c5b/execution-ledger-te
 const accepted = readJson<AcceptedPreflight>("artifacts/step-2c5a/cms-preflight.json");
 const projectState = readJson<ProjectState>("project-state.json");
 const report = fs.readFileSync(
-  path.join(root, "docs/STEP-2C5B-CMS-MUTATION-READINESS-BACKUP-GATE.md"),
+  path.join(root, "docs/history/STEP-2C5B-CMS-MUTATION-READINESS-BACKUP-GATE.md"),
   "utf8",
 );
 

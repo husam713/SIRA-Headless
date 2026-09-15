@@ -13,9 +13,9 @@ tests the task actually touches. Area-specific rules load automatically from
 `.claude/rules/` in Claude Code; other agents read the matching file by hand.
 
 **Full boot** — additionally `docs/AI-ENGINEERING-OS.md` and the normative
-protocol, `project-state.json`, `docs/PROJECT-STATE.md`,
-`docs/SOURCE-OF-TRUTH.md`, relevant `docs/DECISIONS.md` entries,
-`docs/HANDOFF.md`, and open PRs/CI — is required for governance or
+protocol, `project-state.json`, `docs/SOURCE-OF-TRUTH.md`, relevant
+`docs/DECISIONS.md` entries, `docs/HANDOFF.md` (and the latest
+`docs/handoff-log/` entry when resuming), and open PRs/CI — is required for governance or
 durable-state changes, state reconciliation, interrupted-session recovery,
 anything that touches a protected operation, and whenever `docs/STATE.md`
 reports drift you must resolve. Use `templates/ai/BOOT-PROTOCOL.md`.
@@ -66,38 +66,30 @@ Preserve these established constraints unless newer evidence and an approved arc
 - Explicit Business Unit mapping: group -> null, consulting -> consulting, healthcare -> healthcare, lifestyle -> lifestyle, realestate -> real-estate.
 - Missing CMS content/configuration must not be hidden with frontend hardcoding.
 
-## Execution Model
+## Execution Model and Task Packet Authority
 
-Use:
+`DISCOVER -> AUDIT -> PLAN -> IMPLEMENT -> VALIDATE -> REVIEW -> COMMIT -> PUSH -> PR -> ACCEPTANCE GATE`
 
-DISCOVER -> AUDIT -> PLAN -> IMPLEMENT -> VALIDATE -> REVIEW -> COMMIT -> PUSH -> PR -> ACCEPTANCE GATE
+One logical mutation-capable role, `IMPLEMENTATION`, with execution profile
+`LOCAL` or `CLOUD_GITHUB`. The profile changes capabilities and evidence
+visibility, never authorization. Roles, profiles, profile selection, Task
+Packet authority, baseline/drift policy, and scope discipline are defined once,
+in `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`; this file does not restate
+them. The rules that bite in practice:
 
-There is one logical mutation-capable role: **IMPLEMENTATION**. Its execution
-profile is either `LOCAL` or `CLOUD_GITHUB`. The profile changes available
-capabilities and evidence visibility; it does not change authorization or
-acceptance authority.
-
-Program Control selects the least-complex profile that can satisfy the task's
-required evidence, validation, security, and mutation requirements. Ask the
-owner about execution environment only when the correct profile cannot be
-determined from those requirements or when environment availability/preference
-materially affects execution.
-
-Within an approved stage, work autonomously until the stage is complete or a real owner/external/protected decision is required.
-
-Do not turn the owner into the implementation agent when the active execution profile can perform the work directly.
-
-## Task Packet Authority and Scope
-
-- A substantial controlled mutation requires an explicit Task Packet or equivalent owner-authorized scope.
-- Authorization is bounded. Absence of authorization means do not mutate.
-- Every implementation Task Packet identifies the execution profile and whether local evidence is required.
-- `LOCAL` must verify the local repository/filesystem evidence required by the task, including working-tree/protected local evidence when relevant.
-- `CLOUD_GITHUB` must verify the repository/GitHub baseline and must classify local-only facts as `REPORT_ONLY` or `NOT_VERIFIED_BY_THIS_AGENT`.
-- Additional local evidence that is irrelevant to task correctness is not by itself a reason to require `LOCAL`.
-- If the baseline, approved candidate, or scope has drifted, stop unless adaptation is explicitly authorized.
-- Report unrelated defects; do not silently repair them. Stop with `BLOCKED_SCOPE_EXPANSION_REQUIRED` when required work exceeds the authorized scope.
-- Never self-approve a candidate or declare it canonical. Local success, repository-visible implementation evidence, CI, a Draft PR, and independent review are distinct from owner acceptance and canonical merge state.
+- A substantial controlled mutation requires a Task Packet or an equivalent
+  explicit owner instruction. Absence of authorization means do not mutate.
+- Within an approved stage, work autonomously until the stage is complete or a
+  real owner/external/protected decision is required. Do not turn the owner
+  into the implementation agent.
+- If the baseline, approved candidate, or scope has drifted, stop unless
+  adaptation is explicitly authorized.
+- Report unrelated defects; do not silently repair them. Stop with
+  `BLOCKED_SCOPE_EXPANSION_REQUIRED` when required work exceeds the scope.
+- Never self-approve a candidate or declare it canonical. Local success, CI, a
+  Draft PR, and independent review are each distinct from owner acceptance.
+- `CLOUD_GITHUB` classifies local-only facts as `REPORT_ONLY` or
+  `NOT_VERIFIED_BY_THIS_AGENT`; it never invents local state.
 
 ## Git Rules
 
@@ -127,35 +119,25 @@ Require explicit owner approval before:
 
 ## External Admin Actions
 
-For WordPress, Hostinger, DNS, Vercel account settings, MFA, or other protected admin interfaces unavailable to the agent, return a concise action card containing:
-
-- SYSTEM
-- LOCATION
-- ACTION
-- EXPECTED VALUE
-- SECURITY NOTE
-- VALIDATION
-
-Resume automated validation after the human action.
+For WordPress, Hostinger, DNS, GitHub settings, MFA, or other protected admin
+interfaces unavailable to the agent, return a concise action card: SYSTEM ·
+LOCATION · ACTION · EXPECTED VALUE · SECURITY NOTE · VALIDATION. Resume
+automated validation after the human action.
 
 ## Validation Status Vocabulary
 
-Use only:
-
-- PASS
-- FAIL
-- WARNING
-- DEFERRED
-- NOT RUN
-- BLOCKED
-- NOT APPLICABLE
-
-Do not report PASS unless the relevant command/check actually ran against the stated baseline.
+`PASS · FAIL · WARNING · DEFERRED · NOT RUN · BLOCKED · NOT APPLICABLE` — and
+nothing else. `PASS` only for a check that actually ran against the stated
+baseline.
 
 ## Stage Acceptance
 
-A stage is not complete merely because code compiles. Acceptance requires the scoped implementation, required tests/builds, warning classification, security review, diff review, understood Git state, rollback definition, and documented remaining work.
-
-End each substantial stage report with a `CURRENT PROJECT STATE` block.
-
-When a Task Packet requires formal transfer, return both an Evidence Envelope and a Handoff Packet using the repository templates. The normative terminology, role boundaries, execution-profile semantics, and evidence workflow are defined in `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`.
+A stage is not complete because code compiles. Acceptance requires the scoped
+implementation, required tests/builds, warning classification, security
+review, diff review, understood Git state, a rollback definition, and
+documented remaining work. End each substantial stage report with a
+`CURRENT PROJECT STATE` block. When a task changes durable state, update
+`docs/STATE.md` and `project-state.json`; when a stage closes, append a dated
+entry to `docs/handoff-log/`. Evidence Envelope and Handoff Packet templates
+(`templates/ai/`) are for external handoff; in-repo PR work carries the same
+facts in the PR body.

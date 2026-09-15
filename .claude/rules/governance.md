@@ -15,7 +15,7 @@ paths:
 
 - **Current state:** `docs/STATE.md` (one page, human) and `project-state.json` (machine). When a task changes durable state — a merge accepted, a gate opened or closed, an authorization granted — update these two and nothing else.
 - **Decisions:** `docs/DECISIONS.md`, one `## ADR-0NN` section per decision; `docs/adr/` holds the three long-form ADRs. A proposed ADR is not approved until the owner says so.
-- **Registry and history:** `docs/SOURCE-OF-TRUTH.md`, `docs/HANDOFF.md`, `docs/PROJECT-STATE.md`, `docs/STEP-*.md`, `docs/tasks/*`, `artifacts/**`. These are provenance. Do not add new copies of coordinates to them, and never rewrite a historical record to match a later decision.
+- **Registry and history:** `docs/SOURCE-OF-TRUTH.md` (registry), `docs/HANDOFF.md` (one-page resume pointer), `docs/handoff-log/` (dated, append-only), `docs/history/` (STEP documents, step task packets, the retired `PROJECT-STATE.md`), `docs/tasks/*`, `artifacts/**`. These are provenance. Do not add new copies of coordinates to them, never edit `docs/history/**` or an existing `docs/handoff-log/` entry, and never rewrite a historical record to match a later decision.
 - **Rules of engagement:** `AGENTS.md` (operating rules), `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md` (normative, on demand). `CLAUDE.md` and `.claude/**` are the Claude Code adapter; when they disagree with `AGENTS.md` or the protocol, the latter wins and the adapter is what gets fixed.
 
 ## Writing about state

@@ -71,4 +71,4 @@ Choose one:
 
 ## Current project state update
 
-Confirm whether `project-state.json` and `docs/PROJECT-STATE.md` require updating after approval.
+Confirm whether `project-state.json` and `docs/STATE.md` require updating after approval.

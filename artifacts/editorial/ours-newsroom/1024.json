@@ -1,0 +1,394 @@
+{
+  "viewport": {
+    "w": 1024,
+    "h": 768
+  },
+  "documentHeight": 3768,
+  "horizontalOverflow": 0,
+  "header": {
+    "x": 0,
+    "y": 0,
+    "w": 1024,
+    "h": 69,
+    "box": {
+      "display": "block",
+      "gridTemplateColumns": "none",
+      "gap": "normal",
+      "padding": "0 0 0 0",
+      "maxWidth": "none",
+      "background": "oklch(0.97 0.006 75 / 0.92)"
+    }
+  },
+  "headings": [
+    {
+      "tag": "H1",
+      "text": "The SIRARecord",
+      "x": 41,
+      "y": 146,
+      "w": 619,
+      "h": 120,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 68,
+        "lineHeight": 60,
+        "fontWeight": "400",
+        "letterSpacing": "-3.06",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "What We Look for in a Strategic Partner",
+      "x": 41,
+      "y": 394,
+      "w": 435,
+      "h": 100,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 51,
+        "lineHeight": 50,
+        "fontWeight": "400",
+        "letterSpacing": "-1.79",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Across the house",
+      "x": 41,
+      "y": 663,
+      "w": 170,
+      "h": 52,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 26,
+        "lineHeight": 26,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "2026",
+      "x": 18,
+      "y": 730,
+      "w": 1,
+      "h": 1,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 16,
+        "lineHeight": 24,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "2025",
+      "x": 41,
+      "y": 1852,
+      "w": 170,
+      "h": 43,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 48,
+        "lineHeight": 43,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "2024",
+      "x": 41,
+      "y": 2598,
+      "w": 170,
+      "h": 43,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 48,
+        "lineHeight": 43,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "2023",
+      "x": 41,
+      "y": 2903,
+      "w": 170,
+      "h": 43,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 48,
+        "lineHeight": 43,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Pages",
+      "x": 371,
+      "y": 3370,
+      "w": 283,
+      "h": 17,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.54",
+        "color": "oklab(0.96753 0.000477612 0.00983155 / 0.5)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Companies",
+      "x": 693,
+      "y": 3370,
+      "w": 283,
+      "h": 17,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.54",
+        "color": "oklab(0.96753 0.000477612 0.00983155 / 0.5)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Connect",
+      "x": 48,
+      "y": 3587,
+      "w": 283,
+      "h": 17,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.54",
+        "color": "oklab(0.96753 0.000477612 0.00983155 / 0.5)"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "label": "SIRA GROUP newsroom",
+      "tag": "SECTION",
+      "x": 18,
+      "y": 100,
+      "w": 988,
+      "h": 3187,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "rgb(247, 244, 237)"
+      }
+    },
+    {
+      "label": "2026",
+      "tag": "SECTION",
+      "x": 19,
+      "y": 731,
+      "w": 986,
+      "h": 1101,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "2025",
+      "tag": "SECTION",
+      "x": 19,
+      "y": 1832,
+      "w": 986,
+      "h": 745,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "2024",
+      "tag": "SECTION",
+      "x": 19,
+      "y": 2578,
+      "w": 986,
+      "h": 305,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "2023",
+      "tag": "SECTION",
+      "x": 19,
+      "y": 2883,
+      "w": 986,
+      "h": 305,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "Pages",
+      "tag": "FOOTER",
+      "x": 0,
+      "y": 3318,
+      "w": 1024,
+      "h": 450,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "oklch(0.16 0.024 255)"
+      }
+    }
+  ],
+  "grids": [
+    {
+      "children": 2,
+      "x": 19,
+      "y": 101,
+      "w": 986,
+      "h": 182,
+      "cols": "618.859px 307.141px",
+      "gap": "16px",
+      "firstChildText": "SIRA GROUP · NewsroomThe SIRARecord"
+    },
+    {
+      "children": 2,
+      "x": 19,
+      "y": 324,
+      "w": 986,
+      "h": 311,
+      "cols": "673.25px 312.75px",
+      "gap": "normal",
+      "firstChildText": "Group · Article27 AUG 2026What We Look f"
+    },
+    {
+      "children": 2,
+      "x": 19,
+      "y": 635,
+      "w": 986,
+      "h": 96,
+      "cols": "170px 750px",
+      "gap": "22px",
+      "firstChildText": "Across the house"
+    },
+    {
+      "children": 14,
+      "x": 19,
+      "y": 731,
+      "w": 986,
+      "h": 1101,
+      "cols": "328.656px 328.672px 328.656px",
+      "gap": "normal",
+      "firstChildText": "GroupAUG 2026Insight_ItemInsight→"
+    },
+    {
+      "children": 2,
+      "x": 19,
+      "y": 1832,
+      "w": 986,
+      "h": 84,
+      "cols": "170px 750px",
+      "gap": "22px",
+      "firstChildText": "2025"
+    },
+    {
+      "children": 7,
+      "x": 19,
+      "y": 1917,
+      "w": 986,
+      "h": 661,
+      "cols": "328.656px 328.672px 328.656px",
+      "gap": "normal",
+      "firstChildText": "LifestyleNOV 2025Hospitality Is an Opera"
+    },
+    {
+      "children": 2,
+      "x": 19,
+      "y": 2578,
+      "w": 986,
+      "h": 84,
+      "cols": "170px 750px",
+      "gap": "22px",
+      "firstChildText": "2024"
+    },
+    {
+      "children": 3,
+      "x": 19,
+      "y": 2662,
+      "w": 986,
+      "h": 221,
+      "cols": "328.656px 328.672px 328.656px",
+      "gap": "normal",
+      "firstChildText": "GroupNOV 2024Appointment of a Group Chie"
+    },
+    {
+      "children": 2,
+      "x": 19,
+      "y": 2883,
+      "w": 986,
+      "h": 84,
+      "cols": "170px 750px",
+      "gap": "22px",
+      "firstChildText": "2023"
+    },
+    {
+      "children": 2,
+      "x": 19,
+      "y": 2967,
+      "w": 986,
+      "h": 221,
+      "cols": "328.656px 328.672px 328.656px",
+      "gap": "normal",
+      "firstChildText": "Real EstateDEC 2023Istanbul Residential:"
+    },
+    {
+      "children": 4,
+      "x": 48,
+      "y": 3370,
+      "w": 928,
+      "h": 277,
+      "cols": "282.656px 282.672px 282.656px",
+      "gap": "48px 40px",
+      "firstChildText": "SIRA GROUPShaping a smarter future.Istan"
+    }
+  ]
+}

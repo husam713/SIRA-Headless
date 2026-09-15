@@ -1,0 +1,42 @@
+{
+  "url": "http://localhost:3100/insights/what-we-underwrite/",
+  "capturedAt": "2026-09-06T09:23:51.196Z",
+  "summary": [
+    {
+      "viewport": "390",
+      "documentHeight": 4676,
+      "overflow": 0,
+      "headerHeight": 77
+    },
+    {
+      "viewport": "768",
+      "documentHeight": 3429,
+      "overflow": 0,
+      "headerHeight": 77
+    },
+    {
+      "viewport": "1024",
+      "documentHeight": 2842,
+      "overflow": 0,
+      "headerHeight": 69
+    },
+    {
+      "viewport": "1280",
+      "documentHeight": 2937,
+      "overflow": 0,
+      "headerHeight": 69
+    },
+    {
+      "viewport": "1440",
+      "documentHeight": 2949,
+      "overflow": 0,
+      "headerHeight": 69
+    },
+    {
+      "viewport": "1920",
+      "documentHeight": 2949,
+      "overflow": 0,
+      "headerHeight": 69
+    }
+  ]
+}

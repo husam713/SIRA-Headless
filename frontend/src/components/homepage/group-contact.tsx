@@ -1,7 +1,10 @@
+import { ContactForm } from "@/components/homepage/contact-form";
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionEyebrow } from "@/components/layout/section-eyebrow";
+import { getSiteDefinition } from "@/lib/host/resolve-site";
 import type { HomepageContactSection } from "@/lib/homepage/types";
+import { SITE_KEYS } from "@/types/site";
 
 interface GroupContactProps {
   readonly section: HomepageContactSection | null;
@@ -10,56 +13,20 @@ interface GroupContactProps {
 }
 
 /**
- * The submission itself is intentionally NOT wired up: the forms backend/
- * provider decision (2C4-B08) remains unresolved, so every field and the
- * submit control render as an inert visual shell only — same policy as
- * GroupInvestor's request-pack form. Unlike Investor, there's no per-field
- * CMS content to drive field labels here (formVariant/formContext are
- * opaque backend-integration identifiers, not display copy), so the fields
- * are the same fixed set the design reference always showed: name, email,
- * message.
+ * The service options offered by the "Select Service" control.
+ *
+ * Derived from the trusted site registry rather than written here, so the list
+ * cannot drift from the companies the group actually operates. Group is the
+ * general enquiry route and leads the list.
  */
-function InertContactForm() {
-  return (
-    <div className="bg-brand-deep-card p-8 sm:p-10">
-      <fieldset disabled className="grid grid-cols-1 gap-6 opacity-70">
-        <legend className="sr-only">Contact form (not yet available)</legend>
-        <label className="flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-paper/60">
-          Full Name
-          <input
-            type="text"
-            className="border-0 border-b border-brand-paper/20 bg-transparent py-2 text-sm text-brand-paper"
-          />
-        </label>
-        <label className="flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-paper/60">
-          Email Address
-          <input
-            type="email"
-            className="border-0 border-b border-brand-paper/20 bg-transparent py-2 text-sm text-brand-paper"
-          />
-        </label>
-        <label className="flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-paper/60">
-          Message
-          <textarea
-            rows={4}
-            className="resize-none border-0 border-b border-brand-paper/20 bg-transparent py-2 text-sm text-brand-paper"
-          />
-        </label>
-      </fieldset>
-
-      <button
-        type="button"
-        disabled
-        aria-disabled="true"
-        className="mt-8 w-full cursor-not-allowed bg-brand-paper/20 px-6 py-4 text-xs font-bold uppercase tracking-[0.1em] text-brand-paper opacity-70"
-      >
-        Send Message
-      </button>
-      <p className="mt-3 text-xs text-brand-paper/50">
-        Online message submission isn&apos;t available yet.
-      </p>
-    </div>
-  );
+function serviceOptions(): readonly string[] {
+  return [
+    "General enquiry",
+    ...SITE_KEYS.filter((key) => key !== "group").flatMap((key) => {
+      const site = getSiteDefinition(key);
+      return site === null ? [] : [site.name];
+    }),
+  ];
 }
 
 export function GroupContact({ section, email, address }: GroupContactProps) {
@@ -116,7 +83,7 @@ export function GroupContact({ section, email, address }: GroupContactProps) {
           ) : null}
         </div>
 
-        <InertContactForm />
+        <ContactForm services={serviceOptions()} />
       </PageContainer>
     </Section>
   );

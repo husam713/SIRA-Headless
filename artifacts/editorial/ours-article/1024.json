@@ -1,0 +1,334 @@
+{
+  "viewport": {
+    "w": 1024,
+    "h": 768
+  },
+  "documentHeight": 2842,
+  "horizontalOverflow": 0,
+  "header": {
+    "x": 0,
+    "y": 0,
+    "w": 1024,
+    "h": 69,
+    "box": {
+      "display": "block",
+      "gridTemplateColumns": "none",
+      "gap": "normal",
+      "padding": "0 0 0 0",
+      "maxWidth": "none",
+      "background": "oklch(0.97 0.006 75 / 0.92)"
+    }
+  },
+  "headings": [
+    {
+      "tag": "H1",
+      "text": "What We Underwrite",
+      "x": 41,
+      "y": 231,
+      "w": 566,
+      "h": 64,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 67,
+        "lineHeight": 64,
+        "fontWeight": "400",
+        "letterSpacing": "-3.00",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "One. Can we name the operator?",
+      "x": 174,
+      "y": 726,
+      "w": 809,
+      "h": 32,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 31,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": "-0.77",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Two. Does the cash convert?",
+      "x": 174,
+      "y": 902,
+      "w": 809,
+      "h": 32,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 31,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": "-0.77",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Three. What does the second year cost?",
+      "x": 174,
+      "y": 1078,
+      "w": 809,
+      "h": 32,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 31,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": "-0.77",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Four. Is the regulation stable, or merely quiet?",
+      "x": 174,
+      "y": 1224,
+      "w": 809,
+      "h": 32,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 31,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": "-0.77",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Five. What breaks if we are wrong?",
+      "x": 174,
+      "y": 1371,
+      "w": 809,
+      "h": 32,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 31,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": "-0.77",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "What this rules out",
+      "x": 174,
+      "y": 1693,
+      "w": 809,
+      "h": 23,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 20,
+        "lineHeight": 23,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "From the same desk",
+      "x": 41,
+      "y": 2000,
+      "w": 244,
+      "h": 29,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 29,
+        "lineHeight": 29,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "What We Look for in a Strategic Partner",
+      "x": 37,
+      "y": 2092,
+      "w": 292,
+      "h": 45,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 20,
+        "lineHeight": 22,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Why Istanbul Is Becoming Africa’s Investment Bridge",
+      "x": 366,
+      "y": 2092,
+      "w": 292,
+      "h": 45,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 20,
+        "lineHeight": 22,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Press_Release",
+      "x": 694,
+      "y": 2092,
+      "w": 293,
+      "h": 22,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 20,
+        "lineHeight": 22,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Pages",
+      "x": 371,
+      "y": 2444,
+      "w": 283,
+      "h": 17,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.54",
+        "color": "oklab(0.96753 0.000477612 0.00983155 / 0.5)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Companies",
+      "x": 693,
+      "y": 2444,
+      "w": 283,
+      "h": 17,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.54",
+        "color": "oklab(0.96753 0.000477612 0.00983155 / 0.5)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Connect",
+      "x": 48,
+      "y": 2660,
+      "w": 283,
+      "h": 17,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.54",
+        "color": "oklab(0.96753 0.000477612 0.00983155 / 0.5)"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "label": "What We Underwrite",
+      "tag": "SECTION",
+      "x": 18,
+      "y": 100,
+      "w": 988,
+      "h": 2261,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "rgb(247, 244, 237)"
+      }
+    },
+    {
+      "label": "Pages",
+      "tag": "FOOTER",
+      "x": 0,
+      "y": 2392,
+      "w": 1024,
+      "h": 450,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "oklch(0.16 0.024 255)"
+      }
+    }
+  ],
+  "grids": [
+    {
+      "children": 2,
+      "x": 19,
+      "y": 162,
+      "w": 986,
+      "h": 347,
+      "cols": "673.25px 312.75px",
+      "gap": "normal",
+      "firstChildText": "InsightGroup21 May 2026What We Underwrit"
+    },
+    {
+      "children": 2,
+      "x": 19,
+      "y": 509,
+      "w": 986,
+      "h": 1463,
+      "cols": "105px 809px",
+      "gap": "28px",
+      "firstChildText": "DeskGroupFormatInsightPublished21 May 20"
+    },
+    {
+      "children": 3,
+      "x": 174,
+      "y": 1729,
+      "w": 809,
+      "h": 135,
+      "cols": "789px",
+      "gap": "12px",
+      "firstChildText": "Businesses whose returns depend on a reg"
+    },
+    {
+      "children": 3,
+      "x": 19,
+      "y": 2041,
+      "w": 986,
+      "h": 221,
+      "cols": "328.656px 328.672px 328.656px",
+      "gap": "normal",
+      "firstChildText": "GroupAUG 2026What We Look for in a Strat"
+    },
+    {
+      "children": 4,
+      "x": 48,
+      "y": 2444,
+      "w": 928,
+      "h": 277,
+      "cols": "282.656px 282.672px 282.656px",
+      "gap": "48px 40px",
+      "firstChildText": "SIRA GROUPShaping a smarter future.Istan"
+    }
+  ]
+}

@@ -1,0 +1,579 @@
+{
+  "data": {
+    "contentNodes": {
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "YXJyYXljb25uZWN0aW9uOjE3NjU="
+      },
+      "nodes": [
+        {
+          "__typename": "SiraArticle",
+          "databaseId": 1666,
+          "contentTypeName": "sira_article",
+          "date": "2026-08-27T20:38:20",
+          "modified": "2026-08-27T20:38:20",
+          "uri": "/articles/what-we-look-for-in-a-strategic-partner/",
+          "isRestricted": false,
+          "title": "What We Look for in a Strategic Partner",
+          "excerpt": "<p>A look at the criteria SIRA GROUP applies before entering a new market or venture.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        },
+        {
+          "__typename": "SiraArticle",
+          "databaseId": 1665,
+          "contentTypeName": "sira_article",
+          "date": "2026-08-27T20:38:20",
+          "modified": "2026-09-05T21:37:09",
+          "uri": "/articles/inside-nairobis-diagnostic-imaging-boom/",
+          "isRestricted": false,
+          "title": "Inside Nairobi’s Diagnostic Imaging Boom",
+          "excerpt": "<p>Demand for advanced radiology is reshaping how healthcare investors think about East Africa.</p>\n",
+          "featuredImage": {
+            "node": {
+              "databaseId": 18,
+              "sourceUrl": "https://siratrgroup.com/wp-content/uploads/2024/04/IMG-20240321-WA0106.jpg",
+              "altText": "",
+              "mediaDetails": {
+                "width": 1080,
+                "height": 810
+              }
+            }
+          },
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 62,
+                "slug": "healthcare"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraArticle",
+          "databaseId": 1664,
+          "contentTypeName": "sira_article",
+          "date": "2026-08-27T20:38:20",
+          "modified": "2026-08-27T20:38:20",
+          "uri": "/articles/why-istanbul-is-becoming-africas-investment-bridge/",
+          "isRestricted": false,
+          "title": "Why Istanbul Is Becoming Africa’s Investment Bridge",
+          "excerpt": "<p>How geography and policy are turning Turkish capital toward East African healthcare and housing.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        },
+        {
+          "__typename": "SiraPressRelease",
+          "databaseId": 1655,
+          "contentTypeName": "sira_press_release",
+          "date": "2026-08-27T01:13:34",
+          "modified": "2026-08-27T01:13:34",
+          "uri": "/press-releases/press_release/",
+          "isRestricted": false,
+          "title": "Press_Release",
+          "excerpt": "",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        },
+        {
+          "__typename": "SiraInsight",
+          "databaseId": 1617,
+          "contentTypeName": "sira_insight",
+          "date": "2026-08-27T01:02:54",
+          "modified": "2026-08-27T01:02:54",
+          "uri": "/insights/insight_item/",
+          "isRestricted": false,
+          "title": "Insight_Item",
+          "excerpt": "",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1461,
+          "contentTypeName": "sira_news",
+          "date": "2026-07-22T21:37:23",
+          "modified": "2026-07-27T04:36:56",
+          "uri": "/news/what-we-look-for-in-a-strategic-partner/",
+          "isRestricted": false,
+          "title": "What We Look for in a Strategic Partner",
+          "excerpt": "<p>The criteria SIRA applies before entering a new market or venture.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 60,
+                "slug": "consulting"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1460,
+          "contentTypeName": "sira_news",
+          "date": "2026-07-22T21:37:23",
+          "modified": "2026-09-01T21:43:34",
+          "uri": "/news/sira-group-expands-portfolio-into-hospitality-lifestyle/",
+          "isRestricted": false,
+          "title": "SIRA GROUP Expands Portfolio into Hospitality & Lifestyle",
+          "excerpt": "<p>SIRA Lifestyle launches as the group’s newest division.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 61,
+                "slug": "lifestyle"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1459,
+          "contentTypeName": "sira_news",
+          "date": "2026-07-22T21:37:23",
+          "modified": "2026-07-27T04:36:35",
+          "uri": "/news/rosina-diagnostic-center-adds-pet-ct-molecular-imaging-wing/",
+          "isRestricted": false,
+          "title": "Rosina Diagnostic Center Adds PET-CT Molecular Imaging Wing",
+          "excerpt": "<p>The Nairobi facility expands into early-stage cancer diagnostics.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 62,
+                "slug": "healthcare"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1458,
+          "contentTypeName": "sira_news",
+          "date": "2026-07-22T21:37:23",
+          "modified": "2026-09-05T01:08:04",
+          "uri": "/news/sira-group-signs-strategic-partnership-with-ovan-group/",
+          "isRestricted": false,
+          "title": "SIRA GROUP Signs Strategic Partnership with OVAN Group",
+          "excerpt": "<p>A joint venture to accelerate residential delivery in Istanbul.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 59,
+                "slug": "real-estate"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraInsight",
+          "databaseId": 1744,
+          "contentTypeName": "sira_insight",
+          "date": "2026-05-21T10:00:00",
+          "modified": "2026-05-21T10:00:00",
+          "uri": "/insights/what-we-underwrite/",
+          "isRestricted": false,
+          "title": "What We Underwrite",
+          "excerpt": "<p>The five tests every SIRA investment has to pass before capital moves, and the one that disqualifies most opportunities.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        },
+        {
+          "__typename": "SiraPressRelease",
+          "databaseId": 1745,
+          "contentTypeName": "sira_press_release",
+          "date": "2026-05-04T07:00:00",
+          "modified": "2026-05-04T07:00:00",
+          "uri": "/press-releases/sira-lifestyle-opens-founding-partner-applications-for-its-first-coastal-property/",
+          "isRestricted": false,
+          "title": "SIRA Lifestyle Opens Founding-Partner Applications for Its First Coastal Property",
+          "excerpt": "",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 61,
+                "slug": "lifestyle"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraInsight",
+          "databaseId": 1747,
+          "contentTypeName": "sira_insight",
+          "date": "2026-04-09T09:15:00",
+          "modified": "2026-04-09T09:15:00",
+          "uri": "/insights/why-istanbul-remains-a-resilient-property-market/",
+          "isRestricted": false,
+          "title": "Why Istanbul Remains a Resilient Property Market",
+          "excerpt": "<p>The fundamentals continuing to draw international capital into Turkish real estate, and the two that have quietly weakened.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 59,
+                "slug": "real-estate"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1748,
+          "contentTypeName": "sira_news",
+          "date": "2026-03-30T11:00:00",
+          "modified": "2026-03-30T11:00:00",
+          "uri": "/news/sira-consulting-appointed-to-advise-on-a-cross-border-healthcare-platform/",
+          "isRestricted": false,
+          "title": "SIRA Consulting Appointed to Advise on a Cross-Border Healthcare Platform",
+          "excerpt": "<p>The mandate covers market entry, licensing and clinical partnership structure across two jurisdictions.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 60,
+                "slug": "consulting"
+              },
+              {
+                "databaseId": 62,
+                "slug": "healthcare"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraArticle",
+          "databaseId": 1749,
+          "contentTypeName": "sira_article",
+          "date": "2026-03-11T09:00:00",
+          "modified": "2026-03-11T09:00:00",
+          "uri": "/articles/bridging-continents-through-smart-investment/",
+          "isRestricted": false,
+          "title": "Bridging Continents Through Smart Investment",
+          "excerpt": "<p>How a house of specialised companies is building infrastructure for the next generation of growth.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1750,
+          "contentTypeName": "sira_news",
+          "date": "2026-02-19T08:00:00",
+          "modified": "2026-02-19T08:00:00",
+          "uri": "/news/a-second-diagnostic-center-for-east-africa/",
+          "isRestricted": false,
+          "title": "A Second Diagnostic Center for East Africa",
+          "excerpt": "<p>Site selection has begun for a second facility, targeting 2027.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 62,
+                "slug": "healthcare"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraInsight",
+          "databaseId": 1751,
+          "contentTypeName": "sira_insight",
+          "date": "2026-02-02T10:30:00",
+          "modified": "2026-02-02T10:30:00",
+          "uri": "/insights/the-cost-of-waiting/",
+          "isRestricted": false,
+          "title": "The Cost of Waiting",
+          "excerpt": "<p>Three markets where the entry price moved against patient capital in eighteen months.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 60,
+                "slug": "consulting"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1752,
+          "contentTypeName": "sira_news",
+          "date": "2026-01-15T09:45:00",
+          "modified": "2026-01-15T09:45:00",
+          "uri": "/news/sira-prime-tops-out-four-weeks-ahead-of-schedule/",
+          "isRestricted": false,
+          "title": "SIRA Prime Tops Out Four Weeks Ahead of Schedule",
+          "excerpt": "<p>The Istanbul development reaches structural completion ahead of programme, with handover now expected in the first quarter.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 59,
+                "slug": "real-estate"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraPressRelease",
+          "databaseId": 1753,
+          "contentTypeName": "sira_press_release",
+          "date": "2026-01-08T16:00:00",
+          "modified": "2026-01-08T16:00:00",
+          "uri": "/press-releases/statement-on-the-2025-portfolio-review/",
+          "isRestricted": false,
+          "title": "Statement on the 2025 Portfolio Review",
+          "excerpt": "",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        },
+        {
+          "__typename": "SiraInsight",
+          "databaseId": 1754,
+          "contentTypeName": "sira_insight",
+          "date": "2025-11-24T09:00:00",
+          "modified": "2025-11-24T09:00:00",
+          "uri": "/insights/hospitality-is-an-operating-business-not-an-asset-class/",
+          "isRestricted": false,
+          "title": "Hospitality Is an Operating Business, Not an Asset Class",
+          "excerpt": "<p>Why SIRA Lifestyle staffs before it buys, and what that has cost us twice.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 61,
+                "slug": "lifestyle"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1755,
+          "contentTypeName": "sira_news",
+          "date": "2025-10-06T08:00:00",
+          "modified": "2025-10-06T08:00:00",
+          "uri": "/news/sira-group-completes-its-investment-in-rosina-diagnostic-center/",
+          "isRestricted": false,
+          "title": "SIRA GROUP Completes Its Investment in Rosina Diagnostic Center",
+          "excerpt": "<p>The transaction closes a nine-month process and gives the group a majority position in the facility.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 62,
+                "slug": "healthcare"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraArticle",
+          "databaseId": 1756,
+          "contentTypeName": "sira_article",
+          "date": "2025-09-12T09:00:00",
+          "modified": "2025-09-12T09:00:00",
+          "uri": "/articles/notes-from-a-year-of-building-in-two-time-zones/",
+          "isRestricted": false,
+          "title": "Notes From a Year of Building in Two Time Zones",
+          "excerpt": "<p>What running an Istanbul development team and a Nairobi clinical team out of one investment committee actually requires, and the three things we would do differently.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1757,
+          "contentTypeName": "sira_news",
+          "date": "2025-08-19T10:00:00",
+          "modified": "2025-08-19T10:00:00",
+          "uri": "/news/consulting-practice-expands-its-market-entry-team/",
+          "isRestricted": false,
+          "title": "Consulting Practice Expands Its Market-Entry Team",
+          "excerpt": "<p>Four senior appointments across Istanbul and Nairobi.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 60,
+                "slug": "consulting"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraArticle",
+          "databaseId": 1758,
+          "contentTypeName": "sira_article",
+          "date": "2025-07-01T09:00:00",
+          "modified": "2025-07-01T09:00:00",
+          "uri": "/articles/design-brief-the-coastal-residence/",
+          "isRestricted": false,
+          "title": "Design Brief: The Coastal Residence",
+          "excerpt": "<p>The architectural principles behind SIRA Lifestyle&#8217;s first ground-up development.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 61,
+                "slug": "lifestyle"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1759,
+          "contentTypeName": "sira_news",
+          "date": "2025-05-30T12:00:00",
+          "modified": "2025-05-30T12:00:00",
+          "uri": "/news/sira-group-turns-ten/",
+          "isRestricted": false,
+          "title": "SIRA GROUP Turns Ten",
+          "excerpt": "",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        },
+        {
+          "__typename": "SiraArticle",
+          "databaseId": 1760,
+          "contentTypeName": "sira_article",
+          "date": "2025-03-17T09:00:00",
+          "modified": "2025-03-17T09:00:00",
+          "uri": "/articles/land-assembly-and-the-patience-it-requires/",
+          "isRestricted": false,
+          "title": "Land Assembly and the Patience It Requires",
+          "excerpt": "<p>Six years of acquisition on one Istanbul block, told through the four deals that nearly ended it.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 59,
+                "slug": "real-estate"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraPressRelease",
+          "databaseId": 1761,
+          "contentTypeName": "sira_press_release",
+          "date": "2024-11-11T15:00:00",
+          "modified": "2024-11-11T15:00:00",
+          "uri": "/press-releases/appointment-of-a-group-chief-investment-officer/",
+          "isRestricted": false,
+          "title": "Appointment of a Group Chief Investment Officer",
+          "excerpt": "",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        },
+        {
+          "__typename": "SiraInsight",
+          "databaseId": 1762,
+          "contentTypeName": "sira_insight",
+          "date": "2024-08-05T09:00:00",
+          "modified": "2024-08-05T09:00:00",
+          "uri": "/insights/what-good-partnership-looks-like-after-the-first-year/",
+          "isRestricted": false,
+          "title": "What Good Partnership Looks Like After the First Year",
+          "excerpt": "<p>Partnerships are underwritten on the pitch and judged on the second year. A note on what SIRA measures once the novelty is gone.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 60,
+                "slug": "consulting"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraNewsItem",
+          "databaseId": 1763,
+          "contentTypeName": "sira_news",
+          "date": "2024-04-22T08:30:00",
+          "modified": "2024-04-22T08:30:00",
+          "uri": "/news/first-clinical-partnership-signed-in-nairobi/",
+          "isRestricted": false,
+          "title": "First Clinical Partnership Signed in Nairobi",
+          "excerpt": "<p>A referral agreement covering three private practices.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 62,
+                "slug": "healthcare"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraInsight",
+          "databaseId": 1764,
+          "contentTypeName": "sira_insight",
+          "date": "2023-12-04T09:00:00",
+          "modified": "2023-12-04T09:00:00",
+          "uri": "/insights/istanbul-residential-a-ten-year-view/",
+          "isRestricted": false,
+          "title": "Istanbul Residential: A Ten-Year View",
+          "excerpt": "<p>Demographics, currency and construction cost, and what each of them is likely to do to yields between now and 2034.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": [
+              {
+                "databaseId": 59,
+                "slug": "real-estate"
+              }
+            ]
+          }
+        },
+        {
+          "__typename": "SiraPressRelease",
+          "databaseId": 1765,
+          "contentTypeName": "sira_press_release",
+          "date": "2023-11-02T09:00:00",
+          "modified": "2026-09-06T03:28:14",
+          "uri": "/press-releases/corporate-information-notice/",
+          "isRestricted": false,
+          "title": "Corporate Information Notice",
+          "excerpt": "<p>Registered office and filing details.</p>\n",
+          "featuredImage": null,
+          "siraBusinessUnits": {
+            "nodes": []
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "debug": [
+      {
+        "type": "DEBUG_LOGS_INACTIVE",
+        "message": "GraphQL Debug logging is not active. To see debug logs, GRAPHQL_DEBUG must be enabled."
+      }
+    ]
+  }
+}

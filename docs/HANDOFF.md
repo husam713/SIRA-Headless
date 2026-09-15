@@ -69,7 +69,7 @@ requirements, owner gates, or Canonicality.
 
 ## Current state
 
-Step 2C.5B is owner accepted and merged. Its CMS mutation track remains operationally `BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`, Batch A mutation authorization is false, and RB-001/RB-009 execution evidence remains unavailable.
+Step 2C.5B is owner accepted and merged. Its CMS mutation track is NO LONGER `BLOCKED_BY_BACKUP_EVIDENCE`: on 2026-09-05 the owner authorized a backup and Batch A (ADR-030, ADR-031), on 2026-09-06 a verified full multisite backup was taken before any write, and Batch A executed. `cmsMutationAuthorization` is now `OWNER_AUTHORIZED_BOUNDED` and `batchAMutationAuthorized` is true. RB-001 evidence exists; **RB-009 restore evidence does not** — the dump has never been restored. Taxonomy deletion, destructive database operations, Step 2C.5C, staging, deployment, DNS and cutover all remain NOT AUTHORIZED. See the live CMS state section below.
 
 The repository/frontend track has accepted Step 3A, Step 3B, Step 3C.1,
 Step 3C.2, and Step 3D.1. Step 3D.2 is NOT STARTED, Step 3D.3 remains gated
@@ -95,8 +95,12 @@ Prototype and production UI implementation are AUTHORIZED: `project-state.json` 
 `authorization.prototypeImplementationAuthorized` and
 `authorization.productionUiImplementationAuthorized` as `true`.
 
-Newsroom visual/route work remains NOT STARTED. No newsroom route, component,
-or query exists under `frontend/src`.
+Newsroom visual/route work is IMPLEMENTED on the unmerged branch
+`feat/newsroom-ledger`, and is NOT merged and NOT owner-accepted. The `/news`
+archive, the `[section]/[slug]` article route, the shared `NewsroomPage`, the
+desk registry, the live-capture and placeholder-seeding tooling, and the
+ADR-030 launch gate all exist there. The earlier statement that no newsroom
+route, component or query exists under `frontend/src` is stale.
 
 Acceptance evidence. It differs per pull request and must not be generalized.
 For PRs `#44`, `#46`, `#47`, and `#49` through `#53` the merge commit is the
@@ -233,6 +237,32 @@ Known separate observation: reconciled backend source declares `SiraProjectDetai
 Historical RB-001/RB-009 controls remain truthful evidence for direct production CMS/database mutation. They do not block repository engineering, Next.js implementation, Group frontend staging development, or staging QA.
 
 Before final Group cutover, establish appropriate recovery controls for the actual cutover, including preservation of the legacy Group environment and an appropriate final recovery point where applicable. Do not mark historical RB requirements complete unless they actually occurred.
+
+## Live CMS state as of 2026-09-06
+
+Read this before touching the CMS or judging a rendered page.
+
+- **Placeholder editorial is live in WordPress.** 37 records across the five
+  tenants carry post meta `_sira_seed=1`. They are invented and were authorized
+  by ADR-030 for design review. `tools/seed/README.md` lists the entries whose
+  claims an editor must REWRITE rather than polish, because they fabricate
+  specifics about named third parties.
+- **`blog_public` is `0` on all five tenants**, which keeps that content out of
+  search results. It MUST return to `1` at launch or the real site will not be
+  indexed.
+- `node tools/verify-no-seed-content.mjs` gates both of the above and exits
+  non-zero while either is outstanding. Run it before any launch.
+- **Batch A executed on 2026-09-06** against a verified RB-001 backup
+  (ADR-031). Branch-local terms `consulting`, `real-estate` and `lifestyle`
+  were created; `healthcare` already existed. Group's taxonomy was untouched.
+- **RB-009 is still open.** The backup has never been restored, so
+  recoverability is inferred, not proven.
+- **The Hostinger CDN challenges the GraphQL endpoint (ADR-032).** A
+  server-side fetch from an unrecognised IP gets HTTP 403 and a JavaScript
+  bot-challenge, not data. This is a launch blocker for the headless
+  architecture and needs hPanel action. Live captures are therefore taken over
+  SSH by `tools/capture-live-feed.mjs` and replayed in
+  `tests/harness/compose-live-newsroom.test.ts`.
 
 ## Protected actions
 

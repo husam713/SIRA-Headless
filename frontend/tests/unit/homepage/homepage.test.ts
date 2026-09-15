@@ -400,6 +400,55 @@ function createCompleteBranchHomepage(): SiraHomepageQueryData {
   });
 }
 
+// Regression: CMS-authored same-document anchors.
+//
+// The ACF link fields carry "#projects" and "#contact" for the hero buttons and
+// several section CTAs. `new URL("#projects")` throws, so the href normalizer
+// returned null and every one of those links was silently dropped — the live
+// hero rendered with no buttons at all while the CMS held two.
+describe("same-document anchor links", () => {
+  function heroWith(primary: unknown, secondary: unknown = null) {
+    const payload = createCompleteGroupHomepage() as unknown as {
+      page: { groupHomepage: { hero: Record<string, unknown> } };
+    };
+    payload.page.groupHomepage.hero["primaryCta"] = primary;
+    payload.page.groupHomepage.hero["secondaryCta"] = secondary;
+    return payload as unknown as Parameters<typeof normalizeHomepage>[1];
+  }
+
+  it("keeps the fragment CTAs the CMS authored", () => {
+    const result = normalizeHomepage(
+      "group",
+      heroWith(
+        { title: "VIEW PROJECTS", url: "#projects", target: "" },
+        { title: "REQUEST ADVISORY", url: "#contact", target: "" },
+      ),
+    );
+
+    expect(result).toMatchObject({
+      status: "ready",
+      homepage: {
+        hero: {
+          primaryCta: { label: "VIEW PROJECTS", href: "#projects" },
+          secondaryCta: { label: "REQUEST ADVISORY", href: "#contact" },
+        },
+      },
+    });
+  });
+
+  it("still refuses a fragment that is not a plausible element id", () => {
+    for (const url of ["#", "#1bad", "#a b", "#<script>"]) {
+      const result = normalizeHomepage("group", heroWith({ title: "Nope", url, target: "" }));
+      expect(result.status).toBe("ready");
+      if (result.status !== "ready") continue;
+      expect(
+        (result.homepage as { hero: { primaryCta: unknown } }).hero.primaryCta,
+        url,
+      ).toBeNull();
+    }
+  });
+});
+
 describe("homepage server adapter", () => {
   it("normalizes complete valid Group fixture data across every supported section", () => {
     const result = normalizeHomepage("group", createCompleteGroupHomepage());

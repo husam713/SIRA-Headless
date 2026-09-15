@@ -105,6 +105,15 @@ function normalizePublicHref(value: unknown): string | null {
 
   if (href.startsWith("/")) return href;
 
+  // Same-document anchors. Editors author "#projects" and "#contact" in the
+  // ACF link fields, and `new URL("#projects")` throws, so every in-page CTA
+  // the CMS carried was being normalized to null and dropped — including both
+  // hero buttons. A fragment has no scheme and no authority and cannot leave
+  // the page, so the only thing worth checking is that it is a plausible id.
+  if (href.startsWith("#")) {
+    return /^#[A-Za-z][\w.:-]*$/u.test(href) ? href : null;
+  }
+
   try {
     const url = new URL(href);
     if (

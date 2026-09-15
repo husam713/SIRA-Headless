@@ -23,11 +23,13 @@ export function BranchHero({ hero }: BranchHeroProps) {
   return (
     <section
       aria-label={hero.eyebrow ?? "Hero"}
-      className="relative isolate flex min-h-[75svh] flex-col justify-end overflow-hidden bg-brand-deep lg:min-h-[85svh]"
+      // 90svh, measured: the approved branch design gives the hero 810px of a
+      // 900px viewport at desktop. 85 left it 45px short at every desktop width.
+      className="relative isolate flex min-h-[75svh] flex-col justify-end overflow-hidden bg-brand-deep lg:min-h-[90svh]"
     >
       <div aria-hidden="true" className="absolute inset-0 z-0">
         {hero.image !== null ? (
-          <picture className="absolute inset-0 block">
+          <picture className="hero-media hero-media--active absolute inset-0 block">
             {hero.mobileImage !== null ? (
               <source media="(max-width: 767px)" srcSet={hero.mobileImage.sourceUrl} />
             ) : null}
@@ -58,15 +60,29 @@ export function BranchHero({ hero }: BranchHeroProps) {
       />
 
       <PageContainer className="relative z-[2] pb-16 pt-32 sm:pb-20 lg:pb-24">
-        <div className="flex max-w-[42rem] flex-col gap-8 text-brand-paper">
+        {/*
+          No shared max-width: the approved branch design lets the headline run
+          to the full content measure (1072px at 1440) and constrains only the
+          description beneath it. Capping the whole block at 42rem held the
+          headline to 672px, which is why it was setting 27px smaller than the
+          design at every desktop width.
+        */}
+        <div className="flex flex-col gap-8 text-brand-paper">
           {hero.eyebrow !== null || hero.region !== null ? (
-            <SectionEyebrow>
+            // bright, not the standard accent: this eyebrow sits on a
+            // photograph under a dark scrim, where every branch accent measured
+            // between 3.2:1 and 4.2:1 and failed AA. Same rule the other deep
+            // sections already follow.
+            <SectionEyebrow tone="bright">
               {[hero.eyebrow, hero.region].filter((part) => part !== null).join(" · ")}
             </SectionEyebrow>
           ) : null}
 
           {hasHeading ? (
-            <h1 className="text-balance font-display text-[clamp(2.5rem,7vw,5.5rem)] font-normal leading-[0.98] tracking-tight">
+            // Measured from the approved branch design: 46px at the floor,
+            // 8vw through the middle, capping at 116px, on 0.99 leading and
+            // -0.025em tracking at weight 500.
+            <h1 className="max-w-[16ch] text-balance font-display text-[clamp(2.875rem,8vw,7.25rem)] font-medium leading-[0.99] tracking-[-0.025em]">
               {hero.headingBefore}
               {hero.headingHighlight !== null ? (
                 <>

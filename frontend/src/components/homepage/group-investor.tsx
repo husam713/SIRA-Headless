@@ -24,7 +24,7 @@ interface TractionMetricProps {
 
 function TractionMetric({ metric }: TractionMetricProps) {
   return (
-    <div className="flex flex-col gap-3 bg-brand-deep-card p-8">
+    <div className="card-lift card-lift--deep flex flex-col gap-3 bg-brand-deep-card p-8">
       <p className="font-display text-[clamp(2rem,4vw,3rem)] font-normal leading-none text-brand-paper">
         {metric.value}
       </p>
@@ -59,7 +59,7 @@ function InvestmentCard({ item, accentColor, sectorLabel }: InvestmentCardProps)
   // it isn't rendered rather than inventing a value with no data behind it.
   return (
     <div
-      className="flex flex-col gap-4 border border-brand-deep-border bg-brand-deep-card p-8"
+      className="card-lift card-lift--deep flex flex-col gap-4 border border-brand-deep-border bg-brand-deep-card p-8"
       style={{ borderTopWidth: "3px", borderTopColor: accentColor }}
     >
       {sectorLabel !== null ? (

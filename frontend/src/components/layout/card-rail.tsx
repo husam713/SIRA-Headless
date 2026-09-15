@@ -21,19 +21,38 @@ type RailStyle = CSSProperties & {
 
 interface CardRailProps {
   readonly children: ReactNode;
-  // Maximum columns at the widest container step.
+  // Maximum columns at the widest container step. Ignored by `portfolio`,
+  // which declares its own fixed 1/2/3/4 ladder.
   readonly max?: 2 | 3 | 4;
   // Top-level row parts per card.
   readonly rows?: number;
+  /**
+   * `portfolio` is the four-company row. Its cards carry media and step
+   * 2 / 3 / 4 at wider container widths than the generic ladder allows, so it
+   * has its own steps in globals.css rather than bending the shared ones.
+   */
+  readonly variant?: "default" | "portfolio";
   readonly className?: string;
 }
 
-export function CardRail({ children, max = 3, rows = 4, className }: CardRailProps) {
+export function CardRail({
+  children,
+  max = 3,
+  rows = 4,
+  variant = "default",
+  className,
+}: CardRailProps) {
   const style: RailStyle = { "--rail-max": max, "--rail-rows": rows };
 
   return (
     <div className={joinClasses("rail", className)}>
-      <div className="rail__items" style={style}>
+      <div
+        className={joinClasses(
+          "rail__items",
+          variant === "portfolio" ? "rail__items--portfolio" : undefined,
+        )}
+        style={style}
+      >
         {children}
       </div>
     </div>

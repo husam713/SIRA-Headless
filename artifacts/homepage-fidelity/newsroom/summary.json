@@ -1,0 +1,12 @@
+{
+  "url": "http://localhost:3100/news",
+  "capturedAt": "2026-09-06T08:05:46.355Z",
+  "summary": [
+    {
+      "viewport": "1440",
+      "documentHeight": 5933,
+      "overflow": 0,
+      "headerHeight": 69
+    }
+  ]
+}

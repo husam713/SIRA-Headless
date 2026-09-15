@@ -1,0 +1,42 @@
+{
+  "url": "http://localhost:3100/news",
+  "capturedAt": "2026-09-06T09:23:26.322Z",
+  "summary": [
+    {
+      "viewport": "390",
+      "documentHeight": 7300,
+      "overflow": 0,
+      "headerHeight": 77
+    },
+    {
+      "viewport": "768",
+      "documentHeight": 4722,
+      "overflow": 0,
+      "headerHeight": 77
+    },
+    {
+      "viewport": "1024",
+      "documentHeight": 3768,
+      "overflow": 0,
+      "headerHeight": 69
+    },
+    {
+      "viewport": "1280",
+      "documentHeight": 3691,
+      "overflow": 0,
+      "headerHeight": 69
+    },
+    {
+      "viewport": "1440",
+      "documentHeight": 3702,
+      "overflow": 0,
+      "headerHeight": 69
+    },
+    {
+      "viewport": "1920",
+      "documentHeight": 3702,
+      "overflow": 0,
+      "headerHeight": 69
+    }
+  ]
+}

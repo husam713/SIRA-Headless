@@ -154,9 +154,31 @@ describe("Step 2C.3C cumulative closure contract", () => {
     expect(SIRA_NAVIGATION_QUERY.source).not.toContain("siraNavigation");
   });
 
+/**
+ * The `where` argument of every `contentNodes(...)` call in an operation.
+ *
+ * Filtering and selection are different claims: an operation that SELECTS the
+ * Business Unit terms of each entry is still an unfiltered feed. Matching the
+ * whole document for the words "business unit" cannot tell the two apart, so
+ * this narrows the assertion to the place a filter would actually live.
+ */
+function editorialWhereArguments(source: string): string {
+  return (source.match(/where:\s*\{[^}]*\}/gu) ?? []).join(" ");
+}
+
   it("locks native editorial pagination and the exact ADR-014 mapping", () => {
     expect(SIRA_EDITORIAL_FEED_QUERY.source).toMatch(/\bcontentNodes\s*\(/u);
-    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toMatch(/business.?unit/iu);
+    // The unfiltered feed stays unfiltered. It SELECTS each entry's Business
+    // Unit terms — the newsroom labels every entry with the company that filed
+    // it — but it must not narrow BY them: no business-unit argument inside
+    // `where`, and no entry through the term's own root field. Narrowing still
+    // goes through SiraBusinessUnitEditorialFeed below.
+    expect(
+      editorialWhereArguments(SIRA_EDITORIAL_FEED_QUERY.source),
+    ).not.toMatch(/business.?unit/iu);
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toMatch(
+      /\bsiraBusinessUnit\s*\(/u,
+    );
     expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toContain(
       "siraEditorialFeed",
     );

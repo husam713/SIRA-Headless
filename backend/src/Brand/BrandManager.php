@@ -278,6 +278,49 @@ final class BrandManager {
 	}
 
 	/**
+	 * Map every brand value to the ACF option field that carries it.
+	 *
+	 * Keyed by the brand contract key, each entry is the ACF field name used to
+	 * read the value and the field key used to write it. This is the single
+	 * definition of the correspondence: `acf_values()` reads through it and the
+	 * Brand Settings screen writes through it, so the two admin surfaces cannot
+	 * drift apart again.
+	 *
+	 * @return array<string,array{0:string,1:string}>
+	 */
+	public static function acf_field_map(): array {
+		return array(
+			'brand_name'       => array( 'sira_brand_name', 'field_sira_brand_name' ),
+			'brand_key'        => array( 'sira_brand_key', 'field_sira_brand_key' ),
+			'tagline'          => array( 'sira_brand_tagline', 'field_sira_brand_tagline' ),
+			'logo_id'          => array( 'sira_brand_logo', 'field_sira_brand_logo' ),
+			'mark_id'          => array( 'sira_brand_mark', 'field_sira_brand_mark' ),
+			'primary_color'    => array( 'sira_primary_color', 'field_sira_primary_color' ),
+			'secondary_color'  => array( 'sira_secondary_color', 'field_sira_secondary_color' ),
+			'accent_color'     => array( 'sira_accent_color', 'field_sira_accent_color' ),
+			'paper_color'      => array( 'sira_paper_color', 'field_sira_paper_color' ),
+			'ink_color'        => array( 'sira_ink_color', 'field_sira_ink_color' ),
+			'email'            => array( 'sira_brand_email', 'field_sira_brand_email' ),
+			'phone'            => array( 'sira_brand_phone', 'field_sira_brand_phone' ),
+			'address'          => array( 'sira_brand_address', 'field_sira_brand_address' ),
+			'description'      => array( 'sira_brand_description', 'field_sira_brand_description' ),
+			'mission'          => array( 'sira_brand_mission', 'field_sira_brand_mission' ),
+			'vision'           => array( 'sira_brand_vision', 'field_sira_brand_vision' ),
+			'linkedin_url'     => array( 'sira_brand_linkedin', 'field_sira_brand_linkedin' ),
+			'instagram_url'    => array( 'sira_brand_instagram', 'field_sira_brand_instagram' ),
+			'x_url'            => array( 'sira_brand_x', 'field_sira_brand_x' ),
+			'youtube_url'      => array( 'sira_brand_youtube', 'field_sira_brand_youtube' ),
+			'analytics_id'     => array( 'sira_brand_analytics_id', 'field_sira_brand_analytics_id' ),
+			'announcement_bar' => array( 'sira_announcement_bar_text', 'field_sira_announcement_bar_text' ),
+			'emergency_banner' => array( 'sira_emergency_banner_text', 'field_sira_emergency_banner_text' ),
+			'values'           => array( 'sira_brand_values', 'field_sira_brand_values' ),
+			'office_locations' => array( 'sira_office_locations', 'field_sira_office_locations' ),
+			'announcement'     => array( 'sira_announcement_banner_config', 'field_sira_announcement_banner_config' ),
+			'emergency'        => array( 'sira_emergency_banner_config', 'field_sira_emergency_banner_config' ),
+		);
+	}
+
+	/**
 	 * Return populated ACF option values for the current site.
 	 *
 	 * @return array<string,mixed>
@@ -287,29 +330,10 @@ final class BrandManager {
 			return array();
 		}
 
-		$map = array(
-			'sira_brand_name'        => 'brand_name',
-			'sira_brand_key'         => 'brand_key',
-			'sira_brand_logo'        => 'logo_id',
-			'sira_brand_mark'        => 'mark_id',
-			'sira_primary_color'     => 'primary_color',
-			'sira_secondary_color'   => 'secondary_color',
-			'sira_accent_color'      => 'accent_color',
-			'sira_brand_email'       => 'email',
-			'sira_brand_phone'       => 'phone',
-			'sira_brand_address'     => 'address',
-			'sira_brand_description' => 'description',
-			'sira_brand_mission'     => 'mission',
-			'sira_brand_vision'      => 'vision',
-			'sira_brand_values'      => 'values',
-			'sira_office_locations'          => 'office_locations',
-			'sira_announcement_banner_config' => 'announcement',
-			'sira_emergency_banner_config'    => 'emergency',
-		);
 		$out = array();
 
-		foreach ( $map as $field => $key ) {
-			$value = get_field( $field, 'option' );
+		foreach ( self::acf_field_map() as $key => $field ) {
+			$value = get_field( $field[0], 'option' );
 
 			if ( ! self::is_populated( $value ) ) {
 				continue;

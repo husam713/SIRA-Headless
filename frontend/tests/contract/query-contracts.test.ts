@@ -98,12 +98,26 @@ describe("approved SIRA GraphQL operation contracts", () => {
   });
 
   it("keeps the B4 editorial operation unfiltered by Business Unit", () => {
+    // Unfiltered, not unaware. The newsroom labels every entry with the company
+    // that filed it, so the operation SELECTS the terms; what B4 forbids is
+    // NARROWING by them — a business-unit argument inside `where`, or entering
+    // through the term's own root field. Both belong to
+    // SiraBusinessUnitEditorialFeed instead.
+    const whereArguments = (
+      SIRA_EDITORIAL_FEED_QUERY.source.match(/where:\s*\{[^}]*\}/gu) ?? []
+    ).join(" ");
+
+    expect(whereArguments).not.toMatch(/business.?unit/iu);
     expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toMatch(
-      /business.?unit/iu,
+      /\bsiraBusinessUnit\s*\(/u,
     );
-    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toContain(
-      "siraBusinessUnits",
+
+    // The selection is bounded, and carries nothing beyond the identity and the
+    // slug the frontend desk registry maps.
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).toMatch(
+      /siraBusinessUnits\(first: 4\)/u,
     );
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toContain("count");
   });
 
   it("derives the filtered editorial operation from canonical Codegen output", () => {
@@ -144,6 +158,8 @@ describe("approved SIRA GraphQL operation contracts", () => {
     }
 
     expect(source).not.toContain("siraEditorialFeed");
+    // On a branch tenant every entry belongs to that branch by construction, so
+    // the terms are not re-selected here: the desk comes from the site key.
     expect(source).not.toContain("siraBusinessUnits");
   });
 

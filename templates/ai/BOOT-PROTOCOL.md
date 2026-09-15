@@ -1,5 +1,10 @@
 # SIRA Boot / Recovery Protocol Template
 
+This is the **full** boot. `AGENTS.md` § Session Boot Protocol defines when it
+is required (governance/state work, reconciliation, recovery, protected
+operations, or drift reported by `docs/STATE.md`). Ordinary engineering tasks
+boot from `docs/STATE.md` plus Git and the files they touch.
+
 ## Session identity
 
 - Active role:

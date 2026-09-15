@@ -71,6 +71,12 @@ requirements, owner gates, or Canonicality.
 
 Step 2C.5B is owner accepted and merged. Its CMS mutation track is NO LONGER `BLOCKED_BY_BACKUP_EVIDENCE`: on 2026-09-05 the owner authorized a backup and Batch A (ADR-030, ADR-031), on 2026-09-06 a verified full multisite backup was taken before any write, and Batch A executed. `cmsMutationAuthorization` is now `OWNER_AUTHORIZED_BOUNDED` and `batchAMutationAuthorized` is true. RB-001 evidence exists; **RB-009 restore evidence does not** — the dump has never been restored. Taxonomy deletion, destructive database operations, Step 2C.5C, staging, deployment, DNS and cutover all remain NOT AUTHORIZED. See the live CMS state section below.
 
+On 2026-09-10 the CMS origin for the five non-Group tenants was relocated to
+`cms-<tenant>.siratrgroup.com` (ADR-036 / SOT-003), executed live under direct
+owner authorization and recorded after the fact. Group / blog 1 was excluded and
+stays on `siratrgroup.com`. See "CMS origin relocation — executed 2026-09-10"
+below before touching CMS origins or `SIRA_WP_*_GRAPHQL_URL`.
+
 The repository/frontend track has accepted Step 3A, Step 3B, Step 3C.1,
 Step 3C.2, and Step 3D.1. Step 3D.2 is NOT STARTED, Step 3D.3 remains gated
 by `2C4-B09`, `PREVIEW-AUTH-001` remains DEFERRED, and full Step 3D closure
@@ -1027,6 +1033,49 @@ here instead.
 Nothing in this phase authorizes a merge, a deployment, a DNS change, a CMS
 mutation, or deleting the Digital WordPress site. The draft pull request is a
 candidate for review, not an accepted result.
+
+## CMS origin relocation — executed 2026-09-10 (ADR-036 / SOT-003)
+
+Read this before touching CMS origins or the `SIRA_WP_*_GRAPHQL_URL` variables.
+
+On 2026-09-10 the WordPress Multisite CMS origin for the five non-Group tenants
+was relocated from `<tenant>.siratrgroup.com` to `cms-<tenant>.siratrgroup.com`.
+It was executed against live production WordPress via a bare SSH session, under
+direct real-time owner authorization, and **recorded after the fact** — it was
+not pre-authorized through a Task Packet, and it went beyond the bounded
+`cmsMutationAuthorization` scope. ADR-036 and `knownConflicts` SOT-003 in
+`project-state.json` record it; the redacted evidence is
+`artifacts/migration-blog6-redacted.md`.
+
+- **Moved:** `consulting`, `healthcare`, `realestate`, `lifestyle`, `digital`.
+- **Not moved — Group (blog 1, the network main site).** Its relocation edits
+  `DOMAIN_CURRENT_SITE` and the `wp_site` row, has no safe intermediate state,
+  and `siratrgroup.com` still serves the live legacy Group site that Group
+  Staging First requires kept live. Deferred to the frontend production-cutover
+  window. Tracked as `openGates.groupCmsOriginRelocation`.
+- **Method:** verified `mysqldump` before each write; scoped
+  `wp search-replace --all-tables-with-prefix --skip-columns=guid` (guid
+  rewritten only for pre-launch Digital); routing row via `wp_update_site()`;
+  every dry-run count reconciled against SQL row counts. 567 replacements, all
+  exact. Four of eight pre-existing backup archives were found to be empty
+  20-byte files (the CLI export silently failed because `proc_open` is disabled)
+  and were quarantined to `sira-backups/.failed/`; backups now go through
+  `mysqldump` directly.
+- **This resolves the ADR-035 Digital hostname collision.** Moving WordPress off
+  `digital.siratrgroup.com` is what frees it for the frontend.
+  `digitalCmsOriginHostnameCollision` is CLOSED.
+- **Consequences.** Every deployment environment's
+  `SIRA_WP_<non-Group>_GRAPHQL_URL` must name the `cms-` host over HTTPS.
+  `frontend/.env.local` was updated 2026-09-10; `frontend/.env.example` is
+  updated. The five previous subdomains are parked — they return the WordPress
+  unknown-site signup redirect — until DNS points them at the frontend.
+- **Still open.** The Group relocation (above). ADR-032's deploy-platform egress
+  question: only local-dev egress to the `cms-` hosts has been verified; a
+  server-side fetch from the deployment platform's egress has not
+  (`openGates.platformEgressReachabilityUnverified`). The main site's own copy
+  of the Bricks `myTemplatesWhitelist` still names previous hostnames and is
+  deferred with the Group relocation; per `AGENTS.md` Bricks is not a production
+  headless dependency, so it is documented, not maintained.
 
 ## New owner decision — Group staging first
 

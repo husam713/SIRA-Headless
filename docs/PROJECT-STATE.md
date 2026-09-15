@@ -295,6 +295,21 @@ Known separate observation: backend source declares SiraProjectDetails while the
   only — `SIRA_CANONICAL_HOSTNAMES_JSON={"digital":"sirahdigital.sa"}` — and
   needs no rebuild or content migration. Domain registration, DNS, the WordPress
   CMS-domain migration and deployment remain NOT AUTHORIZED.
+- CMS origins (ADR-036 / SOT-003, executed 2026-09-10): the WordPress CMS origin
+  for `consulting`, `healthcare`, `realestate`, `lifestyle` and `digital` was
+  relocated from `<tenant>.siratrgroup.com` to `cms-<tenant>.siratrgroup.com`,
+  under direct real-time owner authorization in an SSH session, recorded after
+  the fact (not a pre-authorized Task Packet, and beyond the bounded
+  `cmsMutationAuthorization` scope). **Group (blog 1, the network main site) was
+  deliberately excluded** and stays on `siratrgroup.com` until the frontend
+  production cutover; `siratrgroup.com` currently serves the live legacy Group
+  site ADR-025 requires kept live. This resolves the ADR-035 Digital hostname
+  collision (`digitalCmsOriginHostnameCollision` is CLOSED). The five previous
+  subdomains are parked (WordPress signup redirect) until DNS points them at the
+  frontend; every deployment environment's `SIRA_WP_<non-Group>_GRAPHQL_URL`
+  must name the `cms-` host over HTTPS. Evidence:
+  `artifacts/migration-blog6-redacted.md`. Deploy-platform egress to the `cms-`
+  hosts is still unverified (ADR-032); only local-dev egress is confirmed.
 - `2C4-B09` is RESOLVED for the `digital` tenant only (ADR-034): Arabic is a
   first-class locale inside the same Digital site, with explicit `sira_locale`
   metadata and an explicit `sira_translation_of` pointer. It remains UNRESOLVED

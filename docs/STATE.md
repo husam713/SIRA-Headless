@@ -5,7 +5,7 @@ older is provenance. Machine-readable twin: `project-state.json`. Full history
 and registries: `docs/HANDOFF.md`, `docs/SOURCE-OF-TRUTH.md`,
 `docs/PROJECT-STATE.md`, `docs/DECISIONS.md`.
 
-**Verified through:** 2026-09-15 · `main` @ `548ac4a0` (merge of PR #63, 2026-09-04)
+**Verified through:** 2026-09-15 · `main` @ `db090be6` (merge of PR #68, 2026-09-15)
 
 ## What this repo is
 
@@ -19,27 +19,29 @@ load automatically from `.claude/rules/` when you touch those paths.
 | Track | State | Evidence |
 |---|---|---|
 | Group + branch homepages, shared shell, layout primitives | merged on `main` (PRs #36–#63) | Git |
-| SIRA Digital tenant (bilingual, pre-launch host) | PRs **#65** (draft) and **#66** (draft) — implemented, **not merged, not owner-accepted** | GitHub |
-| CMS-origin relocation reconciliation (ADR-036 / SOT-003) + Group cutover plan | PR **#68** (draft, stacked on #66) — docs only, **not merged, not owner-accepted** | GitHub |
-| Newsroom "The SIRA Record" | PR **#64** — implemented, **not merged, not owner-accepted** | GitHub |
+| Newsroom "The SIRA Record" | merged on `main` — PR **#64** @ `4a999bb0`, 2026-09-15 | Git |
+| SIRA Digital tenant (bilingual, pre-launch host) | merged on `main` — PRs **#65** @ `8723f960`, **#66** @ `e0ef2f74`, 2026-09-15 | Git |
+| CMS-origin relocation reconciliation (ADR-036 / SOT-003) + Group cutover plan | merged on `main` — PR **#68** @ `db090be6`, 2026-09-15 | Git |
 | Backend starter importer | PR **#45** (draft, 2026-08-28) — stale | GitHub |
 | PR **#37** | Vercel bot; Vercel is no longer used — close when convenient | owner decision 2026-09-15 |
 | Owner's local uncommitted work (Cloud Run Dockerfile, search-indexing switch, newsroom design pass, backend CI) | intentional, in the main checkout, not on any branch yet | owner statement 2026-09-15 |
 
-## Durable-state drift you must know about
+## Durable-state carriers
 
-The state carriers on `main` are dated **2026-09-03**. The events of 2026-09-05
-→ 09-10 — verified backup (RB-001), Batch A taxonomy terms, placeholder
-editorial seeding (ADR-030/031), blog 6 provisioning (ADR-033/034/035), and the
-live CMS-origin relocation to `cms-<tenant>.siratrgroup.com` (ADR-036 /
-SOT-003) — are recorded only on branch
-`docs/cms-origin-relocation-reconciliation`, pushed 2026-09-15 as PR **#68**
-(draft). It is two docs commits on top of PR #66's head, so it sits at the end
-of the #64 → #65 → #66 stack and is ~60 commits ahead of `main`; `git
-merge-tree` against `main` @ `8cb642d8` is clean. Until it is merged, treat
-those facts as `TRANSFERRED EVIDENCE` here, and do not edit CMS origins or
-`SIRA_WP_*_GRAPHQL_URL` without reading that branch's `docs/HANDOFF.md`
-section "CMS origin relocation — executed 2026-09-10".
+The 2026-09-05 → 09-10 events — verified backup (RB-001), Batch A taxonomy
+terms, placeholder editorial seeding (ADR-030/031), blog 6 provisioning
+(ADR-033/034/035), and the live CMS-origin relocation to
+`cms-<tenant>.siratrgroup.com` (ADR-036 / SOT-003) — are on `main` since PR
+#68 (2026-09-15). Do not edit CMS origins or `SIRA_WP_*_GRAPHQL_URL` without
+reading `docs/HANDOFF.md` section "CMS origin relocation — executed
+2026-09-10". Group / blog 1 is still on the apex
+(`openGates.groupCmsOriginRelocation` OPEN).
+
+PRs #64, #65, #66 and #68 were merged on 2026-09-15 under an explicit owner
+merge authorization given in-session; each head was brought up to date with
+`main` by a GitHub branch update and re-checked green before merging. Merge
+is not owner acceptance: no acceptance comment exists on those PRs, and
+post-merge verification has not been performed.
 
 ## Authorized / not authorized (owner)
 
@@ -63,7 +65,7 @@ section "CMS origin relocation — executed 2026-09-10".
 
 ## Next step
 
-Owner decides the merge order of the stack #64 → #65 → #66 → #68 (or folds
-#68's two commits into #66) so `main`'s carriers stop being a week behind.
-Phase 3 of the Claude Code adapter (state-carrier consolidation, including
-removing the drift paragraph above) follows that merge.
+Phase 3 of the Claude Code adapter: state-carrier consolidation
+(`project-state.json` / `PROJECT-STATE.md` / `HANDOFF.md` / `SOURCE-OF-TRUTH.md`
+still describe #64–#66 as unmerged branches in places). Then close #37, decide
+#45, and bring the owner's local uncommitted work onto a branch.

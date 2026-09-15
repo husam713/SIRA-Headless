@@ -37,11 +37,30 @@ reading `docs/HANDOFF.md` section "CMS origin relocation — executed
 2026-09-10". Group / blog 1 is still on the apex
 (`openGates.groupCmsOriginRelocation` OPEN).
 
-PRs #64, #65, #66 and #68 were merged on 2026-09-15 under an explicit owner
-merge authorization given in-session; each head was brought up to date with
-`main` by a GitHub branch update and re-checked green before merging. Merge
-is not owner acceptance: no acceptance comment exists on those PRs, and
-post-merge verification has not been performed.
+PRs #64, #65, #66, #68 and #69 were merged on 2026-09-15 under an explicit
+owner merge authorization given in-session; each head was brought up to date
+with `main` by a GitHub branch update and re-checked green before merging.
+Post-merge verification ran the same day (owner-instructed, by the merging
+session — not the independent-verification role): merge SHAs, parents and
+first-parent chain `4a999bb0 → 8723f960 → e0ef2f74 → db090be6 → 8e34efef`
+confirmed; every merged head is an ancestor of `main`; each merge commit's
+tree equals its CI-checked head; the five GitHub branch-update merges equal
+the clean `merge-tree` of their parents (no hand-resolved content); `main`'s
+tree equals the clean merge of `8cb642d8` + `b7ecda7f` plus `docs/STATE.md`
+only; credential scan of the effective diff clean (the one hit is the env-var
+name `SIRA_WP_DIGITAL_PREVIEW_APPLICATION_PASSWORD`); `step-2c3a/b-approved`
+tags and all source branches intact; `main` rulesets intact; Frontend/Backend
+CI green on every `main` push that touched their paths; and on a clean
+worktree of `8e34efef`: lint PASS, typecheck PASS, 61 files / 658 tests PASS.
+Merge is still not owner acceptance: no acceptance comment exists on those
+PRs.
+
+Defect found by that run, reported not fixed: `tests/unit/launch-gate.test.ts`
+imports `tools/verify-no-seed-content.mjs`, whose shebang line breaks Vitest
+when a Windows clone with `core.autocrlf=true` writes the file as CRLF
+(`SyntaxError: Invalid or unexpected token`). LF on disk and Linux CI are
+unaffected. Candidate fix: a `.gitattributes` rule pinning `tools/*.mjs` to
+`eol=lf`.
 
 ## Authorized / not authorized (owner)
 

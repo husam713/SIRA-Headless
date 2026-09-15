@@ -69,45 +69,13 @@ Independent verification / owner gate
 
 ## Implementation role and execution profiles
 
-SIRA has one logical mutation-capable role: **IMPLEMENTATION**.
-
-The role uses one of two execution profiles:
-
-### `LOCAL`
-
-Use when task correctness materially depends on local-only capabilities or
-evidence such as the owner's/local repository filesystem state, working tree,
-untracked or protected local evidence, `.local-reference/` assets, local
-build/generation tooling not reproduced elsewhere, browser/runtime testing,
-local debugging, filesystem-level inspection, or local WordPress/dev
-interaction.
-
-`LOCAL` is not a higher-authority role. Local evidence that is irrelevant to
-task correctness is not itself a reason to require this profile.
-
-### `CLOUD_GITHUB`
-
-Use when the required implementation, evidence, validation, and mutation are
-fully repository/GitHub-visible, such as bounded governance/documentation
-changes or other repository-only work supported by available GitHub
-capabilities.
-
-A `CLOUD_GITHUB` implementation agent must classify local-only claims as
-`REPORT_ONLY` or `NOT_VERIFIED_BY_THIS_AGENT`; it must never invent local
-filesystem evidence.
-
-### Selection policy
-
-Program Control selects the least-complex execution profile that can satisfy
-the task's required evidence, validation, security, and mutation requirements.
-Do not ask the owner to choose an environment on every task. Ask only when both
-profiles are materially viable and availability/preference matters, required
-environment availability is unknown, or the task requirements do not determine
-the correct profile.
-
-The execution profile changes capabilities and evidence visibility, not
-mutation authority, independent-review requirements, owner gates, or
-canonicality.
+One logical mutation-capable role, `IMPLEMENTATION`, with execution profile
+`LOCAL` or `CLOUD_GITHUB`. Definitions, when each profile is required, the
+selection policy, and the `REPORT_ONLY` / `NOT_VERIFIED_BY_THIS_AGENT`
+classification for cloud agents are stated once, in the Operating Protocol
+§ "Execution profiles and selection". The profile changes capabilities and
+evidence visibility, not mutation authority, review requirements, owner gates,
+or canonicality.
 
 ## Fallback delivery and external-admin patterns
 
@@ -128,13 +96,14 @@ afterward where possible.
 ## Durable memory model
 
 - `AGENTS.md` — permanent AI operating rules.
-- `docs/STATE.md` — one-page current-state pointer; the first read of every session.
-- `project-state.json` — machine-readable current state.
-- `docs/PROJECT-STATE.md` — human-readable current state.
-- `docs/SOURCE-OF-TRUTH.md` — SIRA-specific source/state/history/conflict registry.
-- `docs/DECISIONS.md` — approved ADRs and pending decisions.
-- `docs/HANDOFF.md` — short entry point for a new session.
+- `docs/STATE.md` — one-page current-state pointer; the first read of every session (human carrier).
+- `project-state.json` — machine-readable current state (machine carrier). These two are the only current-state carriers.
+- `docs/HANDOFF.md` — one-page resume pointer for a new session.
+- `docs/handoff-log/` — dated, append-only handoff log; entries are never rewritten.
+- `docs/SOURCE-OF-TRUTH.md` — SIRA-specific source/conflict registry.
+- `docs/DECISIONS.md` — approved ADRs and pending decisions; long-form ADRs in `docs/adr/`.
 - `docs/ACCEPTANCE-GATES.md` — durable acceptance-gate policy and historical gate context, not the volatile current-state tracker.
+- `docs/history/` — STEP documents, step task packets, and the retired hand-maintained `PROJECT-STATE.md`; provenance only, never edited (see `docs/history/README.md`).
 - Git commits/tags/PRs — versioned implementation history.
 - generated schemas/tests/CI — executable evidence.
 

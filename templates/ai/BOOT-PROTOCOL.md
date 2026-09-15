@@ -1,105 +1,82 @@
-# SIRA Boot / Recovery Protocol Template
+# SIRA Boot / Recovery Checklist
 
-This is the **full** boot. `AGENTS.md` § Session Boot Protocol defines when it
-is required (governance/state work, reconciliation, recovery, protected
-operations, or drift reported by `docs/STATE.md`). Ordinary engineering tasks
-boot from `docs/STATE.md` plus Git and the files they touch.
+Use for full boot (governance or durable-state changes, state reconciliation,
+interrupted-session recovery, anything touching a protected operation) and
+whenever `docs/STATE.md` reports drift you must resolve. Ordinary engineering
+boots with `docs/STATE.md` + Git + the files the task touches (`AGENTS.md`
+§ Session Boot Protocol). Terminology, roles, profiles, and evidence authority
+are defined in `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`; this checklist
+applies them and adds nothing.
 
-## Session identity
+## 1. Identity (fill in)
 
-- Active role:
-- Task ID:
-- Task Packet location/source:
-- Repository:
+- Task ID (belongs to the project workflow; never minted because a chat was replaced):
+- Task Packet location:
+- Logical role: `IMPLEMENTATION` | `INDEPENDENT_GITHUB_VERIFICATION` | `PROGRAM_CONTROL` | `DOMAIN_GOVERNANCE`
 - Execution profile: `LOCAL` | `CLOUD_GITHUB` | null
-- Local evidence required: false
+- `localEvidenceRequired`: true | false
 
-For mutation-capable work, the logical role is `IMPLEMENTATION`; the execution
-profile selects environment/capabilities and does not change authority.
+## 2. Boot — in this order, tick each
 
-Task IDs belong to the project workflow. Do not create a new Task ID merely
-because a chat or session was replaced.
+- [ ] `AGENTS.md`
+- [ ] `docs/STATE.md`
+- [ ] `docs/AI-ENGINEERING-OS.md` → the normative protocol
+- [ ] the exact active Task Packet (role, profile, `localEvidenceRequired`)
+- [ ] Git/GitHub baseline for that profile:
+  - `LOCAL`: current branch, HEAD, remotes, tracked/untracked working tree,
+    protected local evidence, recent commits, tags
+  - `CLOUD_GITHUB`: default branch, exact baseline, task branch/PR state,
+    candidate state, checks, merge state; local-only facts are `REPORT_ONLY`
+    or `NOT_VERIFIED_BY_THIS_AGENT`
+- [ ] `project-state.json`
+- [ ] `docs/SOURCE-OF-TRUTH.md`
+- [ ] relevant `docs/DECISIONS.md` entries / `docs/adr/`
+- [ ] `docs/HANDOFF.md`, and the latest `docs/handoff-log/` entry when resuming
+- [ ] open PRs: exact candidate heads, checks, reviews, merge state
+- [ ] accepted prior evidence coordinates; relevant source, generated
+      contracts, tests, runtime evidence
+- [ ] reconcile discrepancies by the protocol's authority hierarchy **before**
+      any mutation
 
-## Boot sequence
+Never skip an item silently; report `WARNING` or `BLOCKED` naming the missing
+or conflicting source. Never state that boot completed when it did not.
 
-1. Read `AGENTS.md`.
-2. Read `docs/AI-ENGINEERING-OS.md` and its normative protocol.
-3. Read the exact active Task Packet and identify the logical role, execution
-   profile, and `localEvidenceRequired` value.
-4. Inspect the current Git/GitHub baseline and task branch/candidate state
-   appropriate to that profile.
-5. If the profile is `LOCAL`, inspect current local branch, HEAD, remotes,
-   tracked/untracked working tree, protected local evidence, recent commits,
-   and tags as required by the task.
-6. If the profile is `CLOUD_GITHUB`, inspect current GitHub default branch,
-   exact baseline, task branch/PR state, candidate state, checks, and merge
-   state; classify local-only facts as `REPORT_ONLY` or
-   `NOT_VERIFIED_BY_THIS_AGENT`.
-7. Read `project-state.json`, `docs/PROJECT-STATE.md`,
-   `docs/SOURCE-OF-TRUTH.md`, `docs/DECISIONS.md`, `docs/HANDOFF.md`, and
-   relevant ADRs.
-8. Inspect open PRs, exact candidate heads, checks, reviews, and merge state as
-   applicable.
-9. Inspect accepted prior evidence coordinates and relevant source, generated
-   contracts, tests, and runtime evidence.
-10. Reconcile discrepancies using the normative authority hierarchy before
-    mutation.
+## 3. Baseline lock (record before mutating)
 
-## Baseline lock
+| Field | Value |
+|---|---|
+| Expected baseline | |
+| Verified baseline | |
+| Execution profile | |
+| Task branch / candidate state | |
+| Local current branch | `NOT APPLICABLE` / `NOT_VERIFIED_BY_THIS_AGENT` / value |
+| Local tracked working tree | same |
+| Local untracked / protected evidence | same |
+| Drift classification | none / `BLOCKED_BASELINE_DRIFT` |
 
-- Expected baseline:
-- Verified baseline:
-- Execution profile:
-- Repository/task branch state:
-- Candidate/PR state:
-- Local current branch: `NOT APPLICABLE` / `NOT_VERIFIED_BY_THIS_AGENT` / value
-- Local tracked working tree: `NOT APPLICABLE` / `NOT_VERIFIED_BY_THIS_AGENT` / value
-- Local untracked/protected evidence: `NOT APPLICABLE` / `NOT_VERIFIED_BY_THIS_AGENT` / value
-- Drift classification:
+Expected ≠ verified → stop unless adaptation is explicitly authorized. Never
+reconstruct authority from chat memory. For `CLOUD_GITHUB`, missing unrelated
+local evidence is not a blocker unless `localEvidenceRequired=true` or task
+correctness depends on it; never fabricate local state.
 
-If expected and verified baseline differ, stop unless adaptation is explicitly
-authorized. Do not reconstruct authority from chat memory.
+## 4. Interrupted-session recovery (before resuming any mutation task)
 
-For `CLOUD_GITHUB`, lack of unrelated local evidence is not a blocker unless
-`localEvidenceRequired=true` or the task's correctness actually depends on that
-evidence. Never fabricate local filesystem state.
+Inspect, without mutating, using the selected profile:
 
-## Recovery result
+- [ ] authorized baseline and task/candidate coordinates
+- [ ] does the authorized work branch already exist?
+- [ ] commits since the expected baseline
+- [ ] live remote branch / PR state; existing PRs for the branch or Task ID
+- [ ] staged/partial local mutations (`LOCAL` only, when relevant)
+- [ ] task-identified protected local evidence/hashes (only if the profile can verify them)
 
-- Confirmed repository state:
-- Transferred claims still awaiting verification:
-- Report-only/local facts not verified by this agent:
-- Unknown:
-- Active authorization:
-- Scope exclusions:
-- Next safe action:
+Classify: no task work started · safe partial work found · task already
+completed pending handoff · baseline drift · unsafe or ambiguous state. Resume
+only when the active Task Packet or a recovery-resume packet authorizes it;
+keep the same Task ID and branch unless directed otherwise.
 
-## Interrupted-session recovery
+## 5. Recovery result (report)
 
-Use this before resuming after a deleted conversation, new conversation,
-restarted agent, editor crash, or interrupted implementation session. Do not
-blindly rerun the mutation task.
-
-Inspect without mutation using the selected execution profile:
-
-1. current authorized baseline and task/candidate coordinates;
-2. whether the authorized work branch already exists;
-3. commits created since the expected Baseline;
-4. live remote branch/PR state when access is available;
-5. existing PRs for the branch or Task ID;
-6. staged/partial local mutations only when `LOCAL` evidence is available and
-   relevant;
-7. task-identified protected local evidence/hashes only when the selected
-   profile can actually verify them.
-
-Classify the recovery state using task-defined values. Typical concepts are:
-
-- no task work started;
-- safe partial work found;
-- task already completed pending handoff;
-- Baseline drift;
-- unsafe or ambiguous state.
-
-Resume only when the active Task Packet or a recovery-resume packet authorizes
-continuation. Preserve the same Task ID and branch unless explicitly directed
-otherwise.
+Confirmed repository state · transferred claims awaiting verification ·
+report-only/local facts not verified by this agent · unknown · active
+authorization · scope exclusions · next safe action.

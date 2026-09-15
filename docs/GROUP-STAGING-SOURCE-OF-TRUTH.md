@@ -2,7 +2,7 @@
 
 This record preserves the Group staging-first owner decision approved on
 2026-08-18. Its repository-baseline section is historical. For current project
-state use `project-state.json`, `docs/PROJECT-STATE.md`,
+state use `project-state.json`, `docs/STATE.md`,
 `docs/SOURCE-OF-TRUTH.md`, ADR-025, and canonical Git evidence.
 
 ## Repository baseline

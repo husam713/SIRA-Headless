@@ -182,7 +182,7 @@ In the window, in order, with owner "go" before each protected step:
   and `frontend/.env.local`.
 - Repo reconciliation: `openGates.groupCmsOriginRelocation` → CLOSED;
   `authorization` and topology carriers updated; an ADR (or an ADR-036
-  amendment) recording the executed Group cutover; `docs/HANDOFF.md` and
+  amendment) recording the executed Group cutover; `docs/handoff-log/` and
   `docs/SOURCE-OF-TRUTH.md`. `canonicalPublicProductionTopology.apex` is
   contract-locked as `siratrgroup.com` and does **not** change — the public
   apex is still `siratrgroup.com`; only what serves it changes.

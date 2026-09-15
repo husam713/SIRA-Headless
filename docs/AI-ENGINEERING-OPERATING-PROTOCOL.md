@@ -367,7 +367,7 @@ At minimum inspect, as applicable:
    state only when available/required by the selected profile;
 3. `AGENTS.md` and this protocol;
 4. `project-state.json`;
-5. `docs/PROJECT-STATE.md`;
+5. `docs/STATE.md`;
 6. `docs/SOURCE-OF-TRUTH.md`;
 7. `docs/DECISIONS.md` and relevant ADRs;
 8. `docs/HANDOFF.md`;

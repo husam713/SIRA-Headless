@@ -10,7 +10,7 @@ For current project state:
 
 - discover the actual current repository HEAD from Git;
 - use `project-state.json` for machine-readable current project state;
-- use `docs/PROJECT-STATE.md` for human-readable current-state interpretation;
+- use `docs/STATE.md` for human-readable current-state interpretation;
 - use `docs/SOURCE-OF-TRUTH.md` for SIRA-specific source, state, history, and
   conflict mapping;
 - use `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md` as the exclusive normative

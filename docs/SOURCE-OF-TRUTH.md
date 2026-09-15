@@ -36,7 +36,13 @@ to that subsystem.
   `CLAUDE.md`: none of their own.
 - `docs/STATE.md` — the one-page current-state pointer every session reads
   first; it names the verified-through coordinate and any drift between
+  carriers. With `project-state.json` it is one of the only two current-state
   carriers.
+- `docs/HANDOFF.md` — one-page resume pointer; `docs/handoff-log/` — the
+  dated, append-only handoff log it replaced on 2026-09-15.
+- `docs/history/` — STEP documents, step task packets, and the hand-maintained
+  `docs/PROJECT-STATE.md` retired on 2026-09-15 (last verified 2026-09-03).
+  Provenance only; see `docs/history/README.md` for the path map.
 
 ## Current authoritative repository baseline
 
@@ -87,13 +93,15 @@ Healthcare, Consulting, Lifestyle and Real Estate against the shared
 BranchHomepage, reached `main` through PR `#59` at `e3920919`, together with the
 per-viewport visual capture tooling. The G to J fixture-backed visual-fidelity
 correction - the section eyebrow rule and accent, and the header CTA squared to
-the reference - reached `main` through PR `#60` at `a3c3ae3f`. Newsroom route
-work is IMPLEMENTED on the unmerged branch `feat/newsroom-ledger` and is NOT
-merged and NOT owner-accepted: the `/news` archive, the editorial article route,
-the shared `NewsroomPage`, the desk registry and the placeholder-content tooling
-all exist there. Any carrier statement that no newsroom route, component or
-query exists under `frontend/src` is stale and was already stale at
-`f55b5eb5`.
+the reference - reached `main` through PR `#60` at `a3c3ae3f`. On 2026-09-15 the
+Newsroom ("The SIRA Record": the `/news` archive, the editorial article route,
+the shared `NewsroomPage`, the desk registry and the placeholder-content
+tooling) reached `main` through PR `#64` at `4a999bb0`; the SIRA Digital tenant
+through PRs `#65` at `8723f960` and `#66` at `e0ef2f74`; the ADR-036 / SOT-003
+CMS-origin reconciliation through PR `#68` at `db090be6`; and the `docs/STATE.md`
+refresh through PR `#69` at `8e34efef`. Those five merges were executed under an
+explicit owner merge authorization given in-session on 2026-09-15 and carry no
+owner-acceptance comment; post-merge verification is recorded in PR `#70`.
 
 Acceptance evidence differs per pull request and must not be generalized. For
 PRs `#44`, `#46`, `#47`, and `#49` to `#53`, the conversation threads were
@@ -112,7 +120,9 @@ accepted at `219ed48c`, covers G to J branch variant validation only, and
 records an independent review returning APPROVE with Frontend CI run
 33701056508 passing at that head. PR `#60` is accepted at `e82230ac`, covers the
 scoped fixture-backed visual-fidelity correction only, and explicitly accepts
-three non-blocking warnings. None of them authorizes any follow-on task. A merge alone is still not
+three non-blocking warnings. PRs `#64`, `#65`, `#66`, `#68`, and `#69` carry no
+owner-acceptance artifact; their merge commits are the only acceptance-relevant
+artifacts. None of them authorizes any follow-on task. A merge alone is still not
 evidence of owner acceptance, and a `recordedReviews` count of 0 states only
 that no formal GitHub Review object was submitted — it does not establish
 absence of acceptance evidence. See the per-pull-request record in
@@ -155,12 +165,9 @@ Its dimensions are intentionally separate:
 Authorization is preserved as a distinct fact and must not be used as shorthand
 for the Foundation's full current lifecycle state.
 
-The canonical implementation model is one logical role, `IMPLEMENTATION`, with
-execution profile `LOCAL` or `CLOUD_GITHUB`. Program Control selects the
-least-complex profile that can satisfy the task's required evidence,
-validation, security, and mutation requirements. Profile names do not create a
-second authority hierarchy; the normative evidence and role semantics remain
-exclusively in `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`.
+Role, execution-profile, and evidence semantics are defined only in
+`docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`; this registry does not restate
+them.
 
 Validator/CI enforcement and AI Engineering OS product/runtime work remain
 `NOT_AUTHORIZED`. No accepted governance merge automatically authorizes a
@@ -397,7 +404,8 @@ The following are migration archaeology/reference material unless explicitly re-
 - original `sira-core.zip`;
 - original `sira-bricks-child.zip`;
 - legacy Bricks exports and `.dc.html` runtime files;
-- early setup/recovery conversation transcripts.
+- early setup/recovery conversation transcripts;
+- `docs/history/**` and every existing `docs/handoff-log/` entry.
 
 They may explain intent and history but must not override later verified Git/live evidence.
 
@@ -410,5 +418,5 @@ When sources conflict:
 3. classify each claim as CONFIRMED, STRONGLY INFERRED, or UNKNOWN;
 4. apply the Operating Protocol's normative evidence-authority hierarchy;
 5. record the decision in `docs/DECISIONS.md` if architectural;
-6. update this file and `PROJECT-STATE.md` after reconciliation;
+6. update this file, `docs/STATE.md`, and `project-state.json` after reconciliation;
 7. preserve rollback evidence.

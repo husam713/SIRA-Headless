@@ -1,9 +1,10 @@
 # SIRA — current state (read this first)
 
 One page. Facts here are verified against Git/GitHub on the date shown; anything
-older is provenance. Machine-readable twin: `project-state.json`. Full history
-and registries: `docs/HANDOFF.md`, `docs/SOURCE-OF-TRUTH.md`,
-`docs/PROJECT-STATE.md`, `docs/DECISIONS.md`.
+older is provenance. Machine-readable twin: `project-state.json` — these two are
+the only current-state carriers. Resume pointer: `docs/HANDOFF.md`; dated log:
+`docs/handoff-log/`; registry: `docs/SOURCE-OF-TRUTH.md`; decisions:
+`docs/DECISIONS.md`; everything historical: `docs/history/`.
 
 **Verified through:** 2026-09-15 · `main` @ `8e34efef` (merge of PR #69, 2026-09-15)
 
@@ -22,8 +23,9 @@ load automatically from `.claude/rules/` when you touch those paths.
 | Newsroom "The SIRA Record" | merged on `main` — PR **#64** @ `4a999bb0`, 2026-09-15 | Git |
 | SIRA Digital tenant (bilingual, pre-launch host) | merged on `main` — PRs **#65** @ `8723f960`, **#66** @ `e0ef2f74`, 2026-09-15 | Git |
 | CMS-origin relocation reconciliation (ADR-036 / SOT-003) + Group cutover plan | merged on `main` — PR **#68** @ `db090be6`, 2026-09-15 | Git |
+| Post-merge verification record + Phase 3 state-carrier consolidation | PRs **#70** and **#71** (stacked) — open, not merged | GitHub |
 | Backend starter importer | PR **#45** (draft, 2026-08-28) — stale | GitHub |
-| PR **#37** | Vercel bot; Vercel is no longer used — close when convenient | owner decision 2026-09-15 |
+| PR **#37** | closed 2026-09-15 per owner decision; the Vercel GitHub app itself is still installed and posts checks on every PR (GOV-004) | GitHub |
 | Owner's local uncommitted work (Cloud Run Dockerfile, search-indexing switch, newsroom design pass, backend CI) | intentional, in the main checkout, not on any branch yet | owner statement 2026-09-15 |
 
 ## Durable-state carriers
@@ -33,8 +35,8 @@ terms, placeholder editorial seeding (ADR-030/031), blog 6 provisioning
 (ADR-033/034/035), and the live CMS-origin relocation to
 `cms-<tenant>.siratrgroup.com` (ADR-036 / SOT-003) — are on `main` since PR
 #68 (2026-09-15). Do not edit CMS origins or `SIRA_WP_*_GRAPHQL_URL` without
-reading `docs/HANDOFF.md` section "CMS origin relocation — executed
-2026-09-10". Group / blog 1 is still on the apex
+reading "CMS origin relocation — executed 2026-09-10" in
+`docs/handoff-log/2026-09-10-handoff-through-cms-origin-relocation.md`. Group / blog 1 is still on the apex
 (`openGates.groupCmsOriginRelocation` OPEN).
 
 PRs #64, #65, #66, #68 and #69 were merged on 2026-09-15 under an explicit
@@ -75,6 +77,8 @@ unaffected. Candidate fix: a `.gitattributes` rule pinning `tools/*.mjs` to
   OS validator/runtime work beyond this adapter.
 - GitHub now enforces part of this: rulesets on `main` (PR + `frontend` check
   required, no force-push, no delete) and on `step-*` branches/tags (immutable).
+- Phase 3 of the Claude Code adapter (state-carrier consolidation) was
+  authorized by "Start Phase 3" on 2026-09-15: `docs/tasks/TP-P3-STATE-CONSOLIDATION.md`.
 
 ## Open gates
 
@@ -83,10 +87,11 @@ unaffected. Candidate fix: a `.gitattributes` rule pinning `tools/*.mjs` to
 - `blog_public = 0` on the tenants and 37+ `_sira_seed=1` placeholder records: `node tools/verify-no-seed-content.mjs` must pass before launch.
 - `2C4-B09` (Step 3D.3) and `PREVIEW-AUTH-001` remain deferred; full Step 3D closure must not be claimed.
 - Deploy target is in transition (Vercel dropped; Cloud Run files exist locally, untracked).
+- `tests/unit/launch-gate.test.ts` fails on a Windows `autocrlf=true` clone (CRLF shebang in `tools/verify-no-seed-content.mjs`); fix is a `.gitattributes` `eol=lf` rule, not yet authorized.
 
 ## Next step
 
-Phase 3 of the Claude Code adapter: state-carrier consolidation
-(`project-state.json` / `PROJECT-STATE.md` / `HANDOFF.md` / `SOURCE-OF-TRUTH.md`
-still describe #64–#66 as unmerged branches in places). Then close #37, decide
-#45, and bring the owner's local uncommitted work onto a branch.
+Owner merge decision on #70 then #71 (Phase 3). After that: decide #45; bring
+the owner's four local uncommitted work streams onto branches (owner confirms
+authorship first); the CRLF `.gitattributes` fix; uninstall the Vercel GitHub
+app (external admin); Phase 4 — trial the adapter on two or three real tasks.

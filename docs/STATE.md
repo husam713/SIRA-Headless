@@ -5,7 +5,7 @@ older is provenance. Machine-readable twin: `project-state.json`. Full history
 and registries: `docs/HANDOFF.md`, `docs/SOURCE-OF-TRUTH.md`,
 `docs/PROJECT-STATE.md`, `docs/DECISIONS.md`.
 
-**Verified through:** 2026-09-15 · `main` @ `db090be6` (merge of PR #68, 2026-09-15)
+**Verified through:** 2026-09-15 · `main` @ `8e34efef` (merge of PR #69, 2026-09-15)
 
 ## What this repo is
 
@@ -39,13 +39,15 @@ reading `docs/HANDOFF.md` section "CMS origin relocation — executed
 
 PRs #64, #65, #66, #68 and #69 were merged on 2026-09-15 under an explicit
 owner merge authorization given in-session; each head was brought up to date
-with `main` by a GitHub branch update and re-checked green before merging.
+with `main` (GitHub "Update branch" for #64/#65/#66/#68; a local
+`git merge origin/main` pushed by the session for #69) and re-checked green
+before merging.
 Post-merge verification ran the same day (owner-instructed, by the merging
 session — not the independent-verification role): merge SHAs, parents and
 first-parent chain `4a999bb0 → 8723f960 → e0ef2f74 → db090be6 → 8e34efef`
 confirmed; every merged head is an ancestor of `main`; each merge commit's
-tree equals its CI-checked head; the five GitHub branch-update merges equal
-the clean `merge-tree` of their parents (no hand-resolved content); `main`'s
+tree equals its CI-checked head; the five branch-update merges equal the
+clean `merge-tree` of their parents (no hand-resolved content); `main`'s
 tree equals the clean merge of `8cb642d8` + `b7ecda7f` plus `docs/STATE.md`
 only; credential scan of the effective diff clean (the one hit is the env-var
 name `SIRA_WP_DIGITAL_PREVIEW_APPLICATION_PASSWORD`); `step-2c3a/b-approved`

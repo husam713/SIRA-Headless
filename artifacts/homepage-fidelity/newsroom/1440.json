@@ -1,0 +1,1100 @@
+{
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  },
+  "documentHeight": 5933,
+  "horizontalOverflow": 0,
+  "header": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 69,
+    "box": {
+      "display": "block",
+      "gridTemplateColumns": "none",
+      "gap": "normal",
+      "padding": "0 0 0 0",
+      "maxWidth": "none",
+      "background": "oklch(0.97 0.006 75 / 0.92)"
+    }
+  },
+  "headings": [
+    {
+      "tag": "H1",
+      "text": "The Record",
+      "x": 60,
+      "y": 171,
+      "w": 750,
+      "h": 98,
+      "type": {
+        "fontFamily": "Newsreader",
+        "fontSize": 104,
+        "lineHeight": 98,
+        "fontWeight": "400",
+        "letterSpacing": "-1.56",
+        "color": "rgb(247, 244, 237)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "What We Look for in a Strategic Partner",
+      "x": 285,
+      "y": 662,
+      "w": 660,
+      "h": 216,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 72,
+        "lineHeight": 108,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Inside Nairobi’s Diagnostic Imaging Boom",
+      "x": 60,
+      "y": 1167,
+      "w": 468,
+      "h": 102,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 34,
+        "lineHeight": 51,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Why Istanbul Is Becoming Africa’s Investment Bridge",
+      "x": 615,
+      "y": 1167,
+      "w": 358,
+      "h": 78,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 26,
+        "lineHeight": 39,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Press_Release",
+      "x": 1064,
+      "y": 1167,
+      "w": 275,
+      "h": 30,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 20,
+        "lineHeight": 30,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "202614 entries",
+      "x": 60,
+      "y": 1448,
+      "w": 1320,
+      "h": 30,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.76",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Insight_Item",
+      "x": 276,
+      "y": 1511,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "What We Look for in a Strategic Partner",
+      "x": 276,
+      "y": 1621,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "SIRA GROUP Expands Portfolio into Hospitality & Lifestyle",
+      "x": 276,
+      "y": 1756,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Rosina Diagnostic Center Adds PET-CT Molecular Imaging Wing",
+      "x": 276,
+      "y": 1892,
+      "w": 569,
+      "h": 65,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "SIRA GROUP Signs Strategic Partnership with OVAN Group",
+      "x": 276,
+      "y": 2059,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "What We Underwrite",
+      "x": 276,
+      "y": 2195,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "SIRA Lifestyle Opens Founding-Partner Applications for Its First Coast",
+      "x": 276,
+      "y": 2354,
+      "w": 569,
+      "h": 65,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Why Istanbul Remains a Resilient Property Market",
+      "x": 276,
+      "y": 2488,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "SIRA Consulting Appointed to Advise on a Cross-Border Healthcare Platf",
+      "x": 276,
+      "y": 2647,
+      "w": 569,
+      "h": 65,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Bridging Continents Through Smart Investment",
+      "x": 276,
+      "y": 2839,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "A Second Diagnostic Center for East Africa",
+      "x": 276,
+      "y": 2999,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "The Cost of Waiting",
+      "x": 276,
+      "y": 3134,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "SIRA Prime Tops Out Four Weeks Ahead of Schedule",
+      "x": 276,
+      "y": 3269,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Statement on the 2025 Portfolio Review",
+      "x": 276,
+      "y": 3429,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "20257 entries",
+      "x": 60,
+      "y": 3570,
+      "w": 1320,
+      "h": 30,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.76",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Hospitality Is an Operating Business, Not an Asset Class",
+      "x": 276,
+      "y": 3632,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "SIRA GROUP Completes Its Investment in Rosina Diagnostic Center",
+      "x": 276,
+      "y": 3768,
+      "w": 569,
+      "h": 65,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Notes From a Year of Building in Two Time Zones",
+      "x": 276,
+      "y": 3959,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Consulting Practice Expands Its Market-Entry Team",
+      "x": 276,
+      "y": 4119,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Design Brief: The Coastal Residence",
+      "x": 276,
+      "y": 4254,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "SIRA GROUP Turns Ten",
+      "x": 276,
+      "y": 4390,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Land Assembly and the Patience It Requires",
+      "x": 276,
+      "y": 4500,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "20243 entries",
+      "x": 60,
+      "y": 4690,
+      "w": 1320,
+      "h": 30,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.76",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Appointment of a Group Chief Investment Officer",
+      "x": 276,
+      "y": 4753,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "What Good Partnership Looks Like After the First Year",
+      "x": 276,
+      "y": 4863,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "First Clinical Partnership Signed in Nairobi",
+      "x": 276,
+      "y": 5022,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "20232 entries",
+      "x": 60,
+      "y": 5188,
+      "w": 1320,
+      "h": 30,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.76",
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Istanbul Residential: A Ten-Year View",
+      "x": 276,
+      "y": 5251,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Corporate Information Notice",
+      "x": 276,
+      "y": 5410,
+      "w": 569,
+      "h": 32,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 22,
+        "lineHeight": 32,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+        "color": "rgb(32, 36, 43)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Pages",
+      "x": 400,
+      "y": 5643,
+      "w": 300,
+      "h": 17,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.54",
+        "color": "oklab(0.96753 0.000477612 0.00983155 / 0.5)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Companies",
+      "x": 740,
+      "y": 5643,
+      "w": 300,
+      "h": 17,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.54",
+        "color": "oklab(0.96753 0.000477612 0.00983155 / 0.5)"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Connect",
+      "x": 1080,
+      "y": 5643,
+      "w": 300,
+      "h": 17,
+      "type": {
+        "fontFamily": "Archivo",
+        "fontSize": 11,
+        "lineHeight": 17,
+        "fontWeight": "700",
+        "letterSpacing": "1.54",
+        "color": "oklab(0.96753 0.000477612 0.00983155 / 0.5)"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "label": "The Record",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 69,
+      "w": 1440,
+      "h": 443,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "58 0 58 0",
+        "maxWidth": "none",
+        "background": "oklch(0.16 0.024 255)"
+      }
+    },
+    {
+      "label": "Lead entry",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 571,
+      "w": 1440,
+      "h": 468,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "58 0 58 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "Latest entries",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 1039,
+      "w": 1440,
+      "h": 352,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "58 0 58 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "The record",
+      "tag": "SECTION",
+      "x": 0,
+      "y": 1391,
+      "w": 1440,
+      "h": 4179,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "58 0 58 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "202614 entries",
+      "tag": "SECTION",
+      "x": 60,
+      "y": 1448,
+      "w": 1320,
+      "h": 2057,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "20257 entries",
+      "tag": "SECTION",
+      "x": 60,
+      "y": 3570,
+      "w": 1320,
+      "h": 1056,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "20243 entries",
+      "tag": "SECTION",
+      "x": 60,
+      "y": 4690,
+      "w": 1320,
+      "h": 434,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "20232 entries",
+      "tag": "SECTION",
+      "x": 60,
+      "y": 5188,
+      "w": 1320,
+      "h": 324,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "label": "Pages",
+      "tag": "FOOTER",
+      "x": 0,
+      "y": 5570,
+      "w": 1440,
+      "h": 363,
+      "box": {
+        "display": "block",
+        "gridTemplateColumns": "none",
+        "gap": "normal",
+        "padding": "0 0 0 0",
+        "maxWidth": "none",
+        "background": "oklch(0.16 0.024 255)"
+      }
+    }
+  ],
+  "grids": [
+    {
+      "children": 3,
+      "x": 12,
+      "y": 127,
+      "w": 1416,
+      "h": 328,
+      "cols": "66px 66px 66px 66px 66px 66px 66px 66px 66px 66px 66px 66px",
+      "gap": "48px",
+      "firstChildText": "SIRA GROUP · NewsroomThe RecordInvestmen"
+    },
+    {
+      "children": 3,
+      "x": 858,
+      "y": 278,
+      "w": 522,
+      "h": 87,
+      "cols": "170.25px 177.484px 170.266px",
+      "gap": "1px",
+      "firstChildText": "Entries30"
+    },
+    {
+      "children": 6,
+      "x": 60,
+      "y": 512,
+      "w": 1320,
+      "h": 58,
+      "cols": "220px 220px 220px 220px 220px 220px",
+      "gap": "normal",
+      "firstChildText": "All desks30"
+    },
+    {
+      "children": 2,
+      "x": 60,
+      "y": 629,
+      "w": 1320,
+      "h": 353,
+      "cols": "84.3281px 84.3281px 84.3281px 84.3281px 84.3281px 84.3281px 84.3281px 84.3281px 84.3281px 84.3281px 84.3281px 84.3281px",
+      "gap": "32px 28px",
+      "firstChildText": "27 AUG 2026Group"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 1097,
+      "w": 1320,
+      "h": 237,
+      "cols": "526.656px 421.344px 316px",
+      "gap": "56px 28px",
+      "firstChildText": "27 AUG 2026HealthcareInside Nairobi’s Di"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 1478,
+      "w": 1320,
+      "h": 110,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "27 AUG 2026Group"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 1588,
+      "w": 1320,
+      "h": 135,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "22 JUL 2026Consulting"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 1723,
+      "w": 1320,
+      "h": 135,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "22 JUL 2026Lifestyle"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 1859,
+      "w": 1320,
+      "h": 168,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "22 JUL 2026Healthcare"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 2026,
+      "w": 1320,
+      "h": 135,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "22 JUL 2026Real Estate"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 2162,
+      "w": 1320,
+      "h": 159,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "21 MAY 2026Group"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 2321,
+      "w": 1320,
+      "h": 134,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "04 MAY 2026Lifestyle"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 2455,
+      "w": 1320,
+      "h": 159,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "09 APR 2026Real Estate"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 2614,
+      "w": 1320,
+      "h": 192,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "30 MAR 2026Healthcare"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 2806,
+      "w": 1320,
+      "h": 159,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "11 MAR 2026Group"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 2966,
+      "w": 1320,
+      "h": 135,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "19 FEB 2026Healthcare"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 3101,
+      "w": 1320,
+      "h": 135,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "02 FEB 2026Consulting"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 3236,
+      "w": 1320,
+      "h": 159,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "15 JAN 2026Real Estate"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 3396,
+      "w": 1320,
+      "h": 110,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "08 JAN 2026Group"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 3599,
+      "w": 1320,
+      "h": 135,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "24 NOV 2025Lifestyle"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 3735,
+      "w": 1320,
+      "h": 192,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "06 OCT 2025Healthcare"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 3926,
+      "w": 1320,
+      "h": 159,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "12 SEPT 2025Group"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 4086,
+      "w": 1320,
+      "h": 135,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "19 AUG 2025Consulting"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 4221,
+      "w": 1320,
+      "h": 135,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "01 JUL 2025Lifestyle"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 4357,
+      "w": 1320,
+      "h": 110,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "30 MAY 2025Group"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 4467,
+      "w": 1320,
+      "h": 159,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "17 MAR 2025Real Estate"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 4720,
+      "w": 1320,
+      "h": 110,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "11 NOV 2024Group"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 4830,
+      "w": 1320,
+      "h": 159,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "05 AUG 2024Consulting"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 4989,
+      "w": 1320,
+      "h": 135,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "22 APR 2024Healthcare"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 5218,
+      "w": 1320,
+      "h": 159,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "04 DEC 2023Real Estate"
+    },
+    {
+      "children": 3,
+      "x": 60,
+      "y": 5377,
+      "w": 1320,
+      "h": 135,
+      "cols": "144px 932px 144px",
+      "gap": "12px 28px",
+      "firstChildText": "02 NOV 2023Group"
+    },
+    {
+      "children": 4,
+      "x": 60,
+      "y": 5643,
+      "w": 1320,
+      "h": 169,
+      "cols": "300px 300px 300px 300px 0px",
+      "gap": "48px 40px",
+      "firstChildText": "SIRA GROUPShaping a smarter future.Istan"
+    }
+  ]
+}

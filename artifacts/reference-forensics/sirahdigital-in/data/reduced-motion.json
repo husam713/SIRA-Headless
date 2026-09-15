@@ -1,0 +1,107 @@
+{
+  "no-preference": {
+    "eventCount": 47,
+    "uniqueEvents": 25,
+    "counts": {
+      "keyframe:c-marquee:60s": 1,
+      "keyframe:image-flow_flow-text-in__YXyMp:0.76s": 1,
+      "keyframe:launcher-radar:3.3s": 3,
+      "keyframe:launcher-bob:4.5s": 1,
+      "keyframe:image-flow_flow-progress__FohfO:2.8s": 1,
+      "transition:opacity:0.7s, 0.7s, 0.7s": 6,
+      "transition:transform:0.7s, 0.7s, 0.7s": 6,
+      "transition:padding-bottom:0.5s": 1,
+      "transition:padding-left:0.5s": 1,
+      "transition:padding-right:0.5s": 1,
+      "transition:padding-top:0.5s": 1,
+      "transition:backdrop-filter:0.5s": 1,
+      "transition:background-color:0.5s": 1,
+      "transition:border-bottom-color:0.5s": 1,
+      "transition:border-left-color:0.5s": 1,
+      "transition:border-right-color:0.5s": 1,
+      "transition:border-top-color:0.5s": 1,
+      "transition:box-shadow:0.5s": 1,
+      "transition:max-width:0.5s": 1,
+      "transition:opacity:0.6s, 0.6s, 0.6s": 2,
+      "transition:transform:0.6s, 0.6s, 0.6s": 2,
+      "transition:opacity:0.9s, 0.9s": 1,
+      "transition:transform:0.9s, 0.9s": 1,
+      "transition:opacity:0.64s, 0.64s": 5,
+      "transition:transform:0.64s, 0.64s": 5
+    },
+    "state": {
+      "docHeight": 5483,
+      "marqueeAnimation": "60s linear infinite c-marquee",
+      "runningAnimations": [
+        {
+          "name": "c-marquee",
+          "duration": 60000,
+          "playState": "running"
+        },
+        {
+          "name": "image-flow_flow-text-in__YXyMp",
+          "duration": 760,
+          "playState": "finished"
+        },
+        {
+          "name": "image-flow_flow-progress__FohfO",
+          "duration": 2800,
+          "playState": "paused"
+        },
+        {
+          "name": "launcher-radar",
+          "duration": 3300,
+          "playState": "running"
+        },
+        {
+          "name": "launcher-radar",
+          "duration": 3300,
+          "playState": "running"
+        },
+        {
+          "name": "launcher-radar",
+          "duration": 3300,
+          "playState": "running"
+        },
+        {
+          "name": "launcher-bob",
+          "duration": 4500,
+          "playState": "running"
+        }
+      ],
+      "canvasPresent": true,
+      "revealedOpacity": 0
+    }
+  },
+  "reduce": {
+    "eventCount": 25,
+    "uniqueEvents": 18,
+    "counts": {
+      "keyframe:launcher-radar:1e-06s": 3,
+      "keyframe:launcher-bob:1e-06s": 1,
+      "transition:column-gap:1e-06s": 1,
+      "transition:font-size:1e-06s": 3,
+      "transition:letter-spacing:1e-06s": 3,
+      "transition:row-gap:1e-06s": 1,
+      "transition:background-color:1e-06s": 2,
+      "transition:padding-bottom:1e-06s": 1,
+      "transition:padding-left:1e-06s": 1,
+      "transition:padding-right:1e-06s": 1,
+      "transition:padding-top:1e-06s": 1,
+      "transition:backdrop-filter:1e-06s": 1,
+      "transition:border-bottom-color:1e-06s": 1,
+      "transition:border-left-color:1e-06s": 1,
+      "transition:border-right-color:1e-06s": 1,
+      "transition:border-top-color:1e-06s": 1,
+      "transition:box-shadow:1e-06s": 1,
+      "transition:max-width:1e-06s": 1
+    },
+    "state": {
+      "docHeight": 4060,
+      "marqueeAnimation": "1e-06s linear",
+      "runningAnimations": [],
+      "canvasPresent": true,
+      "revealedOpacity": 0
+    }
+  }
+}

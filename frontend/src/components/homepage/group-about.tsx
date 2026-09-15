@@ -51,39 +51,45 @@ export function GroupAbout({ section }: GroupAboutProps) {
       labelledBy={hasHeading ? "about-heading" : undefined}
       label={hasHeading ? undefined : (section.eyebrow ?? "About SIRA Group")}
     >
-      <PageGrid className="gap-y-10">
-        {/* 3 + 8 leaves column 12 open by design — the eyebrow rail and the
-            editorial column, not a full-width split. */}
+      <PageGrid className="gap-y-12 lg:gap-y-10">
+        {/* Eyebrow rail, then narrative, then metrics BESIDE the narrative.
+            The reference sets the figures alongside the copy rather than under
+            it; stacking them ran this section 219px taller than the reference
+            and separated the numbers from the sentence they belong to. */}
         <GridItem span={3}>
           <SectionEyebrow>{section.eyebrow ?? "About SIRA Group"}</SectionEyebrow>
         </GridItem>
 
-        <GridItem span={8} className="flex flex-col gap-12">
+        <GridItem span={5} start={4} className="flex flex-col gap-8">
           {hasHeading ? (
             <h2
               id="about-heading"
-              className="text-balance font-display text-[clamp(2.25rem,5.5vw,5rem)] font-normal leading-[1.05]"
+              className="text-balance font-display text-[clamp(2.25rem,4vw,3.5rem)] font-normal leading-[1.05]"
             >
               {section.heading}
             </h2>
           ) : null}
 
           {hasCopy ? (
-            <p className="max-w-[40rem] text-[clamp(1rem,1.5vw,1.375rem)] leading-relaxed text-brand-ink-soft">
+            <p className="max-w-[38rem] text-[clamp(0.9375rem,1.1vw,1.0625rem)] leading-relaxed text-brand-ink-soft">
               {section.description}
             </p>
           ) : null}
+        </GridItem>
 
-          {hasMetrics ? (
-            <div className="grid grid-cols-2 gap-x-8 gap-y-10 border-t border-brand-border pt-12 sm:grid-cols-4">
+        {hasMetrics ? (
+          // Two columns, matching the reference's 2x2 block, and top-aligned
+          // with the heading rather than trailing the copy.
+          <GridItem span={4} start={9} className="self-start">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-10">
               {section.metrics.map((metric, index) => (
                 // The metric list is a fixed, non-reorderable server-rendered
                 // selection with no stable identifier of its own — index is safe here.
                 <Metric key={index} metric={metric} />
               ))}
             </div>
-          ) : null}
-        </GridItem>
+          </GridItem>
+        ) : null}
       </PageGrid>
     </Section>
   );

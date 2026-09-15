@@ -98,12 +98,26 @@ describe("approved SIRA GraphQL operation contracts", () => {
   });
 
   it("keeps the B4 editorial operation unfiltered by Business Unit", () => {
+    // Unfiltered, not unaware. The newsroom labels every entry with the company
+    // that filed it, so the operation SELECTS the terms; what B4 forbids is
+    // NARROWING by them — a business-unit argument inside `where`, or entering
+    // through the term's own root field. Both belong to
+    // SiraBusinessUnitEditorialFeed instead.
+    const whereArguments = (
+      SIRA_EDITORIAL_FEED_QUERY.source.match(/where:\s*\{[^}]*\}/gu) ?? []
+    ).join(" ");
+
+    expect(whereArguments).not.toMatch(/business.?unit/iu);
     expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toMatch(
-      /business.?unit/iu,
+      /\bsiraBusinessUnit\s*\(/u,
     );
-    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toContain(
-      "siraBusinessUnits",
+
+    // The selection is bounded, and carries nothing beyond the identity and the
+    // slug the frontend desk registry maps.
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).toMatch(
+      /siraBusinessUnits\(first: 4\)/u,
     );
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toContain("count");
   });
 
   it("derives the filtered editorial operation from canonical Codegen output", () => {
@@ -144,6 +158,8 @@ describe("approved SIRA GraphQL operation contracts", () => {
     }
 
     expect(source).not.toContain("siraEditorialFeed");
+    // On a branch tenant every entry belongs to that branch by construction, so
+    // the terms are not re-selected here: the desk comes from the site key.
     expect(source).not.toContain("siraBusinessUnits");
   });
 
@@ -158,9 +174,14 @@ describe("approved SIRA GraphQL operation contracts", () => {
   });
 
   it("uses only the approved root URI and canonical homepage variants", () => {
+    // ADR-034 parameterised the URI so one document resolves `/` and `/ar/`.
+    // The contract that mattered is preserved and asserted directly: the
+    // DEFAULT is still the site root, so every existing caller and every
+    // locale-gated tenant resolves exactly the page it resolved before.
     expect(SIRA_HOMEPAGE_QUERY.source).toContain(
-      'page(id: "/", idType: URI, asPreview: $asPreview)',
+      "page(id: $uri, idType: URI, asPreview: $asPreview)",
     );
+    expect(SIRA_HOMEPAGE_QUERY.source).toMatch(/\$uri: ID = "\/"/u);
     expect(SIRA_HOMEPAGE_QUERY.source).toContain("siraHomepage");
     // No groupHomepage/branchHomepage wrapper — every section is a direct
     // sibling of `variant` (see the note on PresentationFields.php's
@@ -222,7 +243,11 @@ describe("approved SIRA GraphQL operation contracts", () => {
       }),
     );
 
-    expect(relationshipBounds).toHaveLength(16);
+    // Seventeen since ADR-033: the Digital variant contributes one more
+    // bounded editorial connection. The number is asserted rather than
+    // derived on purpose — an UNBOUNDED relationship must fail here, and a
+    // count that recomputed itself from the document could never notice one.
+    expect(relationshipBounds).toHaveLength(17);
     expect([...new Set(relationshipBounds)].sort((left, right) => left - right)).toEqual([
       1,
       6,
@@ -243,6 +268,11 @@ describe("approved SIRA GraphQL operation contracts", () => {
   });
 
   it("uses only evidence-backed native menu locations without a fallback menu", () => {
+    // ADR-034 made the locations variables so the Arabic menus can be read by
+    // this same document. The evidence-backed values are still the contract —
+    // they are now the variable DEFAULTS, so a tenant with no Arabic menus, and
+    // every tenant still gated by 2C4-B09, resolves PRIMARY/FOOTER/LEGAL
+    // exactly as before.
     for (const [scope, location] of [
       ["primary", "PRIMARY"],
       ["footer", "FOOTER"],
@@ -250,8 +280,11 @@ describe("approved SIRA GraphQL operation contracts", () => {
     ] as const) {
       expect(SIRA_NAVIGATION_QUERY.source).toMatch(
         new RegExp(
-          `${scope}: menus\\(first: 2, where: \\{location: ${location}\\}\\)`,
+          `${scope}: menus\\(first: 2, where: \\{location: \\$${scope}\\}\\)`,
         ),
+      );
+      expect(SIRA_NAVIGATION_QUERY.source).toMatch(
+        new RegExp(`\\$${scope}: MenuLocationEnum = ${location}`),
       );
     }
 

@@ -6,6 +6,7 @@
   --color-brand-accent: var(--brand-accent);
   --color-brand-accent-bright: var(--brand-accent-bright);
   --color-brand-on-accent: var(--brand-on-accent);
+  --color-brand-on-deep: var(--brand-on-deep);
   --color-brand-paper: var(--brand-paper);
   --color-brand-paper-glass: var(--brand-paper-glass);
   --color-brand-ink: var(--brand-ink);
@@ -35,6 +36,9 @@
 
   --brand-accent-bright: oklch(0.78 0.14 78);
   --brand-on-accent: #20242b;
+  /* Readable foreground on --brand-deep. Group's paper, because Group's deep is
+     dark; a brand set on a dark ground resolves this to its ink instead. */
+  --brand-on-deep: #f7f4ed;
   --brand-paper-glass: oklch(0.97 0.006 75 / 0.92);
   --brand-ink-soft: oklch(0.45 0.01 260);
   --brand-ink-faint: oklch(0.6 0.01 260);
@@ -46,9 +50,17 @@
   --brand-shadow: oklch(0.08 0.02 255 / 0.85);
   --brand-on-accent-border: oklch(0.16 0.02 260 / 0.18);
   --brand-deep-border: oklch(0.3 0.02 255);
-  --brand-hero-overlay-top: oklch(0.15 0.02 255 / 0.4);
-  --brand-hero-overlay-middle: oklch(0.15 0.02 255 / 0.35);
-  --brand-hero-overlay-bottom: oklch(0.12 0.02 255 / 0.94);
+  /* Hero scrim. Raised from 0.4/0.35 because the group slides are bright
+     daylight photography: at the old strength the headline, the slide index
+     and the whole featured-project selector sat on near-white pixels and were
+     effectively unreadable. The reference's hero art is dark to begin with, so
+     it needed no equivalent. */
+  --brand-hero-overlay-top: oklch(0.15 0.02 255 / 0.62);
+  --brand-hero-overlay-middle: oklch(0.15 0.02 255 / 0.58);
+  --brand-hero-overlay-bottom: oklch(0.12 0.02 255 / 0.96);
+  /* A second scrim along the leading edge, where the headline and copy sit.
+     Vertical alone cannot protect text over a bright subject on one side. */
+  --brand-hero-overlay-lead: oklch(0.13 0.02 255 / 0.55);
 
   /* next/font creates the three lower-level font variables. */
   --font-sira-body:
@@ -59,14 +71,30 @@
     var(--font-newsreader), Georgia, "Times New Roman", serif;
 
   /* Frontend-owned structural tokens. */
-  --layout-container: 82.5rem;
+  /* 88.5rem = the reference's 1320px CONTENT column plus its 48px side padding
+     on both sides. Measured, not chosen: the reference caps CONTENT at 1320
+     and pads outside it, where this token caps the OUTER box and pads inside,
+     so the previous 82.5rem produced a 1224px column — 96px narrower than the
+     reference at every desktop width. With 88.5rem the content column measures
+     928 / 1184 / 1320 / 1320 at 1024 / 1280 / 1440 / 1920, matching the
+     reference exactly at all four. */
+  --layout-container: 88.5rem;
   --layout-reading-width: 42rem;
-  /* Fluid replacement for the stepped py-20 / sm:py-28 / lg:py-36 rhythm.
-     This is an intentional visual evolution, NOT a neutral swap: the two
-     scales coincide only at mobile and >=1600px and diverge most at 768px
-     (80px here against 112px before, -29%). ADR-028 s5 permits the change;
-     the value is what needs reviewing, not the mechanism. */
-  --space-section: clamp(5rem, 9vw, 9rem);
+  /* The shared shell header is `sticky top-0`, so anything else that sticks
+     has to clear it. Its height is padding-driven (py-4 around the wordmark),
+     which is why this is a measured constant rather than something the header
+     can hand out: the newsroom index bar and year spine offset from it. */
+  --shell-header-height: 4.5rem;
+  /* Section rhythm, fitted to the approved reference rather than chosen.
+     Measured block padding on the reference is 64 / 64 / 82 / 96 / 96 / 96 at
+     390 / 768 / 1024 / 1280 / 1440 / 1920, which `clamp(4rem, 8vw, 6rem)`
+     reproduces at every one of those widths. The previous
+     `clamp(5rem, 9vw, 9rem)` produced 130px at 1440 against the reference's
+     96px — 68px of extra height per section, roughly 600px down the page, and
+     the single largest reason the homepage read as longer and emptier than the
+     reference. `.section--tight` inherits the same fit: 0.6 x 96 = 58px,
+     against the reference's measured 56px. */
+  --space-section: clamp(4rem, 8vw, 6rem);
   /* Owner decision: matches the measured SIRA reference baseline
      (24px at the mobile floor, capping at 48px on wide screens).
      Deliberate design DNA, not inherited drift. */
@@ -77,6 +105,13 @@
   --layout-grid-columns: 4;
   /* Sticky header height, used as the anchor scroll offset. */
   --layout-header-offset: 5rem;
+  /* The ground behind THE SIRA RECORD's paper sheet.
+     Derived from the tenant's own paper rather than written as a literal, so a
+     branch site's warm or cool paper carries its ground with it. The approved
+     prototype sets a sheet of paper on a slightly darker ground; this is that
+     relationship expressed against the brand tokens the project already owns. */
+  --brand-ground: color-mix(in oklab, var(--brand-paper) 78%, var(--brand-ink) 22%);
+
   --focus-ring-width: 2px;
   --focus-ring-offset: 4px;
 }
@@ -88,6 +123,38 @@ html:lang(ar) {
     var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
   --font-sira-display:
     var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
+
+  /* Arabic sits lower and reads larger than Latin at the same nominal size, and
+     the ascender/descender pattern needs more room between lines than the tight
+     Latin leading this design uses. These are the two type facts that a mirrored
+     English system gets wrong most visibly. */
+  line-height: 1.85;
+  font-synthesis-weight: none;
+}
+
+/* Two Latin typographic habits that are not merely unnecessary in Arabic but
+   actively wrong:
+   - Arabic script has no letter case, so `text-transform: uppercase` is a no-op
+     at best and mangles transliterated Latin runs at worst.
+   - Letter-spacing severs the cursive joins that make Arabic legible. The
+     negative tracking this design applies to Latin display type is worse still.
+
+   Both are neutralised wherever the language is Arabic. An explicit `lang="en"`
+   island — the language switch, a Latin product name — keeps its own treatment,
+   which is why this is scoped by `:lang()` rather than by class. `!important` is
+   deliberate: these override utility classes, and they are correctness rules
+   rather than style preferences. */
+html:lang(ar) *:not(:lang(en)) {
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+/* Arabic-Indic digits are not universally preferred in Saudi business writing,
+   and mixing them with Latin numerals inside one page is worse than either. The
+   numerals stay Latin; only their font is corrected, because Noto Kufi's digits
+   are the ones that sit correctly beside Arabic text. */
+html:lang(ar) {
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 * {
@@ -108,7 +175,12 @@ html:lang(ar) {
 
 html {
   min-width: 320px;
-  /* Keeps anchor targets clear of the sticky header. */
+  /* Keeps anchor targets clear of the sticky header.
+     This is the ONLY place the header clearance is applied to an anchor. A
+     `scroll-margin` on the target adds to this rather than replacing it, so an
+     element also asking for `calc(header + 2rem)` landed a whole extra header
+     down the page — 192px below the fold on the services index. Targets that
+     want breathing room above them should ask for the breathing room only. */
   scroll-padding-block-start: var(--layout-header-offset);
   background: var(--brand-paper);
   color: var(--brand-ink);
@@ -327,6 +399,185 @@ a {
   }
 }
 
+/* The portfolio rail.
+   Four company panels carry media and therefore need more room per column than
+   a text rail, but the reference deliberately keeps all four in ONE ROW well
+   below the widest desktop rather than dropping to a 2x2 block. Measured on the
+   reference, the company row runs 2 / 2 / 3 / 4 columns at content widths
+   691 / 928 / 1184 / 1320, which the generic ladder above cannot express: it
+   would give 3 columns at 928 and 4 at 1184.
+   These steps are therefore its own, and the generic ladder is left untouched
+   so no other rail — including the Newsroom's — changes. */
+.rail__items--portfolio {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@container rail (min-width: 43rem) {
+  .rail__items--portfolio {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container rail (min-width: 74rem) {
+  .rail__items--portfolio {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@container rail (min-width: 82rem) {
+  .rail__items--portfolio {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* The hero's slow push, measured from the approved design: the active slide's
+   photograph travels from 1 to 1.14 across 7.5s on an ease-out, once, so the
+   motion is fastest as the slide arrives and has all but stopped by the time a
+   reader has finished the headline. A resting 1.02 on the inactive slides keeps
+   the crossfade from snapping between two differently-scaled frames.
+
+   `forwards` matters: without it the image would drop back to 1.02 the instant
+   the animation ends, in the middle of the slide's own dwell. */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.14);
+  }
+}
+
+.hero-media img {
+  transform: scale(1.02);
+}
+
+.hero-media--active img {
+  animation: hero-zoom 7500ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media img,
+  .hero-media--active img {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* The card lift, measured from the approved design (SIRA Group Homepage.dc.html).
+   The same gesture on the company cards and the project cards: an 8px rise on
+   a decelerating curve, with a shadow that says the card came forward.
+
+   The shadow is a variable because the two surfaces need different ones. On the
+   deep section a near-black at 0.85 reads as depth; the same shadow on paper
+   reads as dirt, so the paper cards carry the reference's lighter, wider one. */
+.card-lift {
+  --card-lift-shadow: 0 30px 60px -24px oklch(0.4 0.02 260 / 0.4);
+
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 450ms ease,
+    border-color 450ms ease;
+}
+
+/* On the deep sections a near-black shadow reads as depth; the paper default
+   would be invisible there. */
+.card-lift--deep {
+  --card-lift-shadow: 0 30px 60px -20px var(--brand-shadow);
+}
+
+.card-lift:hover,
+.card-lift:focus-visible,
+.card-lift:focus-within {
+  transform: translateY(-0.5rem);
+  box-shadow: var(--card-lift-shadow);
+}
+
+/* The slow push into a card's picture, also measured from the approved design:
+   1.06 over 600ms while the card itself rises in 450ms. The two different
+   durations are the point — the frame arrives, then the image keeps moving.
+
+   `card-hover` is the trigger and `card-media` is the clipped frame, kept apart
+   from `card-lift` so a card with no surface of its own can move its picture
+   without also growing a shadow it has no edge to cast. */
+.card-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover .card-media img {
+  transition: transform 600ms ease;
+}
+
+.card-hover:hover .card-media img,
+.card-hover:focus-within .card-media img {
+  transform: scale(1.06);
+}
+
+/* The rise and the push are decoration. Without them a card still answers the
+   pointer through its shadow, and nothing moves under a reader who asked for
+   stillness. */
+@media (prefers-reduced-motion: reduce) {
+  .card-hover:hover .card-media img,
+  .card-hover:focus-within .card-media img {
+    transform: none;
+  }
+
+  .card-lift {
+    transition: box-shadow 450ms ease;
+  }
+
+  .card-lift:hover,
+  .card-lift:focus-visible,
+  .card-lift:focus-within {
+    transform: none;
+  }
+}
+
+/* The company card, measured from the approved design (#companies). The media
+   band is a FIXED 300px rather than an aspect ratio, so the row keeps its
+   proportion at every column count and a company with no featured image shows
+   the same band with its badge, number and label rather than collapsing.
+
+   The whole card is the link. The "View all" line inside it is a span, not a
+   second anchor, because an anchor inside an anchor is invalid and would give
+   the card two tab stops for one destination. */
+.company-card {
+  --card-lift-shadow: 0 30px 60px -20px var(--brand-shadow);
+
+  display: block;
+  overflow: hidden;
+  color: var(--brand-paper);
+  text-decoration: none;
+  background: var(--brand-deep-card);
+  border-block-start: 3px solid var(--company-accent, var(--brand-accent));
+}
+
+.company-card__media {
+  position: relative;
+  block-size: 18.75rem;
+  overflow: hidden;
+  background: var(--brand-deep);
+}
+
+.company-card__media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* Keeps the number and the company label legible over any photograph, which is
+   why the band can carry type at all. */
+.company-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    transparent 40%,
+    color-mix(in oklab, var(--brand-deep) 70%, transparent)
+  );
+}
+
 /* No subgrid: fall back to equal-height cells so cards still bottom-align. */
 @supports not (grid-template-rows: subgrid) {
   .rail__items > * {
@@ -341,4 +592,1666 @@ a {
   .rail__items > * > :last-child {
     flex: 1;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Newsroom — "The Register"
+
+   The SIRA mark is one continuous line that turns at right angles and nests
+   inward inside a rotated square. That is the grammar this page is built from,
+   and it is deliberately structural rather than ornamental:
+
+   - THE TURN.  Entries are not cards. Each one sits under a hairline that
+     carries a small right-angled corner mark in its desk's accent. Nothing is
+     boxed; the line runs, turns once, and stops.
+   - THE REGISTER.  A fixed leading margin carries the dateline and the desk, so
+     every entry reports to the same vertical. Down a long archive the corner
+     marks stack into a coloured comb, and the composition of the house becomes
+     readable at a glance without a single badge.
+   - THE NESTING.  The front's three entries step 5 / 4 / 3 columns wide with a
+     matching type-scale step, so importance is expressed by the composition
+     itself rather than by decoration.
+
+   All of it is CSS. There is no newsroom JavaScript.
+   --------------------------------------------------------------------------- */
+
+/* The corner mark. Two arms of equal weight meeting at the entry's leading top
+   corner — the meander's atom. Drawn on pseudo-elements so it costs no markup
+   and is invisible to assistive technology, which reads the desk from the
+   register text instead. */
+.turn {
+  position: relative;
+  border-block-start: 1px solid var(--brand-border);
+  --turn-arm: 1.75rem;
+  --turn-weight: 2px;
+}
+
+.turn::before,
+.turn::after {
+  content: "";
+  position: absolute;
+  inset-block-start: calc(var(--turn-weight) * -0.5 - 1px);
+  inset-inline-start: 0;
+  background: var(--desk-accent, var(--brand-accent));
+}
+
+.turn::before {
+  block-size: var(--turn-weight);
+  inline-size: var(--turn-arm);
+  transition: inline-size 240ms cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.turn::after {
+  inline-size: var(--turn-weight);
+  block-size: var(--turn-arm);
+}
+
+/* The line continues. One transition, on one property, tied to the identity —
+   and it is suppressed with everything else under prefers-reduced-motion. */
+.turn:hover::before,
+.turn:focus-within::before {
+  inline-size: calc(var(--turn-arm) * 2.25);
+}
+
+/* The desk index: one continuous hairline carrying five accent segments whose
+   lengths are the desks' shares of the loaded record. Cells stay even so the
+   labels never crowd; only the rule length varies. */
+.desk-index {
+  /* Positioned so that anything absolutely positioned inside the scroller is
+     contained by it. Without this the nearest positioned ancestor is the
+     sticky nav, and an escaped child adds its overflow to the whole page. */
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(9.5rem, 1fr);
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-block-start: 1px solid var(--brand-border);
+}
+
+.desk-index::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .desk-index {
+    overflow-x: visible;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+}
+
+.desk-index__entry {
+  display: block;
+  padding-block: 0.875rem 1rem;
+  padding-inline-end: 1.25rem;
+  /* ink-soft, not ink-faint: measured against the five approved papers,
+     --brand-ink-faint reaches only 3.60:1 on Group's paper (4.45-4.50:1 on the
+     branch papers) and these are 11px links, not large text. ink-soft measures
+     6.81-7.20:1. The same reason the desk accents never carry type: Group's
+     gold is 2.15:1 on paper and Real Estate's ochre 3.61:1. */
+  color: var(--brand-ink-soft);
+  transition: color 160ms ease;
+}
+
+.desk-index__entry:hover,
+.desk-index__entry[aria-current="page"] {
+  color: var(--brand-ink);
+}
+
+/* Rides the container's hairline. Length is the share; the floor keeps a desk
+   that has published once from reading as a desk that has published nothing. */
+.desk-index__rule {
+  display: block;
+  block-size: 3px;
+  margin-block-start: -0.875rem;
+  margin-block-end: 0.875rem;
+  inline-size: max(1.5rem, calc(var(--desk-share, 0) * 100%));
+  background: var(--desk-accent, var(--brand-accent));
+  opacity: 0.32;
+  transition: opacity 160ms ease;
+}
+
+.desk-index__entry:hover .desk-index__rule,
+.desk-index__entry[aria-current="page"] .desk-index__rule {
+  opacity: 1;
+}
+
+.desk-index__rule--empty {
+  background: var(--brand-border);
+  opacity: 1;
+}
+
+/* The record. A leading register column, then the entry, then the kind — the
+   third column appears only when there is room to set it without squeezing the
+   headline. */
+.record-entry {
+  display: grid;
+  gap: 0.75rem var(--layout-grid-gap);
+  padding-block: 1.75rem 2rem;
+  padding-inline-start: 0;
+}
+
+@media (min-width: 48rem) {
+  .record-entry {
+    grid-template-columns: 9rem minmax(0, 1fr);
+    padding-inline-start: 2.75rem;
+    padding-block: 2rem 2.25rem;
+  }
+}
+
+@media (min-width: 68.75rem) {
+  .record-entry {
+    grid-template-columns: 9rem minmax(0, 1fr) 9rem;
+  }
+}
+
+/* Three lines in the register, matching the approved prototype's line-clamp. */
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+/* The arrow that steps forward as a cell is hovered. One transform, on one
+   property, suppressed with everything else under prefers-reduced-motion. */
+.record-arrow {
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+
+.record-cell:hover .record-arrow,
+.record-cell:focus-within .record-arrow {
+  transform: translateX(4px);
+}
+
+[dir="rtl"] .record-cell:hover .record-arrow,
+[dir="rtl"] .record-cell:focus-within .record-arrow {
+  transform: translateX(-4px);
+}
+
+/* Two lines of summary in the record, however long the CMS excerpt is. The
+   record is for scanning; the article page is where the text is read. */
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+/* The lead. Below lg the plate simply follows the image. From lg the two
+   interlock: the image runs to the leading viewport edge and the text plate
+   overlaps its trailing edge by one column, laid on the page rather than
+   floated above it — two systems that overlap without merging. */
+.lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Below lg the picture clears the container gutter only. */
+.lead__figure {
+  margin-inline: calc(var(--layout-gutter) * -1);
+}
+
+@media (min-width: 68.75rem) {
+  .lead {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: center;
+  }
+
+  /* The distance from the container's content edge to the viewport edge,
+     computed rather than expressed as a percentage: a percentage margin on a
+     grid item resolves against its own track, not against the page. */
+  .lead {
+    --lead-bleed: calc(
+      var(--layout-gutter) + max(0rem, (100vw - var(--layout-container)) / 2)
+    );
+  }
+
+  /* Nine columns against the plate's five: the two-column overlap plus the
+     plate's bottom alignment is what makes the crossing legible. With an equal
+     8/5 split the plate simply covers the picture's edge and the two read as
+     adjacent blocks rather than as one plane laid over another. */
+  .lead__figure {
+    grid-row: 1;
+    grid-column: 1 / span 9;
+    margin-inline-start: calc(var(--lead-bleed) * -1);
+    margin-inline-end: 0;
+  }
+
+  /* The picture runs off the leading edge of the page; the plate runs off the
+     trailing one and is laid across the picture where they meet. Bleeding both
+     ways is what stops the plate reading as a floating card: only its top and
+     leading edges are ever visible, so it is a plane crossing another plane
+     rather than a box sitting on top of one. Aligned to the bottom of the row
+     so its lower edge coincides with the picture's. */
+  .lead__plate {
+    grid-row: 1;
+    grid-column: 8 / -1;
+    align-self: end;
+    z-index: 1;
+    background: var(--brand-paper);
+    padding-block: clamp(2rem, 3vw, 3rem);
+    padding-inline-start: clamp(2rem, 3vw, 3rem);
+    padding-inline-end: var(--lead-bleed);
+    margin-inline-end: calc(var(--lead-bleed) * -1);
+  }
+}
+
+/* The masthead's extent block: hairline-ruled figures, set as a description
+   list so the numbers keep their labels. */
+.extent {
+  display: grid;
+  gap: 1px;
+  background: var(--brand-deep-border);
+  border: 1px solid var(--brand-deep-border);
+}
+
+/* Auto-flow rather than a fixed count: the block carries two cells when the
+   record has no usable dates and three when it does, and a fixed track would
+   leave the missing one showing as a slab of rule colour. */
+@media (min-width: 30rem) {
+  .extent {
+    grid-auto-flow: column;
+    /* min-content, not 0: "2023-2026" is wider than an equal third of the
+       block, and equal tracks pushed it straight through the cell rule. */
+    grid-auto-columns: minmax(min-content, 1fr);
+  }
+}
+
+.extent__cell {
+  padding: 1rem 1.125rem 1.125rem;
+  background: var(--brand-deep);
+}
+
+/* The hero's leading-edge scrim.
+   A gradient cannot be expressed in logical directions, so the RTL case is an
+   explicit override rather than something `margin-inline` style properties can
+   handle for us. */
+.hero-scrim-lead {
+  background-image: linear-gradient(
+    to right,
+    var(--brand-hero-overlay-lead) 0%,
+    transparent 62%
+  );
+}
+
+[dir="rtl"] .hero-scrim-lead {
+  background-image: linear-gradient(
+    to left,
+    var(--brand-hero-overlay-lead) 0%,
+    transparent 62%
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   THE SIRA RECORD
+
+   The editorial system shared by the Newsroom archive and the article detail
+   page, from the two approved prototypes. Both are one design: a sheet of paper
+   ruled like a printed record, laid on a darker ground, with dark "signal"
+   panels used as editorial counterweight rather than decoration.
+
+   Rules live here rather than as utilities because the same hairline grammar
+   repeats across a dozen components, and because the register's cell borders
+   depend on nth-child position, which utilities express badly.
+   --------------------------------------------------------------------------- */
+
+.record-ground {
+  background: var(--brand-ground);
+}
+
+/* The sheet. Full-bleed on small screens; a bordered page above that. */
+.record-shell {
+  background: var(--brand-paper);
+  border: 1px solid var(--brand-border);
+  overflow: hidden;
+}
+
+.record-wrap {
+  width: min(100%, 77.5rem);
+  margin-inline: auto;
+}
+
+@media (min-width: 34rem) {
+  .record-wrap {
+    margin-block: clamp(1.5rem, 3vw, 2.5rem);
+    padding-inline: 1.125rem;
+  }
+}
+
+/* Section padding inside the sheet. Tighter than the site's --space-section:
+   this is a ruled document, not a landing page. */
+.record-pad {
+  padding-inline: clamp(0.9375rem, 2.2vw, 1.375rem);
+}
+
+.record-rule {
+  border-block-end: 1px solid var(--brand-border);
+}
+
+/* The dark signal panel, shared by the newsroom lead and the article hero.
+   The faint diagonals are a printing artefact, not an image: two gradients,
+   no asset, no request. */
+.record-signal {
+  position: relative;
+  overflow: hidden;
+  background: var(--brand-deep);
+  color: var(--brand-paper);
+}
+
+.record-signal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, transparent 0 48%, rgb(255 255 255 / 0.05) 48% 49%, transparent 49% 100%),
+    linear-gradient(45deg, transparent 0 62%, rgb(255 255 255 / 0.035) 62% 63%, transparent 63% 100%);
+}
+
+.record-signal > * {
+  position: relative;
+}
+
+.record-signal {
+  min-block-size: 10.9375rem;
+}
+
+.record-split--article > .record-signal {
+  min-block-size: 11.5625rem;
+}
+
+/* The register: the compact story grid. Cell borders come from the grid rather
+   than from each card, so the whole block reads as one ruled table. */
+.record-register {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-block-start: 1px solid var(--brand-border);
+}
+
+.record-cell {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  min-block-size: 11.875rem;
+  padding: 1.0625rem clamp(0.9375rem, 2.2vw, 1.125rem);
+  border-block-end: 1px solid var(--brand-border);
+  position: relative;
+  transition: background 180ms ease;
+}
+
+/* The accent rule that draws across the top of a cell on hover — the register's
+   one piece of motion, and the same gesture the article's related cards use. */
+.record-cell::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline-start: 0;
+  block-size: 2px;
+  inline-size: 0;
+  background: var(--desk-accent, var(--brand-accent));
+  transition: inline-size 250ms ease;
+}
+
+.record-cell:hover,
+.record-cell:focus-within {
+  background: color-mix(in oklab, white 34%, transparent);
+}
+
+.record-cell:hover::before,
+.record-cell:focus-within::before {
+  inline-size: 100%;
+}
+
+@media (min-width: 29.4375rem) {
+  .record-register {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .record-cell {
+    border-inline-end: 1px solid var(--brand-border);
+    min-block-size: 13.75rem;
+  }
+
+  .record-cell:nth-child(2n) {
+    border-inline-end: 0;
+  }
+}
+
+@media (min-width: 43.8125rem) {
+  .record-register {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .record-cell:nth-child(2n) {
+    border-inline-end: 1px solid var(--brand-border);
+  }
+
+  .record-cell:nth-child(3n) {
+    border-inline-end: 0;
+  }
+}
+
+/* Two-column splits: the newsroom lead and the article hero. */
+.record-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* The archive lead splits at 700px into 1.55 / 0.75 and holds a 310px row.
+   The article hero holds its single column to 820px and then splits narrower,
+   because its headline is 72px against the lead's 54px and needs the width for
+   longer. Two rules rather than one shared compromise. */
+@media (min-width: 43.8125rem) {
+  .record-split:not(.record-split--article) {
+    grid-template-columns: minmax(0, 1.55fr) minmax(13.75rem, 0.75fr);
+    min-block-size: 19.375rem;
+  }
+}
+
+@media (min-width: 51.375rem) {
+  .record-split--article {
+    grid-template-columns: minmax(0, 1.55fr) minmax(13.75rem, 0.6fr);
+    min-block-size: 20.625rem;
+  }
+}
+
+/* The label / value rail used by the masthead's desk head and the year rows. */
+.record-aside {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.625rem;
+}
+
+@media (min-width: 43.8125rem) {
+  .record-aside {
+    grid-template-columns: 10.625rem minmax(0, 1fr);
+    gap: 1.375rem;
+  }
+}
+
+/* Article body measure and rails. */
+.record-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+@media (min-width: 33.8125rem) {
+  .record-body {
+    grid-template-columns: 6.5625rem minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+
+  /* Without a context rail the reading column simply takes the space. */
+  .record-body > .record-context {
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 51.375rem) {
+  .record-body {
+    grid-template-columns: 9.375rem minmax(0, 40rem) minmax(9.375rem, 1fr);
+  }
+
+  .record-body > .record-context {
+    grid-column: auto;
+  }
+
+  /* With nothing meaningful for the context rail the third track is dropped
+     entirely and the reading column takes the space, rather than the page
+     holding a column open around an absence. */
+  .record-body--no-context {
+    grid-template-columns: 9.375rem minmax(0, 44rem);
+  }
+}
+
+/* On small screens the metadata rail stops being a sidebar and becomes a band. */
+.record-rail--band {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.625rem;
+  border-block-end: 1px solid var(--brand-border);
+  padding-block-end: 0.75rem;
+}
+
+@media (min-width: 33.8125rem) {
+  .record-rail--band {
+    display: block;
+    border-block-end: 0;
+    padding-block-end: 0;
+  }
+}
+
+/* THE RECORD's long-form prose.
+   Set against the record's own measure and rhythm rather than the site-wide
+   Prose primitive: this is the one place on the site designed for sustained
+   reading, and it uses the display serif for body copy, which nothing else
+   does. Encoded once here so an article never needs a one-off stylesheet. */
+.record-prose {
+  color: var(--brand-ink);
+}
+
+.record-prose > :first-child {
+  margin-block-start: 0;
+}
+
+.record-prose p {
+  font-family: var(--font-sira-display);
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  color: color-mix(in oklab, var(--brand-ink) 88%, var(--brand-paper) 12%);
+  margin-block: 0 1.4375rem;
+}
+
+/* The opening paragraph carries the reader in at a larger size, as the
+   approved prototype's `.intro` does. Selected structurally so an editor does
+   not have to remember to tag it. */
+.record-prose > p:first-of-type {
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: var(--brand-ink);
+}
+
+.record-prose h2 {
+  font-family: var(--font-sira-display);
+  font-weight: 400;
+  font-size: clamp(1.625rem, 3vw, 2.125rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-block: 2.5rem 1rem;
+}
+
+.record-prose h3 {
+  font-family: var(--font-sira-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 2vw, 1.4375rem);
+  line-height: 1.1;
+  margin-block: 1.875rem 0.8125rem;
+}
+
+.record-prose ul,
+.record-prose ol {
+  font-family: var(--font-sira-display);
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  padding-inline-start: 1.25rem;
+  margin-block: 0 1.4375rem;
+}
+
+.record-prose li {
+  margin-block-end: 0.5rem;
+}
+
+.record-prose blockquote {
+  margin-block: 2.375rem;
+  padding-block: 1.375rem;
+  padding-inline-start: 1.5rem;
+  border-inline-start: 3px solid var(--desk-accent, var(--brand-accent));
+  font-family: var(--font-sira-display);
+  font-size: clamp(1.375rem, 2.6vw, 1.6875rem);
+  line-height: 1.25;
+  color: var(--brand-ink);
+}
+
+.record-prose a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--desk-accent, var(--brand-accent));
+}
+
+.record-prose figure {
+  margin-block: 2.125rem;
+}
+
+.record-prose img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+.record-prose figcaption {
+  margin-block-start: 0.625rem;
+  font-size: 0.5625rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--brand-ink-soft);
+}
+
+.record-prose hr {
+  border: 0;
+  border-block-start: 1px solid var(--brand-border);
+  margin-block: 2.25rem;
+}
+
+.record-prose code {
+  font-size: 0.875em;
+}
+
+/* ---------------------------------------------------------------------------
+   SIRA Digital (ADR-033)
+   ---------------------------------------------------------------------------
+   Digital is the one company allowed a substantially more technology-forward
+   surface. Everything below is Layer C — progressive premium enhancement — and
+   ADR-028's constraint holds: none of it may be required for navigation,
+   comprehension, accessibility, forms, or core CTA behaviour.
+
+   It is built on scroll-driven CSS animations rather than on
+   IntersectionObserver, for three reasons in this order:
+
+     1. Content is visible by default. A reveal here is an animation that plays,
+        not a hidden state waiting to be released, so a browser without
+        scroll-driven animations — or a page whose JavaScript never runs — shows
+        a complete readable section rather than blank ground. A JS-gated reveal
+        gets this wrong the moment hydration fails.
+     2. Every section stays a Server Component. The architecture lock keeps
+        Client Components to required interaction, and a decorative reveal is
+        not required interaction.
+     3. It runs off the main thread.
+
+   Reduced motion is handled twice on purpose: the global kill switch earlier in
+   this file collapses durations, and each block below adds a STRUCTURAL
+   fallback, so the page becomes a shorter static document rather than a fast
+   version of a long animated one. */
+
+:root {
+  /* The house easing for this tenant. One curve for every reveal and nudge;
+     consistency of easing is most of what reads as craft. */
+  --digital-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --digital-reveal-distance: 1.25rem;
+  /* The kinetic band's scroll runway, as a multiple of the stage. */
+  --digital-kinetic-track: 220svh;
+  --digital-kinetic-size-start: clamp(3.5rem, 14vw, 13.5rem);
+  --digital-kinetic-size-end: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+/* --- Reveal ---------------------------------------------------------------
+   Opacity 0 to 1 with a 20px rise, played against the element's own view
+   timeline. The 6% entry point is what an observer threshold would otherwise
+   express, and finishing at 26% of cover means nothing is still animating while
+   it is being read.
+
+   --digital-reveal-offset staggers siblings by moving the START of the range
+   rather than by adding a delay: a scroll-driven animation has no wall-clock
+   delay to add, and offsetting the range is what produces the same cascade. */
+@keyframes digital-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(var(--digital-reveal-distance));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .digital-reveal {
+      animation: digital-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry calc(6% + var(--digital-reveal-offset, 0%)) cover
+        calc(26% + var(--digital-reveal-offset, 0%));
+    }
+  }
+}
+
+/* --- Capability rail ------------------------------------------------------ */
+.digital-rail__title,
+.digital-rail__arrow {
+  transition: transform 220ms var(--digital-ease), color 220ms var(--digital-ease);
+}
+
+.digital-rail__item:focus-within .digital-rail__arrow {
+  transform: translateX(0.375rem);
+  color: var(--brand-ink);
+}
+
+/* translateX is physical. Nudging the arrow "forward" is leftward in Arabic. */
+[dir="rtl"] .digital-rail__item:focus-within .digital-rail__arrow {
+  transform: translateX(-0.375rem);
+}
+
+@media (hover: hover) {
+  .digital-rail__item:hover .digital-rail__arrow {
+    transform: translateX(0.375rem);
+    color: var(--brand-ink);
+  }
+
+  .digital-rail__item:hover .digital-rail__title {
+    transform: translateY(-2px);
+  }
+
+  [dir="rtl"] .digital-rail__item:hover .digital-rail__arrow {
+    transform: translateX(-0.375rem);
+  }
+}
+
+/* --- Service specification -------------------------------------------------
+   Each service body is a fixed six-part record — the problem, what changes,
+   what the system does, what it connects to, where a person stays in the loop,
+   what it is for — which the CMS stores as <h2>label</h2><p>value</p> pairs.
+
+   `record-prose` styles an ARTICLE, where an h2 is a real section heading and
+   34px is right. Here the same element is a two-word LABEL sitting under the
+   service's own 52px title, so the article scale inverts the hierarchy: the
+   label competes with the thing it belongs to, and six of them cost roughly
+   925px per service. This modifier gives those labels the site's own label
+   scale — the one already used for every eyebrow and field label — without
+   touching `record-prose`, which is still correct for the newsroom.
+
+   Spacing lives AFTER each value rather than BEFORE each label on purpose: in
+   the two-column mode below, a top margin on the first label of column two
+   would push that column's first line out of alignment with column one's, and
+   there is no selector for "first element in a column". */
+.digital-spec > h2 {
+  font-family: var(--font-sira-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-ink-faint);
+  margin-block: 0 0.625rem;
+  break-after: avoid;
+}
+
+/* The value, including the first one: `record-prose`'s opening-paragraph
+   treatment is an article's lead-in, and the first value of a specification is
+   not a lead-in. */
+.digital-spec > p,
+.digital-spec > p:first-of-type {
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  color: color-mix(in oklab, var(--brand-ink) 88%, var(--brand-paper) 12%);
+  margin-block: 0 1.875rem;
+  break-inside: avoid;
+  orphans: 2;
+  widows: 2;
+}
+
+.digital-spec > :last-child {
+  margin-block-end: 0;
+}
+
+/* Two columns from xl, because the space is already there and empty: the
+   content track measures 1000px at 1440 while the prose measure is 568px, so
+   43% of every service body was blank ground beside the text. Below xl the
+   track is too narrow to divide — 608px at 1024 — and it stays one column. */
+@media (min-width: 80rem) {
+  .digital-spec {
+    columns: 2;
+    column-gap: clamp(2.5rem, 4vw, 3.5rem);
+  }
+}
+
+/* --- Service index (scroll-spy) -------------------------------------------
+   The reference drives its services rail from a scroll-spy, and on a page this
+   long a rail that cannot say where you are is a list of links rather than an
+   index. This does it without a Client Component, so the architecture lock
+   holds and the page stays a Server Component: each service block publishes a
+   named view timeline, the grid puts those names in scope, and each rail entry
+   animates against its own block's timeline.
+
+   `view-timeline-inset` is what turns "in view" into "at the reading line".
+   It shrinks the timeline's scrollport to a narrow band just below the header,
+   so exactly one block — the one being read — is ever inside it.
+
+   What the animation drives is one registered number, not the colours
+   themselves. An animation outranks every author declaration in the cascade,
+   so animating `border-color` directly would have silently killed :hover and
+   :focus-visible on the same entry for the whole life of the page. Moving the
+   scroll signal into a custom property leaves the colours as ordinary
+   declarations that a pointer or the keyboard can still override.
+
+   The keyframes are 0 at both ends and 1 in between, because `fill: both`
+   would otherwise leave every entry stuck in its final state once its block
+   had passed. The 0.01% shoulders make the change read as a switch while
+   keeping the property interpolable. */
+@property --digital-index-spy {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@keyframes digital-index-spy {
+  0%,
+  100% {
+    --digital-index-spy: 0;
+  }
+
+  0.01%,
+  99.99% {
+    --digital-index-spy: 1;
+  }
+}
+
+.digital-index__link {
+  border-color: color-mix(
+    in oklab,
+    var(--brand-accent) calc(var(--digital-index-spy) * 100%),
+    var(--brand-border)
+  );
+  color: color-mix(
+    in oklab,
+    var(--brand-ink) calc(var(--digital-index-spy) * 100%),
+    var(--brand-ink-soft)
+  );
+  transition: border-color 300ms var(--digital-ease), color 300ms var(--digital-ease);
+}
+
+/* 0.15s against the entry's 0.3s, matching the reference's measured pair. */
+.digital-index__number {
+  color: color-mix(
+    in oklab,
+    var(--brand-accent) calc(var(--digital-index-spy) * 100%),
+    var(--brand-ink-faint)
+  );
+  transition: color 150ms var(--digital-ease);
+}
+
+/* Intent still outranks position: reaching for an entry lights it whether or
+   not it is the one being read. */
+.digital-index__link:focus-visible,
+.digital-index__link:focus-visible .digital-index__number {
+  color: var(--brand-ink);
+}
+
+.digital-index__link:focus-visible {
+  border-color: var(--brand-accent);
+}
+
+@media (hover: hover) {
+  .digital-index__link:hover {
+    border-color: var(--brand-accent);
+    color: var(--brand-ink);
+  }
+
+  .digital-index__link:hover .digital-index__number {
+    color: var(--brand-ink);
+  }
+}
+
+/* Not gated on prefers-reduced-motion, unlike every other block in this layer.
+   Nothing here moves: it swaps two colours to say which section is being read,
+   which is orientation on a page seven screens long, and a reader who has asked
+   for less motion needs that as much as anyone. The global kill switch earlier
+   in this file collapses the 300ms transition to nothing for them, so the
+   change lands instantly instead of easing.
+
+   The duration exemption is what keeps that true. That kill switch forces
+   `animation-duration: 0.01ms` on everything, and a scroll-driven animation
+   given an explicit duration finishes inside the first fraction of its range
+   and then sits in its fill state — which for these keyframes is the inactive
+   one, so every entry would have gone permanently dark. `auto` is the value
+   that means "take the duration from the timeline", and the class selector
+   outranks the universal one it is overriding. */
+@supports (animation-timeline: view()) and (timeline-scope: --sira) {
+  .digital-index__block {
+    view-timeline-name: var(--digital-index-timeline);
+    /* From just under the header to 15% of the way down the viewport. */
+    view-timeline-inset: var(--layout-header-offset) 85%;
+  }
+
+  .digital-index__link {
+    animation: digital-index-spy linear both;
+    animation-timeline: var(--digital-index-timeline);
+    animation-range: cover 0% cover 100%;
+    animation-duration: auto !important;
+  }
+}
+
+/* --- Marquee --------------------------------------------------------------
+   Same two-keyframe RTL treatment as the Group ticker: the duplicated strip
+   overflows toward the inline end, which is the opposite physical direction in
+   Arabic, so a single -50% keyframe would animate RTL into blank space. */
+@keyframes digital-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes digital-marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+.digital-marquee {
+  --digital-marquee-fade: 10%;
+  overflow-x: clip;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--digital-marquee-fade),
+    #000 calc(100% - var(--digital-marquee-fade)),
+    transparent 100%
+  );
+}
+
+.digital-marquee__track {
+  display: flex;
+  inline-size: max-content;
+  animation: digital-marquee 60s linear infinite;
+  will-change: transform;
+}
+
+[dir="rtl"] .digital-marquee__track {
+  animation-name: digital-marquee-rtl;
+}
+
+/* Ambient motion yields to intent: a reader who reaches for an item, with a
+   pointer or with the keyboard, stops the strip. */
+.digital-marquee:hover .digital-marquee__track,
+.digital-marquee:focus-within .digital-marquee__track {
+  animation-play-state: paused;
+}
+
+/* --- Kinetic wordmark -----------------------------------------------------
+   A tall track with a sticky stage inside it. The word scales down and rises as
+   the track passes, and the lockup underneath arrives in the last third.
+
+   Size is driven by font-size rather than by scale() so the type stays crisply
+   hinted at every step instead of being resampled. */
+.digital-kinetic {
+  position: relative;
+  view-timeline-name: --digital-kinetic;
+  view-timeline-axis: block;
+}
+
+.digital-kinetic__stage {
+  position: sticky;
+  top: var(--layout-header-offset);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.25rem, 3.5svh, 2.75rem);
+  block-size: calc(100svh - var(--layout-header-offset));
+  overflow: hidden;
+}
+
+.digital-kinetic__word {
+  margin: 0;
+  font-size: var(--digital-kinetic-size-end);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.digital-kinetic__lockup {
+  max-inline-size: 46ch;
+  text-align: center;
+}
+
+@keyframes digital-kinetic-word {
+  from {
+    font-size: var(--digital-kinetic-size-start);
+    transform: translateY(0.8125rem);
+  }
+  to {
+    font-size: var(--digital-kinetic-size-end);
+    transform: translateY(-0.8125rem);
+  }
+}
+
+@keyframes digital-kinetic-lockup {
+  0%,
+  62% {
+    opacity: 0;
+    transform: translateY(2.125rem);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .digital-kinetic {
+      block-size: var(--digital-kinetic-track);
+    }
+
+    .digital-kinetic__word {
+      animation: digital-kinetic-word linear both;
+      animation-timeline: --digital-kinetic;
+      animation-range: contain 0% contain 100%;
+      will-change: font-size, transform;
+    }
+
+    .digital-kinetic__lockup {
+      animation: digital-kinetic-lockup linear both;
+      animation-timeline: --digital-kinetic;
+      animation-range: contain 0% contain 100%;
+      will-change: opacity, transform;
+    }
+  }
+}
+
+/* Structural reduced-motion fallbacks. Not the same page faster — a shorter
+   page. The kinetic band loses its whole scroll runway and becomes an ordinary
+   block, and the marquee stops being a strip and becomes a wrapped list, which
+   is why the duplicated half is hidden rather than merely halted. */
+@media (prefers-reduced-motion: reduce) {
+  .digital-kinetic {
+    block-size: auto;
+  }
+
+  .digital-kinetic__stage {
+    position: static;
+    block-size: auto;
+    padding-block: clamp(4rem, 12svh, 8.75rem);
+  }
+
+  .digital-marquee {
+    mask-image: none;
+    overflow-x: visible;
+  }
+
+  .digital-marquee__track {
+    inline-size: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 1.75rem;
+    animation-name: none;
+    transform: none;
+  }
+
+  .digital-marquee__item[data-duplicate="true"] {
+    display: none;
+  }
+}
+
+
+/* --- About: figures band --------------------------------------------------
+   Four columns at the reference's proportions, but driven by how many figures
+   the CMS actually holds so three do not leave a hole and five do not wrap into
+   a ragged second row.
+
+   The dividers are borders on the cells rather than a background trick, because
+   the count is dynamic: `:not(:first-child)` puts a rule between every pair and
+   never on the outside, at any count, in either direction. `border-inline-start`
+   rather than `border-left` is what makes that survive RTL. */
+.digital-stat-band {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.digital-stat-band__cell {
+  padding-inline: 0;
+}
+
+@media (min-width: 48rem) {
+  .digital-stat-band {
+    grid-template-columns: repeat(var(--digital-stat-columns, 4), minmax(0, 1fr));
+  }
+
+  .digital-stat-band__cell:not(:first-child) {
+    border-inline-start: 1px solid var(--brand-border);
+    padding-inline-start: clamp(1.25rem, 2.5vw, 2.5rem);
+  }
+}
+
+/* --- About: the ghost word ------------------------------------------------
+   One word at a size nothing else on the page uses, at a contrast that stops it
+   competing with the text set over it. `10vw` rather than a fixed size so it
+   scales with the column it sits behind; `clamp` caps it so it does not become
+   a texture on very wide screens.
+
+   `aria-hidden` in the markup, decorative here: it repeats a word the section
+   already says. It is also `overflow: hidden` at the section, so the descender
+   bleeding past the bottom edge is a crop rather than a scrollbar. */
+.digital-ghost-word {
+  font-size: clamp(5rem, 18vw, 15rem);
+  color: color-mix(in oklab, var(--brand-ink) 5%, transparent);
+  text-transform: uppercase;
+}
+
+/* The statement body is CMS rich text, so it arrives as paragraphs rather than
+   as a single string. Spacing lives here because the component cannot reach
+   inside `dangerouslySetInnerHTML`. */
+.digital-statement__lede > p + p {
+  margin-block-start: 1.25em;
+}
+
+/* --- About: the method ----------------------------------------------------
+   Three equal columns at the reference's proportions, again driven by the step
+   count. Below md it is one column: at 2 columns the cards are too narrow for
+   a 45-character measure and the text ladders. */
+.digital-process {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 48rem) {
+  .digital-process {
+    grid-template-columns: repeat(var(--digital-process-columns, 3), minmax(0, 1fr));
+  }
+}
+
+/* --- About: social circles ------------------------------------------------
+   The arrow micro-motion the rest of the tenant uses, applied to a target that
+   has nowhere to travel: the circle lifts instead. Hover is gated so a touch
+   device never gets a stuck state, and focus-visible gets the same treatment so
+   a keyboard reader sees what a pointer reader sees. */
+.digital-social {
+  transition:
+    color 220ms var(--digital-ease),
+    border-color 220ms var(--digital-ease),
+    transform 220ms var(--digital-ease);
+}
+
+.digital-social:focus-visible {
+  color: var(--brand-ink);
+  border-color: var(--brand-accent);
+}
+
+@media (hover: hover) {
+  .digital-social:hover {
+    color: var(--brand-ink);
+    border-color: var(--brand-accent);
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digital-social {
+    transition: none;
+  }
+
+  .digital-social:hover {
+    transform: none;
+  }
+}
+
+/* --- Industry: the automation workflow ------------------------------------
+   Below md: one column, with a rail running down the inline-start edge and the
+   cards hanging off it. This is the honest small-screen form of a process — a
+   list in order — rather than a horizontal scroller that hides six of seven
+   steps behind a gesture nobody performs.
+
+   The rail is a pseudo-element on the list, inset by half the dot so the dots
+   sit centred on it, and stopped short at both ends so the line begins at the
+   first step and ends at the last rather than floating past them. */
+.digital-workflow {
+  --wf-dot: 0.5rem;
+  --wf-rail: 1px;
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  padding-inline-start: 2rem;
+}
+
+.digital-workflow::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.75rem;
+  inset-inline-start: calc((var(--wf-dot) - var(--wf-rail)) / 2);
+  inline-size: var(--wf-rail);
+  background: var(--brand-border);
+}
+
+.digital-workflow__item {
+  position: relative;
+}
+
+.digital-workflow__dot {
+  position: absolute;
+  inset-block-start: 0.75rem;
+  inset-inline-start: -2rem;
+  inline-size: var(--wf-dot);
+  block-size: var(--wf-dot);
+  border-radius: 50%;
+  background: var(--brand-accent);
+}
+
+/* The stub is the short connector between a card and the rail. It has nothing
+   to join at this width, where the card sits directly against the rail. */
+.digital-workflow__stub {
+  display: none;
+}
+
+.digital-workflow__card {
+  display: block;
+  border: 1px solid var(--brand-border);
+  border-radius: 0.875rem;
+  background: color-mix(in oklab, var(--brand-ink) 3%, transparent);
+  padding: 0.875rem 1rem;
+}
+
+.digital-workflow__number {
+  display: block;
+  font-family: var(--font-sira-display), serif;
+  font-size: 0.625rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.2em;
+  color: var(--brand-ink-faint);
+}
+
+/* From md the flow turns horizontal and serpentines around a centre rail.
+   Three rows: cards above, the rail, cards below. Column placement is explicit
+   so the DOM order and the visual order are the same in both directions — grid
+   auto-placement would have filled row-major and broken the sequence. */
+@media (min-width: 48rem) {
+  .digital-workflow {
+    grid-template-columns: repeat(var(--wf-steps, 5), minmax(0, 1fr));
+    grid-template-rows: 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0 0.75rem;
+    padding-inline-start: 0;
+  }
+
+  .digital-workflow::before {
+    inset-block: auto;
+    inset-inline: 0;
+    inset-block-start: 50%;
+    block-size: var(--wf-rail);
+    inline-size: auto;
+    transform: translateY(-50%);
+  }
+
+  .digital-workflow__item {
+    grid-column: calc(var(--wf-index) + 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Even steps sit above the rail, odd below. `justify-content` pushes each
+     card toward the rail so both rows meet it rather than floating at the
+     outer edges of an unevenly tall row. */
+  .digital-workflow__item[data-side="start"] {
+    grid-row: 1;
+    justify-content: flex-end;
+    padding-block-end: 1.5rem;
+  }
+
+  .digital-workflow__item[data-side="end"] {
+    grid-row: 3;
+    justify-content: flex-start;
+    padding-block-start: 1.5rem;
+  }
+
+  .digital-workflow__dot {
+    inset-inline-start: 50%;
+    margin-inline-start: calc(var(--wf-dot) / -2);
+  }
+
+  .digital-workflow__item[data-side="start"] .digital-workflow__dot {
+    inset-block-start: auto;
+    inset-block-end: calc(var(--wf-dot) / -2);
+  }
+
+  .digital-workflow__item[data-side="end"] .digital-workflow__dot {
+    inset-block-start: calc(var(--wf-dot) / -2);
+  }
+
+  .digital-workflow__stub {
+    display: block;
+    position: absolute;
+    inset-inline-start: 50%;
+    inline-size: var(--wf-rail);
+    block-size: 1.5rem;
+    background: var(--brand-border);
+  }
+
+  .digital-workflow__item[data-side="start"] .digital-workflow__stub {
+    inset-block-end: 0;
+  }
+
+  .digital-workflow__item[data-side="end"] .digital-workflow__stub {
+    inset-block-start: 0;
+  }
+
+  .digital-workflow__card {
+    block-size: 100%;
+  }
+}
+
+/* An odd step count leaves the last card alone in its row, which is correct:
+   the process ended there. Nothing is stretched to make the two rows balance. */
+
+/* --- The back link --------------------------------------------------------
+   The reference's universal affordance is an arrow that travels a few pixels
+   toward where the link goes. This one goes backwards, so it travels toward the
+   inline start.
+
+   `translate` with a logical value would be ideal and is not reliable yet, so
+   the sign is flipped once for RTL rather than the arrow character being
+   swapped in the markup. One arrow, one rule, and no second string that can
+   fall out of step with the first. */
+.digital-back {
+  transition: color 220ms var(--digital-ease);
+}
+
+.digital-back__arrow {
+  display: inline-block;
+  transition: transform 220ms var(--digital-ease);
+}
+
+.digital-back:focus-visible {
+  color: var(--brand-ink);
+}
+
+@media (hover: hover) {
+  .digital-back:hover {
+    color: var(--brand-ink);
+  }
+
+  .digital-back:hover .digital-back__arrow,
+  .digital-back:focus-visible .digital-back__arrow {
+    transform: translateX(-4px);
+  }
+
+  [dir="rtl"] .digital-back:hover .digital-back__arrow,
+  [dir="rtl"] .digital-back:focus-visible .digital-back__arrow {
+    transform: translateX(4px);
+  }
+}
+
+/* The arrow itself points the other way under RTL, where "back" is to the
+   right. Rotating the glyph keeps one character in the markup. */
+[dir="rtl"] .digital-back__arrow {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .digital-back:hover .digital-back__arrow,
+[dir="rtl"] .digital-back:focus-visible .digital-back__arrow {
+  transform: scaleX(-1) translateX(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digital-back__arrow,
+  .digital-back {
+    transition: none;
+  }
+
+  .digital-back:hover .digital-back__arrow,
+  .digital-back:focus-visible .digital-back__arrow {
+    transform: none;
+  }
+
+  [dir="rtl"] .digital-back:hover .digital-back__arrow,
+  [dir="rtl"] .digital-back:focus-visible .digital-back__arrow {
+    transform: scaleX(-1);
+  }
+}
+
+/* --- Industries: the sector card ------------------------------------------
+   The whole card is one link, so the hover state belongs to the card rather
+   than to the heading inside it. Border and ground both lift, which is enough
+   on a single-ground design: a card that also moved would be the only thing on
+   the site that does.
+
+   The summary is clamped to three lines so a long sector description cannot
+   make one card twice the height of its neighbours. It is a clamp rather than a
+   fixed height, so a short one does not leave a gap. */
+.digital-sector {
+  transition:
+    border-color 220ms var(--digital-ease),
+    background-color 220ms var(--digital-ease);
+}
+
+.digital-sector__summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.digital-sector__chevron {
+  display: inline-block;
+}
+
+/* The chevron points along the flow, and the flow follows the text direction. */
+[dir="rtl"] .digital-sector__chevron {
+  transform: scaleX(-1);
+}
+
+.digital-sector:focus-visible {
+  border-color: var(--brand-accent);
+}
+
+@media (hover: hover) {
+  .digital-sector:hover {
+    border-color: color-mix(in oklab, var(--brand-accent) 55%, transparent);
+    background-color: color-mix(in oklab, var(--brand-ink) 5%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digital-sector {
+    transition: none;
+  }
+}
+
+/* --- Calculator ------------------------------------------------------------
+   Everything the impact calculator draws that is not type: two meters, the
+   before/after bar and the twelve-month curve. No chart library — this site has
+   none, and twelve bars and two tracks did not justify adding one. Drawn with
+   grid and logical properties, so all of it inherits the type scale, the brand
+   tokens and the writing direction for free.
+
+   The whole set is decorative. Every figure a meter or a bar encodes is printed
+   beside it as text, so a screen reader gets the argument without being read a
+   less precise second copy of it. */
+
+.digital-meter {
+  block-size: 3px;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--brand-ink) 10%, transparent);
+  overflow: hidden;
+}
+
+.digital-meter__fill {
+  block-size: 100%;
+  border-radius: 2px;
+  background: var(--brand-accent);
+}
+
+/* The width IS the argument, so it is worth animating: a figure that jumps is
+   read as a different number, a figure that travels is read as the same number
+   moving. Suppressed with everything else under prefers-reduced-motion. */
+.digital-meter__fill,
+.digital-bar {
+  transition: inline-size 700ms var(--digital-ease);
+}
+
+.digital-disclosure__icon {
+  transition: transform 200ms ease;
+}
+
+[aria-expanded="true"] > .digital-disclosure__icon {
+  transform: rotate(90deg);
+}
+
+html[dir="rtl"] .digital-disclosure__icon {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] [aria-expanded="true"] > .digital-disclosure__icon {
+  transform: scaleX(-1) rotate(90deg);
+}
+
+/* Twelve months of cumulative benefit, on a shared baseline. The months before
+   the implementation cost is paid back are drawn in faint ink and the ones
+   after in the accent, so the reader can see where the line stops costing and
+   starts returning — a projection that is one undifferentiated climb is a sales
+   device. */
+.digital-projection {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  gap: 0.25rem;
+  block-size: 8rem;
+  border-block-end: 1px solid var(--brand-border);
+}
+
+.digital-projection__bar {
+  position: relative;
+  block-size: 100%;
+}
+
+.digital-projection__bar::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: var(--bar, 2%);
+  border-radius: 2px 2px 0 0;
+  transition: block-size 700ms var(--digital-ease);
+}
+
+/* Still paying for itself. */
+.digital-projection__bar[data-state="unpaid"]::before {
+  background: color-mix(in oklab, var(--brand-ink) 22%, transparent);
+}
+
+/* Past payback. */
+.digital-projection__bar[data-state="paid"]::before {
+  background: var(--brand-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digital-meter__fill,
+  .digital-bar,
+  .digital-projection__bar::before,
+  .digital-disclosure__icon {
+    transition: none;
+  }
+}
+
+/* --- Calculator: the printed report ---------------------------------------
+   "Download the automation report" is `window.print()` and this block. No PDF
+   dependency: every browser can already save a printed page as one, it works
+   offline, it needs no server, and it prints correctly from a phone.
+
+   The class is added by the button and removed on `afterprint`, so a reader who
+   presses Ctrl+P themselves still gets the ordinary page. Nothing in the shared
+   shell is touched: the header and footer belong to five other companies too,
+   and a print concern is not a reason to reach into them.
+
+   `:has()` selects the page sections that are NOT the report. Where it is
+   unsupported the rule is dropped and the enquiry form prints along with the
+   report — longer than intended, but still a correct document. That is the
+   right way round for a progressive enhancement. */
+
+.digital-print-only {
+  display: none;
+}
+
+@media print {
+  /* Digital is the one tenant on a dark ground, and its identity tokens are
+     INLINE on <html>, which outranks any stylesheet rule. Paper is white, so
+     the dark palette would print an unreadable sheet and empty a cartridge
+     doing it. Repainted here, with !important, because an inline style is the
+     only thing these could otherwise lose to. The accent stays recognisably the
+     brand hue rather than becoming black — dark enough to read on white, still
+     gold. */
+  html.digital-printing {
+    --brand-paper: #ffffff !important;
+    --brand-deep: #ffffff !important;
+    --brand-deep-card: #ffffff !important;
+    --brand-footer: #ffffff !important;
+    --brand-tint: #f4f4f4 !important;
+    --brand-ink: #111111 !important;
+    --brand-ink-soft: #3f3f3f !important;
+    --brand-ink-faint: #666666 !important;
+    --brand-on-deep: #111111 !important;
+    --brand-border: #cfcfcf !important;
+    --brand-accent: #7a5c12 !important;
+    --brand-accent-bright: #7a5c12 !important;
+  }
+
+  html.digital-printing body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  /* Everything that is not the report. `display` rather than `visibility`:
+     a hidden element still occupies its box, which left the first printed page
+     blank down to where the shell used to end. */
+  html.digital-printing header,
+  html.digital-printing footer,
+  html.digital-printing main > section:not(:has([data-automation-report])) {
+    display: none !important;
+  }
+
+  /* The controls themselves are meaningless on paper — a slider cannot be
+     moved there. The inputs summary below restates their values instead. */
+  html.digital-printing [data-automation-report] form,
+  html.digital-printing .digital-print-hide,
+  html.digital-printing .digital-projection,
+  html.digital-printing .digital-meter {
+    display: none !important;
+  }
+
+  /* Two columns become one flow once the input column is gone. */
+  html.digital-printing [data-automation-report],
+  html.digital-printing [data-automation-report] > div {
+    display: block !important;
+  }
+
+  html.digital-printing .digital-print-only {
+    display: block !important;
+    margin-block-start: 1.5rem;
+    border-block-start: 1px solid #cfcfcf;
+    padding-block-start: 1rem;
+    break-inside: avoid;
+  }
+
+  html.digital-printing .digital-print-only dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem 1.5rem;
+    margin-block-start: 0.75rem;
+  }
+
+  html.digital-printing .digital-print-only dt {
+    font-size: 10px;
+    color: #666666;
+  }
+
+  html.digital-printing .digital-print-only dd {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  html.digital-printing [data-automation-report] section,
+  html.digital-printing [data-automation-report] dl {
+    break-inside: avoid;
+  }
+}
+
+/* --- Arabic display metrics -----------------------------------------------
+   The Latin display settings here are deliberately tight: sub-1.0 leading and
+   negative tracking are most of what makes the Latin headline feel engineered.
+   Neither transfers. Arabic letterforms connect and carry ascenders and
+   descenders that tight leading clips, and negative tracking damages the joins.
+   Kufi is also optically smaller at the same point size, so the kinetic band is
+   driven a step smaller rather than merely relaxed — at the Latin size it
+   overflows the 1.15 line box inside the sticky stage.
+
+   Only leading is set here. Tracking is handled once, further up, by the rule
+   that neutralises letter-spacing for Arabic text everywhere; the eyebrow used
+   to keep its 0.12em here and that was a mistake — wide tracking breaks the
+   joins on a short Arabic label more visibly than anywhere else on the page. */
+html:lang(ar) .digital-display {
+  line-height: 1.28;
+}
+
+html:lang(ar) .digital-kinetic__word {
+  line-height: 1.15;
+  --digital-kinetic-size-start: clamp(3rem, 9vw, 8.5rem);
 }

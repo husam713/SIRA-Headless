@@ -125,8 +125,8 @@ fragment HomepageDocumentNode on ContentNode {
   }
 }
 
-query SiraHomepage($asPreview: Boolean = false) {
-  page(id: "/", idType: URI, asPreview: $asPreview) {
+query SiraHomepage($asPreview: Boolean = false, $uri: ID = "/") {
+  page(id: $uri, idType: URI, asPreview: $asPreview) {
     databaseId
     uri
     title
@@ -280,6 +280,36 @@ query SiraHomepage($asPreview: Boolean = false) {
     }
       contact { eyebrow heading description formVariant formContext }
       footer { taglineOverride groupLinkLabelOverride }
+    }
+    digitalHomepage {
+      hero {
+      eyebrow headingBefore headingHighlight headingAfter description
+      primaryCta { ...HomepageLink }
+      secondaryCta { ...HomepageLink }
+    }
+      capabilitiesEyebrow
+      capabilities {
+      title summary
+      link { ...HomepageLink }
+    }
+    marquee {
+      eyebrow heading description body
+      link { ...HomepageLink }
+      items { label }
+    }
+    wordmark {
+      word lockup
+      link { ...HomepageLink }
+    }
+      insights {
+      eyebrow heading description sourceMode itemLimit
+      link { ...HomepageLink }
+      selectedItems(first: 12) {
+        nodes { ...HomepageEditorialNode }
+        pageInfo { hasNextPage }
+      }
+    }
+      contact { eyebrow heading description formVariant formContext }
     }
   }
 }

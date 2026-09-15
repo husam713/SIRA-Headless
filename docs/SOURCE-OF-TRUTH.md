@@ -88,7 +88,12 @@ BranchHomepage, reached `main` through PR `#59` at `e3920919`, together with the
 per-viewport visual capture tooling. The G to J fixture-backed visual-fidelity
 correction - the section eyebrow rule and accent, and the header CTA squared to
 the reference - reached `main` through PR `#60` at `a3c3ae3f`. Newsroom route
-work remains NOT STARTED.
+work is IMPLEMENTED on the unmerged branch `feat/newsroom-ledger` and is NOT
+merged and NOT owner-accepted: the `/news` archive, the editorial article route,
+the shared `NewsroomPage`, the desk registry and the placeholder-content tooling
+all exist there. Any carrier statement that no newsroom route, component or
+query exists under `frontend/src` is stale and was already stale at
+`f55b5eb5`.
 
 Acceptance evidence differs per pull request and must not be generalized. For
 PRs `#44`, `#46`, `#47`, and `#49` to `#53`, the conversation threads were
@@ -114,10 +119,26 @@ absence of acceptance evidence. See the per-pull-request record in
 `project-state.json` and the historical SOT-002 record below, which is preserved
 as written and describes what was open at the time it was made.
 
-The separate Step 2C.5B CMS readiness plan remains
-`BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`,
-Batch A mutation authorization is false, and no backup, export, restore,
-taxonomy deletion, CMS mutation, Step 2C.5C, or deployment is authorized.
+The Step 2C.5B CMS readiness plan is no longer blocked on backup evidence.
+On 2026-09-05 the owner authorized a WordPress backup, placeholder editorial
+seeding, and Batch A (ADR-030, ADR-031). On 2026-09-06 a full multisite
+database backup was taken and verified BEFORE any write - RB-001 evidence now
+exists, recorded in `project-state.json` under
+`authorization.rb001BackupEvidence` - and Batch A executed: the branch-local
+`consulting`, `real-estate` and `lifestyle` terms were created, `healthcare`
+already existed and was not rewritten, and Group's taxonomy was not touched.
+
+That grant is BOUNDED. `cmsMutationAuthorization` is now
+`OWNER_AUTHORIZED_BOUNDED`, not open. Taxonomy deletion, destructive database
+operations, restore execution, Step 2C.5C, staging provisioning, deployment,
+DNS and production cutover all remain NOT AUTHORIZED. RB-009 restore evidence
+is still `UNKNOWN`: the dump has never been restored into a scratch database,
+so recoverability is STRONGLY INFERRED from the dump's integrity rather than
+CONFIRMED by a rehearsal (`openGates.rb009RestoreRehearsal`).
+
+The historical Step 2C.5B artifacts under `artifacts/step-2c5b/` are preserved
+exactly as written and continue to record what was true when they were made.
+They are history, not current state.
 
 ## Current AI Engineering OS governance state
 
@@ -181,13 +202,72 @@ prototype, production UI implementation, staging, deployment, DNS, or cutover.
 
 ## Current unresolved gates
 
+- **Hostinger CDN blocks the headless GraphQL contract (ADR-032): UNRESOLVED,
+  LAUNCH BLOCKING.** The WordPress origin sits behind Hostinger's CDN
+  (`Server: hcdn`). A POST to the WPGraphQL endpoint from an unrecognised
+  client IP returns HTTP 403 with a JavaScript bot-challenge instead of a
+  GraphQL response; the identical request from the origin returns HTTP 200 with
+  correct data. Every SIRA page is rendered by a server-side fetch to that
+  endpoint (ADR-003, ADR-006), which is the request shape being challenged.
+  Whether the deploying platform's egress is already allowlisted is UNKNOWN and
+  needs hPanel access to determine.
+- **Placeholder editorial present in the CMS: LAUNCH BLOCKING.** 38 records
+  carry `_sira_seed=1` across the five tenants. `blog_public` is `0` on every
+  tenant to keep them out of search results and must return to `1` at launch.
+  `node tools/verify-no-seed-content.mjs` gates both and exits non-zero while
+  either is outstanding.
+- `RB-009` restore rehearsal: UNRESOLVED. A backup exists and is verified; it
+  has never been restored.
 - `2C4-B07` media origin/delivery: UNRESOLVED / DEFERRED.
 - `2C4-B08` forms architecture: UNRESOLVED.
-- `2C4-B09` multilingual architecture: UNRESOLVED.
+- `2C4-B09` multilingual architecture: RESOLVED for `digital` only (ADR-034);
+  UNRESOLVED for `group`, `consulting`, `healthcare`, `lifestyle`, `realestate`.
 - `PREVIEW-AUTH-001`: DEFERRED.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED.
+- Digital WordPress site: **PROVISIONED** on 2026-09-08. Blog 6 on the existing
+  network, `blog_public 0`, Asia/Riyadh, week starting Sunday, created with
+  `wp site create` and moved onto its own domain with `update_blog_details()`
+  after a verified 7.2 MB / 134-table recovery point. The owner's Phase 2 prompt
+  widened ADR-033's authorization to include live site creation; it did not
+  authorize domain registration, DNS, or deployment, which remain protected.
+  `docs/DIGITAL-TENANT-PROVISIONING.md` records the preceding investigation,
+  including the finding that the existing Multisite has **no architectural
+  blocker** to a mapped external domain on a different TLD.
+  **Do not delete or lose this site.**
+- Digital CMS origin (ADR-036): relocated to `cms-digital.siratrgroup.com` on
+  2026-09-10. It was on `digital.siratrgroup.com` from 2026-09-08 (moved there
+  from `sirahdigital.sa`); ADR-036 moved it again, to a dedicated `cms-`
+  subdomain. That **resolves** the collision this bullet used to flag —
+  WordPress off `digital.siratrgroup.com` is exactly what frees that hostname
+  for the frontend. `openGates.digitalCmsOriginHostnameCollision` is now CLOSED.
+- CMS origins for the five non-Group tenants (ADR-036, SOT-003): relocated on
+  2026-09-10 from `<tenant>.siratrgroup.com` to `cms-<tenant>.siratrgroup.com`,
+  under direct real-time owner authorization in a bare SSH session against live
+  production WordPress, recorded after the fact — **not** a pre-authorized Task
+  Packet, and beyond the bounded `cmsMutationAuthorization` scope. `consulting`,
+  `healthcare`, `realestate`, `lifestyle` and `digital` moved; **Group (blog 1,
+  the network main site) was deliberately excluded** and stays on
+  `siratrgroup.com` until the frontend production cutover
+  (`openGates.groupCmsOriginRelocation`). Evidence:
+  `artifacts/migration-blog6-redacted.md`. The five previous subdomains are
+  parked (WordPress unknown-site signup redirect) until DNS points them at the
+  frontend. Every deployment environment's `SIRA_WP_<non-Group>_GRAPHQL_URL`
+  must name the `cms-` host over HTTPS. ADR-032's deploy-platform egress
+  question is unchanged; only local-dev egress to the `cms-` hosts is verified.
+- Digital public hostname (ADR-035): the active public frontend hostname is
+  `digital.siratrgroup.com`. `sirahdigital.sa` is the future production domain,
+  registered as the planned hostname and redirecting to the active one until it
+  is promoted. Promotion is configuration only, through
+  `SIRA_CANONICAL_HOSTNAMES_JSON`. The public frontend hostname and the
+  WordPress CMS origin are independent: the CMS origin is configured per tenant
+  through `SIRA_WP_<TENANT>_GRAPHQL_URL`, WordPress stays on Hostinger, and the
+  public hostname does not expose `/wp-admin`.
+- Digital trading-name spelling (`SIRA Digital` vs `SIRAH DIGITAL`): OPEN owner
+  confirmation. No prior canonical name existed in this repository, so the
+  established `SIRA <Company>` convention was followed rather than a new name
+  invented.
 
 PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance
 Foundation, and PR `#34` Acceptance-Gates maintenance are accepted canonical
@@ -198,7 +278,25 @@ WordPress mutation, external staging, deployment, DNS, or production cutover.
 
 ## Canonical public production topology
 
-The owner-approved public production apex is `siratrgroup.com`. The authoritative public hostname mapping is Group -> `siratrgroup.com`, Consulting -> `consulting.siratrgroup.com`, Healthcare -> `healthcare.siratrgroup.com`, Lifestyle -> `lifestyle.siratrgroup.com`, and Real Estate -> `realestate.siratrgroup.com`.
+**The topology spans two apexes, and that is owner-authorized (ADR-033).** A
+session that finds `sirahdigital.sa` here must treat it as canonical, not as
+unauthorized drift.
+
+The authoritative public hostname mapping is Group -> `siratrgroup.com`,
+Consulting -> `consulting.siratrgroup.com`, Healthcare ->
+`healthcare.siratrgroup.com`, Lifestyle -> `lifestyle.siratrgroup.com`, Real
+Estate -> `realestate.siratrgroup.com`, and **Digital -> `sirahdigital.sa`**.
+
+SIRA Digital is a first-class SIRA GROUP operating company inside this same
+platform: the same Multisite network, the same Next.js application, the same
+GraphQL contract, the same contact pipeline, the same site registry. Its
+canonical hostname is deliberately a separate Saudi apex rather than a
+`siratrgroup.com` subdomain, because it trades in the Saudi market. The
+hostname registry always matched whole hostnames rather than a parent domain,
+so this needed no new resolution mechanism.
+
+ADR-033 supersedes ADR-024 on the single-apex point ONLY. Everything below
+still holds.
 
 This is public-domain evidence only. It must not be used to infer WordPress backend, GraphQL endpoint, media origin, staging, Vercel preview, cookie-domain, CORS, or revalidation configuration. Those remain UNKNOWN until repository or live configuration evidence establishes them. Each branch hostname represents an independent WordPress Multisite tenant website and independent content/runtime/cache scope; only the tested React/Next.js `BranchHomepage` architecture is shared.
 
@@ -253,6 +351,43 @@ the full contract suite passes unchanged.
 This closure records implementation history only. It does not authorize merge of
 PR `#44`, production deployment, DNS, Group cutover, CMS mutation, or any
 subsequent increment. The prototype remains NON-PRODUCTION reference evidence.
+
+## Current CMS origin topology
+
+### SOT-003 — CMS origin relocation
+
+**Status: CLOSED**
+
+The durable-state carriers and `frontend/tests/contract/digital-tenant-topology.test.ts`
+asserted the Digital WordPress CMS origin was `digital.siratrgroup.com` and that
+the pre-launch hostname collision was OPEN.
+
+On 2026-09-10, under direct real-time owner authorization in a bare SSH session
+against live production WordPress — **not** a pre-authorized Task Packet, and
+beyond the bounded `cmsMutationAuthorization` scope — the CMS origin for the
+five non-Group tenants was relocated from `<tenant>.siratrgroup.com` to
+`cms-<tenant>.siratrgroup.com`:
+
+- `consulting`, `healthcare`, `realestate`, `lifestyle`, `digital` moved.
+- **Group (blog 1, the network main site) was deliberately excluded.** Its
+  relocation touches `DOMAIN_CURRENT_SITE` and the `wp_site` row, has no safe
+  intermediate state, and `siratrgroup.com` serves the live legacy Group site
+  ADR-025 requires kept live. It belongs in the frontend production-cutover
+  window (`openGates.groupCmsOriginRelocation`).
+- Method: fresh verified `mysqldump` before each write; scoped
+  `wp search-replace` with `--all-tables-with-prefix` and `--skip-columns=guid`
+  for the four live tenants (`guid` rewritten only for pre-launch Digital);
+  routing row via `wp_update_site()`, never a bare `UPDATE`; every dry-run count
+  reconciled exactly against SQL row counts. 567 replacements, all exact.
+- Evidence: `artifacts/migration-blog6-redacted.md` (redacted, safe to commit).
+
+Per the conflict protocol, repository/live evidence governs. The carriers and
+the contract test are reconciled here and in ADR-036. This closure records an
+executed CMS mutation; it does not authorize the Group relocation, any DNS
+change, production deployment, or deleting the parked subdomains. The five
+previous subdomains return the WordPress unknown-site signup redirect until DNS
+points them at the frontend. `openGates.platformEgressReachabilityUnverified`
+is unchanged — only local-dev egress to the `cms-` hosts has been verified.
 
 ## Historical / reference-only sources
 

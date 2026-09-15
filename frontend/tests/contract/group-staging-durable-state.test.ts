@@ -45,17 +45,31 @@ describe("Group staging-first durable state", () => {
   });
 
   it("keeps the CMS mutation track closed while allowing repository frontend work", () => {
+    // The CMS track is no longer blocked on backup evidence: the owner
+    // authorized a backup and Batch A on 2026-09-05 (ADR-030 / ADR-031), the
+    // backup was taken and verified before the first write, and the
+    // branch-local terms were created. The prior status is preserved on the
+    // record rather than overwritten, because how a gate was cleared is worth
+    // as much as the fact that it was.
     expect(state.parallelTracks.cmsMutation).toMatchObject({
       stage: "2C.5B",
-      status: "BLOCKED_BY_BACKUP_EVIDENCE",
+      status: "BACKUP_EVIDENCE_PRESENT_BATCH_A_EXECUTED",
+      previousStatus: "BLOCKED_BY_BACKUP_EVIDENCE",
     });
     expect(state.parallelTracks.repositoryFrontend).toMatchObject({
       status: "READY_TO_PROCEED_WITHOUT_PRODUCTION_WORDPRESS_MUTATION",
       nextStage: "3 — Preview / SEO / Discovery",
       launchStrategy: "GROUP_STAGING_FIRST",
     });
-    expect(state.authorization["cmsMutationAuthorization"]).toBe("NOT_GRANTED");
-    expect(state.authorization["batchAMutationAuthorized"]).toBe(false);
+    expect(state.authorization["cmsMutationAuthorization"]).toBe(
+      "OWNER_AUTHORIZED_BOUNDED",
+    );
+    expect(state.authorization["batchAMutationAuthorized"]).toBe(true);
+    // Bounded is the operative word. Nothing above widened into deletion or
+    // into production movement, and that is what this track still guarantees.
+    expect(state.authorization["taxonomyDeletionAuthorized"]).toBe(false);
+    expect(state.authorization["restoreExecutionAuthorized"]).toBe(false);
+    expect(state.productionAuthorized).toBe(false);
   });
 
   it("uses an unresolved placeholder for Group staging and never authorizes production", () => {

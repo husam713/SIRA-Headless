@@ -324,7 +324,9 @@ Visual form treatment may be designed and prototyped.
 
 The design system must be RTL-capable from the beginning.
 
-`2C4-B09` continues to block final multilingual route ownership and `hreflang` activation. Do not invent locale routes or translated-record ownership.
+`2C4-B09` continues to block final multilingual route ownership and `hreflang` activation **for the `group`, `consulting`, `healthcare`, `lifestyle` and `realestate` tenants**. Do not invent locale routes or translated-record ownership for those five.
+
+**Carve-out — the `digital` tenant.** ADR-034 (owner decision, 2026-09-08) resolves `2C4-B09` for SIRA Digital only. Digital has owner-approved locale routes (`/ar/...`), owner-approved translated-record ownership (`sira_locale` plus `sira_translation_of` inside the same site), and `hreflang` activation. That carve-out does not extend to any other tenant, and it does not reopen `2C4-B09` for them.
 
 Design/prototype work may and should validate Arabic/RTL rendering using representative non-authoritative sample content.
 

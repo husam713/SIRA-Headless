@@ -1,0 +1,109 @@
+{
+  "url": "/work/",
+  "lang": "en",
+  "dir": "ltr",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 4720,
+  "viewport": {
+    "w": 1280,
+    "h": 800
+  },
+  "screens": 5.9,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 390.5,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 560,
+      "height": 480,
+      "screens": 0.6,
+      "heading": "Systems, not slide decks.",
+      "headingType": {
+        "size": 54,
+        "lineHeight": 53,
+        "weight": "700",
+        "tracking": -0.03,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 2,
+      "startY": 560,
+      "endY": 3905.7,
+      "height": 3345.7,
+      "screens": 4.18,
+      "heading": "Integration Fabric",
+      "headingType": {
+        "size": 44,
+        "lineHeight": 47,
+        "weight": "700",
+        "tracking": -0.025,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 3,
+      "startY": 3905.7,
+      "endY": 4329.3,
+      "height": 423.5,
+      "screens": 0.53,
+      "heading": "Have a process worth rebuilding?",
+      "headingType": {
+        "size": 70,
+        "lineHeight": 73,
+        "weight": "700",
+        "tracking": -0.025,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "Systems, not slide decks.",
+    "size": 54,
+    "lineHeight": 53,
+    "weight": "700",
+    "tracking": -0.03,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

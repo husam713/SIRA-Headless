@@ -1,0 +1,3026 @@
+[
+  {
+    "branch": "realestate",
+    "viewport": 390,
+    "design": {
+      "documentHeight": 6870,
+      "overflow": 0,
+      "header": {
+        "w": 390,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real Estate Overview Projects Insights Contact SIRA GRO",
+      "navLinks": 4,
+      "hero": {
+        "w": 390,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 342,
+        "h": 91,
+        "fs": 46,
+        "lh": "45.54px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 390,
+        "h": 333,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real Estate Modern residential development across Istan",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 608,
+        "overview": 908,
+        "projects": 1691,
+        "insights": 1555,
+        "connect": 890
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 6044,
+      "overflow": 0,
+      "header": {
+        "w": 390,
+        "h": 77,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real EstateOverviewProjectsInsightsContactSIRA Group ↗C",
+      "navLinks": 4,
+      "hero": {
+        "w": 390,
+        "h": 675,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 342,
+        "h": 91,
+        "fs": 46,
+        "lh": "45.54px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 390,
+        "h": 364,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97235 0.00290912 0.00919527 / 0.7)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real EstateModern residential development across Istanb",
+      "form": {
+        "w": 342,
+        "h": 516,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "oklch(0.21 0.05 45)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-real-estate": 675,
+        "key-metrics": 233,
+        "overview": 1018,
+        "projects": 1780,
+        "insights": 915,
+        "contact": 982
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "realestate",
+    "viewport": 768,
+    "design": {
+      "documentHeight": 4921,
+      "overflow": 0,
+      "header": {
+        "w": 768,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real Estate Overview Projects Insights Contact SIRA GRO",
+      "navLinks": 4,
+      "hero": {
+        "w": 768,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 691,
+        "h": 122,
+        "fs": 61.4,
+        "lh": "60.8256px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 768,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real Estate Modern residential development across Istan",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 304,
+        "overview": 625,
+        "projects": 1208,
+        "insights": 1071,
+        "connect": 552
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4824,
+      "overflow": 0,
+      "header": {
+        "w": 768,
+        "h": 77,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real EstateOverviewProjectsInsightsContactSIRA Group ↗C",
+      "navLinks": 4,
+      "hero": {
+        "w": 768,
+        "h": 675,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 578,
+        "h": 122,
+        "fs": 61.4,
+        "lh": "60.8256px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 768,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97235 0.00290912 0.00919527 / 0.7)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real EstateModern residential development across Istanb",
+      "form": {
+        "w": 691,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "oklch(0.21 0.05 45)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-real-estate": 675,
+        "key-metrics": 133,
+        "overview": 860,
+        "projects": 1193,
+        "insights": 633,
+        "contact": 939
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "realestate",
+    "viewport": 1024,
+    "design": {
+      "documentHeight": 4514,
+      "overflow": 0,
+      "header": {
+        "w": 1024,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real Estate Overview Projects Insights Contact SIRA GRO",
+      "navLinks": 4,
+      "hero": {
+        "w": 1024,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 922,
+        "h": 162,
+        "fs": 81.9,
+        "lh": "81.1008px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 1024,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real Estate Modern residential development across Istan",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 155,
+        "overview": 619,
+        "projects": 1261,
+        "insights": 708,
+        "connect": 610
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4232,
+      "overflow": 0,
+      "header": {
+        "w": 1024,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real EstateOverviewProjectsInsightsContactSIRA Group ↗C",
+      "navLinks": 4,
+      "hero": {
+        "w": 1024,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 770,
+        "h": 162,
+        "fs": 81.9,
+        "lh": "81.1008px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 1024,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97235 0.00290912 0.00919527 / 0.7)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real EstateModern residential development across Istanb",
+      "form": {
+        "w": 432,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "oklch(0.21 0.05 45)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-real-estate": 810,
+        "key-metrics": 124,
+        "overview": 922,
+        "projects": 786,
+        "insights": 509,
+        "contact": 695
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "realestate",
+    "viewport": 1280,
+    "design": {
+      "documentHeight": 4248,
+      "overflow": 0,
+      "header": {
+        "w": 1280,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real Estate Overview Projects Insights Contact SIRA GRO",
+      "navLinks": 4,
+      "hero": {
+        "w": 1280,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 203,
+        "fs": 102.4,
+        "lh": "101.376px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 1280,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real Estate Modern residential development across Istan",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 165,
+        "overview": 665,
+        "projects": 827,
+        "insights": 759,
+        "connect": 670
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4105,
+      "overflow": 0,
+      "header": {
+        "w": 1280,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real EstateOverviewProjectsInsightsContactSIRA Group ↗C",
+      "navLinks": 4,
+      "hero": {
+        "w": 1280,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 963,
+        "h": 203,
+        "fs": 102.4,
+        "lh": "101.376px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 1280,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97235 0.00290912 0.00919527 / 0.7)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real EstateModern residential development across Istanb",
+      "form": {
+        "w": 560,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "oklch(0.21 0.05 45)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-real-estate": 810,
+        "key-metrics": 133,
+        "overview": 655,
+        "projects": 852,
+        "insights": 547,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "realestate",
+    "viewport": 1440,
+    "design": {
+      "documentHeight": 4224,
+      "overflow": 0,
+      "header": {
+        "w": 1440,
+        "h": 77,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real Estate Overview Projects Insights Contact SIRA GRO",
+      "navLinks": 4,
+      "hero": {
+        "w": 1440,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 228,
+        "fs": 115.2,
+        "lh": "114.048px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 1440,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real Estate Modern residential development across Istan",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 166,
+        "overview": 627,
+        "projects": 828,
+        "insights": 760,
+        "connect": 680
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4109,
+      "overflow": 0,
+      "header": {
+        "w": 1440,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real EstateOverviewProjectsInsightsContactSIRA Group ↗C",
+      "navLinks": 4,
+      "hero": {
+        "w": 1440,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1083,
+        "h": 228,
+        "fs": 115.2,
+        "lh": "114.048px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 1440,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97235 0.00290912 0.00919527 / 0.7)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real EstateModern residential development across Istanb",
+      "form": {
+        "w": 628,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "oklch(0.21 0.05 45)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-real-estate": 810,
+        "key-metrics": 133,
+        "overview": 631,
+        "projects": 881,
+        "insights": 547,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "realestate",
+    "viewport": 1920,
+    "design": {
+      "documentHeight": 4224,
+      "overflow": 0,
+      "header": {
+        "w": 1920,
+        "h": 77,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real Estate Overview Projects Insights Contact SIRA GRO",
+      "navLinks": 4,
+      "hero": {
+        "w": 1920,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 230,
+        "fs": 116,
+        "lh": "114.84px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 1920,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real Estate Modern residential development across Istan",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 166,
+        "overview": 627,
+        "projects": 828,
+        "insights": 760,
+        "connect": 680
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4109,
+      "overflow": 0,
+      "header": {
+        "w": 1920,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Real EstateOverviewProjectsInsightsContactSIRA Group ↗C",
+      "navLinks": 4,
+      "hero": {
+        "w": 1920,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(37, 32, 29)",
+        "bg": "oklch(0.17 0.045 45)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1090,
+        "h": 230,
+        "fs": 116,
+        "lh": "114.84px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Building the Modern Skyline",
+      "footer": {
+        "w": 1920,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97235 0.00290912 0.00919527 / 0.7)",
+        "bg": "oklch(0.14 0.04 45)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Real EstateModern residential development across Istanb",
+      "form": {
+        "w": 628,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(250, 245, 239)",
+        "bg": "oklch(0.21 0.05 45)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-real-estate": 810,
+        "key-metrics": 133,
+        "overview": 631,
+        "projects": 881,
+        "insights": 547,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "healthcare",
+    "viewport": 390,
+    "design": {
+      "documentHeight": 7002,
+      "overflow": 0,
+      "header": {
+        "w": 390,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Healthcare Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 390,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 342,
+        "h": 137,
+        "fs": 46,
+        "lh": "45.54px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 390,
+        "h": 333,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Healthcare Advanced diagnostic healthcare across East A",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 608,
+        "overview": 951,
+        "projects": 1837,
+        "insights": 1497,
+        "connect": 890
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 6142,
+      "overflow": 0,
+      "header": {
+        "w": 390,
+        "h": 77,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA HealthOverviewProjectsInsightsContactSIRA Group ↗Contac",
+      "navLinks": 4,
+      "hero": {
+        "w": 390,
+        "h": 675,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 342,
+        "h": 137,
+        "fs": 46,
+        "lh": "45.54px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 390,
+        "h": 364,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.974245 -0.00253081 -0.00632042 / 0.7)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA HealthAdvanced diagnostic healthcare across East Africa",
+      "form": {
+        "w": 342,
+        "h": 516,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "oklch(0.21 0.05 235)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-healthcare": 675,
+        "key-metrics": 250,
+        "overview": 1070,
+        "projects": 1810,
+        "insights": 915,
+        "contact": 982
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "healthcare",
+    "viewport": 768,
+    "design": {
+      "documentHeight": 5030,
+      "overflow": 0,
+      "header": {
+        "w": 768,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Healthcare Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 768,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 691,
+        "h": 122,
+        "fs": 61.4,
+        "lh": "60.8256px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 768,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Healthcare Advanced diagnostic healthcare across East A",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 304,
+        "overview": 649,
+        "projects": 1293,
+        "insights": 1071,
+        "connect": 552
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4969,
+      "overflow": 0,
+      "header": {
+        "w": 768,
+        "h": 77,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA HealthOverviewProjectsInsightsContactSIRA Group ↗Contac",
+      "navLinks": 4,
+      "hero": {
+        "w": 768,
+        "h": 675,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 578,
+        "h": 122,
+        "fs": 61.4,
+        "lh": "60.8256px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 768,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.974245 -0.00253081 -0.00632042 / 0.7)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA HealthAdvanced diagnostic healthcare across East Africa",
+      "form": {
+        "w": 691,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "oklch(0.21 0.05 235)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-healthcare": 675,
+        "key-metrics": 133,
+        "overview": 886,
+        "projects": 1311,
+        "insights": 633,
+        "contact": 939
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "healthcare",
+    "viewport": 1024,
+    "design": {
+      "documentHeight": 4584,
+      "overflow": 0,
+      "header": {
+        "w": 1024,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Healthcare Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 1024,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 922,
+        "h": 162,
+        "fs": 81.9,
+        "lh": "81.1008px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 1024,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Healthcare Advanced diagnostic healthcare across East A",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 155,
+        "overview": 619,
+        "projects": 1307,
+        "insights": 732,
+        "connect": 610
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4360,
+      "overflow": 0,
+      "header": {
+        "w": 1024,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA HealthOverviewProjectsInsightsContactSIRA Group ↗Contac",
+      "navLinks": 4,
+      "hero": {
+        "w": 1024,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 770,
+        "h": 162,
+        "fs": 81.9,
+        "lh": "81.1008px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 1024,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.974245 -0.00253081 -0.00632042 / 0.7)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA HealthAdvanced diagnostic healthcare across East Africa",
+      "form": {
+        "w": 432,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "oklch(0.21 0.05 235)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-healthcare": 810,
+        "key-metrics": 124,
+        "overview": 948,
+        "projects": 864,
+        "insights": 534,
+        "contact": 695
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "healthcare",
+    "viewport": 1280,
+    "design": {
+      "documentHeight": 4311,
+      "overflow": 0,
+      "header": {
+        "w": 1280,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Healthcare Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 1280,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 203,
+        "fs": 102.4,
+        "lh": "101.376px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 1280,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Healthcare Advanced diagnostic healthcare across East A",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 165,
+        "overview": 641,
+        "projects": 914,
+        "insights": 759,
+        "connect": 670
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4149,
+      "overflow": 0,
+      "header": {
+        "w": 1280,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA HealthOverviewProjectsInsightsContactSIRA Group ↗Contac",
+      "navLinks": 4,
+      "hero": {
+        "w": 1280,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 963,
+        "h": 203,
+        "fs": 102.4,
+        "lh": "101.376px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 1280,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.974245 -0.00253081 -0.00632042 / 0.7)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA HealthAdvanced diagnostic healthcare across East Africa",
+      "form": {
+        "w": 560,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "oklch(0.21 0.05 235)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-healthcare": 810,
+        "key-metrics": 133,
+        "overview": 679,
+        "projects": 900,
+        "insights": 519,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "healthcare",
+    "viewport": 1440,
+    "design": {
+      "documentHeight": 4306,
+      "overflow": 0,
+      "header": {
+        "w": 1440,
+        "h": 77,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Healthcare Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 1440,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 228,
+        "fs": 115.2,
+        "lh": "114.048px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 1440,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Healthcare Advanced diagnostic healthcare across East A",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 166,
+        "overview": 651,
+        "projects": 886,
+        "insights": 760,
+        "connect": 680
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4105,
+      "overflow": 0,
+      "header": {
+        "w": 1440,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA HealthOverviewProjectsInsightsContactSIRA Group ↗Contac",
+      "navLinks": 4,
+      "hero": {
+        "w": 1440,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1083,
+        "h": 228,
+        "fs": 115.2,
+        "lh": "114.048px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 1440,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.974245 -0.00253081 -0.00632042 / 0.7)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA HealthAdvanced diagnostic healthcare across East Africa",
+      "form": {
+        "w": 628,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "oklch(0.21 0.05 235)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-healthcare": 810,
+        "key-metrics": 133,
+        "overview": 655,
+        "projects": 881,
+        "insights": 519,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "healthcare",
+    "viewport": 1920,
+    "design": {
+      "documentHeight": 4306,
+      "overflow": 0,
+      "header": {
+        "w": 1920,
+        "h": 77,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Healthcare Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 1920,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 230,
+        "fs": 116,
+        "lh": "114.84px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 1920,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Healthcare Advanced diagnostic healthcare across East A",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 166,
+        "overview": 651,
+        "projects": 886,
+        "insights": 760,
+        "connect": 680
+      },
+      "sectionCount": 6,
+      "images": 4,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4105,
+      "overflow": 0,
+      "header": {
+        "w": 1920,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA HealthOverviewProjectsInsightsContactSIRA Group ↗Contac",
+      "navLinks": 4,
+      "hero": {
+        "w": 1920,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(16, 102, 177)",
+        "bg": "oklch(0.17 0.045 235)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1090,
+        "h": 230,
+        "fs": 116,
+        "lh": "114.84px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Diagnostics Without Compromise",
+      "footer": {
+        "w": 1920,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.974245 -0.00253081 -0.00632042 / 0.7)",
+        "bg": "oklch(0.14 0.04 235)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA HealthAdvanced diagnostic healthcare across East Africa",
+      "form": {
+        "w": 628,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(243, 247, 251)",
+        "bg": "oklch(0.21 0.05 235)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-healthcare": 810,
+        "key-metrics": 133,
+        "overview": 655,
+        "projects": 881,
+        "insights": 519,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "lifestyle",
+    "viewport": 390,
+    "design": {
+      "documentHeight": 6786,
+      "overflow": 0,
+      "header": {
+        "w": 390,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Lifestyle Overview Projects Insights Contact SIRA GROUP",
+      "navLinks": 4,
+      "hero": {
+        "w": 390,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 342,
+        "h": 91,
+        "fs": 46,
+        "lh": "45.54px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 390,
+        "h": 333,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Lifestyle Hospitality and lifestyle ventures across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 608,
+        "overview": 850,
+        "projects": 1723,
+        "insights": 1523,
+        "connect": 865
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 5980,
+      "overflow": 0,
+      "header": {
+        "w": 390,
+        "h": 77,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA LifestyleOverviewProjectsInsightsContactSIRA Group ↗Con",
+      "navLinks": 4,
+      "hero": {
+        "w": 390,
+        "h": 675,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 342,
+        "h": 91,
+        "fs": 46,
+        "lh": "45.54px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 390,
+        "h": 364,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.973768 -0.0071674 0.0019595 / 0.7)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA LifestyleHospitality and lifestyle ventures across MEA,",
+      "form": {
+        "w": 342,
+        "h": 516,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "oklch(0.21 0.05 165)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-lifestyle": 675,
+        "key-metrics": 233,
+        "overview": 980,
+        "projects": 1780,
+        "insights": 915,
+        "contact": 956
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "lifestyle",
+    "viewport": 768,
+    "design": {
+      "documentHeight": 4899,
+      "overflow": 0,
+      "header": {
+        "w": 768,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Lifestyle Overview Projects Insights Contact SIRA GROUP",
+      "navLinks": 4,
+      "hero": {
+        "w": 768,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 691,
+        "h": 61,
+        "fs": 61.4,
+        "lh": "60.8256px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 768,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Lifestyle Hospitality and lifestyle ventures across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 304,
+        "overview": 603,
+        "projects": 1208,
+        "insights": 1071,
+        "connect": 552
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4768,
+      "overflow": 0,
+      "header": {
+        "w": 768,
+        "h": 77,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA LifestyleOverviewProjectsInsightsContactSIRA Group ↗Con",
+      "navLinks": 4,
+      "hero": {
+        "w": 768,
+        "h": 675,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 578,
+        "h": 122,
+        "fs": 61.4,
+        "lh": "60.8256px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 768,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.973768 -0.0071674 0.0019595 / 0.7)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA LifestyleHospitality and lifestyle ventures across MEA,",
+      "form": {
+        "w": 691,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "oklch(0.21 0.05 165)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-lifestyle": 675,
+        "key-metrics": 117,
+        "overview": 819,
+        "projects": 1193,
+        "insights": 633,
+        "contact": 939
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "lifestyle",
+    "viewport": 1024,
+    "design": {
+      "documentHeight": 4514,
+      "overflow": 0,
+      "header": {
+        "w": 1024,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Lifestyle Overview Projects Insights Contact SIRA GROUP",
+      "navLinks": 4,
+      "hero": {
+        "w": 1024,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 922,
+        "h": 81,
+        "fs": 81.9,
+        "lh": "81.1008px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 1024,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Lifestyle Hospitality and lifestyle ventures across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 155,
+        "overview": 619,
+        "projects": 1261,
+        "insights": 708,
+        "connect": 610
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4178,
+      "overflow": 0,
+      "header": {
+        "w": 1024,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA LifestyleOverviewProjectsInsightsContactSIRA Group ↗Con",
+      "navLinks": 4,
+      "hero": {
+        "w": 1024,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 770,
+        "h": 162,
+        "fs": 81.9,
+        "lh": "81.1008px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 1024,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.973768 -0.0071674 0.0019595 / 0.7)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA LifestyleHospitality and lifestyle ventures across MEA,",
+      "form": {
+        "w": 432,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "oklch(0.21 0.05 165)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-lifestyle": 810,
+        "key-metrics": 124,
+        "overview": 869,
+        "projects": 786,
+        "insights": 509,
+        "contact": 695
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "lifestyle",
+    "viewport": 1280,
+    "design": {
+      "documentHeight": 4176,
+      "overflow": 0,
+      "header": {
+        "w": 1280,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Lifestyle Overview Projects Insights Contact SIRA GROUP",
+      "navLinks": 4,
+      "hero": {
+        "w": 1280,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 101,
+        "fs": 102.4,
+        "lh": "101.376px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 1280,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Lifestyle Hospitality and lifestyle ventures across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 165,
+        "overview": 593,
+        "projects": 827,
+        "insights": 759,
+        "connect": 670
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4053,
+      "overflow": 0,
+      "header": {
+        "w": 1280,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA LifestyleOverviewProjectsInsightsContactSIRA Group ↗Con",
+      "navLinks": 4,
+      "hero": {
+        "w": 1280,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 963,
+        "h": 203,
+        "fs": 102.4,
+        "lh": "101.376px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 1280,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.973768 -0.0071674 0.0019595 / 0.7)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA LifestyleHospitality and lifestyle ventures across MEA,",
+      "form": {
+        "w": 560,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "oklch(0.21 0.05 165)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-lifestyle": 810,
+        "key-metrics": 133,
+        "overview": 631,
+        "projects": 852,
+        "insights": 519,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "lifestyle",
+    "viewport": 1440,
+    "design": {
+      "documentHeight": 4200,
+      "overflow": 0,
+      "header": {
+        "w": 1440,
+        "h": 77,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Lifestyle Overview Projects Insights Contact SIRA GROUP",
+      "navLinks": 4,
+      "hero": {
+        "w": 1440,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 228,
+        "fs": 115.2,
+        "lh": "114.048px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 1440,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Lifestyle Hospitality and lifestyle ventures across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 166,
+        "overview": 603,
+        "projects": 828,
+        "insights": 760,
+        "connect": 680
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4081,
+      "overflow": 0,
+      "header": {
+        "w": 1440,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA LifestyleOverviewProjectsInsightsContactSIRA Group ↗Con",
+      "navLinks": 4,
+      "hero": {
+        "w": 1440,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1083,
+        "h": 228,
+        "fs": 115.2,
+        "lh": "114.048px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 1440,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.973768 -0.0071674 0.0019595 / 0.7)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA LifestyleHospitality and lifestyle ventures across MEA,",
+      "form": {
+        "w": 628,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "oklch(0.21 0.05 165)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-lifestyle": 810,
+        "key-metrics": 133,
+        "overview": 631,
+        "projects": 881,
+        "insights": 519,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "lifestyle",
+    "viewport": 1920,
+    "design": {
+      "documentHeight": 4200,
+      "overflow": 0,
+      "header": {
+        "w": 1920,
+        "h": 77,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Lifestyle Overview Projects Insights Contact SIRA GROUP",
+      "navLinks": 4,
+      "hero": {
+        "w": 1920,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 230,
+        "fs": 116,
+        "lh": "114.84px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 1920,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Lifestyle Hospitality and lifestyle ventures across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 166,
+        "overview": 603,
+        "projects": 828,
+        "insights": 760,
+        "connect": 680
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4081,
+      "overflow": 0,
+      "header": {
+        "w": 1920,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA LifestyleOverviewProjectsInsightsContactSIRA Group ↗Con",
+      "navLinks": 4,
+      "hero": {
+        "w": 1920,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(31, 43, 39)",
+        "bg": "oklch(0.17 0.045 165)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1090,
+        "h": 230,
+        "fs": 116,
+        "lh": "114.84px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Hospitality, Reimagined",
+      "footer": {
+        "w": 1920,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.973768 -0.0071674 0.0019595 / 0.7)",
+        "bg": "oklch(0.14 0.04 165)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA LifestyleHospitality and lifestyle ventures across MEA,",
+      "form": {
+        "w": 628,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(242, 248, 245)",
+        "bg": "oklch(0.21 0.05 165)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-lifestyle": 810,
+        "key-metrics": 133,
+        "overview": 631,
+        "projects": 881,
+        "insights": 519,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "consulting",
+    "viewport": 390,
+    "design": {
+      "documentHeight": 6813,
+      "overflow": 0,
+      "header": {
+        "w": 390,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Consulting Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 390,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 342,
+        "h": 91,
+        "fs": 46,
+        "lh": "45.54px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 390,
+        "h": 333,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Consulting Strategic and investment advisory across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 608,
+        "overview": 850,
+        "projects": 1721,
+        "insights": 1526,
+        "connect": 890
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 6732,
+      "overflow": 0,
+      "header": {
+        "w": 390,
+        "h": 77,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA ConsultingOverviewProjectsInsightsContactSIRA Group ↗Co",
+      "navLinks": 4,
+      "hero": {
+        "w": 390,
+        "h": 675,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 342,
+        "h": 91,
+        "fs": 46,
+        "lh": "45.54px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 390,
+        "h": 364,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97192 0.00636244 -0.006347 / 0.7)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA ConsultingStrategic and investment advisory across MEA,",
+      "form": {
+        "w": 342,
+        "h": 516,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "oklch(0.21 0.05 300)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-consulting": 675,
+        "key-metrics": 233,
+        "overview": 980,
+        "projects": 1768,
+        "insights": 1653,
+        "contact": 982
+      },
+      "sectionCount": 6,
+      "images": 9,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "consulting",
+    "viewport": 768,
+    "design": {
+      "documentHeight": 4945,
+      "overflow": 0,
+      "header": {
+        "w": 768,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Consulting Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 768,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 691,
+        "h": 61,
+        "fs": 61.4,
+        "lh": "60.8256px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 768,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Consulting Strategic and investment advisory across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 342,
+        "overview": 579,
+        "projects": 1269,
+        "insights": 1042,
+        "connect": 552
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 5283,
+      "overflow": 0,
+      "header": {
+        "w": 768,
+        "h": 77,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA ConsultingOverviewProjectsInsightsContactSIRA Group ↗Co",
+      "navLinks": 4,
+      "hero": {
+        "w": 768,
+        "h": 675,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 578,
+        "h": 122,
+        "fs": 61.4,
+        "lh": "60.8256px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 768,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97192 0.00636244 -0.006347 / 0.7)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA ConsultingStrategic and investment advisory across MEA,",
+      "form": {
+        "w": 691,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "oklch(0.21 0.05 300)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-consulting": 675,
+        "key-metrics": 145,
+        "overview": 819,
+        "projects": 1193,
+        "insights": 1121,
+        "contact": 939
+      },
+      "sectionCount": 6,
+      "images": 9,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "consulting",
+    "viewport": 1024,
+    "design": {
+      "documentHeight": 4531,
+      "overflow": 0,
+      "header": {
+        "w": 1024,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Consulting Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 1024,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 922,
+        "h": 81,
+        "fs": 81.9,
+        "lh": "81.1008px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 1024,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Consulting Strategic and investment advisory across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 196,
+        "overview": 619,
+        "projects": 1237,
+        "insights": 708,
+        "connect": 610
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4458,
+      "overflow": 0,
+      "header": {
+        "w": 1024,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA ConsultingOverviewProjectsInsightsContactSIRA Group ↗Co",
+      "navLinks": 4,
+      "hero": {
+        "w": 1024,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 770,
+        "h": 162,
+        "fs": 81.9,
+        "lh": "81.1008px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 1024,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97192 0.00636244 -0.006347 / 0.7)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA ConsultingStrategic and investment advisory across MEA,",
+      "form": {
+        "w": 432,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "oklch(0.21 0.05 300)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-consulting": 810,
+        "key-metrics": 160,
+        "overview": 869,
+        "projects": 792,
+        "insights": 748,
+        "contact": 695
+      },
+      "sectionCount": 6,
+      "images": 9,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "consulting",
+    "viewport": 1280,
+    "design": {
+      "documentHeight": 4227,
+      "overflow": 0,
+      "header": {
+        "w": 1280,
+        "h": 75,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Consulting Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 1280,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 101,
+        "fs": 102.4,
+        "lh": "101.376px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 1280,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Consulting Strategic and investment advisory across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 216,
+        "overview": 593,
+        "projects": 827,
+        "insights": 759,
+        "connect": 670
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4326,
+      "overflow": 0,
+      "header": {
+        "w": 1280,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA ConsultingOverviewProjectsInsightsContactSIRA Group ↗Co",
+      "navLinks": 4,
+      "hero": {
+        "w": 1280,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 963,
+        "h": 203,
+        "fs": 102.4,
+        "lh": "101.376px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 1280,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97192 0.00636244 -0.006347 / 0.7)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA ConsultingStrategic and investment advisory across MEA,",
+      "form": {
+        "w": 560,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "oklch(0.21 0.05 300)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-consulting": 810,
+        "key-metrics": 133,
+        "overview": 631,
+        "projects": 852,
+        "insights": 792,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 9,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "consulting",
+    "viewport": 1440,
+    "design": {
+      "documentHeight": 4252,
+      "overflow": 0,
+      "header": {
+        "w": 1440,
+        "h": 77,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Consulting Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 1440,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 228,
+        "fs": 115.2,
+        "lh": "114.048px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 1440,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Consulting Strategic and investment advisory across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 218,
+        "overview": 603,
+        "projects": 828,
+        "insights": 760,
+        "connect": 680
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4385,
+      "overflow": 0,
+      "header": {
+        "w": 1440,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA ConsultingOverviewProjectsInsightsContactSIRA Group ↗Co",
+      "navLinks": 4,
+      "hero": {
+        "w": 1440,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1083,
+        "h": 228,
+        "fs": 115.2,
+        "lh": "114.048px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 1440,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97192 0.00636244 -0.006347 / 0.7)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA ConsultingStrategic and investment advisory across MEA,",
+      "form": {
+        "w": 628,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "oklch(0.21 0.05 300)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-consulting": 810,
+        "key-metrics": 133,
+        "overview": 631,
+        "projects": 881,
+        "insights": 823,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 9,
+      "cards": 6
+    }
+  },
+  {
+    "branch": "consulting",
+    "viewport": 1920,
+    "design": {
+      "documentHeight": 4252,
+      "overflow": 0,
+      "header": {
+        "w": 1920,
+        "h": 77,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA Consulting Overview Projects Insights Contact SIRA GROU",
+      "navLinks": 4,
+      "hero": {
+        "w": 1920,
+        "h": 810,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.2 0.02 260)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1072,
+        "h": 230,
+        "fs": 116,
+        "lh": "114.84px",
+        "color": "oklch(0.98 0.006 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 1920,
+        "h": 276,
+        "fs": 16,
+        "lh": "normal",
+        "color": "oklch(0.72 0.01 75)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA Consulting Strategic and investment advisory across MEA",
+      "form": null,
+      "formFields": 0,
+      "sections": {
+        "top": 810,
+        "?": 218,
+        "overview": 603,
+        "projects": 828,
+        "insights": 760,
+        "connect": 680
+      },
+      "sectionCount": 6,
+      "images": 3,
+      "cards": 0
+    },
+    "prod": {
+      "documentHeight": 4385,
+      "overflow": 0,
+      "header": {
+        "w": 1920,
+        "h": 69,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.98 0.005 90 / 0.9)",
+        "family": "Archivo"
+      },
+      "headerText": "SIRA ConsultingOverviewProjectsInsightsContactSIRA Group ↗Co",
+      "navLinks": 4,
+      "hero": {
+        "w": 1920,
+        "h": 810,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(41, 35, 45)",
+        "bg": "oklch(0.17 0.045 300)",
+        "family": "Archivo"
+      },
+      "h1": {
+        "w": 1090,
+        "h": 230,
+        "fs": 116,
+        "lh": "114.84px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "family": "Newsreader"
+      },
+      "h1Text": "Strategy for New Markets",
+      "footer": {
+        "w": 1920,
+        "h": 316,
+        "fs": 16,
+        "lh": "24px",
+        "color": "oklab(0.97192 0.00636244 -0.006347 / 0.7)",
+        "bg": "oklch(0.14 0.04 300)",
+        "family": "Archivo"
+      },
+      "footerText": "SIRA ConsultingStrategic and investment advisory across MEA,",
+      "form": {
+        "w": 628,
+        "h": 532,
+        "fs": 16,
+        "lh": "24px",
+        "color": "rgb(248, 244, 250)",
+        "bg": "oklch(0.21 0.05 300)",
+        "family": "Archivo"
+      },
+      "formFields": 5,
+      "sections": {
+        "sira-consulting": 810,
+        "key-metrics": 133,
+        "overview": 631,
+        "projects": 881,
+        "insights": 823,
+        "contact": 724
+      },
+      "sectionCount": 6,
+      "images": 9,
+      "cards": 6
+    }
+  }
+]

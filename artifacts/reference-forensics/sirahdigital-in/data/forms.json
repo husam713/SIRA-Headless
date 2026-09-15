@@ -1,0 +1,2939 @@
+{
+  "capturedAt": "2026-09-07T22:53:11.005Z",
+  "/contact": {
+    "route": "/contact",
+    "forms": [
+      {
+        "action": null,
+        "method": null,
+        "noValidate": false,
+        "layout": [
+          {
+            "cls": "grid grid-cols-1 sm:grid-cols-2 gap-5",
+            "columns": "293.328px 293.328px",
+            "gap": "20px"
+          },
+          {
+            "cls": "grid grid-cols-1 sm:grid-cols-2 gap-5",
+            "columns": "293.328px 293.328px",
+            "gap": "20px"
+          }
+        ],
+        "fieldsets": [
+          {
+            "legend": "Which product are you interested in? (optional)",
+            "controls": [
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Aura Transcriber",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 168,
+                    "y": 897,
+                    "w": 138,
+                    "h": 44
+                  },
+                  "background": "rgba(255, 255, 255, 0.02)",
+                  "color": "rgba(255, 255, 255, 0.6)",
+                  "border": "1px solid rgba(255, 255, 255, 0.22)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.22)",
+                  "radius": "9999px",
+                  "padding": "0px 16px 0px 16px",
+                  "font": "14px/21px 500",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.6)",
+                  "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Analytics Agents",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 316,
+                    "y": 897,
+                    "w": 138,
+                    "h": 44
+                  },
+                  "background": "rgba(255, 255, 255, 0.02)",
+                  "color": "rgba(255, 255, 255, 0.6)",
+                  "border": "1px solid rgba(255, 255, 255, 0.22)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.22)",
+                  "radius": "9999px",
+                  "padding": "0px 16px 0px 16px",
+                  "font": "14px/21px 500",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.6)",
+                  "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "NUSI",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 464,
+                    "y": 897,
+                    "w": 66,
+                    "h": 44
+                  },
+                  "background": "rgba(255, 255, 255, 0.02)",
+                  "color": "rgba(255, 255, 255, 0.6)",
+                  "border": "1px solid rgba(255, 255, 255, 0.22)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.22)",
+                  "radius": "9999px",
+                  "padding": "0px 16px 0px 16px",
+                  "font": "14px/21px 500",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.6)",
+                  "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "TNPSC Mentors",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 540,
+                    "y": 897,
+                    "w": 135,
+                    "h": 44
+                  },
+                  "background": "rgba(255, 255, 255, 0.02)",
+                  "color": "rgba(255, 255, 255, 0.6)",
+                  "border": "1px solid rgba(255, 255, 255, 0.22)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.22)",
+                  "radius": "9999px",
+                  "padding": "0px 16px 0px 16px",
+                  "font": "14px/21px 500",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.6)",
+                  "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "LexDraft",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 685,
+                    "y": 897,
+                    "w": 86,
+                    "h": 44
+                  },
+                  "background": "rgba(255, 255, 255, 0.02)",
+                  "color": "rgba(255, 255, 255, 0.6)",
+                  "border": "1px solid rgba(255, 255, 255, 0.22)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.22)",
+                  "radius": "9999px",
+                  "padding": "0px 16px 0px 16px",
+                  "font": "14px/21px 500",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.6)",
+                  "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Custom Software",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 168,
+                    "y": 951,
+                    "w": 142,
+                    "h": 44
+                  },
+                  "background": "rgba(255, 255, 255, 0.02)",
+                  "color": "rgba(255, 255, 255, 0.6)",
+                  "border": "1px solid rgba(255, 255, 255, 0.22)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.22)",
+                  "radius": "9999px",
+                  "padding": "0px 16px 0px 16px",
+                  "font": "14px/21px 500",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.6)",
+                  "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Not sure yet",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 320,
+                    "y": 951,
+                    "w": 110,
+                    "h": 44
+                  },
+                  "background": "rgba(255, 255, 255, 0.02)",
+                  "color": "rgba(255, 255, 255, 0.6)",
+                  "border": "1px solid rgba(255, 255, 255, 0.22)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.22)",
+                  "radius": "9999px",
+                  "padding": "0px 16px 0px 16px",
+                  "font": "14px/21px 500",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.6)",
+                  "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                  "placeholderColour": null
+                }
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "firstName",
+            "id": "firstName",
+            "required": true,
+            "placeholder": " ",
+            "autocomplete": "given-name",
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": "First name",
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 168,
+                "y": 634,
+                "w": 293,
+                "h": 57
+              },
+              "background": "rgba(255, 255, 255, 0.02)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.18)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.18)",
+              "radius": "12px",
+              "padding": "24px 16px 8px 16px",
+              "font": "15.2px/22.8px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "lastName",
+            "id": "lastName",
+            "required": false,
+            "placeholder": " ",
+            "autocomplete": "family-name",
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": "Last name (optional)",
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 481,
+                "y": 634,
+                "w": 293,
+                "h": 57
+              },
+              "background": "rgba(255, 255, 255, 0.02)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.18)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.18)",
+              "radius": "12px",
+              "padding": "24px 16px 8px 16px",
+              "font": "15.2px/22.8px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "email",
+            "name": "email",
+            "id": "email",
+            "required": true,
+            "placeholder": " ",
+            "autocomplete": "email",
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": "Email",
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 168,
+                "y": 711,
+                "w": 293,
+                "h": 57
+              },
+              "background": "rgba(255, 255, 255, 0.02)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.18)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.18)",
+              "radius": "12px",
+              "padding": "24px 16px 8px 16px",
+              "font": "15.2px/22.8px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "tel",
+            "name": "phone",
+            "id": "phone",
+            "required": true,
+            "placeholder": " ",
+            "autocomplete": "tel",
+            "inputmode": "numeric",
+            "pattern": null,
+            "maxLength": 10,
+            "rows": null,
+            "label": "WhatsApp number",
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 481,
+                "y": 711,
+                "w": 293,
+                "h": 57
+              },
+              "background": "rgba(255, 255, 255, 0.02)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.18)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.18)",
+              "radius": "12px",
+              "padding": "24px 16px 8px 16px",
+              "font": "15.2px/22.8px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "company",
+            "id": "company",
+            "required": false,
+            "placeholder": " ",
+            "autocomplete": "organization",
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": "Company (optional)",
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 168,
+                "y": 788,
+                "w": 607,
+                "h": 57
+              },
+              "background": "rgba(255, 255, 255, 0.02)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.18)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.18)",
+              "radius": "12px",
+              "padding": "24px 16px 8px 16px",
+              "font": "15.2px/22.8px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "textarea",
+            "type": "textarea",
+            "name": "message",
+            "id": "message",
+            "required": true,
+            "placeholder": " ",
+            "autocomplete": null,
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": 5,
+            "label": "Project details",
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 168,
+                "y": 1015,
+                "w": 607,
+                "h": 152
+              },
+              "background": "rgba(255, 255, 255, 0.02)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.18)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.18)",
+              "radius": "12px",
+              "padding": "28px 16px 8px 16px",
+              "font": "15.2px/22.8px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "consent",
+            "id": null,
+            "required": true,
+            "placeholder": null,
+            "autocomplete": null,
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": "I agree that SIRAH DIGITAL may contact me by email, phone or",
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 168,
+                "y": 1199,
+                "w": 16,
+                "h": 16
+              },
+              "background": "rgba(0, 0, 0, 0)",
+              "color": "rgba(255, 255, 255, 0.55)",
+              "border": "0px none rgba(255, 255, 255, 0.55)",
+              "borderBottom": "0px none rgba(255, 255, 255, 0.55)",
+              "radius": "0px",
+              "padding": "0px 0px 0px 0px",
+              "font": "12.8px/20.8px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "3px none rgba(255, 255, 255, 0.55)",
+              "transition": "all 0s ease",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "website",
+            "id": null,
+            "required": false,
+            "placeholder": null,
+            "autocomplete": "off",
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": null,
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": true,
+            "style": null
+          }
+        ],
+        "submit": {
+          "text": "Continue to calendar→",
+          "disabled": false,
+          "style": {
+            "rect": {
+              "x": 168,
+              "y": 1313,
+              "w": 225,
+              "h": 48
+            },
+            "background": "rgba(255, 255, 255, 0.04)",
+            "color": "rgb(255, 255, 255)",
+            "border": "0px none rgb(255, 255, 255)",
+            "borderBottom": "0px none rgb(255, 255, 255)",
+            "radius": "999px",
+            "padding": "0px 28px 0px 28px",
+            "font": "15px/15px 600",
+            "letterSpacing": "normal",
+            "textTransform": "none",
+            "outline": "3px none rgb(255, 255, 255)",
+            "transition": "background-color, transform 0.3s, 0.3s ease, ease",
+            "placeholderColour": null
+          }
+        },
+        "helperText": [
+          "(optional)",
+          "Continue to calendar"
+        ]
+      }
+    ],
+    "calculator": {
+      "hostClass": "relative min-h-screen font-sans selection:bg-brand-indigo/30 text-brand-text bg-space",
+      "rect": {
+        "y": 0,
+        "w": 1440,
+        "h": 4679
+      },
+      "controls": [
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": "Toggle menu"
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "text",
+          "name": "firstName",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "text",
+          "name": "lastName",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "email",
+          "name": "email",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "tel",
+          "name": "phone",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "text",
+          "name": "company",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Aura Transcriber",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Analytics Agents",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "NUSI",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "TNPSC Mentors",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "LexDraft",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Custom Software",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Not sure yet",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "checkbox",
+          "name": "consent",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "on",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "text",
+          "name": "website",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "submit",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Continue to calendar→",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "select",
+          "role": null,
+          "type": "select-one",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "professional-services",
+          "text": "HealthcareReal EstateManufacturingRetail",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "select",
+          "role": null,
+          "type": "select-one",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "growing",
+          "text": "StartupSmall BusinessGrowing BusinessEnt",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "range",
+          "name": null,
+          "min": "5",
+          "max": "1000",
+          "step": "5",
+          "value": "40",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "range",
+          "name": null,
+          "min": "1",
+          "max": "60",
+          "step": "1",
+          "value": "14",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Advanced assumptions",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Download the automation report→",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Ask Sirah AI",
+          "pressed": null,
+          "label": "Ask Sirah AI - open the chat"
+        }
+      ],
+      "outputs": [
+        "Address",
+        "8th Floor, Innovate,Featherlite - TheAddress, Pallavaram,Chennai - 600044",
+        "Email",
+        "support@sirahdigital.in",
+        "WhatsApp",
+        "+91 97899 61631",
+        "First-year ROI",
+        "509%",
+        "Payback period",
+        "2.0 mo",
+        "Revenue opportunity",
+        "$258K",
+        "Lead response",
+        "720×faster",
+        "Automation coverage",
+        "Productivity improvement",
+        "Manual hours per year",
+        "Potential savings over 12 months",
+        "Indicative estimate.",
+        "Company",
+        "Services",
+        "Products",
+        "Explore",
+        "Contact"
+      ],
+      "text": "Skip to contentSIRAH DIGITALHomeServicesAI Agents & Virtual EmployeesAI Chatbots & Voice AssistantsWorkflow & Process AutomationCustom Web & Mobile AppsAll services →ProductsAura TranscriberAnalytics AgentsNUSITNPSC MentorsLexDraftAll products →IndustriesAboutContactBook Free Consultation →HomeServicesProductsIndustriesAboutContactBook Free Consultation →Get in touchLet’s discuss your next AI project.Tell us where the time goes in your operation, and we will map the highest-leverage automation in it. Forty-five minutes, no charge, and an honest answer on whether it is worth building.Book Free Consultation→First nameLast name (optional)EmailWhatsApp numberCompany (optional)Which product are you interested in? (optional)Aura TranscriberAnalytics AgentsNUSITNPSC MentorsLexDraftCustom SoftwareNot sure yetProject detailsI agree that SIRAH DIGITAL may contact me by email, phone or WhatsApp about this enquiry, and may store the details I have submitted for that purpose. I understand my details are kept for 24 months, are never sold or shared for anyone else’s marketing, and that I can ask for them to be deleted at any time by emailing support@sirahdigital.in.Continue to calendar→Our officeAddress8th Floor, Innovate,Featherlite - TheAddress, Pallavaram,Chennai - 600044Emailsupport@sirahdigital.inWhatsApp+91 97899 61631See what automation could save.Adjust a few details about your business to estimate your potential automation impact.Your businessIndustryHealthcareReal EstateManufacturingRetailEducationFinanceHospitalityConstructionProfessional ServicesAutomotiveLogisticsTechnologyBusiness sizeStartupSmall BusinessGrowing BusinessEnterpriseTeam Size40People whose work automation would touchManual Hours Per Week14Repetitive work per person, per weekAdvanced assumptionsLead, call and document volumes are estimated from your team size - about 400 leads, 880 calls and 2,480 documents a month.Estimated impactEstimated annual savings$204KRealised cost avoidance - not the notional value of every freed hour.18.2KhHours saved per yearFirst-year ROI509%Payback period2.0 moRevenue opportunity$258KLead response720×faster68%Automation coverageShare of repeatable operations that could"
+    },
+    "inputFocus": {
+      "before": {
+        "border": "rgba(255, 255, 255, 0.18)",
+        "background": "rgba(255, 255, 255, 0.02)",
+        "outline": "2px solid rgba(0, 0, 0, 0)",
+        "shadow": "none"
+      },
+      "after": {
+        "border": "rgba(59, 130, 246, 0.6)",
+        "background": "rgba(255, 255, 255, 0.04)",
+        "outline": "2px solid rgb(96, 165, 250)",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(59, 130, 246, 0.12) 0px 0px 0px 3px"
+      }
+    },
+    "emptySubmit": {
+      "invalidCount": 5,
+      "invalid": [
+        {
+          "name": "firstName",
+          "message": "Please fill out this field."
+        },
+        {
+          "name": "email",
+          "message": "Please fill out this field."
+        },
+        {
+          "name": "phone",
+          "message": "Please fill out this field."
+        },
+        {
+          "name": "message",
+          "message": "Please fill out this field."
+        },
+        {
+          "name": "consent",
+          "message": "Please check this box if you want to proceed."
+        }
+      ],
+      "errors": [],
+      "focused": "firstName",
+      "firstFieldBorder": "rgba(59, 130, 246, 0.6)"
+    },
+    "calculatorAfterInteraction": {
+      "hostClass": "relative min-h-screen font-sans selection:bg-brand-indigo/30 text-brand-text bg-space",
+      "rect": {
+        "y": 0,
+        "w": 1440,
+        "h": 4679
+      },
+      "controls": [
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": "Toggle menu"
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "text",
+          "name": "firstName",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "text",
+          "name": "lastName",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "email",
+          "name": "email",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "tel",
+          "name": "phone",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "text",
+          "name": "company",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Aura Transcriber",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Analytics Agents",
+          "pressed": "true",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "NUSI",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "TNPSC Mentors",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "LexDraft",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Custom Software",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Not sure yet",
+          "pressed": "false",
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "checkbox",
+          "name": "consent",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "on",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "text",
+          "name": "website",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "submit",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Continue to calendar→",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "select",
+          "role": null,
+          "type": "select-one",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "professional-services",
+          "text": "HealthcareReal EstateManufacturingRetail",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "select",
+          "role": null,
+          "type": "select-one",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "growing",
+          "text": "StartupSmall BusinessGrowing BusinessEnt",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "range",
+          "name": null,
+          "min": "5",
+          "max": "1000",
+          "step": "5",
+          "value": "40",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "input",
+          "role": null,
+          "type": "range",
+          "name": null,
+          "min": "1",
+          "max": "60",
+          "step": "1",
+          "value": "14",
+          "text": "",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Advanced assumptions",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Download the automation report→",
+          "pressed": null,
+          "label": null
+        },
+        {
+          "tag": "button",
+          "role": null,
+          "type": "button",
+          "name": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": "",
+          "text": "Ask Sirah AI",
+          "pressed": null,
+          "label": "Ask Sirah AI - open the chat"
+        }
+      ],
+      "outputs": [
+        "Address",
+        "8th Floor, Innovate,Featherlite - TheAddress, Pallavaram,Chennai - 600044",
+        "Email",
+        "support@sirahdigital.in",
+        "WhatsApp",
+        "+91 97899 61631",
+        "First-year ROI",
+        "509%",
+        "Payback period",
+        "2.0 mo",
+        "Revenue opportunity",
+        "$258K",
+        "Lead response",
+        "720×faster",
+        "Automation coverage",
+        "Productivity improvement",
+        "Manual hours per year",
+        "Potential savings over 12 months",
+        "Indicative estimate.",
+        "Company",
+        "Services",
+        "Products",
+        "Explore",
+        "Contact"
+      ],
+      "text": "Skip to contentSIRAH DIGITALHomeServicesAI Agents & Virtual EmployeesAI Chatbots & Voice AssistantsWorkflow & Process AutomationCustom Web & Mobile AppsAll services →ProductsAura TranscriberAnalytics AgentsNUSITNPSC MentorsLexDraftAll products →IndustriesAboutContactBook Free Consultation →HomeServicesProductsIndustriesAboutContactBook Free Consultation →Get in touchLet’s discuss your next AI project.Tell us where the time goes in your operation, and we will map the highest-leverage automation in it. Forty-five minutes, no charge, and an honest answer on whether it is worth building.Book Free Consultation→First nameLast name (optional)EmailWhatsApp numberCompany (optional)Which product are you interested in? (optional)Aura TranscriberAnalytics AgentsNUSITNPSC MentorsLexDraftCustom SoftwareNot sure yetProject detailsI agree that SIRAH DIGITAL may contact me by email, phone or WhatsApp about this enquiry, and may store the details I have submitted for that purpose. I understand my details are kept for 24 months, are never sold or shared for anyone else’s marketing, and that I can ask for them to be deleted at any time by emailing support@sirahdigital.in.Continue to calendar→Our officeAddress8th Floor, Innovate,Featherlite - TheAddress, Pallavaram,Chennai - 600044Emailsupport@sirahdigital.inWhatsApp+91 97899 61631See what automation could save.Adjust a few details about your business to estimate your potential automation impact.Your businessIndustryHealthcareReal EstateManufacturingRetailEducationFinanceHospitalityConstructionProfessional ServicesAutomotiveLogisticsTechnologyBusiness sizeStartupSmall BusinessGrowing BusinessEnterpriseTeam Size40People whose work automation would touchManual Hours Per Week14Repetitive work per person, per weekAdvanced assumptionsLead, call and document volumes are estimated from your team size - about 400 leads, 880 calls and 2,480 documents a month.Estimated impactEstimated annual savings$204KRealised cost avoidance - not the notional value of every freed hour.18.2KhHours saved per yearFirst-year ROI509%Payback period2.0 moRevenue opportunity$258KLead response720×faster68%Automation coverageShare of repeatable operations that could"
+    },
+    "calculatorOutputsBefore": [
+      "Address",
+      "8th Floor, Innovate,Featherlite - TheAddress, Pallavaram,Chennai - 600044",
+      "Email",
+      "support@sirahdigital.in",
+      "WhatsApp",
+      "+91 97899 61631",
+      "First-year ROI",
+      "509%",
+      "Payback period",
+      "2.0 mo",
+      "Revenue opportunity",
+      "$258K",
+      "Lead response",
+      "720×faster",
+      "Automation coverage",
+      "Productivity improvement",
+      "Manual hours per year",
+      "Potential savings over 12 months",
+      "Indicative estimate.",
+      "Company",
+      "Services",
+      "Products",
+      "Explore",
+      "Contact"
+    ]
+  },
+  "/book": {
+    "route": "/book",
+    "forms": [
+      {
+        "action": null,
+        "method": null,
+        "noValidate": false,
+        "layout": [
+          {
+            "cls": "grid gap-4 sm:grid-cols-2",
+            "columns": "272px 272px",
+            "gap": "16px"
+          },
+          {
+            "cls": "mt-3 grid gap-2",
+            "columns": "95.8281px 95.8438px 95.8438px 95.8438px 95.8281px 95.8438px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px 95.8281px",
+            "gap": "8px"
+          }
+        ],
+        "fieldsets": [
+          {
+            "legend": "1 · Your details",
+            "controls": [
+              {
+                "tag": "input",
+                "type": "text",
+                "text": "",
+                "value": null,
+                "pressed": null,
+                "checked": false,
+                "style": {
+                  "rect": {
+                    "x": 304,
+                    "y": 521,
+                    "w": 272,
+                    "h": 49
+                  },
+                  "background": "rgba(255, 255, 255, 0.05)",
+                  "color": "rgb(255, 255, 255)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "12px 16px 12px 16px",
+                  "font": "15px/22.5px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "2px solid rgba(0, 0, 0, 0)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "input",
+                "type": "text",
+                "text": "",
+                "value": null,
+                "pressed": null,
+                "checked": false,
+                "style": {
+                  "rect": {
+                    "x": 592,
+                    "y": 521,
+                    "w": 272,
+                    "h": 49
+                  },
+                  "background": "rgba(255, 255, 255, 0.05)",
+                  "color": "rgb(255, 255, 255)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "12px 16px 12px 16px",
+                  "font": "15px/22.5px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "2px solid rgba(0, 0, 0, 0)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "input",
+                "type": "email",
+                "text": "",
+                "value": null,
+                "pressed": null,
+                "checked": false,
+                "style": {
+                  "rect": {
+                    "x": 304,
+                    "y": 585,
+                    "w": 560,
+                    "h": 49
+                  },
+                  "background": "rgba(255, 255, 255, 0.05)",
+                  "color": "rgb(255, 255, 255)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "12px 16px 12px 16px",
+                  "font": "15px/22.5px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "2px solid rgba(0, 0, 0, 0)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "input",
+                "type": "tel",
+                "text": "",
+                "value": null,
+                "pressed": null,
+                "checked": false,
+                "style": {
+                  "rect": {
+                    "x": 304,
+                    "y": 650,
+                    "w": 560,
+                    "h": 49
+                  },
+                  "background": "rgba(255, 255, 255, 0.05)",
+                  "color": "rgb(255, 255, 255)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "12px 16px 12px 16px",
+                  "font": "15px/22.5px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "2px solid rgba(0, 0, 0, 0)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "input",
+                "type": "text",
+                "text": "",
+                "value": null,
+                "pressed": null,
+                "checked": false,
+                "style": {
+                  "rect": {
+                    "x": 304,
+                    "y": 763,
+                    "w": 560,
+                    "h": 49
+                  },
+                  "background": "rgba(255, 255, 255, 0.05)",
+                  "color": "rgb(255, 255, 255)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "12px 16px 12px 16px",
+                  "font": "15px/22.5px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "2px solid rgba(0, 0, 0, 0)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "input",
+                "type": "text",
+                "text": "",
+                "value": null,
+                "pressed": null,
+                "checked": false,
+                "style": {
+                  "rect": {
+                    "x": 864,
+                    "y": 763,
+                    "w": 0,
+                    "h": 0
+                  },
+                  "background": "rgb(255, 255, 255)",
+                  "color": "rgb(255, 255, 255)",
+                  "border": "0px solid rgb(229, 231, 235)",
+                  "borderBottom": "0px solid rgb(229, 231, 235)",
+                  "radius": "0px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgb(255, 255, 255)",
+                  "transition": "all 0s ease",
+                  "placeholderColour": null
+                }
+              }
+            ]
+          },
+          {
+            "legend": "2 · Pick a time",
+            "controls": [
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "‹",
+                "value": null,
+                "pressed": null,
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 304,
+                    "y": 900,
+                    "w": 36,
+                    "h": 36
+                  },
+                  "background": "rgb(22, 20, 44)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.15)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.15)",
+                  "radius": "9999px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Tue8Sep",
+                "value": null,
+                "pressed": "true",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 348,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(59, 130, 246, 0.15)",
+                  "color": "rgb(255, 255, 255)",
+                  "border": "1px solid rgb(59, 130, 246)",
+                  "borderBottom": "1px solid rgb(59, 130, 246)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgb(255, 255, 255)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Wed9Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 424,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Thu10Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 500,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Fri11Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 576,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Sat12Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 652,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Mon14Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 728,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Tue15Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 804,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Wed16Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 880,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Thu17Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 956,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Fri18Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1032,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Sat19Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1108,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Mon21Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1184,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Tue22Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1260,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Wed23Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1336,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Thu24Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1412,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Fri25Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1488,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Sat26Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1564,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Mon28Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1640,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Tue29Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1716,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Wed30Sep",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1792,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Thu1Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1868,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Fri2Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 1944,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Sat3Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2020,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Mon5Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2096,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Tue6Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2172,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Wed7Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2248,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Thu8Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2324,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Fri9Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2400,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Sat10Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2476,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Mon12Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2552,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Tue13Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2628,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Wed14Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2704,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "Thu15Oct",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2780,
+                    "y": 882,
+                    "w": 68,
+                    "h": 72
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.1)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+                  "radius": "12px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "›",
+                "value": null,
+                "pressed": null,
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 2856,
+                    "y": 900,
+                    "w": 36,
+                    "h": 36
+                  },
+                  "background": "rgb(22, 20, 44)",
+                  "color": "rgba(255, 255, 255, 0.7)",
+                  "border": "1px solid rgba(255, 255, 255, 0.15)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.15)",
+                  "radius": "9999px",
+                  "padding": "0px 0px 0px 0px",
+                  "font": "16px/24px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.7)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "11:00 am",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 304,
+                    "y": 1009,
+                    "w": 96,
+                    "h": 44
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.8)",
+                  "border": "1px solid rgba(255, 255, 255, 0.15)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.15)",
+                  "radius": "8px",
+                  "padding": "0px 8px 0px 8px",
+                  "font": "14px/21px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.8)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "1:00 pm",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 408,
+                    "y": 1009,
+                    "w": 96,
+                    "h": 44
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.8)",
+                  "border": "1px solid rgba(255, 255, 255, 0.15)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.15)",
+                  "radius": "8px",
+                  "padding": "0px 8px 0px 8px",
+                  "font": "14px/21px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.8)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "4:00 pm",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 512,
+                    "y": 1009,
+                    "w": 96,
+                    "h": 44
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.8)",
+                  "border": "1px solid rgba(255, 255, 255, 0.15)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.15)",
+                  "radius": "8px",
+                  "padding": "0px 8px 0px 8px",
+                  "font": "14px/21px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.8)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "5:00 pm",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 616,
+                    "y": 1009,
+                    "w": 96,
+                    "h": 44
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.8)",
+                  "border": "1px solid rgba(255, 255, 255, 0.15)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.15)",
+                  "radius": "8px",
+                  "padding": "0px 8px 0px 8px",
+                  "font": "14px/21px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.8)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "6:00 pm",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 719,
+                    "y": 1009,
+                    "w": 96,
+                    "h": 44
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.8)",
+                  "border": "1px solid rgba(255, 255, 255, 0.15)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.15)",
+                  "radius": "8px",
+                  "padding": "0px 8px 0px 8px",
+                  "font": "14px/21px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.8)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "text": "7:00 pm",
+                "value": null,
+                "pressed": "false",
+                "checked": null,
+                "style": {
+                  "rect": {
+                    "x": 823,
+                    "y": 1009,
+                    "w": 96,
+                    "h": 44
+                  },
+                  "background": "rgba(0, 0, 0, 0)",
+                  "color": "rgba(255, 255, 255, 0.8)",
+                  "border": "1px solid rgba(255, 255, 255, 0.15)",
+                  "borderBottom": "1px solid rgba(255, 255, 255, 0.15)",
+                  "radius": "8px",
+                  "padding": "0px 8px 0px 8px",
+                  "font": "14px/21px 400",
+                  "letterSpacing": "normal",
+                  "textTransform": "none",
+                  "outline": "3px none rgba(255, 255, 255, 0.8)",
+                  "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "placeholderColour": null
+                }
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "firstName",
+            "id": null,
+            "required": true,
+            "placeholder": "First name *",
+            "autocomplete": "given-name",
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": null,
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 304,
+                "y": 521,
+                "w": 272,
+                "h": 49
+              },
+              "background": "rgba(255, 255, 255, 0.05)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.1)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+              "radius": "12px",
+              "padding": "12px 16px 12px 16px",
+              "font": "15px/22.5px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "lastName",
+            "id": null,
+            "required": false,
+            "placeholder": "Last name",
+            "autocomplete": "family-name",
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": null,
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 592,
+                "y": 521,
+                "w": 272,
+                "h": 49
+              },
+              "background": "rgba(255, 255, 255, 0.05)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.1)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+              "radius": "12px",
+              "padding": "12px 16px 12px 16px",
+              "font": "15px/22.5px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "email",
+            "name": "email",
+            "id": null,
+            "required": true,
+            "placeholder": "Email *",
+            "autocomplete": "email",
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": null,
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 304,
+                "y": 585,
+                "w": 560,
+                "h": 49
+              },
+              "background": "rgba(255, 255, 255, 0.05)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.1)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+              "radius": "12px",
+              "padding": "12px 16px 12px 16px",
+              "font": "15px/22.5px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "tel",
+            "name": "phone",
+            "id": null,
+            "required": true,
+            "placeholder": "WhatsApp number *",
+            "autocomplete": "tel",
+            "inputmode": "numeric",
+            "pattern": null,
+            "maxLength": 10,
+            "rows": null,
+            "label": null,
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 304,
+                "y": 650,
+                "w": 560,
+                "h": 49
+              },
+              "background": "rgba(255, 255, 255, 0.05)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.1)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+              "radius": "12px",
+              "padding": "12px 16px 12px 16px",
+              "font": "15px/22.5px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "company",
+            "id": null,
+            "required": false,
+            "placeholder": "Company (optional)",
+            "autocomplete": "organization",
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": null,
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 304,
+                "y": 763,
+                "w": 560,
+                "h": 49
+              },
+              "background": "rgba(255, 255, 255, 0.05)",
+              "color": "rgb(255, 255, 255)",
+              "border": "1px solid rgba(255, 255, 255, 0.1)",
+              "borderBottom": "1px solid rgba(255, 255, 255, 0.1)",
+              "radius": "12px",
+              "padding": "12px 16px 12px 16px",
+              "font": "15px/22.5px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "2px solid rgba(0, 0, 0, 0)",
+              "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+              "placeholderColour": null
+            }
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "website",
+            "id": null,
+            "required": false,
+            "placeholder": null,
+            "autocomplete": "off",
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": null,
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": true,
+            "style": null
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "consent",
+            "id": null,
+            "required": true,
+            "placeholder": null,
+            "autocomplete": null,
+            "inputmode": null,
+            "pattern": null,
+            "maxLength": null,
+            "rows": null,
+            "label": "I agree that SIRAH DIGITAL may contact me by email, phone or",
+            "ariaLabel": null,
+            "ariaDescribedBy": null,
+            "hiddenFromUser": false,
+            "style": {
+              "rect": {
+                "x": 304,
+                "y": 1118,
+                "w": 16,
+                "h": 16
+              },
+              "background": "rgba(0, 0, 0, 0)",
+              "color": "rgba(255, 255, 255, 0.55)",
+              "border": "0px none rgba(255, 255, 255, 0.55)",
+              "borderBottom": "0px none rgba(255, 255, 255, 0.55)",
+              "radius": "0px",
+              "padding": "0px 0px 0px 0px",
+              "font": "12.8px/20.8px 400",
+              "letterSpacing": "normal",
+              "textTransform": "none",
+              "outline": "3px none rgba(255, 255, 255, 0.55)",
+              "transition": "all 0s ease",
+              "placeholderColour": null
+            }
+          }
+        ],
+        "submit": {
+          "text": "Confirm booking",
+          "disabled": false,
+          "style": {
+            "rect": {
+              "x": 304,
+              "y": 1215,
+              "w": 172,
+              "h": 48
+            },
+            "background": "rgba(255, 255, 255, 0.04)",
+            "color": "rgb(255, 255, 255)",
+            "border": "0px none rgb(255, 255, 255)",
+            "borderBottom": "0px none rgb(255, 255, 255)",
+            "radius": "999px",
+            "padding": "0px 28px 0px 28px",
+            "font": "15px/15px 600",
+            "letterSpacing": "normal",
+            "textTransform": "none",
+            "outline": "3px none rgb(255, 255, 255)",
+            "transition": "background-color, transform 0.3s, 0.3s ease, ease",
+            "placeholderColour": null
+          }
+        },
+        "helperText": [
+          "We send your booking confirmation here, a reminder the day before, and the joining link an hour before the call.",
+          "Tuesday 8 September",
+          "All times India Standard Time (IST)."
+        ]
+      }
+    ],
+    "calculator": null,
+    "inputFocus": {
+      "before": {
+        "border": "rgba(255, 255, 255, 0.1)",
+        "background": "rgba(255, 255, 255, 0.05)",
+        "outline": "2px solid rgba(0, 0, 0, 0)",
+        "shadow": "none"
+      },
+      "after": {
+        "border": "rgb(59, 130, 246)",
+        "background": "rgba(255, 255, 255, 0.05)",
+        "outline": "2px solid rgb(96, 165, 250)",
+        "shadow": "none"
+      }
+    },
+    "emptySubmit": {
+      "invalidCount": 5,
+      "invalid": [
+        {
+          "name": "fieldset",
+          "message": ""
+        },
+        {
+          "name": "firstName",
+          "message": "Please fill out this field."
+        },
+        {
+          "name": "email",
+          "message": "Please fill out this field."
+        },
+        {
+          "name": "phone",
+          "message": "Please fill out this field."
+        },
+        {
+          "name": "consent",
+          "message": "Please check this box if you want to proceed."
+        }
+      ],
+      "errors": [],
+      "focused": "firstName",
+      "firstFieldBorder": "rgb(59, 130, 246)"
+    }
+  }
+}

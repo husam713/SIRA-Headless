@@ -1,11 +1,15 @@
-query SiraNavigation {
-  primary: menus(first: 2, where: { location: PRIMARY }) {
+query SiraNavigation(
+  $primary: MenuLocationEnum = PRIMARY
+  $footer: MenuLocationEnum = FOOTER
+  $legal: MenuLocationEnum = LEGAL
+) {
+  primary: menus(first: 2, where: { location: $primary }) {
     ...SiraNavigationMenuCollection
   }
-  footer: menus(first: 2, where: { location: FOOTER }) {
+  footer: menus(first: 2, where: { location: $footer }) {
     ...SiraNavigationMenuCollection
   }
-  legal: menus(first: 2, where: { location: LEGAL }) {
+  legal: menus(first: 2, where: { location: $legal }) {
     ...SiraNavigationMenuCollection
   }
 }

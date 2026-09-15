@@ -1,0 +1,2321 @@
+{
+  "route": "/services",
+  "events": [
+    {
+      "t": 910,
+      "kind": "animationstart",
+      "name": "scroll-hint",
+      "target": "span.absolute.inset-x-0.h-6.bg-gradient-to-b",
+      "duration": "2.4s",
+      "delay": "0s",
+      "easing": "ease-in-out",
+      "iteration": "infinite"
+    },
+    {
+      "t": 911,
+      "kind": "animationstart",
+      "name": "launcher-radar",
+      "target": "i",
+      "duration": "3.3s",
+      "delay": "0s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "iteration": "infinite"
+    },
+    {
+      "t": 911,
+      "kind": "animationstart",
+      "name": "launcher-bob",
+      "target": "img.sirah-launcher__img",
+      "duration": "4.5s",
+      "delay": "0s",
+      "easing": "ease-in-out",
+      "iteration": "infinite"
+    },
+    {
+      "t": 1192,
+      "kind": "transitionrun",
+      "property": "opacity",
+      "target": "p.text-fluid-xs.uppercase.tracking-[0.35em].font-semibold",
+      "duration": "0.7s",
+      "delay": "0s",
+      "easing": "ease",
+      "text": "Capabilities"
+    },
+    {
+      "t": 1192,
+      "kind": "transitionrun",
+      "property": "opacity",
+      "target": "span.block",
+      "duration": "0.9s, 0.9s",
+      "delay": "0.14s, 0.14s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "text": "SYSTEMS"
+    },
+    {
+      "t": 1193,
+      "kind": "transitionrun",
+      "property": "transform",
+      "target": "span.block",
+      "duration": "0.9s, 0.9s",
+      "delay": "0.14s, 0.14s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "text": "SYSTEMS"
+    },
+    {
+      "t": 1193,
+      "kind": "transitionrun",
+      "property": "opacity",
+      "target": "span.block",
+      "duration": "0.9s, 0.9s",
+      "delay": "0.25s, 0.25s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "text": "THAT THINK,"
+    },
+    {
+      "t": 1193,
+      "kind": "transitionrun",
+      "property": "transform",
+      "target": "span.block",
+      "duration": "0.9s, 0.9s",
+      "delay": "0.25s, 0.25s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "text": "THAT THINK,"
+    },
+    {
+      "t": 1193,
+      "kind": "transitionrun",
+      "property": "opacity",
+      "target": "span.block",
+      "duration": "0.9s, 0.9s",
+      "delay": "0.36s, 0.36s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "text": "AUTOMATE"
+    },
+    {
+      "t": 1193,
+      "kind": "transitionrun",
+      "property": "transform",
+      "target": "span.block",
+      "duration": "0.9s, 0.9s",
+      "delay": "0.36s, 0.36s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "text": "AUTOMATE"
+    },
+    {
+      "t": 1193,
+      "kind": "transitionrun",
+      "property": "opacity",
+      "target": "span.block",
+      "duration": "0.9s, 0.9s",
+      "delay": "0.47s, 0.47s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "text": "AND SCALE"
+    },
+    {
+      "t": 1193,
+      "kind": "transitionrun",
+      "property": "transform",
+      "target": "span.block",
+      "duration": "0.9s, 0.9s",
+      "delay": "0.47s, 0.47s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "text": "AND SCALE"
+    },
+    {
+      "t": 1193,
+      "kind": "transitionrun",
+      "property": "opacity",
+      "target": "p.mt-12.text-fluid-base.leading-relaxed.text-brand-muted",
+      "duration": "0.9s, 0.9s",
+      "delay": "0.62s, 0.62s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "text": "Ten core capabilities, deliver"
+    },
+    {
+      "t": 1193,
+      "kind": "transitionrun",
+      "property": "transform",
+      "target": "p.mt-12.text-fluid-base.leading-relaxed.text-brand-muted",
+      "duration": "0.9s, 0.9s",
+      "delay": "0.62s, 0.62s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "text": "Ten core capabilities, deliver"
+    },
+    {
+      "t": 1193,
+      "kind": "transitionrun",
+      "property": "opacity",
+      "target": "div.mt-16.flex.items-center.gap-3",
+      "duration": "0.9s",
+      "delay": "0.9s",
+      "easing": "ease",
+      "text": ""
+    },
+    {
+      "t": 2213,
+      "kind": "animationstart",
+      "name": "launcher-radar",
+      "target": "i",
+      "duration": "3.3s",
+      "delay": "1.1s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "iteration": "infinite"
+    },
+    {
+      "t": 3147,
+      "kind": "animationstart",
+      "name": "launcher-radar",
+      "target": "i",
+      "duration": "3.3s",
+      "delay": "2.2s",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "iteration": "infinite"
+    }
+  ],
+  "timeline": [
+    {
+      "t": 12,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 99,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 174,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 254,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 333,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 412,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 485,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 573,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 651,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 730,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 806,
+      "h1": null,
+      "heroBody": null,
+      "heroCta": null,
+      "header": null,
+      "canvas": null,
+      "launcher": null,
+      "words": []
+    },
+    {
+      "t": 913,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": null,
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        }
+      ]
+    },
+    {
+      "t": 995,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": null,
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        }
+      ]
+    },
+    {
+      "t": 1074,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": null,
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        }
+      ]
+    },
+    {
+      "t": 1151,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": null,
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        }
+      ]
+    },
+    {
+      "t": 1228,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.031",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": null,
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        }
+      ]
+    },
+    {
+      "t": 1308,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.221",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": null,
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        }
+      ]
+    },
+    {
+      "t": 1387,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.484",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": null,
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.18",
+          "transform": "matrix(1, 0, 0, 1, 0, 45.7666)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        }
+      ]
+    },
+    {
+      "t": 1462,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.654",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": null,
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.37",
+          "transform": "matrix(1, 0, 0, 1, 0, 35.2177)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.05",
+          "transform": "matrix(1, 0, 0, 1, 0, 53.1303)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        }
+      ]
+    },
+    {
+      "t": 1539,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.802",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": null,
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.56",
+          "transform": "matrix(1, 0, 0, 1, 0, 24.3702)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.30",
+          "transform": "matrix(1, 0, 0, 1, 0, 39.2783)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        }
+      ]
+    },
+    {
+      "t": 1618,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.898",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 150
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.71",
+          "transform": "matrix(1, 0, 0, 1, 0, 16.3568)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.51",
+          "transform": "matrix(1, 0, 0, 1, 0, 27.5158)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.22",
+          "transform": "matrix(1, 0, 0, 1, 0, 43.5479)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 56)"
+        }
+      ]
+    },
+    {
+      "t": 1715,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.956",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.81",
+          "transform": "matrix(1, 0, 0, 1, 0, 10.6828)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.67",
+          "transform": "matrix(1, 0, 0, 1, 0, 18.6334)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.45",
+          "transform": "matrix(1, 0, 0, 1, 0, 30.9723)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.14",
+          "transform": "matrix(1, 0, 0, 1, 0, 47.997)"
+        }
+      ]
+    },
+    {
+      "t": 1796,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "0.988",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.88",
+          "transform": "matrix(1, 0, 0, 1, 0, 6.71254)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.78",
+          "transform": "matrix(1, 0, 0, 1, 0, 12.283)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.62",
+          "transform": "matrix(1, 0, 0, 1, 0, 21.1675)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.38",
+          "transform": "matrix(1, 0, 0, 1, 0, 34.7191)"
+        }
+      ]
+    },
+    {
+      "t": 1883,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.93",
+          "transform": "matrix(1, 0, 0, 1, 0, 3.97252)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.86",
+          "transform": "matrix(1, 0, 0, 1, 0, 7.83546)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.75",
+          "transform": "matrix(1, 0, 0, 1, 0, 14.0875)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.57",
+          "transform": "matrix(1, 0, 0, 1, 0, 24.0008)"
+        }
+      ]
+    },
+    {
+      "t": 1963,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.96",
+          "transform": "matrix(1, 0, 0, 1, 0, 2.12054)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.92",
+          "transform": "matrix(1, 0, 0, 1, 0, 4.73836)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.84",
+          "transform": "matrix(1, 0, 0, 1, 0, 9.08788)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.71",
+          "transform": "matrix(1, 0, 0, 1, 0, 16.0922)"
+        }
+      ]
+    },
+    {
+      "t": 2221,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "0.97",
+          "transform": "matrix(1, 0, 0, 1, 0, 1.57838)"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "0.93",
+          "transform": "matrix(1, 0, 0, 1, 0, 3.7942)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.87",
+          "transform": "matrix(1, 0, 0, 1, 0, 7.54223)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.76",
+          "transform": "matrix(1, 0, 0, 1, 0, 13.617)"
+        }
+      ]
+    },
+    {
+      "t": 2336,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 0.0250998)"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "0.99",
+          "transform": "matrix(1, 0, 0, 1, 0, 0.511422)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.97",
+          "transform": "matrix(1, 0, 0, 1, 0, 1.78292)"
+        }
+      ]
+    },
+    {
+      "t": 2455,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 0.0427678)"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "0.99",
+          "transform": "matrix(1, 0, 0, 1, 0, 0.590826)"
+        }
+      ]
+    },
+    {
+      "t": 2544,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "matrix(1, 0, 0, 1, 0, 0.113936)"
+        }
+      ]
+    },
+    {
+      "t": 2629,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "t": 2739,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "t": 2852,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "t": 2947,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "t": 3046,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "t": 3155,
+      "h1": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 169,
+        "h": 421
+      },
+      "heroBody": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 118,
+        "h": 20
+      },
+      "heroCta": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 1319,
+        "h": 44
+      },
+      "header": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 74
+      },
+      "canvas": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 0,
+        "h": 900
+      },
+      "launcher": {
+        "opacity": "1.000",
+        "transform": "none",
+        "filter": "none",
+        "y": 808,
+        "h": 72
+      },
+      "words": [
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "SYSTEMS",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "THAT THINK,",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AUTOMATE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        },
+        {
+          "text": "AND SCALE",
+          "opacity": "1.00",
+          "transform": "none"
+        }
+      ]
+    }
+  ]
+}

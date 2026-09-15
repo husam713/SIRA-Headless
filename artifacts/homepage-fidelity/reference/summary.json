@@ -1,0 +1,54 @@
+{
+  "url": "https://sira-enterprise-o1ykhvni7-husam713s-projects.vercel.app/SIRA%20Group%20Homepage.dc.html",
+  "capturedAt": "2026-09-06T05:24:58.093Z",
+  "summary": [
+    {
+      "viewport": "390",
+      "documentHeight": 15452,
+      "overflow": 0,
+      "headerHeight": 77,
+      "heroHeight": 749,
+      "sections": 12
+    },
+    {
+      "viewport": "768",
+      "documentHeight": 10904,
+      "overflow": 0,
+      "headerHeight": 77,
+      "heroHeight": 881,
+      "sections": 12
+    },
+    {
+      "viewport": "1024",
+      "documentHeight": 9204,
+      "overflow": 0,
+      "headerHeight": 69,
+      "heroHeight": 770,
+      "sections": 12
+    },
+    {
+      "viewport": "1280",
+      "documentHeight": 9333,
+      "overflow": 0,
+      "headerHeight": 71,
+      "heroHeight": 828,
+      "sections": 12
+    },
+    {
+      "viewport": "1440",
+      "documentHeight": 8740,
+      "overflow": 0,
+      "headerHeight": 71,
+      "heroHeight": 828,
+      "sections": 12
+    },
+    {
+      "viewport": "1920",
+      "documentHeight": 8906,
+      "overflow": 0,
+      "headerHeight": 71,
+      "heroHeight": 994,
+      "sections": 12
+    }
+  ]
+}

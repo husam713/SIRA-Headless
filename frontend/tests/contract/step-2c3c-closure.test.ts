@@ -140,23 +140,58 @@ describe("Step 2C.3C cumulative closure contract", () => {
   });
 
   it("locks the canonical Homepage and native Navigation coordinates", () => {
+    // The coordinate is still the site root; ADR-034 only made it the default
+    // of a variable, so `/ar/` can be resolved by the same document without a
+    // second query and without changing what any existing caller asks for.
     expect(SIRA_HOMEPAGE_QUERY.source).toContain(
-      'page(id: "/", idType: URI, asPreview: $asPreview)',
+      "page(id: $uri, idType: URI, asPreview: $asPreview)",
     );
+    expect(SIRA_HOMEPAGE_QUERY.source).toMatch(/\$uri: ID = "\/"/u);
     expect(SIRA_HOMEPAGE_QUERY.source).not.toMatch(/\bpages\s*\(/u);
     expect(SIRA_HOMEPAGE_QUERY.source).not.toContain("/home");
     expect(SIRA_HOMEPAGE_QUERY.source).toContain("groupHomepage");
     expect(SIRA_HOMEPAGE_QUERY.source).toContain("branchHomepage");
 
-    for (const location of ["PRIMARY", "FOOTER", "LEGAL"]) {
-      expect(SIRA_NAVIGATION_QUERY.source).toContain(`location: ${location}`);
+    // Still the same three locations; ADR-034 moved them from inline literals
+    // to variable defaults so the Arabic menus can be read by the same
+    // document. A tenant gated by 2C4-B09 resolves exactly these.
+    for (const [scope, location] of [
+      ["primary", "PRIMARY"],
+      ["footer", "FOOTER"],
+      ["legal", "LEGAL"],
+    ] as const) {
+      expect(SIRA_NAVIGATION_QUERY.source).toContain(
+        `$${scope}: MenuLocationEnum = ${location}`,
+      );
     }
     expect(SIRA_NAVIGATION_QUERY.source).not.toContain("siraNavigation");
   });
 
+/**
+ * The `where` argument of every `contentNodes(...)` call in an operation.
+ *
+ * Filtering and selection are different claims: an operation that SELECTS the
+ * Business Unit terms of each entry is still an unfiltered feed. Matching the
+ * whole document for the words "business unit" cannot tell the two apart, so
+ * this narrows the assertion to the place a filter would actually live.
+ */
+function editorialWhereArguments(source: string): string {
+  return (source.match(/where:\s*\{[^}]*\}/gu) ?? []).join(" ");
+}
+
   it("locks native editorial pagination and the exact ADR-014 mapping", () => {
     expect(SIRA_EDITORIAL_FEED_QUERY.source).toMatch(/\bcontentNodes\s*\(/u);
-    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toMatch(/business.?unit/iu);
+    // The unfiltered feed stays unfiltered. It SELECTS each entry's Business
+    // Unit terms — the newsroom labels every entry with the company that filed
+    // it — but it must not narrow BY them: no business-unit argument inside
+    // `where`, and no entry through the term's own root field. Narrowing still
+    // goes through SiraBusinessUnitEditorialFeed below.
+    expect(
+      editorialWhereArguments(SIRA_EDITORIAL_FEED_QUERY.source),
+    ).not.toMatch(/business.?unit/iu);
+    expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toMatch(
+      /\bsiraBusinessUnit\s*\(/u,
+    );
     expect(SIRA_EDITORIAL_FEED_QUERY.source).not.toContain(
       "siraEditorialFeed",
     );

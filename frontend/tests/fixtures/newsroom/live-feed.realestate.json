@@ -1,0 +1,106 @@
+{
+  "data": {
+    "siraBusinessUnit": {
+      "contentNodes": {
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "YXJyYXljb25uZWN0aW9uOjMw"
+        },
+        "nodes": [
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 11,
+            "contentTypeName": "sira_article",
+            "date": "2026-07-15T09:00:00",
+            "modified": "2026-07-15T09:00:00",
+            "uri": "/articles/why-istanbul-remains-a-resilient-property-market/",
+            "isRestricted": false,
+            "title": "Why Istanbul Remains a Resilient Property Market",
+            "excerpt": "<p>The fundamentals drawing international capital into Turkish real estate.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraNewsItem",
+            "databaseId": 26,
+            "contentTypeName": "sira_news",
+            "date": "2026-07-14T09:00:00",
+            "modified": "2026-07-14T09:00:00",
+            "uri": "/news/sira-group-signs-strategic-partnership-with-ovan-group/",
+            "isRestricted": false,
+            "title": "SIRA GROUP Signs Strategic Partnership with OVAN Group",
+            "excerpt": "<p>A joint venture to accelerate residential delivery in Istanbul, combining capital, land and delivery capability across three districts.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 12,
+            "contentTypeName": "sira_article",
+            "date": "2026-06-15T09:00:00",
+            "modified": "2026-06-15T09:00:00",
+            "uri": "/articles/inside-the-sira-prime-development/",
+            "isRestricted": false,
+            "title": "Inside the Sira Prime Development",
+            "excerpt": "<p>A look at the design and delivery approach behind our flagship villas.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 13,
+            "contentTypeName": "sira_article",
+            "date": "2026-05-15T09:00:00",
+            "modified": "2026-05-15T09:00:00",
+            "uri": "/articles/what-long-term-value-means-to-us/",
+            "isRestricted": false,
+            "title": "What Long-Term Value Means to Us",
+            "excerpt": "<p>How we underwrite developments for durability, not just delivery.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraNewsItem",
+            "databaseId": 28,
+            "contentTypeName": "sira_news",
+            "date": "2026-01-15T09:45:00",
+            "modified": "2026-01-15T09:45:00",
+            "uri": "/news/sira-prime-tops-out-four-weeks-ahead-of-schedule/",
+            "isRestricted": false,
+            "title": "SIRA Prime Tops Out Four Weeks Ahead of Schedule",
+            "excerpt": "<p>The Istanbul development reaches structural completion ahead of programme, with handover now expected in the first quarter.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 29,
+            "contentTypeName": "sira_article",
+            "date": "2025-03-17T09:00:00",
+            "modified": "2025-03-17T09:00:00",
+            "uri": "/articles/land-assembly-and-the-patience-it-requires/",
+            "isRestricted": false,
+            "title": "Land Assembly and the Patience It Requires",
+            "excerpt": "<p>Six years of acquisition on one Istanbul block, told through the four deals that nearly ended it.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraInsight",
+            "databaseId": 30,
+            "contentTypeName": "sira_insight",
+            "date": "2023-12-04T09:00:00",
+            "modified": "2023-12-04T09:00:00",
+            "uri": "/insights/istanbul-residential-a-ten-year-view/",
+            "isRestricted": false,
+            "title": "Istanbul Residential: A Ten-Year View",
+            "excerpt": "<p>Demographics, currency and construction cost, and what each of them is likely to do to yields between now and 2034.</p>\n",
+            "featuredImage": null
+          }
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "debug": [
+      {
+        "type": "DEBUG_LOGS_INACTIVE",
+        "message": "GraphQL Debug logging is not active. To see debug logs, GRAPHQL_DEBUG must be enabled."
+      }
+    ]
+  }
+}

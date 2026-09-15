@@ -47,6 +47,10 @@ const WORDPRESS_ENVIRONMENT_KEYS: Readonly<
     endpoint: "SIRA_WP_REALESTATE_GRAPHQL_URL",
     blogId: "SIRA_WP_REALESTATE_BLOG_ID",
   },
+  digital: {
+    endpoint: "SIRA_WP_DIGITAL_GRAPHQL_URL",
+    blogId: "SIRA_WP_DIGITAL_BLOG_ID",
+  },
 };
 
 const WORDPRESS_PREVIEW_ENVIRONMENT_KEYS: Readonly<
@@ -71,6 +75,10 @@ const WORDPRESS_PREVIEW_ENVIRONMENT_KEYS: Readonly<
   realestate: {
     username: "SIRA_WP_REALESTATE_PREVIEW_USERNAME",
     applicationPassword: "SIRA_WP_REALESTATE_PREVIEW_APPLICATION_PASSWORD",
+  },
+  digital: {
+    username: "SIRA_WP_DIGITAL_PREVIEW_USERNAME",
+    applicationPassword: "SIRA_WP_DIGITAL_PREVIEW_APPLICATION_PASSWORD",
   },
 };
 

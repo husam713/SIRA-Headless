@@ -1,0 +1,271 @@
+{
+  "capturedAt": "2026-09-07/08",
+  "viewport": "1440x900 unless stated",
+  "evidenceMethod": "Chromium instrumented before page scripts ran: IntersectionObserver constructor wrapper, Element.animate wrapper, transitionrun/animationstart listeners, computed-style sampling at fixed scroll positions, and the site's own public CSS read for token values.",
+  "designTokens": {
+    "houseEasing": "cubic-bezier(0.22, 0.61, 0.36, 1)  (published as the .ease-brand utility; easeOutCubic)",
+    "chromeEasing": "cubic-bezier(0.77, 0, 0.175, 1)  (header/pill morph; easeInOutQuart)",
+    "uiEasing": "cubic-bezier(0.4, 0, 0.2, 1)  (small state changes)",
+    "cinematicEasing": "cubic-bezier(0.45, 0, 0.25, 1)  (coverflow frames and caption)",
+    "durations": {
+      "microState": "0.15s",
+      "arrowNudge": "0.22s",
+      "buttonState": "0.3s",
+      "svgNode": "0.42s",
+      "sectionFade": "0.5s",
+      "chromeMorph": "0.5s",
+      "wordReveal": "0.64s",
+      "blockReveal": "0.7s",
+      "captionIn": "0.76s",
+      "lineReveal": "0.9s",
+      "coverflowOpacity": "1.0s",
+      "coverflowTransform": "1.6s",
+      "autoplayInterval": "2.8s",
+      "marqueeCycle": "60s"
+    },
+    "staggers": { "heroBlocks": "0.12s", "words": "0.045s - 0.06s", "displayLines": "0.11s" }
+  },
+  "entries": [
+    {
+      "id": "header-morph",
+      "element": "header > div (the pill)",
+      "trigger": "window scrollY crosses a threshold between 48px and 56px (most consistent with 50px)",
+      "from": "max-width 1280px, background transparent, no border, no blur, no shadow, header padding 0",
+      "to": "max-width 1152px, background rgba(22,20,44,0.8), 1px border rgba(255,255,255,0.06), backdrop-filter blur(24px), shadow 0 10px 15px -3px / 0 4px 6px -4px rgba(0,0,0,0.3), header padding 12px clamp(20px,5vw,80px)",
+      "duration": "0.5s",
+      "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+      "properties": ["max-width", "background-color", "border-color", "border-radius", "box-shadow", "backdrop-filter", "padding"],
+      "reversible": true,
+      "directionSensitive": false,
+      "implementation": "CSS transition toggled by a React scroll listener (passive window scroll listener observed)",
+      "evidence": "CONFIRMED - transitionrun events plus scroll-position sampling at 2px resolution"
+    },
+    {
+      "id": "hero-entrance-home",
+      "element": "hero eyebrow / h1 / body / CTA row (four sibling wrappers)",
+      "trigger": "component mount (~1.43s after navigation commit); not scroll-linked",
+      "from": "opacity 0, translateY 12px (eyebrow) / 24px (h1) / 16px (body) / 16px (CTA)",
+      "to": "opacity 1, translateY 0",
+      "duration": "0.7s",
+      "delays": ["0s", "0.12s", "0.24s", "0.36s"],
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "implementation": "CSS transition on a mounted-state class",
+      "evidence": "CONFIRMED - timestamped transitionrun events and 45ms computed-style sampling of the opacity/translate trajectory"
+    },
+    {
+      "id": "hero-entrance-services",
+      "element": "eyebrow, four display lines (span.block), body, CTA row",
+      "trigger": "component mount (~1.19s after commit)",
+      "from": "opacity 0, translateY 56px",
+      "to": "opacity 1, translateY 0",
+      "duration": "0.9s (eyebrow 0.7s)",
+      "delays": ["0s", "0.14s", "0.25s", "0.36s", "0.47s", "0.62s", "0.9s"],
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "implementation": "per-line masked spans with staggered transition-delay",
+      "evidence": "CONFIRMED - per-line trajectory sampled to 0.01 opacity"
+    },
+    {
+      "id": "section-reveal",
+      "element": "section content wrappers throughout the site",
+      "trigger": "IntersectionObserver threshold 0.12, rootMargin '0px 0px -8% 0px'",
+      "from": "opacity 0, translateY 20px",
+      "to": "opacity 1, translateY 0",
+      "duration": "0.7s",
+      "stagger": "0.12s between sibling wrappers (observed delays 0, 0.12, 0.24, 0.36)",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "repeat": "once (state latched)",
+      "implementation": "IntersectionObserver toggling a class; CSS transition does the work",
+      "evidence": "CONFIRMED - IO constructor options captured before page scripts ran"
+    },
+    {
+      "id": "word-reveal",
+      "element": "span.inline-block inside headings on /services, /contact and other inner pages",
+      "trigger": "mount or section reveal",
+      "from": "opacity 0, translateY (per-line 56px; per-word smaller)",
+      "to": "opacity 1, translateY 0",
+      "duration": "0.64s",
+      "stagger": "0.045s (/contact) to 0.055s (/services)",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "evidence": "CONFIRMED - transitionrun delay ladder 0 / 0.045 / 0.09 / 0.135 / 0.18 / 0.225"
+    },
+    {
+      "id": "kinetic-wordmark",
+      "element": "section.kinetic-wordmark_track (220svh; 200svh below 768px) with a sticky stage at top:72px, height calc(100svh - 72px)",
+      "trigger": "scroll progress across the track; JS writes --kt-p from 0 to 1 over (trackHeight - stageHeight) = 1152px at 1440x900",
+      "from": "--kt-p 0: word font-size ~15.05vw (216.7px at 1440), translateY +13px, scaleX 0.92; footer opacity 0, translateY 34px",
+      "to": "--kt-p 1: word font-size ~3.9vw (56.3px at 1440), translateY -13px, scaleX 0.92; footer opacity 1, translateY 0",
+      "mapping": "font-size = calc((--kt-max + (--kt-min - --kt-max) * --kt-p) * 1vw); translateY = calc((0.5 - --kt-p) * 26px); footer opacity = calc((--kt-p - 0.62) * 2.7); footer translateY = calc((1 - --kt-p) * 34px)",
+      "linearity": "linear in --kt-p (measured font-size matched the linear model at every sampled step)",
+      "tokens": { "base": "--kt-max 11, --kt-min 2.9, --kt-unit 1vw, --kt-fill 0.94, --kt-end 0.26", "maxWidth1023": "--kt-max 13, --kt-min 3.9, --kt-end 0.3", "maxWidth767": "--kt-fill 0.92, --kt-end 0.34, --kt-max 20, --kt-min 6.8, word stacks to a column, track 200svh" },
+      "note": "Rendered sizes at >=1024 exceed the CSS --kt-max default, which is consistent with a script measuring the word and re-fitting it to --kt-fill of the stage width. STRONGLY INFERRED.",
+      "implementation": "CSS position:sticky + a scroll-driven custom property; no ScrollTrigger pin-spacer exists anywhere on the site",
+      "reducedMotion": "track height auto, stage position static with --kt-p forced to 1, padding clamp(64px,12svh,140px); the 220svh runway disappears (document height 5483 -> 4060)",
+      "evidence": "CONFIRMED - 31 scroll samples plus the published CSS custom properties"
+    },
+    {
+      "id": "coverflow-image-flow",
+      "element": "div.image-flow_stage with 9 absolutely positioned frames",
+      "trigger": "IntersectionObserver rootMargin '120px 0px' arms it; then a 2.8s autoplay timer; pointermove over the stage steers the deck; cursor:grab and touch-action:pan-y indicate drag support",
+      "from": "frame at index n",
+      "to": "frame at index n+1 becomes the hero",
+      "geometry": "hero width clamp(190px, 42.3vw - 105px, 300px) at desktop, clamp(130px, 50vw - 26px, 250px) at mobile; hero aspect 1:1.4; measured ladder 298 / 77 / 55 / 39 px mirrored both sides",
+      "duration": "transform 1.6s, opacity 1.0s",
+      "easing": "cubic-bezier(0.45, 0, 0.25, 1)",
+      "autoplayInterval": "2.8s (the flow-progress keyframe that drives the 2px indigo-to-cyan progress bar)",
+      "captionAnimation": "image-flow_flow-text-in 0.76s cubic-bezier(0.45, 0, 0.25, 1) both",
+      "reducedMotion": "frame transition none; caption animation none",
+      "evidence": "CONFIRMED - timed observation of slide index and per-frame widths, plus published CSS"
+    },
+    {
+      "id": "client-marquee",
+      "element": "ul.cmarquee__track",
+      "trigger": "always running",
+      "from": "translateX 0",
+      "to": "translateX -50% (duplicated track, width:max-content)",
+      "duration": "60s",
+      "easing": "linear",
+      "repeat": "infinite",
+      "pausesOn": "hover and focus-within (animation-play-state: paused)",
+      "hoverTreatment": "all items drop to opacity .4; the hovered item returns to opacity 1 and #fff",
+      "mask": "linear-gradient edge fade, --c-fade 8% / 10% / 12% by breakpoint; --c-gap 40 / 60 / 76px; --c-size 1rem / 1.0625rem / 1.125rem",
+      "reducedMotion": "mask removed, track wraps to a centred multi-row static list, duplicated clones hidden",
+      "evidence": "CONFIRMED - animationstart event plus published CSS"
+    },
+    {
+      "id": "nav-dropdown",
+      "element": "header nav > div (Services and Products panels, w-64 = 256px)",
+      "trigger": "pointer hover / focus on the trigger",
+      "from": "opacity 0, translateY -4px, visibility hidden",
+      "to": "opacity 1, translateY 0, visible",
+      "duration": "0.2s",
+      "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "chevron": "rotate 180deg over 0.2s, same easing",
+      "surface": "radius 12px, 1px border rgba(255,255,255,0.1), backdrop-blur 24px, background #0b0e17 at 95%, shadow-2xl, 12px offset below the trigger",
+      "evidence": "CONFIRMED - transitionrun events plus closed-state computed styles"
+    },
+    {
+      "id": "mobile-menu",
+      "element": "the header pill itself expands into the menu panel (no separate overlay)",
+      "trigger": "button[aria-label='Toggle menu'] (44x44) toggling aria-expanded",
+      "from": "header 74px tall, pill radius 9999px",
+      "to": "header 475px tall at 390px wide, radius transitions to a rounded rectangle; 26 links including the full Services and Products sub-trees",
+      "duration": "0.5s for the pill surface (background, border, radius, shadow, backdrop-filter); 0.3s cubic-bezier(0.4,0,0.2,1) for the panel's own border/spacing",
+      "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+      "itemMetrics": "list rows 348x48 on a 52px pitch; CTA row below",
+      "scrollLock": "none observed (body overflow stays 'hidden auto')",
+      "evidence": "CONFIRMED - click-driven before/after capture with event recording"
+    },
+    {
+      "id": "primary-button",
+      "element": ".btn-primary",
+      "trigger": "hover (gated by @media (hover:hover)) and :focus-visible",
+      "from": "translateY 0, background rgba(255,255,255,0.04), gradient hairline ::before opacity .9",
+      "to": "translateY var(--btn-lift) = -2px, background rgba(255,255,255,0.08), ::before opacity 1",
+      "duration": "0.3s (background and transform); ::before opacity 0.3s",
+      "easing": "ease",
+      "arrow": ".btn-arrow translateX 4px over 0.22s",
+      "surface": "min-height 48px, padding 0 1.75rem, radius 999px, backdrop-filter blur(20px), font 0.9375rem/600, gradient border via mask-composite from --brand-blue to --brand-violet",
+      "reducedMotion": "--btn-lift set to 0px",
+      "evidence": "CONFIRMED - hover delta measurement plus published CSS"
+    },
+    {
+      "id": "secondary-and-ghost-buttons",
+      "element": ".btn-secondary / .btn-outline / .btn-ghost",
+      "trigger": "hover / focus-visible",
+      "from": "secondary: background rgba(255,255,255,0.04), border rgba(255,255,255,0.12); ghost: colour rgba(255,255,255,0.55)",
+      "to": "secondary: background rgba(255,255,255,0.08), border rgba(255,255,255,0.25); ghost: colour rgba(255,255,255,0.95)",
+      "duration": "0.3s",
+      "easing": "ease",
+      "evidence": "CONFIRMED"
+    },
+    {
+      "id": "editorial-card-hover",
+      "element": "home product column (.home-products_col)",
+      "trigger": "hover, gated by @media (hover:hover)",
+      "from": "title translateY 0; arrow translateX 0, colour rgba(255,255,255,0.46)",
+      "to": "title translateY -2px; arrow translateX 6px, colour #fff",
+      "duration": "0.22s",
+      "easing": "house easing",
+      "focus": "focus-visible outline-offset 4px",
+      "evidence": "CONFIRMED"
+    },
+    {
+      "id": "industry-card-hover",
+      "element": ".ind-card",
+      "trigger": "hover, gated by @media (hover:hover)",
+      "from": "translateY 0, border rgba(255,255,255,0.07), background rgba(0,0,0,0.28), media opacity default",
+      "to": "translateY -3px, border rgba(255,255,255,0.16), background rgba(0,0,0,0.36), .ind-card__media opacity .15, arrow and go-link tint up",
+      "evidence": "CONFIRMED - from the site's published CSS"
+    },
+    {
+      "id": "work-row-hover",
+      "element": ".work-row--link (person-profile project rows)",
+      "trigger": "hover, gated by @media (hover:hover)",
+      "from": "border rgba(255,255,255,0.09), title translateX 0",
+      "to": "border rgba(255,255,255,0.14), title translateX 3px, metric colour #fff",
+      "evidence": "CONFIRMED - published CSS"
+    },
+    {
+      "id": "services-index-rail",
+      "element": "260px sticky rail on >=1024; a md:hidden sticky chip bar at top:72px below that",
+      "trigger": "scroll position maps to the active service",
+      "from": "inactive: muted colour, transparent left border",
+      "to": "active: white, accent left border, heavier weight",
+      "duration": "0.3s (border, colour, font-weight); 0.15s for the mono index number",
+      "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "evidence": "CONFIRMED - active item tracked from 01 to 07 across scroll positions"
+    },
+    {
+      "id": "product-stage-arc",
+      "element": "SVG arc navigation on /products",
+      "trigger": "active product index",
+      "from": "dot fill rgba(255,255,255,0.35), base radius",
+      "to": "dot fill #22d3ee with drop-shadow(0 0 7px rgba(34,211,238,0.75)), larger radius",
+      "duration": "0.42s on fill, r and filter",
+      "easing": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+      "leadStroke": "3px gradient stroke with drop-shadow(0 0 6px rgba(34,211,238,0.45)) over a 1.5px rgba(255,255,255,0.2) track",
+      "panelSwap": "article.product-stage_item opacity+transform, 0.17s/0.26s out and 0.38s in with 0.1-0.15s delays",
+      "evidence": "CONFIRMED"
+    },
+    {
+      "id": "portfolio-cylinder",
+      "element": ".portfolio-cylinder_stage on /products",
+      "trigger": "active index",
+      "geometry": "viewport height 390px, perspective 1100px, stage --radius 480px, panels 460x292 transformed translate(-50%,-50%) rotateY(i * step) translateZ(480px) scale(s); inactive opacity .04",
+      "implementation": "CSS 3D transforms driven by index custom properties",
+      "evidence": "CONFIRMED - published CSS"
+    },
+    {
+      "id": "webgl-background",
+      "element": "one fixed full-viewport canvas at z-index 0, present on every route",
+      "trigger": "continuous render loop",
+      "behaviour": "a particle field of several thousand points in indigo / violet / white; formation changes with scroll depth (an open swarm at the hero, an S-shaped ribbon at the kinetic-wordmark section)",
+      "implementation": "three.js r163 via @react-three/fiber (WebGLRenderer, ShaderMaterial, BufferGeometry present in the chunk; react-spring present alongside)",
+      "reducedMotion": "canvas still present; whether the render loop pauses is UNKNOWN",
+      "evidence": "CONFIRMED for presence and library; formation-per-section is STRONGLY INFERRED from screenshots"
+    },
+    {
+      "id": "chat-launcher",
+      "element": ".sirah-launcher (fixed, right 20px, bottom 20px, z-index 2147483000, 191x72)",
+      "trigger": "always running; click opens a 400x600 panel",
+      "animations": ["launcher-radar 3.3s cubic-bezier(0.22,0.61,0.36,1) infinite, three staggered instances at 0s / 1.1s / 2.2s", "launcher-bob 4.5s ease-in-out infinite"],
+      "panel": "radius 20px, background #0d0c1a, 1px border rgba(255,255,255,0.1), shadow 0 32px 80px -24px rgba(0,0,0,0.85); typing indicator keyframe sirah-typing-bounce; log uses overscroll-behavior:contain",
+      "reducedMotion": "both keyframes collapse to 0.001ms",
+      "evidence": "CONFIRMED"
+    },
+    {
+      "id": "scroll-behaviour",
+      "element": "document",
+      "behaviour": "native scrolling with scroll-behavior:smooth on <html> for in-page anchors; body overflow-x hidden; scroll-mt-28 / scroll-mt-[9.5rem] offsets keep anchored sections clear of the fixed header",
+      "notPresent": ["Lenis", "GSAP ScrollSmoother", "any pin-spacer element", "scroll snapping outside the About insights rail"],
+      "evidence": "CONFIRMED"
+    },
+    {
+      "id": "reduced-motion",
+      "element": "global",
+      "behaviour": "a global rule sets animation-duration .001ms !important, animation-iteration-count 1 !important, transition-duration .001ms !important and scroll-behavior auto !important on *, ::before and ::after; seven further blocks give components structural fallbacks rather than merely fast ones",
+      "measuredEffect": "47 animation/transition events with no preference, 25 with reduce, all collapsed to 1e-06s; zero running animations; zero elements left below opacity 1; document height 5483 -> 4060",
+      "evidence": "CONFIRMED - matched pair of instrumented runs"
+    }
+  ]
+}

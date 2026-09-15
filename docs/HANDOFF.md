@@ -69,7 +69,13 @@ requirements, owner gates, or Canonicality.
 
 ## Current state
 
-Step 2C.5B is owner accepted and merged. Its CMS mutation track remains operationally `BLOCKED_BY_BACKUP_EVIDENCE`; CMS mutation authorization is `NOT_GRANTED`, Batch A mutation authorization is false, and RB-001/RB-009 execution evidence remains unavailable.
+Step 2C.5B is owner accepted and merged. Its CMS mutation track is NO LONGER `BLOCKED_BY_BACKUP_EVIDENCE`: on 2026-09-05 the owner authorized a backup and Batch A (ADR-030, ADR-031), on 2026-09-06 a verified full multisite backup was taken before any write, and Batch A executed. `cmsMutationAuthorization` is now `OWNER_AUTHORIZED_BOUNDED` and `batchAMutationAuthorized` is true. RB-001 evidence exists; **RB-009 restore evidence does not** — the dump has never been restored. Taxonomy deletion, destructive database operations, Step 2C.5C, staging, deployment, DNS and cutover all remain NOT AUTHORIZED. See the live CMS state section below.
+
+On 2026-09-10 the CMS origin for the five non-Group tenants was relocated to
+`cms-<tenant>.siratrgroup.com` (ADR-036 / SOT-003), executed live under direct
+owner authorization and recorded after the fact. Group / blog 1 was excluded and
+stays on `siratrgroup.com`. See "CMS origin relocation — executed 2026-09-10"
+below before touching CMS origins or `SIRA_WP_*_GRAPHQL_URL`.
 
 The repository/frontend track has accepted Step 3A, Step 3B, Step 3C.1,
 Step 3C.2, and Step 3D.1. Step 3D.2 is NOT STARTED, Step 3D.3 remains gated
@@ -95,8 +101,12 @@ Prototype and production UI implementation are AUTHORIZED: `project-state.json` 
 `authorization.prototypeImplementationAuthorized` and
 `authorization.productionUiImplementationAuthorized` as `true`.
 
-Newsroom visual/route work remains NOT STARTED. No newsroom route, component,
-or query exists under `frontend/src`.
+Newsroom visual/route work is IMPLEMENTED on the unmerged branch
+`feat/newsroom-ledger`, and is NOT merged and NOT owner-accepted. The `/news`
+archive, the `[section]/[slug]` article route, the shared `NewsroomPage`, the
+desk registry, the live-capture and placeholder-seeding tooling, and the
+ADR-030 launch gate all exist there. The earlier statement that no newsroom
+route, component or query exists under `frontend/src` is stale.
 
 Acceptance evidence. It differs per pull request and must not be generalized.
 For PRs `#44`, `#46`, `#47`, and `#49` through `#53` the merge commit is the
@@ -115,6 +125,957 @@ owner authorization as the authorization dimension, while representing its
 lifecycle separately as implementation completed, independent verification
 passed, merged, post-merge verified, and canonical. Validator/CI enforcement
 and AI Engineering OS product/runtime work remain NOT AUTHORIZED.
+
+## New owner decision — SIRA Digital is a first-class company (ADR-033)
+
+The canonical public production topology is planned to span **two apexes**. SIRA
+Digital will trade on `sirahdigital.sa`, a separate Saudi domain. **Read the
+2026-09-08 owner decision below before acting on that**: pre-launch, Digital's
+active public hostname is `digital.siratrgroup.com`, and `sirahdigital.sa` is
+reserved rather than live.
+
+Either way Digital is a first-class tenant of this same platform: the same
+WordPress Multisite network, the same
+Next.js application, the same GraphQL contract, the same contact pipeline, the
+same site registry. It is **not** a separate codebase and **not** a separate
+CMS.
+
+If you find `sirahdigital.sa` in the registry, it is authorized — do not report
+it as topology drift. As of 2026-09-08 it is the *future* canonical hostname
+rather than the active one, and the registry has not yet been updated to say so.
+That mismatch is a known, recorded gap, not drift either.
+
+Implementation lives on the unmerged branch `feat/sirahdigital-sa`. The site
+key is `digital`, the Business Unit slug is `digital`, and Digital is the only
+company set on a dark ground — which took no fork of the shell, because `paper`
+is the page ground and `ink` is the text on it.
+
+**The WordPress site IS now provisioned.** This reverses what this file said
+before 2026-09-08. The owner's Phase 2 implementation prompt required Digital to
+exist as a real site inside the existing Multisite network rather than be
+simulated at the registry level, which widened ADR-033's authorization boundary
+to include live site creation. Blog 6 was created with `wp site create`, moved
+onto `sirahdigital.sa` (path `/`) with `update_blog_details()`, and set to
+`blog_public 0` / Asia-Riyadh / week-starts-Sunday to match the other five
+tenants. A verified 7.2 MB / 134-table recovery point was taken before the first
+write. `docs/DIGITAL-TENANT-PROVISIONING.md` records the investigation that
+preceded it, including the finding that `COOKIE_DOMAIN` resolves to the request
+host, so a mapped domain needed no wp-config change at all.
+
+Provisioning the WordPress site did NOT register the domain, change DNS, or
+authorize deployment. Those remain protected.
+
+Two things are open and must not be assumed finished:
+
+- **The trading-name spelling.** `SIRA Digital` follows the established
+  `SIRA <Company>` convention; the domain spells it `sirahdigital`. No prior
+  canonical name existed in this repository. Owner confirmation needed.
+- **The brand mark.** Digital uses the shared white SIRA mark, which is correct
+  for a GROUP company on a dark ground. A Digital-specific mark is an owner
+  deliverable.
+
+## New owner decision — Digital launches on a pre-launch subdomain (2026-09-08)
+
+Digital now has **two hostnames with different lifecycles**, and they must not be
+collapsed into one:
+
+| Role | Hostname | Status |
+| --- | --- | --- |
+| Active public frontend, pre-launch | `digital.siratrgroup.com` | **Current** |
+| WordPress CMS origin | `digital.siratrgroup.com` | **Current**, moved 2026-09-08 |
+| Future public canonical, Saudi | `sirahdigital.sa` | Reserved, **not active** |
+
+**OPEN — that hostname is claimed twice.** WordPress answers on
+`digital.siratrgroup.com`, and so should the pre-launch public frontend. One
+hostname cannot serve both. Nothing is broken today because no deployment is
+authorized; it must be resolved before the frontend is deployed there. At the
+ADR-035 cutover the frontend takes `sirahdigital.sa` and the conflict ends.
+
+`sirahdigital.sa` remains the intended canonical domain. It is **not** the active
+public frontend hostname yet, and nothing should treat it as live.
+
+**Do not delete or lose the existing Digital WordPress site.** It is blog 6 on
+the existing network and it currently carries `wp_blogs.domain =
+sirahdigital.sa`. That row is the site's identity; losing it loses the tenant and
+its seeded content.
+
+This supersedes the hostname half of ADR-033 for the pre-launch phase. ADR-033's
+premise — that Digital is the first company whose canonical hostname is not a
+`siratrgroup.com` subdomain — remains true at launch but is **not** true today.
+An amending or superseding ADR must be authored to record the phased hostname
+strategy; that is a durable decision and has not been written yet.
+
+**Implemented on 2026-09-08 as ADR-035.** `SiteDefinition` gained
+`plannedCanonicalHostname` and `plannedAliases`, so a domain a company owns but
+has not launched on is modelled as the NEXT address rather than as another
+spelling of the current one. `digital.siratrgroup.com` is canonical;
+`sirahdigital.sa` and `www.sirahdigital.sa` are registered now as redirect
+aliases, so the day DNS points at us they land on Digital instead of being
+rejected as unknown hosts.
+
+The cutover is configuration only:
+
+```
+SIRA_CANONICAL_HOSTNAMES_JSON={"digital":"sirahdigital.sa"}
+```
+
+That promotes the planned hostname to canonical, carries `www.sirahdigital.sa`
+with it, and demotes `digital.siratrgroup.com` to a redirect alias so no indexed
+URL is orphaned. No rebuild, no content migration, no second deployment. A
+promotion target must be a hostname the site already declares, so a typo fails
+loudly instead of silently repointing a company.
+
+The public frontend hostname and the WordPress CMS origin remain independent:
+the CMS origin is `SIRA_WP_<TENANT>_GRAPHQL_URL`, never derived from the public
+hostname. WordPress stays on Hostinger and the public hostname does not expose
+`/wp-admin`. `tests/contract/digital-tenant-topology.test.ts` asserts that
+separation so a later change cannot quietly couple them.
+
+Still NOT authorized by this: domain registration, public DNS, the WordPress
+CMS-domain migration, and deployment.
+
+## Phase 2 — SIRA Digital implementation: resumable state
+
+Verified against the working tree on 2026-09-08 by reading Git and the files
+themselves. Do not infer any line of this section from a previous conversation.
+
+### Coordinates
+
+- Branch: `feat/sirahdigital-sa`
+- HEAD: this continuity commit. Rediscover it from Git rather than trusting a
+  SHA written here.
+- Pushed. Draft PR `#65` is current, retitled, and its body carries the full
+  validation table.
+- **Last safe implementation point: the branch head.** Every gate is green.
+- Depends on `feat/newsroom-ledger`. Keep that dependency explicit; do not ship
+  Newsroom changes as part of Digital.
+
+### Completed and committed
+
+| Commit | What it landed |
+| --- | --- |
+| `9b4a7020` | Phase 1 reference-forensics evidence under `artifacts/reference-forensics/` |
+| `9adc1e6e` | `digital` site key, registry entry, WordPress env keys, brand preset |
+| `1be43843` | Digital brand in `sira-core`; tenant-aware contact recipient routing |
+| `bd890b68` | Two-apex topology governance, ADR-033 |
+| `c04dfd26` | Digital homepage composition and the CSS motion layer |
+| `c4dca911` | `group_sira_digital_homepage` ACF field group |
+| `17c5468b` | Computed `onDeep` foreground token, fixing dark-ground contrast |
+| `900f8cc4` | Real WordPress tenant (blog 6); live schema captured from six tenants |
+| `8bd5822e` | Seed content; homepage rendering from the real CMS |
+| `c72a4f0d` | Public routes: services, work, industries, contact, calculator |
+
+### CMS / WordPress state
+
+- Digital is **blog 6**, domain `digital.siratrgroup.com`, path `/`,
+  `blog_public 0`. It was created on `sirahdigital.sa` and MOVED on 2026-09-08
+  by owner decision, with `update_blog_details()` after a verified 7.59 MB /
+  155-table backup. No occurrence of the old hostname remains anywhere in the
+  database. **Do not delete or lose this site.**
+- Seeded pre-launch content exists on it: a front page, 4 pages
+  (about / contact / privacy / terms), 8 `sira_service`, 5 `sira_project`,
+  8 `sira_industry` terms, 3 menus. Seeder: `tools/seed/digital-seed.php` with
+  `tools/seed/digital-seed.json`; `--remove` reverses it.
+- Every seeded post carries post meta `_sira_seed=1`; every seeded industry term
+  carries **term meta** `_sira_seed=1`.
+- **DEFECT — the launch gate does not see any of it.**
+  `tools/verify-no-seed-content.mjs` counts only
+  `--post_type=sira_news,sira_insight,sira_article,sira_press_release` and reads
+  **post meta only**. Digital's seeded records are `page`, `sira_service`,
+  `sira_project`, and `sira_industry` *terms*, so the verifier will report PASS
+  while all of them are still live. Verified by reading that file, lines 25-47.
+  Found during this checkpoint and deliberately NOT repaired here.
+- The backend is DEPLOYED and current: `NavMenus.php` (six menu locations) and
+  `PresentationFields.php` (page intro, record locale, localized homepage
+  location) are installed on the origin with timestamped rollback copies beside
+  them, and were linted before and after install.
+
+### GraphQL / schema / codegen state
+
+- Versioned artifacts in `frontend/schema/` were captured live from all six
+  tenants at `900f8cc4`. Branch-peer hash
+  `f0efececd3b9fb30f773bb5c334b9f37f41a521838f7a78b334f8097691405f1`.
+- Recaptured after the ADR-034 backend deployment. `MenuLocationEnum` now carries
+  `PRIMARY_AR`, `FOOTER_AR` and `LEGAL_AR`; `PageIntro` and `SiraLocale` are live
+  types. Branch peers exact, Group a structural superset, 165 Group-only types.
+- Note for a future reader: wpgraphql-acf 2.x derives the GraphQL type name from
+  `graphql_field_name`, NOT from `graphql_type_name`. `pageIntro` produces
+  `PageIntro`, not the `SiraPageIntro` a declaration might suggest.
+- Offline schema refresh is driven by `SIRA_SCHEMA_INTROSPECTION_DIR`, not by a
+  `--offline` flag; the flag is accepted and ignored.
+
+### Route implementation state
+
+Committed at `c72a4f0d` and working against live CMS data: `/` (Digital homepage
+variant), `/services` (anchored long page, sticky index at `lg+`), `/work`
+(numbered register from `sira_project`), `/industries` (bottleneck/opportunity
+pairs from `sira_industry`), `/contact` (hero + `ContactForm` +
+`ImpactCalculator`), and `/[section]` (generic CMS prose route).
+
+Measured in a real browser at 1440 against live WordPress: `work` 4722px /
+5.25 screens / 0 overflow; `industries` 3022px / 3.36 screens / 0 overflow.
+
+### Contact and calculator state
+
+- Contact reuses the existing pipeline unchanged: browser → trusted Next.js route
+  → WordPress → validation → private storage → authenticated delivery. No second
+  enquiry backend was created. Tenant identity and recipient routing resolve from
+  the request host in `backend/mu-plugins/sira-contact-endpoint.php`.
+- The calculator is ours: `frontend/src/lib/calculator/model.ts`, a pure,
+  deterministic SAR model with an explicit realisation fraction, a coverage
+  ceiling, range outputs, and published assumptions. Nothing was copied or
+  reverse-engineered from the reference.
+
+### Localization / Arabic / RTL state — DONE
+
+`2C4-B09` is RESOLVED for `digital` by ADR-034 (owner decision, 2026-09-08) and
+remains UNRESOLVED for the other five tenants. Both governing documents were
+amended in place with a scoped carve-out rather than left to contradict the code.
+
+- **Locale is explicit metadata.** `sira_locale` on pages, services, projects and
+  industry terms, with `sira_translation_of` pairing a translation to its
+  original. The `ar-` slug prefix survives only as a fallback for records created
+  before the field existed; it is not the contract.
+- **Approval is per tenant.** `localeRoutesApproved` is `true` for `digital`
+  alone. The proxy refuses `/ar` on the other five, and they publish no
+  `hreflang`.
+- **Both languages are seeded and live** on blog 6: a homepage, four standalone
+  pages, three index pages, 8 services, 5 work entries, 8 industry terms and
+  three menus per language.
+- **Arabic type rules are language-scoped, not per class.** Tracking and casing
+  are neutralised wherever the document language is Arabic, with `lang="en"`
+  islands keeping their own treatment.
+
+### Interrupted work — none of this pass's, but the tree is NOT clean
+
+Every gate is green and this pass left nothing half-done. The previous
+checkpoint's twelve typecheck errors, half-converted contact route and missing
+`contact-copy.ts` are all resolved.
+
+**Correction to the previous checkpoint.** It recorded the working tree as
+clean. It was not, and still is not — two things predate this pass, were NOT
+touched by it, and are NOT verified by it:
+
+- `backend/src/Integrations/PresentationFields.php` carries an uncommitted
+  +56-line change adding `homepage_location()` in place of
+  `front_page_location()` on three field groups, so a localized homepage page
+  can be edited as well as resolved. It looks deliberate and correct on reading,
+  but it is PHP, this pass was frontend-only, and no PHP gate was run against it.
+- `.github/workflows/backend-ci.yml` is untracked.
+
+Both are somebody else's in-flight work. Decide on them before the next commit,
+and do not sweep them in with `git add -A`.
+
+### Validation actually run
+
+All at the current branch head unless stated.
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | PASS |
+| `pnpm typecheck` | PASS |
+| `pnpm test:run` | PASS — 613 tests, 61 files |
+| `pnpm build` | PASS |
+| `php -l`, complete backend | PASS — 34 files, 0 failures |
+| `validate-static.php` | PASS — 169 passed, 0 failed, 34 not run |
+| Live GraphQL, six tenants | PASS — branch peers exact, Group structural superset |
+| Real browser, EN + AR, 390/768/1024/1280/1440/1920 | PASS — 0 horizontal overflow at every width, both directions |
+| `hreflang` / canonical / robots | PASS — en, ar and x-default emitted; canonical follows the active host |
+| `POST /api/contact/` with an empty body | PASS — 422 with per-field errors, no record created |
+
+`validate-static.php`'s 34 "not run" are its in-process syntax sweep, which this
+host disables by disabling every process function. `php -l` was run separately
+and is recorded above. That is the documented split, not a skipped check.
+
+### Validation added by the final fidelity pass (2026-09-08)
+
+All at the pass's head, in Chromium against the live CMS unless stated.
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | PASS |
+| `pnpm typecheck` | PASS — after `rm -rf .next`; see the note below |
+| `pnpm test:run` | PASS — 614 tests, 61 files |
+| `pnpm build` | PASS |
+| `pnpm verify:layout` | PASS — 75/75, LTR and RTL, 375-1920 |
+| Header height vs its token, 6 viewports x 2 languages | PASS — 80px everywhere, token 80px |
+| Anchor landing, `/services` `/work` `/industries` | PASS — 112px = header + 32px, was 192px |
+| Scroll-spy, EN + AR, normal + reduced motion | PASS — exactly one entry active at every position |
+| Motion audit, 5 routes | PASS — 0 elements left below opacity 1; 1 infinite animation (the marquee) |
+| Reduced motion, 5 routes | PASS — 0 animations of any kind; homepage 5352 -> 3784px (-29%) |
+| Horizontal overflow, 74 captures | PASS — 0 on every one |
+
+**`pnpm typecheck` needs a clean `.next`.** `tsconfig.json` includes both
+`.next/types/**` and `.next/dev/types/**`, so once `next dev` and `next build`
+have both run in the same tree, tsc reports four duplicate-identifier errors from
+the generated files. It is not a source error and it is not new; CI never runs
+`next dev`, so CI never sees it. `rm -rf frontend/.next` before typechecking
+locally. Recorded, not repaired — it is outside this pass's scope.
+
+### Validation still pending
+
+- `verify-no-seed-content.mjs` has not been run against the live CMS since it was
+  repaired. It is expected to BLOCK — Digital's seeded content is deliberately
+  still there — and that is now the correct answer rather than a false PASS.
+- A real enquiry has not been submitted end to end on Digital. The route's
+  validation path is verified; the delivery leg is inherited unchanged from the
+  existing pipeline and was verified before this workstream.
+
+### Deferred quality items — CLOSED by the final fidelity pass (2026-09-08)
+
+All five are addressed. Every number below was measured in a real browser
+against the live CMS, before and after; the full record with method, per-route
+tables and the residual-gap analysis is
+`artifacts/reference-forensics/sirahdigital-in/FIDELITY-PASS.md`.
+
+- **`/services` density.** 12.73 screens at 1440 against the reference's 8.4 →
+  **7.70**. At and above `xl` the page is now shorter than the reference at
+  every width. Below `xl` it remains 13-31% longer, and that residue is content
+  shape rather than layout: our service record carries six authored fields where
+  the reference carries about three, and per authored block we are already
+  denser than the reference. Shortening it further is an editorial decision and
+  was NOT taken.
+- **Header height.** It rendered 67px at `>=lg` and 77px below it while
+  `--layout-header-offset` declared 80px. The header now carries
+  `min-block-size: var(--layout-header-offset)` and measures **80px at every
+  width in both languages**, so the token and the box cannot disagree again.
+  The earlier "61px" reading came from a capture taken before the mobile menu's
+  44px touch target landed; 67/77 are the measured values at the branch head.
+  This is shared chrome — the other five tenants gain 13px at `>=lg`, 3px below.
+- **A second, related defect found and fixed.** `html` already carries
+  `scroll-padding-block-start: var(--layout-header-offset)`, and `/services`,
+  `/work` and `/industries` each ALSO asked their anchor targets for
+  `calc(header + 2rem)`. Scroll margin adds to scroll padding, so every anchored
+  block landed 192px down the page. Now 112px: the header plus 32px.
+- **Contact hero gap.** Closed by a wider form track, type that uses the measure
+  it is given, and details footed to the column so they baseline with the form.
+  No business fact was invented to fill it.
+- **Calculator chip contrast.** Already fixed and already committed at
+  `impact-calculator.tsx` — the unselected chip is `border-brand-ink-faint/60`,
+  not the 10% hairline. The note above that it existed "in the uncommitted tree
+  only" was wrong. No change was needed.
+- **Forensic-artifact pruning.** Non-destructive. The Phase 1 measurement dumps
+  are primary evidence of a third-party site on the day it was measured and
+  cannot be re-derived, so they are kept and marked `linguist-generated` in a new
+  root `.gitattributes`, which collapses them in the pull-request diff instead of
+  deleting them. `.gitignore` now also excludes the 63MB of evidence zips, the
+  17MB of Step 4 responsive-QA PNGs, and the chat transcript sitting in the
+  repository root — none of which should ever reach a commit.
+
+### Unresolved blockers
+
+1. **Trading-name spelling** (`SIRA Digital` vs `SIRAH DIGITAL`) and the
+   **Digital brand mark** — owner deliverables.
+2. **Legal review** of the PDPL-aware privacy and terms drafts. They are marked
+   in the content itself as drafts requiring review and claim no certification,
+   audit or regulatory approval.
+3. **`digital.siratrgroup.com` is claimed by both WordPress and the intended
+   pre-launch frontend.** See the hostname table above. It must be resolved
+   before the frontend is deployed there. Neither Digital hostname has a vhost
+   of its own in the hosting panel — owner action. DNS for both already resolves
+   to the origin.
+4. RB-009 restore rehearsal and the ADR-032 CDN 403 remain open from before this
+   workstream.
+
+Resolved since the last checkpoint: `2C4-B09` (ADR-034), the hostname contract
+(ADR-035), and the launch gate's coverage of Digital content.
+
+### Recommended resume point for a fresh session
+
+1. Boot per `CLAUDE.md` and `templates/ai/BOOT-PROTOCOL.md`. Rediscover HEAD.
+2. Core implementation and the final visual-fidelity / motion-refinement /
+   interaction-polish pass are both complete, and every gate is green. There is
+   no engineering work queued behind them. What is left is owner decisions and
+   the launch gates listed under "Unresolved blockers".
+3. The three fidelity items deliberately NOT taken are recorded in
+   `artifacts/reference-forensics/sirahdigital-in/FIDELITY-PASS.md` §7. All three
+   are changes to SHARED chrome — the header pill morph, the full-screen closing
+   CTA, the primary-button lift — so each is a cross-tenant art-direction
+   decision for the owner, not a Digital fidelity correction. Do not take them on
+   your own authority.
+4. `pnpm typecheck` needs `rm -rf frontend/.next` first if a dev server has run.
+   See the note above; it is a tsconfig artefact, not a source error.
+5. Do not re-seed. The CMS already holds both languages; `--remove` on
+   `tools/seed/digital-seed.php` is the only reversal and it deletes everything
+   carrying the marker.
+6. Do not merge or deploy. The Digital WordPress site must not be deleted.
+7. Leave `backend/src/Integrations/PresentationFields.php` and
+   `.github/workflows/backend-ci.yml` alone until their owner decides — see
+   "Interrupted work" above.
+
+### The ONE OWNER CHECKPOINT — REACHED AND ANSWERED (2026-09-08)
+
+It was emitted at the start of the session that ran the fidelity pass, and the
+owner answered **`ok`**. Per its own terms that means effort was already at MAX
+and the pass proceeded immediately, without asking again.
+
+It is a model-effort checkpoint only. It is **not** design, implementation or
+architecture approval, and the fidelity pass it released is still unaccepted
+work on an unmerged branch.
+
+**It is now spent. Do not re-emit it.** It gated one transition, that transition
+has happened, and a future session asking the question again would be asking the
+owner to re-authorize something already authorized. It is preserved below as the
+historical record of what was asked.
+
+The question that was asked:
+
+```
+Ready for FINAL VISUAL FIDELITY / MOTION REFINEMENT.
+Switch Claude effort to MAX now?
+Reply: OK or NO OK.
+```
+
+Its terms were: do not begin the pass before the reply; `OK` means effort is
+already MAX, so continue immediately without asking again; `NO OK` means
+continue at the current setting, also without asking again.
+
+## Phase 3 — About, services, sectors and the calculator: resumable state
+
+Verified against the working tree and the live CMS on 2026-09-09. Do not infer
+any line of this section from a previous conversation.
+
+### Coordinates
+
+- Branch: `feat/digital-about-and-catalogue`, cut from `feat/sirahdigital-sa`.
+- Depends on `feat/sirahdigital-sa`, which depends on `feat/newsroom-ledger`.
+  Keep that chain explicit; do not ship Newsroom or Phase 2 changes as part of
+  this.
+- **Not pushed. No pull request opened yet.**
+- HEAD: rediscover from Git rather than trusting a SHA written here.
+- Last safe point: the branch head. Every gate is green.
+
+### What the owner authorized
+
+Three answers given at the start of this workstream, and one instruction:
+
+1. **Provenance.** `sirahdigital.in` is the owner's own company, not a third
+   party. The Saudi entity gets its own team, figures and product line; layout
+   and section order are matched. `REPORT.md` §9 was written on the opposite
+   premise and **has been amended on the record** (Phase 5): the original list
+   is preserved, with the lifted items, the ones that still stand for reasons
+   other than provenance, and the one that is still an open owner decision.
+2. **Scope.** `/about`, `/services`, `/products`, and home/contact refinements.
+3. **CMS extension authorized** — new ACF groups deployed to the live origin and
+   content seeded onto blog 6.
+4. Later: *"same final look except the header, same motion where we can, decide
+   the rest yourself."* The shared header was deliberately left untouched.
+
+Sixteen reference pages were then saved to `.local-reference/Digital/`. They are
+reference-only per `AGENTS.md` — read, never a runtime dependency, never
+committed.
+
+### Commits on this branch, oldest first
+
+| Commit | What it landed |
+| --- | --- |
+| `1a4af351` | The in-flight `homepage_location()` fix, committed on `feat/sirahdigital-sa` before branching |
+| `90051dbb` | `sira_product` CPT, the About field group, locale coverage for products and people |
+| `695aff63` | Removed a redundant profile group — `personDetails.role` already existed |
+| `b5144cc6` | Schema recapture after that deployment |
+| `7c112b1c` | Pinned Digital's field groups to the Digital tenant |
+| `3b0d6ee5` | Service and sector field groups |
+| `d802d30c` | Schema recapture after those |
+| `9b24bb6c` | The About page composition |
+| `72861da4` | Services rebuild and the twelve sector pages |
+| `29146ab2` | The seed: ten services, twelve sectors, About, five people, both languages |
+| `09050de9` | Calculator: before/after, capacity, twelve-month projection, where-to-start |
+
+### Backend state — DEPLOYED
+
+`PostTypes.php` and `PresentationFields.php` are installed on the origin with
+timestamped `.bak-*` copies beside them. The last deployment is
+`.bak-20260909T021006Z`; the file checksum on the origin matches the committed
+blob exactly, so drift is a plain `sha256sum` comparison from now on.
+
+Registered and live on blog 6 only:
+
+- `group_sira_digital_about` on the About page in both languages (page 11 and
+  page 80, resolved by path at registration time);
+- `group_sira_digital_service` on `sira_service`;
+- `group_sira_digital_industry` on the `sira_industry` taxonomy;
+- `sira_product` — the 29th CPT, network-wide like every other, empty everywhere
+  but Digital. **The `/products` route was NOT built**: no products page was
+  among the sixteen saved, and building one would have meant inventing a product
+  line. The type is deployed and harmless; the route is outstanding work.
+
+`is_digital_site()` resolves the tenant through `BrandManager::infer_brand_key()`
+— from the site's own host, deliberately not a blog id, so the ADR-035 move to
+`sirahdigital.sa` does not silently break it.
+
+**Reported, not repaired:** `group_sira_group_homepage` and
+`group_sira_branch_homepage` are still offered to all six tenants, so every
+tenant's front page shows all the variant groups it does not use. That predates
+this work and scoping it changes what the other five companies see, which is
+outside what was authorized here.
+
+### CMS content state
+
+Seeded on blog 6 in both languages, against a verified **7.84 MB / 155-table**
+recovery point taken immediately beforehand
+(`sira-backups/sira-multisite-db-20260909T050404Z.sql.gz`, sha256
+`63a54cb1…`, mode 600 in a 700 directory outside the web root).
+
+- 10 services per language, replacing 8 placeholders.
+- 12 sectors per language, 84 workflow steps each language, 5 carrying a
+  headline figure and 7 deliberately carrying none.
+- The About composition and 5 team members per language.
+
+**Nothing was deleted.** Two renamed sectors were repurposed in place so their
+term ids survived (`hospitality` → `hospitality-travel`,
+`retail-and-distribution` → `retail-ecommerce`, plus their `ar-` counterparts).
+The seven superseded services in each language were set to **draft**, which takes
+them out of the published query while leaving them inspectable and one status
+change from returning. Their ids are 4–10 and 68–74.
+
+A destructive `--remove` and reseed was attempted first and correctly refused by
+the tooling. The non-destructive path above is what ran.
+
+### Frontend state
+
+New routes: `/about` and `/industries/[slug]`. Both are in the build's route
+table. `/services` and `/industries` were rebuilt; `/contact` gained the extended
+calculator.
+
+New components under `components/digital/`: about hero, stat band, team grid,
+statement, process, workflow. New CSS lives in the digital layer of
+`styles/globals.css` — stat band, ghost word, process grid, social circles, back
+link, sector card, workflow serpentine, projection chart.
+
+The team grid ships **without per-person links**. The reference puts profiles at
+root-level paths, which the Phase 1 audit flags as certain to collide with
+content namespaces, and that template is not among the sixteen saved pages.
+
+### Validation actually run — all at the branch head
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | PASS |
+| `pnpm typecheck` | PASS |
+| `pnpm build` | PASS |
+| `pnpm test:run` | PASS — 618 tests, 61 files |
+| `php -l`, whole backend | PASS — 34 files, 0 failures |
+| `validate-static.php` | PASS — 183 passed, 0 failed, 34 not run |
+| Schema, six tenants | PASS — branch peers exact, Group a superset, 165 Group-only types |
+| GraphQL field resolution | PASS — About, services and sectors populated in both languages |
+
+`pnpm typecheck` needs `rm -rf frontend/.next` **followed by a build** if the
+generated route types are stale. Deleting `.next` alone leaves `next-env.d.ts`
+pointing at types that no longer exist.
+
+### NOT yet done — the real remaining work
+
+Items 1 to 3 are CLOSED by the Phase 5 QA pass below; the evidence is in
+`artifacts/reference-forensics/sirahdigital-in/QA-PASS.md`. What is left:
+
+1. Home and contact refinements beyond the calculator were not taken.
+2. `/products` — see above.
+3. ~~Nothing is pushed and no PR exists.~~ Pushed; see Phase 5 for the PR.
+
+### Owner deliverables that block launch, not development
+
+1. The five team members' real names, roles, one-liners and **portraits**. The
+   grid renders a monogram from initials where a photograph is missing; no stock
+   face is ever generated. **Sharper than previously recorded:** the seed did
+   not leave placeholders here. `/about` currently carries five REAL named
+   individuals from the `.in` entity — M. Jesheeba Fathima, SS. Monisha,
+   S. Sayed Salman, Abdul Samad and one more — with real roles and biographies.
+2. Whether the Saudi entity leads with a named founder, and their portrait.
+   **Sharper than previously recorded:** it already does. The `/about` H1 reads
+   "Scale your business with Mohamed Riyaz", and the pulled quote is attributed
+   to him as Founder & Technical Architect. That is the reference's headline,
+   naming a real person, on the Saudi entity's About page. Nothing is deployed
+   and `blog_public` is `0`, and every one of these records carries
+   `_sira_seed=1` so `tools/verify-no-seed-content.mjs` BLOCKS launch while they
+   exist — but this is personal data about identified individuals, not a lorem
+   placeholder, and it needs an owner decision rather than a rewrite by an
+   agent.
+3. The four stat-band figures for the Saudi entity.
+4. Social profile URLs. The section renders without them today rather than
+   linking to the `.in` profiles.
+5. The KSA product line, if `/products` is wanted.
+6. **Trading-name spelling** — `SIRA Digital` is implemented; the reference and
+   the domain both spell it `SIRAH DIGITAL`. "Same company" is strong evidence
+   for the latter. Not changed silently; needs an explicit answer and an ADR.
+7. ~~`REPORT.md` §9 amendment recording the corrected provenance.~~ Done in
+   Phase 5. What remains of it is item 1 above: which named people, if any,
+   belong to the Saudi entity.
+
+## Phase 4 — the impact calculator: derived, then rebuilt
+
+Verified on 2026-09-09 against the live reference and the working tree.
+
+### The owner's instruction
+
+Reproduce the reference's impact calculator **exactly** — every control, every
+label, every output tile, and the published figures themselves: `$204K`,
+`18.2Kh`, `509%`, `2.0 mo`, `$258K`, `720×`, `68%`, `+24.8%`, `29,440h` →
+`11,207h`, `$462K`.
+
+Two decisions taken:
+
+1. **Currency is USD**, exactly as the reference shows. This replaces the SAR
+   model for the Digital tenant.
+2. **The model is derived by measurement.** The owner suggested driving the live
+   site rather than guessing, which is what made an exact reproduction possible.
+
+### What is DONE
+
+The model is derived and written up in
+[`artifacts/reference-forensics/sirahdigital-in/CALCULATOR-MODEL.md`](../artifacts/reference-forensics/sirahdigital-in/CALCULATOR-MODEL.md).
+**Read that file first** — it carries the formulas, the constant tables for all
+12 industries and 4 sizes, and a check that the derived model reproduces every
+published default.
+
+Two committed harnesses, both aborting every non-GET to the origin so no
+enquiry, booking or lead can be created:
+
+- `tools/10-calculator.mjs` — first pass, establishes the shape.
+- `tools/11-calculator-precise.mjs` — reads each sample twice 400ms apart and
+  accepts only a stable reading. 115 samples, **zero unsettled**.
+
+Datasets: `data/calculator-model.json`, `data/calculator-precise.json`. Each
+holds a **held-out set** that was never used to fit anything; those are the
+verification fixtures for the rebuild.
+
+Confirmed exactly: the workload (`team × 46 × (hours + 2)`, error 0 across 115
+rows), coverage separability (0.0068% across 48 cells), the remaining workload,
+productivity (1.5e-5), revenue, and the twelve-month total.
+
+Two items are flagged open in that file and must not be quietly treated as
+settled: the **coverage meter's displayed percentage** (U-shaped in the
+automation input; a quadratic fits to only ±0.0086) and the **implementation
+cost constants** behind ROI and payback (two derivations agree to ~3%). Both are
+fittable from data already captured — neither needs another browser run.
+
+### The rebuild: DONE
+
+All five items are implemented and verified. Detail is in Phase 5 below and in
+`artifacts/reference-forensics/sirahdigital-in/CALCULATOR-MODEL.md`, which is
+now marked CLOSED. The section that used to stand here listed the work; keeping
+it as a to-do list after the fact would misreport project state.
+
+### Carried over, still owed
+
+~~The browser QA pass on the About and sector pages from Phase 3.~~ Done in
+Phase 5.
+
+## Phase 5 — the calculator rebuilt, and the QA pass that was owed
+
+Verified 2026-09-09 against the live CMS and the working tree. Do not infer any
+line of this section from a previous conversation.
+
+### Coordinates
+
+- Branch: `feat/digital-about-and-catalogue`, unchanged. HEAD: rediscover it
+  from Git rather than trusting a SHA written here.
+- Base for the pull request is **`feat/sirahdigital-sa`**, not `main`. The chain
+  is `feat/newsroom-ledger` → `feat/sirahdigital-sa` (PR #65) →
+  `feat/digital-about-and-catalogue`. Opening this against `main` would present
+  the Newsroom and Phase 2 work as part of it.
+- Pushed, with a **draft** pull request. Draft is not accepted; the merge is the
+  owner's.
+
+### The calculator model is CLOSED
+
+Both items `CALCULATOR-MODEL.md` left open are solved from data already
+captured. No second browser run was needed, and that file is now the record —
+read it rather than this summary.
+
+- **The coverage meter** is `min(0.99, a + base × (1 − a)²)`. The 21-point
+  automation sweep has a constant second difference at every step, which makes
+  it exactly quadratic; the coefficients then give the form away. Max residual
+  4.4e-7, which is the meter's own four-decimal-place rounding.
+- **The implementation cost** is `SETUP[size] + 1146 × team`, with SETUP at
+  7500 / 15000 / 30000 / 60000. It depends on team and size ONLY.
+
+Four errors in the first write-up are corrected there rather than overwritten,
+because three of them were reasonable readings of the data at the time:
+
+1. ROI and payback are charged against the **twelve-month total**, not the
+   annual saving. That single mistake is why the implied cost seemed to vary by
+   industry and hourly rate, and why the two derivations disagreed by 3%.
+2. Revenue carries a `(1 − a)` factor, so the old revenue table had the default
+   0.85 baked into it.
+3. `hourly` clamps at the slider maximum of 150 — the one apparent outlier.
+4. `base` factors exactly as `0.62 × industry × size` with two-decimal
+   multipliers, which the old six-decimal table hid.
+
+**The model reproduces all 1,380 observed display fields across all 115 samples,
+with zero mismatches.** The held-out samples — never used to fit anything — are
+committed at `frontend/tests/fixtures/calculator/reference-observations.json`
+and are the fixtures for `frontend/tests/unit/calculator/model.test.ts`, so "it
+looks the same" is now an executable claim.
+
+One constant is honest about being inexact: `INDUSTRY_REVENUE_PER_PERSON`. The
+reference prints revenue to three significant figures, so each entry is pinned
+to an interval (widest 0.11%) rather than a point, and the author's own values
+are `UNKNOWN`. Do not round them to look tidier — several of them stop
+reproducing the observations if you do.
+
+### What was rebuilt
+
+- `frontend/src/lib/calculator/model.ts` — replaced. USD, single figures, the
+  workflow chips gone, `hourlyCost` and `currentAutomation` in, first-year ROI,
+  revenue opportunity and the constant 720× lead response added.
+- `frontend/src/components/digital/impact-calculator.tsx` — the reference's
+  exact control set, label wording and output order. The projection chart and
+  before/after bar are the ones built in Phase 3, now plotting the reference's
+  quantity and split at payback.
+- `frontend/src/lib/calculator/copy.ts` — both languages. The English is the
+  owner's own, verbatim, **including its punctuation**: the reference sets a
+  hyphen where a typographer would set an em dash, in "Realised cost avoidance -
+  not the notional value of every freed hour." and in the "Indicative estimate."
+  disclaimer. A silent improvement is still a change to somebody else's words.
+- "Download the automation report" — `window.print()` and a `@media print`
+  block. No PDF dependency.
+- `frontend/src/app/(sites)/[siteKey]/contact/page.tsx` — the section eyebrow is
+  gone. The reference opens the calculator on the headline, and the two
+  uppercase micro-labels inside it already carry that register.
+
+### Two bugs found by looking rather than by reasoning
+
+Both were invisible in the unit suite and only appeared in a browser.
+
+1. **The `hidden` attribute does not hide.** The advanced-assumptions panel used
+   `hidden={!open}` with a `grid` class. Tailwind v4 puts utilities in a later
+   cascade layer than the preflight rule that implements `[hidden]`, so `.grid`
+   wins and the panel stayed on screen. It switches a `display` utility now.
+   The same pattern exists nowhere else in `frontend/src` — checked.
+2. **The print stylesheet printed white on white**, and left the first page
+   blank. Digital's identity tokens are inline on `<html>`, which outranks any
+   stylesheet, so they are repainted for print with `!important`; and
+   `visibility: hidden` leaves the hidden box in the flow, so isolation is
+   `display: none` on `main > section:not(:has([data-automation-report]))`. No
+   shared shell component was touched.
+
+### The QA pass — the evidence Phase 3 did not have
+
+Full record: `artifacts/reference-forensics/sirahdigital-in/QA-PASS.md`.
+
+60 captures — 5 routes × 2 languages × 6 viewports — rendered by the real
+application against the live CMS through `tools/graphql-ssh-proxy.mjs`.
+
+| Check | Result |
+| --- | --- |
+| HTTP status, all 60 | PASS — 200 |
+| Horizontal overflow, all 60 | **PASS — 0px on every one** |
+| Direction and language, all 60 | PASS — `en/ltr`, `ar/rtl` |
+| Content from live WordPress, all 60 | PASS — `brandSource=wordpress` |
+| `prefers-reduced-motion: reduce`, 10 routes | **PASS — zero still animating** |
+| Density vs the Phase 1 reference | PASS — at or under it at every viewport, both languages |
+| `pnpm verify:layout` | PASS — 75/75 |
+| `tools/13-calculator-live.mjs` | PASS — 14/14, both languages |
+| `node tools/verify-no-seed-content.mjs` | **BLOCKED**, exit 1 — the correct answer |
+| Control size ≥ 44px | **WARNING** — see below |
+
+Two captures came back from the partial-data path — the SSH transport times out
+under a sweep this size — and measured a fifth of their real height. Both had no
+`h1`, which is a clean detector. The harness now retries on that signal, flags
+`degraded` if it never resolves, and takes `--route` / `--locale` / `--vp` so one
+bad capture can be re-shot and merged. Both were re-shot; the recorded values are
+the clean ones. **On Windows, pass those filters with `MSYS_NO_PATHCONV=1`** or
+Git Bash rewrites `/contact/` into a Windows path and the run silently captures
+nothing.
+
+### Reported, not repaired
+
+**Three `/contact` form controls are under the 44px minimum:** the name and
+email inputs at 37px, and the English service `select` at 34px. Pre-existing —
+`components/homepage/contact-form.tsx` was last touched three commits before
+this branch began — and **shared by all six tenants**, so raising it changes
+what the other five companies see. That is outside what this task authorized.
+The fix is a one-line `min-h-[44px]` on the three fields, in a task allowed to
+move shared chrome. Every control in the rebuilt calculator passes.
+
+### Sharper than previously recorded: who is on `/about`
+
+The Phase 3 owner-deliverable list read as though placeholders were waiting to
+be filled in. They are not. `/about` carries five real named individuals from
+the `.in` entity with real roles and biographies, and its `h1` reads "Scale your
+business with Mohamed Riyaz" with a pulled quote attributed to him as Founder &
+Technical Architect.
+
+Nothing is deployed, `blog_public` is `0`, and every one of those records
+carries `_sira_seed=1` so the launch gate BLOCKS while they exist — the
+safeguards are real and were verified. It is still personal data about
+identified individuals rather than lorem, and which of it belongs to the Saudi
+entity is an owner decision. No CMS content was changed by this task.
+
+### Validation actually run — all at the branch head
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | PASS |
+| `pnpm typecheck` | PASS |
+| `pnpm build` | PASS |
+| `pnpm test:run` | PASS — 657 tests, 61 files (was 618) |
+| `pnpm verify:layout` | PASS — 75/75 |
+| Browser QA, 60 captures | PASS — see above |
+| **Frontend CI, run 34386667855** | **PASS — every step, none skipped** |
+| `tools/verify-no-seed-content.mjs` | BLOCKED, exit 1 — expected |
+
+`pnpm typecheck` still needs `rm -rf frontend/.next` **followed by a build** if
+the generated route types are stale; running the dev server leaves a second copy
+under `.next/dev/types` that conflicts with the built one.
+
+### Frontend CI was RED, and not from this work — now GREEN, end to end
+
+Run 34372991585 at head `bf9363eb` fails on one step: **Verify patch
+whitespace**, which runs `git diff --check HEAD^1 HEAD` — on a pull request that
+diffs the whole branch against its base.
+
+**It is the FIRST step, and it short-circuits the whole job.** Lint, typecheck,
+tests, the production build, the schema-determinism check, the layout verifier
+and the fixture render are all reported `skipped`, not passing. The pull request
+therefore carries **no CI evidence for any of the code**. All of those gates were
+run locally at this head and pass — recorded below — but a local run is
+`TRANSFERRED_EVIDENCE` and must not be read as CI.
+
+Four `+` lines trip it, all the same string, in `frontend/schema/wpgraphql.graphql`
+and `frontend/schema/wpgraphql.group.graphql`: WordPress core's own `post_date`
+field description, which ends in a space. Faithful generated output.
+
+| commit | `git diff --check` |
+| --- | --- |
+| `b5144cc6` — Phase 3 schema recapture | **8 whitespace errors** |
+| `d802d30c` — Phase 3 schema recapture | clean |
+| `a4c21c07` — Phase 5, the calculator | **clean** |
+| `83eb5bb2` — Phase 5, the QA pass | **clean** |
+
+`main` already carries **62** trailing-whitespace lines in that same generated
+file. The check passes today only because those lines sit in no diff. **Every
+future schema recapture will fail it**, not just this one.
+
+Hand-stripping the spaces was never an option: `AGENTS.md` requires generated
+files to be regenerated from their source contracts rather than edited, and the
+next `pnpm schema:fetch` would reintroduce them.
+
+This was raised as `BLOCKED_SCOPE_EXPANSION_REQUIRED` and **the owner authorized
+the `.gitattributes` option** on 2026-09-09, in preference to editing the
+workflow. One line, beside the entries that already mark those same two files
+`linguist-generated`, so it extends an existing decision about generated schema
+rather than making a new one:
+
+```
+frontend/schema/*.graphql                      -whitespace
+```
+
+Scope verified with `git check-attr` rather than assumed:
+
+| path | `whitespace` |
+| --- | --- |
+| `frontend/schema/wpgraphql.graphql` | **unset** |
+| `frontend/schema/wpgraphql.group.graphql` | **unset** |
+| `frontend/src/lib/calculator/model.ts` | unspecified |
+| `.gitattributes` | unspecified |
+| `docs/HANDOFF.md` | unspecified |
+
+Nothing outside `frontend/schema/` loses the check. Both
+`git diff --check b5144cc6^ b5144cc6` and the whole-branch-against-base
+comparison CI actually runs return **0**.
+
+#### And behind it, a second defect the short-circuit had been hiding
+
+With the whitespace step passing, the job reached step 9 and failed there
+instead: **Verify generated GraphQL output is deterministic**. Regenerating from
+the committed schema and the committed documents did not reproduce the committed
+output.
+
+The generated file was stale against its own source. Phase 3 added
+`isRestricted` to the `DigitalAboutMedia` fragment in
+`frontend/src/queries/digital-about.graphql` (commit `9b24bb6c`) and committed a
+generated file that predated the edit. The entire regeneration is that one
+field, verified line by line across both generated files — nothing else moved.
+
+Regenerating is the prescribed remedy rather than a judgement call: `AGENTS.md`
+requires generated files to be regenerated from their source contracts, and
+editing the generated file to match the stale state would have been the actual
+violation. The runtime document string now requests `isRestricted` on About
+media, which the source document has asked for since Phase 3; the field is in
+the checked-in schema and the editorial normalizers already use it as a
+restriction gate, so the About query joins an established pattern rather than
+introducing a field nobody reads.
+
+**Frontend CI now passes end to end at `b0c6918d`** — run 34386667855, 1m35s,
+with every step `success` and none skipped: whitespace, schema artifacts, codegen
+determinism, lint, typecheck, tests, production build, layout primitives,
+homepage fixtures and the Draft Mode runtime check. The pull request has CI
+evidence for the code for the first time.
+
+**The lesson worth keeping:** a cheap first step that can fail on generated
+content will hide every expensive check behind it. Two real defects sat
+undetected on this branch for exactly that reason.
+
+**Reported, not repaired, in the same file:** `.gitattributes` opens by
+describing the reference forensics as "taken against a third-party site". That
+is the premise `REPORT.md` §9 was amended to correct in this same branch — the
+reference is the owner's own company. It is a comment and changes no behaviour,
+but the repository now asserts two provenances. Correcting prose that describes
+governance provenance was not part of the authorization given, so it is recorded
+here instead.
+
+### Still open after this phase
+
+1. `/products` — the route was never built, and building one would mean
+   inventing a product line. The `sira_product` CPT is deployed and empty.
+2. Home refinements beyond the calculator were not taken.
+3. Which named individuals, if any, belong to the Saudi entity — the one part
+   of the `REPORT.md` §9 amendment that only the owner can close.
+4. The `/contact` form control sizes, above.
+5. ~~Frontend CI's whitespace step.~~ Fixed with owner approval, above. The
+   stale third-party provenance sentence in `.gitattributes` is not.
+6. Everything in the owner-deliverable list under Phase 3, which the `/about`
+   finding above sharpens rather than replaces.
+
+### No authorization is inherited
+
+Nothing in this phase authorizes a merge, a deployment, a DNS change, a CMS
+mutation, or deleting the Digital WordPress site. The draft pull request is a
+candidate for review, not an accepted result.
+
+## CMS origin relocation — executed 2026-09-10 (ADR-036 / SOT-003)
+
+Read this before touching CMS origins or the `SIRA_WP_*_GRAPHQL_URL` variables.
+
+On 2026-09-10 the WordPress Multisite CMS origin for the five non-Group tenants
+was relocated from `<tenant>.siratrgroup.com` to `cms-<tenant>.siratrgroup.com`.
+It was executed against live production WordPress via a bare SSH session, under
+direct real-time owner authorization, and **recorded after the fact** — it was
+not pre-authorized through a Task Packet, and it went beyond the bounded
+`cmsMutationAuthorization` scope. ADR-036 and `knownConflicts` SOT-003 in
+`project-state.json` record it; the redacted evidence is
+`artifacts/migration-blog6-redacted.md`.
+
+- **Moved:** `consulting`, `healthcare`, `realestate`, `lifestyle`, `digital`.
+- **Not moved — Group (blog 1, the network main site).** Its relocation edits
+  `DOMAIN_CURRENT_SITE` and the `wp_site` row, has no safe intermediate state,
+  and `siratrgroup.com` still serves the live legacy Group site that Group
+  Staging First requires kept live. Deferred to the frontend production-cutover
+  window. Tracked as `openGates.groupCmsOriginRelocation`.
+- **Method:** verified `mysqldump` before each write; scoped
+  `wp search-replace --all-tables-with-prefix --skip-columns=guid` (guid
+  rewritten only for pre-launch Digital); routing row via `wp_update_site()`;
+  every dry-run count reconciled against SQL row counts. 567 replacements, all
+  exact. Four of eight pre-existing backup archives were found to be empty
+  20-byte files (the CLI export silently failed because `proc_open` is disabled)
+  and were quarantined to `sira-backups/.failed/`; backups now go through
+  `mysqldump` directly.
+- **This resolves the ADR-035 Digital hostname collision.** Moving WordPress off
+  `digital.siratrgroup.com` is what frees it for the frontend.
+  `digitalCmsOriginHostnameCollision` is CLOSED.
+- **Consequences.** Every deployment environment's
+  `SIRA_WP_<non-Group>_GRAPHQL_URL` must name the `cms-` host over HTTPS.
+  `frontend/.env.local` was updated 2026-09-10; `frontend/.env.example` is
+  updated. The five previous subdomains are parked — they return the WordPress
+  unknown-site signup redirect — until DNS points them at the frontend.
+- **Still open.** The Group relocation (above). ADR-032's deploy-platform egress
+  question: only local-dev egress to the `cms-` hosts has been verified; a
+  server-side fetch from the deployment platform's egress has not
+  (`openGates.platformEgressReachabilityUnverified`). The main site's own copy
+  of the Bricks `myTemplatesWhitelist` still names previous hostnames and is
+  deferred with the Group relocation; per `AGENTS.md` Bricks is not a production
+  headless dependency, so it is documented, not maintained.
 
 ## New owner decision — Group staging first
 
@@ -234,6 +1195,38 @@ Historical RB-001/RB-009 controls remain truthful evidence for direct production
 
 Before final Group cutover, establish appropriate recovery controls for the actual cutover, including preservation of the legacy Group environment and an appropriate final recovery point where applicable. Do not mark historical RB requirements complete unless they actually occurred.
 
+## Live CMS state as of 2026-09-08
+
+Read this before touching the CMS or judging a rendered page.
+
+- **There are now six tenants, not five.** SIRA Digital is blog 6, provisioned
+  2026-09-08, carrying its own seeded pre-launch content. **Do not delete or lose
+  it.** The five-tenant counts below predate it and were not re-measured during
+  the 2026-09-08 continuity checkpoint. See the Phase 2 section above for what is
+  on blog 6 and for the launch-gate coverage defect that hides it.
+
+- **Placeholder editorial is live in WordPress.** 37 records across the five
+  tenants carry post meta `_sira_seed=1`. They are invented and were authorized
+  by ADR-030 for design review. `tools/seed/README.md` lists the entries whose
+  claims an editor must REWRITE rather than polish, because they fabricate
+  specifics about named third parties.
+- **`blog_public` is `0` on all five tenants**, which keeps that content out of
+  search results. It MUST return to `1` at launch or the real site will not be
+  indexed.
+- `node tools/verify-no-seed-content.mjs` gates both of the above and exits
+  non-zero while either is outstanding. Run it before any launch.
+- **Batch A executed on 2026-09-06** against a verified RB-001 backup
+  (ADR-031). Branch-local terms `consulting`, `real-estate` and `lifestyle`
+  were created; `healthcare` already existed. Group's taxonomy was untouched.
+- **RB-009 is still open.** The backup has never been restored, so
+  recoverability is inferred, not proven.
+- **The Hostinger CDN challenges the GraphQL endpoint (ADR-032).** A
+  server-side fetch from an unrecognised IP gets HTTP 403 and a JavaScript
+  bot-challenge, not data. This is a launch blocker for the headless
+  architecture and needs hPanel action. Live captures are therefore taken over
+  SSH by `tools/capture-live-feed.mjs` and replayed in
+  `tests/harness/compose-live-newsroom.test.ts`.
+
 ## Protected actions
 
 Do not without explicit owner authorization:
@@ -246,7 +1239,12 @@ Do not without explicit owner authorization:
 - destroy the legacy Group site;
 - perform CMS/database mutations or destructive cleanup;
 - delete taxonomy terms;
-- rotate production secrets.
+- rotate production secrets;
+- register or point `sirahdigital.sa`, or create a hosting-panel vhost for
+  either Digital hostname. Creating the Digital WordPress site is no longer on
+  this list: the owner's Phase 2 prompt authorized it and it was done on
+  2026-09-08 (blog 6), and the owner separately authorized moving its CMS origin
+  to `digital.siratrgroup.com`. DNS, vhosts and deployment remain protected.
 
 ## Current next gate
 

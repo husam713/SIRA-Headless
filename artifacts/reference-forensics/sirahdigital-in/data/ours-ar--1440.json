@@ -1,0 +1,132 @@
+{
+  "url": "/ar/",
+  "lang": "ar",
+  "dir": "rtl",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 5443,
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  },
+  "screens": 6.05,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 430.3,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 900,
+      "height": 820,
+      "screens": 0.91,
+      "heading": "برمجيات تشغيلية للعمل الذي يتكرر",
+      "headingType": {
+        "size": 54,
+        "lineHeight": 69,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 2,
+      "startY": 900,
+      "endY": 1719,
+      "height": 819,
+      "screens": 0.91,
+      "heading": "القدرات",
+      "headingType": {
+        "size": 11,
+        "lineHeight": 20,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "oklch(0.66 0.02 255)"
+      }
+    },
+    {
+      "index": 3,
+      "startY": 1719,
+      "endY": 2277.5,
+      "height": 558.4,
+      "screens": 0.62,
+      "heading": "مبنيّة على الطريقة التي تعمل بها المنشآت هنا فعلًا",
+      "headingType": {
+        "size": 52,
+        "lineHeight": 67,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 4,
+      "startY": 2277.5,
+      "endY": 4257.5,
+      "height": 1980,
+      "screens": 2.2,
+      "heading": "سيرة الرقمية",
+      "headingType": {
+        "size": 130,
+        "lineHeight": 149,
+        "weight": "900",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 5,
+      "startY": 4257.5,
+      "endY": 5012.2,
+      "height": 754.7,
+      "screens": 0.84,
+      "heading": "أخبرنا أين يضيع وقتكم.",
+      "headingType": {
+        "size": 48,
+        "lineHeight": 50,
+        "weight": "400",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "برمجيات تشغيلية للعمل الذي يتكرر",
+    "size": 54,
+    "lineHeight": 69,
+    "weight": "700",
+    "tracking": 0,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H3",
+    "H3",
+    "H3",
+    "H3",
+    "H3",
+    "H3",
+    "H3",
+    "H3",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

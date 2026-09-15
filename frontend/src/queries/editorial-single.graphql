@@ -1,0 +1,81 @@
+fragment EditorialSingleMedia on MediaItem {
+  databaseId
+  sourceUrl
+  altText
+  isRestricted
+  mediaDetails {
+    width
+    height
+  }
+}
+
+fragment EditorialSingleFeaturedImage on NodeWithFeaturedImageToMediaItemConnectionEdge {
+  node {
+    ...EditorialSingleMedia
+  }
+}
+
+fragment EditorialSingleDesks on SiraBusinessUnitConnection {
+  nodes {
+    databaseId
+    slug
+  }
+}
+
+query SiraEditorialSingle($uri: String!) {
+  nodeByUri(uri: $uri) {
+    __typename
+    ... on ContentNode {
+      databaseId
+      contentTypeName
+      uri
+      date
+      modified
+      isRestricted
+    }
+    ... on SiraNewsItem {
+      title
+      excerpt
+      content(format: RENDERED)
+      featuredImage {
+        ...EditorialSingleFeaturedImage
+      }
+      siraBusinessUnits(first: 4) {
+        ...EditorialSingleDesks
+      }
+    }
+    ... on SiraInsight {
+      title
+      excerpt
+      content(format: RENDERED)
+      featuredImage {
+        ...EditorialSingleFeaturedImage
+      }
+      siraBusinessUnits(first: 4) {
+        ...EditorialSingleDesks
+      }
+    }
+    ... on SiraArticle {
+      title
+      excerpt
+      content(format: RENDERED)
+      featuredImage {
+        ...EditorialSingleFeaturedImage
+      }
+      siraBusinessUnits(first: 4) {
+        ...EditorialSingleDesks
+      }
+    }
+    ... on SiraPressRelease {
+      title
+      excerpt
+      content(format: RENDERED)
+      featuredImage {
+        ...EditorialSingleFeaturedImage
+      }
+      siraBusinessUnits(first: 4) {
+        ...EditorialSingleDesks
+      }
+    }
+  }
+}

@@ -39,10 +39,21 @@ export const SITE_DEFINITIONS = Object.freeze([
     environmentKey: "SIRA_WP_REALESTATE_GRAPHQL_URL",
     role: "branch",
   }),
+  // ADR-033. Digital is a schema peer of the four branch companies even though
+  // its page composition is its own: the ACF field groups are registered in PHP
+  // for the whole network, so every tenant resolves the same types. If its hash
+  // ever stops matching the canonical branch that is a real divergence worth
+  // failing on, not a Digital exemption to write in here.
+  Object.freeze({
+    siteKey: "digital",
+    environmentKey: "SIRA_WP_DIGITAL_GRAPHQL_URL",
+    role: "branch",
+  }),
 ]);
 
 export const BRANCH_SITE_KEYS = Object.freeze([
   "consulting",
+  "digital",
   "healthcare",
   "lifestyle",
   "realestate",
@@ -50,7 +61,7 @@ export const BRANCH_SITE_KEYS = Object.freeze([
 
 export const CANONICAL_BRANCH_SITE_KEY = "consulting";
 export const GROUP_SITE_KEY = "group";
-export const SCHEMA_POLICY = "four-branch-exact-group-structural-superset";
+export const SCHEMA_POLICY = "branch-peers-exact-group-structural-superset";
 export const SCHEMA_SOURCE = "live-multisite-introspection";
 
 export const REQUIRED_ROOT_FIELDS = Object.freeze([
@@ -761,7 +772,11 @@ export function assertExactBranchSchemas(results) {
   );
 
   if (branchResults.length !== BRANCH_SITE_KEYS.length) {
-    throw new Error("Not all four branch schemas were provided.");
+    throw new Error(
+      `Expected ${String(BRANCH_SITE_KEYS.length)} branch schemas, got ${String(
+        branchResults.length,
+      )}.`,
+    );
   }
 
   const uniqueSiteKeys = new Set(

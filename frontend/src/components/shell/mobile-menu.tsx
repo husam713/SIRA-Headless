@@ -1,10 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { CHROME } from "@/lib/i18n/locale";
 import type { NavigationItem } from "@/lib/navigation";
+import type { LocaleCode } from "@/types/site";
 
 interface GroupCrossLink {
   readonly label: string;
+  readonly href: string;
+}
+
+interface LanguageAlternate {
+  readonly locale: LocaleCode;
   readonly href: string;
 }
 
@@ -18,11 +25,19 @@ interface MobileMenuProps {
    */
   readonly items: readonly NavigationItem[];
   readonly groupLink: GroupCrossLink | null;
+  readonly locale: LocaleCode;
+  readonly languageAlternate: LanguageAlternate | null;
 }
 
-export function MobileMenu({ items, groupLink }: MobileMenuProps) {
+export function MobileMenu({
+  items,
+  groupLink,
+  locale,
+  languageAlternate,
+}: MobileMenuProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
+  const chrome = CHROME[locale];
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -44,7 +59,12 @@ export function MobileMenu({ items, groupLink }: MobileMenuProps) {
     };
   }, []);
 
-  if (items.length === 0 && groupLink === null) return null;
+  // The language switch is desktop-only in the header, so below lg it exists
+  // only here. That makes this panel load-bearing for Arabic on a phone, which
+  // is why it renders even when there is no menu to show.
+  if (items.length === 0 && groupLink === null && languageAlternate === null) {
+    return null;
+  }
 
   return (
     <>
@@ -52,7 +72,7 @@ export function MobileMenu({ items, groupLink }: MobileMenuProps) {
         type="button"
         aria-expanded={open}
         aria-controls="site-mobile-menu"
-        aria-label="Open menu"
+        aria-label={chrome.openMenu}
         onClick={() => {
           dialogRef.current?.showModal();
           setOpen(true);
@@ -72,21 +92,21 @@ export function MobileMenu({ items, groupLink }: MobileMenuProps) {
       <dialog
         id="site-mobile-menu"
         ref={dialogRef}
-        aria-label="Site menu"
+        aria-label={chrome.siteMenu}
         className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none border-0 bg-transparent p-0 backdrop:bg-brand-ink/50"
       >
-        <div className="ms-auto flex h-dvh w-[min(85vw,22rem)] flex-col gap-1 bg-brand-deep p-6 text-brand-paper">
+        <div className="ms-auto flex h-dvh w-[min(85vw,22rem)] flex-col gap-1 bg-brand-deep p-6 text-brand-on-deep">
           <button
             type="button"
-            aria-label="Close menu"
+            aria-label={chrome.closeMenu}
             onClick={() => dialogRef.current?.close()}
-            className="self-end text-3xl leading-none text-brand-paper/80"
+            className="self-end text-3xl leading-none text-brand-on-deep/80"
           >
             &times;
           </button>
 
           {items.length > 0 ? (
-            <nav aria-label="Site" className="mt-6 flex flex-col">
+            <nav aria-label={chrome.siteNav} className="mt-6 flex flex-col">
               {items.map((item) => (
                 <a
                   key={item.databaseId}
@@ -94,12 +114,25 @@ export function MobileMenu({ items, groupLink }: MobileMenuProps) {
                   target={item.target ?? undefined}
                   rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                   onClick={() => dialogRef.current?.close()}
-                  className="border-b border-brand-paper/15 py-4 text-lg font-medium uppercase tracking-wide text-brand-paper/90"
+                  className="border-b border-brand-on-deep/15 py-4 text-lg font-medium uppercase tracking-wide text-brand-on-deep/90"
                 >
                   {item.label}
                 </a>
               ))}
             </nav>
+          ) : null}
+
+          {languageAlternate !== null ? (
+            <a
+              href={languageAlternate.href}
+              lang={languageAlternate.locale}
+              hrefLang={languageAlternate.locale}
+              dir={languageAlternate.locale === "ar" ? "rtl" : "ltr"}
+              onClick={() => dialogRef.current?.close()}
+              className="mt-6 inline-flex min-h-11 items-center self-start border-b border-brand-on-deep/15 text-lg font-medium text-brand-on-deep/90"
+            >
+              {chrome.switchLanguage}
+            </a>
           ) : null}
 
           {groupLink !== null ? (

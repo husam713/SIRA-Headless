@@ -22,6 +22,7 @@ const SITE_KEY_BY_BUSINESS_UNIT_SLUG: Readonly<
   healthcare: "healthcare",
   lifestyle: "lifestyle",
   "real-estate": "realestate",
+  digital: "digital",
 });
 
 function isEditorialBusinessUnitSlug(
@@ -55,4 +56,24 @@ export function resolveBusinessUnitAccent(
   const preset = getBrandPreset(SITE_KEY_BY_BUSINESS_UNIT_SLUG[unit.slug]);
 
   return Object.freeze({ label: preset.name, color: preset.identity.accent });
+}
+
+/**
+ * The site the business unit belongs to, or null when the relationship is
+ * empty or points at a slug this frontend has no site for.
+ *
+ * Same bridge as resolveBusinessUnitAccent, exposed separately so a card can
+ * link to the company's own canonical site without a second copy of the
+ * slug-to-site-key mapping living somewhere else.
+ */
+export function resolveBusinessUnitSiteKey(
+  selection: HomepageSelection<HomepageBusinessUnit>,
+): SiteKey | null {
+  const unit = selection.status === "ready" ? selection.items[0] : undefined;
+
+  if (unit === undefined || !isEditorialBusinessUnitSlug(unit.slug)) {
+    return null;
+  }
+
+  return SITE_KEY_BY_BUSINESS_UNIT_SLUG[unit.slug];
 }

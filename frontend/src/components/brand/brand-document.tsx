@@ -7,25 +7,31 @@ import { getTextDirection } from "@/lib/i18n/direction";
 import {
   SIRA_FONT_VARIABLE_CLASSES,
 } from "@/styles/fonts";
-import type { SiteDefinition } from "@/types/site";
+import type { LocaleCode } from "@/types/site";
 
 interface BrandDocumentProps {
-  readonly site: SiteDefinition;
   readonly brand: ResolvedBrand;
+  /**
+   * The language this request resolved to, which is not necessarily the site's
+   * default — ADR-034 puts it in the URL. `lang` and `dir` are set from it here
+   * because they belong on <html>, and <html> is only rendered in this one
+   * place.
+   */
+  readonly locale: LocaleCode;
   readonly children: ReactNode;
 }
 
 export function BrandDocument({
-  site,
   brand,
+  locale,
   children,
 }: BrandDocumentProps) {
-  const direction = getTextDirection(site.defaultLocale);
+  const direction = getTextDirection(locale);
   const brandVariables = createBrandCssVariables(brand);
 
   return (
     <html
-      lang={site.defaultLocale}
+      lang={locale}
       dir={direction}
       data-brand-key={brand.key}
       data-brand-source={brand.source}

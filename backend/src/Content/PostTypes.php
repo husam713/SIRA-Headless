@@ -171,6 +171,20 @@ final class PostTypes {
 				'graphql_single_name' => 'SiraService',
 				'graphql_plural_name' => 'SiraServices',
 			),
+			'sira_product' => array(
+				'singular'            => 'Product',
+				'plural'              => 'Products',
+				'slug'                => 'products',
+				'icon'                => 'dashicons-products',
+				// `page-attributes` is deliberate, and `sira_service` does not have
+				// it. The product rail is a numbered register, so the order the
+				// numerals run in is an editorial decision and an editor has to be
+				// able to make it. Without menu_order the index falls back to
+				// publication date, which is not one.
+				'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'page-attributes' ),
+				'graphql_single_name' => 'SiraProduct',
+				'graphql_plural_name' => 'SiraProducts',
+			),
 			'sira_office' => array(
 				'singular'            => 'Office',
 				'plural'              => 'Offices',

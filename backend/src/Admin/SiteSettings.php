@@ -13,6 +13,70 @@ final class SiteSettings {
 	public function hooks(): void {
 		add_action( 'admin_menu', array( $this, 'menu' ), 20 );
 		add_action( 'admin_init', array( $this, 'register' ) );
+
+		// This screen renders the *effective* brand, which BrandManager resolves
+		// with the ACF options last. It used to save to `sira_brand_options`
+		// alone, so every field ACF had a value for reverted on reload: the edit
+		// was stored, and then never read. Mirroring the save into the ACF
+		// options makes the screen write to the store it reads from.
+		add_action( 'add_option_sira_brand_options', array( $this, 'mirror_added' ), 5, 2 );
+		add_action( 'update_option_sira_brand_options', array( $this, 'mirror_updated' ), 5, 2 );
+	}
+
+	/**
+	 * @param string $option Option name.
+	 * @param mixed  $value  Saved value.
+	 */
+	public function mirror_added( string $option, mixed $value ): void {
+		unset( $option );
+		$this->mirror_to_acf( $value );
+	}
+
+	/**
+	 * @param mixed $old_value Previous value.
+	 * @param mixed $value     Saved value.
+	 */
+	public function mirror_updated( mixed $old_value, mixed $value ): void {
+		unset( $old_value );
+		$this->mirror_to_acf( $value );
+	}
+
+	/**
+	 * Write the saved brand values into the ACF option fields that outrank them.
+	 *
+	 * Only keys the form actually submitted are mirrored, so the ACF-only
+	 * fields — values, office locations and the two typed banners — are left
+	 * alone. Empty values are mirrored too: clearing a field here has to clear
+	 * it there, or the ACF value would win and the clear would be ignored.
+	 *
+	 * @param mixed $value Saved option value.
+	 */
+	private function mirror_to_acf( mixed $value ): void {
+		if ( ! is_array( $value ) || ! function_exists( 'update_field' ) ) {
+			return;
+		}
+
+		foreach ( BrandManager::acf_field_map() as $key => $field ) {
+			if ( ! array_key_exists( $key, $value ) ) {
+				continue;
+			}
+
+			// Attachment IDs are per-site, so a stale one carried in from
+			// another site or an older install points at nothing here. Writing
+			// it would replace a working image with a reference that resolves
+			// to false, which is worse than leaving the field alone.
+			if (
+				in_array( $key, array( 'logo_id', 'mark_id' ), true )
+				&& 0 !== (int) $value[ $key ]
+				&& ! wp_get_attachment_url( (int) $value[ $key ] )
+			) {
+				continue;
+			}
+
+			update_field( $field[1], $value[ $key ], 'option' );
+		}
+
+		BrandManager::instance()->clear_cache();
 	}
 
 	public function menu(): void {
@@ -81,6 +145,14 @@ final class SiteSettings {
 				<?php
 				esc_html_e(
 					'Use SIRA Options for typed, scheduled announcement and emergency banners. The legacy text fields below remain backward-compatible fallbacks.',
+					'sira-core'
+				);
+				?>
+			</p>
+			<p>
+				<?php
+				esc_html_e(
+					'This screen and SIRA Options edit the same stored values. Saving here updates both, so whichever screen you open next shows what you last saved.',
 					'sira-core'
 				);
 				?>

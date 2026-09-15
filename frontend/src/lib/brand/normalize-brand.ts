@@ -8,7 +8,10 @@ import {
   createFallbackBrand,
   getBrandPreset,
 } from "@/lib/brand/fallbacks";
-import { selectReadableForeground } from "@/lib/brand/contrast";
+import {
+  selectForegroundForDarkSurface,
+  selectReadableForeground,
+} from "@/lib/brand/contrast";
 import type {
   BrandBanner,
   BrandBannerLink,
@@ -324,6 +327,10 @@ export function normalizeWordPressBrand(
   }
 
   const onAccent = selectReadableForeground(accent, paper, ink);
+  // The deep surface is preset-owned rather than WordPress-owned, but its
+  // foreground still has to follow the identity colours the CMS may have
+  // overridden. See BrandSemanticTokens.onDeep.
+  const onDeep = selectForegroundForDarkSurface(paper, ink);
 
   return Object.freeze({
     siteKey,
@@ -340,6 +347,7 @@ export function normalizeWordPressBrand(
     semantic: Object.freeze({
       ...preset.semantic,
       onAccent,
+      onDeep,
     }),
     assets: preset.assets,
     remoteLogo: normalizeMedia(data.logo),

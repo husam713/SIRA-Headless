@@ -1,0 +1,1202 @@
+{
+  "capturedAt": "2026-09-07T11:53:40.130Z",
+  "origin": "https://sirahdigital.in",
+  "headerScroll": {
+    "states": [
+      {
+        "scrollY": 0,
+        "outer": {
+          "height": 74,
+          "padding": "0px 0px 0px 0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "transform": "none",
+          "position": "fixed"
+        },
+        "inner": {
+          "width": 1280,
+          "height": 74,
+          "maxWidth": "1280px",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "radius": "9999px",
+          "backdrop": "none",
+          "shadow": "none"
+        }
+      },
+      {
+        "scrollY": 40,
+        "outer": {
+          "height": 74,
+          "padding": "0px 0px 0px 0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "transform": "none",
+          "position": "fixed"
+        },
+        "inner": {
+          "width": 1280,
+          "height": 74,
+          "maxWidth": "1280px",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "radius": "9999px",
+          "backdrop": "none",
+          "shadow": "none"
+        }
+      },
+      {
+        "scrollY": 80,
+        "outer": {
+          "height": 98,
+          "padding": "12px 72px 12px 72px",
+          "background": "rgba(0, 0, 0, 0)",
+          "transform": "none",
+          "position": "fixed"
+        },
+        "inner": {
+          "width": 1152,
+          "height": 74,
+          "maxWidth": "1152px",
+          "background": "rgba(22, 20, 44, 0.8)",
+          "border": "1px solid rgba(255, 255, 255, 0.06)",
+          "radius": "9999px",
+          "backdrop": "blur(24px)",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.3) 0px 10px 15px -3px, rgba(0, 0, 0, 0.3) 0px 4px 6px -4"
+        }
+      },
+      {
+        "scrollY": 120,
+        "outer": {
+          "height": 98,
+          "padding": "12px 72px 12px 72px",
+          "background": "rgba(0, 0, 0, 0)",
+          "transform": "none",
+          "position": "fixed"
+        },
+        "inner": {
+          "width": 1152,
+          "height": 74,
+          "maxWidth": "1152px",
+          "background": "rgba(22, 20, 44, 0.8)",
+          "border": "1px solid rgba(255, 255, 255, 0.06)",
+          "radius": "9999px",
+          "backdrop": "blur(24px)",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.3) 0px 10px 15px -3px, rgba(0, 0, 0, 0.3) 0px 4px 6px -4"
+        }
+      },
+      {
+        "scrollY": 200,
+        "outer": {
+          "height": 98,
+          "padding": "12px 72px 12px 72px",
+          "background": "rgba(0, 0, 0, 0)",
+          "transform": "none",
+          "position": "fixed"
+        },
+        "inner": {
+          "width": 1152,
+          "height": 74,
+          "maxWidth": "1152px",
+          "background": "rgba(22, 20, 44, 0.8)",
+          "border": "1px solid rgba(255, 255, 255, 0.06)",
+          "radius": "9999px",
+          "backdrop": "blur(24px)",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.3) 0px 10px 15px -3px, rgba(0, 0, 0, 0.3) 0px 4px 6px -4"
+        }
+      },
+      {
+        "scrollY": 600,
+        "outer": {
+          "height": 98,
+          "padding": "12px 72px 12px 72px",
+          "background": "rgba(0, 0, 0, 0)",
+          "transform": "none",
+          "position": "fixed"
+        },
+        "inner": {
+          "width": 1152,
+          "height": 74,
+          "maxWidth": "1152px",
+          "background": "rgba(22, 20, 44, 0.8)",
+          "border": "1px solid rgba(255, 255, 255, 0.06)",
+          "radius": "9999px",
+          "backdrop": "blur(24px)",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.3) 0px 10px 15px -3px, rgba(0, 0, 0, 0.3) 0px 4px 6px -4"
+        }
+      },
+      {
+        "scrollY": 1600,
+        "outer": {
+          "height": 98,
+          "padding": "12px 72px 12px 72px",
+          "background": "rgba(0, 0, 0, 0)",
+          "transform": "none",
+          "position": "fixed"
+        },
+        "inner": {
+          "width": 1152,
+          "height": 74,
+          "maxWidth": "1152px",
+          "background": "rgba(22, 20, 44, 0.8)",
+          "border": "1px solid rgba(255, 255, 255, 0.06)",
+          "radius": "9999px",
+          "backdrop": "blur(24px)",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.3) 0px 10px 15px -3px, rgba(0, 0, 0, 0.3) 0px 4px 6px -4"
+        }
+      },
+      {
+        "scrollY": 3000,
+        "outer": {
+          "height": 98,
+          "padding": "12px 72px 12px 72px",
+          "background": "rgba(0, 0, 0, 0)",
+          "transform": "none",
+          "position": "fixed"
+        },
+        "inner": {
+          "width": 1152,
+          "height": 74,
+          "maxWidth": "1152px",
+          "background": "rgba(22, 20, 44, 0.8)",
+          "border": "1px solid rgba(255, 255, 255, 0.06)",
+          "radius": "9999px",
+          "backdrop": "blur(24px)",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.3) 0px 10px 15px -3px, rgba(0, 0, 0, 0.3) 0px 4px 6px -4"
+        }
+      }
+    ],
+    "directionTest": {
+      "down": {
+        "scrollY": 1200,
+        "outer": {
+          "height": 98,
+          "padding": "12px 72px 12px 72px",
+          "background": "rgba(0, 0, 0, 0)",
+          "transform": "none",
+          "position": "fixed"
+        },
+        "inner": {
+          "width": 1152,
+          "height": 74,
+          "maxWidth": "1152px",
+          "background": "rgba(22, 20, 44, 0.8)",
+          "border": "1px solid rgba(255, 255, 255, 0.06)",
+          "radius": "9999px",
+          "backdrop": "blur(24px)",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.3) 0px 10px 15px -3px, rgba(0, 0, 0, 0.3) 0px 4px 6px -4"
+        }
+      },
+      "up": {
+        "scrollY": 900,
+        "outer": {
+          "height": 98,
+          "padding": "12px 72px 12px 72px",
+          "background": "rgba(0, 0, 0, 0)",
+          "transform": "none",
+          "position": "fixed"
+        },
+        "inner": {
+          "width": 1152,
+          "height": 74,
+          "maxWidth": "1152px",
+          "background": "rgba(22, 20, 44, 0.8)",
+          "border": "1px solid rgba(255, 255, 255, 0.06)",
+          "radius": "9999px",
+          "backdrop": "blur(24px)",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.3) 0px 10px 15px -3px, rgba(0, 0, 0, 0.3) 0px 4px 6px -4"
+        }
+      }
+    }
+  },
+  "hover": [
+    {
+      "name": "nav-link",
+      "selector": "header nav a[href='/services']",
+      "present": true,
+      "transition": "color, background-color, border-color, text-decoration-color, fill, stroke | 0.15s | cubic-bezier(0.4, 0, 0.2, 1) | 0s",
+      "diff": {
+        "color": {
+          "from": "rgb(148, 163, 184)",
+          "to": "rgb(255, 255, 255)"
+        },
+        "outline": {
+          "from": "3px none rgb(148, 163, 184)",
+          "to": "3px none rgb(255, 255, 255)"
+        }
+      },
+      "childDiff": [
+        {
+          "tag": "svg",
+          "transform": [
+            "none",
+            "matrix(-1, 0, 0, -1, 0, 0)"
+          ],
+          "opacity": [
+            "1",
+            "1"
+          ],
+          "color": [
+            "rgb(148, 163, 184)",
+            "rgb(255, 255, 255)"
+          ],
+          "transition": "0.2s"
+        },
+        {
+          "tag": "path",
+          "transform": [
+            "none",
+            "none"
+          ],
+          "opacity": [
+            "1",
+            "1"
+          ],
+          "color": [
+            "rgb(148, 163, 184)",
+            "rgb(255, 255, 255)"
+          ],
+          "transition": "0s"
+        }
+      ]
+    },
+    {
+      "name": "header-cta",
+      "selector": "header a[href='/contact']",
+      "present": true,
+      "transition": "color, background-color, border-color, text-decoration-color, fill, stroke | 0.15s | cubic-bezier(0.4, 0, 0.2, 1) | 0s",
+      "diff": {
+        "color": {
+          "from": "rgb(148, 163, 184)",
+          "to": "rgb(255, 255, 255)"
+        },
+        "outline": {
+          "from": "3px none rgb(148, 163, 184)",
+          "to": "3px none rgb(255, 255, 255)"
+        }
+      },
+      "childDiff": []
+    },
+    {
+      "name": "hero-primary-cta",
+      "selector": "main section:nth-of-type(1) a[href='/contact']",
+      "present": true,
+      "transition": "background-color, transform | 0.3s, 0.3s | ease, ease | 0s, 0s",
+      "diff": {
+        "background": {
+          "from": "rgba(255, 255, 255, 0.04)",
+          "to": "rgba(255, 255, 255, 0.08)"
+        },
+        "transform": {
+          "from": "matrix(1, 0, 0, 1, 0, 0)",
+          "to": "matrix(1, 0, 0, 1, 0, -2)"
+        },
+        "pseudoBefore": {
+          "from": {
+            "content": "\"\"",
+            "width": "255.578px",
+            "height": "48px",
+            "background": "rgba(0, 0, 0, 0)",
+            "transform": "none",
+            "opacity": "0.9",
+            "transition": "0.3s"
+          },
+          "to": {
+            "content": "\"\"",
+            "width": "255.578px",
+            "height": "48px",
+            "background": "rgba(0, 0, 0, 0)",
+            "transform": "none",
+            "opacity": "1",
+            "transition": "0.3s"
+          }
+        },
+        "rect": {
+          "from": {
+            "x": 168,
+            "y": 683.4,
+            "w": 255.6,
+            "h": 48
+          },
+          "to": {
+            "x": 168,
+            "y": 681.4,
+            "w": 255.6,
+            "h": 48
+          }
+        }
+      },
+      "childDiff": [
+        {
+          "tag": "svg",
+          "transform": [
+            "none",
+            "matrix(1, 0, 0, 1, 4, 0)"
+          ],
+          "opacity": [
+            "1",
+            "1"
+          ],
+          "color": [
+            "rgb(255, 255, 255)",
+            "rgb(255, 255, 255)"
+          ],
+          "transition": "0.22s"
+        }
+      ]
+    },
+    {
+      "name": "hero-secondary-cta",
+      "selector": "main section:nth-of-type(1) a[href='/products']",
+      "present": true,
+      "transition": "color | 0.3s | ease | 0s",
+      "diff": {
+        "color": {
+          "from": "rgba(255, 255, 255, 0.55)",
+          "to": "rgba(255, 255, 255, 0.95)"
+        },
+        "outline": {
+          "from": "3px none rgba(255, 255, 255, 0.55)",
+          "to": "3px none rgba(255, 255, 255, 0.95)"
+        }
+      },
+      "childDiff": [
+        {
+          "tag": "svg",
+          "transform": [
+            "none",
+            "matrix(1, 0, 0, 1, 4, 0)"
+          ],
+          "opacity": [
+            "1",
+            "1"
+          ],
+          "color": [
+            "rgba(255, 255, 255, 0.55)",
+            "rgba(255, 255, 255, 0.95)"
+          ],
+          "transition": "0.22s"
+        },
+        {
+          "tag": "path",
+          "transform": [
+            "none",
+            "none"
+          ],
+          "opacity": [
+            "1",
+            "1"
+          ],
+          "color": [
+            "rgba(255, 255, 255, 0.55)",
+            "rgba(255, 255, 255, 0.95)"
+          ],
+          "transition": "0s"
+        }
+      ]
+    },
+    {
+      "name": "product-column",
+      "selector": "[class*='home-products_col']",
+      "present": true,
+      "transition": "all | 0s | ease | 0s",
+      "diff": {},
+      "childDiff": [
+        {
+          "tag": "h3",
+          "transform": [
+            "none",
+            "matrix(1, 0, 0, 1, 0, -2)"
+          ],
+          "opacity": [
+            "1",
+            "1"
+          ],
+          "color": [
+            "rgb(255, 255, 255)",
+            "rgb(255, 255, 255)"
+          ],
+          "transition": "0.22s"
+        },
+        {
+          "tag": "span",
+          "transform": [
+            "none",
+            "matrix(1, 0, 0, 1, 6, 0)"
+          ],
+          "opacity": [
+            "1",
+            "1"
+          ],
+          "color": [
+            "rgba(255, 255, 255, 0.46)",
+            "rgb(255, 255, 255)"
+          ],
+          "transition": "0.22s, 0.22s"
+        }
+      ]
+    },
+    {
+      "name": "final-cta-button",
+      "selector": "main section:last-of-type a",
+      "present": true,
+      "transition": "color, background-color, border-color, text-decoration-color, fill, stroke | 0.3s | cubic-bezier(0.4, 0, 0.2, 1) | 0s",
+      "diff": {
+        "rect": {
+          "from": {
+            "x": 608.5,
+            "y": 413,
+            "w": 223,
+            "h": 28
+          },
+          "to": {
+            "x": 608.5,
+            "y": 435.9,
+            "w": 223,
+            "h": 28
+          }
+        }
+      },
+      "childDiff": []
+    },
+    {
+      "name": "footer-link",
+      "selector": "footer a[href='/about']",
+      "present": true,
+      "transition": "color, background-color, border-color, text-decoration-color, fill, stroke | 0.15s | cubic-bezier(0.4, 0, 0.2, 1) | 0s",
+      "diff": {
+        "color": {
+          "from": "rgb(203, 213, 225)",
+          "to": "rgb(255, 255, 255)"
+        },
+        "outline": {
+          "from": "3px none rgb(203, 213, 225)",
+          "to": "3px none rgb(255, 255, 255)"
+        }
+      },
+      "childDiff": []
+    }
+  ],
+  "focus": [
+    {
+      "tag": "a",
+      "text": "Book Free Consultation →",
+      "href": "/contact",
+      "outline": "2px solid rgb(96, 165, 250) offset 3px",
+      "boxShadow": "none",
+      "ring": "rgba(59,130,246,.5)"
+    },
+    {
+      "tag": "a",
+      "text": "",
+      "href": "https://www.facebook.com/share/1C8e4h74gr/",
+      "outline": "2px solid rgb(96, 165, 250) offset 3px",
+      "boxShadow": "none",
+      "ring": "rgba(59,130,246,.5)"
+    },
+    {
+      "tag": "a",
+      "text": "",
+      "href": "https://wa.link/zebr1n",
+      "outline": "2px solid rgb(96, 165, 250) offset 3px",
+      "boxShadow": "none",
+      "ring": "rgba(59,130,246,.5)"
+    },
+    {
+      "tag": "a",
+      "text": "",
+      "href": "https://www.youtube.com/@sirahdigital",
+      "outline": "2px solid rgb(96, 165, 250) offset 3px",
+      "boxShadow": "none",
+      "ring": "rgba(59,130,246,.5)"
+    },
+    {
+      "tag": "a",
+      "text": "",
+      "href": "https://www.instagram.com/sirah_digital?igsh=MWdqMHNscWNsdTFucg==",
+      "outline": "2px solid rgb(96, 165, 250) offset 3px",
+      "boxShadow": "none",
+      "ring": "rgba(59,130,246,.5)"
+    },
+    {
+      "tag": "a",
+      "text": "",
+      "href": "https://www.linkedin.com/company/sirahdigital",
+      "outline": "2px solid rgb(96, 165, 250) offset 3px",
+      "boxShadow": "none",
+      "ring": "rgba(59,130,246,.5)"
+    },
+    {
+      "tag": "a",
+      "text": "About Us",
+      "href": "/about",
+      "outline": "2px solid rgb(96, 165, 250) offset 3px",
+      "boxShadow": "none",
+      "ring": "rgba(59,130,246,.5)"
+    },
+    {
+      "tag": "a",
+      "text": "Our Process",
+      "href": "/about#process",
+      "outline": "2px solid rgb(96, 165, 250) offset 3px",
+      "boxShadow": "none",
+      "ring": "rgba(59,130,246,.5)"
+    }
+  ],
+  "mobileMenu": {
+    "closed": {
+      "headerHeight": 74,
+      "controls": [
+        {
+          "tag": "a",
+          "text": "SIRAH DIGITAL",
+          "aria": "Sirah Digital - home",
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 17,
+            "y": 23,
+            "w": 186,
+            "h": 28
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Home",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Services",
+          "aria": null,
+          "expanded": "false",
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "AI Agents & Virtual Employees",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "AI Chatbots & Voice Assistants",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Workflow & Process Automation",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Custom Web & Mobile Apps",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "All services →",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Products",
+          "aria": null,
+          "expanded": "false",
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Aura Transcriber",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Analytics Agents",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "NUSI",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "TNPSC Mentors",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "LexDraft",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "All products →",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Industries",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "About",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Contact",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Book Free Consultation →",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "tag": "button",
+          "text": "",
+          "aria": "Toggle menu",
+          "expanded": "false",
+          "controls": null,
+          "rect": {
+            "x": 329,
+            "y": 15,
+            "w": 44,
+            "h": 44
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Home",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 21,
+            "y": 89,
+            "w": 348,
+            "h": 48
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Services",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 21,
+            "y": 141,
+            "w": 348,
+            "h": 48
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Products",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 21,
+            "y": 193,
+            "w": 348,
+            "h": 48
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Industries",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 21,
+            "y": 245,
+            "w": 348,
+            "h": 48
+          }
+        },
+        {
+          "tag": "a",
+          "text": "About",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 21,
+            "y": 297,
+            "w": 348,
+            "h": 48
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Contact",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 21,
+            "y": 349,
+            "w": 348,
+            "h": 48
+          }
+        },
+        {
+          "tag": "a",
+          "text": "Book Free Consultation →",
+          "aria": null,
+          "expanded": null,
+          "controls": null,
+          "rect": {
+            "x": 21,
+            "y": 409,
+            "w": 348,
+            "h": 48
+          }
+        }
+      ],
+      "bodyOverflow": "hidden auto"
+    },
+    "open": {
+      "bodyOverflow": "hidden auto",
+      "htmlOverflow": "visible",
+      "panels": [
+        {
+          "cls": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          },
+          "background": "rgba(0, 0, 0, 0)",
+          "backdrop": "none",
+          "transform": "none",
+          "transition": "all 0s ease",
+          "zIndex": "0",
+          "linkCount": 0,
+          "links": []
+        },
+        {
+          "cls": "fixed inset-x-0 top-0 z-50",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 475
+          },
+          "background": "rgba(0, 0, 0, 0)",
+          "backdrop": "none",
+          "transform": "none",
+          "transition": "padding 0.5s cubic-bezier(0.77, 0, 0.175, 1)",
+          "zIndex": "50",
+          "linkCount": 26,
+          "links": [
+            {
+              "text": "SIRAH DIGITAL",
+              "href": "/"
+            },
+            {
+              "text": "Home",
+              "href": "/"
+            },
+            {
+              "text": "Services",
+              "href": "/services"
+            },
+            {
+              "text": "AI Agents & Virtual Employees",
+              "href": "/services#ai-agents"
+            },
+            {
+              "text": "AI Chatbots & Voice Assistants",
+              "href": "/services#chatbots-voice"
+            },
+            {
+              "text": "Workflow & Process Automation",
+              "href": "/services#workflow-automation"
+            },
+            {
+              "text": "Custom Web & Mobile Apps",
+              "href": "/services#web-mobile-apps"
+            },
+            {
+              "text": "All services →",
+              "href": "/services"
+            },
+            {
+              "text": "Products",
+              "href": "/products"
+            },
+            {
+              "text": "Aura Transcriber",
+              "href": "/products/aura-transcriber"
+            },
+            {
+              "text": "Analytics Agents",
+              "href": "/products/analytics-agents"
+            },
+            {
+              "text": "NUSI",
+              "href": "/products/nusi"
+            }
+          ]
+        }
+      ]
+    },
+    "openAnimations": [
+      {
+        "kind": "transition",
+        "property": "backdrop-filter",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "background-color",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-bottom-color",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-bottom-left-radius",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-bottom-right-radius",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-left-color",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-right-color",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-top-color",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-top-left-radius",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-top-right-radius",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "box-shadow",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-top-width",
+        "duration": "0.3s",
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "delay": "0s",
+        "target": "div.lg:hidden.transition-all.duration-300"
+      },
+      {
+        "kind": "transition",
+        "property": "max-height",
+        "duration": "0.3s",
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "delay": "0s",
+        "target": "div.lg:hidden.transition-all.duration-300"
+      }
+    ],
+    "closeAnimations": [
+      {
+        "kind": "transition",
+        "property": "backdrop-filter",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "background-color",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-bottom-color",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-bottom-left-radius",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-bottom-right-radius",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-left-color",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-right-color",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-top-color",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-top-left-radius",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-top-right-radius",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "box-shadow",
+        "duration": "0.5s",
+        "easing": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "delay": "0s",
+        "target": "div.mx-auto.transition-all.duration-500"
+      },
+      {
+        "kind": "transition",
+        "property": "border-top-width",
+        "duration": "0.3s",
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "delay": "0s",
+        "target": "div.lg:hidden.transition-all.duration-300"
+      },
+      {
+        "kind": "transition",
+        "property": "max-height",
+        "duration": "0.3s",
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "delay": "0s",
+        "target": "div.lg:hidden.transition-all.duration-300"
+      }
+    ]
+  }
+}

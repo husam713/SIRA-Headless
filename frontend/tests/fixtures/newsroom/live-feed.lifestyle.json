@@ -1,0 +1,94 @@
+{
+  "data": {
+    "siraBusinessUnit": {
+      "contentNodes": {
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "YXJyYXljb25uZWN0aW9uOjI4"
+        },
+        "nodes": [
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 11,
+            "contentTypeName": "sira_article",
+            "date": "2026-05-15T09:00:00",
+            "modified": "2026-05-15T09:00:00",
+            "uri": "/articles/sira-group-expands-into-hospitality/",
+            "isRestricted": false,
+            "title": "SIRA GROUP Expands into Hospitality",
+            "excerpt": "<p>Announcing Lifestyle as the group&#8217;s newest division.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraPressRelease",
+            "databaseId": 26,
+            "contentTypeName": "sira_press_release",
+            "date": "2026-05-04T07:00:00",
+            "modified": "2026-05-04T07:00:00",
+            "uri": "/press-releases/sira-lifestyle-opens-founding-partner-applications-for-its-first-coastal-property/",
+            "isRestricted": false,
+            "title": "SIRA Lifestyle Opens Founding-Partner Applications for Its First Coastal Property",
+            "excerpt": "",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 12,
+            "contentTypeName": "sira_article",
+            "date": "2026-04-15T09:00:00",
+            "modified": "2026-04-15T09:00:00",
+            "uri": "/articles/the-case-for-experience-led-development/",
+            "isRestricted": false,
+            "title": "The Case for Experience-Led Development",
+            "excerpt": "<p>Why hospitality and lifestyle assets are the next frontier for the region.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 13,
+            "contentTypeName": "sira_article",
+            "date": "2026-03-15T09:00:00",
+            "modified": "2026-03-15T09:00:00",
+            "uri": "/articles/designing-for-a-discerning-market/",
+            "isRestricted": false,
+            "title": "Designing for a Discerning Market",
+            "excerpt": "<p>Our approach to service, space and brand in lifestyle development.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraInsight",
+            "databaseId": 27,
+            "contentTypeName": "sira_insight",
+            "date": "2025-11-24T09:00:00",
+            "modified": "2025-11-24T09:00:00",
+            "uri": "/insights/hospitality-is-an-operating-business-not-an-asset-class/",
+            "isRestricted": false,
+            "title": "Hospitality Is an Operating Business, Not an Asset Class",
+            "excerpt": "<p>Why SIRA Lifestyle staffs before it buys, and what that has cost us twice.</p>\n",
+            "featuredImage": null
+          },
+          {
+            "__typename": "SiraArticle",
+            "databaseId": 28,
+            "contentTypeName": "sira_article",
+            "date": "2025-07-01T09:00:00",
+            "modified": "2025-07-01T09:00:00",
+            "uri": "/articles/design-brief-the-coastal-residence/",
+            "isRestricted": false,
+            "title": "Design Brief: The Coastal Residence",
+            "excerpt": "<p>The architectural principles behind SIRA Lifestyle&#8217;s first ground-up development.</p>\n",
+            "featuredImage": null
+          }
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "debug": [
+      {
+        "type": "DEBUG_LOGS_INACTIVE",
+        "message": "GraphQL Debug logging is not active. To see debug logs, GRAPHQL_DEBUG must be enabled."
+      }
+    ]
+  }
+}

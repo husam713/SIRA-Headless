@@ -1,0 +1,3066 @@
+{
+  "source": "artifacts/reference-forensics/sirahdigital-in/data/calculator-precise.json",
+  "capturedAt": "2026-09-09T06:32:50.968Z",
+  "url": "https://sirahdigital.in/contact",
+  "note": "Held-out samples: observed on the reference and never used to fit any constant. Regenerated only by re-running tools/11-calculator-precise.mjs.",
+  "controls": {
+    "industry": {
+      "kind": "select",
+      "options": [
+        "healthcare",
+        "real-estate",
+        "manufacturing",
+        "retail",
+        "education",
+        "finance",
+        "hospitality",
+        "construction",
+        "professional-services",
+        "automotive",
+        "logistics",
+        "technology"
+      ],
+      "value": "professional-services"
+    },
+    "size": {
+      "kind": "select",
+      "options": [
+        "startup",
+        "small",
+        "growing",
+        "enterprise"
+      ],
+      "value": "growing"
+    },
+    "team": {
+      "kind": "range",
+      "min": "5",
+      "max": "1000",
+      "step": "5",
+      "value": "40"
+    },
+    "hours": {
+      "kind": "range",
+      "min": "1",
+      "max": "60",
+      "step": "1",
+      "value": "14"
+    },
+    "hourly": {
+      "kind": "range",
+      "min": "10",
+      "max": "150",
+      "step": "1",
+      "value": "32"
+    },
+    "automation": {
+      "kind": "range",
+      "min": "0",
+      "max": "100",
+      "step": "1",
+      "value": "15"
+    }
+  },
+  "defaults": {
+    "industry": "professional-services",
+    "size": "growing",
+    "team": "40",
+    "hours": "14",
+    "hourly": "32",
+    "automation": "15"
+  },
+  "holdout": [
+    {
+      "label": "holdout-0",
+      "input": {
+        "industry": "real-estate",
+        "size": "small",
+        "team": 240,
+        "hoursPerWeek": 44,
+        "hourlyCost": 114,
+        "currentAutomation": 78
+      },
+      "observed": {
+        "annualSaving": "$2.9M",
+        "hoursSaved": "71.8Kh",
+        "firstYearRoi": "963%",
+        "paybackMonths": "1.1 mo",
+        "revenueOpportunity": "$219K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "81%",
+        "automationCoverageExact": 81.1112,
+        "productivityExact": 16.2632,
+        "manualHoursToday": "507,840h",
+        "manualHoursAfter": "436,022h",
+        "twelveMonthTotal": "$3.1M",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "holdout-1",
+      "input": {
+        "industry": "retail",
+        "size": "startup",
+        "team": 790,
+        "hoursPerWeek": 10,
+        "hourlyCost": 15,
+        "currentAutomation": 37
+      },
+      "observed": {
+        "annualSaving": "$885K",
+        "hoursSaved": "169Kh",
+        "firstYearRoi": "33%",
+        "paybackMonths": "9.0 mo",
+        "revenueOpportunity": "$327K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "61%",
+        "automationCoverageExact": 61.3617,
+        "productivityExact": 11.6008,
+        "manualHoursToday": "436,080h",
+        "manualHoursAfter": "267,450h",
+        "twelveMonthTotal": "$1.2M",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "holdout-2",
+      "input": {
+        "industry": "construction",
+        "size": "small",
+        "team": 445,
+        "hoursPerWeek": 38,
+        "hourlyCost": 171,
+        "currentAutomation": 23
+      },
+      "observed": {
+        "annualSaving": "$19M",
+        "hoursSaved": "353Kh",
+        "firstYearRoi": "3964%",
+        "paybackMonths": "0.3 mo",
+        "revenueOpportunity": "$2.8M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "56%",
+        "automationCoverageExact": 56.172,
+        "productivityExact": 43.0806,
+        "manualHoursToday": "818,800h",
+        "manualHoursAfter": "466,056h",
+        "twelveMonthTotal": "$21M",
+        "recommended": "Project Tracking · Material Ordering Automation · Blueprint Document AI · Subcontractor Workflow"
+      }
+    },
+    {
+      "label": "holdout-3",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 795,
+        "hoursPerWeek": 36,
+        "hourlyCost": 120,
+        "currentAutomation": 57
+      },
+      "observed": {
+        "annualSaving": "$18M",
+        "hoursSaved": "435Kh",
+        "firstYearRoi": "2118%",
+        "paybackMonths": "0.5 mo",
+        "revenueOpportunity": "$2.6M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "70%",
+        "automationCoverageExact": 70.4723,
+        "productivityExact": 29.7643,
+        "manualHoursToday": "1,389,660h",
+        "manualHoursAfter": "954,268h",
+        "twelveMonthTotal": "$21M",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "holdout-4",
+      "input": {
+        "industry": "finance",
+        "size": "startup",
+        "team": 960,
+        "hoursPerWeek": 50,
+        "hourlyCost": 94,
+        "currentAutomation": 81
+      },
+      "observed": {
+        "annualSaving": "$9.2M",
+        "hoursSaved": "280Kh",
+        "firstYearRoi": "834%",
+        "paybackMonths": "1.3 mo",
+        "revenueOpportunity": "$1.1M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "83%",
+        "automationCoverageExact": 83.3165,
+        "productivityExact": 15.85,
+        "manualHoursToday": "2,296,320h",
+        "manualHoursAfter": "2,016,346h",
+        "twelveMonthTotal": "$10M",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "holdout-5",
+      "input": {
+        "industry": "finance",
+        "size": "small",
+        "team": 425,
+        "hoursPerWeek": 12,
+        "hourlyCost": 142,
+        "currentAutomation": 85
+      },
+      "observed": {
+        "annualSaving": "$1.4M",
+        "hoursSaved": "28.1Kh",
+        "firstYearRoi": "262%",
+        "paybackMonths": "3.3 mo",
+        "revenueOpportunity": "$422K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "87%",
+        "automationCoverageExact": 86.5401,
+        "productivityExact": 3.59352,
+        "manualHoursToday": "273,700h",
+        "manualHoursAfter": "245,599h",
+        "twelveMonthTotal": "$1.8M",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "holdout-6",
+      "input": {
+        "industry": "hospitality",
+        "size": "growing",
+        "team": 740,
+        "hoursPerWeek": 35,
+        "hourlyCost": 180,
+        "currentAutomation": 87
+      },
+      "observed": {
+        "annualSaving": "$5.9M",
+        "hoursSaved": "112Kh",
+        "firstYearRoi": "584%",
+        "paybackMonths": "1.8 mo",
+        "revenueOpportunity": "$127K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "88%",
+        "automationCoverageExact": 88.1551,
+        "productivityExact": 8.21894,
+        "manualHoursToday": "1,259,480h",
+        "manualHoursAfter": "1,147,571h",
+        "twelveMonthTotal": "$6.0M",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "holdout-7",
+      "input": {
+        "industry": "retail",
+        "size": "enterprise",
+        "team": 660,
+        "hoursPerWeek": 4,
+        "hourlyCost": 175,
+        "currentAutomation": 39
+      },
+      "observed": {
+        "annualSaving": "$4.4M",
+        "hoursSaved": "83.4Kh",
+        "firstYearRoi": "476%",
+        "paybackMonths": "2.1 mo",
+        "revenueOpportunity": "$324K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "67%",
+        "automationCoverageExact": 66.9149,
+        "productivityExact": 6.86433,
+        "manualHoursToday": "182,160h",
+        "manualHoursAfter": "98,800h",
+        "twelveMonthTotal": "$4.7M",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "holdout-8",
+      "input": {
+        "industry": "technology",
+        "size": "startup",
+        "team": 800,
+        "hoursPerWeek": 50,
+        "hourlyCost": 172,
+        "currentAutomation": 44
+      },
+      "observed": {
+        "annualSaving": "$35M",
+        "hoursSaved": "664Kh",
+        "firstYearRoi": "3981%",
+        "paybackMonths": "0.3 mo",
+        "revenueOpportunity": "$2.9M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "63%",
+        "automationCoverageExact": 63.4238,
+        "productivityExact": 45.0909,
+        "manualHoursToday": "1,913,600h",
+        "manualHoursAfter": "1,249,862h",
+        "twelveMonthTotal": "$38M",
+        "recommended": "Support Triage AI · API Integration Layer · Onboarding Automation · Usage Analytics"
+      }
+    },
+    {
+      "label": "holdout-9",
+      "input": {
+        "industry": "construction",
+        "size": "small",
+        "team": 730,
+        "hoursPerWeek": 11,
+        "hourlyCost": 170,
+        "currentAutomation": 12
+      },
+      "observed": {
+        "annualSaving": "$11M",
+        "hoursSaved": "215Kh",
+        "firstYearRoi": "1845%",
+        "paybackMonths": "0.6 mo",
+        "revenueOpportunity": "$5.3M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "55%",
+        "automationCoverageExact": 55.3268,
+        "productivityExact": 16.0014,
+        "manualHoursToday": "436,540h",
+        "manualHoursAfter": "221,610h",
+        "twelveMonthTotal": "$17M",
+        "recommended": "Project Tracking · Material Ordering Automation · Blueprint Document AI · Subcontractor Workflow"
+      }
+    },
+    {
+      "label": "holdout-10",
+      "input": {
+        "industry": "manufacturing",
+        "size": "enterprise",
+        "team": 430,
+        "hoursPerWeek": 14,
+        "hourlyCost": 17,
+        "currentAutomation": 74
+      },
+      "observed": {
+        "annualSaving": "$351K",
+        "hoursSaved": "58.9Kh",
+        "firstYearRoi": "174%",
+        "paybackMonths": "4.4 mo",
+        "revenueOpportunity": "$1.2M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "79%",
+        "automationCoverageExact": 78.8408,
+        "productivityExact": 7.44744,
+        "manualHoursToday": "316,480h",
+        "manualHoursAfter": "257,556h",
+        "twelveMonthTotal": "$1.5M",
+        "recommended": "Production Dashboards · Predictive Maintenance · Supplier Workflow Automation · Purchase Order OCR"
+      }
+    },
+    {
+      "label": "holdout-11",
+      "input": {
+        "industry": "education",
+        "size": "small",
+        "team": 730,
+        "hoursPerWeek": 39,
+        "hourlyCost": 115,
+        "currentAutomation": 29
+      },
+      "observed": {
+        "annualSaving": "$24M",
+        "hoursSaved": "593Kh",
+        "firstYearRoi": "2907%",
+        "paybackMonths": "0.4 mo",
+        "revenueOpportunity": "$1.7M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "60%",
+        "automationCoverageExact": 59.6041,
+        "productivityExact": 44.182,
+        "manualHoursToday": "1,376,780h",
+        "manualHoursAfter": "783,327h",
+        "twelveMonthTotal": "$26M",
+        "recommended": "Admissions AI · Student Records OCR · Enrolment Workflow · Parent Communication Bot"
+      }
+    },
+    {
+      "label": "holdout-12",
+      "input": {
+        "industry": "education",
+        "size": "enterprise",
+        "team": 455,
+        "hoursPerWeek": 4,
+        "hourlyCost": 21,
+        "currentAutomation": 21
+      },
+      "observed": {
+        "annualSaving": "$507K",
+        "hoursSaved": "69.0Kh",
+        "firstYearRoi": "223%",
+        "paybackMonths": "3.7 mo",
+        "revenueOpportunity": "$1.4M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "64%",
+        "automationCoverageExact": 64.4149,
+        "productivityExact": 8.24333,
+        "manualHoursToday": "125,580h",
+        "manualHoursAfter": "56,567h",
+        "twelveMonthTotal": "$1.9M",
+        "recommended": "Admissions AI · Student Records OCR · Enrolment Workflow · Parent Communication Bot"
+      }
+    },
+    {
+      "label": "holdout-13",
+      "input": {
+        "industry": "logistics",
+        "size": "enterprise",
+        "team": 545,
+        "hoursPerWeek": 45,
+        "hourlyCost": 149,
+        "currentAutomation": 72
+      },
+      "observed": {
+        "annualSaving": "$13M",
+        "hoursSaved": "245Kh",
+        "firstYearRoi": "1879%",
+        "paybackMonths": "0.6 mo",
+        "revenueOpportunity": "$755K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "78%",
+        "automationCoverageExact": 77.8281,
+        "productivityExact": 24.4572,
+        "manualHoursToday": "1,178,290h",
+        "manualHoursAfter": "933,033h",
+        "twelveMonthTotal": "$14M",
+        "recommended": "Route Optimisation · Shipment Tracking AI · Delivery Notification Bot · Freight Document OCR"
+      }
+    },
+    {
+      "label": "holdout-14",
+      "input": {
+        "industry": "retail",
+        "size": "enterprise",
+        "team": 250,
+        "hoursPerWeek": 15,
+        "hourlyCost": 100,
+        "currentAutomation": 54
+      },
+      "observed": {
+        "annualSaving": "$2.4M",
+        "hoursSaved": "67.5Kh",
+        "firstYearRoi": "608%",
+        "paybackMonths": "1.7 mo",
+        "revenueOpportunity": "$92.4K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "70%",
+        "automationCoverageExact": 69.8742,
+        "productivityExact": 14.6664,
+        "manualHoursToday": "195,500h",
+        "manualHoursAfter": "128,035h",
+        "twelveMonthTotal": "$2.5M",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "holdout-15",
+      "input": {
+        "industry": "real-estate",
+        "size": "startup",
+        "team": 540,
+        "hoursPerWeek": 53,
+        "hourlyCost": 138,
+        "currentAutomation": 48
+      },
+      "observed": {
+        "annualSaving": "$21M",
+        "hoursSaved": "428Kh",
+        "firstYearRoi": "3376%",
+        "paybackMonths": "0.3 mo",
+        "revenueOpportunity": "$1.1M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "64%",
+        "automationCoverageExact": 64.2954,
+        "productivityExact": 43.0888,
+        "manualHoursToday": "1,366,200h",
+        "manualHoursAfter": "938,070h",
+        "twelveMonthTotal": "$22M",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "holdout-16",
+      "input": {
+        "industry": "logistics",
+        "size": "growing",
+        "team": 695,
+        "hoursPerWeek": 46,
+        "hourlyCost": 49,
+        "currentAutomation": 35
+      },
+      "observed": {
+        "annualSaving": "$12M",
+        "hoursSaved": "701Kh",
+        "firstYearRoi": "1610%",
+        "paybackMonths": "0.7 mo",
+        "revenueOpportunity": "$2.1M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "65%",
+        "automationCoverageExact": 64.6947,
+        "productivityExact": 54.8209,
+        "manualHoursToday": "1,534,560h",
+        "manualHoursAfter": "833,510h",
+        "twelveMonthTotal": "$14M",
+        "recommended": "Route Optimisation · Shipment Tracking AI · Delivery Notification Bot · Freight Document OCR"
+      }
+    },
+    {
+      "label": "holdout-17",
+      "input": {
+        "industry": "hospitality",
+        "size": "small",
+        "team": 935,
+        "hoursPerWeek": 19,
+        "hourlyCost": 18,
+        "currentAutomation": 40
+      },
+      "observed": {
+        "annualSaving": "$2.2M",
+        "hoursSaved": "342Kh",
+        "firstYearRoi": "161%",
+        "paybackMonths": "4.6 mo",
+        "revenueOpportunity": "$685K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "63%",
+        "automationCoverageExact": 62.7128,
+        "productivityExact": 19.8737,
+        "manualHoursToday": "903,210h",
+        "manualHoursAfter": "561,302h",
+        "twelveMonthTotal": "$2.8M",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "holdout-18",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 375,
+        "hoursPerWeek": 28,
+        "hourlyCost": 165,
+        "currentAutomation": 28
+      },
+      "observed": {
+        "annualSaving": "$14M",
+        "hoursSaved": "271Kh",
+        "firstYearRoi": "3445%",
+        "paybackMonths": "0.3 mo",
+        "revenueOpportunity": "$2.0M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "66%",
+        "automationCoverageExact": 65.7719,
+        "productivityExact": 39.3457,
+        "manualHoursToday": "517,500h",
+        "manualHoursAfter": "246,015h",
+        "twelveMonthTotal": "$16M",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "holdout-19",
+      "input": {
+        "industry": "finance",
+        "size": "small",
+        "team": 215,
+        "hoursPerWeek": 30,
+        "hourlyCost": 172,
+        "currentAutomation": 67
+      },
+      "observed": {
+        "annualSaving": "$3.8M",
+        "hoursSaved": "71.5Kh",
+        "firstYearRoi": "1516%",
+        "paybackMonths": "0.7 mo",
+        "revenueOpportunity": "$470K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "74%",
+        "automationCoverageExact": 74.454,
+        "productivityExact": 18.0703,
+        "manualHoursToday": "316,480h",
+        "manualHoursAfter": "244,994h",
+        "twelveMonthTotal": "$4.2M",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "holdout-20",
+      "input": {
+        "industry": "hospitality",
+        "size": "growing",
+        "team": 400,
+        "hoursPerWeek": 53,
+        "hourlyCost": 38,
+        "currentAutomation": 1
+      },
+      "observed": {
+        "annualSaving": "$9.1M",
+        "hoursSaved": "685Kh",
+        "firstYearRoi": "1872%",
+        "paybackMonths": "0.6 mo",
+        "revenueOpportunity": "$524K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.9887,
+        "productivityExact": 93.0398,
+        "manualHoursToday": "1,012,000h",
+        "manualHoursAfter": "327,227h",
+        "twelveMonthTotal": "$9.6M",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "holdout-21",
+      "input": {
+        "industry": "finance",
+        "size": "growing",
+        "team": 620,
+        "hoursPerWeek": 14,
+        "hourlyCost": 24,
+        "currentAutomation": 86
+      },
+      "observed": {
+        "annualSaving": "$398K",
+        "hoursSaved": "47.4Kh",
+        "firstYearRoi": "38%",
+        "paybackMonths": "8.7 mo",
+        "revenueOpportunity": "$623K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "87%",
+        "automationCoverageExact": 87.4534,
+        "productivityExact": 4.15251,
+        "manualHoursToday": "456,320h",
+        "manualHoursAfter": "408,948h",
+        "twelveMonthTotal": "$1.0M",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "holdout-22",
+      "input": {
+        "industry": "real-estate",
+        "size": "enterprise",
+        "team": 865,
+        "hoursPerWeek": 5,
+        "hourlyCost": 126,
+        "currentAutomation": 28
+      },
+      "observed": {
+        "annualSaving": "$6.5M",
+        "hoursSaved": "148Kh",
+        "firstYearRoi": "801%",
+        "paybackMonths": "1.3 mo",
+        "revenueOpportunity": "$3.0M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "66%",
+        "automationCoverageExact": 66.1833,
+        "productivityExact": 9.28066,
+        "manualHoursToday": "278,530h",
+        "manualHoursAfter": "130,819h",
+        "twelveMonthTotal": "$9.5M",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "holdout-23",
+      "input": {
+        "industry": "healthcare",
+        "size": "growing",
+        "team": 905,
+        "hoursPerWeek": 9,
+        "hourlyCost": 42,
+        "currentAutomation": 44
+      },
+      "observed": {
+        "annualSaving": "$2.7M",
+        "hoursSaved": "185Kh",
+        "firstYearRoi": "307%",
+        "paybackMonths": "2.9 mo",
+        "revenueOpportunity": "$1.6M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "67%",
+        "automationCoverageExact": 66.6474,
+        "productivityExact": 11.1215,
+        "manualHoursToday": "457,930h",
+        "manualHoursAfter": "272,735h",
+        "twelveMonthTotal": "$4.3M",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    },
+    {
+      "label": "holdout-24",
+      "input": {
+        "industry": "real-estate",
+        "size": "small",
+        "team": 700,
+        "hoursPerWeek": 45,
+        "hourlyCost": 199,
+        "currentAutomation": 34
+      },
+      "observed": {
+        "annualSaving": "$34M",
+        "hoursSaved": "642Kh",
+        "firstYearRoi": "4259%",
+        "paybackMonths": "0.3 mo",
+        "revenueOpportunity": "$1.9M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "62%",
+        "automationCoverageExact": 62.0011,
+        "productivityExact": 49.8504,
+        "manualHoursToday": "1,513,400h",
+        "manualHoursAfter": "871,327h",
+        "twelveMonthTotal": "$36M",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "holdout-25",
+      "input": {
+        "industry": "finance",
+        "size": "enterprise",
+        "team": 175,
+        "hoursPerWeek": 10,
+        "hourlyCost": 134,
+        "currentAutomation": 76
+      },
+      "observed": {
+        "annualSaving": "$853K",
+        "hoursSaved": "18.2Kh",
+        "firstYearRoi": "350%",
+        "paybackMonths": "2.7 mo",
+        "revenueOpportunity": "$319K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "81%",
+        "automationCoverageExact": 80.5176,
+        "productivityExact": 5.64696,
+        "manualHoursToday": "96,600h",
+        "manualHoursAfter": "78,417h",
+        "twelveMonthTotal": "$1.2M",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "holdout-26",
+      "input": {
+        "industry": "automotive",
+        "size": "startup",
+        "team": 50,
+        "hoursPerWeek": 33,
+        "hourlyCost": 52,
+        "currentAutomation": 68
+      },
+      "observed": {
+        "annualSaving": "$262K",
+        "hoursSaved": "14.4Kh",
+        "firstYearRoi": "391%",
+        "paybackMonths": "2.4 mo",
+        "revenueOpportunity": "$56.8K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "74%",
+        "automationCoverageExact": 73.7139,
+        "productivityExact": 15.624,
+        "manualHoursToday": "80,500h",
+        "manualHoursAfter": "66,126h",
+        "twelveMonthTotal": "$318K",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "holdout-27",
+      "input": {
+        "industry": "hospitality",
+        "size": "growing",
+        "team": 585,
+        "hoursPerWeek": 25,
+        "hourlyCost": 58,
+        "currentAutomation": 86
+      },
+      "observed": {
+        "annualSaving": "$1.4M",
+        "hoursSaved": "69.5Kh",
+        "firstYearRoi": "117%",
+        "paybackMonths": "5.5 mo",
+        "revenueOpportunity": "$108K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "87%",
+        "automationCoverageExact": 87.3396,
+        "productivityExact": 6.45896,
+        "manualHoursToday": "726,570h",
+        "manualHoursAfter": "657,046h",
+        "twelveMonthTotal": "$1.5M",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "holdout-28",
+      "input": {
+        "industry": "hospitality",
+        "size": "startup",
+        "team": 825,
+        "hoursPerWeek": 28,
+        "hourlyCost": 85,
+        "currentAutomation": 83
+      },
+      "observed": {
+        "annualSaving": "$3.4M",
+        "hoursSaved": "114Kh",
+        "firstYearRoi": "274%",
+        "paybackMonths": "3.2 mo",
+        "revenueOpportunity": "$161K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "85%",
+        "automationCoverageExact": 84.7094,
+        "productivityExact": 7.54137,
+        "manualHoursToday": "1,138,500h",
+        "manualHoursAfter": "1,024,022h",
+        "twelveMonthTotal": "$3.6M",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "holdout-29",
+      "input": {
+        "industry": "healthcare",
+        "size": "small",
+        "team": 685,
+        "hoursPerWeek": 60,
+        "hourlyCost": 91,
+        "currentAutomation": 58
+      },
+      "observed": {
+        "annualSaving": "$17M",
+        "hoursSaved": "547Kh",
+        "firstYearRoi": "2184%",
+        "paybackMonths": "0.5 mo",
+        "revenueOpportunity": "$851K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "70%",
+        "automationCoverageExact": 69.7592,
+        "productivityExact": 43.3972,
+        "manualHoursToday": "1,953,620h",
+        "manualHoursAfter": "1,406,641h",
+        "twelveMonthTotal": "$18M",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    }
+  ],
+  "sweeps": [
+    {
+      "label": "automation=0",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 0
+      },
+      "observed": {
+        "annualSaving": "$240K",
+        "hoursSaved": "21.5Kh",
+        "firstYearRoi": "616%",
+        "paybackMonths": "1.7 mo",
+        "revenueOpportunity": "$303K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "73%",
+        "automationCoverageExact": 72.8624,
+        "productivityExact": 29.145,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "7,989h",
+        "twelveMonthTotal": "$543K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=5",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 5
+      },
+      "observed": {
+        "annualSaving": "$228K",
+        "hoursSaved": "20.4Kh",
+        "firstYearRoi": "581%",
+        "paybackMonths": "1.8 mo",
+        "revenueOpportunity": "$288K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "71%",
+        "automationCoverageExact": 70.7583,
+        "productivityExact": 27.6877,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "9,062h",
+        "twelveMonthTotal": "$516K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=10",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 10
+      },
+      "observed": {
+        "annualSaving": "$216K",
+        "hoursSaved": "19.3Kh",
+        "firstYearRoi": "545%",
+        "paybackMonths": "1.9 mo",
+        "revenueOpportunity": "$273K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "69%",
+        "automationCoverageExact": 69.0185,
+        "productivityExact": 26.2305,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "10,134h",
+        "twelveMonthTotal": "$489K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=15",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$204K",
+        "hoursSaved": "18.2Kh",
+        "firstYearRoi": "509%",
+        "paybackMonths": "2.0 mo",
+        "revenueOpportunity": "$258K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,207h",
+        "twelveMonthTotal": "$462K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=20",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 20
+      },
+      "observed": {
+        "annualSaving": "$192K",
+        "hoursSaved": "17.2Kh",
+        "firstYearRoi": "473%",
+        "paybackMonths": "2.1 mo",
+        "revenueOpportunity": "$242K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "67%",
+        "automationCoverageExact": 66.6319,
+        "productivityExact": 23.316,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,279h",
+        "twelveMonthTotal": "$435K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=25",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 25
+      },
+      "observed": {
+        "annualSaving": "$180K",
+        "hoursSaved": "16.1Kh",
+        "firstYearRoi": "437%",
+        "paybackMonths": "2.2 mo",
+        "revenueOpportunity": "$227K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "66%",
+        "automationCoverageExact": 65.9851,
+        "productivityExact": 21.8587,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,352h",
+        "twelveMonthTotal": "$407K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=30",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 30
+      },
+      "observed": {
+        "annualSaving": "$168K",
+        "hoursSaved": "15.0Kh",
+        "firstYearRoi": "401%",
+        "paybackMonths": "2.4 mo",
+        "revenueOpportunity": "$212K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "66%",
+        "automationCoverageExact": 65.7026,
+        "productivityExact": 20.4015,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "14,425h",
+        "twelveMonthTotal": "$380K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=35",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 35
+      },
+      "observed": {
+        "annualSaving": "$156K",
+        "hoursSaved": "13.9Kh",
+        "firstYearRoi": "366%",
+        "paybackMonths": "2.6 mo",
+        "revenueOpportunity": "$197K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "66%",
+        "automationCoverageExact": 65.7844,
+        "productivityExact": 18.9442,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "15,497h",
+        "twelveMonthTotal": "$353K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=40",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 40
+      },
+      "observed": {
+        "annualSaving": "$144K",
+        "hoursSaved": "12.9Kh",
+        "firstYearRoi": "330%",
+        "paybackMonths": "2.8 mo",
+        "revenueOpportunity": "$182K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "66%",
+        "automationCoverageExact": 66.2305,
+        "productivityExact": 17.487,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "16,570h",
+        "twelveMonthTotal": "$326K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=45",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 45
+      },
+      "observed": {
+        "annualSaving": "$132K",
+        "hoursSaved": "11.8Kh",
+        "firstYearRoi": "294%",
+        "paybackMonths": "3.0 mo",
+        "revenueOpportunity": "$167K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "67%",
+        "automationCoverageExact": 67.0409,
+        "productivityExact": 16.0297,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "17,642h",
+        "twelveMonthTotal": "$299K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=50",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 50
+      },
+      "observed": {
+        "annualSaving": "$120K",
+        "hoursSaved": "10.7Kh",
+        "firstYearRoi": "258%",
+        "paybackMonths": "3.4 mo",
+        "revenueOpportunity": "$152K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 68.2156,
+        "productivityExact": 14.5725,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "18,715h",
+        "twelveMonthTotal": "$272K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=55",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 55
+      },
+      "observed": {
+        "annualSaving": "$108K",
+        "hoursSaved": "9.7Kh",
+        "firstYearRoi": "222%",
+        "paybackMonths": "3.7 mo",
+        "revenueOpportunity": "$136K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "70%",
+        "automationCoverageExact": 69.7546,
+        "productivityExact": 13.1152,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "19,787h",
+        "twelveMonthTotal": "$244K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=60",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 60
+      },
+      "observed": {
+        "annualSaving": "$96.1K",
+        "hoursSaved": "8.6Kh",
+        "firstYearRoi": "187%",
+        "paybackMonths": "4.2 mo",
+        "revenueOpportunity": "$121K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "72%",
+        "automationCoverageExact": 71.658,
+        "productivityExact": 11.658,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "20,860h",
+        "twelveMonthTotal": "$217K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=65",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 65
+      },
+      "observed": {
+        "annualSaving": "$84.1K",
+        "hoursSaved": "7.5Kh",
+        "firstYearRoi": "151%",
+        "paybackMonths": "4.8 mo",
+        "revenueOpportunity": "$106K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "74%",
+        "automationCoverageExact": 73.9256,
+        "productivityExact": 10.2007,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "21,932h",
+        "twelveMonthTotal": "$190K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=70",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 70
+      },
+      "observed": {
+        "annualSaving": "$72.1K",
+        "hoursSaved": "6.4Kh",
+        "firstYearRoi": "115%",
+        "paybackMonths": "5.6 mo",
+        "revenueOpportunity": "$90.9K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "77%",
+        "automationCoverageExact": 76.5576,
+        "productivityExact": 8.74349,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "23,005h",
+        "twelveMonthTotal": "$163K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=75",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 75
+      },
+      "observed": {
+        "annualSaving": "$60.1K",
+        "hoursSaved": "5.4Kh",
+        "firstYearRoi": "79%",
+        "paybackMonths": "6.7 mo",
+        "revenueOpportunity": "$75.8K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "80%",
+        "automationCoverageExact": 79.5539,
+        "productivityExact": 7.28624,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "24,077h",
+        "twelveMonthTotal": "$136K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=80",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 80
+      },
+      "observed": {
+        "annualSaving": "$48.0K",
+        "hoursSaved": "4.3Kh",
+        "firstYearRoi": "43%",
+        "paybackMonths": "8.4 mo",
+        "revenueOpportunity": "$60.6K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "83%",
+        "automationCoverageExact": 82.9145,
+        "productivityExact": 5.82899,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "25,150h",
+        "twelveMonthTotal": "$109K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=85",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 85
+      },
+      "observed": {
+        "annualSaving": "$36.0K",
+        "hoursSaved": "3.2Kh",
+        "firstYearRoi": "7%",
+        "paybackMonths": "11.2 mo",
+        "revenueOpportunity": "$45.5K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "87%",
+        "automationCoverageExact": 86.6394,
+        "productivityExact": 4.37174,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "26,222h",
+        "twelveMonthTotal": "$81.5K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=90",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 90
+      },
+      "observed": {
+        "annualSaving": "$24.0K",
+        "hoursSaved": "2.1Kh",
+        "firstYearRoi": "-28%",
+        "paybackMonths": "16.8 mo",
+        "revenueOpportunity": "$30.3K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "91%",
+        "automationCoverageExact": 90.7286,
+        "productivityExact": 2.9145,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "27,295h",
+        "twelveMonthTotal": "$54.3K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=95",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 95
+      },
+      "observed": {
+        "annualSaving": "$12.0K",
+        "hoursSaved": "1.1Kh",
+        "firstYearRoi": "-64%",
+        "paybackMonths": "24+ mo",
+        "revenueOpportunity": "$15.2K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "95%",
+        "automationCoverageExact": 95.1822,
+        "productivityExact": 1.45725,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "28,367h",
+        "twelveMonthTotal": "$27.2K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "automation=100",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 100
+      },
+      "observed": {
+        "annualSaving": "$0",
+        "hoursSaved": "0h",
+        "firstYearRoi": "-100%",
+        "paybackMonths": "0.0 mo",
+        "revenueOpportunity": "$0",
+        "leadResponse": "720×faster",
+        "automationCoverage": "99%",
+        "automationCoverageExact": 99,
+        "productivityExact": 0,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "29,440h",
+        "twelveMonthTotal": "$0",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid healthcare/startup",
+      "input": {
+        "industry": "healthcare",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$175K",
+        "hoursSaved": "15.6Kh",
+        "firstYearRoi": "405%",
+        "paybackMonths": "2.4 mo",
+        "revenueOpportunity": "$94.2K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "60%",
+        "automationCoverageExact": 60.1534,
+        "productivityExact": 21.2486,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,801h",
+        "twelveMonthTotal": "$269K",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    },
+    {
+      "label": "grid healthcare/small",
+      "input": {
+        "industry": "healthcare",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$187K",
+        "hoursSaved": "16.7Kh",
+        "firstYearRoi": "372%",
+        "paybackMonths": "2.5 mo",
+        "revenueOpportunity": "$101K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "63%",
+        "automationCoverageExact": 63.1636,
+        "productivityExact": 22.6652,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,758h",
+        "twelveMonthTotal": "$287K",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    },
+    {
+      "label": "grid healthcare/growing",
+      "input": {
+        "industry": "healthcare",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$202K",
+        "hoursSaved": "18.1Kh",
+        "firstYearRoi": "310%",
+        "paybackMonths": "2.9 mo",
+        "revenueOpportunity": "$109K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "67%",
+        "automationCoverageExact": 67.1772,
+        "productivityExact": 24.554,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,368h",
+        "twelveMonthTotal": "$311K",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    },
+    {
+      "label": "grid healthcare/enterprise",
+      "input": {
+        "industry": "healthcare",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$214K",
+        "hoursSaved": "19.1Kh",
+        "firstYearRoi": "211%",
+        "paybackMonths": "3.9 mo",
+        "revenueOpportunity": "$115K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "70%",
+        "automationCoverageExact": 70.1874,
+        "productivityExact": 25.9706,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "10,326h",
+        "twelveMonthTotal": "$329K",
+        "recommended": "AI Receptionist · Appointment Automation · CRM Automation · Medical Document OCR · WhatsApp Follow-up"
+      }
+    },
+    {
+      "label": "grid real-estate/startup",
+      "input": {
+        "industry": "real-estate",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$169K",
+        "hoursSaved": "15.1Kh",
+        "firstYearRoi": "464%",
+        "paybackMonths": "2.1 mo",
+        "revenueOpportunity": "$132K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "59%",
+        "automationCoverageExact": 58.5407,
+        "productivityExact": 20.4898,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "14,360h",
+        "twelveMonthTotal": "$301K",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "grid real-estate/small",
+      "input": {
+        "industry": "real-estate",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$180K",
+        "hoursSaved": "16.1Kh",
+        "firstYearRoi": "428%",
+        "paybackMonths": "2.3 mo",
+        "revenueOpportunity": "$141K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "61%",
+        "automationCoverageExact": 61.4435,
+        "productivityExact": 21.8557,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,354h",
+        "twelveMonthTotal": "$321K",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "grid real-estate/growing",
+      "input": {
+        "industry": "real-estate",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$195K",
+        "hoursSaved": "17.4Kh",
+        "firstYearRoi": "359%",
+        "paybackMonths": "2.6 mo",
+        "revenueOpportunity": "$153K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "65%",
+        "automationCoverageExact": 65.3137,
+        "productivityExact": 23.6771,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,014h",
+        "twelveMonthTotal": "$348K",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "grid real-estate/enterprise",
+      "input": {
+        "industry": "real-estate",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$206K",
+        "hoursSaved": "18.4Kh",
+        "firstYearRoi": "248%",
+        "paybackMonths": "3.5 mo",
+        "revenueOpportunity": "$162K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 68.2165,
+        "productivityExact": 25.043,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,008h",
+        "twelveMonthTotal": "$368K",
+        "recommended": "Lead Response AI · Viewing Scheduler · CRM Autopilot · Contract OCR · WhatsApp Nurture"
+      }
+    },
+    {
+      "label": "grid manufacturing/startup",
+      "input": {
+        "industry": "manufacturing",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$164K",
+        "hoursSaved": "14.7Kh",
+        "firstYearRoi": "750%",
+        "paybackMonths": "1.4 mo",
+        "revenueOpportunity": "$289K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "57%",
+        "automationCoverageExact": 57.3313,
+        "productivityExact": 19.9206,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "14,778h",
+        "twelveMonthTotal": "$453K",
+        "recommended": "Production Dashboards · Predictive Maintenance · Supplier Workflow Automation · Purchase Order OCR"
+      }
+    },
+    {
+      "label": "grid manufacturing/small",
+      "input": {
+        "industry": "manufacturing",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$175K",
+        "hoursSaved": "15.6Kh",
+        "firstYearRoi": "695%",
+        "paybackMonths": "1.5 mo",
+        "revenueOpportunity": "$308K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "60%",
+        "automationCoverageExact": 60.1534,
+        "productivityExact": 21.2486,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,801h",
+        "twelveMonthTotal": "$484K",
+        "recommended": "Production Dashboards · Predictive Maintenance · Supplier Workflow Automation · Purchase Order OCR"
+      }
+    },
+    {
+      "label": "grid manufacturing/growing",
+      "input": {
+        "industry": "manufacturing",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$190K",
+        "hoursSaved": "16.9Kh",
+        "firstYearRoi": "591%",
+        "paybackMonths": "1.7 mo",
+        "revenueOpportunity": "$334K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "64%",
+        "automationCoverageExact": 63.9161,
+        "productivityExact": 23.0194,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,498h",
+        "twelveMonthTotal": "$524K",
+        "recommended": "Production Dashboards · Predictive Maintenance · Supplier Workflow Automation · Purchase Order OCR"
+      }
+    },
+    {
+      "label": "grid manufacturing/enterprise",
+      "input": {
+        "industry": "manufacturing",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$201K",
+        "hoursSaved": "17.9Kh",
+        "firstYearRoi": "424%",
+        "paybackMonths": "2.3 mo",
+        "revenueOpportunity": "$353K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "67%",
+        "automationCoverageExact": 66.7382,
+        "productivityExact": 24.3474,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,520h",
+        "twelveMonthTotal": "$554K",
+        "recommended": "Production Dashboards · Predictive Maintenance · Supplier Workflow Automation · Purchase Order OCR"
+      }
+    },
+    {
+      "label": "grid retail/startup",
+      "input": {
+        "industry": "retail",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$172K",
+        "hoursSaved": "15.4Kh",
+        "firstYearRoi": "264%",
+        "paybackMonths": "3.3 mo",
+        "revenueOpportunity": "$22.4K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "59%",
+        "automationCoverageExact": 59.347,
+        "productivityExact": 20.8692,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "14,080h",
+        "twelveMonthTotal": "$194K",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "grid retail/small",
+      "input": {
+        "industry": "retail",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$183K",
+        "hoursSaved": "16.4Kh",
+        "firstYearRoi": "241%",
+        "paybackMonths": "3.5 mo",
+        "revenueOpportunity": "$23.8K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "62%",
+        "automationCoverageExact": 62.3035,
+        "productivityExact": 22.2605,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,056h",
+        "twelveMonthTotal": "$207K",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "grid retail/growing",
+      "input": {
+        "industry": "retail",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$199K",
+        "hoursSaved": "17.7Kh",
+        "firstYearRoi": "196%",
+        "paybackMonths": "4.1 mo",
+        "revenueOpportunity": "$25.8K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "66%",
+        "automationCoverageExact": 66.2455,
+        "productivityExact": 24.1155,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,691h",
+        "twelveMonthTotal": "$225K",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "grid retail/enterprise",
+      "input": {
+        "industry": "retail",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$210K",
+        "hoursSaved": "18.8Kh",
+        "firstYearRoi": "124%",
+        "paybackMonths": "5.3 mo",
+        "revenueOpportunity": "$27.3K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "69%",
+        "automationCoverageExact": 69.2019,
+        "productivityExact": 25.5068,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "10,667h",
+        "twelveMonthTotal": "$238K",
+        "recommended": "Inventory Automation · Customer Support AI · Order Processing · Marketing Automation · WhatsApp Commerce"
+      }
+    },
+    {
+      "label": "grid education/startup",
+      "input": {
+        "industry": "education",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$160K",
+        "hoursSaved": "14.2Kh",
+        "firstYearRoi": "398%",
+        "paybackMonths": "2.4 mo",
+        "revenueOpportunity": "$106K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "56%",
+        "automationCoverageExact": 56.1218,
+        "productivityExact": 19.3514,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "15,197h",
+        "twelveMonthTotal": "$265K",
+        "recommended": "Admissions AI · Student Records OCR · Enrolment Workflow · Parent Communication Bot"
+      }
+    },
+    {
+      "label": "grid education/small",
+      "input": {
+        "industry": "education",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$170K",
+        "hoursSaved": "15.2Kh",
+        "firstYearRoi": "365%",
+        "paybackMonths": "2.6 mo",
+        "revenueOpportunity": "$113K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "59%",
+        "automationCoverageExact": 58.8633,
+        "productivityExact": 20.6415,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "14,248h",
+        "twelveMonthTotal": "$283K",
+        "recommended": "Admissions AI · Student Records OCR · Enrolment Workflow · Parent Communication Bot"
+      }
+    },
+    {
+      "label": "grid education/growing",
+      "input": {
+        "industry": "education",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$184K",
+        "hoursSaved": "16.5Kh",
+        "firstYearRoi": "304%",
+        "paybackMonths": "3.0 mo",
+        "revenueOpportunity": "$122K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "63%",
+        "automationCoverageExact": 62.5185,
+        "productivityExact": 22.3617,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,982h",
+        "twelveMonthTotal": "$307K",
+        "recommended": "Admissions AI · Student Records OCR · Enrolment Workflow · Parent Communication Bot"
+      }
+    },
+    {
+      "label": "grid education/enterprise",
+      "input": {
+        "industry": "education",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$195K",
+        "hoursSaved": "17.4Kh",
+        "firstYearRoi": "206%",
+        "paybackMonths": "3.9 mo",
+        "revenueOpportunity": "$129K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "65%",
+        "automationCoverageExact": 65.26,
+        "productivityExact": 23.6518,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,032h",
+        "twelveMonthTotal": "$324K",
+        "recommended": "Admissions AI · Student Records OCR · Enrolment Workflow · Parent Communication Bot"
+      }
+    },
+    {
+      "label": "grid finance/startup",
+      "input": {
+        "industry": "finance",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$180K",
+        "hoursSaved": "16.1Kh",
+        "firstYearRoi": "633%",
+        "paybackMonths": "1.6 mo",
+        "revenueOpportunity": "$211K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "61%",
+        "automationCoverageExact": 61.3628,
+        "productivityExact": 21.8178,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,382h",
+        "twelveMonthTotal": "$391K",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "grid finance/small",
+      "input": {
+        "industry": "finance",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$192K",
+        "hoursSaved": "17.1Kh",
+        "firstYearRoi": "585%",
+        "paybackMonths": "1.8 mo",
+        "revenueOpportunity": "$225K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "64%",
+        "automationCoverageExact": 64.4537,
+        "productivityExact": 23.2723,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,312h",
+        "twelveMonthTotal": "$417K",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "grid finance/growing",
+      "input": {
+        "industry": "finance",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$208K",
+        "hoursSaved": "18.6Kh",
+        "firstYearRoi": "496%",
+        "paybackMonths": "2.0 mo",
+        "revenueOpportunity": "$244K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "69%",
+        "automationCoverageExact": 68.5748,
+        "productivityExact": 25.2117,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "10,884h",
+        "twelveMonthTotal": "$452K",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "grid finance/enterprise",
+      "input": {
+        "industry": "finance",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$220K",
+        "hoursSaved": "19.6Kh",
+        "firstYearRoi": "351%",
+        "paybackMonths": "2.7 mo",
+        "revenueOpportunity": "$258K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "72%",
+        "automationCoverageExact": 71.6657,
+        "productivityExact": 26.6662,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "9,814h",
+        "twelveMonthTotal": "$478K",
+        "recommended": "KYC Document AI · Onboarding Automation · Compliance Workflow · Reporting Dashboards"
+      }
+    },
+    {
+      "label": "grid hospitality/startup",
+      "input": {
+        "industry": "hospitality",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$166K",
+        "hoursSaved": "14.8Kh",
+        "firstYearRoi": "284%",
+        "paybackMonths": "3.1 mo",
+        "revenueOpportunity": "$38.9K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "58%",
+        "automationCoverageExact": 57.7344,
+        "productivityExact": 20.1103,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "14,639h",
+        "twelveMonthTotal": "$205K",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "grid hospitality/small",
+      "input": {
+        "industry": "hospitality",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$177K",
+        "hoursSaved": "15.8Kh",
+        "firstYearRoi": "259%",
+        "paybackMonths": "3.3 mo",
+        "revenueOpportunity": "$41.5K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "61%",
+        "automationCoverageExact": 60.5834,
+        "productivityExact": 21.451,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,652h",
+        "twelveMonthTotal": "$218K",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "grid hospitality/growing",
+      "input": {
+        "industry": "hospitality",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$192K",
+        "hoursSaved": "17.1Kh",
+        "firstYearRoi": "212%",
+        "paybackMonths": "3.8 mo",
+        "revenueOpportunity": "$45.0K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "64%",
+        "automationCoverageExact": 64.382,
+        "productivityExact": 23.2386,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,336h",
+        "twelveMonthTotal": "$237K",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "grid hospitality/enterprise",
+      "input": {
+        "industry": "hospitality",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$203K",
+        "hoursSaved": "18.1Kh",
+        "firstYearRoi": "136%",
+        "paybackMonths": "5.1 mo",
+        "revenueOpportunity": "$47.6K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "67%",
+        "automationCoverageExact": 67.231,
+        "productivityExact": 24.5793,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,350h",
+        "twelveMonthTotal": "$250K",
+        "recommended": "Booking AI · Virtual Concierge · Review Response Automation · WhatsApp Reservations"
+      }
+    },
+    {
+      "label": "grid construction/startup",
+      "input": {
+        "industry": "construction",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$147K",
+        "hoursSaved": "13.1Kh",
+        "firstYearRoi": "667%",
+        "paybackMonths": "1.6 mo",
+        "revenueOpportunity": "$262K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "53%",
+        "automationCoverageExact": 52.8966,
+        "productivityExact": 17.8337,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "16,314h",
+        "twelveMonthTotal": "$409K",
+        "recommended": "Project Tracking · Material Ordering Automation · Blueprint Document AI · Subcontractor Workflow"
+      }
+    },
+    {
+      "label": "grid construction/small",
+      "input": {
+        "industry": "construction",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$157K",
+        "hoursSaved": "14.0Kh",
+        "firstYearRoi": "617%",
+        "paybackMonths": "1.7 mo",
+        "revenueOpportunity": "$279K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "55%",
+        "automationCoverageExact": 55.423,
+        "productivityExact": 19.0226,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "15,439h",
+        "twelveMonthTotal": "$436K",
+        "recommended": "Project Tracking · Material Ordering Automation · Blueprint Document AI · Subcontractor Workflow"
+      }
+    },
+    {
+      "label": "grid construction/growing",
+      "input": {
+        "industry": "construction",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$170K",
+        "hoursSaved": "15.2Kh",
+        "firstYearRoi": "523%",
+        "paybackMonths": "1.9 mo",
+        "revenueOpportunity": "$303K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "59%",
+        "automationCoverageExact": 58.7916,
+        "productivityExact": 20.6078,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "14,273h",
+        "twelveMonthTotal": "$473K",
+        "recommended": "Project Tracking · Material Ordering Automation · Blueprint Document AI · Subcontractor Workflow"
+      }
+    },
+    {
+      "label": "grid construction/enterprise",
+      "input": {
+        "industry": "construction",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$180K",
+        "hoursSaved": "16.0Kh",
+        "firstYearRoi": "372%",
+        "paybackMonths": "2.5 mo",
+        "revenueOpportunity": "$320K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "61%",
+        "automationCoverageExact": 61.318,
+        "productivityExact": 21.7967,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,398h",
+        "twelveMonthTotal": "$500K",
+        "recommended": "Project Tracking · Material Ordering Automation · Blueprint Document AI · Subcontractor Workflow"
+      }
+    },
+    {
+      "label": "grid professional-services/startup",
+      "input": {
+        "industry": "professional-services",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$177K",
+        "hoursSaved": "15.8Kh",
+        "firstYearRoi": "649%",
+        "paybackMonths": "1.6 mo",
+        "revenueOpportunity": "$223K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "61%",
+        "automationCoverageExact": 60.5565,
+        "productivityExact": 21.4384,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,661h",
+        "twelveMonthTotal": "$400K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid professional-services/small",
+      "input": {
+        "industry": "professional-services",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$189K",
+        "hoursSaved": "16.8Kh",
+        "firstYearRoi": "601%",
+        "paybackMonths": "1.7 mo",
+        "revenueOpportunity": "$238K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "64%",
+        "automationCoverageExact": 63.5936,
+        "productivityExact": 22.8676,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,609h",
+        "twelveMonthTotal": "$426K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid professional-services/growing",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$204K",
+        "hoursSaved": "18.2Kh",
+        "firstYearRoi": "509%",
+        "paybackMonths": "2.0 mo",
+        "revenueOpportunity": "$258K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,207h",
+        "twelveMonthTotal": "$462K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid professional-services/enterprise",
+      "input": {
+        "industry": "professional-services",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$216K",
+        "hoursSaved": "19.3Kh",
+        "firstYearRoi": "361%",
+        "paybackMonths": "2.6 mo",
+        "revenueOpportunity": "$272K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "71%",
+        "automationCoverageExact": 70.6802,
+        "productivityExact": 26.2024,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "10,155h",
+        "twelveMonthTotal": "$488K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "grid automotive/startup",
+      "input": {
+        "industry": "automotive",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$156K",
+        "hoursSaved": "14.0Kh",
+        "firstYearRoi": "420%",
+        "paybackMonths": "2.3 mo",
+        "revenueOpportunity": "$121K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "55%",
+        "automationCoverageExact": 55.3155,
+        "productivityExact": 18.972,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "15,477h",
+        "twelveMonthTotal": "$277K",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "grid automotive/small",
+      "input": {
+        "industry": "automotive",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$167K",
+        "hoursSaved": "14.9Kh",
+        "firstYearRoi": "386%",
+        "paybackMonths": "2.5 mo",
+        "revenueOpportunity": "$129K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "58%",
+        "automationCoverageExact": 58.0032,
+        "productivityExact": 20.2368,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "14,546h",
+        "twelveMonthTotal": "$296K",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "grid automotive/growing",
+      "input": {
+        "industry": "automotive",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$181K",
+        "hoursSaved": "16.1Kh",
+        "firstYearRoi": "322%",
+        "paybackMonths": "2.8 mo",
+        "revenueOpportunity": "$140K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "62%",
+        "automationCoverageExact": 61.5868,
+        "productivityExact": 21.9232,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,305h",
+        "twelveMonthTotal": "$320K",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "grid automotive/enterprise",
+      "input": {
+        "industry": "automotive",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$191K",
+        "hoursSaved": "17.1Kh",
+        "firstYearRoi": "220%",
+        "paybackMonths": "3.7 mo",
+        "revenueOpportunity": "$148K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "64%",
+        "automationCoverageExact": 64.2745,
+        "productivityExact": 23.188,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,374h",
+        "twelveMonthTotal": "$339K",
+        "recommended": "Service Booking AI · Parts Inventory Automation · Garage CRM · Follow-up Automation"
+      }
+    },
+    {
+      "label": "grid logistics/startup",
+      "input": {
+        "industry": "logistics",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$170K",
+        "hoursSaved": "15.2Kh",
+        "firstYearRoi": "478%",
+        "paybackMonths": "2.1 mo",
+        "revenueOpportunity": "$138K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "59%",
+        "automationCoverageExact": 58.9439,
+        "productivityExact": 20.6795,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "14,220h",
+        "twelveMonthTotal": "$308K",
+        "recommended": "Route Optimisation · Shipment Tracking AI · Delivery Notification Bot · Freight Document OCR"
+      }
+    },
+    {
+      "label": "grid logistics/small",
+      "input": {
+        "industry": "logistics",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$182K",
+        "hoursSaved": "16.2Kh",
+        "firstYearRoi": "440%",
+        "paybackMonths": "2.2 mo",
+        "revenueOpportunity": "$147K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "62%",
+        "automationCoverageExact": 61.8735,
+        "productivityExact": 22.0581,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,205h",
+        "twelveMonthTotal": "$329K",
+        "recommended": "Route Optimisation · Shipment Tracking AI · Delivery Notification Bot · Freight Document OCR"
+      }
+    },
+    {
+      "label": "grid logistics/growing",
+      "input": {
+        "industry": "logistics",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$197K",
+        "hoursSaved": "17.6Kh",
+        "firstYearRoi": "369%",
+        "paybackMonths": "2.6 mo",
+        "revenueOpportunity": "$159K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "66%",
+        "automationCoverageExact": 65.7796,
+        "productivityExact": 23.8963,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,852h",
+        "twelveMonthTotal": "$356K",
+        "recommended": "Route Optimisation · Shipment Tracking AI · Delivery Notification Bot · Freight Document OCR"
+      }
+    },
+    {
+      "label": "grid logistics/enterprise",
+      "input": {
+        "industry": "logistics",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$208K",
+        "hoursSaved": "18.6Kh",
+        "firstYearRoi": "256%",
+        "paybackMonths": "3.4 mo",
+        "revenueOpportunity": "$168K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "69%",
+        "automationCoverageExact": 68.7092,
+        "productivityExact": 25.2749,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "10,838h",
+        "twelveMonthTotal": "$376K",
+        "recommended": "Route Optimisation · Shipment Tracking AI · Delivery Notification Bot · Freight Document OCR"
+      }
+    },
+    {
+      "label": "grid technology/startup",
+      "input": {
+        "industry": "technology",
+        "size": "startup",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$174K",
+        "hoursSaved": "15.5Kh",
+        "firstYearRoi": "635%",
+        "paybackMonths": "1.6 mo",
+        "revenueOpportunity": "$218K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "60%",
+        "automationCoverageExact": 59.7502,
+        "productivityExact": 21.0589,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "13,941h",
+        "twelveMonthTotal": "$392K",
+        "recommended": "Support Triage AI · API Integration Layer · Onboarding Automation · Usage Analytics"
+      }
+    },
+    {
+      "label": "grid technology/small",
+      "input": {
+        "industry": "technology",
+        "size": "small",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$185K",
+        "hoursSaved": "16.5Kh",
+        "firstYearRoi": "587%",
+        "paybackMonths": "1.7 mo",
+        "revenueOpportunity": "$233K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "63%",
+        "automationCoverageExact": 62.7336,
+        "productivityExact": 22.4628,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "12,907h",
+        "twelveMonthTotal": "$418K",
+        "recommended": "Support Triage AI · API Integration Layer · Onboarding Automation · Usage Analytics"
+      }
+    },
+    {
+      "label": "grid technology/growing",
+      "input": {
+        "industry": "technology",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$201K",
+        "hoursSaved": "17.9Kh",
+        "firstYearRoi": "497%",
+        "paybackMonths": "2.0 mo",
+        "revenueOpportunity": "$252K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "67%",
+        "automationCoverageExact": 66.7113,
+        "productivityExact": 24.3348,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,530h",
+        "twelveMonthTotal": "$453K",
+        "recommended": "Support Triage AI · API Integration Layer · Onboarding Automation · Usage Analytics"
+      }
+    },
+    {
+      "label": "grid technology/enterprise",
+      "input": {
+        "industry": "technology",
+        "size": "enterprise",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$212K",
+        "hoursSaved": "18.9Kh",
+        "firstYearRoi": "353%",
+        "paybackMonths": "2.7 mo",
+        "revenueOpportunity": "$267K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "70%",
+        "automationCoverageExact": 69.6947,
+        "productivityExact": 25.7387,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "10,496h",
+        "twelveMonthTotal": "$479K",
+        "recommended": "Support Triage AI · API Integration Layer · Onboarding Automation · Usage Analytics"
+      }
+    },
+    {
+      "label": "team=5",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 5,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$25.5K",
+        "hoursSaved": "2.3Kh",
+        "firstYearRoi": "62%",
+        "paybackMonths": "7.4 mo",
+        "revenueOpportunity": "$32.2K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "3,680h",
+        "manualHoursAfter": "1,401h",
+        "twelveMonthTotal": "$57.7K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=10",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 10,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$51.1K",
+        "hoursSaved": "4.6Kh",
+        "firstYearRoi": "178%",
+        "paybackMonths": "4.3 mo",
+        "revenueOpportunity": "$64.4K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "7,360h",
+        "manualHoursAfter": "2,802h",
+        "twelveMonthTotal": "$115K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=25",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 25,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$128K",
+        "hoursSaved": "11.4Kh",
+        "firstYearRoi": "392%",
+        "paybackMonths": "2.4 mo",
+        "revenueOpportunity": "$161K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "18,400h",
+        "manualHoursAfter": "7,004h",
+        "twelveMonthTotal": "$289K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=50",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 50,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$255K",
+        "hoursSaved": "22.8Kh",
+        "firstYearRoi": "561%",
+        "paybackMonths": "1.8 mo",
+        "revenueOpportunity": "$322K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "36,800h",
+        "manualHoursAfter": "14,009h",
+        "twelveMonthTotal": "$577K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=100",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 100,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$511K",
+        "hoursSaved": "45.6Kh",
+        "firstYearRoi": "698%",
+        "paybackMonths": "1.5 mo",
+        "revenueOpportunity": "$644K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "73,600h",
+        "manualHoursAfter": "28,017h",
+        "twelveMonthTotal": "$1.2M",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=200",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 200,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$1.0M",
+        "hoursSaved": "91.2Kh",
+        "firstYearRoi": "791%",
+        "paybackMonths": "1.3 mo",
+        "revenueOpportunity": "$1.3M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "147,200h",
+        "manualHoursAfter": "56,035h",
+        "twelveMonthTotal": "$2.3M",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=400",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 400,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$2.0M",
+        "hoursSaved": "182Kh",
+        "firstYearRoi": "845%",
+        "paybackMonths": "1.3 mo",
+        "revenueOpportunity": "$2.6M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "294,400h",
+        "manualHoursAfter": "112,069h",
+        "twelveMonthTotal": "$4.6M",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=700",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 700,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$3.6M",
+        "hoursSaved": "319Kh",
+        "firstYearRoi": "871%",
+        "paybackMonths": "1.2 mo",
+        "revenueOpportunity": "$4.5M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "515,200h",
+        "manualHoursAfter": "196,121h",
+        "twelveMonthTotal": "$8.1M",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "team=1000",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 1000,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$5.1M",
+        "hoursSaved": "456Kh",
+        "firstYearRoi": "882%",
+        "paybackMonths": "1.2 mo",
+        "revenueOpportunity": "$6.4M",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "736,000h",
+        "manualHoursAfter": "280,173h",
+        "twelveMonthTotal": "$12M",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=10",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 10,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$63.8K",
+        "hoursSaved": "18.2Kh",
+        "firstYearRoi": "324%",
+        "paybackMonths": "2.8 mo",
+        "revenueOpportunity": "$258K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,207h",
+        "twelveMonthTotal": "$321K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=25",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 25,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$160K",
+        "hoursSaved": "18.2Kh",
+        "firstYearRoi": "450%",
+        "paybackMonths": "2.2 mo",
+        "revenueOpportunity": "$258K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,207h",
+        "twelveMonthTotal": "$417K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=32",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 32,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$204K",
+        "hoursSaved": "18.2Kh",
+        "firstYearRoi": "509%",
+        "paybackMonths": "2.0 mo",
+        "revenueOpportunity": "$258K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,207h",
+        "twelveMonthTotal": "$462K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=50",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 50,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$319K",
+        "hoursSaved": "18.2Kh",
+        "firstYearRoi": "660%",
+        "paybackMonths": "1.6 mo",
+        "revenueOpportunity": "$258K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,207h",
+        "twelveMonthTotal": "$577K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=80",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 80,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$511K",
+        "hoursSaved": "18.2Kh",
+        "firstYearRoi": "913%",
+        "paybackMonths": "1.2 mo",
+        "revenueOpportunity": "$258K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,207h",
+        "twelveMonthTotal": "$768K",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=120",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 120,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$766K",
+        "hoursSaved": "18.2Kh",
+        "firstYearRoi": "1249%",
+        "paybackMonths": "0.9 mo",
+        "revenueOpportunity": "$258K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,207h",
+        "twelveMonthTotal": "$1.0M",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    },
+    {
+      "label": "hourly=200",
+      "input": {
+        "industry": "professional-services",
+        "size": "growing",
+        "team": 40,
+        "hoursPerWeek": 14,
+        "hourlyCost": 200,
+        "currentAutomation": 15
+      },
+      "observed": {
+        "annualSaving": "$957K",
+        "hoursSaved": "18.2Kh",
+        "firstYearRoi": "1502%",
+        "paybackMonths": "0.7 mo",
+        "revenueOpportunity": "$258K",
+        "leadResponse": "720×faster",
+        "automationCoverage": "68%",
+        "automationCoverageExact": 67.6431,
+        "productivityExact": 24.7732,
+        "manualHoursToday": "29,440h",
+        "manualHoursAfter": "11,207h",
+        "twelveMonthTotal": "$1.2M",
+        "recommended": "Document Intelligence · Client Onboarding AI · Time & Billing Automation · Proposal Generation"
+      }
+    }
+  ]
+}

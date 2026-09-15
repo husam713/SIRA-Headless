@@ -2,6 +2,7 @@ import "server-only";
 
 export {
   getNavigation,
+  getNavigationForLocale,
   resolveNavigation,
 } from "@/lib/navigation/get-navigation";
 export type {

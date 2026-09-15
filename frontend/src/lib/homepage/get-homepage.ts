@@ -16,6 +16,16 @@ import {
 } from "@/queries/homepage";
 import type { SiteKey } from "@/types/site";
 
+/**
+ * Which front page to resolve.
+ *
+ * ADR-034 gives each language its own page in the same site — `/` and `/ar/` —
+ * so the homepage query is parameterised by URI rather than pinned to the site
+ * root. The default keeps every existing caller and every existing tenant on
+ * exactly the query they had.
+ */
+export const DEFAULT_HOMEPAGE_URI = "/";
+
 export type HomepageQueryExecutor = () => Promise<
   TolerantGraphQLResult<SiraHomepageQueryData>
 >;
@@ -70,13 +80,14 @@ function logToleratedFieldErrors(
 export async function resolveHomepage(
   siteKey: SiteKey,
   execute: HomepageQueryExecutor,
+  uri: string = DEFAULT_HOMEPAGE_URI,
 ): Promise<HomepageResolution> {
   try {
     const result = await execute();
 
     logToleratedFieldErrors(siteKey, result);
 
-    return normalizeHomepage(siteKey, result.data, result.errors);
+    return normalizeHomepage(siteKey, result.data, result.errors, uri);
   } catch (error) {
     logHomepageFailure(siteKey, error);
 
@@ -93,6 +104,7 @@ export async function resolveHomepage(
 
 async function resolvePublishedHomepage(
   siteKey: SiteKey,
+  uri: string = DEFAULT_HOMEPAGE_URI,
 ): Promise<HomepageResolution> {
   return resolveHomepage(
     siteKey,
@@ -100,9 +112,10 @@ async function resolvePublishedHomepage(
       await fetchPublishedGraphQLTolerant(
         siteKey,
         SIRA_HOMEPAGE_QUERY,
-        { asPreview: false },
+        { asPreview: false, uri },
         { tags: ["homepage"] },
       ),
+    uri,
   );
 }
 
@@ -110,6 +123,7 @@ export const getHomepage = cache(resolvePublishedHomepage);
 
 async function resolvePreviewHomepage(
   siteKey: SiteKey,
+  uri: string = DEFAULT_HOMEPAGE_URI,
 ): Promise<HomepageResolution> {
   return resolveHomepage(
     siteKey,
@@ -117,8 +131,9 @@ async function resolvePreviewHomepage(
       await fetchPreviewGraphQLTolerant(
         siteKey,
         SIRA_HOMEPAGE_QUERY,
-        { asPreview: true },
+        { asPreview: true, uri },
       ),
+    uri,
   );
 }
 
@@ -130,10 +145,11 @@ export const getPreviewHomepage = cache(resolvePreviewHomepage);
 
 export async function getHomepageForRequest(
   siteKey: SiteKey,
+  uri: string = DEFAULT_HOMEPAGE_URI,
 ): Promise<HomepageResolution> {
   const draft = await draftMode();
 
   return draft.isEnabled
-    ? getPreviewHomepage(siteKey)
-    : getHomepage(siteKey);
+    ? getPreviewHomepage(siteKey, uri)
+    : getHomepage(siteKey, uri);
 }

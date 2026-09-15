@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /animations
+Disallow: /api/
+
+Sitemap: https://sirahdigital.in/sitemap.xml

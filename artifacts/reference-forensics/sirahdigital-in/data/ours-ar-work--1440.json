@@ -1,0 +1,109 @@
+{
+  "url": "/ar/work/",
+  "lang": "ar",
+  "dir": "rtl",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 4477,
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  },
+  "screens": 4.97,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 430.3,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 630,
+      "height": 550,
+      "screens": 0.61,
+      "heading": "أنظمة، لا عروضًا تقديمية.",
+      "headingType": {
+        "size": 54,
+        "lineHeight": 69,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 2,
+      "startY": 630,
+      "endY": 3565.5,
+      "height": 2935.5,
+      "screens": 3.26,
+      "heading": "نسيج التكامل",
+      "headingType": {
+        "size": 44,
+        "lineHeight": 56,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 3,
+      "startY": 3565.5,
+      "endY": 4046.8,
+      "height": 481.3,
+      "screens": 0.53,
+      "heading": "لديكم عملية تستحق إعادة البناء؟",
+      "headingType": {
+        "size": 72,
+        "lineHeight": 92,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "أنظمة، لا عروضًا تقديمية.",
+    "size": 54,
+    "lineHeight": 69,
+    "weight": "700",
+    "tracking": 0,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

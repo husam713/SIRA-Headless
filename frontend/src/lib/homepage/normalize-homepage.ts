@@ -1,6 +1,11 @@
 import type {
   BranchHomepage,
   BranchHomepageHero,
+  DigitalCapability,
+  DigitalHomepage,
+  DigitalHomepageHero,
+  DigitalMarqueeSection,
+  DigitalWordmarkSection,
   GroupHomepage,
   GroupHomepageHero,
   GroupHomepageHeroSlide,
@@ -25,6 +30,7 @@ import type {
   HomepageSectionHeader,
   HomepageSectionName,
   HomepageTicker,
+  HomepageVariant,
   InvalidHomepageReason,
 } from "@/lib/homepage/types";
 import type { GraphQLErrorSummary } from "@/lib/graphql/errors";
@@ -71,7 +77,10 @@ function isRecord(value: unknown): value is RecordValue {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function normalizePlainText(value: unknown, maximumLength: number): string | null {
+/**
+ * Shared with the Digital content normalizers.
+ */
+export function normalizePlainText(value: unknown, maximumLength: number): string | null {
   if (typeof value !== "string") return null;
 
   const normalized = value
@@ -86,13 +95,22 @@ function normalizePlainText(value: unknown, maximumLength: number): string | nul
   return normalized === "" ? null : normalized.slice(0, maximumLength);
 }
 
-function normalizeRichText(value: unknown): string | null {
+/**
+ * Shared with the Digital content normalizers.
+ */
+export function normalizeRichText(value: unknown): string | null {
   if (typeof value !== "string") return null;
   const normalized = value.trim();
   return normalized === "" ? null : normalized.slice(0, 20_000);
 }
 
-function normalizePublicHref(value: unknown): string | null {
+/**
+ * Shared with the Digital content normalizers.
+ *
+ * Exported rather than copied: this encodes a security decision about what an
+ * href may be, and a second copy is a second place to forget to fix it.
+ */
+export function normalizePublicHref(value: unknown): string | null {
   if (typeof value !== "string") return null;
   const href = value.trim();
 
@@ -104,6 +122,15 @@ function normalizePublicHref(value: unknown): string | null {
   ) return null;
 
   if (href.startsWith("/")) return href;
+
+  // Same-document anchors. Editors author "#projects" and "#contact" in the
+  // ACF link fields, and `new URL("#projects")` throws, so every in-page CTA
+  // the CMS carried was being normalized to null and dropped — including both
+  // hero buttons. A fragment has no scheme and no authority and cannot leave
+  // the page, so the only thing worth checking is that it is a plausible id.
+  if (href.startsWith("#")) {
+    return /^#[A-Za-z][\w.:-]*$/u.test(href) ? href : null;
+  }
 
   try {
     const url = new URL(href);
@@ -130,7 +157,13 @@ function normalizePositiveInteger(value: unknown): number | null {
   return Number.isSafeInteger(value) && Number(value) > 0 ? Number(value) : null;
 }
 
-function normalizeLink(value: unknown): HomepageLink | null {
+/**
+ * Shared with the Digital content normalizers.
+ *
+ * Exported rather than copied: this encodes a security decision about what an
+ * href may be, and a second copy is a second place to forget to fix it.
+ */
+export function normalizeLink(value: unknown): HomepageLink | null {
   if (!isRecord(value)) return null;
   const href = normalizePublicHref(value["url"]);
   if (href === null) return null;
@@ -141,7 +174,13 @@ function normalizeLink(value: unknown): HomepageLink | null {
   });
 }
 
-function normalizeMedia(value: unknown): HomepageMedia | null {
+/**
+ * Shared with the Digital content normalizers.
+ *
+ * Exported rather than copied: this encodes a security decision about what an
+ * href may be, and a second copy is a second place to forget to fix it.
+ */
+export function normalizeMedia(value: unknown): HomepageMedia | null {
   if (!isRecord(value) || !isRecord(value["node"])) return null;
   const node = value["node"];
   const databaseId = normalizePositiveInteger(node["databaseId"]);
@@ -495,6 +534,87 @@ function normalizeMetricsSection(value: unknown, maximum: number): HomepageMetri
   });
 }
 
+// ---------------------------------------------------------------------------
+// Digital variant sections (ADR-033)
+// ---------------------------------------------------------------------------
+// Same tolerance rules as every other section here: an absent group is null, a
+// group whose every field is empty normalizes to nothing renderable, and no
+// section can take the page down with it.
+
+/**
+ * The capability rail.
+ *
+ * Capped at twelve because the rail is a reading surface, not a catalogue: past
+ * a dozen entries a numbered list stops being scannable and the CMS should be
+ * splitting it. An entry with neither a title nor a summary is dropped rather
+ * than rendered as an empty numbered row.
+ */
+function normalizeCapabilities(value: unknown): readonly DigitalCapability[] {
+  if (!Array.isArray(value)) return Object.freeze([]);
+
+  const capabilities = value
+    .slice(0, 12)
+    .filter(isRecord)
+    .map((entry): DigitalCapability =>
+      Object.freeze({
+        title: normalizePlainText(entry["title"], 160),
+        summary: normalizePlainText(entry["summary"], 600),
+        link: normalizeLink(entry["link"]),
+      }),
+    )
+    .filter((entry) => hasAnyValue([entry.title, entry.summary]));
+
+  return Object.freeze(capabilities);
+}
+
+/**
+ * The marquee band.
+ *
+ * Items are plain strings, not links: this is a statement of reach, and a row
+ * of names that each navigate somewhere reads as a directory instead. Capped at
+ * forty because the track is duplicated for the loop and a longer list makes
+ * the cycle slow enough to look stalled.
+ */
+function normalizeMarquee(value: unknown): DigitalMarqueeSection | null {
+  if (!isRecord(value)) return null;
+
+  const rawItems = Array.isArray(value["items"]) ? value["items"] : [];
+  const items = rawItems
+    .slice(0, 40)
+    .map((entry) =>
+      isRecord(entry)
+        ? normalizePlainText(entry["label"], 120)
+        : normalizePlainText(entry, 120),
+    )
+    .filter((entry): entry is string => entry !== null);
+
+  return Object.freeze({
+    ...normalizeHeader(value),
+    body: normalizeRichText(value["body"]),
+    items: Object.freeze(items),
+  });
+}
+
+/**
+ * The scroll-driven wordmark band.
+ *
+ * Returns null without a `word`, because the band is one enormous piece of type
+ * and the lockup beneath it is a caption. A caption with nothing to caption is
+ * two screens of empty ground.
+ */
+function normalizeWordmark(value: unknown): DigitalWordmarkSection | null {
+  if (!isRecord(value)) return null;
+
+  const word = normalizePlainText(value["word"], 40);
+  if (word === null) return null;
+
+  return Object.freeze({
+    word,
+    lockup: normalizePlainText(value["lockup"], 300),
+    link: normalizeLink(value["link"]),
+  });
+}
+
 function normalizeContact(value: unknown): HomepageContactSection | null {
   if (!isRecord(value)) return null;
   return Object.freeze({
@@ -582,16 +702,36 @@ export function normalizeHomepage(
   siteKey: SiteKey,
   data: SiraHomepageQueryData,
   fieldErrors: readonly GraphQLErrorSummary[] = [],
+  /**
+   * The URI this homepage was asked for.
+   *
+   * The guard below exists to prove the CMS returned the page we requested
+   * rather than some other page, and it used to do that by pinning the URI to
+   * the site root. ADR-034 gives each language its own homepage — Arabic lives
+   * at `/ar/` — so the comparison is now against what was requested. Pinning it
+   * to `/` did not fail loudly; it resolved `invalid-page` and rendered the
+   * not-ready shell, which is a much quieter way to lose a whole language.
+   */
+  expectedUri: string = "/",
 ): HomepageResolution {
   if (!isRecord(data) || !("page" in data)) return invalid(siteKey, "invalid-page");
   const page = data["page"];
   if (page === null) return Object.freeze({ status: "not-found", siteKey, reason: "homepage-not-configured" });
-  if (!isRecord(page) || normalizePositiveInteger(page["databaseId"]) === null || page["uri"] !== "/") {
+  if (
+    !isRecord(page) ||
+    normalizePositiveInteger(page["databaseId"]) === null ||
+    page["uri"] !== expectedUri
+  ) {
     return invalid(siteKey, "invalid-page");
   }
   const fields = page["siraHomepage"];
   if (!isRecord(fields)) return invalid(siteKey, "missing-homepage-data");
-  const expectedVariant = siteKey === "group" ? "group" : "branch";
+  // Three variants now, so this is a mapping rather than a group/not-group
+  // test. Digital gets its own value deliberately: with the old expression it
+  // would have expected `branch` and rendered as a fifth branch site the moment
+  // its CMS returned that variant, which ADR-033 explicitly does not want.
+  const expectedVariant: HomepageVariant =
+    siteKey === "group" ? "group" : siteKey === "digital" ? "digital" : "branch";
   if (fields["variant"] !== expectedVariant) return invalid(siteKey, "variant-mismatch");
 
   const databaseId = Number(page["databaseId"]);
@@ -621,7 +761,7 @@ export function normalizeHomepage(
     const homepage: GroupHomepage = Object.freeze({
       siteKey,
       databaseId,
-      uri: "/",
+      uri: expectedUri,
       title,
       variant: "group",
       // Tolerant from here down. An absent or failed hero is omitted like any
@@ -641,6 +781,53 @@ export function normalizeHomepage(
       partners: normalizeContentSection(groupSections["partners"], "selectedPartners", "SiraPartner"),
       contact: normalizeContact(groupSections["contact"]),
       diagnostics: fieldErrorDiagnostics(fieldErrors, "groupHomepage"),
+    });
+    return Object.freeze({ status: "ready", homepage });
+  }
+
+  if (siteKey === "digital") {
+    // Same field-group registration as the other two variants, and the same
+    // envelope/section split: the field group is critical, every section in it
+    // is tolerant.
+    if (!isRecord(page["digitalHomepage"])) return invalid(siteKey, "missing-variant-data");
+    const digitalSections: Record<string, unknown> = page["digitalHomepage"];
+    const digitalHeroSource = digitalSections["hero"];
+    const digitalHeroCandidate: DigitalHomepageHero | null = isRecord(digitalHeroSource)
+      ? Object.freeze({
+          ...normalizeHero(digitalHeroSource),
+          eyebrow: normalizePlainText(digitalHeroSource["eyebrow"], 160),
+        })
+      : null;
+    // Same keep-threshold reasoning as the branch hero: the Digital hero is a
+    // full-viewport panel gated on a heading, so an eyebrow alone cannot
+    // justify one screen of empty dark ground.
+    const digitalHero: DigitalHomepageHero | null =
+      digitalHeroCandidate !== null &&
+      hasAnyValue([
+        digitalHeroCandidate.headingBefore,
+        digitalHeroCandidate.headingHighlight,
+        digitalHeroCandidate.headingAfter,
+        digitalHeroCandidate.description,
+        digitalHeroCandidate.primaryCta,
+        digitalHeroCandidate.secondaryCta,
+      ])
+        ? digitalHeroCandidate
+        : null;
+
+    const homepage: DigitalHomepage = Object.freeze({
+      siteKey,
+      databaseId,
+      uri: expectedUri,
+      title,
+      variant: "digital",
+      hero: digitalHero,
+      capabilitiesEyebrow: normalizePlainText(digitalSections["capabilitiesEyebrow"], 80),
+      capabilities: normalizeCapabilities(digitalSections["capabilities"]),
+      marquee: normalizeMarquee(digitalSections["marquee"]),
+      wordmark: normalizeWordmark(digitalSections["wordmark"]),
+      insights: normalizeEditorialSection(digitalSections["insights"]),
+      contact: normalizeContact(digitalSections["contact"]),
+      diagnostics: fieldErrorDiagnostics(fieldErrors, "digitalHomepage"),
     });
     return Object.freeze({ status: "ready", homepage });
   }
@@ -722,7 +909,7 @@ export function normalizeHomepage(
   const homepage: BranchHomepage = Object.freeze({
     siteKey,
     databaseId,
-    uri: "/",
+    uri: expectedUri,
     title,
     variant: "branch",
     hero: branchHero,

@@ -12,6 +12,7 @@ export const WORDPRESS_BRAND_TOKEN_NAMES = Object.freeze([
 export const DERIVED_BRAND_TOKEN_NAMES = Object.freeze([
   "--brand-accent-bright",
   "--brand-on-accent",
+  "--brand-on-deep",
   "--brand-paper-glass",
   "--brand-ink-soft",
   "--brand-ink-faint",
@@ -46,6 +47,7 @@ export function createBrandCssVariables(
     "--brand-ink": brand.identity.ink,
     "--brand-accent-bright": brand.semantic.accentBright,
     "--brand-on-accent": brand.semantic.onAccent,
+    "--brand-on-deep": brand.semantic.onDeep,
     "--brand-paper-glass": brand.semantic.paperGlass,
     "--brand-ink-soft": brand.semantic.inkSoft,
     "--brand-ink-faint": brand.semantic.inkFaint,

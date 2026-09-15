@@ -8,9 +8,19 @@
  * already makes this plugin the owner of backend content architecture, and
  * ADR-012 fixes native WPGraphQL menus as the navigation contract.
  *
- * The three keys below are exactly the locations the frontend already queries
- * in `frontend/src/queries/navigation.graphql`; WPGraphQL derives the
- * `MenuLocationEnum` values (PRIMARY, FOOTER, LEGAL) from these keys.
+ * The keys below are exactly the locations the frontend queries in
+ * `frontend/src/queries/navigation.graphql`; WPGraphQL derives the
+ * `MenuLocationEnum` values (PRIMARY, FOOTER, LEGAL, and their `_AR`
+ * counterparts) from these keys.
+ *
+ * The `_ar` locations are the navigation half of ADR-034. Every site in the
+ * registry declares `supportedLocales: ["en", "ar"]`, so an Arabic menu slot is
+ * network-wide rather than a Digital special case, and a tenant that has not
+ * translated its navigation yet simply leaves the location unassigned — the
+ * frontend falls back to the default-locale menu. Registering these here rather
+ * than reaching for a translation plugin keeps one editorial surface and avoids
+ * imposing a network-wide plugin decision on five tenants that did not ask for
+ * one.
  *
  * Without them the live enum degrades to a single `EMPTY` value, so the
  * navigation query does not return zero menus — it fails schema validation
@@ -49,9 +59,12 @@ final class NavMenus {
 	 */
 	public static function definitions(): array {
 		return array(
-			'primary' => __( 'Primary navigation shown in the site header.', 'sira-core' ),
-			'footer'  => __( 'Footer navigation shown in the site footer columns.', 'sira-core' ),
-			'legal'   => __( 'Legal navigation for privacy, terms, and cookie pages.', 'sira-core' ),
+			'primary'    => __( 'Primary navigation shown in the site header.', 'sira-core' ),
+			'footer'     => __( 'Footer navigation shown in the site footer columns.', 'sira-core' ),
+			'legal'      => __( 'Legal navigation for privacy, terms, and cookie pages.', 'sira-core' ),
+			'primary_ar' => __( 'Primary navigation shown in the site header, in Arabic.', 'sira-core' ),
+			'footer_ar'  => __( 'Footer navigation shown in the site footer columns, in Arabic.', 'sira-core' ),
+			'legal_ar'   => __( 'Legal navigation for privacy, terms, and cookie pages, in Arabic.', 'sira-core' ),
 		);
 	}
 

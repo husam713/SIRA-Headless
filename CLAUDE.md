@@ -1,106 +1,52 @@
-# SIRA — Claude Code Bootstrap Adapter
+# SIRA Headless — Claude Code adapter
 
-This file exists because Claude Code loads `CLAUDE.md` automatically and does
-not load `AGENTS.md` automatically. It is a **platform-specific bootstrap
-adapter**, nothing more.
+SIRA Enterprise is migrating six WordPress Multisite tenants to a headless stack:
+WordPress (`backend/` `sira-core` plugin) → WPGraphQL → one Next.js 16 App
+Router app (`frontend/`) serving every brand. This file only points Claude Code
+at the project; the engineering rules are `AGENTS.md`, and the normative
+protocol is `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`. If this file ever
+disagrees with them, they win and this file is what gets fixed.
 
-It defines no protocol, grants no authorization, and changes no architecture,
-evidence, acceptance, merge, or protected-operation rule. Where this file and
-any governing document appear to differ, **the governing document wins** and
-this file is the thing that is wrong.
+## Map
 
-## Authority
+| Path | What | Rules load from |
+|---|---|---|
+| `frontend/src/` | app routes, components, `lib/`, `config/` (site + endpoint registries), `queries/` (hand-written GraphQL) | `.claude/rules/frontend.md` |
+| `frontend/src/generated/`, `frontend/schema/` | **generated** contracts — never hand-edit, never read whole | `.claude/rules/graphql.md` |
+| `frontend/tests/{unit,contract,harness}` | Vitest; contract tests guard durable decisions | frontend.md |
+| `backend/` | `sira-core` plugin + mu-plugins, PHP 8.3 / WPCS | `.claude/rules/backend.md` |
+| `tools/` | SSH-based read-only CMS tooling, ADR-030 seeder, launch gate | backend.md |
+| `docs/`, `project-state.json` | state, ADRs, task packets, history | `.claude/rules/governance.md` |
+| `artifacts/`, `.local-reference/`, `frontend/prototypes/` | evidence and design references — not context, not production | — |
 
-1. `AGENTS.md` — the engineering operating rules for this repository.
-2. `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md` — the normative protocol,
-   identified by `docs/AI-ENGINEERING-OS.md`. It alone governs evidence
-   precedence.
-3. `docs/SOURCE-OF-TRUTH.md` — SIRA-specific source, state, and conflict
-   registry.
+## Start of every session
 
-## Start every session here
+1. Read `docs/STATE.md` (one page). Run `git status` and `git log --oneline -5`.
+2. Read only the files the task needs; the matching rules file loads by itself.
+   For a wide search, use an Explore agent instead of reading everything.
+3. Full boot (`templates/ai/BOOT-PROTOCOL.md`: protocol, `project-state.json`,
+   `docs/SOURCE-OF-TRUTH.md`, `docs/DECISIONS.md`, `docs/HANDOFF.md`, open PRs)
+   only for governance, state reconciliation, recovery, or protected-operation
+   tasks — not for ordinary engineering.
 
-Before answering any substantive engineering question, making any material
-engineering claim, or performing any mutation:
+## How to work here
 
-1. **Read `AGENTS.md` in full.**
-2. **Read `templates/ai/BOOT-PROTOCOL.md` in full**, then **execute every
-   applicable item of its boot sequence, in the order that file defines.**
-
-Do not restate that sequence from memory — read it. It is versioned and this
-file is not a copy of it. Reading `AGENTS.md` alone is not a completed boot.
-
-The boot cannot silently skip any of these:
-
-- `docs/AI-ENGINEERING-OS.md`
-- `docs/AI-ENGINEERING-OPERATING-PROTOCOL.md`
-- `project-state.json`
-- `docs/PROJECT-STATE.md`
-- `docs/SOURCE-OF-TRUTH.md`
-- relevant entries in `docs/DECISIONS.md`
-- `docs/HANDOFF.md`
-- the applicable Git/GitHub and task evidence
-
-Inspecting Git early is fine, but it does not replace the remaining items and
-does not end the boot.
-
-If a required boot source is missing, unreadable, or contradicts another, report
-`WARNING` or `BLOCKED` and say which source and which conflict. Never proceed
-silently, and never state that boot completed when it did not.
-
-## Non-negotiable while working here
-
-- **Conversation history and Claude auto-memory are supporting context only.**
-  They never override repository or executable evidence. Auto-memory is local to
-  one machine and is not shared with CI, other agents, or the owner; never cite
-  it as project state.
-- **Do not mutate the repository without an owner-approved Task Packet.**
-  Authorization is bounded: absence of authorization means do not mutate.
-- **Do not merge the protected default branch, deploy, change DNS, rotate
-  secrets, or alter protected settings** without explicit owner approval. A
-  merge performed by someone else is not evidence that you were authorized.
-- **A merge is not evidence of owner acceptance.** Authorization, implementation,
-  verification, acceptance, and merge are separate dimensions.
-- Report unrelated defects; do not silently repair them. Stop with
-  `BLOCKED_SCOPE_EXPANSION_REQUIRED` when required work exceeds the authorized
-  scope.
-
-## Vocabularies
-
-Use only the validation vocabulary defined in `AGENTS.md`:
-`PASS` · `FAIL` · `WARNING` · `DEFERRED` · `NOT RUN` · `BLOCKED` ·
-`NOT APPLICABLE`.
-
-Classify every material claim as `CONFIRMED` · `STRONGLY INFERRED` ·
-`TRANSFERRED EVIDENCE` · `UNKNOWN`. `UNKNOWN` is an acceptable result and must
-never be converted into a guess.
-
-Do not report `PASS` unless the check actually ran against the stated baseline.
-
-## Evidence discipline
-
-- **Never generalize a verified search result to a term you did not search.**
-  Verifying that term A is absent says nothing about term B. Search each term,
-  or report it as `UNKNOWN`.
-- **Similar names are separate claims.** Do not transfer behaviour, history,
-  test results, or failure mechanisms between similarly named scripts,
-  commands, phases, PRs, fields, or artifacts. Verify the exact identifier you
-  are describing.
-- Snapshot coordinates in durable state files are historical provenance. Always
-  rediscover the current HEAD from Git.
-- When a task changes durable project state, update only the carriers that
-  change actually affects, preserve historical records, and never claim a
-  document is current without repository and Git evidence.
-
-## Diagnostics and secrets
-
-During **local** troubleshooting you may show a sanitized endpoint as
-`scheme://hostname/path`, plus site key, environment-variable name, blog ID,
-HTTP status, response time, and whether GraphQL returned data or errors. Replace
-any query string with `?[REDACTED]`.
-
-Never print URL query parameters, URL userinfo, usernames, Application
-Passwords, `Authorization` headers, cookies, tokens, preview secrets, or
-deployment bypass secrets, and never dump a complete environment file. Redact
-sanitized endpoints and blog IDs out of PR bodies, CI logs, evidence artifacts,
-and anything committed.
+- Inside an owner-authorized task, act: investigate, branch, edit, run the
+  validation named in the rules file, review your own diff, commit, push the
+  feature branch, open the PR from `.github/pull_request_template.md`. Do not
+  ask whether to read a file, run a test, or create a branch.
+- Ask only when repository evidence cannot settle a choice that changes the
+  outcome, or when the next action is on the stop list.
+- Unrelated defects: report in the PR, do not fix. Work that needs an
+  out-of-scope change: stop and say `BLOCKED_SCOPE_EXPANSION_REQUIRED`.
+- Stop list (owner decides, every time): merge into `main`; deploy or cutover;
+  DNS/vhosts; secrets; destructive CMS/database operations; deleting rollback
+  branches/tags; architecture changes that need an ADR. `.claude/settings.json`
+  denies the command shapes; GitHub rulesets block the rest.
+- Claims: `CONFIRMED` · `STRONGLY INFERRED` · `TRANSFERRED EVIDENCE` · `UNKNOWN`.
+  Checks: `PASS · FAIL · WARNING · DEFERRED · NOT RUN · BLOCKED · NOT APPLICABLE`;
+  `PASS` only for a command that ran. Similar names are separate claims.
+- A merge is not owner acceptance. Snapshot SHAs in documents are history;
+  HEAD comes from Git. Auto-memory is local to this machine, never project state.
+- Never print or commit credentials, Application Passwords, HMAC secrets,
+  bypass tokens, cookies, or URL query strings; endpoints as `scheme://host/path`.

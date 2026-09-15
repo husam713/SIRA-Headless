@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 
 import { PageClosingCta } from "@/components/content/page-closing-cta";
 import { PageIntroHeader } from "@/components/content/page-intro-header";
+import { CtaLink } from "@/components/homepage/cta-link";
 import { PageContainer } from "@/components/layout/page-container";
 import { getBrand } from "@/lib/brand";
 import {
@@ -12,7 +13,7 @@ import {
   neutralSlug,
 } from "@/lib/content/get-content-page";
 import { resolveContentRoute } from "@/lib/content/route-context";
-import { CHROME } from "@/lib/i18n/locale";
+import { CHROME, localeHref } from "@/lib/i18n/locale";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -101,13 +102,13 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
         page={page}
         headingId="services-heading"
         fallbackEyebrow="Capabilities"
-        fallbackHeading="What we build"
+        fallbackHeading="Systems that think, automate and scale"
         fallbackStandfirst={
           services.length === 0
             ? "Capabilities are published from the CMS."
             : "Each one scoped, built, integrated and handed over. Every entry below says what changes operationally, not what the technology is called."
         }
-        height="tall"
+        height="full"
       />
 
       <PageContainer className="pb-[clamp(4rem,8vw,7rem)]">
@@ -190,6 +191,20 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
                 >
                   {service.title}
                 </h2>
+                {/* The problem first, then the thing. The reference leads every
+                    capability this way and it is the right order: a reader who
+                    does not recognise the problem has no reason to read the
+                    solution. The label is set as an inline lead-in rather than a
+                    heading, because it repeats on all ten blocks and ten
+                    identical headings would wreck the document outline. */}
+                {service.challenge !== null ? (
+                  <p className="mt-6 max-w-[54ch] text-[1.0625rem] leading-[1.65] text-brand-ink-soft">
+                    <span className="font-semibold text-brand-accent">
+                      {chrome.currentChallenge}
+                    </span>{" "}
+                    {service.challenge}
+                  </p>
+                ) : null}
                 {service.excerpt !== null ? (
                   <p className="mt-5 max-w-[52ch] text-[1.125rem] leading-[1.6] text-brand-ink">
                     {service.excerpt}
@@ -206,6 +221,28 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
                     dangerouslySetInnerHTML={{ __html: service.html }}
                   />
                 ) : null}
+                {/* The outcome closes the block, because the last thing read
+                    before the button should be what the reader gets rather than
+                    what we do. It is a rule and a line rather than a card: the
+                    page already has ten blocks and a card here would make each
+                    one look like two. */}
+                {service.outcome !== null ? (
+                  <p className="mt-8 max-w-[54ch] border-t border-brand-border pt-6 text-[1.0625rem] font-medium leading-[1.6] text-brand-ink">
+                    {service.outcome}
+                  </p>
+                ) : null}
+                {service.ctaLabel !== null ? (
+                  <div className="mt-7">
+                    <CtaLink
+                      link={{
+                        label: service.ctaLabel,
+                        href: localeHref(site, request.locale, "/contact"),
+                        target: null,
+                      }}
+                      variant="ghost-dark"
+                    />
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>
@@ -219,6 +256,7 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
         fallbackLabel="Book an operations review"
         site={site}
         locale={request.locale}
+        height="full"
       />
     </>
   );

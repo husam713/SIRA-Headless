@@ -19,3 +19,19 @@ artifacts/editorial/**/*.json                  linguist-generated=true
 # the schema-compatibility tests, not read line by line in a review.
 frontend/schema/*.json                         linguist-generated=true
 frontend/schema/*.graphql                      linguist-generated=true
+
+# WPGraphQL emits WordPress core field descriptions verbatim, and some of them
+# end in a space - `post_date` is the one that bites. CI runs
+# `git diff --check HEAD^1 HEAD`, which on a pull request diffs the whole branch
+# against its base, so every schema recapture fails it. That step runs FIRST and
+# short-circuits the job, taking lint, typecheck, tests, the build and the layout
+# verifier down with it, which is how a trailing space costs a pull request all
+# of its CI evidence.
+#
+# Hand-stripping the spaces is not an option: AGENTS.md requires generated files
+# to be regenerated from their source contracts rather than edited, and the next
+# `pnpm schema:fetch` would reintroduce them. Unsetting the whitespace rule for
+# exactly these two generated files is the honest fix - `git check-attr` reports
+# `unset` here and `unspecified` everywhere else, so nothing outside
+# `frontend/schema/` loses the check.
+frontend/schema/*.graphql                      -whitespace

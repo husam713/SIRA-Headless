@@ -40,6 +40,9 @@ final class PresentationFields {
 			'group_sira_group_homepage'     => self::group_homepage_group(),
 			'group_sira_branch_homepage'    => self::branch_homepage_group(),
 			'group_sira_digital_homepage'   => self::digital_homepage_group(),
+			'group_sira_digital_about'      => self::digital_about_group(),
+			'group_sira_digital_service'    => self::digital_service_group(),
+			'group_sira_digital_industry'   => self::digital_industry_group(),
 			'group_sira_company_details'    => self::company_group(),
 			'group_sira_investment_details' => self::investment_group(),
 			'group_sira_testimonial_details' => self::testimonial_group(),
@@ -131,7 +134,7 @@ final class PresentationFields {
 			'map_graphql_types_from_location_rules' => false,
 			'graphql_types'                        => array( 'Page' ),
 			'fields'                               => self::group_homepage_fields(),
-			'location'                             => self::front_page_location(),
+			'location'                             => self::homepage_location(),
 			'menu_order'                           => 11,
 			'position'                             => 'normal',
 			'style'                                => 'default',
@@ -161,7 +164,7 @@ final class PresentationFields {
 			'map_graphql_types_from_location_rules' => false,
 			'graphql_types'                        => array( 'Page' ),
 			'fields'                               => self::branch_homepage_fields(),
-			'location'                             => self::front_page_location(),
+			'location'                             => self::homepage_location(),
 			'menu_order'                           => 12,
 			'position'                             => 'normal',
 			'style'                                => 'default',
@@ -196,13 +199,295 @@ final class PresentationFields {
 			'map_graphql_types_from_location_rules' => false,
 			'graphql_types'                        => array( 'Page' ),
 			'fields'                               => self::digital_homepage_fields(),
-			'location'                             => self::front_page_location(),
+			'location'                             => self::digital_homepage_location(),
 			'menu_order'                           => 13,
 			'position'                             => 'normal',
 			'style'                                => 'default',
 			'label_placement'                      => 'top',
 			'instruction_placement'                => 'label',
 			'active'                               => true,
+		);
+	}
+
+	/**
+	 * SIRA Digital's About composition.
+	 *
+	 * A group of its own rather than more fields on the homepage group, because
+	 * the two pages answer different questions and an editor should not scroll
+	 * past a hero they are not editing to reach a stat band they are.
+	 *
+	 * Located on the About page in EACH language, so the Arabic copy is authored
+	 * in Arabic rather than translated at render time — the same reasoning, and
+	 * the same mechanism, as the localized homepage.
+	 *
+	 * Every section is optional, and the route omits any section whose data is
+	 * absent. That is what lets the page ship before the owner has supplied the
+	 * real team, figures and portraits, without any of it being faked in React.
+	 *
+	 * `graphql_type_name` is declared as what wpgraphql-acf 2.x actually
+	 * produces. It derives the type from `graphql_field_name`, so `digitalAbout`
+	 * yields `DigitalAbout` — NOT the `SiraDigitalAbout` a declaration might
+	 * suggest. Declaring the real name keeps the next reader from searching the
+	 * schema for a type that is not in it.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function digital_about_group(): array {
+		return array(
+			'key'                                  => 'group_sira_digital_about',
+			'title'                                => 'SIRA About — Digital Sections',
+			'show_in_graphql'                      => true,
+			'graphql_field_name'                   => 'digitalAbout',
+			'graphql_type_name'                    => 'DigitalAbout',
+			'map_graphql_types_from_location_rules' => false,
+			'graphql_types'                        => array( 'Page' ),
+			'fields'                               => self::digital_about_fields(),
+			'location'                             => self::about_location(),
+			'menu_order'                           => 14,
+			'position'                             => 'normal',
+			'style'                                => 'default',
+			'label_placement'                      => 'top',
+			'instruction_placement'                => 'label',
+			'active'                               => true,
+		);
+	}
+
+	/**
+	 * What a service record carries beyond its title, excerpt and body.
+	 *
+	 * The services page leads each capability with the problem it solves before
+	 * it says what the thing is, so the challenge is a field rather than the
+	 * first paragraph of the body: it is set differently, it is the one line a
+	 * skimming reader is guaranteed to read, and a page that styles it has to be
+	 * able to find it.
+	 *
+	 * The call to action is per service for the same reason. "Automate My
+	 * Conversations" under the chatbot capability converts better than one
+	 * generic button repeated ten times, and which verb belongs to which
+	 * capability is an editorial judgement, not a layout constant.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function digital_service_group(): array {
+		return array_merge(
+			self::content_group(
+				'group_sira_digital_service',
+				'SIRA Service - Digital',
+				'digitalService',
+				'DigitalService',
+				'SiraService',
+				'sira_service',
+				array(
+					self::textarea(
+						'field_sira_digital_service_challenge',
+						'Current Challenge',
+						'challenge',
+						'challenge',
+						array(
+							'rows'         => 2,
+							'instructions' => 'The problem in the reader own words, before any solution is named.',
+						)
+					),
+					self::textarea(
+						'field_sira_digital_service_outcome',
+						'Outcome',
+						'outcome',
+						'outcome',
+						array(
+							'rows'         => 2,
+							'instructions' => 'What is true afterwards, in plain language.',
+						)
+					),
+					self::text(
+						'field_sira_digital_service_cta_label',
+						'Call To Action Label',
+						'cta_label',
+						'ctaLabel'
+					),
+				)
+			),
+			array( 'location' => self::digital_post_type_location( 'sira_service' ) )
+		);
+	}
+
+	/**
+	 * What an industry carries beyond its name.
+	 *
+	 * Industries were modelled as a taxonomy long before this page existed, and
+	 * that is still the right shape: an industry classifies work, it is not a
+	 * piece of work. But a term has exactly one description field, and the
+	 * detail page needs a seven-step workflow, a headline statistic, what gets
+	 * built, and what it is built with.
+	 *
+	 * The previous encoding packed three parts into that description separated
+	 * by pipes. Serviceable for three strings, indefensible for this: a repeater
+	 * of seven ordered pairs does not survive being flattened into a delimiter
+	 * an editor can type by accident.
+	 *
+	 * `stat` is deliberately optional. Five of the twelve industries publish a
+	 * headline figure and seven do not. Inventing one for the other seven so the
+	 * layout looks even would be fabricating a business claim.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function digital_industry_group(): array {
+		return array(
+			'key'                                  => 'group_sira_digital_industry',
+			'title'                                => 'SIRA Industry - Digital',
+			'show_in_graphql'                      => true,
+			'graphql_field_name'                   => 'digitalIndustry',
+			'graphql_type_name'                    => 'DigitalIndustry',
+			'map_graphql_types_from_location_rules' => false,
+			'graphql_types'                        => array( 'SiraIndustry' ),
+			'fields'                               => array(
+				self::text(
+					'field_sira_digital_industry_eyebrow',
+					'Eyebrow',
+					'eyebrow',
+					'eyebrow'
+				),
+				self::textarea(
+					'field_sira_digital_industry_standfirst',
+					'Standfirst',
+					'standfirst',
+					'standfirst',
+					array( 'rows' => 3 )
+				),
+				self::repeater(
+					'field_sira_digital_industry_workflow',
+					'Automation Workflow',
+					'workflow',
+					'workflow',
+					array(
+						self::text(
+							'field_sira_digital_industry_step_title',
+							'Step',
+							'title',
+							'title'
+						),
+						self::text(
+							'field_sira_digital_industry_step_detail',
+							'Detail',
+							'detail',
+							'detail'
+						),
+					),
+					array(
+						'max'          => 10,
+						'instructions' => 'The order here is the order a reader walks the process in.',
+					)
+				),
+				self::group_field(
+					'field_sira_digital_industry_stat',
+					'Headline Figure',
+					'stat',
+					'stat',
+					array(
+						self::text(
+							'field_sira_digital_industry_stat_value',
+							'Value',
+							'value',
+							'value',
+							array( 'maxlength' => 12 )
+						),
+						self::text(
+							'field_sira_digital_industry_stat_label',
+							'Label',
+							'label',
+							'label'
+						),
+					),
+					array( 'instructions' => 'Optional. Leave it empty rather than estimating one: the block is omitted when it is blank.' )
+				),
+				self::repeater(
+					'field_sira_digital_industry_build',
+					'What We Build',
+					'build',
+					'build',
+					array(
+						self::text(
+							'field_sira_digital_industry_build_item',
+							'Item',
+							'item',
+							'item'
+						),
+					),
+					array( 'max' => 8 )
+				),
+				self::textarea(
+					'field_sira_digital_industry_build_note',
+					'What We Build - Note',
+					'build_note',
+					'buildNote',
+					array( 'rows' => 2 )
+				),
+				self::repeater(
+					'field_sira_digital_industry_stack',
+					'Typical Stack',
+					'stack',
+					'stack',
+					array(
+						self::text(
+							'field_sira_digital_industry_stack_item',
+							'Tool',
+							'item',
+							'item'
+						),
+					),
+					array( 'max' => 10 )
+				),
+			),
+			'location'                             => self::digital_taxonomy_location( 'sira_industry' ),
+			'menu_order'                           => 15,
+			'position'                             => 'normal',
+			'style'                                => 'default',
+			'label_placement'                      => 'top',
+			'instruction_placement'                => 'label',
+			'active'                               => true,
+		);
+	}
+
+	/**
+	 * A post-type location that only applies on the Digital tenant.
+	 *
+	 * @param string $post_type Post type.
+	 * @return array<int,array<int,array<string,string>>>
+	 */
+	private static function digital_post_type_location( string $post_type ): array {
+		if ( ! self::is_digital_site() ) {
+			return self::unmatchable_location();
+		}
+
+		return array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => $post_type,
+				),
+			),
+		);
+	}
+
+	/**
+	 * A taxonomy location that only applies on the Digital tenant.
+	 *
+	 * @param string $taxonomy Taxonomy.
+	 * @return array<int,array<int,array<string,string>>>
+	 */
+	private static function digital_taxonomy_location( string $taxonomy ): array {
+		if ( ! self::is_digital_site() ) {
+			return self::unmatchable_location();
+		}
+
+		return array(
+			array(
+				array(
+					'param'    => 'taxonomy',
+					'operator' => '==',
+					'value'    => $taxonomy,
+				),
+			),
 		);
 	}
 
@@ -244,6 +529,8 @@ final class PresentationFields {
 				'SiraService',
 				'SiraProject',
 				'SiraIndustry',
+				'SiraProduct',
+				'SiraLeadershipProfile',
 			),
 			'fields'                               => array(
 				self::radio(
@@ -265,7 +552,7 @@ final class PresentationFields {
 					'post_object',
 					'translationOf',
 					array(
-						'post_type'         => array( 'page', 'sira_service', 'sira_project' ),
+						'post_type'         => array( 'page', 'sira_service', 'sira_project', 'sira_product', 'sira_leadership' ),
 						'return_format'     => 'id',
 						'multiple'          => 0,
 						'allow_null'        => 1,
@@ -302,6 +589,20 @@ final class PresentationFields {
 						'param'    => 'post_type',
 						'operator' => '==',
 						'value'    => 'sira_project',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'sira_product',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'sira_leadership',
 					),
 				),
 				array(
@@ -545,6 +846,417 @@ final class PresentationFields {
 				'insights'
 			),
 			self::contact_section( 'digital_home', 'Contact', 'digital_contact' ),
+		);
+	}
+
+	/**
+	 * The About composition's sections.
+	 *
+	 * Measured against the reference audit: hero, a four-figure band, the team,
+	 * a statement carrying the quote, the three-stage method, then insights and
+	 * the closing ask. The narrative runs person → numbers → people → philosophy
+	 * → method → proof → ask, and the field order here is that order, so an
+	 * editor scrolls the admin in the same sequence a reader scrolls the page.
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	private static function digital_about_fields(): array {
+		return array(
+			self::group_field(
+				'field_sira_digital_about_hero',
+				'Hero',
+				'digital_about_hero',
+				'hero',
+				array(
+					self::text(
+						'field_sira_digital_about_hero_eyebrow',
+						'Eyebrow',
+						'eyebrow',
+						'eyebrow'
+					),
+					self::text(
+						'field_sira_digital_about_hero_heading_before',
+						'Heading Before Highlight',
+						'heading_before',
+						'headingBefore'
+					),
+					self::text(
+						'field_sira_digital_about_hero_heading_highlight',
+						'Highlighted Heading',
+						'heading_highlight',
+						'headingHighlight'
+					),
+					self::text(
+						'field_sira_digital_about_hero_heading_after',
+						'Heading After Highlight',
+						'heading_after',
+						'headingAfter'
+					),
+					self::textarea(
+						'field_sira_digital_about_hero_description',
+						'Description',
+						'description',
+						'description',
+						array( 'rows' => 3 )
+					),
+					self::link_field(
+						'field_sira_digital_about_hero_primary_cta',
+						'Primary Call To Action',
+						'primary_cta',
+						'primaryCta'
+					),
+					self::link_field(
+						'field_sira_digital_about_hero_secondary_cta',
+						'Secondary Call To Action',
+						'secondary_cta',
+						'secondaryCta'
+					),
+					self::image(
+						'field_sira_digital_about_hero_portrait',
+						'Portrait',
+						'portrait',
+						'portrait',
+						array( 'instructions' => 'Optional. The hero renders without it rather than reserving an empty frame.' )
+					),
+				)
+			),
+			self::repeater(
+				'field_sira_digital_about_stats',
+				'Statistics',
+				'digital_about_stats',
+				'stats',
+				array(
+					self::text(
+						'field_sira_digital_about_stat_value',
+						'Value',
+						'value',
+						'value',
+						array( 'maxlength' => 12 )
+					),
+					self::text(
+						'field_sira_digital_about_stat_label',
+						'Label',
+						'label',
+						'label'
+					),
+				),
+				// Four is the measured width of the band. Eight is the cap the
+				// frontend normalizer enforces, stated here too so an editor is
+				// stopped while authoring rather than losing rows at render.
+				array(
+					'max'          => 8,
+					'instructions' => 'Every figure here is a business claim a reader will take as fact.',
+				)
+			),
+			self::group_field(
+				'field_sira_digital_about_team',
+				'Team',
+				'digital_about_team',
+				'team',
+				array(
+					self::text(
+						'field_sira_digital_about_team_eyebrow',
+						'Eyebrow',
+						'eyebrow',
+						'eyebrow'
+					),
+					self::text(
+						'field_sira_digital_about_team_heading',
+						'Heading',
+						'heading',
+						'heading'
+					),
+					self::textarea(
+						'field_sira_digital_about_team_standfirst',
+						'Standfirst',
+						'standfirst',
+						'standfirst',
+						array( 'rows' => 2 )
+					),
+				),
+				// The people themselves are Leader records, not rows here: a
+				// person has a portrait, a locale and a body, and belongs in the
+				// admin under their own name rather than inside a page's fields.
+				array( 'instructions' => 'The heading for the team section. The people are edited under SIRA Content → Leadership.' )
+			),
+			self::group_field(
+				'field_sira_digital_about_statement',
+				'Statement',
+				'digital_about_statement',
+				'statement',
+				array(
+					self::text(
+						'field_sira_digital_about_statement_ghost_word',
+						'Background Word',
+						'ghost_word',
+						'ghostWord',
+						array(
+							'maxlength'    => 16,
+							'instructions' => 'Set oversized behind the section. Decorative, and hidden from assistive technology.',
+						)
+					),
+					self::wysiwyg(
+						'field_sira_digital_about_statement_body',
+						'Body',
+						'body',
+						'body'
+					),
+					self::textarea(
+						'field_sira_digital_about_statement_quote',
+						'Quote',
+						'quote',
+						'quote',
+						array( 'rows' => 3 )
+					),
+					self::text(
+						'field_sira_digital_about_statement_attribution_name',
+						'Attribution Name',
+						'attribution_name',
+						'attributionName'
+					),
+					self::text(
+						'field_sira_digital_about_statement_attribution_role',
+						'Attribution Role',
+						'attribution_role',
+						'attributionRole'
+					),
+					self::repeater(
+						'field_sira_digital_about_statement_socials',
+						'Social Links',
+						'socials',
+						'socials',
+						array(
+							self::text(
+								'field_sira_digital_about_social_network',
+								'Network',
+								'network',
+								'network',
+								array( 'instructions' => 'Used as the link’s accessible name.' )
+							),
+							self::url(
+								'field_sira_digital_about_social_url',
+								'URL',
+								'url',
+								'url'
+							),
+						),
+						array( 'max' => 8 )
+					),
+				)
+			),
+			self::group_field(
+				'field_sira_digital_about_process',
+				'How We Work',
+				'digital_about_process',
+				'process',
+				array(
+					self::text(
+						'field_sira_digital_about_process_eyebrow',
+						'Eyebrow',
+						'eyebrow',
+						'eyebrow'
+					),
+					self::text(
+						'field_sira_digital_about_process_heading',
+						'Heading',
+						'heading',
+						'heading'
+					),
+					self::textarea(
+						'field_sira_digital_about_process_standfirst',
+						'Standfirst',
+						'standfirst',
+						'standfirst',
+						array( 'rows' => 2 )
+					),
+					self::repeater(
+						'field_sira_digital_about_process_steps',
+						'Stages',
+						'steps',
+						'steps',
+						array(
+							self::text(
+								'field_sira_digital_about_process_step_title',
+								'Title',
+								'title',
+								'title'
+							),
+							self::textarea(
+								'field_sira_digital_about_process_step_body',
+								'Body',
+								'body',
+								'body',
+								array( 'rows' => 3 )
+							),
+						),
+						array( 'max' => 6 )
+					),
+				)
+			),
+			self::editorial_section(
+				'digital_about_insights',
+				'Insights',
+				'insights'
+			),
+		);
+	}
+
+	/**
+	 * Where the homepage section groups appear.
+	 *
+	 * The front page, plus each localized homepage.
+	 *
+	 * ADR-034 gives a locale its own page in the same site, so the Arabic
+	 * homepage is an ordinary page at `/ar/` rather than the site's front page —
+	 * and a `page_type == front_page` rule alone would therefore have left an
+	 * editor with no way to fill in the Arabic hero, capabilities, marquee or
+	 * wordmark. The fields would still have RESOLVED over GraphQL, because the
+	 * type mapping is declared rather than derived from these rules, which is the
+	 * worst version of the problem: content that renders but cannot be edited.
+	 *
+	 * @return array<int,array<int,array<string,mixed>>>
+	 */
+	private static function homepage_location(): array {
+		return self::pages_by_path_location( array( 'ar' ), self::front_page_location() );
+	}
+
+	/**
+	 * Whether the current site is the SIRA Digital tenant.
+	 *
+	 * One WordPress network serves six companies from one network-activated
+	 * plugin, so a field group is offered to every site unless it says otherwise.
+	 * A group named for one company has to say otherwise, or an editor on
+	 * Consulting is handed fields belonging to a company they do not run.
+	 *
+	 * Resolved through `BrandManager::infer_brand_key()`, which derives the
+	 * tenant from the site's own host. That is deliberate rather than a blog id:
+	 * ADR-035 moves Digital to `sirahdigital.sa` by configuration, and a
+	 * hardcoded `6` would have quietly stopped being true on the day it moved.
+	 *
+	 * Returns true when WordPress is absent. `definitions()` is also read by the
+	 * static validator with no WordPress loaded, and the CONTRACT is identical on
+	 * every site — only where the fields ATTACH differs. Hiding the group from
+	 * the validator would make the contract look tenant-specific when it is not.
+	 *
+	 * @return bool
+	 */
+	private static function is_digital_site(): bool {
+		if ( ! function_exists( 'home_url' ) ) {
+			return true;
+		}
+
+		return 'digital' === ( new \Sira\Core\Brand\BrandManager() )->infer_brand_key();
+	}
+
+	/**
+	 * Where Digital's homepage sections appear: Digital's homepages, and no one
+	 * else's.
+	 *
+	 * Before this, all three homepage variant groups were located on every
+	 * tenant's front page, so an editor on any of the six saw the Group hero, the
+	 * branch panels and Digital's kinetic wordmark stacked on one screen. The
+	 * frontend was never confused — it selects the variant by site key — but the
+	 * admin was, and the admin is where a person actually works.
+	 *
+	 * Scoping the location changes nothing about the GraphQL contract:
+	 * `map_graphql_types_from_location_rules` is false, so the type mapping is
+	 * declared rather than derived from these rules. Existing values are also
+	 * untouched; ACF stores them in post meta, and hiding a group does not delete
+	 * anything.
+	 *
+	 * @return array<int,array<int,array<string,mixed>>>
+	 */
+	private static function digital_homepage_location(): array {
+		return self::is_digital_site()
+			? self::homepage_location()
+			: self::unmatchable_location();
+	}
+
+	/**
+	 * Where the About composition appears: the About page in each language.
+	 *
+	 * `/ar/about/` is a child of the `ar` page rather than a record on a separate
+	 * site, so the Arabic copy is addressed by its nested path. Both languages
+	 * resolve the same way, which is what stops a second language from needing a
+	 * second rule written by hand.
+	 *
+	 * @return array<int,array<int,array<string,mixed>>>
+	 */
+	private static function about_location(): array {
+		return self::is_digital_site()
+			? self::pages_by_path_location( array( 'about', 'ar/about' ) )
+			: self::unmatchable_location();
+	}
+
+	/**
+	 * Location rules addressing specific pages by path.
+	 *
+	 * The pages are looked up at registration time. Guarded because
+	 * `definitions()` is also read by the static validator with no WordPress
+	 * loaded, where the lookup is simply skipped.
+	 *
+	 * A path that resolves to nothing is skipped rather than fatal: a tenant that
+	 * has not created that page yet is an ordinary editorial state, not an error.
+	 * When NOTHING resolves the result is a rule that deliberately cannot match
+	 * any post, rather than an empty rule set — an empty `location` is ambiguous
+	 * enough between ACF versions that it is not worth relying on, and a group
+	 * that accidentally attached itself to every page would be a far worse
+	 * failure than one that attaches to none.
+	 *
+	 * @param array<int,string>                        $paths Page paths.
+	 * @param array<int,array<int,array<string,mixed>>> $rules Rules to extend.
+	 * @return array<int,array<int,array<string,mixed>>>
+	 */
+	private static function pages_by_path_location( array $paths, array $rules = array() ): array {
+		if ( function_exists( 'get_page_by_path' ) ) {
+			foreach ( $paths as $path ) {
+				$page = get_page_by_path( $path );
+
+				if ( ! $page instanceof \WP_Post ) {
+					continue;
+				}
+
+				$rules[] = array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'page',
+					),
+					array(
+						'param'    => 'page',
+						'operator' => '==',
+						'value'    => (string) $page->ID,
+					),
+				);
+			}
+		}
+
+		return array() === $rules ? self::unmatchable_location() : $rules;
+	}
+
+	/**
+	 * A rule set that matches nothing.
+	 *
+	 * `0` is not a valid post ID, so this is never satisfied. See
+	 * `pages_by_path_location()` for why a group that attaches to nothing is
+	 * preferable to one whose rule set is empty.
+	 *
+	 * @return array<int,array<int,array<string,string>>>
+	 */
+	private static function unmatchable_location(): array {
+		return array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'page',
+				),
+				array(
+					'param'    => 'page',
+					'operator' => '==',
+					'value'    => '0',
+				),
+			),
 		);
 	}
 

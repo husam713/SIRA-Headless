@@ -1,4 +1,10 @@
+export { DigitalAboutHero } from "@/components/digital/digital-about-hero";
 export { DigitalCapabilities } from "@/components/digital/digital-capabilities";
 export { DigitalHero } from "@/components/digital/digital-hero";
 export { DigitalMarquee } from "@/components/digital/digital-marquee";
+export { DigitalProcess } from "@/components/digital/digital-process";
+export { DigitalStatBand } from "@/components/digital/digital-stat-band";
+export { DigitalStatement } from "@/components/digital/digital-statement";
+export { DigitalTeamGrid } from "@/components/digital/digital-team-grid";
 export { DigitalWordmark } from "@/components/digital/digital-wordmark";
+export { DigitalWorkflow } from "@/components/digital/digital-workflow";

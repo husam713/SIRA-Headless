@@ -187,35 +187,46 @@ function sira_seed_locale_bundle( array $bundle, string $locale, int $parent ): 
 	$counts = array();
 
 	// -- Services ------------------------------------------------------------
+	// The body is the reference's own shape: the challenge, the capability, the
+	// outcome. The six-part specification the placeholders carried was our own
+	// addition, and the fidelity pass measured it as what made this page 13-31%
+	// longer than the reference below xl. Three authored fields, three rendered.
+	//
+	// `menu_order` is set explicitly. The index orders by menu order and then by
+	// date, and a seeding run writes all ten inside the same second, so without
+	// this the tiebreak is whatever the database volunteers.
 	$service_ids = array();
 
-	foreach ( (array) ( $bundle['services'] ?? array() ) as $service ) {
-		$body = sprintf(
-			'<h2>%s</h2><p>%s</p><h2>%s</h2><p>%s</p><h2>%s</h2><p>%s</p><h2>%s</h2><p>%s</p><h2>%s</h2><p>%s</p><h2>%s</h2><p>%s</p>',
-			esc_html( (string) $bundle['labels']['problem'] ),
-			esc_html( (string) $service['problem'] ),
-			esc_html( (string) $bundle['labels']['changes'] ),
-			esc_html( (string) $service['changes'] ),
-			esc_html( (string) $bundle['labels']['capability'] ),
-			esc_html( (string) $service['capability'] ),
-			esc_html( (string) $bundle['labels']['integrates'] ),
-			esc_html( (string) $service['integrates'] ),
-			esc_html( (string) $bundle['labels']['oversight'] ),
-			esc_html( (string) $service['oversight'] ),
-			esc_html( (string) $bundle['labels']['outcome'] ),
-			esc_html( (string) $service['outcome'] )
-		);
-
-		$service_ids[] = sira_seed_upsert(
+	foreach ( array_values( (array) ( $bundle['services'] ?? array() ) ) as $index => $service ) {
+		$service_id = sira_seed_upsert(
 			'sira_service',
 			sira_seed_slug( (string) $service['slug'], $locale ),
 			(string) $service['title'],
-			$body,
+			'',
 			(string) $service['excerpt'],
 			$locale
 		);
-	}
 
+		wp_update_post( array( 'ID' => $service_id, 'menu_order' => (int) $index ) );
+
+		update_field(
+			'field_sira_digital_service_challenge',
+			(string) ( $service['challenge'] ?? '' ),
+			$service_id
+		);
+		update_field(
+			'field_sira_digital_service_outcome',
+			(string) ( $service['outcome'] ?? '' ),
+			$service_id
+		);
+		update_field(
+			'field_sira_digital_service_cta_label',
+			(string) ( $service['ctaLabel'] ?? '' ),
+			$service_id
+		);
+
+		$service_ids[] = $service_id;
+	}
 	$counts['services'] = count( $service_ids );
 
 	// -- Work ----------------------------------------------------------------
@@ -251,19 +262,19 @@ function sira_seed_locale_bundle( array $bundle, string $locale, int $parent ): 
 	$counts['work'] = count( $work_ids );
 
 	// -- Industries ----------------------------------------------------------
-	// Terms of the existing `sira_industry` taxonomy, with the narrative in the
-	// term description. An industry is a classification before it is a page,
-	// and modelling it as a term keeps it reusable by services and work later.
+	// Terms of the existing `sira_industry` taxonomy. An industry is a
+	// classification before it is a page, and modelling it as a term keeps it
+	// reusable by services and work later.
+	//
+	// The description is now one string rather than three packed around pipe
+	// characters. Everything the sector page needs beyond a summary lives in
+	// the term's own fields, where a seven-step workflow can be seven ordered
+	// pairs instead of something an editor could break with a keystroke.
 	$industry_terms = array();
 
 	foreach ( (array) ( $bundle['industries'] ?? array() ) as $industry ) {
 		$slug        = sira_seed_slug( (string) $industry['slug'], $locale );
-		$description = sprintf(
-			'%s|%s|%s',
-			(string) $industry['excerpt'],
-			(string) $industry['bottleneck'],
-			(string) $industry['opportunity']
-		);
+		$description = (string) ( $industry['standfirst'] ?? '' );
 
 		$existing = term_exists( $slug, 'sira_industry' );
 
@@ -296,7 +307,11 @@ function sira_seed_locale_bundle( array $bundle, string $locale, int $parent ): 
 		// the same name, and the language field is addressed the way ACF
 		// addresses a term.
 		update_term_meta( $term_id, SIRA_SEED_MARKER, '1' );
-		update_field( 'field_sira_locale_code', $locale, 'sira_industry_' . $term_id );
+		$term_target = 'sira_industry_' . $term_id;
+		update_field( 'field_sira_locale_code', $locale, $term_target );
+
+		sira_seed_industry_detail( $term_target, $industry );
+
 		$industry_terms[] = $term_id;
 	}
 
@@ -341,6 +356,48 @@ function sira_seed_locale_bundle( array $bundle, string $locale, int $parent ): 
 	}
 
 	$counts['pages'] = count( $page_ids );
+
+	// -- The team ------------------------------------------------------------
+	// People are records, not rows on the About page. A person has a portrait,
+	// a language and revisions of their own, and belongs in the admin under
+	// their own name rather than inside a page's repeater.
+	//
+	// `sira_leadership` has existed network-wide since the Step 1 baseline and
+	// already carries a role field through the Person Details group, so nothing
+	// new was registered for this.
+	//
+	// Every one of these is a business fact about a NAMED individual, which is
+	// exactly why they carry the seed marker: the launch gate blocks until the
+	// owner has confirmed each name, role and portrait rather than letting them
+	// arrive unchecked.
+	$team_ids = array();
+
+	foreach ( array_values( (array) ( $bundle['team'] ?? array() ) ) as $index => $member ) {
+		$member_id = sira_seed_upsert(
+			'sira_leadership',
+			sira_seed_slug( (string) $member['slug'], $locale ),
+			(string) $member['name'],
+			'',
+			(string) ( $member['summary'] ?? '' ),
+			$locale
+		);
+
+		// The grid reads in menu order so the sequence is an editorial decision
+		// rather than an accident of insertion time.
+		wp_update_post( array( 'ID' => $member_id, 'menu_order' => (int) $index ) );
+		update_field( 'field_person_role', (string) ( $member['role'] ?? '' ), $member_id );
+
+		$team_ids[] = $member_id;
+	}
+
+	$counts['team'] = count( $team_ids );
+
+	// -- The About composition -----------------------------------------------
+	// Written last, because it is the only section that needs a page id that the
+	// pages loop above has just produced.
+	if ( isset( $page_ids['about'] ) ) {
+		sira_seed_about( (int) $page_ids['about'], (array) ( $bundle['about'] ?? array() ) );
+	}
 
 	return $counts;
 }
@@ -457,6 +514,166 @@ function sira_seed_homepage( int $home_id, array $home ): void {
 	);
 }
 
+
+/**
+ * Writes a sector's own fields onto its term.
+ *
+ * `$target` is ACF's term address, `sira_industry_<id>`, not a post id.
+ *
+ * The headline figure is written only when the sector actually publishes one.
+ * Five of the twelve do; the other seven are left empty rather than given a
+ * rounded-looking number so the grid comes out even. An empty group clears the
+ * field, which is what makes a re-run after removing a figure actually remove
+ * it rather than leave the previous value behind.
+ */
+function sira_seed_industry_detail( string $target, array $industry ): void {
+	update_field(
+		'field_sira_digital_industry_eyebrow',
+		(string) ( $industry['eyebrow'] ?? '' ),
+		$target
+	);
+	update_field(
+		'field_sira_digital_industry_standfirst',
+		(string) ( $industry['standfirst'] ?? '' ),
+		$target
+	);
+
+	$workflow = array();
+
+	foreach ( (array) ( $industry['workflow'] ?? array() ) as $step ) {
+		$workflow[] = array(
+			'title'  => (string) ( $step['title'] ?? '' ),
+			'detail' => (string) ( $step['detail'] ?? '' ),
+		);
+	}
+
+	update_field( 'field_sira_digital_industry_workflow', $workflow, $target );
+
+	$stat = (array) ( $industry['stat'] ?? array() );
+
+	update_field(
+		'field_sira_digital_industry_stat',
+		array(
+			'value' => (string) ( $stat['value'] ?? '' ),
+			'label' => (string) ( $stat['label'] ?? '' ),
+		),
+		$target
+	);
+
+	$build = array();
+
+	foreach ( (array) ( $industry['build'] ?? array() ) as $item ) {
+		$build[] = array( 'item' => (string) $item );
+	}
+
+	update_field( 'field_sira_digital_industry_build', $build, $target );
+	update_field(
+		'field_sira_digital_industry_build_note',
+		(string) ( $industry['buildNote'] ?? '' ),
+		$target
+	);
+
+	$stack = array();
+
+	foreach ( (array) ( $industry['stack'] ?? array() ) as $item ) {
+		$stack[] = array( 'item' => (string) $item );
+	}
+
+	update_field( 'field_sira_digital_industry_stack', $stack, $target );
+}
+
+/**
+ * Writes the About composition onto the About page.
+ *
+ * Every section is written whether or not the payload carries it, because an
+ * empty value CLEARS the field. A re-run after deleting a section from the JSON
+ * has to actually delete it from the CMS, or the seed stops being the source of
+ * truth for what the page says.
+ */
+function sira_seed_about( int $page_id, array $about ): void {
+	$hero = (array) ( $about['hero'] ?? array() );
+
+	update_field(
+		'field_sira_digital_about_hero',
+		array(
+			'eyebrow'           => (string) ( $hero['eyebrow'] ?? '' ),
+			'heading_before'    => (string) ( $hero['heading_before'] ?? '' ),
+			'heading_highlight' => (string) ( $hero['heading_highlight'] ?? '' ),
+			'heading_after'     => (string) ( $hero['heading_after'] ?? '' ),
+			'description'       => (string) ( $hero['description'] ?? '' ),
+			'primary_cta'       => sira_seed_link( $hero['primary_cta'] ?? null ),
+			'secondary_cta'     => sira_seed_link( $hero['secondary_cta'] ?? null ),
+		),
+		$page_id
+	);
+
+	$stats = array();
+
+	foreach ( (array) ( $about['stats'] ?? array() ) as $stat ) {
+		$stats[] = array(
+			'value' => (string) ( $stat['value'] ?? '' ),
+			'label' => (string) ( $stat['label'] ?? '' ),
+		);
+	}
+
+	update_field( 'field_sira_digital_about_stats', $stats, $page_id );
+
+	$team = (array) ( $about['team'] ?? array() );
+
+	update_field(
+		'field_sira_digital_about_team',
+		array(
+			'eyebrow'    => (string) ( $team['eyebrow'] ?? '' ),
+			'heading'    => (string) ( $team['heading'] ?? '' ),
+			'standfirst' => (string) ( $team['standfirst'] ?? '' ),
+		),
+		$page_id
+	);
+
+	$statement = (array) ( $about['statement'] ?? array() );
+	$socials   = array();
+
+	foreach ( (array) ( $statement['socials'] ?? array() ) as $social ) {
+		$socials[] = array(
+			'network' => (string) ( $social['network'] ?? '' ),
+			'url'     => (string) ( $social['url'] ?? '' ),
+		);
+	}
+
+	update_field(
+		'field_sira_digital_about_statement',
+		array(
+			'ghost_word'       => (string) ( $statement['ghost_word'] ?? '' ),
+			'body'             => (string) ( $statement['body'] ?? '' ),
+			'quote'            => (string) ( $statement['quote'] ?? '' ),
+			'attribution_name' => (string) ( $statement['attribution_name'] ?? '' ),
+			'attribution_role' => (string) ( $statement['attribution_role'] ?? '' ),
+			'socials'          => $socials,
+		),
+		$page_id
+	);
+
+	$process = (array) ( $about['process'] ?? array() );
+	$steps   = array();
+
+	foreach ( (array) ( $process['steps'] ?? array() ) as $step ) {
+		$steps[] = array(
+			'title' => (string) ( $step['title'] ?? '' ),
+			'body'  => (string) ( $step['body'] ?? '' ),
+		);
+	}
+
+	update_field(
+		'field_sira_digital_about_process',
+		array(
+			'eyebrow'    => (string) ( $process['eyebrow'] ?? '' ),
+			'heading'    => (string) ( $process['heading'] ?? '' ),
+			'standfirst' => (string) ( $process['standfirst'] ?? '' ),
+			'steps'      => $steps,
+		),
+		$page_id
+	);
+}
 // ---------------------------------------------------------------------------
 // English
 // ---------------------------------------------------------------------------
@@ -474,11 +691,12 @@ sira_seed_homepage( $home_id, $home );
 
 WP_CLI::log(
 	sprintf(
-		'English — services %d, work %d, industries %d, pages %d, homepage %d (front page)',
+		'English — services %d, work %d, industries %d, pages %d, team %d, homepage %d (front page)',
 		$english['services'],
 		$english['work'],
 		$english['industries'],
 		$english['pages'],
+		$english['team'] ?? 0,
 		$home_id
 	)
 );
@@ -510,11 +728,12 @@ $arabic = sira_seed_locale_bundle( $arabic_seed, 'ar', $arabic_home_id );
 
 WP_CLI::log(
 	sprintf(
-		'Arabic — services %d, work %d, industries %d, pages %d, homepage %d (/ar/)',
+		'Arabic — services %d, work %d, industries %d, pages %d, team %d, homepage %d (/ar/)',
 		$arabic['services'],
 		$arabic['work'],
 		$arabic['industries'],
 		$arabic['pages'],
+		$arabic['team'] ?? 0,
 		$arabic_home_id
 	)
 );

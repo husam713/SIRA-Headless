@@ -1674,6 +1674,566 @@ a {
   }
 }
 
+
+/* --- About: figures band --------------------------------------------------
+   Four columns at the reference's proportions, but driven by how many figures
+   the CMS actually holds so three do not leave a hole and five do not wrap into
+   a ragged second row.
+
+   The dividers are borders on the cells rather than a background trick, because
+   the count is dynamic: `:not(:first-child)` puts a rule between every pair and
+   never on the outside, at any count, in either direction. `border-inline-start`
+   rather than `border-left` is what makes that survive RTL. */
+.digital-stat-band {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.digital-stat-band__cell {
+  padding-inline: 0;
+}
+
+@media (min-width: 48rem) {
+  .digital-stat-band {
+    grid-template-columns: repeat(var(--digital-stat-columns, 4), minmax(0, 1fr));
+  }
+
+  .digital-stat-band__cell:not(:first-child) {
+    border-inline-start: 1px solid var(--brand-border);
+    padding-inline-start: clamp(1.25rem, 2.5vw, 2.5rem);
+  }
+}
+
+/* --- About: the ghost word ------------------------------------------------
+   One word at a size nothing else on the page uses, at a contrast that stops it
+   competing with the text set over it. `10vw` rather than a fixed size so it
+   scales with the column it sits behind; `clamp` caps it so it does not become
+   a texture on very wide screens.
+
+   `aria-hidden` in the markup, decorative here: it repeats a word the section
+   already says. It is also `overflow: hidden` at the section, so the descender
+   bleeding past the bottom edge is a crop rather than a scrollbar. */
+.digital-ghost-word {
+  font-size: clamp(5rem, 18vw, 15rem);
+  color: color-mix(in oklab, var(--brand-ink) 5%, transparent);
+  text-transform: uppercase;
+}
+
+/* The statement body is CMS rich text, so it arrives as paragraphs rather than
+   as a single string. Spacing lives here because the component cannot reach
+   inside `dangerouslySetInnerHTML`. */
+.digital-statement__lede > p + p {
+  margin-block-start: 1.25em;
+}
+
+/* --- About: the method ----------------------------------------------------
+   Three equal columns at the reference's proportions, again driven by the step
+   count. Below md it is one column: at 2 columns the cards are too narrow for
+   a 45-character measure and the text ladders. */
+.digital-process {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 48rem) {
+  .digital-process {
+    grid-template-columns: repeat(var(--digital-process-columns, 3), minmax(0, 1fr));
+  }
+}
+
+/* --- About: social circles ------------------------------------------------
+   The arrow micro-motion the rest of the tenant uses, applied to a target that
+   has nowhere to travel: the circle lifts instead. Hover is gated so a touch
+   device never gets a stuck state, and focus-visible gets the same treatment so
+   a keyboard reader sees what a pointer reader sees. */
+.digital-social {
+  transition:
+    color 220ms var(--digital-ease),
+    border-color 220ms var(--digital-ease),
+    transform 220ms var(--digital-ease);
+}
+
+.digital-social:focus-visible {
+  color: var(--brand-ink);
+  border-color: var(--brand-accent);
+}
+
+@media (hover: hover) {
+  .digital-social:hover {
+    color: var(--brand-ink);
+    border-color: var(--brand-accent);
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digital-social {
+    transition: none;
+  }
+
+  .digital-social:hover {
+    transform: none;
+  }
+}
+
+/* --- Industry: the automation workflow ------------------------------------
+   Below md: one column, with a rail running down the inline-start edge and the
+   cards hanging off it. This is the honest small-screen form of a process — a
+   list in order — rather than a horizontal scroller that hides six of seven
+   steps behind a gesture nobody performs.
+
+   The rail is a pseudo-element on the list, inset by half the dot so the dots
+   sit centred on it, and stopped short at both ends so the line begins at the
+   first step and ends at the last rather than floating past them. */
+.digital-workflow {
+  --wf-dot: 0.5rem;
+  --wf-rail: 1px;
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  padding-inline-start: 2rem;
+}
+
+.digital-workflow::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.75rem;
+  inset-inline-start: calc((var(--wf-dot) - var(--wf-rail)) / 2);
+  inline-size: var(--wf-rail);
+  background: var(--brand-border);
+}
+
+.digital-workflow__item {
+  position: relative;
+}
+
+.digital-workflow__dot {
+  position: absolute;
+  inset-block-start: 0.75rem;
+  inset-inline-start: -2rem;
+  inline-size: var(--wf-dot);
+  block-size: var(--wf-dot);
+  border-radius: 50%;
+  background: var(--brand-accent);
+}
+
+/* The stub is the short connector between a card and the rail. It has nothing
+   to join at this width, where the card sits directly against the rail. */
+.digital-workflow__stub {
+  display: none;
+}
+
+.digital-workflow__card {
+  display: block;
+  border: 1px solid var(--brand-border);
+  border-radius: 0.875rem;
+  background: color-mix(in oklab, var(--brand-ink) 3%, transparent);
+  padding: 0.875rem 1rem;
+}
+
+.digital-workflow__number {
+  display: block;
+  font-family: var(--font-sira-display), serif;
+  font-size: 0.625rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.2em;
+  color: var(--brand-ink-faint);
+}
+
+/* From md the flow turns horizontal and serpentines around a centre rail.
+   Three rows: cards above, the rail, cards below. Column placement is explicit
+   so the DOM order and the visual order are the same in both directions — grid
+   auto-placement would have filled row-major and broken the sequence. */
+@media (min-width: 48rem) {
+  .digital-workflow {
+    grid-template-columns: repeat(var(--wf-steps, 5), minmax(0, 1fr));
+    grid-template-rows: 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0 0.75rem;
+    padding-inline-start: 0;
+  }
+
+  .digital-workflow::before {
+    inset-block: auto;
+    inset-inline: 0;
+    inset-block-start: 50%;
+    block-size: var(--wf-rail);
+    inline-size: auto;
+    transform: translateY(-50%);
+  }
+
+  .digital-workflow__item {
+    grid-column: calc(var(--wf-index) + 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Even steps sit above the rail, odd below. `justify-content` pushes each
+     card toward the rail so both rows meet it rather than floating at the
+     outer edges of an unevenly tall row. */
+  .digital-workflow__item[data-side="start"] {
+    grid-row: 1;
+    justify-content: flex-end;
+    padding-block-end: 1.5rem;
+  }
+
+  .digital-workflow__item[data-side="end"] {
+    grid-row: 3;
+    justify-content: flex-start;
+    padding-block-start: 1.5rem;
+  }
+
+  .digital-workflow__dot {
+    inset-inline-start: 50%;
+    margin-inline-start: calc(var(--wf-dot) / -2);
+  }
+
+  .digital-workflow__item[data-side="start"] .digital-workflow__dot {
+    inset-block-start: auto;
+    inset-block-end: calc(var(--wf-dot) / -2);
+  }
+
+  .digital-workflow__item[data-side="end"] .digital-workflow__dot {
+    inset-block-start: calc(var(--wf-dot) / -2);
+  }
+
+  .digital-workflow__stub {
+    display: block;
+    position: absolute;
+    inset-inline-start: 50%;
+    inline-size: var(--wf-rail);
+    block-size: 1.5rem;
+    background: var(--brand-border);
+  }
+
+  .digital-workflow__item[data-side="start"] .digital-workflow__stub {
+    inset-block-end: 0;
+  }
+
+  .digital-workflow__item[data-side="end"] .digital-workflow__stub {
+    inset-block-start: 0;
+  }
+
+  .digital-workflow__card {
+    block-size: 100%;
+  }
+}
+
+/* An odd step count leaves the last card alone in its row, which is correct:
+   the process ended there. Nothing is stretched to make the two rows balance. */
+
+/* --- The back link --------------------------------------------------------
+   The reference's universal affordance is an arrow that travels a few pixels
+   toward where the link goes. This one goes backwards, so it travels toward the
+   inline start.
+
+   `translate` with a logical value would be ideal and is not reliable yet, so
+   the sign is flipped once for RTL rather than the arrow character being
+   swapped in the markup. One arrow, one rule, and no second string that can
+   fall out of step with the first. */
+.digital-back {
+  transition: color 220ms var(--digital-ease);
+}
+
+.digital-back__arrow {
+  display: inline-block;
+  transition: transform 220ms var(--digital-ease);
+}
+
+.digital-back:focus-visible {
+  color: var(--brand-ink);
+}
+
+@media (hover: hover) {
+  .digital-back:hover {
+    color: var(--brand-ink);
+  }
+
+  .digital-back:hover .digital-back__arrow,
+  .digital-back:focus-visible .digital-back__arrow {
+    transform: translateX(-4px);
+  }
+
+  [dir="rtl"] .digital-back:hover .digital-back__arrow,
+  [dir="rtl"] .digital-back:focus-visible .digital-back__arrow {
+    transform: translateX(4px);
+  }
+}
+
+/* The arrow itself points the other way under RTL, where "back" is to the
+   right. Rotating the glyph keeps one character in the markup. */
+[dir="rtl"] .digital-back__arrow {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .digital-back:hover .digital-back__arrow,
+[dir="rtl"] .digital-back:focus-visible .digital-back__arrow {
+  transform: scaleX(-1) translateX(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digital-back__arrow,
+  .digital-back {
+    transition: none;
+  }
+
+  .digital-back:hover .digital-back__arrow,
+  .digital-back:focus-visible .digital-back__arrow {
+    transform: none;
+  }
+
+  [dir="rtl"] .digital-back:hover .digital-back__arrow,
+  [dir="rtl"] .digital-back:focus-visible .digital-back__arrow {
+    transform: scaleX(-1);
+  }
+}
+
+/* --- Industries: the sector card ------------------------------------------
+   The whole card is one link, so the hover state belongs to the card rather
+   than to the heading inside it. Border and ground both lift, which is enough
+   on a single-ground design: a card that also moved would be the only thing on
+   the site that does.
+
+   The summary is clamped to three lines so a long sector description cannot
+   make one card twice the height of its neighbours. It is a clamp rather than a
+   fixed height, so a short one does not leave a gap. */
+.digital-sector {
+  transition:
+    border-color 220ms var(--digital-ease),
+    background-color 220ms var(--digital-ease);
+}
+
+.digital-sector__summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.digital-sector__chevron {
+  display: inline-block;
+}
+
+/* The chevron points along the flow, and the flow follows the text direction. */
+[dir="rtl"] .digital-sector__chevron {
+  transform: scaleX(-1);
+}
+
+.digital-sector:focus-visible {
+  border-color: var(--brand-accent);
+}
+
+@media (hover: hover) {
+  .digital-sector:hover {
+    border-color: color-mix(in oklab, var(--brand-accent) 55%, transparent);
+    background-color: color-mix(in oklab, var(--brand-ink) 5%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digital-sector {
+    transition: none;
+  }
+}
+
+/* --- Calculator ------------------------------------------------------------
+   Everything the impact calculator draws that is not type: two meters, the
+   before/after bar and the twelve-month curve. No chart library — this site has
+   none, and twelve bars and two tracks did not justify adding one. Drawn with
+   grid and logical properties, so all of it inherits the type scale, the brand
+   tokens and the writing direction for free.
+
+   The whole set is decorative. Every figure a meter or a bar encodes is printed
+   beside it as text, so a screen reader gets the argument without being read a
+   less precise second copy of it. */
+
+.digital-meter {
+  block-size: 3px;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--brand-ink) 10%, transparent);
+  overflow: hidden;
+}
+
+.digital-meter__fill {
+  block-size: 100%;
+  border-radius: 2px;
+  background: var(--brand-accent);
+}
+
+/* The width IS the argument, so it is worth animating: a figure that jumps is
+   read as a different number, a figure that travels is read as the same number
+   moving. Suppressed with everything else under prefers-reduced-motion. */
+.digital-meter__fill,
+.digital-bar {
+  transition: inline-size 700ms var(--digital-ease);
+}
+
+.digital-disclosure__icon {
+  transition: transform 200ms ease;
+}
+
+[aria-expanded="true"] > .digital-disclosure__icon {
+  transform: rotate(90deg);
+}
+
+html[dir="rtl"] .digital-disclosure__icon {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] [aria-expanded="true"] > .digital-disclosure__icon {
+  transform: scaleX(-1) rotate(90deg);
+}
+
+/* Twelve months of cumulative benefit, on a shared baseline. The months before
+   the implementation cost is paid back are drawn in faint ink and the ones
+   after in the accent, so the reader can see where the line stops costing and
+   starts returning — a projection that is one undifferentiated climb is a sales
+   device. */
+.digital-projection {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  gap: 0.25rem;
+  block-size: 8rem;
+  border-block-end: 1px solid var(--brand-border);
+}
+
+.digital-projection__bar {
+  position: relative;
+  block-size: 100%;
+}
+
+.digital-projection__bar::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: var(--bar, 2%);
+  border-radius: 2px 2px 0 0;
+  transition: block-size 700ms var(--digital-ease);
+}
+
+/* Still paying for itself. */
+.digital-projection__bar[data-state="unpaid"]::before {
+  background: color-mix(in oklab, var(--brand-ink) 22%, transparent);
+}
+
+/* Past payback. */
+.digital-projection__bar[data-state="paid"]::before {
+  background: var(--brand-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digital-meter__fill,
+  .digital-bar,
+  .digital-projection__bar::before,
+  .digital-disclosure__icon {
+    transition: none;
+  }
+}
+
+/* --- Calculator: the printed report ---------------------------------------
+   "Download the automation report" is `window.print()` and this block. No PDF
+   dependency: every browser can already save a printed page as one, it works
+   offline, it needs no server, and it prints correctly from a phone.
+
+   The class is added by the button and removed on `afterprint`, so a reader who
+   presses Ctrl+P themselves still gets the ordinary page. Nothing in the shared
+   shell is touched: the header and footer belong to five other companies too,
+   and a print concern is not a reason to reach into them.
+
+   `:has()` selects the page sections that are NOT the report. Where it is
+   unsupported the rule is dropped and the enquiry form prints along with the
+   report — longer than intended, but still a correct document. That is the
+   right way round for a progressive enhancement. */
+
+.digital-print-only {
+  display: none;
+}
+
+@media print {
+  /* Digital is the one tenant on a dark ground, and its identity tokens are
+     INLINE on <html>, which outranks any stylesheet rule. Paper is white, so
+     the dark palette would print an unreadable sheet and empty a cartridge
+     doing it. Repainted here, with !important, because an inline style is the
+     only thing these could otherwise lose to. The accent stays recognisably the
+     brand hue rather than becoming black — dark enough to read on white, still
+     gold. */
+  html.digital-printing {
+    --brand-paper: #ffffff !important;
+    --brand-deep: #ffffff !important;
+    --brand-deep-card: #ffffff !important;
+    --brand-footer: #ffffff !important;
+    --brand-tint: #f4f4f4 !important;
+    --brand-ink: #111111 !important;
+    --brand-ink-soft: #3f3f3f !important;
+    --brand-ink-faint: #666666 !important;
+    --brand-on-deep: #111111 !important;
+    --brand-border: #cfcfcf !important;
+    --brand-accent: #7a5c12 !important;
+    --brand-accent-bright: #7a5c12 !important;
+  }
+
+  html.digital-printing body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  /* Everything that is not the report. `display` rather than `visibility`:
+     a hidden element still occupies its box, which left the first printed page
+     blank down to where the shell used to end. */
+  html.digital-printing header,
+  html.digital-printing footer,
+  html.digital-printing main > section:not(:has([data-automation-report])) {
+    display: none !important;
+  }
+
+  /* The controls themselves are meaningless on paper — a slider cannot be
+     moved there. The inputs summary below restates their values instead. */
+  html.digital-printing [data-automation-report] form,
+  html.digital-printing .digital-print-hide,
+  html.digital-printing .digital-projection,
+  html.digital-printing .digital-meter {
+    display: none !important;
+  }
+
+  /* Two columns become one flow once the input column is gone. */
+  html.digital-printing [data-automation-report],
+  html.digital-printing [data-automation-report] > div {
+    display: block !important;
+  }
+
+  html.digital-printing .digital-print-only {
+    display: block !important;
+    margin-block-start: 1.5rem;
+    border-block-start: 1px solid #cfcfcf;
+    padding-block-start: 1rem;
+    break-inside: avoid;
+  }
+
+  html.digital-printing .digital-print-only dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem 1.5rem;
+    margin-block-start: 0.75rem;
+  }
+
+  html.digital-printing .digital-print-only dt {
+    font-size: 10px;
+    color: #666666;
+  }
+
+  html.digital-printing .digital-print-only dd {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  html.digital-printing [data-automation-report] section,
+  html.digital-printing [data-automation-report] dl {
+    break-inside: avoid;
+  }
+}
+
 /* --- Arabic display metrics -----------------------------------------------
    The Latin display settings here are deliberately tight: sub-1.0 leading and
    negative tracking are most of what makes the Latin headline feel engineered.

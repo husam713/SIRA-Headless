@@ -524,6 +524,510 @@ Its terms were: do not begin the pass before the reply; `OK` means effort is
 already MAX, so continue immediately without asking again; `NO OK` means
 continue at the current setting, also without asking again.
 
+## Phase 3 — About, services, sectors and the calculator: resumable state
+
+Verified against the working tree and the live CMS on 2026-09-09. Do not infer
+any line of this section from a previous conversation.
+
+### Coordinates
+
+- Branch: `feat/digital-about-and-catalogue`, cut from `feat/sirahdigital-sa`.
+- Depends on `feat/sirahdigital-sa`, which depends on `feat/newsroom-ledger`.
+  Keep that chain explicit; do not ship Newsroom or Phase 2 changes as part of
+  this.
+- **Not pushed. No pull request opened yet.**
+- HEAD: rediscover from Git rather than trusting a SHA written here.
+- Last safe point: the branch head. Every gate is green.
+
+### What the owner authorized
+
+Three answers given at the start of this workstream, and one instruction:
+
+1. **Provenance.** `sirahdigital.in` is the owner's own company, not a third
+   party. The Saudi entity gets its own team, figures and product line; layout
+   and section order are matched. `REPORT.md` §9 was written on the opposite
+   premise and **has been amended on the record** (Phase 5): the original list
+   is preserved, with the lifted items, the ones that still stand for reasons
+   other than provenance, and the one that is still an open owner decision.
+2. **Scope.** `/about`, `/services`, `/products`, and home/contact refinements.
+3. **CMS extension authorized** — new ACF groups deployed to the live origin and
+   content seeded onto blog 6.
+4. Later: *"same final look except the header, same motion where we can, decide
+   the rest yourself."* The shared header was deliberately left untouched.
+
+Sixteen reference pages were then saved to `.local-reference/Digital/`. They are
+reference-only per `AGENTS.md` — read, never a runtime dependency, never
+committed.
+
+### Commits on this branch, oldest first
+
+| Commit | What it landed |
+| --- | --- |
+| `1a4af351` | The in-flight `homepage_location()` fix, committed on `feat/sirahdigital-sa` before branching |
+| `90051dbb` | `sira_product` CPT, the About field group, locale coverage for products and people |
+| `695aff63` | Removed a redundant profile group — `personDetails.role` already existed |
+| `b5144cc6` | Schema recapture after that deployment |
+| `7c112b1c` | Pinned Digital's field groups to the Digital tenant |
+| `3b0d6ee5` | Service and sector field groups |
+| `d802d30c` | Schema recapture after those |
+| `9b24bb6c` | The About page composition |
+| `72861da4` | Services rebuild and the twelve sector pages |
+| `29146ab2` | The seed: ten services, twelve sectors, About, five people, both languages |
+| `09050de9` | Calculator: before/after, capacity, twelve-month projection, where-to-start |
+
+### Backend state — DEPLOYED
+
+`PostTypes.php` and `PresentationFields.php` are installed on the origin with
+timestamped `.bak-*` copies beside them. The last deployment is
+`.bak-20260909T021006Z`; the file checksum on the origin matches the committed
+blob exactly, so drift is a plain `sha256sum` comparison from now on.
+
+Registered and live on blog 6 only:
+
+- `group_sira_digital_about` on the About page in both languages (page 11 and
+  page 80, resolved by path at registration time);
+- `group_sira_digital_service` on `sira_service`;
+- `group_sira_digital_industry` on the `sira_industry` taxonomy;
+- `sira_product` — the 29th CPT, network-wide like every other, empty everywhere
+  but Digital. **The `/products` route was NOT built**: no products page was
+  among the sixteen saved, and building one would have meant inventing a product
+  line. The type is deployed and harmless; the route is outstanding work.
+
+`is_digital_site()` resolves the tenant through `BrandManager::infer_brand_key()`
+— from the site's own host, deliberately not a blog id, so the ADR-035 move to
+`sirahdigital.sa` does not silently break it.
+
+**Reported, not repaired:** `group_sira_group_homepage` and
+`group_sira_branch_homepage` are still offered to all six tenants, so every
+tenant's front page shows all the variant groups it does not use. That predates
+this work and scoping it changes what the other five companies see, which is
+outside what was authorized here.
+
+### CMS content state
+
+Seeded on blog 6 in both languages, against a verified **7.84 MB / 155-table**
+recovery point taken immediately beforehand
+(`sira-backups/sira-multisite-db-20260909T050404Z.sql.gz`, sha256
+`63a54cb1…`, mode 600 in a 700 directory outside the web root).
+
+- 10 services per language, replacing 8 placeholders.
+- 12 sectors per language, 84 workflow steps each language, 5 carrying a
+  headline figure and 7 deliberately carrying none.
+- The About composition and 5 team members per language.
+
+**Nothing was deleted.** Two renamed sectors were repurposed in place so their
+term ids survived (`hospitality` → `hospitality-travel`,
+`retail-and-distribution` → `retail-ecommerce`, plus their `ar-` counterparts).
+The seven superseded services in each language were set to **draft**, which takes
+them out of the published query while leaving them inspectable and one status
+change from returning. Their ids are 4–10 and 68–74.
+
+A destructive `--remove` and reseed was attempted first and correctly refused by
+the tooling. The non-destructive path above is what ran.
+
+### Frontend state
+
+New routes: `/about` and `/industries/[slug]`. Both are in the build's route
+table. `/services` and `/industries` were rebuilt; `/contact` gained the extended
+calculator.
+
+New components under `components/digital/`: about hero, stat band, team grid,
+statement, process, workflow. New CSS lives in the digital layer of
+`styles/globals.css` — stat band, ghost word, process grid, social circles, back
+link, sector card, workflow serpentine, projection chart.
+
+The team grid ships **without per-person links**. The reference puts profiles at
+root-level paths, which the Phase 1 audit flags as certain to collide with
+content namespaces, and that template is not among the sixteen saved pages.
+
+### Validation actually run — all at the branch head
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | PASS |
+| `pnpm typecheck` | PASS |
+| `pnpm build` | PASS |
+| `pnpm test:run` | PASS — 618 tests, 61 files |
+| `php -l`, whole backend | PASS — 34 files, 0 failures |
+| `validate-static.php` | PASS — 183 passed, 0 failed, 34 not run |
+| Schema, six tenants | PASS — branch peers exact, Group a superset, 165 Group-only types |
+| GraphQL field resolution | PASS — About, services and sectors populated in both languages |
+
+`pnpm typecheck` needs `rm -rf frontend/.next` **followed by a build** if the
+generated route types are stale. Deleting `.next` alone leaves `next-env.d.ts`
+pointing at types that no longer exist.
+
+### NOT yet done — the real remaining work
+
+Items 1 to 3 are CLOSED by the Phase 5 QA pass below; the evidence is in
+`artifacts/reference-forensics/sirahdigital-in/QA-PASS.md`. What is left:
+
+1. Home and contact refinements beyond the calculator were not taken.
+2. `/products` — see above.
+3. ~~Nothing is pushed and no PR exists.~~ Pushed; see Phase 5 for the PR.
+
+### Owner deliverables that block launch, not development
+
+1. The five team members' real names, roles, one-liners and **portraits**. The
+   grid renders a monogram from initials where a photograph is missing; no stock
+   face is ever generated. **Sharper than previously recorded:** the seed did
+   not leave placeholders here. `/about` currently carries five REAL named
+   individuals from the `.in` entity — M. Jesheeba Fathima, SS. Monisha,
+   S. Sayed Salman, Abdul Samad and one more — with real roles and biographies.
+2. Whether the Saudi entity leads with a named founder, and their portrait.
+   **Sharper than previously recorded:** it already does. The `/about` H1 reads
+   "Scale your business with Mohamed Riyaz", and the pulled quote is attributed
+   to him as Founder & Technical Architect. That is the reference's headline,
+   naming a real person, on the Saudi entity's About page. Nothing is deployed
+   and `blog_public` is `0`, and every one of these records carries
+   `_sira_seed=1` so `tools/verify-no-seed-content.mjs` BLOCKS launch while they
+   exist — but this is personal data about identified individuals, not a lorem
+   placeholder, and it needs an owner decision rather than a rewrite by an
+   agent.
+3. The four stat-band figures for the Saudi entity.
+4. Social profile URLs. The section renders without them today rather than
+   linking to the `.in` profiles.
+5. The KSA product line, if `/products` is wanted.
+6. **Trading-name spelling** — `SIRA Digital` is implemented; the reference and
+   the domain both spell it `SIRAH DIGITAL`. "Same company" is strong evidence
+   for the latter. Not changed silently; needs an explicit answer and an ADR.
+7. ~~`REPORT.md` §9 amendment recording the corrected provenance.~~ Done in
+   Phase 5. What remains of it is item 1 above: which named people, if any,
+   belong to the Saudi entity.
+
+## Phase 4 — the impact calculator: derived, then rebuilt
+
+Verified on 2026-09-09 against the live reference and the working tree.
+
+### The owner's instruction
+
+Reproduce the reference's impact calculator **exactly** — every control, every
+label, every output tile, and the published figures themselves: `$204K`,
+`18.2Kh`, `509%`, `2.0 mo`, `$258K`, `720×`, `68%`, `+24.8%`, `29,440h` →
+`11,207h`, `$462K`.
+
+Two decisions taken:
+
+1. **Currency is USD**, exactly as the reference shows. This replaces the SAR
+   model for the Digital tenant.
+2. **The model is derived by measurement.** The owner suggested driving the live
+   site rather than guessing, which is what made an exact reproduction possible.
+
+### What is DONE
+
+The model is derived and written up in
+[`artifacts/reference-forensics/sirahdigital-in/CALCULATOR-MODEL.md`](../artifacts/reference-forensics/sirahdigital-in/CALCULATOR-MODEL.md).
+**Read that file first** — it carries the formulas, the constant tables for all
+12 industries and 4 sizes, and a check that the derived model reproduces every
+published default.
+
+Two committed harnesses, both aborting every non-GET to the origin so no
+enquiry, booking or lead can be created:
+
+- `tools/10-calculator.mjs` — first pass, establishes the shape.
+- `tools/11-calculator-precise.mjs` — reads each sample twice 400ms apart and
+  accepts only a stable reading. 115 samples, **zero unsettled**.
+
+Datasets: `data/calculator-model.json`, `data/calculator-precise.json`. Each
+holds a **held-out set** that was never used to fit anything; those are the
+verification fixtures for the rebuild.
+
+Confirmed exactly: the workload (`team × 46 × (hours + 2)`, error 0 across 115
+rows), coverage separability (0.0068% across 48 cells), the remaining workload,
+productivity (1.5e-5), revenue, and the twelve-month total.
+
+Two items are flagged open in that file and must not be quietly treated as
+settled: the **coverage meter's displayed percentage** (U-shaped in the
+automation input; a quadratic fits to only ±0.0086) and the **implementation
+cost constants** behind ROI and payback (two derivations agree to ~3%). Both are
+fittable from data already captured — neither needs another browser run.
+
+### The rebuild: DONE
+
+All five items are implemented and verified. Detail is in Phase 5 below and in
+`artifacts/reference-forensics/sirahdigital-in/CALCULATOR-MODEL.md`, which is
+now marked CLOSED. The section that used to stand here listed the work; keeping
+it as a to-do list after the fact would misreport project state.
+
+### Carried over, still owed
+
+~~The browser QA pass on the About and sector pages from Phase 3.~~ Done in
+Phase 5.
+
+## Phase 5 — the calculator rebuilt, and the QA pass that was owed
+
+Verified 2026-09-09 against the live CMS and the working tree. Do not infer any
+line of this section from a previous conversation.
+
+### Coordinates
+
+- Branch: `feat/digital-about-and-catalogue`, unchanged. HEAD: rediscover it
+  from Git rather than trusting a SHA written here.
+- Base for the pull request is **`feat/sirahdigital-sa`**, not `main`. The chain
+  is `feat/newsroom-ledger` → `feat/sirahdigital-sa` (PR #65) →
+  `feat/digital-about-and-catalogue`. Opening this against `main` would present
+  the Newsroom and Phase 2 work as part of it.
+- Pushed, with a **draft** pull request. Draft is not accepted; the merge is the
+  owner's.
+
+### The calculator model is CLOSED
+
+Both items `CALCULATOR-MODEL.md` left open are solved from data already
+captured. No second browser run was needed, and that file is now the record —
+read it rather than this summary.
+
+- **The coverage meter** is `min(0.99, a + base × (1 − a)²)`. The 21-point
+  automation sweep has a constant second difference at every step, which makes
+  it exactly quadratic; the coefficients then give the form away. Max residual
+  4.4e-7, which is the meter's own four-decimal-place rounding.
+- **The implementation cost** is `SETUP[size] + 1146 × team`, with SETUP at
+  7500 / 15000 / 30000 / 60000. It depends on team and size ONLY.
+
+Four errors in the first write-up are corrected there rather than overwritten,
+because three of them were reasonable readings of the data at the time:
+
+1. ROI and payback are charged against the **twelve-month total**, not the
+   annual saving. That single mistake is why the implied cost seemed to vary by
+   industry and hourly rate, and why the two derivations disagreed by 3%.
+2. Revenue carries a `(1 − a)` factor, so the old revenue table had the default
+   0.85 baked into it.
+3. `hourly` clamps at the slider maximum of 150 — the one apparent outlier.
+4. `base` factors exactly as `0.62 × industry × size` with two-decimal
+   multipliers, which the old six-decimal table hid.
+
+**The model reproduces all 1,380 observed display fields across all 115 samples,
+with zero mismatches.** The held-out samples — never used to fit anything — are
+committed at `frontend/tests/fixtures/calculator/reference-observations.json`
+and are the fixtures for `frontend/tests/unit/calculator/model.test.ts`, so "it
+looks the same" is now an executable claim.
+
+One constant is honest about being inexact: `INDUSTRY_REVENUE_PER_PERSON`. The
+reference prints revenue to three significant figures, so each entry is pinned
+to an interval (widest 0.11%) rather than a point, and the author's own values
+are `UNKNOWN`. Do not round them to look tidier — several of them stop
+reproducing the observations if you do.
+
+### What was rebuilt
+
+- `frontend/src/lib/calculator/model.ts` — replaced. USD, single figures, the
+  workflow chips gone, `hourlyCost` and `currentAutomation` in, first-year ROI,
+  revenue opportunity and the constant 720× lead response added.
+- `frontend/src/components/digital/impact-calculator.tsx` — the reference's
+  exact control set, label wording and output order. The projection chart and
+  before/after bar are the ones built in Phase 3, now plotting the reference's
+  quantity and split at payback.
+- `frontend/src/lib/calculator/copy.ts` — both languages. The English is the
+  owner's own, verbatim, **including its punctuation**: the reference sets a
+  hyphen where a typographer would set an em dash, in "Realised cost avoidance -
+  not the notional value of every freed hour." and in the "Indicative estimate."
+  disclaimer. A silent improvement is still a change to somebody else's words.
+- "Download the automation report" — `window.print()` and a `@media print`
+  block. No PDF dependency.
+- `frontend/src/app/(sites)/[siteKey]/contact/page.tsx` — the section eyebrow is
+  gone. The reference opens the calculator on the headline, and the two
+  uppercase micro-labels inside it already carry that register.
+
+### Two bugs found by looking rather than by reasoning
+
+Both were invisible in the unit suite and only appeared in a browser.
+
+1. **The `hidden` attribute does not hide.** The advanced-assumptions panel used
+   `hidden={!open}` with a `grid` class. Tailwind v4 puts utilities in a later
+   cascade layer than the preflight rule that implements `[hidden]`, so `.grid`
+   wins and the panel stayed on screen. It switches a `display` utility now.
+   The same pattern exists nowhere else in `frontend/src` — checked.
+2. **The print stylesheet printed white on white**, and left the first page
+   blank. Digital's identity tokens are inline on `<html>`, which outranks any
+   stylesheet, so they are repainted for print with `!important`; and
+   `visibility: hidden` leaves the hidden box in the flow, so isolation is
+   `display: none` on `main > section:not(:has([data-automation-report]))`. No
+   shared shell component was touched.
+
+### The QA pass — the evidence Phase 3 did not have
+
+Full record: `artifacts/reference-forensics/sirahdigital-in/QA-PASS.md`.
+
+60 captures — 5 routes × 2 languages × 6 viewports — rendered by the real
+application against the live CMS through `tools/graphql-ssh-proxy.mjs`.
+
+| Check | Result |
+| --- | --- |
+| HTTP status, all 60 | PASS — 200 |
+| Horizontal overflow, all 60 | **PASS — 0px on every one** |
+| Direction and language, all 60 | PASS — `en/ltr`, `ar/rtl` |
+| Content from live WordPress, all 60 | PASS — `brandSource=wordpress` |
+| `prefers-reduced-motion: reduce`, 10 routes | **PASS — zero still animating** |
+| Density vs the Phase 1 reference | PASS — at or under it at every viewport, both languages |
+| `pnpm verify:layout` | PASS — 75/75 |
+| `tools/13-calculator-live.mjs` | PASS — 14/14, both languages |
+| `node tools/verify-no-seed-content.mjs` | **BLOCKED**, exit 1 — the correct answer |
+| Control size ≥ 44px | **WARNING** — see below |
+
+Two captures came back from the partial-data path — the SSH transport times out
+under a sweep this size — and measured a fifth of their real height. Both had no
+`h1`, which is a clean detector. The harness now retries on that signal, flags
+`degraded` if it never resolves, and takes `--route` / `--locale` / `--vp` so one
+bad capture can be re-shot and merged. Both were re-shot; the recorded values are
+the clean ones. **On Windows, pass those filters with `MSYS_NO_PATHCONV=1`** or
+Git Bash rewrites `/contact/` into a Windows path and the run silently captures
+nothing.
+
+### Reported, not repaired
+
+**Three `/contact` form controls are under the 44px minimum:** the name and
+email inputs at 37px, and the English service `select` at 34px. Pre-existing —
+`components/homepage/contact-form.tsx` was last touched three commits before
+this branch began — and **shared by all six tenants**, so raising it changes
+what the other five companies see. That is outside what this task authorized.
+The fix is a one-line `min-h-[44px]` on the three fields, in a task allowed to
+move shared chrome. Every control in the rebuilt calculator passes.
+
+### Sharper than previously recorded: who is on `/about`
+
+The Phase 3 owner-deliverable list read as though placeholders were waiting to
+be filled in. They are not. `/about` carries five real named individuals from
+the `.in` entity with real roles and biographies, and its `h1` reads "Scale your
+business with Mohamed Riyaz" with a pulled quote attributed to him as Founder &
+Technical Architect.
+
+Nothing is deployed, `blog_public` is `0`, and every one of those records
+carries `_sira_seed=1` so the launch gate BLOCKS while they exist — the
+safeguards are real and were verified. It is still personal data about
+identified individuals rather than lorem, and which of it belongs to the Saudi
+entity is an owner decision. No CMS content was changed by this task.
+
+### Validation actually run — all at the branch head
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | PASS |
+| `pnpm typecheck` | PASS |
+| `pnpm build` | PASS |
+| `pnpm test:run` | PASS — 657 tests, 61 files (was 618) |
+| `pnpm verify:layout` | PASS — 75/75 |
+| Browser QA, 60 captures | PASS — see above |
+| **Frontend CI, run 34386667855** | **PASS — every step, none skipped** |
+| `tools/verify-no-seed-content.mjs` | BLOCKED, exit 1 — expected |
+
+`pnpm typecheck` still needs `rm -rf frontend/.next` **followed by a build** if
+the generated route types are stale; running the dev server leaves a second copy
+under `.next/dev/types` that conflicts with the built one.
+
+### Frontend CI was RED, and not from this work — now GREEN, end to end
+
+Run 34372991585 at head `bf9363eb` fails on one step: **Verify patch
+whitespace**, which runs `git diff --check HEAD^1 HEAD` — on a pull request that
+diffs the whole branch against its base.
+
+**It is the FIRST step, and it short-circuits the whole job.** Lint, typecheck,
+tests, the production build, the schema-determinism check, the layout verifier
+and the fixture render are all reported `skipped`, not passing. The pull request
+therefore carries **no CI evidence for any of the code**. All of those gates were
+run locally at this head and pass — recorded below — but a local run is
+`TRANSFERRED_EVIDENCE` and must not be read as CI.
+
+Four `+` lines trip it, all the same string, in `frontend/schema/wpgraphql.graphql`
+and `frontend/schema/wpgraphql.group.graphql`: WordPress core's own `post_date`
+field description, which ends in a space. Faithful generated output.
+
+| commit | `git diff --check` |
+| --- | --- |
+| `b5144cc6` — Phase 3 schema recapture | **8 whitespace errors** |
+| `d802d30c` — Phase 3 schema recapture | clean |
+| `a4c21c07` — Phase 5, the calculator | **clean** |
+| `83eb5bb2` — Phase 5, the QA pass | **clean** |
+
+`main` already carries **62** trailing-whitespace lines in that same generated
+file. The check passes today only because those lines sit in no diff. **Every
+future schema recapture will fail it**, not just this one.
+
+Hand-stripping the spaces was never an option: `AGENTS.md` requires generated
+files to be regenerated from their source contracts rather than edited, and the
+next `pnpm schema:fetch` would reintroduce them.
+
+This was raised as `BLOCKED_SCOPE_EXPANSION_REQUIRED` and **the owner authorized
+the `.gitattributes` option** on 2026-09-09, in preference to editing the
+workflow. One line, beside the entries that already mark those same two files
+`linguist-generated`, so it extends an existing decision about generated schema
+rather than making a new one:
+
+```
+frontend/schema/*.graphql                      -whitespace
+```
+
+Scope verified with `git check-attr` rather than assumed:
+
+| path | `whitespace` |
+| --- | --- |
+| `frontend/schema/wpgraphql.graphql` | **unset** |
+| `frontend/schema/wpgraphql.group.graphql` | **unset** |
+| `frontend/src/lib/calculator/model.ts` | unspecified |
+| `.gitattributes` | unspecified |
+| `docs/HANDOFF.md` | unspecified |
+
+Nothing outside `frontend/schema/` loses the check. Both
+`git diff --check b5144cc6^ b5144cc6` and the whole-branch-against-base
+comparison CI actually runs return **0**.
+
+#### And behind it, a second defect the short-circuit had been hiding
+
+With the whitespace step passing, the job reached step 9 and failed there
+instead: **Verify generated GraphQL output is deterministic**. Regenerating from
+the committed schema and the committed documents did not reproduce the committed
+output.
+
+The generated file was stale against its own source. Phase 3 added
+`isRestricted` to the `DigitalAboutMedia` fragment in
+`frontend/src/queries/digital-about.graphql` (commit `9b24bb6c`) and committed a
+generated file that predated the edit. The entire regeneration is that one
+field, verified line by line across both generated files — nothing else moved.
+
+Regenerating is the prescribed remedy rather than a judgement call: `AGENTS.md`
+requires generated files to be regenerated from their source contracts, and
+editing the generated file to match the stale state would have been the actual
+violation. The runtime document string now requests `isRestricted` on About
+media, which the source document has asked for since Phase 3; the field is in
+the checked-in schema and the editorial normalizers already use it as a
+restriction gate, so the About query joins an established pattern rather than
+introducing a field nobody reads.
+
+**Frontend CI now passes end to end at `b0c6918d`** — run 34386667855, 1m35s,
+with every step `success` and none skipped: whitespace, schema artifacts, codegen
+determinism, lint, typecheck, tests, production build, layout primitives,
+homepage fixtures and the Draft Mode runtime check. The pull request has CI
+evidence for the code for the first time.
+
+**The lesson worth keeping:** a cheap first step that can fail on generated
+content will hide every expensive check behind it. Two real defects sat
+undetected on this branch for exactly that reason.
+
+**Reported, not repaired, in the same file:** `.gitattributes` opens by
+describing the reference forensics as "taken against a third-party site". That
+is the premise `REPORT.md` §9 was amended to correct in this same branch — the
+reference is the owner's own company. It is a comment and changes no behaviour,
+but the repository now asserts two provenances. Correcting prose that describes
+governance provenance was not part of the authorization given, so it is recorded
+here instead.
+
+### Still open after this phase
+
+1. `/products` — the route was never built, and building one would mean
+   inventing a product line. The `sira_product` CPT is deployed and empty.
+2. Home refinements beyond the calculator were not taken.
+3. Which named individuals, if any, belong to the Saudi entity — the one part
+   of the `REPORT.md` §9 amendment that only the owner can close.
+4. The `/contact` form control sizes, above.
+5. ~~Frontend CI's whitespace step.~~ Fixed with owner approval, above. The
+   stale third-party provenance sentence in `.gitattributes` is not.
+6. Everything in the owner-deliverable list under Phase 3, which the `/about`
+   finding above sharpens rather than replaces.
+
+### No authorization is inherited
+
+Nothing in this phase authorizes a merge, a deployment, a DNS change, a CMS
+mutation, or deleting the Digital WordPress site. The draft pull request is a
+candidate for review, not an accepted result.
+
 ## New owner decision — Group staging first
 
 The replacement public Group frontend for `siratrgroup.com` must be developed, integrated, QA'd, and owner-accepted on staging before production cutover.

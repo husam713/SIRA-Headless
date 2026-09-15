@@ -1,0 +1,164 @@
+fragment DigitalAboutLink on AcfLink {
+  title
+  url
+  target
+}
+
+fragment DigitalAboutMedia on MediaItem {
+  databaseId
+  sourceUrl
+  altText
+  isRestricted
+  mediaDetails {
+    width
+    height
+  }
+}
+
+# The About composition, and the people it introduces.
+#
+# One request for both. The team is a content type rather than rows on the page
+# — a person has a portrait, a locale and revisions of their own — but a reader
+# meets the section and the people as one thing, and two round trips to render
+# one screen is a cost with no reader-visible benefit.
+#
+# Leadership profiles are ordered by menu order first so the founder can lead
+# the grid, then by title so an unordered set is at least deterministic rather
+# than arriving in whatever order the database volunteers.
+query SiraDigitalAbout($uri: ID!, $asPreview: Boolean = false) {
+  page(id: $uri, idType: URI, asPreview: $asPreview) {
+    databaseId
+    uri
+    title
+    content
+    modified
+    siraLocale {
+      code
+    }
+    pageIntro {
+      eyebrow
+      heading
+      standfirst
+      ctaLabel
+      ctaHeading
+    }
+    digitalAbout {
+      hero {
+        eyebrow
+        headingBefore
+        headingHighlight
+        headingAfter
+        description
+        primaryCta {
+          ...DigitalAboutLink
+        }
+        secondaryCta {
+          ...DigitalAboutLink
+        }
+        portrait {
+          node {
+            ...DigitalAboutMedia
+          }
+        }
+      }
+      stats {
+        value
+        label
+      }
+      team {
+        eyebrow
+        heading
+        standfirst
+      }
+      statement {
+        ghostWord
+        body
+        quote
+        attributionName
+        attributionRole
+        socials {
+          network
+          url
+        }
+      }
+      process {
+        eyebrow
+        heading
+        standfirst
+        steps {
+          title
+          body
+        }
+      }
+    }
+  }
+
+  siraLeadershipProfiles(
+    first: 24
+    where: {
+      status: PUBLISH
+      orderby: [
+        { field: MENU_ORDER, order: ASC }
+        { field: TITLE, order: ASC }
+      ]
+    }
+  ) {
+    pageInfo {
+      hasNextPage
+    }
+    nodes {
+      databaseId
+      slug
+      title
+      excerpt
+      siraLocale {
+        code
+      }
+      personDetails {
+        role
+        linkedin
+      }
+      featuredImage {
+        node {
+          ...DigitalAboutMedia
+        }
+      }
+    }
+  }
+}
+
+# One industry, by slug.
+#
+# `idType: SLUG` rather than a filtered collection: the route already has the
+# slug from the URL, and asking for the one term is both cheaper and honest
+# about what the page is.
+query SiraIndustryDetail($id: ID!) {
+  siraIndustry(id: $id, idType: SLUG) {
+    databaseId
+    slug
+    name
+    description
+    siraLocale {
+      code
+    }
+    digitalIndustry {
+      eyebrow
+      standfirst
+      workflow {
+        title
+        detail
+      }
+      stat {
+        value
+        label
+      }
+      build {
+        item
+      }
+      buildNote
+      stack {
+        item
+      }
+    }
+  }
+}

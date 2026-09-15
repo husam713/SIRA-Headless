@@ -8,6 +8,7 @@ import {
   SIRA_SERVICE_INDEX_QUERY,
   SIRA_WORK_INDEX_QUERY,
 } from "@/queries/content-page";
+import { SIRA_INDUSTRY_DETAIL_QUERY } from "@/queries/digital-about";
 import type { LocaleCode, SiteKey } from "@/types/site";
 
 /**
@@ -50,6 +51,18 @@ export interface ServiceEntry {
   readonly html: string | null;
   /** Declared by the CMS. `null` predates the field; see `recordLocale`. */
   readonly locale: LocaleCode | null;
+  /**
+   * The problem this capability answers, in the reader's own words.
+   *
+   * A field rather than the first paragraph of the body because the page sets
+   * it differently: it is the one line a skimming reader is guaranteed to read,
+   * and a component that styles it has to be able to find it.
+   */
+  readonly challenge: string | null;
+  /** What is true afterwards, in plain language. */
+  readonly outcome: string | null;
+  /** The per-service call to action. Falls back to the page's own label. */
+  readonly ctaLabel: string | null;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -153,6 +166,10 @@ function normalizeServiceIndex(data: unknown): readonly ServiceEntry[] {
         return null;
       }
 
+      const digital = isRecord(node["digitalService"])
+        ? node["digitalService"]
+        : {};
+
       return Object.freeze({
         databaseId,
         slug,
@@ -160,6 +177,9 @@ function normalizeServiceIndex(data: unknown): readonly ServiceEntry[] {
         excerpt: plainText(node["excerpt"], 400),
         html: editorialHtml(node["content"]),
         locale: normalizeLocale(node["siraLocale"]),
+        challenge: plainText(digital["challenge"], 400),
+        outcome: plainText(digital["outcome"], 400),
+        ctaLabel: plainText(digital["ctaLabel"], 80),
       });
     })
     .filter((entry): entry is ServiceEntry => entry !== null);
@@ -246,6 +266,67 @@ export interface IndustryEntry {
   readonly bottleneck: string | null;
   readonly opportunity: string | null;
   readonly locale: LocaleCode | null;
+  /** The sector's positioning line, above the name. */
+  readonly eyebrow: string | null;
+  /** The standfirst, preferred over the pipe-encoded `summary`. */
+  readonly standfirst: string | null;
+  /**
+   * The step names of the automation workflow.
+   *
+   * The index card shows the first few as a flow strip, and the detail page
+   * shows all of them with their descriptions. Deriving the strip from the real
+   * workflow rather than from a second field is what keeps the two from
+   * disagreeing after an edit.
+   */
+  readonly flow: readonly string[];
+  /** Optional headline figure. Seven of the twelve sectors publish none. */
+  readonly stat: IndustryStat | null;
+}
+
+export interface IndustryStat {
+  readonly value: string;
+  readonly label: string | null;
+}
+
+/** One step of an industry's automation workflow. */
+export interface IndustryStep {
+  readonly title: string;
+  readonly detail: string | null;
+}
+
+/** An industry with everything its own page renders. */
+export interface IndustryDetail extends IndustryEntry {
+  readonly workflow: readonly IndustryStep[];
+  readonly build: readonly string[];
+  readonly buildNote: string | null;
+  readonly stack: readonly string[];
+}
+
+/** Reads `{ value, label }`, treating a value-less figure as absent. */
+function normalizeStat(value: unknown): IndustryStat | null {
+  if (!isRecord(value)) return null;
+
+  const figure = plainText(value["value"], 12);
+
+  return figure === null
+    ? null
+    : Object.freeze({ value: figure, label: plainText(value["label"], 120) });
+}
+
+/** Reads a repeater of `{ [key]: string }` rows into a list of strings. */
+function normalizeStringRows(
+  value: unknown,
+  key: string,
+  maximumLength: number,
+): readonly string[] {
+  if (!Array.isArray(value)) return Object.freeze([]);
+
+  return Object.freeze(
+    value
+      .filter(isRecord)
+      .map((row) => plainText(row[key], maximumLength))
+      .filter((item): item is string => item !== null),
+  );
 }
 
 function normalizeWorkIndex(data: unknown): readonly WorkEntry[] {
@@ -280,6 +361,42 @@ function normalizeWorkIndex(data: unknown): readonly WorkEntry[] {
   );
 }
 
+/**
+ * One industry term, from either the index query or the single query.
+ *
+ * The pipe-encoded description is still read, and still second. It is how these
+ * records were stored before the sector pages existed, and a tenant that has
+ * not re-authored one should keep rendering rather than fall to an empty card —
+ * but an explicit field always wins over a delimiter an editor can type by
+ * accident.
+ */
+function normalizeIndustryEntry(
+  node: Record<string, unknown>,
+  databaseId: number,
+  slug: string,
+  name: string,
+): IndustryEntry {
+  const parts = (typeof node["description"] === "string" ? node["description"] : "")
+    .split("|")
+    .map((part) => plainText(part, 600));
+  const digital = isRecord(node["digitalIndustry"]) ? node["digitalIndustry"] : {};
+  const summary = parts[0] ?? null;
+
+  return Object.freeze({
+    databaseId,
+    slug,
+    name,
+    summary,
+    bottleneck: parts[1] ?? null,
+    opportunity: parts[2] ?? null,
+    locale: normalizeLocale(node["siraLocale"]),
+    eyebrow: plainText(digital["eyebrow"], 120),
+    standfirst: plainText(digital["standfirst"], 600) ?? summary,
+    flow: normalizeStringRows(digital["workflow"], "title", 60),
+    stat: normalizeStat(digital["stat"]),
+  });
+}
+
 function normalizeIndustryIndex(data: unknown): readonly IndustryEntry[] {
   if (!isRecord(data) || !isRecord(data["siraIndustries"])) return Object.freeze([]);
 
@@ -299,19 +416,7 @@ function normalizeIndustryIndex(data: unknown): readonly IndustryEntry[] {
           return null;
         }
 
-        const parts = (typeof node["description"] === "string" ? node["description"] : "")
-          .split("|")
-          .map((part) => plainText(part, 600));
-
-        return Object.freeze({
-          databaseId,
-          slug,
-          name,
-          summary: parts[0] ?? null,
-          bottleneck: parts[1] ?? null,
-          opportunity: parts[2] ?? null,
-          locale: normalizeLocale(node["siraLocale"]),
-        });
+        return Object.freeze(normalizeIndustryEntry(node, databaseId, slug, name));
       })
       .filter((entry): entry is IndustryEntry => entry !== null),
   );
@@ -346,7 +451,62 @@ async function resolveIndustryIndex(
   }
 }
 
+function normalizeIndustryDetail(data: unknown): IndustryDetail | null {
+  if (!isRecord(data) || !isRecord(data["siraIndustry"])) return null;
+
+  const node = data["siraIndustry"];
+  const databaseId = Number(node["databaseId"]);
+  const name = plainText(node["name"], 120);
+  const slug = typeof node["slug"] === "string" ? node["slug"] : null;
+
+  if (!Number.isSafeInteger(databaseId) || databaseId <= 0 || name === null || slug === null) {
+    return null;
+  }
+
+  const digital = isRecord(node["digitalIndustry"]) ? node["digitalIndustry"] : {};
+  const workflow = Array.isArray(digital["workflow"])
+    ? digital["workflow"]
+        .filter(isRecord)
+        .map((step): IndustryStep | null => {
+          const title = plainText(step["title"], 80);
+
+          return title === null
+            ? null
+            : Object.freeze({ title, detail: plainText(step["detail"], 200) });
+        })
+        .filter((step): step is IndustryStep => step !== null)
+    : [];
+
+  return Object.freeze({
+    ...normalizeIndustryEntry(node, databaseId, slug, name),
+    workflow: Object.freeze(workflow),
+    build: normalizeStringRows(digital["build"], "item", 200),
+    buildNote: plainText(digital["buildNote"], 400),
+    stack: normalizeStringRows(digital["stack"], "item", 60),
+  });
+}
+
+async function resolveIndustryDetail(
+  siteKey: SiteKey,
+  slug: string,
+): Promise<IndustryDetail | null> {
+  try {
+    return normalizeIndustryDetail(
+      await fetchPublishedGraphQL(
+        siteKey,
+        SIRA_INDUSTRY_DETAIL_QUERY,
+        { id: slug },
+        { tags: ["industries"] },
+      ),
+    );
+  } catch (error) {
+    logFailure("industry detail", siteKey, error);
+    return null;
+  }
+}
+
 export const getContentPage = cache(resolveContentPage);
+export const getIndustryDetail = cache(resolveIndustryDetail);
 export const getWorkIndex = cache(resolveWorkIndex);
 export const getIndustryIndex = cache(resolveIndustryIndex);
 export const getServiceIndex = cache(resolveServiceIndex);

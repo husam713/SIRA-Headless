@@ -36,6 +36,11 @@ query SiraServiceIndex {
       siraLocale {
         code
       }
+      digitalService {
+        challenge
+        outcome
+        ctaLabel
+      }
     }
   }
 }
@@ -70,6 +75,17 @@ query SiraIndustryIndex {
       description
       siraLocale {
         code
+      }
+      digitalIndustry {
+        eyebrow
+        standfirst
+        workflow {
+          title
+        }
+        stat {
+          value
+          label
+        }
       }
     }
   }

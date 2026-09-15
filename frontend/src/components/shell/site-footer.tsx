@@ -162,7 +162,7 @@ export function SiteFooter({
   const hasConnect = brand.email !== null || social.length > 0;
 
   return (
-    <footer className="border-t border-brand-deep-border bg-brand-footer text-brand-on-deep/70">
+    <footer className="site-footer border-t border-brand-deep-border bg-brand-footer text-brand-on-deep/70">
       <PageContainer
         className={
           isBranch

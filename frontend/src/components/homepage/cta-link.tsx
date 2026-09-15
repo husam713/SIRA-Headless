@@ -11,8 +11,10 @@ interface CtaLinkProps {
   readonly accentColor?: string;
 }
 
+// `press` carries the colour transition and the one-pixel press settle every
+// button on the site shares (globals.css, "Press feedback").
 const BASE_CLASSES =
-  "inline-flex w-fit items-center text-xs font-semibold uppercase tracking-[0.1em] transition-colors";
+  "press inline-flex w-fit items-center text-xs font-semibold uppercase tracking-[0.1em]";
 
 // The design reference draws buttons as square-cornered rectangles, and the
 // header CTA was squared to match in PR #60. These are the body CTAs, so they

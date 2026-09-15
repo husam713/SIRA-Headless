@@ -2,8 +2,8 @@ import { getBrandPreset } from "@/lib/brand/fallbacks";
 import type { EditorialDeskKey, EditorialItem } from "@/lib/editorial/types";
 import type { SiteKey } from "@/types/site";
 
-// A "desk" is where a story came from: SIRA GROUP itself, or one of the four
-// specialised companies. It is the newsroom's primary axis, because the thing
+// A "desk" is where a story came from: SIRA GROUP itself, or one of its
+// operating companies. It is the newsroom's primary axis, because the thing
 // that distinguishes a holding company's record from any other newsroom is
 // *which house* filed each entry.
 //
@@ -22,6 +22,7 @@ export const EDITORIAL_DESK_ORDER: readonly EditorialDeskKey[] = Object.freeze([
   "real-estate",
   "lifestyle",
   "consulting",
+  "digital",
 ]);
 
 const SITE_KEY_BY_DESK: Readonly<Record<EditorialDeskKey, SiteKey>> =
@@ -31,17 +32,19 @@ const SITE_KEY_BY_DESK: Readonly<Record<EditorialDeskKey, SiteKey>> =
     "real-estate": "realestate",
     lifestyle: "lifestyle",
     consulting: "consulting",
+    digital: "digital",
   });
 
 // Short enough to set at 11px in a register margin without wrapping. The brand
 // presets carry the full legal-ish names ("SIRA Real Estate"); repeating "SIRA"
-// five times down a page is noise, not identity.
+// down every row of a page is noise, not identity.
 const DESK_LABEL: Readonly<Record<EditorialDeskKey, string>> = Object.freeze({
   group: "Group",
   healthcare: "Healthcare",
   "real-estate": "Real Estate",
   lifestyle: "Lifestyle",
   consulting: "Consulting",
+  digital: "Digital",
 });
 
 export function isEditorialDeskKey(value: string): value is EditorialDeskKey {

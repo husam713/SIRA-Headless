@@ -245,7 +245,7 @@ Fresh read-only evidence on 2026-08-15 inspected 5/5 tenants. Both identity acti
 
 The Step 2C.5B readiness plan is owner accepted and merged through PR #16. Operational mutation readiness remains BLOCKED_BY_BACKUP_EVIDENCE and requires human administrator action. RB-001 network backup evidence and RB-009 restore validation evidence are UNKNOWN, and the exact current live administrative coordinates are not independently confirmed. PR #18 reconciled the repository backend to the independently verified LIVE Step 2C.2F source, so SOT-001 no longer makes the repository backend stale. However, repository source registration alone does not prove the effective live WordPress Admin route, capability, field coordinates, or taxonomy screen coordinates; those remain subject to human read-only confirmation. Plan acceptance and Batch A mutation authorization remain separate gates: step2c5bAccepted=true, batchAMutationAuthorized=false, and CMS mutation authorization remains NOT_GRANTED.
 
-The owner-approved canonical public production apex is `siratrgroup.com`; the branch public hostnames are `consulting.siratrgroup.com`, `healthcare.siratrgroup.com`, `lifestyle.siratrgroup.com`, and `realestate.siratrgroup.com`. This decision applies only to public production hostnames. WordPress backend, GraphQL, media, staging, Vercel preview, cookie-domain, CORS, and revalidation origins/policies remain UNKNOWN until repository or live configuration evidence establishes them. Public-domain selection is resolved without changing the Step 2C.4 gap counts: 11 BLOCKING and 5 NONBLOCKING. `2C4-B07` and `2C4-B10` remain BLOCKING.
+The owner-approved canonical public production topology now spans two apexes (ADR-033). The Group apex is `siratrgroup.com`; the branch public hostnames are `consulting.siratrgroup.com`, `healthcare.siratrgroup.com`, `lifestyle.siratrgroup.com`, and `realestate.siratrgroup.com`; and SIRA Digital is `sirahdigital.sa`, a deliberate separate Saudi apex rather than a Group subdomain. This decision applies only to public production hostnames. WordPress backend, GraphQL, media, staging, Vercel preview, cookie-domain, CORS, and revalidation origins/policies remain UNKNOWN until repository or live configuration evidence establishes them. Public-domain selection is resolved without changing the Step 2C.4 gap counts: 11 BLOCKING and 5 NONBLOCKING. `2C4-B07` and `2C4-B10` remain BLOCKING.
 
 Required delivery flow:
 
@@ -271,11 +271,38 @@ Known separate observation: backend source declares SiraProjectDetails while the
 
 - `2C4-B07` media-origin policy: UNRESOLVED / DEFERRED.
 - `2C4-B08` forms architecture: UNRESOLVED.
-- `2C4-B09` multilingual architecture: UNRESOLVED.
+- `2C4-B09` multilingual architecture: RESOLVED for `digital` only (ADR-034);
+  UNRESOLVED for the other five tenants.
 - `PREVIEW-AUTH-001`: DEFERRED.
 - External Group staging: NOT PROVISIONED / NOT AUTHORIZED.
 - CMS mutation and Step 2C.5C: NOT AUTHORIZED; the human backup/admin evidence gate remains required.
 - Step 4 production UI implementation: AUTHORIZED / IN PROGRESS. Group homepage sections, the shared shell, the branch homepage, and the shared responsive layout primitives are all merged, through PRs `#36`, `#38`, `#40`, `#41`, `#44`, `#47`, and `#48`. That list is exact: `#37`, `#42`, `#43`, `#45`, and `#46` were not visual implementation increments. Newsroom route work remains NOT STARTED and is deliberately sequenced after the responsive foundation. ADR-029, which governs that responsive foundation, is owner accepted as of 2026-09-02; the acceptance covers the architecture decision only and grants no downstream authority.
+- Digital company (ADR-033): the tenant is registered in the repository on the
+  unmerged branch `feat/sirahdigital-sa`. Its WordPress site **IS PROVISIONED**
+  as of 2026-09-08 — blog 6 on the existing network, `blog_public 0`, created
+  under the authorization the owner's Phase 2 prompt added to ADR-033, after a
+  verified backup. It carries seeded pre-launch content. Its trading-name
+  spelling and brand mark remain open owner confirmations. See
+  `docs/DIGITAL-TENANT-PROVISIONING.md` and the Phase 2 section of
+  `docs/HANDOFF.md`.
+- Digital hostnames (ADR-035, owner decision 2026-09-08): the active public
+  frontend hostname is `digital.siratrgroup.com`. `sirahdigital.sa` is the
+  intended future production domain, is registered in the site registry as the
+  planned hostname, and currently redirects to the active one. The repository is
+  reconciled: `frontend/src/config/sites.ts`, the topology block of
+  `project-state.json`, `tests/contract/digital-tenant-topology.test.ts` and
+  `tests/unit/site-registry.test.ts` all agree. The cutover is configuration
+  only — `SIRA_CANONICAL_HOSTNAMES_JSON={"digital":"sirahdigital.sa"}` — and
+  needs no rebuild or content migration. Domain registration, DNS, the WordPress
+  CMS-domain migration and deployment remain NOT AUTHORIZED.
+- `2C4-B09` is RESOLVED for the `digital` tenant only (ADR-034): Arabic is a
+  first-class locale inside the same Digital site, with explicit `sira_locale`
+  metadata and an explicit `sira_translation_of` pointer. It remains UNRESOLVED
+  for the other five tenants, which must not have Arabic content authored.
+- Digital seeded content is NOT covered by the launch gate.
+  `tools/verify-no-seed-content.mjs` checks only the four editorial post types
+  and post meta, so Digital's seeded pages, services, projects, and industry
+  terms would pass undetected. Launch-blocking defect; not yet fixed.
 - Production deployment, DNS, Group cutover, and legacy Group destruction: NOT AUTHORIZED.
 
 PR `#31` current-state reconciliation, PR `#33` AI Engineering OS Governance

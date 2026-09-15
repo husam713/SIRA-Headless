@@ -8,6 +8,7 @@ import {
 import {
   assertExactBranchSchemas,
   assertRequiredContract,
+  BRANCH_SITE_KEYS,
   assertSafeArtifactObject,
   compareCanonicalToGroup,
   createSchemaMetadata,
@@ -31,24 +32,37 @@ function fixture(name: string) {
 describe("live schema compatibility policy", () => {
   const canonical = fixture("canonical.graphql");
 
-  it("requires exact equality across all four branch hashes", () => {
-    const canonicalResult = assertExactBranchSchemas([
-      { siteKey: "consulting", sha256: "same" },
-      { siteKey: "healthcare", sha256: "same" },
-      { siteKey: "lifestyle", sha256: "same" },
-      { siteKey: "realestate", sha256: "same" },
-    ]);
+  it("requires exact equality across every branch-peer hash", () => {
+    // Built from BRANCH_SITE_KEYS rather than listed by hand. ADR-033 added a
+    // fifth peer, and a hand-written list would have made that a test edit
+    // every time the estate grows instead of a policy question.
+    const canonicalResult = assertExactBranchSchemas(
+      BRANCH_SITE_KEYS.map((siteKey) => ({ siteKey, sha256: "same" })),
+    );
 
     expect(canonicalResult.siteKey).toBe("consulting");
 
+    // One peer out of step must fail, whichever peer it is and however many
+    // there are. Built from the same list so adding a company cannot silently
+    // stop this case from being exercised.
     expect(() =>
-      assertExactBranchSchemas([
-        { siteKey: "consulting", sha256: "same" },
-        { siteKey: "healthcare", sha256: "different" },
-        { siteKey: "lifestyle", sha256: "same" },
-        { siteKey: "realestate", sha256: "same" },
-      ]),
+      assertExactBranchSchemas(
+        BRANCH_SITE_KEYS.map((siteKey, index) => ({
+          siteKey,
+          sha256: index === 1 ? "different" : "same",
+        })),
+      ),
     ).toThrow(/schemas differ/);
+  });
+
+  it("fails when a branch peer is missing entirely", () => {
+    // A silently absent tenant would otherwise pass the equality check by
+    // simply not being compared.
+    expect(() =>
+      assertExactBranchSchemas(
+        BRANCH_SITE_KEYS.slice(1).map((siteKey) => ({ siteKey, sha256: "same" })),
+      ),
+    ).toThrow(/branch schemas, got/);
   });
 
   it("preserves all five site hashes in safe metadata", () => {

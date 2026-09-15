@@ -1,5 +1,11 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { notFound } from "next/navigation";
+import {
+  DigitalCapabilities,
+  DigitalHero,
+  DigitalMarquee,
+  DigitalWordmark,
+} from "@/components/digital";
 import { BranchHero } from "@/components/homepage/branch-hero";
 import { BranchOverview } from "@/components/homepage/branch-overview";
 import { BranchStats } from "@/components/homepage/branch-stats";
@@ -18,6 +24,8 @@ import { GroupTicker } from "@/components/homepage/group-ticker";
 import { getBrand } from "@/lib/brand";
 import { getHomepageForRequest } from "@/lib/homepage";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { localeUri } from "@/lib/i18n/locale";
+import { getRequestLocale } from "@/lib/i18n/request-locale";
 
 interface SiteHomePageProps {
   readonly params: Promise<{
@@ -35,9 +43,12 @@ export default async function SiteHomePage({
     notFound();
   }
 
+  // Same URI the layout resolves, so the two share one request-cached query
+  // rather than rendering different languages of the same page.
+  const request = await getRequestLocale(site);
   const [brand, homepage] = await Promise.all([
     getBrand(site.key),
-    getHomepageForRequest(site.key),
+    getHomepageForRequest(site.key, localeUri(request.locale, site, "/")),
   ]);
 
   if (homepage.status === "ready" && homepage.homepage.variant === "group") {
@@ -72,6 +83,42 @@ export default async function SiteHomePage({
         <GroupPartners section={homepage.homepage.partners} />
         <GroupContact
           section={homepage.homepage.contact}
+          email={brand.email}
+          address={brand.address}
+        />
+      </>
+    );
+  }
+
+  if (homepage.status === "ready" && homepage.homepage.variant === "digital") {
+    const { homepage: digital } = homepage;
+
+    // Digital deliberately does NOT reuse the branch composition (ADR-033).
+    // Sharing the shell, the tokens, the data contract and the transport is the
+    // point of one platform; sharing the page composition would have made the
+    // technology company look like a fifth branch site.
+    return (
+      <>
+        {/*
+          Hidden, not decorative: carries the resolved WordPress page title so
+          published-vs-draft data selection stays independently verifiable in
+          rendered output (see scripts/preview-runtime-check.mjs), without
+          duplicating the hero's own <h1> for screen-reader users.
+        */}
+        <span className="sr-only" data-sira-homepage-title>
+          {digital.title}
+        </span>
+        {/* Conditional for the same reason every other section is. */}
+        {digital.hero !== null && <DigitalHero hero={digital.hero} />}
+        <DigitalCapabilities
+          eyebrow={digital.capabilitiesEyebrow}
+          capabilities={digital.capabilities}
+        />
+        <DigitalMarquee section={digital.marquee} />
+        <DigitalWordmark section={digital.wordmark} />
+        <GroupInsights section={digital.insights} />
+        <GroupContact
+          section={digital.contact}
           email={brand.email}
           address={brand.address}
         />

@@ -21,17 +21,19 @@ export type EditorialContentTypeName =
 /**
  * The CMS-owned Business Unit slugs. ADR-014 fixes these exact strings; note
  * `real-estate`, which is deliberately not derivable from the `realestate`
- * site key.
+ * site key. ADR-033 extends the same mapping with `digital`, where the slug and
+ * the site key do coincide.
  */
 export type EditorialBusinessUnitSlug =
   | "consulting"
   | "healthcare"
   | "lifestyle"
-  | "real-estate";
+  | "real-estate"
+  | "digital";
 
 /**
- * Where an entry was filed. The four companies, plus `group` for SIRA GROUP
- * itself — which is the ABSENCE of a Business Unit term, per the ADR-014
+ * Where an entry was filed. The operating companies, plus `group` for SIRA
+ * GROUP itself — which is the ABSENCE of a Business Unit term, per the ADR-014
  * mapping `group -> null`.
  */
 export type EditorialDeskKey = "group" | EditorialBusinessUnitSlug;

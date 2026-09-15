@@ -11,6 +11,7 @@ const EDITORIAL_BUSINESS_UNIT_BY_SITE = Object.freeze({
   healthcare: "healthcare",
   lifestyle: "lifestyle",
   realestate: "real-estate",
+  digital: "digital",
 } as const satisfies Readonly<
   Record<SiteKey, EditorialBusinessUnitSlug | null>
 >);

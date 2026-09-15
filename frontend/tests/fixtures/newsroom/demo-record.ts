@@ -19,7 +19,7 @@ import type {
 //   - headlines from four words to twenty-two;
 //   - summaries from one clause to three sentences, and several with none;
 //   - roughly half the entries carrying no featured image at all;
-//   - all five desks, including two joint entries filed to two desks;
+//   - every desk, including two joint entries filed to two desks;
 //   - all four content kinds;
 //   - four publication years, including a year with a single entry;
 //   - one entry with no date.
@@ -32,6 +32,7 @@ const DESK_GROUND: Readonly<Record<EditorialDeskKey, readonly [string, string]>>
     "real-estate": ["#1c1410", "#b0733c"],
     lifestyle: ["#0e1f1a", "#2e8c72"],
     consulting: ["#191324", "#8b5aae"],
+    digital: ["#0a0f1a", "#d4a94f"],
   });
 
 /**

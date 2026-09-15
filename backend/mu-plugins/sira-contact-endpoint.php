@@ -43,6 +43,10 @@
  *     CAPTCHA;
  *   - stored submissions are private and administrator-only — see
  *     sira-contact-store.php for the full privacy posture.
+ *
+ * Recipients are resolved per tenant, not per network: see
+ * sira_contact_recipient(). A network shares one wp-config.php, so a single
+ * constant would route every company's enquiries to one inbox.
  */
 
 declare(strict_types=1);
@@ -81,6 +85,78 @@ function sira_contact_clean(string $value, int $max, bool $multiline = false): s
     }
 
     return trim(mb_substr($value, 0, $max));
+}
+
+/** The hostname this tenant actually serves, for naming it in a notification. */
+function sira_contact_site_host(): string
+{
+    $host = wp_parse_url(home_url('/'), PHP_URL_HOST);
+
+    return is_string($host) && $host !== '' ? $host : 'unknown-host';
+}
+
+/**
+ * Who receives an enquiry from THIS site.
+ *
+ * A Multisite network shares one wp-config.php, so a single constant cannot be
+ * tenant-aware: it would route every company's enquiries to one inbox. Since
+ * ADR-033 added a company with its own domain and its own commercial owner,
+ * this resolves per tenant. Most specific source first:
+ *
+ *   1. the per-site `sira_contact_recipient` option, which lives in the
+ *      tenant's own options table, so a company can own its inbox without a
+ *      deploy and without editing a shared file;
+ *   2. SIRA_CONTACT_RECIPIENTS in wp-config.php — an array keyed by blog id or
+ *      by hostname, which lets the one shared file address every tenant
+ *      explicitly;
+ *   3. SIRA_CONTACT_RECIPIENT, the original single-value constant, kept so an
+ *      existing single-tenant configuration keeps working unchanged;
+ *   4. the site's own administrator address, which is already per-site.
+ *
+ * Every candidate is validated before it is used, so a mistyped override falls
+ * through to the next source instead of silently sending an enquiry nowhere.
+ */
+function sira_contact_recipient(): string
+{
+    $candidates = [];
+
+    $option = get_option('sira_contact_recipient');
+    if (is_string($option)) {
+        $candidates[] = $option;
+    }
+
+    if (defined('SIRA_CONTACT_RECIPIENTS') && is_array(SIRA_CONTACT_RECIPIENTS)) {
+        $map  = SIRA_CONTACT_RECIPIENTS;
+        // PHP normalises a numeric array key to an int on both sides, so the
+        // blog id matches whether wp-config wrote 6 or '6'.
+        $keys = [get_current_blog_id(), sira_contact_site_host()];
+
+        foreach ($keys as $key) {
+            if (isset($map[$key]) && is_string($map[$key])) {
+                $candidates[] = $map[$key];
+                break;
+            }
+        }
+    }
+
+    if (defined('SIRA_CONTACT_RECIPIENT')) {
+        $candidates[] = (string) SIRA_CONTACT_RECIPIENT;
+    }
+
+    $candidates[] = (string) get_option('admin_email');
+
+    foreach ($candidates as $candidate) {
+        $candidate = trim($candidate);
+
+        if ($candidate !== '' && is_email($candidate)) {
+            return $candidate;
+        }
+    }
+
+    // Unreachable in a healthy install: WordPress cannot run without an
+    // administrator address. Returning empty rather than guessing means the
+    // transport reports a real failure and the enquiry stays stored.
+    return '';
 }
 
 /** Per-IP throttle held in the object cache / transients. */
@@ -142,12 +218,8 @@ function sira_contact_handle(WP_REST_Request $request)
         );
     }
 
-    // One place decides who receives enquiries. It defaults to the site's own
-    // administrator address, and SIRA_CONTACT_RECIPIENT in wp-config.php
-    // overrides it per site without touching the frontend or this file.
-    $to = defined('SIRA_CONTACT_RECIPIENT') && trim((string) SIRA_CONTACT_RECIPIENT) !== ''
-        ? (string) SIRA_CONTACT_RECIPIENT
-        : (string) get_option('admin_email');
+    // One place decides who receives enquiries, and it is tenant-aware.
+    $to = sira_contact_recipient();
 
     $fields = [
         'name'    => $name,
@@ -174,6 +246,7 @@ function sira_contact_handle(WP_REST_Request $request)
 
     $body = implode("\n", [
         'A message was submitted through the ' . $site . ' website.',
+        'Site:    ' . sira_contact_site_host() . ' (blog ' . get_current_blog_id() . ')',
         '',
         'Name:    ' . $name,
         'Email:   ' . $email,

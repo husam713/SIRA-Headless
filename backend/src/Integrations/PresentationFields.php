@@ -39,10 +39,13 @@ final class PresentationFields {
 			'group_sira_homepage'           => self::homepage_group(),
 			'group_sira_group_homepage'     => self::group_homepage_group(),
 			'group_sira_branch_homepage'    => self::branch_homepage_group(),
+			'group_sira_digital_homepage'   => self::digital_homepage_group(),
 			'group_sira_company_details'    => self::company_group(),
 			'group_sira_investment_details' => self::investment_group(),
 			'group_sira_testimonial_details' => self::testimonial_group(),
 			'group_sira_partner_details'    => self::partner_group(),
+			'group_sira_page_intro'         => self::page_intro_group(),
+			'group_sira_locale'             => self::locale_group(),
 		);
 	}
 
@@ -65,8 +68,9 @@ final class PresentationFields {
 					'sira_homepage_variant',
 					'variant',
 					array(
-						'group'  => 'Group homepage',
-						'branch' => 'Branch homepage',
+						'group'   => 'Group homepage',
+						'branch'  => 'Branch homepage',
+						'digital' => 'Digital homepage',
 					),
 					'group',
 					array(
@@ -164,6 +168,383 @@ final class PresentationFields {
 			'label_placement'                      => 'top',
 			'instruction_placement'                => 'label',
 			'active'                               => true,
+		);
+	}
+
+	/**
+	 * Digital homepage sections, registered as their own field group (ADR-033).
+	 *
+	 * SIRA Digital does not share the branch composition, so it does not share
+	 * the branch field group either. Reusing `branchHomepage` would have forced
+	 * an editor on the Digital site to fill in a hero image, a region and a
+	 * statistics repeater that its page never renders, and would have left the
+	 * capability rail, the reach band and the wordmark with nowhere to live.
+	 *
+	 * Storage names carry a `digital_` prefix for the same reason the branch
+	 * ones carry `branch_`: a front page can in principle hold more than one of
+	 * these groups, and ACF stores sub-fields under the parent's name.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function digital_homepage_group(): array {
+		return array(
+			'key'                                  => 'group_sira_digital_homepage',
+			'title'                                => 'SIRA Homepage — Digital Sections',
+			'show_in_graphql'                      => true,
+			'graphql_field_name'                   => 'digitalHomepage',
+			'graphql_type_name'                    => 'SiraDigitalHomepage',
+			'map_graphql_types_from_location_rules' => false,
+			'graphql_types'                        => array( 'Page' ),
+			'fields'                               => self::digital_homepage_fields(),
+			'location'                             => self::front_page_location(),
+			'menu_order'                           => 13,
+			'position'                             => 'normal',
+			'style'                                => 'default',
+			'label_placement'                      => 'top',
+			'instruction_placement'                => 'label',
+			'active'                               => true,
+		);
+	}
+
+	/**
+	 * Which language a record is written in, and which record it translates.
+	 *
+	 * ADR-034. The locale is stored EXPLICITLY rather than inferred from a slug
+	 * naming convention. A convention was the first design and it was wrong for a
+	 * specific, ordinary reason: slugs are editor-editable, so renaming a record
+	 * would silently move it between languages, and nothing in WordPress would
+	 * warn anybody. Routing still uses the `/ar/` URL prefix — that is a URL
+	 * decision — but what a record IS comes from this field.
+	 *
+	 * `translation_of` points from the translation to the original, so exactly one
+	 * record owns the link and there is no pair to keep symmetric. It is optional:
+	 * a page that exists only in Arabic is a real editorial state, not an error.
+	 *
+	 * Registered network-wide because every site in the registry declares Arabic
+	 * as a supported locale. A tenant that has not translated anything simply
+	 * leaves every record at the default, which costs it nothing.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function locale_group(): array {
+		return array(
+			'key'                                  => 'group_sira_locale',
+			'title'                                => 'SIRA Language',
+			'show_in_graphql'                      => true,
+			'graphql_field_name'                   => 'siraLocale',
+			// wpgraphql-acf 2.x derives the GraphQL type name from
+			// `graphql_field_name`, not from this key, so the live type is
+			// `SiraLocale`. Declared to match what is actually produced rather than
+			// to what would be nice, because a name that only exists in this file
+			// sends the next person looking for a type that is not there.
+			'graphql_type_name'                    => 'SiraLocale',
+			'map_graphql_types_from_location_rules' => false,
+			'graphql_types'                        => array(
+				'Page',
+				'SiraService',
+				'SiraProject',
+				'SiraIndustry',
+			),
+			'fields'                               => array(
+				self::radio(
+					'field_sira_locale_code',
+					'Language',
+					'sira_locale',
+					'code',
+					array(
+						'en' => 'English',
+						'ar' => 'Arabic',
+					),
+					'en',
+					array( 'layout' => 'horizontal' )
+				),
+				self::field(
+					'field_sira_locale_translation_of',
+					'Translation Of',
+					'sira_translation_of',
+					'post_object',
+					'translationOf',
+					array(
+						'post_type'         => array( 'page', 'sira_service', 'sira_project' ),
+						'return_format'     => 'id',
+						'multiple'          => 0,
+						'allow_null'        => 1,
+						'instructions'      => 'The record in the default language that this one translates. Leave empty when this record has no counterpart.',
+						'conditional_logic' => array(
+							array(
+								array(
+									'field'    => 'field_sira_locale_code',
+									'operator' => '!=',
+									'value'    => 'en',
+								),
+							),
+						),
+					)
+				),
+			),
+			'location'                             => array(
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'page',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'sira_service',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'sira_project',
+					),
+				),
+				array(
+					array(
+						'param'    => 'taxonomy',
+						'operator' => '==',
+						'value'    => 'sira_industry',
+					),
+				),
+			),
+			'menu_order'                           => 20,
+			'position'                             => 'side',
+			'style'                                => 'default',
+			'label_placement'                      => 'top',
+			'instruction_placement'                => 'label',
+			'active'                               => true,
+		);
+	}
+
+	/**
+	 * The heading block at the top of a standalone page.
+	 *
+	 * Index pages — services, work, industries, contact — used to carry their
+	 * eyebrow, headline and standfirst as literal strings inside React. That made
+	 * the most prominent copy on each page the one part an editor could not
+	 * change, and it made a second language a code change rather than a content
+	 * change. Both problems have the same fix, so this group exists once, for
+	 * every page, on every site in the network.
+	 *
+	 * Every field is optional. A page that sets none of them renders exactly as
+	 * it did before, which is what keeps this safe to add network-wide.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function page_intro_group(): array {
+		return self::content_group(
+			'group_sira_page_intro',
+			'SIRA Page Intro',
+			'pageIntro',
+			'PageIntro',
+			'Page',
+			'page',
+			array(
+				self::text(
+					'field_sira_page_intro_eyebrow',
+					'Eyebrow',
+					'eyebrow',
+					'eyebrow'
+				),
+				self::text(
+					'field_sira_page_intro_heading',
+					'Heading',
+					'heading',
+					'heading'
+				),
+				self::textarea(
+					'field_sira_page_intro_standfirst',
+					'Standfirst',
+					'standfirst',
+					'standfirst',
+					array( 'new_lines' => '' )
+				),
+				self::text(
+					'field_sira_page_intro_cta_label',
+					'Closing Call To Action Label',
+					'cta_label',
+					'ctaLabel'
+				),
+				self::text(
+					'field_sira_page_intro_cta_heading',
+					'Closing Call To Action Heading',
+					'cta_heading',
+					'ctaHeading'
+				),
+			)
+		);
+	}
+
+	/**
+	 * @return array<int,array<string,mixed>>
+	 */
+	private static function digital_homepage_fields(): array {
+		return array(
+			self::group_field(
+				'field_sira_digital_home_hero',
+				'Hero',
+				'digital_hero',
+				'hero',
+				array(
+					self::text(
+						'field_sira_digital_hero_eyebrow',
+						'Eyebrow',
+						'eyebrow',
+						'eyebrow'
+					),
+					self::text(
+						'field_sira_digital_hero_heading_before',
+						'Heading Before Highlight',
+						'heading_before',
+						'headingBefore'
+					),
+					self::text(
+						'field_sira_digital_hero_heading_highlight',
+						'Highlighted Heading',
+						'heading_highlight',
+						'headingHighlight'
+					),
+					self::text(
+						'field_sira_digital_hero_heading_after',
+						'Heading After Highlight',
+						'heading_after',
+						'headingAfter'
+					),
+					self::textarea(
+						'field_sira_digital_hero_description',
+						'Description',
+						'description',
+						'description',
+						array( 'rows' => 3 )
+					),
+					self::link_field(
+						'field_sira_digital_hero_primary_cta',
+						'Primary Call To Action',
+						'primary_cta',
+						'primaryCta'
+					),
+					self::link_field(
+						'field_sira_digital_hero_secondary_cta',
+						'Secondary Call To Action',
+						'secondary_cta',
+						'secondaryCta'
+					),
+				)
+			),
+			self::text(
+				'field_sira_digital_capabilities_eyebrow',
+				'Capabilities Eyebrow',
+				'digital_capabilities_eyebrow',
+				'capabilitiesEyebrow'
+			),
+			self::repeater(
+				'field_sira_digital_capabilities',
+				'Capabilities',
+				'digital_capabilities',
+				'capabilities',
+				array(
+					self::text(
+						'field_sira_digital_capability_title',
+						'Title',
+						'title',
+						'title'
+					),
+					self::textarea(
+						'field_sira_digital_capability_summary',
+						'Summary',
+						'summary',
+						'summary',
+						array( 'rows' => 3 )
+					),
+					self::link_field(
+						'field_sira_digital_capability_link',
+						'Link',
+						'link',
+						'link'
+					),
+				),
+				// Twelve is the cap the frontend normalizer enforces. Stating it
+				// here too means an editor is stopped at the point of authoring
+				// rather than silently losing rows at render.
+				array( 'max' => 12 )
+			),
+			self::group_field(
+				'field_sira_digital_home_marquee',
+				'Reach Band',
+				'digital_marquee',
+				'marquee',
+				array_merge(
+					self::section_header_sub_fields( 'digital_marquee' ),
+					array(
+						self::wysiwyg(
+							'field_sira_digital_marquee_body',
+							'Body',
+							'body',
+							'body'
+						),
+						self::repeater(
+							'field_sira_digital_marquee_items',
+							'Items',
+							'items',
+							'items',
+							array(
+								self::text(
+									'field_sira_digital_marquee_item_label',
+									'Label',
+									'label',
+									'label'
+								),
+							),
+							array( 'max' => 40 )
+						),
+					)
+				)
+			),
+			self::group_field(
+				'field_sira_digital_home_wordmark',
+				'Kinetic Wordmark',
+				'digital_wordmark',
+				'wordmark',
+				array(
+					self::text(
+						'field_sira_digital_wordmark_word',
+						'Word',
+						'word',
+						'word',
+						// The band renders nothing without this, so an editor who
+						// opens the group is told so rather than finding an empty
+						// two-screen gap on the page.
+						array(
+							'instructions' => 'The band renders only when this is set.',
+							'maxlength'    => 40,
+						)
+					),
+					self::textarea(
+						'field_sira_digital_wordmark_lockup',
+						'Supporting Line',
+						'lockup',
+						'lockup',
+						array( 'rows' => 2 )
+					),
+					self::link_field(
+						'field_sira_digital_wordmark_link',
+						'Link',
+						'link',
+						'link'
+					),
+				)
+			),
+			self::editorial_section(
+				'digital_insights',
+				'Insights',
+				'insights'
+			),
+			self::contact_section( 'digital_home', 'Contact', 'digital_contact' ),
 		);
 	}
 

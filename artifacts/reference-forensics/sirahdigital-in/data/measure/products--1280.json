@@ -1,0 +1,2640 @@
+{
+  "url": "/products",
+  "docHeight": 4951,
+  "viewport": {
+    "w": 1280,
+    "h": 800,
+    "dpr": 1
+  },
+  "root": {
+    "background": "rgb(22, 20, 44)",
+    "color": "rgb(255, 255, 255)",
+    "font": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+    "fontSize": 16,
+    "scrollBehavior": "smooth",
+    "overflowX": "hidden"
+  },
+  "header": {
+    "rect": {
+      "x": 0,
+      "y": 796,
+      "w": 1280,
+      "h": 98
+    },
+    "box": {
+      "display": "block",
+      "position": "fixed",
+      "maxWidth": "none",
+      "width": 1280,
+      "padTop": 12,
+      "padBottom": 12,
+      "padLeft": 64,
+      "padRight": 64,
+      "marginTop": 0,
+      "marginBottom": 0,
+      "gap": null,
+      "columns": null,
+      "rows": null,
+      "flexDirection": null,
+      "flexWrap": null,
+      "background": "rgba(0, 0, 0, 0)",
+      "backgroundImage": null,
+      "border": null,
+      "radius": null,
+      "shadow": null,
+      "backdrop": null,
+      "overflow": "visible",
+      "zIndex": "50",
+      "opacity": "1",
+      "transform": null,
+      "willChange": null,
+      "transition": "padding 0.5s cubic-bezier(0.77, 0, 0.175, 1) 0s"
+    },
+    "inner": {
+      "rect": {
+        "x": 64,
+        "y": 808,
+        "w": 1152,
+        "h": 74
+      },
+      "box": {
+        "display": "block",
+        "position": "static",
+        "maxWidth": "1152px",
+        "width": 1152,
+        "padTop": 0,
+        "padBottom": 0,
+        "padLeft": 0,
+        "padRight": 0,
+        "marginTop": 0,
+        "marginBottom": 0,
+        "gap": null,
+        "columns": null,
+        "rows": null,
+        "flexDirection": null,
+        "flexWrap": null,
+        "background": "rgba(22, 20, 44, 0.8)",
+        "backgroundImage": null,
+        "border": "1px solid rgba(255, 255, 255, 0.06)",
+        "radius": "9999px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.3) 0px 10px 15px -3px, rgba(0, 0, 0, 0.3) 0px 4px 6px -4px",
+        "backdrop": "blur(24px)",
+        "overflow": "visible",
+        "zIndex": "auto",
+        "opacity": "1",
+        "transform": null,
+        "willChange": null,
+        "transition": "all 0.5s cubic-bezier(0.77, 0, 0.175, 1) 0s"
+      }
+    },
+    "logo": {
+      "tag": "a",
+      "rect": {
+        "x": 85,
+        "y": 831,
+        "w": 186,
+        "h": 28
+      },
+      "text": "SIRAH DIGITAL"
+    },
+    "nav": [
+      {
+        "text": "SIRAH DIGITAL",
+        "href": "/",
+        "rect": {
+          "x": 85,
+          "y": 831,
+          "w": 186,
+          "h": 28
+        },
+        "type": {
+          "family": "Zodiak Numerals",
+          "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "size": 16,
+          "weight": "400",
+          "lineHeight": 24,
+          "leadingRatio": 1.5,
+          "tracking": 0,
+          "trackingEm": 0,
+          "transform": "none",
+          "color": "rgb(255, 255, 255)",
+          "align": "start",
+          "wrap": "wrap"
+        },
+        "box": {
+          "display": "block",
+          "position": "static",
+          "maxWidth": "none",
+          "width": 186,
+          "padTop": 0,
+          "padBottom": 0,
+          "padLeft": 0,
+          "padRight": 0,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": null,
+          "columns": null,
+          "rows": null,
+          "flexDirection": null,
+          "flexWrap": null,
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "all 0s ease 0s"
+        }
+      },
+      {
+        "text": "Home",
+        "href": "/",
+        "rect": {
+          "x": 369,
+          "y": 823,
+          "w": 54.4,
+          "h": 44
+        },
+        "type": {
+          "family": "Zodiak Numerals",
+          "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "size": 14,
+          "weight": "600",
+          "lineHeight": 20,
+          "leadingRatio": 1.4,
+          "tracking": 0,
+          "trackingEm": 0,
+          "transform": "none",
+          "color": "rgb(148, 163, 184)",
+          "align": "start",
+          "wrap": "wrap"
+        },
+        "box": {
+          "display": "flex",
+          "position": "relative",
+          "maxWidth": "none",
+          "width": 54,
+          "padTop": 8,
+          "padBottom": 8,
+          "padLeft": 8,
+          "padRight": 8,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": "6px",
+          "columns": null,
+          "rows": null,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s"
+        }
+      },
+      {
+        "text": "Services",
+        "href": "/services",
+        "rect": {
+          "x": 447.5,
+          "y": 823,
+          "w": 91.7,
+          "h": 44
+        },
+        "type": {
+          "family": "Zodiak Numerals",
+          "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "size": 14,
+          "weight": "600",
+          "lineHeight": 20,
+          "leadingRatio": 1.4,
+          "tracking": 0,
+          "trackingEm": 0,
+          "transform": "none",
+          "color": "rgb(148, 163, 184)",
+          "align": "start",
+          "wrap": "wrap"
+        },
+        "box": {
+          "display": "flex",
+          "position": "relative",
+          "maxWidth": "none",
+          "width": 92,
+          "padTop": 8,
+          "padBottom": 8,
+          "padLeft": 8,
+          "padRight": 8,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": "6px",
+          "columns": null,
+          "rows": null,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s"
+        }
+      },
+      {
+        "text": "Products",
+        "href": "/products",
+        "rect": {
+          "x": 563.2,
+          "y": 823,
+          "w": 95.2,
+          "h": 44
+        },
+        "type": {
+          "family": "Zodiak Numerals",
+          "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "size": 14,
+          "weight": "600",
+          "lineHeight": 20,
+          "leadingRatio": 1.4,
+          "tracking": 0,
+          "trackingEm": 0,
+          "transform": "none",
+          "color": "rgb(255, 255, 255)",
+          "align": "start",
+          "wrap": "wrap"
+        },
+        "box": {
+          "display": "flex",
+          "position": "relative",
+          "maxWidth": "none",
+          "width": 95,
+          "padTop": 8,
+          "padBottom": 8,
+          "padLeft": 8,
+          "padRight": 8,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": "6px",
+          "columns": null,
+          "rows": null,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s"
+        }
+      },
+      {
+        "text": "Industries",
+        "href": "/industries",
+        "rect": {
+          "x": 682.4,
+          "y": 823,
+          "w": 78.2,
+          "h": 44
+        },
+        "type": {
+          "family": "Zodiak Numerals",
+          "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "size": 14,
+          "weight": "600",
+          "lineHeight": 20,
+          "leadingRatio": 1.4,
+          "tracking": 0,
+          "trackingEm": 0,
+          "transform": "none",
+          "color": "rgb(148, 163, 184)",
+          "align": "start",
+          "wrap": "wrap"
+        },
+        "box": {
+          "display": "flex",
+          "position": "relative",
+          "maxWidth": "none",
+          "width": 78,
+          "padTop": 8,
+          "padBottom": 8,
+          "padLeft": 8,
+          "padRight": 8,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": "6px",
+          "columns": null,
+          "rows": null,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s"
+        }
+      },
+      {
+        "text": "About",
+        "href": "/about",
+        "rect": {
+          "x": 784.6,
+          "y": 823,
+          "w": 54.7,
+          "h": 44
+        },
+        "type": {
+          "family": "Zodiak Numerals",
+          "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "size": 14,
+          "weight": "600",
+          "lineHeight": 20,
+          "leadingRatio": 1.4,
+          "tracking": 0,
+          "trackingEm": 0,
+          "transform": "none",
+          "color": "rgb(148, 163, 184)",
+          "align": "start",
+          "wrap": "wrap"
+        },
+        "box": {
+          "display": "flex",
+          "position": "relative",
+          "maxWidth": "none",
+          "width": 55,
+          "padTop": 8,
+          "padBottom": 8,
+          "padLeft": 8,
+          "padRight": 8,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": "6px",
+          "columns": null,
+          "rows": null,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s"
+        }
+      },
+      {
+        "text": "Contact",
+        "href": "/contact",
+        "rect": {
+          "x": 863.2,
+          "y": 823,
+          "w": 67.2,
+          "h": 44
+        },
+        "type": {
+          "family": "Zodiak Numerals",
+          "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "size": 14,
+          "weight": "600",
+          "lineHeight": 20,
+          "leadingRatio": 1.4,
+          "tracking": 0,
+          "trackingEm": 0,
+          "transform": "none",
+          "color": "rgb(148, 163, 184)",
+          "align": "start",
+          "wrap": "wrap"
+        },
+        "box": {
+          "display": "flex",
+          "position": "relative",
+          "maxWidth": "none",
+          "width": 67,
+          "padTop": 8,
+          "padBottom": 8,
+          "padLeft": 8,
+          "padRight": 8,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": "6px",
+          "columns": null,
+          "rows": null,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s"
+        }
+      },
+      {
+        "text": "Book Free Consultation →",
+        "href": "/contact",
+        "rect": {
+          "x": 1028.5,
+          "y": 835,
+          "w": 166.5,
+          "h": 20
+        },
+        "type": {
+          "family": "Zodiak Numerals",
+          "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "size": 14,
+          "weight": "600",
+          "lineHeight": 20,
+          "leadingRatio": 1.4,
+          "tracking": 0,
+          "trackingEm": 0,
+          "transform": "none",
+          "color": "rgb(255, 255, 255)",
+          "align": "start",
+          "wrap": "nowrap"
+        },
+        "box": {
+          "display": "flex",
+          "position": "static",
+          "maxWidth": "none",
+          "width": 166,
+          "padTop": 0,
+          "padBottom": 0,
+          "padLeft": 0,
+          "padRight": 0,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": "4px",
+          "columns": null,
+          "rows": null,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s"
+        }
+      }
+    ],
+    "actions": []
+  },
+  "sections": [
+    {
+      "index": 1,
+      "tag": "section",
+      "id": null,
+      "cls": "mx-auto w-full max-w-[1100px] px-6 pb-4 pt-20 md:pt-28",
+      "rect": {
+        "x": 90,
+        "y": 72,
+        "w": 1100,
+        "h": 369.9
+      },
+      "box": {
+        "display": "block",
+        "position": "static",
+        "maxWidth": "1100px",
+        "width": 1100,
+        "padTop": 112,
+        "padBottom": 16,
+        "padLeft": 24,
+        "padRight": 24,
+        "marginTop": 0,
+        "marginBottom": 0,
+        "gap": null,
+        "columns": null,
+        "rows": null,
+        "flexDirection": null,
+        "flexWrap": null,
+        "background": "rgba(0, 0, 0, 0)",
+        "backgroundImage": null,
+        "border": null,
+        "radius": null,
+        "shadow": null,
+        "backdrop": null,
+        "overflow": "visible",
+        "zIndex": "auto",
+        "opacity": "1",
+        "transform": null,
+        "willChange": null,
+        "transition": "all 0s ease 0s"
+      },
+      "container": {
+        "cls": "max-w-[760px]",
+        "rect": {
+          "x": 114,
+          "y": 184,
+          "w": 760,
+          "h": 241.9
+        },
+        "box": {
+          "display": "block",
+          "position": "static",
+          "maxWidth": "760px",
+          "width": 760,
+          "padTop": 0,
+          "padBottom": 0,
+          "padLeft": 0,
+          "padRight": 0,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": null,
+          "columns": null,
+          "rows": null,
+          "flexDirection": null,
+          "flexWrap": null,
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "all 0s ease 0s"
+        }
+      },
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Systems built around real operational problems.",
+          "rect": {
+            "x": 114,
+            "y": 228.5,
+            "w": 760,
+            "h": 111.6
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 55,
+            "weight": "700",
+            "lineHeight": 56,
+            "leadingRatio": 1,
+            "tracking": -1.6,
+            "trackingEm": -0.0298,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "start",
+            "wrap": "balance"
+          }
+        }
+      ],
+      "paragraphs": [
+        {
+          "text": "Four products anyone can run, and the client systems we built the same way - from producti",
+          "rect": {
+            "x": 114,
+            "y": 368.1,
+            "w": 560,
+            "h": 57.8
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 17,
+            "weight": "400",
+            "lineHeight": 29,
+            "leadingRatio": 1.7,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgba(203, 213, 225, 0.7)",
+            "align": "start",
+            "wrap": "wrap"
+          },
+          "measureCh": 66
+        }
+      ],
+      "links": [],
+      "media": [],
+      "grids": [],
+      "scrollable": null
+    },
+    {
+      "index": 2,
+      "tag": "div",
+      "id": "products",
+      "cls": "scroll-mt-28 pt-16 md:pt-24",
+      "rect": {
+        "x": 0,
+        "y": 441.9,
+        "w": 1280,
+        "h": 680.9
+      },
+      "box": {
+        "display": "block",
+        "position": "static",
+        "maxWidth": "none",
+        "width": 1280,
+        "padTop": 96,
+        "padBottom": 0,
+        "padLeft": 0,
+        "padRight": 0,
+        "marginTop": 0,
+        "marginBottom": 0,
+        "gap": null,
+        "columns": null,
+        "rows": null,
+        "flexDirection": null,
+        "flexWrap": null,
+        "background": "rgba(0, 0, 0, 0)",
+        "backgroundImage": null,
+        "border": null,
+        "radius": null,
+        "shadow": null,
+        "backdrop": null,
+        "overflow": "visible",
+        "zIndex": "auto",
+        "opacity": "1",
+        "transform": null,
+        "willChange": null,
+        "transition": "all 0s ease 0s"
+      },
+      "container": {
+        "cls": "portfolio-cylinder_section__fHEIc",
+        "rect": {
+          "x": 60,
+          "y": 537.9,
+          "w": 1160,
+          "h": 584.9
+        },
+        "box": {
+          "display": "block",
+          "position": "relative",
+          "maxWidth": "1160px",
+          "width": 1160,
+          "padTop": 0,
+          "padBottom": 0,
+          "padLeft": 24,
+          "padRight": 24,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": null,
+          "columns": null,
+          "rows": null,
+          "flexDirection": null,
+          "flexWrap": null,
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "all 0s ease 0s"
+        }
+      },
+      "headings": [
+        {
+          "tag": "h2",
+          "text": "Products",
+          "rect": {
+            "x": 84,
+            "y": 537.9,
+            "w": 513.7,
+            "h": 55.1
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 52,
+            "weight": "700",
+            "lineHeight": 55,
+            "leadingRatio": 1.1,
+            "tracking": -1.6,
+            "trackingEm": -0.03,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "start",
+            "wrap": "wrap"
+          }
+        },
+        {
+          "tag": "h3",
+          "text": "Aura Transcriber",
+          "rect": {
+            "x": 319.4,
+            "y": 843.4,
+            "w": 201.7,
+            "h": 39.2
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 38,
+            "weight": "700",
+            "lineHeight": 42,
+            "leadingRatio": 1.1,
+            "tracking": -0.9,
+            "trackingEm": -0.025,
+            "transform": "uppercase",
+            "color": "rgb(255, 255, 255)",
+            "align": "left",
+            "wrap": "wrap"
+          }
+        },
+        {
+          "tag": "h3",
+          "text": "Analytics Agents",
+          "rect": {
+            "x": 260.8,
+            "y": 781.8,
+            "w": 95.4,
+            "h": 72.6
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 38,
+            "weight": "700",
+            "lineHeight": 42,
+            "leadingRatio": 1.1,
+            "tracking": -0.9,
+            "trackingEm": -0.025,
+            "transform": "uppercase",
+            "color": "rgb(255, 255, 255)",
+            "align": "left",
+            "wrap": "wrap"
+          }
+        },
+        {
+          "tag": "h3",
+          "text": "NUSI",
+          "rect": {
+            "x": 522.4,
+            "y": 762,
+            "w": 432,
+            "h": 56.9
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 38,
+            "weight": "700",
+            "lineHeight": 42,
+            "leadingRatio": 1.1,
+            "tracking": -0.9,
+            "trackingEm": -0.025,
+            "transform": "uppercase",
+            "color": "rgb(255, 255, 255)",
+            "align": "left",
+            "wrap": "wrap"
+          }
+        },
+        {
+          "tag": "h3",
+          "text": "TNPSC Mentors",
+          "rect": {
+            "x": 950.2,
+            "y": 808.4,
+            "w": 71.3,
+            "h": 61.3
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 38,
+            "weight": "700",
+            "lineHeight": 42,
+            "leadingRatio": 1.1,
+            "tracking": -0.9,
+            "trackingEm": -0.025,
+            "transform": "uppercase",
+            "color": "rgb(255, 255, 255)",
+            "align": "left",
+            "wrap": "wrap"
+          }
+        },
+        {
+          "tag": "h3",
+          "text": "LexDraft",
+          "rect": {
+            "x": 632.7,
+            "y": 855.8,
+            "w": 225.3,
+            "h": 28.6
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 38,
+            "weight": "700",
+            "lineHeight": 42,
+            "leadingRatio": 1.1,
+            "tracking": -0.9,
+            "trackingEm": -0.025,
+            "transform": "uppercase",
+            "color": "rgb(255, 255, 255)",
+            "align": "left",
+            "wrap": "wrap"
+          }
+        }
+      ],
+      "paragraphs": [
+        {
+          "text": "Each one started as a problem a client was paying people to solve by hand.",
+          "rect": {
+            "x": 84,
+            "y": 611,
+            "w": 513.7,
+            "h": 57.8
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 17,
+            "weight": "400",
+            "lineHeight": 29,
+            "leadingRatio": 1.7,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgba(255, 255, 255, 0.55)",
+            "align": "start",
+            "wrap": "wrap"
+          },
+          "measureCh": 60
+        }
+      ],
+      "links": [
+        {
+          "text": "Explore Aura Transcriber→",
+          "href": "/products/aura-transcriber",
+          "rect": {
+            "x": 444.3,
+            "y": 942.5,
+            "w": 76.6,
+            "h": 23.7
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 15,
+            "weight": "600",
+            "lineHeight": 23,
+            "leadingRatio": 1.5,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "left",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 193,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 22,
+            "marginBottom": 0,
+            "gap": "10px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color 0.22s cubic-bezier(0.22, 0.61, 0.36, 1) 0s"
+          }
+        },
+        {
+          "text": "Explore Analytics Agents→",
+          "href": "/products/analytics-agents",
+          "rect": {
+            "x": 259.7,
+            "y": 936.3,
+            "w": 33.9,
+            "h": 34.1
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 15,
+            "weight": "600",
+            "lineHeight": 23,
+            "leadingRatio": 1.5,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "left",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 194,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 22,
+            "marginBottom": 0,
+            "gap": "10px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color 0.22s cubic-bezier(0.22, 0.61, 0.36, 1) 0s"
+          }
+        },
+        {
+          "text": "Explore NUSI→",
+          "href": "/products/nusi",
+          "rect": {
+            "x": 521.9,
+            "y": 920.3,
+            "w": 116.3,
+            "h": 45.7
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 15,
+            "weight": "600",
+            "lineHeight": 23,
+            "leadingRatio": 1.5,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "left",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 115,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 22,
+            "marginBottom": 0,
+            "gap": "10px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color 0.22s cubic-bezier(0.22, 0.61, 0.36, 1) 0s"
+          }
+        },
+        {
+          "text": "Explore TNPSC Mentors→",
+          "href": "/products/tnpsc-mentors",
+          "rect": {
+            "x": 988,
+            "y": 935.4,
+            "w": 34.8,
+            "h": 34.4
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 15,
+            "weight": "600",
+            "lineHeight": 23,
+            "leadingRatio": 1.5,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "left",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 190,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 22,
+            "marginBottom": 0,
+            "gap": "10px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color 0.22s cubic-bezier(0.22, 0.61, 0.36, 1) 0s"
+          }
+        },
+        {
+          "text": "Explore LexDraft→",
+          "href": "/products/lexdraft",
+          "rect": {
+            "x": 787.2,
+            "y": 942.7,
+            "w": 71.4,
+            "h": 23.5
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 15,
+            "weight": "600",
+            "lineHeight": 23,
+            "leadingRatio": 1.5,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "left",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 137,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 22,
+            "marginBottom": 0,
+            "gap": "10px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color 0.22s cubic-bezier(0.22, 0.61, 0.36, 1) 0s"
+          }
+        }
+      ],
+      "media": [],
+      "grids": [
+        {
+          "cls": "portfolio-cylinder_panel___GTyx",
+          "rect": {
+            "x": 318.2,
+            "y": 843.4,
+            "w": 203,
+            "h": 174.5
+          },
+          "box": {
+            "display": "flex",
+            "position": "absolute",
+            "maxWidth": "none",
+            "width": 460,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 0,
+            "marginBottom": 0,
+            "gap": null,
+            "columns": null,
+            "rows": null,
+            "flexDirection": "column",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "0.04",
+            "transform": "matrix3d(0.94, 0, 0, 0, 0, 0.94, 0, 0, 0, 0, 1, 0, -230, -146, 480, 1)",
+            "willChange": "transform, opacity",
+            "transition": "all 0s ease 0s"
+          },
+          "childCount": 2,
+          "childRects": [
+            {
+              "x": 319.4,
+              "y": 843.4,
+              "w": 201.7,
+              "h": 39.2
+            },
+            {
+              "x": 318.6,
+              "y": 874.2,
+              "w": 202.5,
+              "h": 92.9
+            }
+          ]
+        },
+        {
+          "cls": "portfolio-cylinder_panel___GTyx",
+          "rect": {
+            "x": 521.6,
+            "y": 762,
+            "w": 434.7,
+            "h": 302.7
+          },
+          "box": {
+            "display": "flex",
+            "position": "absolute",
+            "maxWidth": "none",
+            "width": 460,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 0,
+            "marginBottom": 0,
+            "gap": null,
+            "columns": null,
+            "rows": null,
+            "flexDirection": "column",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": "matrix3d(-0.809017, 0, -0.587785, 0, 0, 1, 0, 0, 0.587785, 0, -0.809017, 0, 52.1369, -146, -388.328, 1)",
+            "willChange": "transform, opacity",
+            "transition": "all 0s ease 0s"
+          },
+          "childCount": 2,
+          "childRects": [
+            {
+              "x": 522.4,
+              "y": 762,
+              "w": 432,
+              "h": 56.9
+            },
+            {
+              "x": 521.9,
+              "y": 805,
+              "w": 433.7,
+              "h": 161
+            }
+          ]
+        },
+        {
+          "cls": "portfolio-cylinder_panel___GTyx",
+          "rect": {
+            "x": 632.7,
+            "y": 855.8,
+            "w": 226.1,
+            "h": 155.7
+          },
+          "box": {
+            "display": "flex",
+            "position": "absolute",
+            "maxWidth": "none",
+            "width": 460,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 0,
+            "marginBottom": 0,
+            "gap": null,
+            "columns": null,
+            "rows": null,
+            "flexDirection": "column",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "0.04",
+            "transform": "matrix3d(0.290476, 0, 0.893993, 0, 0, 0.94, 0, 0, -0.951057, 0, 0.309017, 0, -686.507, -146, 148.328, 1)",
+            "willChange": "transform, opacity",
+            "transition": "all 0s ease 0s"
+          },
+          "childCount": 2,
+          "childRects": [
+            {
+              "x": 632.7,
+              "y": 855.8,
+              "w": 225.3,
+              "h": 28.6
+            },
+            {
+              "x": 632.7,
+              "y": 883.3,
+              "w": 225.8,
+              "h": 82.9
+            }
+          ]
+        }
+      ],
+      "scrollable": null
+    },
+    {
+      "index": 3,
+      "tag": "div",
+      "id": "portfolio",
+      "cls": "scroll-mt-28 pt-28 md:pt-40",
+      "rect": {
+        "x": 0,
+        "y": 1122.8,
+        "w": 1280,
+        "h": 2880
+      },
+      "box": {
+        "display": "block",
+        "position": "static",
+        "maxWidth": "none",
+        "width": 1280,
+        "padTop": 160,
+        "padBottom": 0,
+        "padLeft": 0,
+        "padRight": 0,
+        "marginTop": 0,
+        "marginBottom": 0,
+        "gap": null,
+        "columns": null,
+        "rows": null,
+        "flexDirection": null,
+        "flexWrap": null,
+        "background": "rgba(0, 0, 0, 0)",
+        "backgroundImage": null,
+        "border": null,
+        "radius": null,
+        "shadow": null,
+        "backdrop": null,
+        "overflow": "visible",
+        "zIndex": "auto",
+        "opacity": "1",
+        "transform": null,
+        "willChange": null,
+        "transition": "all 0s ease 0s"
+      },
+      "container": {
+        "cls": "product-stage_track__WmavO",
+        "rect": {
+          "x": 0,
+          "y": 1282.8,
+          "w": 1280,
+          "h": 2720
+        },
+        "box": {
+          "display": "block",
+          "position": "relative",
+          "maxWidth": "none",
+          "width": 1280,
+          "padTop": 0,
+          "padBottom": 0,
+          "padLeft": 0,
+          "padRight": 0,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": null,
+          "columns": null,
+          "rows": null,
+          "flexDirection": null,
+          "flexWrap": null,
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "all 0s ease 0s"
+        }
+      },
+      "headings": [
+        {
+          "tag": "h2",
+          "text": "[ Custom software ]",
+          "rect": {
+            "x": 424,
+            "y": 1431,
+            "w": 742,
+            "h": 16.5
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 11,
+            "weight": "500",
+            "lineHeight": 17,
+            "leadingRatio": 1.5,
+            "tracking": 3.5,
+            "trackingEm": 0.32,
+            "transform": "uppercase",
+            "color": "rgba(255, 255, 255, 0.38)",
+            "align": "start",
+            "wrap": "wrap"
+          }
+        },
+        {
+          "tag": "h3",
+          "text": "Healthcare Systems",
+          "rect": {
+            "x": 600.7,
+            "y": 1527.5,
+            "w": 565.3,
+            "h": 52.6
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 44,
+            "weight": "600",
+            "lineHeight": 53,
+            "leadingRatio": 1.2,
+            "tracking": -1.1,
+            "trackingEm": -0.0249,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "start",
+            "wrap": "wrap"
+          }
+        },
+        {
+          "tag": "h3",
+          "text": "Education Platforms",
+          "rect": {
+            "x": 638.8,
+            "y": 1552.7,
+            "w": 527.2,
+            "h": 52.6
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 44,
+            "weight": "600",
+            "lineHeight": 53,
+            "leadingRatio": 1.2,
+            "tracking": -1.1,
+            "trackingEm": -0.0249,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "start",
+            "wrap": "wrap"
+          }
+        },
+        {
+          "tag": "h3",
+          "text": "Operations & ERP",
+          "rect": {
+            "x": 638.4,
+            "y": 1527.5,
+            "w": 527.6,
+            "h": 52.6
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 44,
+            "weight": "600",
+            "lineHeight": 53,
+            "leadingRatio": 1.2,
+            "tracking": -1.1,
+            "trackingEm": -0.0249,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "start",
+            "wrap": "wrap"
+          }
+        },
+        {
+          "tag": "h3",
+          "text": "Marketing Automation",
+          "rect": {
+            "x": 631.9,
+            "y": 1571.5,
+            "w": 534.1,
+            "h": 52.6
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 44,
+            "weight": "600",
+            "lineHeight": 53,
+            "leadingRatio": 1.2,
+            "tracking": -1.1,
+            "trackingEm": -0.0249,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "start",
+            "wrap": "wrap"
+          }
+        },
+        {
+          "tag": "h3",
+          "text": "Digital Experiences",
+          "rect": {
+            "x": 634.4,
+            "y": 1581.1,
+            "w": 531.6,
+            "h": 52.6
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 44,
+            "weight": "600",
+            "lineHeight": 53,
+            "leadingRatio": 1.2,
+            "tracking": -1.1,
+            "trackingEm": -0.0249,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "start",
+            "wrap": "wrap"
+          }
+        }
+      ],
+      "paragraphs": [],
+      "links": [
+        {
+          "text": "Enquire about a build→",
+          "href": "/contact",
+          "rect": {
+            "x": 600.7,
+            "y": 1748.1,
+            "w": 166.2,
+            "h": 22.5
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 15,
+            "weight": "500",
+            "lineHeight": 23,
+            "leadingRatio": 1.5,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgba(255, 255, 255, 0.55)",
+            "align": "start",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 166,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 32,
+            "marginBottom": 0,
+            "gap": "8px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color 0.26s cubic-bezier(0.22, 0.61, 0.36, 1) 0s"
+          }
+        },
+        {
+          "text": "Enquire about a build→",
+          "href": "/contact",
+          "rect": {
+            "x": 638.8,
+            "y": 1837.3,
+            "w": 166.2,
+            "h": 22.5
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 15,
+            "weight": "500",
+            "lineHeight": 23,
+            "leadingRatio": 1.5,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgba(255, 255, 255, 0.55)",
+            "align": "start",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 166,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 32,
+            "marginBottom": 0,
+            "gap": "8px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color 0.26s cubic-bezier(0.22, 0.61, 0.36, 1) 0s"
+          }
+        },
+        {
+          "text": "Enquire about a build→",
+          "href": "/contact",
+          "rect": {
+            "x": 638.4,
+            "y": 1812.1,
+            "w": 166.2,
+            "h": 22.5
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 15,
+            "weight": "500",
+            "lineHeight": 23,
+            "leadingRatio": 1.5,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgba(255, 255, 255, 0.55)",
+            "align": "start",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 166,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 32,
+            "marginBottom": 0,
+            "gap": "8px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color 0.26s cubic-bezier(0.22, 0.61, 0.36, 1) 0s"
+          }
+        },
+        {
+          "text": "Enquire about a build→",
+          "href": "/contact",
+          "rect": {
+            "x": 631.9,
+            "y": 1856.2,
+            "w": 166.2,
+            "h": 22.5
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 15,
+            "weight": "500",
+            "lineHeight": 23,
+            "leadingRatio": 1.5,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgba(255, 255, 255, 0.55)",
+            "align": "start",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 166,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 32,
+            "marginBottom": 0,
+            "gap": "8px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color 0.26s cubic-bezier(0.22, 0.61, 0.36, 1) 0s"
+          }
+        },
+        {
+          "text": "Enquire about a build→",
+          "href": "/contact",
+          "rect": {
+            "x": 634.4,
+            "y": 1801.7,
+            "w": 166.2,
+            "h": 22.5
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 15,
+            "weight": "500",
+            "lineHeight": 23,
+            "leadingRatio": 1.5,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgba(255, 255, 255, 0.55)",
+            "align": "start",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 166,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 32,
+            "marginBottom": 0,
+            "gap": "8px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color 0.26s cubic-bezier(0.22, 0.61, 0.36, 1) 0s"
+          }
+        }
+      ],
+      "media": [
+        {
+          "tag": "svg",
+          "src": null,
+          "rect": {
+            "x": 114,
+            "y": 1334.8,
+            "w": 250,
+            "h": 624
+          },
+          "natural": null,
+          "fit": "fill",
+          "ratio": 0.4,
+          "loading": null,
+          "sizes": null
+        }
+      ],
+      "grids": [
+        {
+          "cls": "product-stage_inner__ZRb0r",
+          "rect": {
+            "x": 90,
+            "y": 1334.8,
+            "w": 1100,
+            "h": 624
+          },
+          "box": {
+            "display": "flex",
+            "position": "relative",
+            "maxWidth": "1100px",
+            "width": 1100,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 24,
+            "padRight": 24,
+            "marginTop": 0,
+            "marginBottom": 0,
+            "gap": "40px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "column",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "all 0s ease 0s"
+          },
+          "childCount": 3,
+          "childRects": [
+            {
+              "x": 424,
+              "y": 1431,
+              "w": 742,
+              "h": 16.5
+            },
+            {
+              "x": 114,
+              "y": 1334.8,
+              "w": 250,
+              "h": 624
+            },
+            {
+              "x": 424,
+              "y": 1555.5,
+              "w": 742,
+              "h": 307.1
+            }
+          ]
+        },
+        {
+          "cls": "product-stage_items__Hzcb7",
+          "rect": {
+            "x": 424,
+            "y": 1555.5,
+            "w": 742,
+            "h": 307.1
+          },
+          "box": {
+            "display": "grid",
+            "position": "relative",
+            "maxWidth": "none",
+            "width": 742,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 0,
+            "marginBottom": 0,
+            "gap": null,
+            "columns": "742px",
+            "rows": "307.109px",
+            "flexDirection": null,
+            "flexWrap": null,
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "all 0s ease 0s"
+          },
+          "childCount": 5,
+          "childRects": [
+            {
+              "x": 424,
+              "y": 1527.5,
+              "w": 742,
+              "h": 307.1
+            },
+            {
+              "x": 424,
+              "y": 1552.7,
+              "w": 742,
+              "h": 307.1
+            },
+            {
+              "x": 424,
+              "y": 1527.5,
+              "w": 742,
+              "h": 307.1
+            },
+            {
+              "x": 424,
+              "y": 1571.5,
+              "w": 742,
+              "h": 307.1
+            },
+            {
+              "x": 424,
+              "y": 1581.1,
+              "w": 742,
+              "h": 307.1
+            }
+          ]
+        },
+        {
+          "cls": "product-stage_item__1TbPZ",
+          "rect": {
+            "x": 424,
+            "y": 1527.5,
+            "w": 742,
+            "h": 307.1
+          },
+          "box": {
+            "display": "grid",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 742,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 0,
+            "marginBottom": 0,
+            "gap": "40px",
+            "columns": "136.656px 565.344px",
+            "rows": "307.109px",
+            "flexDirection": null,
+            "flexWrap": null,
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "2",
+            "opacity": "0",
+            "transform": "matrix(1, 0, 0, 1, 0, -28)",
+            "willChange": "opacity, transform",
+            "transition": "opacity, transform 0.26s, 0.38s cubic-bezier(0.22, 0.61, 0.36, 1), cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s, 0.1s"
+          },
+          "childCount": 2,
+          "childRects": [
+            {
+              "x": 424,
+              "y": 1527.5,
+              "w": 136.7,
+              "h": 118.1
+            },
+            {
+              "x": 600.7,
+              "y": 1527.5,
+              "w": 565.3,
+              "h": 243.1
+            }
+          ]
+        },
+        {
+          "cls": "product-stage_lines__kLS_s",
+          "rect": {
+            "x": 600.7,
+            "y": 1602.1,
+            "w": 565.3,
+            "h": 114
+          },
+          "box": {
+            "display": "flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 565,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 22,
+            "marginBottom": 0,
+            "gap": "14px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "column",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "all 0s ease 0s"
+          },
+          "childCount": 2,
+          "childRects": [
+            {
+              "x": 600.7,
+              "y": 1602.1,
+              "w": 565.3,
+              "h": 50
+            },
+            {
+              "x": 600.7,
+              "y": 1666.1,
+              "w": 565.3,
+              "h": 50
+            }
+          ]
+        }
+      ],
+      "scrollable": null
+    },
+    {
+      "index": 4,
+      "tag": "div",
+      "id": null,
+      "cls": "mt-28 md:mt-36",
+      "rect": {
+        "x": 0,
+        "y": 4146.8,
+        "w": 1280,
+        "h": 321.8
+      },
+      "box": {
+        "display": "block",
+        "position": "static",
+        "maxWidth": "none",
+        "width": 1280,
+        "padTop": 0,
+        "padBottom": 0,
+        "padLeft": 0,
+        "padRight": 0,
+        "marginTop": 144,
+        "marginBottom": 0,
+        "gap": null,
+        "columns": null,
+        "rows": null,
+        "flexDirection": null,
+        "flexWrap": null,
+        "background": "rgba(0, 0, 0, 0)",
+        "backgroundImage": null,
+        "border": null,
+        "radius": null,
+        "shadow": null,
+        "backdrop": null,
+        "overflow": "visible",
+        "zIndex": "auto",
+        "opacity": "1",
+        "transform": null,
+        "willChange": null,
+        "transition": "all 0s ease 0s"
+      },
+      "container": {
+        "cls": "max-w-6xl mx-auto px-6 py-20 border-t border-b border-white/10",
+        "rect": {
+          "x": 64,
+          "y": 4146.8,
+          "w": 1152,
+          "h": 321.8
+        },
+        "box": {
+          "display": "block",
+          "position": "static",
+          "maxWidth": "1152px",
+          "width": 1152,
+          "padTop": 80,
+          "padBottom": 80,
+          "padLeft": 24,
+          "padRight": 24,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": null,
+          "columns": null,
+          "rows": null,
+          "flexDirection": null,
+          "flexWrap": null,
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": "1px solid rgba(255, 255, 255, 0.1)",
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "all 0s ease 0s"
+        }
+      },
+      "headings": [
+        {
+          "tag": "h2",
+          "text": "Have a workflow worth automating?",
+          "rect": {
+            "x": 88,
+            "y": 4229.2,
+            "w": 1104,
+            "h": 51.8
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif",
+            "size": 48,
+            "weight": "700",
+            "lineHeight": 48,
+            "leadingRatio": 1,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "center",
+            "wrap": "wrap"
+          }
+        }
+      ],
+      "paragraphs": [
+        {
+          "text": "Let's build the system around it.",
+          "rect": {
+            "x": 352,
+            "y": 4301.1,
+            "w": 576,
+            "h": 28
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 18,
+            "weight": "400",
+            "lineHeight": 28,
+            "leadingRatio": 1.6,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgb(203, 213, 225)",
+            "align": "center",
+            "wrap": "wrap"
+          },
+          "measureCh": 64
+        }
+      ],
+      "links": [
+        {
+          "text": "Book Free Consultation",
+          "href": "/contact",
+          "rect": {
+            "x": 530.5,
+            "y": 4361.1,
+            "w": 219,
+            "h": 28
+          },
+          "type": {
+            "family": "Zodiak Numerals",
+            "stack": "\"Zodiak Numerals\", Satoshi, system-ui, sans-serif, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+            "size": 18,
+            "weight": "700",
+            "lineHeight": 28,
+            "leadingRatio": 1.6,
+            "tracking": 0,
+            "trackingEm": 0,
+            "transform": "none",
+            "color": "rgb(255, 255, 255)",
+            "align": "center",
+            "wrap": "wrap"
+          },
+          "box": {
+            "display": "inline-flex",
+            "position": "static",
+            "maxWidth": "none",
+            "width": 219,
+            "padTop": 0,
+            "padBottom": 0,
+            "padLeft": 0,
+            "padRight": 0,
+            "marginTop": 32,
+            "marginBottom": 0,
+            "gap": "8px",
+            "columns": null,
+            "rows": null,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "background": "rgba(0, 0, 0, 0)",
+            "backgroundImage": null,
+            "border": null,
+            "radius": null,
+            "shadow": null,
+            "backdrop": null,
+            "overflow": "visible",
+            "zIndex": "auto",
+            "opacity": "1",
+            "transform": null,
+            "willChange": null,
+            "transition": "color, background-color, border-color, text-decoration-color, fill, stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s"
+          }
+        }
+      ],
+      "media": [
+        {
+          "tag": "svg",
+          "src": null,
+          "rect": {
+            "x": 733.5,
+            "y": 4367.1,
+            "w": 16,
+            "h": 16
+          },
+          "natural": null,
+          "fit": "fill",
+          "ratio": 1,
+          "loading": null,
+          "sizes": null
+        }
+      ],
+      "grids": [],
+      "scrollable": null
+    }
+  ],
+  "footer": {
+    "rect": {
+      "x": 0,
+      "y": 4468.6,
+      "w": 1280,
+      "h": 482
+    },
+    "box": {
+      "display": "block",
+      "position": "relative",
+      "maxWidth": "none",
+      "width": 1280,
+      "padTop": 0,
+      "padBottom": 0,
+      "padLeft": 0,
+      "padRight": 0,
+      "marginTop": 0,
+      "marginBottom": 0,
+      "gap": null,
+      "columns": null,
+      "rows": null,
+      "flexDirection": null,
+      "flexWrap": null,
+      "background": "rgba(16, 14, 32, 0.9)",
+      "backgroundImage": null,
+      "border": "1px solid rgba(255, 255, 255, 0.05)",
+      "radius": null,
+      "shadow": null,
+      "backdrop": "blur(24px)",
+      "overflow": "visible",
+      "zIndex": "10",
+      "opacity": "1",
+      "transform": null,
+      "willChange": null,
+      "transition": "all 0s ease 0s"
+    },
+    "columns": [
+      {
+        "cls": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_0.9fr_0.9fr_0.9fr_0.9fr_1.15fr] gap-10 lg:gap-7",
+        "box": {
+          "display": "grid",
+          "position": "static",
+          "maxWidth": "none",
+          "width": 1232,
+          "padTop": 0,
+          "padBottom": 0,
+          "padLeft": 0,
+          "padRight": 0,
+          "marginTop": 0,
+          "marginBottom": 0,
+          "gap": "28px",
+          "columns": "262.078px 157.234px 157.25px 157.25px 157.25px 200.922px",
+          "rows": "260px",
+          "flexDirection": null,
+          "flexWrap": null,
+          "background": "rgba(0, 0, 0, 0)",
+          "backgroundImage": null,
+          "border": null,
+          "radius": null,
+          "shadow": null,
+          "backdrop": null,
+          "overflow": "visible",
+          "zIndex": "auto",
+          "opacity": "1",
+          "transform": null,
+          "willChange": null,
+          "transition": "all 0s ease 0s"
+        },
+        "childCount": 6
+      }
+    ],
+    "headings": [
+      "Company",
+      "Services",
+      "Products",
+      "Explore",
+      "Contact"
+    ],
+    "links": [
+      {
+        "text": "Book Free Consultation →",
+        "href": "/contact"
+      },
+      {
+        "text": "",
+        "href": "https://www.facebook.com/share/1C8e4h74gr/"
+      },
+      {
+        "text": "",
+        "href": "https://wa.link/zebr1n"
+      },
+      {
+        "text": "",
+        "href": "https://www.youtube.com/@sirahdigital"
+      },
+      {
+        "text": "",
+        "href": "https://www.instagram.com/sirah_digital?igsh=MWdqMHNscWNsdTFucg=="
+      },
+      {
+        "text": "",
+        "href": "https://www.linkedin.com/company/sirahdigital"
+      },
+      {
+        "text": "About Us",
+        "href": "/about"
+      },
+      {
+        "text": "Our Process",
+        "href": "/about#process"
+      },
+      {
+        "text": "Our Work",
+        "href": "/products"
+      },
+      {
+        "text": "Contact",
+        "href": "/contact"
+      },
+      {
+        "text": "AI Business Automation",
+        "href": "/services#workflow-automation"
+      },
+      {
+        "text": "Chatbot Development",
+        "href": "/services#chatbots-voice"
+      },
+      {
+        "text": "CRM Automation",
+        "href": "/services#crm-erp"
+      },
+      {
+        "text": "All Services",
+        "href": "/services"
+      },
+      {
+        "text": "Aura Transcriber",
+        "href": "/products/aura-transcriber"
+      },
+      {
+        "text": "Analytics Agents",
+        "href": "/products/analytics-agents"
+      },
+      {
+        "text": "NUSI",
+        "href": "/products/nusi"
+      },
+      {
+        "text": "TNPSC Mentors",
+        "href": "/products/tnpsc-mentors"
+      },
+      {
+        "text": "LexDraft",
+        "href": "/products/lexdraft"
+      },
+      {
+        "text": "All Products",
+        "href": "/products"
+      },
+      {
+        "text": "Industries",
+        "href": "/industries"
+      },
+      {
+        "text": "Book a Call",
+        "href": "/contact"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy"
+      },
+      {
+        "text": "Terms of Service",
+        "href": "/terms"
+      },
+      {
+        "text": "support@sirahdigital.in",
+        "href": "mailto:support@sirahdigital.in"
+      },
+      {
+        "text": "+91 97899 61631",
+        "href": "tel:+919789961631"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy"
+      },
+      {
+        "text": "Terms of Service",
+        "href": "/terms"
+      }
+    ]
+  },
+  "colours": {
+    "background": [
+      [
+        "rgb(11, 9, 26)",
+        2
+      ],
+      [
+        "rgb(22, 20, 44)",
+        1
+      ],
+      [
+        "rgba(22, 20, 44, 0.8)",
+        1
+      ],
+      [
+        "rgba(16, 14, 32, 0.9)",
+        1
+      ]
+    ],
+    "text": [
+      [
+        "rgb(255, 255, 255)",
+        195
+      ],
+      [
+        "rgb(203, 213, 225)",
+        46
+      ],
+      [
+        "rgba(255, 255, 255, 0.94)",
+        18
+      ],
+      [
+        "rgba(255, 255, 255, 0.55)",
+        16
+      ],
+      [
+        "rgb(148, 163, 184)",
+        13
+      ],
+      [
+        "rgba(255, 255, 255, 0.58)",
+        13
+      ],
+      [
+        "rgba(255, 255, 255, 0.13)",
+        5
+      ],
+      [
+        "rgba(255, 255, 255, 0.4)",
+        1
+      ],
+      [
+        "rgba(203, 213, 225, 0.7)",
+        1
+      ],
+      [
+        "rgba(255, 255, 255, 0.38)",
+        1
+      ],
+      [
+        "rgb(59, 130, 246)",
+        1
+      ],
+      [
+        "rgb(139, 92, 246)",
+        1
+      ]
+    ],
+    "border": [
+      [
+        "rgba(255, 255, 255, 0.1)",
+        6
+      ],
+      [
+        "rgba(59, 130, 246, 0.55)",
+        3
+      ],
+      [
+        "rgba(255, 255, 255, 0.05)",
+        2
+      ],
+      [
+        "rgba(255, 255, 255, 0.06)",
+        1
+      ],
+      [
+        "rgba(255, 255, 255, 0.12)",
+        1
+      ]
+    ]
+  },
+  "pinSpacers": 0,
+  "stickyElements": [
+    {
+      "tag": "div",
+      "cls": "",
+      "position": "fixed",
+      "top": "0px",
+      "z": "0",
+      "rect": {
+        "x": 0,
+        "y": 796,
+        "w": 1280,
+        "h": 800
+      }
+    },
+    {
+      "tag": "header",
+      "cls": "fixed inset-x-0 top-0 z-50",
+      "position": "fixed",
+      "top": "0px",
+      "z": "50",
+      "rect": {
+        "x": 0,
+        "y": 796,
+        "w": 1280,
+        "h": 98
+      }
+    },
+    {
+      "tag": "div",
+      "cls": "product-stage_panel__klAir",
+      "position": "sticky",
+      "top": "72px",
+      "z": "auto",
+      "rect": {
+        "x": 0,
+        "y": 1282.8,
+        "w": 1280,
+        "h": 728
+      }
+    },
+    {
+      "tag": "div",
+      "cls": "sirah-launcher",
+      "position": "fixed",
+      "top": "708px",
+      "z": "2147483000",
+      "rect": {
+        "x": 1069.4,
+        "y": 1504,
+        "w": 190.6,
+        "h": 72
+      }
+    }
+  ]
+}

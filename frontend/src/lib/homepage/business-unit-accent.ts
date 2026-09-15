@@ -22,6 +22,7 @@ const SITE_KEY_BY_BUSINESS_UNIT_SLUG: Readonly<
   healthcare: "healthcare",
   lifestyle: "lifestyle",
   "real-estate": "realestate",
+  digital: "digital",
 });
 
 function isEditorialBusinessUnitSlug(

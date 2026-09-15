@@ -19,10 +19,16 @@ interface WordmarkProps {
 
 // On paper the standard accent carries; on the deep surfaces it does not, which
 // is the same split every section eyebrow already makes.
+//
+// The `paper` tone means "the wordmark as it is set on a DEEP surface", which
+// is why its lead reads --brand-on-deep and not --brand-paper. Those were the
+// same colour for as long as every brand had light paper; SIRA Digital's paper
+// is its dark ground (ADR-033), and the literal token would have set the
+// footer wordmark in near-black on near-black.
 const TONE: Readonly<Record<WordmarkTone, { lead: string; rest: string }>> =
   Object.freeze({
     ink: { lead: "text-brand-ink", rest: "text-brand-accent" },
-    paper: { lead: "text-brand-paper", rest: "text-brand-accent-bright" },
+    paper: { lead: "text-brand-on-deep", rest: "text-brand-accent-bright" },
   });
 
 export function Wordmark({ name, tone, className }: WordmarkProps) {

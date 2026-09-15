@@ -1,0 +1,97 @@
+{
+  "url": "/industries/",
+  "lang": "en",
+  "dir": "ltr",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 2991,
+  "viewport": {
+    "w": 1280,
+    "h": 800
+  },
+  "screens": 3.74,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 390.5,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 495.4,
+      "height": 415.4,
+      "screens": 0.52,
+      "heading": "Every sector loses time somewhere different.",
+      "headingType": {
+        "size": 54,
+        "lineHeight": 53,
+        "weight": "700",
+        "tracking": -0.03,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 2,
+      "startY": 495.4,
+      "endY": 2176.7,
+      "height": 1681.3,
+      "screens": 2.1,
+      "heading": "Construction",
+      "headingType": {
+        "size": 22,
+        "lineHeight": 26,
+        "weight": "600",
+        "tracking": -0.015,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 3,
+      "startY": 2176.7,
+      "endY": 2600.2,
+      "height": 423.5,
+      "screens": 0.53,
+      "heading": "Not listed? The bottleneck is usually the same shape.",
+      "headingType": {
+        "size": 70,
+        "lineHeight": 73,
+        "weight": "700",
+        "tracking": -0.025,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "Every sector loses time somewhere different.",
+    "size": 54,
+    "lineHeight": 53,
+    "weight": "700",
+    "tracking": -0.03,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

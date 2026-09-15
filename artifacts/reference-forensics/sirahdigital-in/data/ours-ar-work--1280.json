@@ -1,0 +1,109 @@
+{
+  "url": "/ar/work/",
+  "lang": "ar",
+  "dir": "rtl",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 4365,
+  "viewport": {
+    "w": 1280,
+    "h": 800
+  },
+  "screens": 5.46,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 422.3,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 560,
+      "height": 480,
+      "screens": 0.6,
+      "heading": "أنظمة، لا عروضًا تقديمية.",
+      "headingType": {
+        "size": 54,
+        "lineHeight": 69,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 2,
+      "startY": 560,
+      "endY": 3485.9,
+      "height": 2925.9,
+      "screens": 3.66,
+      "heading": "نسيج التكامل",
+      "headingType": {
+        "size": 44,
+        "lineHeight": 56,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 3,
+      "startY": 3485.9,
+      "endY": 3943,
+      "height": 457.2,
+      "screens": 0.57,
+      "heading": "لديكم عملية تستحق إعادة البناء؟",
+      "headingType": {
+        "size": 70,
+        "lineHeight": 90,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "أنظمة، لا عروضًا تقديمية.",
+    "size": 54,
+    "lineHeight": 69,
+    "weight": "700",
+    "tracking": 0,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

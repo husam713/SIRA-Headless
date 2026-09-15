@@ -1,0 +1,73 @@
+{
+  "url": "/ar/contact/",
+  "lang": "ar",
+  "dir": "rtl",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 2372,
+  "viewport": {
+    "w": 1024,
+    "h": 768
+  },
+  "screens": 3.09,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 409.5,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 794.1,
+      "height": 714.1,
+      "screens": 0.93,
+      "heading": "أخبرنا أين يضيع وقتكم.",
+      "headingType": {
+        "size": 58,
+        "lineHeight": 74,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    },
+    {
+      "index": 2,
+      "startY": 794.1,
+      "endY": 1963,
+      "height": 1168.9,
+      "screens": 1.52,
+      "heading": "كم تساوي هذه الأتمتة؟",
+      "headingType": {
+        "size": 46,
+        "lineHeight": 59,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "أخبرنا أين يضيع وقتكم.",
+    "size": 58,
+    "lineHeight": 74,
+    "weight": "700",
+    "tracking": 0,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

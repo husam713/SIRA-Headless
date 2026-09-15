@@ -1,0 +1,63 @@
+{
+  "url": "/ar/about/",
+  "lang": "ar",
+  "dir": "rtl",
+  "brandKey": "digital",
+  "brandSource": "wordpress",
+  "docHeight": 2663,
+  "viewport": {
+    "w": 1280,
+    "h": 800
+  },
+  "screens": 3.33,
+  "horizontalOverflow": 0,
+  "ground": "rgb(10, 15, 26)",
+  "header": {
+    "height": 80,
+    "navLinks": 10
+  },
+  "footer": {
+    "height": 422.3,
+    "links": 10
+  },
+  "sections": [
+    {
+      "index": 1,
+      "startY": 80,
+      "endY": 2240.9,
+      "height": 2160.9,
+      "screens": 2.7,
+      "heading": "About",
+      "headingType": {
+        "size": 70,
+        "lineHeight": 90,
+        "weight": "700",
+        "tracking": 0,
+        "transform": "none",
+        "color": "rgb(242, 246, 252)"
+      }
+    }
+  ],
+  "h1": {
+    "text": "About",
+    "size": 70,
+    "lineHeight": 90,
+    "weight": "700",
+    "tracking": 0,
+    "transform": "none",
+    "color": "rgb(242, 246, 252)"
+  },
+  "headingOrder": [
+    "H1",
+    "H2",
+    "H2",
+    "H3",
+    "H3",
+    "H3",
+    "H3",
+    "H2",
+    "H2",
+    "H2"
+  ],
+  "status": 200
+}

@@ -71,3 +71,25 @@ export function selectReadableForeground(
 
   return preferredPassing?.candidate ?? ranked[0]?.candidate ?? "#000000";
 }
+
+/**
+ * The lighter of a brand's two neutrals, for use on a surface known to be dark.
+ *
+ * `selectReadableForeground` cannot be used for the deep surfaces: it measures
+ * against the background, and every preset writes `deep`, `deepCard` and
+ * `footer` in `oklch()`, which the six-digit hex parser above rejects by design
+ * rather than half-understanding.
+ *
+ * It does not need to measure. Those tokens are dark by definition — the names
+ * say so, and a preset that made one of them light would be describing a
+ * different thing. The only open question is which of the brand's two neutrals
+ * is the light one, and both of those are hex. For a brand on light paper the
+ * answer is `paper`, which is what every deep section hardcoded before this
+ * existed; for one on a dark ground (ADR-033) it is `ink`.
+ */
+export function selectForegroundForDarkSurface(
+  paper: string,
+  ink: string,
+): string {
+  return relativeLuminance(paper) >= relativeLuminance(ink) ? paper : ink;
+}

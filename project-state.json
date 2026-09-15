@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-09-06",
+  "updatedAt": "2026-09-08",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -113,6 +113,46 @@
       "termsDeleted": [],
       "businessUnitAssignments": "Twelve pre-existing branch editorial records were assigned to their own tenant's term; no record's existing term was changed or removed.",
       "note": "ADR-014 mapping applied exactly: group -> null, and `real-estate` created as the Real Estate slug rather than being derived from the `realestate` site key."
+    },
+    "digitalTenant": {
+      "status": "OWNER_AUTHORIZED",
+      "authorizedOn": "2026-09-08",
+      "decisionRecord": "ADR-033",
+      "scope": "FIRST_CLASS_TENANT_INSIDE_THE_EXISTING_PLATFORM",
+      "canonicalHostname": "digital.siratrgroup.com",
+      "canonicalHostnameStatus": "ACTIVE_PRELAUNCH_PUBLIC_FRONTEND_HOSTNAME",
+      "hostnameStrategy": "PRELAUNCH_ON_GROUP_SUBDOMAIN_THEN_CONFIGURATION_DRIVEN_CUTOVER_TO_SAUDI_APEX",
+      "hostnameStrategyRecordedInRepository": true,
+      "hostnameStrategyAdr": "ADR-035",
+      "siteKey": "digital",
+      "businessUnitSlug": "digital",
+      "displayName": "SIRA Digital",
+      "displayNameStatus": "OPEN_OWNER_CONFIRMATION_SIRA_VS_SIRAH_SPELLING",
+      "separateCodebase": false,
+      "separateCms": false,
+      "authorizes": [
+        "REPOSITORY_TENANT_REGISTRATION",
+        "CANONICAL_TOPOLOGY_AND_GOVERNANCE_UPDATE",
+        "BACKEND_SOURCE_BRAND_AND_CONTACT_ROUTING_CHANGES",
+        "FRONTEND_DIGITAL_EXPERIENCE_IMPLEMENTATION",
+        "LIVE_WORDPRESS_SITE_CREATION_ADDED_BY_OWNER_PHASE_2_PROMPT_2026_09_08_EXECUTED_BLOG_6"
+      ],
+      "doesNotAuthorize": [
+        "DIGITAL_WORDPRESS_SITE_DELETION_OR_LOSS",
+        "DOMAIN_REGISTRATION_OR_DNS_CHANGE",
+        "PRODUCTION_DEPLOYMENT_OR_CUTOVER",
+        "DESTRUCTIVE_DATABASE_OPERATIONS",
+        "TAXONOMY_TERM_DELETION",
+        "PRODUCTION_SECRET_ROTATION"
+      ],
+      "provisioningGuide": "docs/DIGITAL-TENANT-PROVISIONING.md",
+      "plannedCanonicalHostname": "sirahdigital.sa",
+      "plannedCanonicalHostnameStatus": "FUTURE_PRODUCTION_PUBLIC_HOSTNAME_NOT_ACTIVE_NO_DNS",
+      "cutoverMechanism": "SIRA_CANONICAL_HOSTNAMES_JSON",
+      "cmsOriginConfiguredSeparatelyFromPublicHostname": true,
+      "cmsOriginHostname": "digital.siratrgroup.com",
+      "cmsOriginMovedOn": "2026-09-08",
+      "cmsOriginMoveAuthorization": "OWNER_DECISION_2026_09_08_CHOSE_DIGITAL_SIRATRGROUP_COM_FOR_THE_CMS_ORIGIN"
     }
   },
   "parallelTracks": {
@@ -157,7 +197,8 @@
       "consulting": "consulting.siratrgroup.com",
       "healthcare": "healthcare.siratrgroup.com",
       "lifestyle": "lifestyle.siratrgroup.com",
-      "realestate": "realestate.siratrgroup.com"
+      "realestate": "realestate.siratrgroup.com",
+      "digital": "digital.siratrgroup.com"
     },
     "scope": "public production hostnames only",
     "unresolvedOrigins": [
@@ -167,7 +208,33 @@
       "staging",
       "vercel-preview",
       "revalidation"
-    ]
+    ],
+    "apexes": [
+      "siratrgroup.com"
+    ],
+    "multiApex": false,
+    "expansion": {
+      "decisionRecord": "ADR-033",
+      "authorizedOn": "2026-09-08",
+      "summary": "SIRA Digital joins the platform as a first-class company on its own Saudi apex. The topology is no longer single-apex. This is an owner-authorized expansion; sirahdigital.sa must not be treated as unauthorized topology drift.",
+      "supersedes": "ADR-024 on the single-apex point only. Every other ADR-024 clause stands, including that public-domain evidence must not be used to infer backend, GraphQL, media, staging, preview, cookie-domain, CORS or revalidation configuration.",
+      "apexNote": "`apex` is retained as the SIRA GROUP apex and remains contract-locked. `apexes` is the full list."
+    },
+    "plannedSites": {
+      "digital": "sirahdigital.sa"
+    },
+    "plannedApexes": [
+      "sirahdigital.sa"
+    ],
+    "multiApexPlanned": true,
+    "phasing": {
+      "decisionRecord": "ADR-035",
+      "authorizedOn": "2026-09-08",
+      "summary": "SIRA Digital launches pre-launch on digital.siratrgroup.com and moves to sirahdigital.sa later. ADR-033 is not reversed: the Saudi apex remains the intended end state and is recorded in plannedApexes/plannedSites. Until the move, the active public topology is single-apex, and canonical URLs, hreflang, the sitemap and alias redirects all follow the ACTIVE hostname.",
+      "cutoverMechanism": "Configuration only. SIRA_CANONICAL_HOSTNAMES_JSON={\"digital\":\"sirahdigital.sa\"} promotes the planned hostname to canonical, carries its aliases with it, and demotes digital.siratrgroup.com to a redirect alias. No rebuild, no content migration, no second deployment.",
+      "cmsOriginSeparation": "The public frontend hostname and the WordPress CMS origin are configured independently: the CMS origin is SIRA_WP_<TENANT>_GRAPHQL_URL and is never derived from the public hostname. WordPress stays on Hostinger. On 2026-09-08 the owner moved the Digital CMS origin from sirahdigital.sa to digital.siratrgroup.com, which frees the Saudi domain for the public frontend at cutover.",
+      "notAuthorizedByThisDecision": "Public DNS changes, the WordPress CMS-domain migration, and production deployment."
+    }
   },
   "repositoryEvidencePolicy": "evidence-first",
   "latestAcceptedIncrement": {
@@ -270,22 +337,32 @@
     "branchHomepageVisualComposition": "MERGED_PR44",
     "newsroomVisualRouteWork": "NOT_STARTED",
     "prototypeImplementation": "ART_DIRECTION_PROTOTYPE_RETAINED_NON_PRODUCTION",
-    "responsiveLayoutPrimitives": "MERGED_PR47_PR48"
+    "responsiveLayoutPrimitives": "MERGED_PR47_PR48",
+    "digitalTenant": "IN_PROGRESS_ON_UNMERGED_BRANCH_FEAT_SIRAHDIGITAL_SA"
   },
   "openGates": {
     "mediaOriginB07": "UNRESOLVED_DEFERRED",
     "formsArchitectureB08": "UNRESOLVED",
-    "multilingualArchitectureB09": "UNRESOLVED",
+    "multilingualArchitectureB09": "RESOLVED_ADR_034_OWNER_DECISION_2026_09_08_ARABIC_IS_FIRST_CLASS_INSIDE_THE_SAME_DIGITAL_TENANT",
     "previewAuth001": "DEFERRED",
     "externalGroupStaging": "NOT_PROVISIONED_NOT_AUTHORIZED",
     "productionDeployment": "NOT_AUTHORIZED",
     "productionDns": "NOT_AUTHORIZED",
     "groupProductionCutover": "NOT_AUTHORIZED",
     "legacyGroupDestruction": "NOT_AUTHORIZED",
-    "seedContentRemovalBeforeLaunch": "OPEN_BLOCKS_LAUNCH_NO_SEED_RECORDS_CREATED_YET",
-    "searchEngineIndexingReenableBeforeLaunch": "OPEN_BLOCKS_LAUNCH_AND_BLOCKS_SEEDING_BLOG_PUBLIC_IS_1_ON_ALL_FIVE_TENANTS",
+    "seedContentRemovalBeforeLaunch": "OPEN_BLOCKS_LAUNCH_DIGITAL_SEED_RECORDS_EXIST_ON_BLOG_6",
+    "seedVerifierCoverageDefect": "CLOSED_GATE_NOW_ENUMERATES_EVERY_REGISTERED_POST_TYPE_AND_TAXONOMY_PER_TENANT_AND_REPORTS_AN_UNREADABLE_COUNT_AS_INDETERMINATE_RATHER_THAN_CLEAN",
+    "searchEngineIndexingReenableBeforeLaunch": "OPEN_BLOCKS_LAUNCH_AND_BLOCKS_SEEDING_NOW_SPANS_SIX_TENANTS_DIGITAL_BLOG_6_WAS_CREATED_WITH_BLOG_PUBLIC_0_TO_MATCH_THE_OTHERS_LIVE_VALUE_NOT_REVERIFIED_IN_THIS_CHECKPOINT",
     "rb009RestoreRehearsal": "OPEN_BACKUP_EXISTS_BUT_HAS_NEVER_BEEN_RESTORED",
-    "platformEgressReachabilityUnverified": "OPEN_NOT_LAUNCH_BLOCKING_VERIFY_ONE_SERVER_SIDE_GRAPHQL_FETCH_FROM_THE_DEPLOY_PLATFORM_BEFORE_CUTOVER"
+    "platformEgressReachabilityUnverified": "OPEN_NOT_LAUNCH_BLOCKING_VERIFY_ONE_SERVER_SIDE_GRAPHQL_FETCH_FROM_THE_DEPLOY_PLATFORM_BEFORE_CUTOVER",
+    "digitalWordPressSiteProvisioning": "CLOSED_PROVISIONED_2026_09_08_AS_BLOG_6_DO_NOT_DELETE_OR_LOSE_THIS_SITE",
+    "digitalPublicHostname": "CLOSED_ADR_035_ACTIVE_HOST_IS_DIGITAL_SIRATRGROUP_COM_AND_SIRAHDIGITAL_SA_IS_REGISTERED_AS_THE_PLANNED_HOSTNAME_PROMOTED_BY_SIRA_CANONICAL_HOSTNAMES_JSON",
+    "digitalDomainRegistrationAndDns": "CLOSED_SIRAHDIGITAL_SA_RESOLVES_TO_THE_HOSTINGER_ORIGIN_VERIFIED_2026_09_08",
+    "digitalLocalizationAgainstB09": "OPEN_UNCOMMITTED_WORKING_TREE_IMPLEMENTS_LOCALE_ROUTES_TRANSLATED_RECORD_OWNERSHIP_HREFLANG_AND_ARABIC_COPY_WHICH_2C4_B09_RESERVES_FOR_THE_OWNER_NOTHING_COMMITTED_NOTHING_DEPLOYED_NO_ARABIC_CONTENT_IN_WORDPRESS",
+    "digitalTradingNameSpelling": "OPEN_OWNER_CONFIRMATION_SIRA_DIGITAL_IS_IMPLEMENTED_FOLLOWING_THE_ESTABLISHED_COMPANY_NAME_CONVENTION",
+    "digitalBrandMark": "OPEN_OWNER_DELIVERABLE_SHARED_WHITE_SIRA_MARK_USED_DELIBERATELY_IN_THE_MEANTIME",
+    "digitalSaudiDomainCutover": "OPEN_NOT_BLOCKING_REPOSITORY_WORK_REQUIRES_DOMAIN_REGISTRATION_DNS_AND_A_CONFIGURATION_CHANGE_NOT_A_REBUILD",
+    "digitalCmsOriginHostnameCollision": "OPEN_NOT_BLOCKING_REPOSITORY_WORK_PRELAUNCH_WORDPRESS_BLOG_6_AND_THE_INTENDED_PUBLIC_FRONTEND_BOTH_CLAIM_DIGITAL_SIRATRGROUP_COM_ONE_HOSTNAME_CANNOT_SERVE_BOTH_SO_THIS_MUST_BE_RESOLVED_BEFORE_THE_FRONTEND_IS_DEPLOYED_THERE_AT_ADR_035_CUTOVER_THE_FRONTEND_TAKES_SIRAHDIGITAL_SA_AND_THE_CONFLICT_ENDS"
   },
   "nextOwnerGate": {
     "authorizationBoundary": "NO_SUBSEQUENT_TASK_INHERITS_AUTHORITY_FROM_CANONICAL_GOVERNANCE_WORK",
@@ -335,6 +412,7 @@
     }
   },
   "nextMajorStages": [
+    "Digital company: ADR-033 owner-authorized topology expansion; tenant registered in the repository on the unmerged branch feat/sirahdigital-sa. The live WordPress site, the domain, DNS and deployment all remain separately gated.",
     "Step 4 frontend: Group homepage sections merged through PRs 36/38/40/41; shared shell and branch homepage merged through PR 44; shared responsive layout primitives merged through PRs 47/48; see step4MergedIncrements and its acceptanceEvidenceCaveat",
     "Step 4 frontend: the shared responsive layout primitives are merged; the next increment is separately authorized and is not implied by this record",
     "Step 4 architecture: ADR-029 is owner accepted after implementation through the pull request 48 comment; the acceptance covers the architecture decision only and authorizes no subsequent task",

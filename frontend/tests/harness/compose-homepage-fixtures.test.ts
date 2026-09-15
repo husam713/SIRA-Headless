@@ -139,6 +139,10 @@ describe("homepage fixture composition", () => {
       // Wrapped so the emitted HTML carries this tenant's brand tokens; the
       // screenshot surface is otherwise colourless and every tenant looks
       // identical.
+      // Digital has its own composition (ADR-033) and its own fixtures; this
+      // harness covers the group and branch variants it was built for.
+      if (homepage.variant === "digital") return;
+
       const composed =
         homepage.variant === "group"
           ? composeGroupHomepage(homepage)

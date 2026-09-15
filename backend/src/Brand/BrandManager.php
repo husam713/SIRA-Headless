@@ -108,6 +108,20 @@ final class BrandManager {
 				'ink_color'      => '#29232d',
 				'tagline'        => 'Strategy for new markets.',
 			),
+			// SIRA Digital (ADR-033). The only company set on a dark ground:
+			// paper is the page ground and ink is the text on it, so these two
+			// values are inverted relative to every other preset. The accent is
+			// SIRA GROUP's gold rather than a new hue.
+			'digital'    => array(
+				'brand_name'     => 'SIRA Digital',
+				'brand_key'      => 'digital',
+				'primary_color'  => '#d4a94f',
+				'secondary_color' => '#0e1626',
+				'accent_color'   => '#d4a94f',
+				'paper_color'    => '#0a0f1a',
+				'ink_color'      => '#f2f6fc',
+				'tagline'        => 'Systems that run the work.',
+			),
 		);
 	}
 

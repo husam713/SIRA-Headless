@@ -19,8 +19,42 @@ describe("SIRA site registry", () => {
     ["healthcare.siratrgroup.com", "healthcare"],
     ["lifestyle.siratrgroup.com", "lifestyle"],
     ["realestate.siratrgroup.com", "realestate"],
+    ["digital.siratrgroup.com", "digital"],
+    ["sirahdigital.sa", "digital"],
+    ["www.sirahdigital.sa", "digital"],
   ] as const)("resolves %s to %s", (hostname, expectedKey) => {
     expect(resolveSiteFromHostname(hostname)?.site.key).toBe(expectedKey);
+  });
+
+  // ADR-033 put Digital on its own Saudi apex; ADR-035 phased the move, so the
+  // company is served on a Group subdomain today. The registry never matched on
+  // a parent domain, so both shapes resolve by exactly the same rule. These
+  // assertions exist so a future change that reintroduces a single-apex
+  // assumption — in either direction — fails here rather than in production.
+  it("serves the Digital company on its pre-launch subdomain", () => {
+    expect(resolveSiteFromHostname("digital.siratrgroup.com")).toMatchObject({
+      hostnameRole: "canonical",
+      isCanonical: true,
+      shouldRedirectToCanonical: false,
+      site: { key: "digital", canonicalHostname: "digital.siratrgroup.com" },
+    });
+  });
+
+  it("redirects the planned Saudi domain to Digital rather than to Group", () => {
+    // The domain is registered in the registry before it resolves in DNS, so
+    // the day it points at us it lands on Digital instead of being rejected.
+    for (const hostname of ["sirahdigital.sa", "www.sirahdigital.sa"]) {
+      expect(resolveSiteFromHostname(hostname)).toMatchObject({
+        hostnameRole: "redirect-alias",
+        shouldRedirectToCanonical: true,
+        site: { key: "digital", canonicalHostname: "digital.siratrgroup.com" },
+      });
+    }
+  });
+
+  it("does not resolve an unregistered host under either apex", () => {
+    expect(resolveSiteFromHostname("mail.sirahdigital.sa")).toBeNull();
+    expect(resolveSiteFromHostname("digital.sirahdigital.sa")).toBeNull();
   });
 
   it("classifies canonical production hosts without redirecting", () => {

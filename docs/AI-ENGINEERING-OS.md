@@ -128,6 +128,7 @@ afterward where possible.
 ## Durable memory model
 
 - `AGENTS.md` — permanent AI operating rules.
+- `docs/STATE.md` — one-page current-state pointer; the first read of every session.
 - `project-state.json` — machine-readable current state.
 - `docs/PROJECT-STATE.md` — human-readable current state.
 - `docs/SOURCE-OF-TRUTH.md` — SIRA-specific source/state/history/conflict registry.

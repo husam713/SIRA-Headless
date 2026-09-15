@@ -1,0 +1,80 @@
+name: Backend CI
+
+# backend/ has never been linted by CI, which is why `php -l` and phpcs have
+# repeatedly fallen to a human. phpcs.xml.dist already pins the standard
+# (WordPress + WordPress-Docs + WordPress-Extra) and testVersion 8.3-; this
+# workflow is only the runner for it.
+
+on:
+  pull_request:
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend-ci.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backend-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: backend
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Verify patch whitespace
+        working-directory: .
+        run: git diff --check HEAD^1 HEAD
+
+      # 8.3 matches the `testVersion` floor in phpcs.xml.dist.
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          coverage: none
+          tools: composer
+
+      # The genuine `php -l`, over every file rather than the changed ones, so
+      # a syntax error can never reach main through an unrelated PR. xargs
+      # propagates a non-zero exit from any single lint.
+      - name: Syntax check every PHP file
+        run: |
+          find . -type f -name '*.php' -not -path './vendor/*' -print0 \
+            | xargs -0 -r -n1 -P4 php -l
+
+      # phpcompatibility-wp supplies the `testVersion` support that
+      # phpcs.xml.dist configures; without it that config line is inert.
+      - name: Install PHP_CodeSniffer and WordPress Coding Standards
+        run: |
+          composer global config --no-plugins \
+            allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+          composer global require --no-interaction --no-progress \
+            squizlabs/php_codesniffer:^3.10 \
+            wp-coding-standards/wpcs:^3.1 \
+            phpcompatibility/phpcompatibility-wp:^2.1
+          echo "$(composer config -g home)/vendor/bin" >> "$GITHUB_PATH"
+
+      - name: Show resolved coding standards
+        run: phpcs -i
+
+      - name: Verify coding standards
+        run: phpcs --standard=phpcs.xml.dist --report=full

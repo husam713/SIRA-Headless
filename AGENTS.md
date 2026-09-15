@@ -5,19 +5,23 @@ Conversation history is supporting context only and must never override reposito
 
 ## Session Boot Protocol
 
-At the beginning of every engineering session:
+Boot is proportional to the task.
 
-1. Read this file.
-2. Read `docs/AI-ENGINEERING-OS.md` and the normative protocol it identifies.
-3. Read `project-state.json`.
-4. Read `docs/PROJECT-STATE.md`.
-5. Read `docs/SOURCE-OF-TRUTH.md`.
-6. Read relevant entries in `docs/DECISIONS.md`.
-7. Inspect Git/GitHub state appropriate to the active execution profile.
-8. Inspect relevant generated contracts and tests.
-9. Reconcile discrepancies before modifying code.
+**Every session:** read this file, read `docs/STATE.md`, inspect Git state
+(`git status`, recent log, current branch), and read the source, contracts, and
+tests the task actually touches. Area-specific rules load automatically from
+`.claude/rules/` in Claude Code; other agents read the matching file by hand.
 
-Never determine current project state from conversation memory alone.
+**Full boot** — additionally `docs/AI-ENGINEERING-OS.md` and the normative
+protocol, `project-state.json`, `docs/PROJECT-STATE.md`,
+`docs/SOURCE-OF-TRUTH.md`, relevant `docs/DECISIONS.md` entries,
+`docs/HANDOFF.md`, and open PRs/CI — is required for governance or
+durable-state changes, state reconciliation, interrupted-session recovery,
+anything that touches a protected operation, and whenever `docs/STATE.md`
+reports drift you must resolve. Use `templates/ai/BOOT-PROTOCOL.md`.
+
+Reconcile discrepancies before modifying code. Never determine current project
+state from conversation memory alone.
 
 Claude Code does not load this file automatically; it loads `CLAUDE.md`. That
 file is a platform-specific bootstrap adapter whose only job is to direct the

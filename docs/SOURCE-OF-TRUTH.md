@@ -30,6 +30,13 @@ to that subsystem.
   `AGENTS.md` and the boot protocol above. It defines no protocol and grants no
   authorization. If it conflicts with any document in this registry, that
   document governs and `CLAUDE.md` is corrected.
+- `.claude/rules/*.md` and `.claude/settings.json` — the rest of the Claude
+  Code adapter: path-scoped restatements of the rules above and the permission
+  policy that mirrors `AGENTS.md` § Protected Operations. Same authority as
+  `CLAUDE.md`: none of their own.
+- `docs/STATE.md` — the one-page current-state pointer every session reads
+  first; it names the verified-through coordinate and any drift between
+  carriers.
 
 ## Current authoritative repository baseline
 

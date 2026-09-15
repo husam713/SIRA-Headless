@@ -1,17 +1,15 @@
 name: Frontend CI
 
+# One job, always named `frontend`, on every pull request. The `main` ruleset
+# requires that status, so the job must report even when a PR touches nothing
+# under frontend/. The whitespace gate always runs; the pnpm/Next/Chromium
+# steps run only when frontend files (or this workflow) changed. Docs-only PRs
+# therefore finish in seconds instead of installing Chromium for nothing.
 on:
   pull_request:
-    paths:
-      - "frontend/**"
-      - ".github/workflows/frontend-ci.yml"
-      - "AGENTS.md"
-      - "project-state.json"
-      - "docs/**"
   push:
     branches:
       - main
-      - step-2c3c-typed-query-contracts
     paths:
       - "frontend/**"
       - ".github/workflows/frontend-ci.yml"
@@ -47,13 +45,34 @@ jobs:
         working-directory: .
         run: git diff --check HEAD^1 HEAD
 
+      # On pull_request the checkout is the merge commit, so HEAD^1 is the base
+      # branch and the diff is exactly the PR. Any other event (push to main,
+      # manual dispatch) runs the full pipeline.
+      - name: Detect frontend changes
+        id: changes
+        working-directory: .
+        run: |
+          if [ "${{ github.event_name }}" != "pull_request" ]; then
+            echo "frontend=true" >> "$GITHUB_OUTPUT"
+            echo "Full run: event is ${{ github.event_name }}"
+            exit 0
+          fi
+          if git diff --name-only HEAD^1 HEAD | grep -E '^(frontend/|\.github/workflows/frontend-ci\.yml$)' ; then
+            echo "frontend=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "frontend=false" >> "$GITHUB_OUTPUT"
+            echo "No frontend changes in this pull request; whitespace check is the only gate."
+          fi
+
       - name: Install pnpm
+        if: steps.changes.outputs.frontend == 'true'
         uses: pnpm/action-setup@v4
         with:
           version: 11.17.0
           run_install: false
 
       - name: Set up Node.js
+        if: steps.changes.outputs.frontend == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 22.20.0
@@ -61,33 +80,42 @@ jobs:
           cache-dependency-path: frontend/pnpm-lock.yaml
 
       - name: Install dependencies
+        if: steps.changes.outputs.frontend == 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Verify checked-in GraphQL schema artifacts
+        if: steps.changes.outputs.frontend == 'true'
         run: pnpm schema:check
 
       - name: Regenerate GraphQL operation contracts
+        if: steps.changes.outputs.frontend == 'true'
         run: pnpm codegen
 
       - name: Verify generated GraphQL output is deterministic
+        if: steps.changes.outputs.frontend == 'true'
         run: git diff --exit-code -- src/generated/graphql
 
       - name: Lint
+        if: steps.changes.outputs.frontend == 'true'
         run: pnpm lint
 
       - name: Typecheck
+        if: steps.changes.outputs.frontend == 'true'
         run: pnpm typecheck
 
       - name: Run tests
+        if: steps.changes.outputs.frontend == 'true'
         run: pnpm test:run
 
       - name: Production build
+        if: steps.changes.outputs.frontend == 'true'
         run: pnpm build
 
       # verify:layout reads the BUILT css out of .next/static/chunks, so it has
       # to follow the build step. Browsers are cached because the Chromium
       # download is larger than the whole rest of this job.
       - name: Cache Playwright browsers
+        if: steps.changes.outputs.frontend == 'true'
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
@@ -96,12 +124,14 @@ jobs:
             playwright-${{ runner.os }}-
 
       - name: Install Chromium for the layout verifier
+        if: steps.changes.outputs.frontend == 'true'
         run: node node_modules/playwright-core/cli.js install --with-deps chromium
 
       # Exits non-zero on a failed assertion, so this is a real gate. Its
       # whole-page counterpart (verify:alignment) is deliberately NOT wired in:
       # it needs a captured deployment, which CI has no credentials for.
       - name: Verify shared layout primitives
+        if: steps.changes.outputs.frontend == 'true'
         run: pnpm verify:layout
 
       # Renders the fixtures through the real homepage components and asserts
@@ -110,7 +140,9 @@ jobs:
       # verify:layout — the built css and the Chromium install above — so it
       # follows both. Fixture rendering is not production visual acceptance.
       - name: Verify homepage fixture rendering
+        if: steps.changes.outputs.frontend == 'true'
         run: pnpm verify:fixtures
 
       - name: Run local Draft Mode runtime verification
+        if: steps.changes.outputs.frontend == 'true'
         run: pnpm test:runtime-preview

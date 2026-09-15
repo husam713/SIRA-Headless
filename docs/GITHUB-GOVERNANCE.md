@@ -42,16 +42,25 @@ The repository PR template is the default evidence form.
 
 ## Branch protection status
 
-A branch protection rule is configured for `main`.
+Historical: a classic branch protection rule was configured while the
+repository was private and was reported as not enforced under that plan.
 
-GitHub currently reports that the rule is **not enforced** for this private repository under the current plan. This is a platform/account-plan limitation and must not be represented as active enforcement.
+Current (2026-09-15, repository public, owner is admin): three **repository
+rulesets** are active and were verified through the GitHub API:
 
-Current status:
+- `SIRA main — PR + CI required, no force-push, no delete` — targets the default
+  branch: deletion blocked, non-fast-forward blocked, pull request required
+  (0 approvals — the owner is the only human and cannot approve their own PR;
+  the merge click is the owner gate), required status check `frontend`
+  (GitHub Actions) with strict up-to-date policy; no bypass actors.
+- `SIRA rollback branches — immutable step-* history` — `refs/heads/step-*`:
+  deletion, non-fast-forward, and update blocked.
+- `SIRA approved tags — immutable step-*-approved` — `refs/tags/step-*`: same.
 
-- rule configured: YES;
-- rule enforced: NO;
-- reason: GitHub plan limitation for this private repository;
-- upgrade required for current SIRA development: NO.
+Because the engineering agent operates under the owner's GitHub token, GitHub
+cannot distinguish the two; "the agent must not merge" therefore remains a
+client-side deny rule in `.claude/settings.json` plus the owner instruction,
+not a platform control.
 
 Compensating project controls:
 
@@ -82,6 +91,14 @@ Required frontend CI sequence:
 7. `pnpm typecheck`;
 8. `pnpm test:run`;
 9. `pnpm build`.
+
+Since 2026-09-15 the workflow runs on every pull request so that the required
+`frontend` status always reports. The whitespace check runs unconditionally;
+steps 1–9 and the layout/fixture/Draft-Mode verifiers run only when the pull
+request changes `frontend/**` or the workflow file. Pushes to `main` and manual
+dispatches always run the full sequence. `.github/workflows/backend-ci.yml`
+lints `backend/**` (`php -l`, `phpcs`) on pull requests touching it; it is not
+a required status.
 
 No CI step may require a WordPress Application Password, schema authorization token, or other production credential.
 

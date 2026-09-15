@@ -20,6 +20,7 @@ load automatically from `.claude/rules/` when you touch those paths.
 |---|---|---|
 | Group + branch homepages, shared shell, layout primitives | merged on `main` (PRs #36–#63) | Git |
 | SIRA Digital tenant (bilingual, pre-launch host) | PRs **#65** (draft) and **#66** (draft) — implemented, **not merged, not owner-accepted** | GitHub |
+| CMS-origin relocation reconciliation (ADR-036 / SOT-003) + Group cutover plan | PR **#68** (draft, stacked on #66) — docs only, **not merged, not owner-accepted** | GitHub |
 | Newsroom "The SIRA Record" | PR **#64** — implemented, **not merged, not owner-accepted** | GitHub |
 | Backend starter importer | PR **#45** (draft, 2026-08-28) — stale | GitHub |
 | PR **#37** | Vercel bot; Vercel is no longer used — close when convenient | owner decision 2026-09-15 |
@@ -31,10 +32,12 @@ The state carriers on `main` are dated **2026-09-03**. The events of 2026-09-05
 → 09-10 — verified backup (RB-001), Batch A taxonomy terms, placeholder
 editorial seeding (ADR-030/031), blog 6 provisioning (ADR-033/034/035), and the
 live CMS-origin relocation to `cms-<tenant>.siratrgroup.com` (ADR-036 /
-SOT-003) — are recorded only on the **local, unpushed** branch
-`docs/cms-origin-relocation-reconciliation` (10 commits ahead of `main`).
-Until that branch is pushed and merged, treat those facts as
-`TRANSFERRED EVIDENCE` here, and do not edit CMS origins or
+SOT-003) — are recorded only on branch
+`docs/cms-origin-relocation-reconciliation`, pushed 2026-09-15 as PR **#68**
+(draft). It is two docs commits on top of PR #66's head, so it sits at the end
+of the #64 → #65 → #66 stack and is ~60 commits ahead of `main`; `git
+merge-tree` against `main` @ `8cb642d8` is clean. Until it is merged, treat
+those facts as `TRANSFERRED EVIDENCE` here, and do not edit CMS origins or
 `SIRA_WP_*_GRAPHQL_URL` without reading that branch's `docs/HANDOFF.md`
 section "CMS origin relocation — executed 2026-09-10".
 
@@ -60,7 +63,7 @@ section "CMS origin relocation — executed 2026-09-10".
 
 ## Next step
 
-Push and merge `docs/cms-origin-relocation-reconciliation` (or fold it into
-#66) so `main`'s carriers stop being a week behind; then decide the order of
-#64 / #65 / #66. Phase 3 of the Claude Code adapter (state-carrier
-consolidation) follows that merge.
+Owner decides the merge order of the stack #64 → #65 → #66 → #68 (or folds
+#68's two commits into #66) so `main`'s carriers stop being a week behind.
+Phase 3 of the Claude Code adapter (state-carrier consolidation, including
+removing the drift paragraph above) follows that merge.

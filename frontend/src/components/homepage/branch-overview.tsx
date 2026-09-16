@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import { CtaLink } from "@/components/homepage/cta-link";
 import { GridItem, PageGrid } from "@/components/layout/page-grid";
 import { Prose } from "@/components/layout/prose";
@@ -40,18 +42,25 @@ interface FocusAreaRowProps {
 }
 
 function FocusAreaRow({ area, index }: FocusAreaRowProps) {
+  // Atlas direction: the focus areas read as the branch's capability ledger —
+  // numbered, ruled, arriving one after another — the same grammar as the
+  // Group's service rows without the disclosure, since each carries only a
+  // line of description.
   return (
-    <div className="flex flex-col gap-2 border-t border-brand-border py-8 first:pt-0">
-      <span className="font-display text-2xl leading-none text-brand-accent">
+    <div
+      className="reveal grid grid-cols-[3rem_1fr] gap-x-4 gap-y-1 border-t border-brand-border py-7 first:border-t-0 first:pt-0"
+      style={{ "--reveal-offset": `${String(Math.min(index, 4) * 1.5)}%` } as CSSProperties}
+    >
+      <span aria-hidden="true" className="font-display text-xl leading-none text-brand-accent">
         {String(index + 1).padStart(2, "0")}
       </span>
       {area.title !== null ? (
-        <h3 className="font-display text-xl font-normal leading-snug">
+        <h3 className="font-display text-[clamp(1.35rem,2vw,1.75rem)] font-normal leading-[1.15]">
           {area.title}
         </h3>
       ) : null}
       {area.description !== null ? (
-        <p className="text-[15px] leading-relaxed text-brand-ink-soft">
+        <p className="col-start-2 text-[15px] leading-relaxed text-brand-ink-soft">
           {area.description}
         </p>
       ) : null}
@@ -81,10 +90,7 @@ export function BranchOverview({ overview, focusAreas }: BranchOverviewProps) {
         <GridItem span={copySpan}>
           <SectionEyebrow>{overview?.eyebrow ?? "Overview"}</SectionEyebrow>
           {hasHeading ? (
-            <h2
-              id="overview-heading"
-              className="mt-4 text-balance font-display text-[clamp(2.25rem,5vw,3.5rem)] font-normal leading-[1.05]"
-            >
+            <h2 id="overview-heading" className="atlas-display atlas-display--l reveal mt-5">
               {overview?.heading}
             </h2>
           ) : null}
@@ -92,7 +98,7 @@ export function BranchOverview({ overview, focusAreas }: BranchOverviewProps) {
             // Reading measure comes from --layout-reading-width rather than a
             // hand-picked max-w-[32rem].
             <Prose className="mt-6">
-              <p className="text-base leading-relaxed text-brand-ink-soft">
+              <p className="atlas-lead reveal" style={{ "--reveal-offset": "2%" } as CSSProperties}>
                 {overview?.description}
               </p>
             </Prose>

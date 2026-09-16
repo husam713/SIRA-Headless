@@ -5,7 +5,7 @@ older is provenance. Machine-readable twin: `project-state.json`. Full history
 and registries: `docs/HANDOFF.md`, `docs/SOURCE-OF-TRUTH.md`,
 `docs/PROJECT-STATE.md`, `docs/DECISIONS.md`.
 
-**Verified through:** 2026-09-15 · `main` @ `db090be6` (merge of PR #68, 2026-09-15)
+**Verified through:** 2026-09-16 · `main` @ `0dd08528` (merge of PR #73, 2026-09-16)
 
 ## What this repo is
 
@@ -22,6 +22,8 @@ load automatically from `.claude/rules/` when you touch those paths.
 | Newsroom "The SIRA Record" | merged on `main` — PR **#64** @ `4a999bb0`, 2026-09-15 | Git |
 | SIRA Digital tenant (bilingual, pre-launch host) | merged on `main` — PRs **#65** @ `8723f960`, **#66** @ `e0ef2f74`, 2026-09-15 | Git |
 | CMS-origin relocation reconciliation (ADR-036 / SOT-003) + Group cutover plan | merged on `main` — PR **#68** @ `db090be6`, 2026-09-15 | Git |
+| Step 4 motion system (tokens, view transitions, header/menu states, form feedback, ticker pause) | merged on `main` — PR **#72** @ `1179c5dd`, 2026-09-16 | Git |
+| Platform delivery: Data Cache key fix, `POST /api/revalidate/` receiver, tenant-scoped cache tags, outage → 500, retry, trace logs, per-tenant motion preset, `next/link` menus, edge policy (off) | merged on `main` — PR **#73** @ `0dd08528`, 2026-09-16; runbook `docs/PLATFORM-DELIVERY.md` | Git |
 | Backend starter importer | PR **#45** (draft, 2026-08-28) — stale | GitHub |
 | PR **#37** | Vercel bot; Vercel is no longer used — close when convenient | owner decision 2026-09-15 |
 | Owner's local uncommitted work (Cloud Run Dockerfile, search-indexing switch, newsroom design pass, backend CI) | intentional, in the main checkout, not on any branch yet | owner statement 2026-09-15 |
@@ -42,6 +44,16 @@ merge authorization given in-session; each head was brought up to date with
 `main` by a GitHub branch update and re-checked green before merging. Merge
 is not owner acceptance: no acceptance comment exists on those PRs, and
 post-merge verification has not been performed.
+
+PRs #72 and #73 were merged on 2026-09-16 under an explicit owner merge
+authorization given in-session (#73 rebased onto `main` after #72; its merged
+head `d590d7a0` is tree-identical to the reviewed candidate `7ac45f6e`).
+Post-merge verification PASS on 2026-09-16: both heads are ancestors of
+`0dd08528`, Frontend CI green on both `main` pushes, diff bounded to
+`frontend/` and `docs/PLATFORM-DELIVERY.md`. No acceptance comment exists on
+either PR. The revalidation receiver is merged but **not live**: it needs
+`SIRA_NEXT_REVALIDATION_*` in the WordPress `wp-config.php`, a server cron,
+and the Cloud Run env/flags listed in `docs/PLATFORM-DELIVERY.md`.
 
 ## Authorized / not authorized (owner)
 
@@ -64,6 +76,12 @@ post-merge verification has not been performed.
 - Deploy target is in transition (Vercel dropped; Cloud Run files exist locally, untracked).
 
 ## Next step
+
+Owner actions from `docs/PLATFORM-DELIVERY.md` (wp-config constants, server
+cron, Cloud Run flags, egress check) to make revalidation live; CDN decision
+before enabling `SIRA_EDGE_CACHE_SMAXAGE_SECONDS`; then the remaining roadmap
+(typography preset — spec §8 decision, sitemap content URLs, CDN purge) and
+the Atlas production direction (owner design approval pending).
 
 Phase 3 of the Claude Code adapter: state-carrier consolidation
 (`project-state.json` / `PROJECT-STATE.md` / `HANDOFF.md` / `SOURCE-OF-TRUTH.md`

@@ -1,6 +1,6 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-09-08",
+  "updatedAt": "2026-09-16",
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",
@@ -344,7 +344,25 @@
     "newsroomVisualRouteWork": "NOT_STARTED",
     "prototypeImplementation": "ART_DIRECTION_PROTOTYPE_RETAINED_NON_PRODUCTION",
     "responsiveLayoutPrimitives": "MERGED_PR47_PR48",
-    "digitalTenant": "IN_PROGRESS_ON_UNMERGED_BRANCH_FEAT_SIRAHDIGITAL_SA"
+    "digitalTenant": "IN_PROGRESS_ON_UNMERGED_BRANCH_FEAT_SIRAHDIGITAL_SA",
+    "step4MotionSystem": "MERGED_PR72_AT_1179c5dd_2026_09_16_NO_ACCEPTANCE_COMMENT"
+  },
+  "platformDelivery": {
+    "recordedAt": "2026-09-16",
+    "pullRequest": 73,
+    "mergeCommit": "0dd085289b38fe76e746557bf647c356a411e9a9",
+    "reviewedCandidateHead": "7ac45f6e",
+    "mergedHead": "d590d7a0",
+    "mergeAuthorization": "OWNER_IN_SESSION_2026_09_16_NO_ACCEPTANCE_COMMENT_ON_PR",
+    "postMergeVerification": "PASS_2026_09_16_HEADS_ANCESTORS_OF_MAIN_TREE_IDENTICAL_TO_REVIEWED_CANDIDATE_MAIN_CI_GREEN",
+    "dataCacheKeyFix": "MERGED_PER_CALL_REQUEST_ID_REMOVED_FROM_CACHED_FETCHES_MEASURED_2590MS_TO_38MS",
+    "revalidationReceiver": "MERGED_POST_API_REVALIDATE_NOT_LIVE_UNTIL_WP_CONFIG_CONSTANTS_AND_SERVER_CRON",
+    "tenantScopedCacheTags": "MERGED_site_blogId_tag_SCOPING_VERIFIED_BY_DRILL",
+    "failureIsolation": "MERGED_CONTENT_OUTAGE_500_NOT_404_SEGMENT_LOADING_REMOVED",
+    "motionPresetPerTenant": "MERGED_quiet_cinematic_ON_html_data_motion",
+    "edgeCachePolicy": "IMPLEMENTED_OFF_BY_DEFAULT_SIRA_EDGE_CACHE_SMAXAGE_SECONDS_REQUIRES_CDN_THAT_REFUSES_5XX",
+    "runbook": "docs/PLATFORM-DELIVERY.md",
+    "architecturePlan": "OWNER_LOCAL_PLAN_FILE_2026_09_16_NOT_IN_REPOSITORY"
   },
   "openGates": {
     "mediaOriginB07": "UNRESOLVED_DEFERRED",

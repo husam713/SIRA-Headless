@@ -4,6 +4,8 @@ import { PageContainer } from "@/components/layout/page-container";
 import { getBrandPreset } from "@/lib/brand";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import type { GroupHomepageHero } from "@/lib/homepage/types";
+import { CHROME } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 import { CtaLink } from "@/components/homepage/cta-link";
 import {
   GroupHeroCarousel,
@@ -12,9 +14,12 @@ import {
 
 interface GroupHeroProps {
   readonly hero: GroupHomepageHero;
+  /** Defaults to the site's default language for callers that have none. */
+  readonly locale?: LocaleCode;
 }
 
-export function GroupHero({ hero }: GroupHeroProps) {
+export function GroupHero({ hero, locale = "en" }: GroupHeroProps) {
+  const chrome = CHROME[locale];
   const groupPreset = getBrandPreset("group");
   const fallbackAccent = Object.freeze({
     label: groupPreset.name,
@@ -102,7 +107,20 @@ export function GroupHero({ hero }: GroupHeroProps) {
       className="atlas-hero relative isolate flex flex-col justify-end overflow-hidden bg-brand-deep"
     >
       {preparedSlides.length > 0 ? (
-        <GroupHeroCarousel slides={preparedSlides}>{headingContent}</GroupHeroCarousel>
+        <GroupHeroCarousel
+          slides={preparedSlides}
+          labels={{
+            featuredProjects: chrome.featuredProjects,
+            previousProject: chrome.previousProject,
+            nextProject: chrome.nextProject,
+            pause: chrome.pause,
+            play: chrome.play,
+            featuredVentures: chrome.featuredVentures,
+            showingSlide: chrome.showingSlide,
+          }}
+        >
+          {headingContent}
+        </GroupHeroCarousel>
       ) : (
         <PageContainer className="relative z-[2] pb-16 pt-32 sm:pb-20 lg:pb-24">
           {headingContent}

@@ -23,8 +23,20 @@ export interface PreparedGroupHeroSlide {
   readonly cta: HomepageLink | null;
 }
 
+export interface GroupHeroCarouselLabels {
+  readonly featuredProjects: string;
+  readonly previousProject: string;
+  readonly nextProject: string;
+  readonly pause: string;
+  readonly play: string;
+  readonly featuredVentures: string;
+  readonly showingSlide: string;
+}
+
 interface GroupHeroCarouselProps {
   readonly slides: readonly PreparedGroupHeroSlide[];
+  /** The carousel's own chrome, in the page's language (see CHROME). */
+  readonly labels: GroupHeroCarouselLabels;
   /** The server-rendered heading/description/CTA block, positioned inside this carousel's grid. */
   readonly children: ReactNode;
 }
@@ -87,7 +99,7 @@ function readReducedMotionPreferenceOnServer(): boolean {
   return false;
 }
 
-export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) {
+export function GroupHeroCarousel({ slides, labels, children }: GroupHeroCarouselProps) {
   const canRotate = slides.length > 1;
   const [activeIndex, setActiveIndex] = useState(0);
   const [userPaused, setUserPaused] = useState(false);
@@ -206,7 +218,7 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
             <div className="border border-brand-paper/15 bg-brand-deep/70 p-5 backdrop-blur-sm">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-paper/60">
-                  Featured Projects
+                  {labels.featuredProjects}
                 </span>
                 <span className="flex items-center gap-2">
                   <button
@@ -214,7 +226,7 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
                     onClick={() =>
                       setActiveIndex((i) => (i - 1 + slides.length) % slides.length)
                     }
-                    aria-label="Previous featured project"
+                    aria-label={labels.previousProject}
                     className="flex h-7 w-7 items-center justify-center rounded-full border border-brand-paper/30 text-brand-paper/80 transition-colors hover:border-brand-paper hover:text-brand-paper"
                   >
                     <span aria-hidden="true">&larr;</span>
@@ -222,7 +234,7 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
                   <button
                     type="button"
                     onClick={() => setActiveIndex((i) => (i + 1) % slides.length)}
-                    aria-label="Next featured project"
+                    aria-label={labels.nextProject}
                     className="flex h-7 w-7 items-center justify-center rounded-full border border-brand-paper/30 text-brand-paper/80 transition-colors hover:border-brand-paper hover:text-brand-paper"
                   >
                     <span aria-hidden="true">&rarr;</span>
@@ -234,7 +246,7 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
                       aria-pressed={isPlaying}
                       className="ms-1 text-[10px] font-bold uppercase tracking-[0.1em] text-brand-paper/70 transition-colors hover:text-brand-paper"
                     >
-                      {isPlaying ? "Pause" : "Play"}
+                      {isPlaying ? labels.pause : labels.play}
                     </button>
                   ) : null}
                 </span>
@@ -242,7 +254,7 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
 
               <div
                 role="group"
-                aria-label="Featured ventures"
+                aria-label={labels.featuredVentures}
                 className="grid grid-cols-1 gap-1 sm:grid-cols-3 lg:grid-cols-1"
               >
               {slides.map((slide, index) => {
@@ -315,7 +327,10 @@ export function GroupHeroCarousel({ slides, children }: GroupHeroCarouselProps) 
 
       <p aria-live="polite" className="sr-only">
         {activeSlide !== undefined && canRotate
-          ? `Showing ${activeIndex + 1} of ${slides.length}: ${activeSlide.title ?? activeSlide.tag}`
+          ? labels.showingSlide
+              .replace("{index}", String(activeIndex + 1))
+              .replace("{count}", String(slides.length))
+              .replace("{title}", activeSlide.title ?? activeSlide.tag)
           : ""}
       </p>
     </>

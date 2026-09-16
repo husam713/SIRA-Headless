@@ -85,7 +85,7 @@ export function SiteHeader({
       <PageContainer className="flex w-full items-center justify-between gap-6 py-3">
         <Link
           href={homeHref}
-          className="flex flex-shrink-0 items-center gap-3 rounded-sm transition-opacity hover:opacity-80"
+          className="flex min-h-11 flex-shrink-0 items-center gap-3 rounded-sm transition-opacity hover:opacity-80"
         >
           {brand.assets.logo !== null && !overlay ? (
             // Local static asset (not remote WordPress media, so 2C4-B07 does

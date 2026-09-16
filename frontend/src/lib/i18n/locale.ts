@@ -168,6 +168,19 @@ interface Chrome {
   readonly footerCompanies: string;
   readonly footerConnect: string;
   readonly allRightsReserved: string;
+  readonly errorTitle: string;
+  readonly errorBody: string;
+  readonly tryAgain: string;
+  readonly notFoundTitle: string;
+  readonly notFoundBody: string;
+  readonly featuredProjects: string;
+  readonly previousProject: string;
+  readonly nextProject: string;
+  readonly pause: string;
+  readonly play: string;
+  readonly featuredVentures: string;
+  /** `{index}`, `{count}` and `{title}` are substituted. */
+  readonly showingSlide: string;
 }
 
 /**
@@ -206,6 +219,18 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     footerCompanies: "Companies",
     footerConnect: "Connect",
     allRightsReserved: "All rights reserved.",
+    errorTitle: "This page could not be loaded.",
+    errorBody: "Please try again. No private error details are displayed.",
+    tryAgain: "Try again",
+    notFoundTitle: "Page not found",
+    notFoundBody: "The requested SIRA page does not exist.",
+    featuredProjects: "Featured Projects",
+    previousProject: "Previous featured project",
+    nextProject: "Next featured project",
+    pause: "Pause",
+    play: "Play",
+    featuredVentures: "Featured ventures",
+    showingSlide: "Showing {index} of {count}: {title}",
   }),
   ar: Object.freeze({
     skipToContent: "تخطَّ إلى المحتوى الرئيسي",
@@ -234,5 +259,17 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     footerCompanies: "الشركات",
     footerConnect: "تواصل",
     allRightsReserved: "جميع الحقوق محفوظة.",
+    errorTitle: "تعذّر تحميل هذه الصفحة.",
+    errorBody: "يرجى المحاولة مرة أخرى. لا تُعرض أي تفاصيل خاصة عن الخطأ.",
+    tryAgain: "حاول مرة أخرى",
+    notFoundTitle: "الصفحة غير موجودة",
+    notFoundBody: "صفحة سيرا المطلوبة غير موجودة.",
+    featuredProjects: "مشاريع مميزة",
+    previousProject: "المشروع المميز السابق",
+    nextProject: "المشروع المميز التالي",
+    pause: "إيقاف مؤقت",
+    play: "تشغيل",
+    featuredVentures: "مشاريع مميزة",
+    showingSlide: "عرض {index} من {count}: {title}",
   }),
 });

@@ -69,7 +69,7 @@ export default async function SiteHomePage({
           and the rest of the homepage still renders inside the shared shell.
         */}
         {homepage.homepage.hero !== null && (
-          <GroupHero hero={homepage.homepage.hero} />
+          <GroupHero hero={homepage.homepage.hero} locale={request.locale} />
         )}
         <GroupTicker ticker={homepage.homepage.ticker} />
         <GroupLatestUpdates section={homepage.homepage.latestUpdates} />

@@ -6,6 +6,7 @@ import type { ResolvedBrand } from "@/lib/brand";
 import { CHROME } from "@/lib/i18n/locale";
 import type { NavigationItem } from "@/lib/navigation";
 import { Wordmark } from "@/components/shell/wordmark";
+import { isCurrentPath } from "@/lib/navigation/current-path";
 import type { LocaleCode } from "@/types/site";
 
 interface GroupCrossLink {
@@ -32,6 +33,12 @@ interface SiteHeaderProps {
   /** Where the home link points — `/` or `/ar`, per ADR-034. */
   readonly homeHref: string;
   readonly languageAlternate: LanguageAlternate | null;
+  /**
+   * The locale-stripped path being read, so the menu can mark the current
+   * page. Anchors on the Group nav (`/#companies`) never match — see
+   * `isCurrentPath` — so Group's header is unchanged by this.
+   */
+  readonly currentPath: string;
 }
 
 export function SiteHeader({
@@ -41,6 +48,7 @@ export function SiteHeader({
   locale,
   homeHref,
   languageAlternate,
+  currentPath,
 }: SiteHeaderProps) {
   const chrome = CHROME[locale];
 
@@ -60,11 +68,14 @@ export function SiteHeader({
     // headroom for a taller logo or a larger touch target before the content
     // could push past the token again. Border-box sizing keeps the hairline
     // inside the measurement.
-    <header className="sticky top-0 z-40 flex min-h-[var(--layout-header-offset)] items-center border-b border-brand-border bg-brand-paper-glass backdrop-blur-md">
+    <header className="site-header sticky top-0 z-40 flex min-h-[var(--layout-header-offset)] items-center border-b border-brand-border bg-brand-paper-glass backdrop-blur-md">
       {/* Same container primitive as every section, so the header content
           column cannot drift from the page beneath it. */}
       <PageContainer className="flex w-full items-center justify-between gap-6 py-3">
-        <Link href={homeHref} className="flex flex-shrink-0 items-center gap-3">
+        <Link
+          href={homeHref}
+          className="flex flex-shrink-0 items-center gap-3 rounded-sm transition-opacity hover:opacity-80"
+        >
           {brand.assets.logo !== null ? (
             // Local static asset (not remote WordPress media, so 2C4-B07 does
             // not apply here) — plain <img> anyway, for consistency with the
@@ -108,7 +119,8 @@ export function SiteHeader({
                 href={item.href}
                 target={item.target ?? undefined}
                 rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
-                className="text-xs font-semibold uppercase tracking-[0.08em] text-brand-ink-soft transition-colors hover:text-brand-accent"
+                aria-current={isCurrentPath(item.href, currentPath) ? "page" : undefined}
+                className="nav-link text-xs font-semibold uppercase tracking-[0.08em] text-brand-ink-soft hover:text-brand-accent"
               >
                 {item.label}
               </a>
@@ -138,7 +150,7 @@ export function SiteHeader({
           {brand.email !== null ? (
             <a
               href={`mailto:${brand.email}`}
-              className="hidden rounded-sm bg-brand-ink px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.03em] text-brand-on-deep transition-colors hover:bg-brand-ink/90 lg:inline-block"
+              className="press hidden rounded-sm bg-brand-ink px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.03em] text-brand-on-deep hover:bg-brand-ink/90 lg:inline-block"
             >
               {chrome.contactCta}
             </a>
@@ -149,6 +161,7 @@ export function SiteHeader({
             groupLink={groupLink}
             locale={locale}
             languageAlternate={languageAlternate}
+            currentPath={currentPath}
           />
         </div>
       </PageContainer>

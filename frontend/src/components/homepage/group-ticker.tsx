@@ -56,7 +56,7 @@ export function GroupTicker({ ticker }: GroupTickerProps) {
   if (entries.length === 0) return null;
 
   return (
-    <div className="overflow-hidden border-t border-brand-paper/15 bg-brand-deep py-3">
+    <div className="ticker overflow-hidden border-t border-brand-paper/15 bg-brand-deep py-3">
       {/*
         The visible strip below duplicates `entries` twice so the CSS
         animation can loop seamlessly (`ticker-marquee` in globals.css,

@@ -32,8 +32,13 @@ const ERROR_MESSAGES: Readonly<Record<string, string>> = Object.freeze({
   not_configured: "The contact form is not available on this site yet.",
 });
 
+// min-h-11 is the 44px touch-target floor. The name and email fields measured
+// 37px and the select 34px, which the Digital QA pass recorded as a shared-
+// chrome defect it was not authorised to move. `field` paints aria-invalid
+// (globals.css, "Form fields") so a sighted reader sees the rule turn as the
+// message appears.
 const inputClass =
-  "border-0 border-b border-brand-on-deep/20 bg-transparent py-2 text-sm text-brand-on-deep outline-none transition-colors focus:border-brand-accent-bright";
+  "field min-h-11 border-0 border-b border-brand-on-deep/20 bg-transparent py-2 text-sm text-brand-on-deep outline-none transition-colors focus:border-brand-accent-bright";
 const labelClass =
   "flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-on-deep/60";
 
@@ -107,7 +112,7 @@ export function ContactForm({ services }: ContactFormProps) {
 
   if (status === "sent") {
     return (
-      <div className="bg-brand-deep-card p-8 sm:p-10">
+      <div className="settle-in bg-brand-deep-card p-8 sm:p-10">
         <p
           // Announced without stealing focus, so a screen-reader user hears the
           // outcome without being thrown out of their reading position.
@@ -124,7 +129,7 @@ export function ContactForm({ services }: ContactFormProps) {
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-8 text-[11px] font-bold uppercase tracking-[0.1em] text-brand-accent-bright underline underline-offset-4"
+          className="press mt-8 text-[11px] font-bold uppercase tracking-[0.1em] text-brand-accent-bright underline underline-offset-4 hover:text-brand-on-deep"
         >
           Send another message
         </button>
@@ -231,7 +236,7 @@ export function ContactForm({ services }: ContactFormProps) {
         </div>
 
         {formError !== null ? (
-          <p role="alert" className="text-sm text-brand-accent-bright">
+          <p role="alert" className="settle-in text-sm text-brand-accent-bright">
             {formError}
           </p>
         ) : null}
@@ -239,7 +244,7 @@ export function ContactForm({ services }: ContactFormProps) {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="mt-2 bg-brand-accent px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.1em] text-brand-on-accent transition-opacity hover:opacity-90 disabled:cursor-progress disabled:opacity-60"
+          className="press mt-2 bg-brand-accent px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright disabled:cursor-progress disabled:opacity-60"
         >
           {status === "submitting" ? "Sending…" : "Send Message"}
         </button>

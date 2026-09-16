@@ -144,7 +144,7 @@ export default async function SiteLayout({
 
       <a
         href="#main-content"
-        className="fixed start-4 top-4 z-50 -translate-y-24 rounded-md bg-brand-ink px-4 py-3 text-brand-paper transition-transform focus:translate-y-0"
+        className="skip-link fixed start-4 top-4 z-50 -translate-y-24 rounded-md bg-brand-ink px-4 py-3 text-brand-paper transition-transform focus:translate-y-0"
       >
         {chrome.skipToContent}
       </a>
@@ -173,6 +173,7 @@ export default async function SiteLayout({
         locale={request.locale}
         homeHref={localeHref(site, request.locale, "/")}
         languageAlternate={languageAlternate}
+        currentPath={request.path}
       />
 
       <main id="main-content">{children}</main>

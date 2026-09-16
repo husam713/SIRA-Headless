@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CHROME } from "@/lib/i18n/locale";
 import type { NavigationItem } from "@/lib/navigation";
+import { isCurrentPath } from "@/lib/navigation/current-path";
 import type { LocaleCode } from "@/types/site";
 
 interface GroupCrossLink {
@@ -27,6 +28,8 @@ interface MobileMenuProps {
   readonly groupLink: GroupCrossLink | null;
   readonly locale: LocaleCode;
   readonly languageAlternate: LanguageAlternate | null;
+  /** The locale-stripped path being read — see SiteHeader. */
+  readonly currentPath: string;
 }
 
 export function MobileMenu({
@@ -34,6 +37,7 @@ export function MobileMenu({
   groupLink,
   locale,
   languageAlternate,
+  currentPath,
 }: MobileMenuProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
@@ -77,7 +81,7 @@ export function MobileMenu({
           dialogRef.current?.showModal();
           setOpen(true);
         }}
-        className="flex h-11 w-11 flex-shrink-0 flex-col items-center justify-center gap-[5px] rounded-md border border-brand-border lg:hidden"
+        className="press flex h-11 w-11 flex-shrink-0 flex-col items-center justify-center gap-[5px] rounded-md border border-brand-border hover:border-brand-ink lg:hidden"
       >
         <span aria-hidden="true" className="block h-px w-5 bg-brand-ink" />
         <span aria-hidden="true" className="block h-px w-5 bg-brand-ink" />
@@ -87,20 +91,25 @@ export function MobileMenu({
       {/*
         Native <dialog> gives modal focus-trapping, Escape-to-close, and a
         ::backdrop for free (showModal()/close() below) — no custom focus
-        management or keydown handling needed.
+        management or keydown handling needed. The open/close transition is
+        CSS too: `site-menu` in globals.css uses @starting-style and
+        transition-behavior: allow-discrete, so this component never waits
+        on an animation before calling close().
       */}
       <dialog
         id="site-mobile-menu"
         ref={dialogRef}
         aria-label={chrome.siteMenu}
-        className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none border-0 bg-transparent p-0 backdrop:bg-brand-ink/50"
+        className="site-menu fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none border-0 bg-transparent p-0 backdrop:bg-brand-ink/50"
       >
-        <div className="ms-auto flex h-dvh w-[min(85vw,22rem)] flex-col gap-1 bg-brand-deep p-6 text-brand-on-deep">
+        <div className="site-menu__panel ms-auto flex h-dvh w-[min(85vw,22rem)] flex-col gap-1 bg-brand-deep p-6 text-brand-on-deep">
           <button
             type="button"
             aria-label={chrome.closeMenu}
             onClick={() => dialogRef.current?.close()}
-            className="self-end text-3xl leading-none text-brand-on-deep/80"
+            // 44px target, and the same colour transition as every other
+            // control; -me-2 keeps the glyph on the panel's text edge.
+            className="press -me-2 flex h-11 w-11 items-center justify-center self-end rounded-md text-3xl leading-none text-brand-on-deep/80 hover:text-brand-on-deep"
           >
             &times;
           </button>
@@ -114,7 +123,8 @@ export function MobileMenu({
                   target={item.target ?? undefined}
                   rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                   onClick={() => dialogRef.current?.close()}
-                  className="border-b border-brand-on-deep/15 py-4 text-lg font-medium uppercase tracking-wide text-brand-on-deep/90"
+                  aria-current={isCurrentPath(item.href, currentPath) ? "page" : undefined}
+                  className="site-menu__link border-b border-brand-on-deep/15 py-4 text-lg font-medium uppercase tracking-wide text-brand-on-deep/90"
                 >
                   {item.label}
                 </a>
@@ -129,7 +139,7 @@ export function MobileMenu({
               hrefLang={languageAlternate.locale}
               dir={languageAlternate.locale === "ar" ? "rtl" : "ltr"}
               onClick={() => dialogRef.current?.close()}
-              className="mt-6 inline-flex min-h-11 items-center self-start border-b border-brand-on-deep/15 text-lg font-medium text-brand-on-deep/90"
+              className="mt-6 inline-flex min-h-11 items-center self-start border-b border-brand-on-deep/15 text-lg font-medium text-brand-on-deep/90 transition-colors hover:text-brand-on-deep"
             >
               {chrome.switchLanguage}
             </a>
@@ -139,7 +149,7 @@ export function MobileMenu({
             <a
               href={groupLink.href}
               onClick={() => dialogRef.current?.close()}
-              className="mt-auto pt-6 text-sm font-semibold uppercase tracking-[0.06em] text-brand-accent-bright"
+              className="mt-auto inline-flex min-h-11 items-center pt-6 text-sm font-semibold uppercase tracking-[0.06em] text-brand-accent-bright transition-colors hover:text-brand-on-deep"
             >
               {groupLink.label}
             </a>

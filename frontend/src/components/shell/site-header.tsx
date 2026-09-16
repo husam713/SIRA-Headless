@@ -40,6 +40,13 @@ interface SiteHeaderProps {
    * `isCurrentPath` — so Group's header is unchanged by this.
    */
   readonly currentPath: string;
+  /**
+   * True when the page opens on photography: the header then sits on the
+   * hero, transparent, in the on-deep colour, and settles into the paper-glass
+   * bar as the page scrolls (Atlas direction). Off on every page that opens
+   * on paper.
+   */
+  readonly overlay?: boolean;
 }
 
 export function SiteHeader({
@@ -50,6 +57,7 @@ export function SiteHeader({
   homeHref,
   languageAlternate,
   currentPath,
+  overlay = false,
 }: SiteHeaderProps) {
   const chrome = CHROME[locale];
 
@@ -69,7 +77,9 @@ export function SiteHeader({
     // headroom for a taller logo or a larger touch target before the content
     // could push past the token again. Border-box sizing keeps the hairline
     // inside the measurement.
-    <header className="site-header sticky top-0 z-40 flex min-h-[var(--layout-header-offset)] items-center border-b border-brand-border bg-brand-paper-glass backdrop-blur-md">
+    <header
+      className={`site-header${overlay ? " site-header--overlay" : ""} sticky top-0 z-40 flex min-h-[var(--layout-header-offset)] items-center border-b border-brand-border bg-brand-paper-glass backdrop-blur-md`}
+    >
       {/* Same container primitive as every section, so the header content
           column cannot drift from the page beneath it. */}
       <PageContainer className="flex w-full items-center justify-between gap-6 py-3">
@@ -77,7 +87,7 @@ export function SiteHeader({
           href={homeHref}
           className="flex flex-shrink-0 items-center gap-3 rounded-sm transition-opacity hover:opacity-80"
         >
-          {brand.assets.logo !== null ? (
+          {brand.assets.logo !== null && !overlay ? (
             // Local static asset (not remote WordPress media, so 2C4-B07 does
             // not apply here) — plain <img> anyway, for consistency with the
             // rest of the codebase, which does not use next/image anywhere yet.
@@ -89,6 +99,38 @@ export function SiteHeader({
               height={brand.assets.logo.height}
               className="h-8 w-auto sm:h-9"
             />
+          ) : overlay ? (
+            // Over the hero the dark logo would vanish, so the overlay header
+            // sets the mark + wordmark: the on-dark mark while the header is
+            // transparent, the standard mark once it has settled onto paper
+            // (both rendered; the scroll timeline crossfades them).
+            <>
+              <span className="site-header__marks block h-7 w-7">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={brand.assets.markOnDark.src}
+                  alt={brand.assets.markOnDark.alt}
+                  width={brand.assets.markOnDark.width}
+                  height={brand.assets.markOnDark.height}
+                  aria-hidden={brand.assets.markOnDark.decorative || undefined}
+                  className="site-header__mark--dark h-7 w-auto"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={brand.assets.mark.src}
+                  alt=""
+                  width={brand.assets.mark.width}
+                  height={brand.assets.mark.height}
+                  aria-hidden="true"
+                  className="site-header__mark--light h-7 w-auto"
+                />
+              </span>
+              <Wordmark
+                name={brand.name}
+                tone="ink"
+                className="font-display text-lg font-semibold tracking-wide"
+              />
+            </>
           ) : (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}

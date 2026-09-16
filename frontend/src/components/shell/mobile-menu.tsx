@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { CHROME } from "@/lib/i18n/locale";
 import type { NavigationItem } from "@/lib/navigation";
 import { NavLink } from "@/components/shell/nav-link";
@@ -101,9 +101,9 @@ export function MobileMenu({
         id="site-mobile-menu"
         ref={dialogRef}
         aria-label={chrome.siteMenu}
-        className="site-menu fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none border-0 bg-transparent p-0 backdrop:bg-brand-ink/50"
+        className="site-menu site-menu--full fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none border-0 bg-transparent p-0 backdrop:bg-brand-ink/50"
       >
-        <div className="site-menu__panel ms-auto flex h-dvh w-[min(85vw,22rem)] flex-col gap-1 bg-brand-deep p-6 text-brand-on-deep">
+        <div className="site-menu__panel flex h-dvh flex-col gap-1 bg-brand-deep p-6 text-brand-on-deep">
           <button
             type="button"
             aria-label={chrome.closeMenu}
@@ -117,17 +117,19 @@ export function MobileMenu({
 
           {items.length > 0 ? (
             <nav aria-label={chrome.siteNav} className="mt-6 flex flex-col">
-              {items.map((item) => (
-                <NavLink
-                  key={item.databaseId}
-                  href={item.href}
-                  target={item.target}
-                  onClick={() => dialogRef.current?.close()}
-                  current={isCurrentPath(item.href, currentPath)}
-                  className="site-menu__link border-b border-brand-on-deep/15 py-4 text-lg font-medium uppercase tracking-wide text-brand-on-deep/90"
-                >
-                  {item.label}
-                </NavLink>
+              {items.map((item, index) => (
+                <span key={item.databaseId} style={{ "--i": index } as CSSProperties} className="contents">
+                  <NavLink
+                    href={item.href}
+                    target={item.target}
+                    onClick={() => dialogRef.current?.close()}
+                    current={isCurrentPath(item.href, currentPath)}
+                    className="site-menu__link border-b border-brand-on-deep/15 text-brand-on-deep/90"
+                  >
+                    <small aria-hidden="true">{String(index + 1).padStart(2, "0")}</small>
+                    {item.label}
+                  </NavLink>
+                </span>
               ))}
             </nav>
           ) : null}

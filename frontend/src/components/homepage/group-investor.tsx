@@ -1,6 +1,9 @@
+import type { CSSProperties } from "react";
+
+import { CountUp } from "@/components/homepage/count-up";
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
-import { SectionEyebrow } from "@/components/layout/section-eyebrow";
+import { SectionHead } from "@/components/layout/section-head";
 import { getBrandPreset } from "@/lib/brand";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import { CtaLink } from "@/components/homepage/cta-link";
@@ -22,20 +25,22 @@ interface TractionMetricProps {
   readonly metric: HomepageMetric;
 }
 
-function TractionMetric({ metric }: TractionMetricProps) {
+function TractionMetric({ metric, index }: TractionMetricProps & { readonly index: number }) {
+  // Atlas direction: figures on hairlines, not in cards; the value counts up
+  // as the band arrives.
   return (
-    <div className="card-lift card-lift--deep flex flex-col gap-3 bg-brand-deep-card p-8">
-      <p className="font-display text-[clamp(2rem,4vw,3rem)] font-normal leading-none text-brand-paper">
-        {metric.value}
-      </p>
-      {metric.supportingText !== null ? (
-        <p className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.04em] text-emerald-400">
-          <span aria-hidden="true">&#9650;</span>
-          {metric.supportingText}
-        </p>
+    <div className="atlas-metric reveal" style={{ "--reveal-offset": `${String(index * 1.5)}%` } as CSSProperties}>
+      {metric.value !== null ? (
+        <CountUp value={metric.value} className="atlas-metric__value" />
       ) : null}
       {metric.label !== null ? (
-        <p className="text-[13px] uppercase tracking-[0.03em] text-brand-paper/60">{metric.label}</p>
+        <span className="atlas-metric__label">{metric.label}</span>
+      ) : null}
+      {metric.supportingText !== null ? (
+        <span className="atlas-metric__note">
+          <span aria-hidden="true">&#9650; </span>
+          {metric.supportingText}
+        </span>
       ) : null}
     </div>
   );
@@ -58,13 +63,10 @@ function InvestmentCard({ item, accentColor, sectorLabel }: InvestmentCardProps)
   // for it exists on SiraInvestment at all yet, only ticketSizeLabel), so
   // it isn't rendered rather than inventing a value with no data behind it.
   return (
-    <div
-      className="card-lift card-lift--deep flex flex-col gap-4 border border-brand-deep-border bg-brand-deep-card p-8"
-      style={{ borderTopWidth: "3px", borderTopColor: accentColor }}
-    >
+    <div className="atlas-opp reveal" style={{ "--c": accentColor } as CSSProperties}>
       {sectorLabel !== null ? (
         <p
-          className="text-[11px] font-bold uppercase tracking-[0.1em]"
+          className="text-[11px] font-bold uppercase tracking-[0.14em]"
           style={{ color: accentColor }}
         >
           {sectorLabel}
@@ -74,14 +76,14 @@ function InvestmentCard({ item, accentColor, sectorLabel }: InvestmentCardProps)
         {item.title}
       </h4>
       {item.excerpt !== null ? (
-        <p className="flex-1 text-sm leading-relaxed text-brand-paper/70">
+        <p className="text-[0.95rem] leading-relaxed text-brand-paper/70">
           {item.excerpt}
         </p>
       ) : null}
       {item.ticketSizeLabel !== null ? (
-        <div className="flex items-center justify-between border-t border-brand-deep-border pt-4 text-xs font-semibold">
-          <span className="text-brand-paper/50">Ticket Size</span>
-          <span className="text-brand-paper">{item.ticketSizeLabel}</span>
+        <div className="atlas-opp__ticket">
+          <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-paper/50">Ticket Size</span>
+          <span className="font-display text-xl text-brand-paper">{item.ticketSizeLabel}</span>
         </div>
       ) : null}
     </div>
@@ -219,41 +221,25 @@ export function GroupInvestor({ section }: GroupInvestorProps) {
       label={hasHeading ? undefined : (section.eyebrow ?? "Investor Relations")}
       tone="deep"
     >
-      <PageContainer>
-        <SectionEyebrow tone="bright">{section.eyebrow ?? "Investor Relations"}</SectionEyebrow>
-
-        <div className="mt-6 max-w-3xl">
-          {hasHeading ? (
-            <h2
-              id="investor-heading"
-              className="text-balance font-display text-[clamp(2.25rem,5vw,4rem)] font-normal leading-[1.05]"
-            >
-              {section.heading}
-            </h2>
-          ) : null}
-          {hasCopy ? (
-            <p className="mt-6 text-base leading-relaxed text-brand-paper/70">
-              {section.description}
-            </p>
-          ) : null}
-          {section.link !== null ? (
-            <div className="mt-6">
-              <CtaLink link={section.link} variant="ghost-dark" />
-            </div>
-          ) : null}
-        </div>
-
+      <PageContainer className="atlas-on-deep">
+        <SectionHead
+          id="investor-heading"
+          eyebrow={section.eyebrow ?? "Investor Relations"}
+          heading={section.heading}
+          lead={hasCopy ? section.description : null}
+          tone="bright"
+        />
         {hasMetrics ? (
-          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-brand-deep-border bg-brand-deep-border sm:grid-cols-4">
+          <div className="atlas-metrics">
             {section.metrics.map((metric, index) => (
               // Fixed, non-reorderable server-rendered selection — index is a safe key.
-              <TractionMetric key={index} metric={metric} />
+              <TractionMetric key={index} metric={metric} index={index} />
             ))}
           </div>
         ) : null}
 
         {hasInvestments ? (
-          <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="atlas-opps">
             {section.investments.items.map((item) => {
               const accent = resolveBusinessUnitAccent(item.businessUnit, fallbackAccent);
               // The raw business-unit name ("Real Estate"), not the resolved
@@ -276,6 +262,12 @@ export function GroupInvestor({ section }: GroupInvestorProps) {
               );
             })}
           </div>
+        ) : null}
+
+        {section.link !== null ? (
+          <p className="mt-10">
+            <CtaLink link={section.link} variant="ghost-dark" />
+          </p>
         ) : null}
 
         {hasFormShell ? (

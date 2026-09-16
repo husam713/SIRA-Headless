@@ -1,3 +1,4 @@
+import { CountUp } from "@/components/homepage/count-up";
 import type { HomepageMetric } from "@/lib/homepage/types";
 
 // Design reference (branch .dc.html files, the band directly under the
@@ -26,7 +27,7 @@ function StatCell({ metric }: StatCellProps) {
     >
       {metric.value !== null ? (
         <p className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-normal leading-none text-brand-on-accent">
-          {metric.value}
+          <CountUp value={metric.value} />
         </p>
       ) : null}
       {metric.label !== null ? (

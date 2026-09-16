@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import { PageContainer } from "@/components/layout/page-container";
 import { SectionEyebrow } from "@/components/layout/section-eyebrow";
 import { CtaLink } from "@/components/homepage/cta-link";
@@ -19,13 +21,18 @@ export function BranchHero({ hero }: BranchHeroProps) {
     hero.headingBefore !== null ||
     hero.headingHighlight !== null ||
     hero.headingAfter !== null;
+  const lines = [
+    hero.headingBefore,
+    hero.headingHighlight,
+    hero.headingAfter,
+  ].filter((line): line is string => line !== null);
 
   return (
     <section
       aria-label={hero.eyebrow ?? "Hero"}
       // 90svh, measured: the approved branch design gives the hero 810px of a
       // 900px viewport at desktop. 85 left it 45px short at every desktop width.
-      className="relative isolate flex min-h-[75svh] flex-col justify-end overflow-hidden bg-brand-deep lg:min-h-[90svh]"
+      className="atlas-hero relative isolate flex flex-col justify-end overflow-hidden bg-brand-deep"
     >
       <div aria-hidden="true" className="absolute inset-0 z-0">
         {hero.image !== null ? (
@@ -67,7 +74,7 @@ export function BranchHero({ hero }: BranchHeroProps) {
           headline to 672px, which is why it was setting 27px smaller than the
           design at every desktop width.
         */}
-        <div className="flex flex-col gap-8 text-brand-paper">
+        <div className="atlas-arrive flex flex-col gap-8 text-brand-paper">
           {hero.eyebrow !== null || hero.region !== null ? (
             // bright, not the standard accent: this eyebrow sits on a
             // photograph under a dark scrim, where every branch accent measured
@@ -79,29 +86,36 @@ export function BranchHero({ hero }: BranchHeroProps) {
           ) : null}
 
           {hasHeading ? (
-            // Measured from the approved branch design: 46px at the floor,
-            // 8vw through the middle, capping at 116px, on 0.99 leading and
-            // -0.025em tracking at weight 500.
-            <h1 className="max-w-[16ch] text-balance font-display text-[clamp(2.875rem,8vw,7.25rem)] font-medium leading-[0.99] tracking-[-0.025em]">
-              {hero.headingBefore}
-              {hero.headingHighlight !== null ? (
-                <>
-                  {hero.headingBefore !== null ? " " : ""}
-                  <span className="italic text-brand-accent">{hero.headingHighlight}</span>
-                </>
-              ) : null}
-              {hero.headingAfter !== null ? ` ${hero.headingAfter}` : ""}
+            // Atlas direction: the display voice at weight 300, set line by
+            // line from the three CMS heading fields, each line rising from
+            // under its own clip on arrival (see .atlas-arrive).
+            <h1
+              className="atlas-display atlas-display--xl max-w-[16ch]"
+              style={{ "--i": 1, "--atlas-accent": "var(--brand-accent-bright)" } as CSSProperties}
+            >
+              {lines.map((line, index) => (
+                <span
+                  key={index}
+                  className={`atlas-line${line === hero.headingHighlight ? " atlas-accent" : ""}`}
+                  style={{ "--i": index } as CSSProperties}
+                >
+                  <span>{line}</span>
+                </span>
+              ))}
             </h1>
           ) : null}
 
           {hero.description !== null ? (
-            <p className="max-w-[36rem] text-pretty text-base leading-7 text-brand-paper/80 sm:text-lg">
+            <p
+              className="max-w-[36rem] text-pretty text-base leading-7 text-brand-paper/80 sm:text-lg"
+              style={{ "--i": 5 } as CSSProperties}
+            >
               {hero.description}
             </p>
           ) : null}
 
           {hero.primaryCta !== null || hero.secondaryCta !== null ? (
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-4 pt-2" style={{ "--i": 6 } as CSSProperties}>
               {hero.primaryCta !== null ? (
                 <CtaLink link={hero.primaryCta} variant="solid" />
               ) : null}
@@ -112,6 +126,7 @@ export function BranchHero({ hero }: BranchHeroProps) {
           ) : null}
         </div>
       </PageContainer>
+      <div aria-hidden="true" className="atlas-scroll-cue" />
     </section>
   );
 }

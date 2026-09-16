@@ -90,7 +90,7 @@ export const BRAND_PRESETS = Object.freeze({
       },
       markOnDark: WHITE_MARK,
     },
-    motion: "quiet",
+    motion: "cinematic",
   },
   consulting: {
     siteKey: "consulting",
@@ -115,7 +115,7 @@ export const BRAND_PRESETS = Object.freeze({
       },
       markOnDark: WHITE_MARK,
     },
-    motion: "quiet",
+    motion: "cinematic",
   },
   healthcare: {
     siteKey: "healthcare",
@@ -140,7 +140,7 @@ export const BRAND_PRESETS = Object.freeze({
       },
       markOnDark: WHITE_MARK,
     },
-    motion: "quiet",
+    motion: "cinematic",
   },
   lifestyle: {
     siteKey: "lifestyle",
@@ -166,7 +166,7 @@ export const BRAND_PRESETS = Object.freeze({
       },
       markOnDark: WHITE_MARK,
     },
-    motion: "quiet",
+    motion: "cinematic",
   },
   realestate: {
     siteKey: "realestate",
@@ -191,7 +191,7 @@ export const BRAND_PRESETS = Object.freeze({
       },
       markOnDark: WHITE_MARK,
     },
-    motion: "quiet",
+    motion: "cinematic",
   },
   // SIRA Digital is the one company whose ground is dark (ADR-033).
   //

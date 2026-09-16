@@ -130,6 +130,14 @@ export default async function SiteLayout({
         href: `https://${groupSite.canonicalHostname}/`,
       };
 
+  // The header sits on the photograph only where there is one: the homepage,
+  // when its hero resolved. Every other route opens on paper and keeps the
+  // glass bar from the first pixel.
+  const heroOverlay =
+    request.path === "/" &&
+    homepage.status === "ready" &&
+    homepage.homepage.hero !== null;
+
   const languageAlternate =
     request.alternate === null
       ? null
@@ -174,6 +182,7 @@ export default async function SiteLayout({
         homeHref={localeHref(site, request.locale, "/")}
         languageAlternate={languageAlternate}
         currentPath={request.path}
+        overlay={heroOverlay}
       />
 
       <main id="main-content">{children}</main>

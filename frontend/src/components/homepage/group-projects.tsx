@@ -1,11 +1,23 @@
+import type { CSSProperties } from "react";
+
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
-import { SectionEyebrow } from "@/components/layout/section-eyebrow";
+import { SectionHead } from "@/components/layout/section-head";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
   HomepageContentItem,
   HomepageContentSection,
 } from "@/lib/homepage/types";
+
+// Atlas direction (owner-approved 2026-09-16): an editorial grid rather than
+// three equal cards — the first two projects share a row 7/5, the rest sit in
+// thirds — each with a status badge on the picture, the location as the
+// kicker, and the picture pushing in under the pointer. The cards arrive one
+// after another (`--reveal-offset`).
+//
+// Still not links: `item.href` is the project node's own URI and this app has
+// no project detail route yet (see get-project-single.ts, which serves the
+// branch-site route). The card becomes a link the day the route exists.
 
 interface GroupProjectsProps {
   readonly section: HomepageContentSection | null;
@@ -13,20 +25,22 @@ interface GroupProjectsProps {
 
 interface ProjectCardProps {
   readonly item: HomepageContentItem;
+  readonly index: number;
 }
 
-function ProjectCard({ item }: ProjectCardProps) {
+function ProjectCard({ item, index }: ProjectCardProps) {
   return (
-    // No per-item link: item.href is the project content node's own uri, but
-    // this app has no project detail route yet — same policy as Companies.
-    // The section-level `link` below (real CMS data, when present) is the
-    // only outbound affordance here.
-    <article className="card-lift card-hover flex flex-col border border-brand-border bg-brand-paper">
-      <div className="card-media aspect-[16/10] bg-brand-deep">
+    <article
+      className="atlas-card reveal"
+      style={{ "--reveal-offset": `${String(Math.min(index, 4) * 1.5)}%` } as CSSProperties}
+    >
+      <div className="atlas-card__media">
+        {item.status !== null ? (
+          <span className="atlas-card__badge">{item.status}</span>
+        ) : null}
         {item.featuredImage !== null ? (
-          // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a plain
-          // <img> is used rather than next/image, which would require configuring
-          // remote patterns.
+          // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a
+          // plain <img> rather than next/image.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={item.featuredImage.sourceUrl}
@@ -35,39 +49,23 @@ function ProjectCard({ item }: ProjectCardProps) {
             height={item.featuredImage.height ?? undefined}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover"
           />
-        ) : null}
-        {item.status !== null ? (
-          <span
-            aria-hidden="true"
-            className="absolute left-0 top-0 bg-brand-accent px-4 py-3 text-[10px] font-bold uppercase tracking-[0.1em] text-brand-on-accent"
-          >
-            {item.status}
-          </span>
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-8">
-        {item.location !== null ? (
-          <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-brand-accent">
+      {item.location !== null || item.descriptor !== null ? (
+        <p className="atlas-card__meta">
+          <span>
+            {item.descriptor !== null ? <b>{item.descriptor}</b> : null}
+            {item.descriptor !== null && item.location !== null ? " · " : null}
             {item.location}
-          </p>
-        ) : null}
-        <h3 className="font-display text-2xl font-normal leading-tight">
-          {item.title}
-        </h3>
-        {item.excerpt !== null ? (
-          <p className="text-[15px] leading-relaxed text-brand-ink-soft">
-            {item.excerpt}
-          </p>
-        ) : null}
-        {item.status !== null ? (
-          <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-ink-faint">
-            {item.status}
-          </p>
-        ) : null}
-      </div>
+          </span>
+        </p>
+      ) : null}
+
+      <h3 className="atlas-card__title">{item.title}</h3>
+
+      {item.excerpt !== null ? <p className="atlas-card__copy">{item.excerpt}</p> : null}
     </article>
   );
 }
@@ -82,34 +80,27 @@ export function GroupProjects({ section }: GroupProjectsProps) {
       className="border-b border-brand-border bg-brand-tint"
     >
       <PageContainer>
-        <div className="flex flex-wrap items-end justify-between gap-8">
-          <div>
-            <SectionEyebrow>{section.eyebrow ?? "Global Footprint"}</SectionEyebrow>
-            {section.heading !== null ? (
-              <h2
-                id="projects-heading"
-                className="mt-4 text-balance font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.05]"
-              >
-                {section.heading}
-              </h2>
-            ) : null}
-          </div>
-          {section.link !== null ? (
-            <CtaLink link={section.link} variant="ghost-light" />
-          ) : null}
-        </div>
+        <SectionHead
+          id="projects-heading"
+          eyebrow={section.eyebrow ?? "Global Footprint"}
+          heading={section.heading}
+          lead={section.description}
+          action={
+            section.link !== null ? <CtaLink link={section.link} variant="ghost-light" /> : undefined
+          }
+        />
 
-        {section.description !== null ? (
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-brand-ink-soft">
-            {section.description}
-          </p>
-        ) : null}
-
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {section.selection.items.map((item) => (
-            <ProjectCard key={item.databaseId} item={item} />
+        <div className="atlas-projects">
+          {section.selection.items.map((item, index) => (
+            <ProjectCard key={item.databaseId} item={item} index={index} />
           ))}
         </div>
+
+        {section.link !== null && section.description !== null ? (
+          <p className="mt-12">
+            <CtaLink link={section.link} variant="ghost-light" />
+          </p>
+        ) : null}
       </PageContainer>
     </Section>
   );

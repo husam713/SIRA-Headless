@@ -1575,7 +1575,7 @@ a {
   /* The house easing for this tenant. One curve for every reveal and nudge;
      consistency of easing is most of what reads as craft. */
   --digital-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --digital-reveal-distance: 1.25rem;
+  --reveal-distance: 1.25rem;
   /* The kinetic band's scroll runway, as a multiple of the stage. */
   --digital-kinetic-track: 220svh;
   --digital-kinetic-size-start: clamp(3.5rem, 14vw, 13.5rem);
@@ -1588,13 +1588,13 @@ a {
    express, and finishing at 26% of cover means nothing is still animating while
    it is being read.
 
-   --digital-reveal-offset staggers siblings by moving the START of the range
+   --reveal-offset staggers siblings by moving the START of the range
    rather than by adding a delay: a scroll-driven animation has no wall-clock
    delay to add, and offsetting the range is what produces the same cascade. */
-@keyframes digital-reveal {
+@keyframes reveal {
   from {
     opacity: 0;
-    transform: translateY(var(--digital-reveal-distance));
+    transform: translateY(var(--reveal-distance));
   }
   to {
     opacity: 1;
@@ -1602,13 +1602,19 @@ a {
   }
 }
 
+/* `.reveal` is a platform hook: any chapter may carry it. Whether it MOVES is
+   the tenant's decision, made once in its brand preset and written to
+   `<html data-motion>`. Only a `cinematic` tenant plays the entrance; on a
+   `quiet` tenant the same markup is simply visible, so SIRA Consulting's
+   privacy page does not inherit SIRA Digital's choreography by sharing a
+   route. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .digital-reveal {
-      animation: digital-reveal linear both;
+    html[data-motion="cinematic"] .reveal {
+      animation: reveal linear both;
       animation-timeline: view();
-      animation-range: entry calc(6% + var(--digital-reveal-offset, 0%)) cover
-        calc(26% + var(--digital-reveal-offset, 0%));
+      animation-range: entry calc(6% + var(--reveal-offset, 0%)) cover
+        calc(26% + var(--reveal-offset, 0%));
     }
   }
 }

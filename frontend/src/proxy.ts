@@ -1,5 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 import {
+  DRAFT_MODE_COOKIE,
+  getEdgeCacheSeconds,
+  PRIVATE_CACHE_CONTROL,
+  publishedCacheControl,
+} from "@/config/edge-cache";
+import {
   getInternalSitePath,
   isInternalSitePath,
   resolveSiteFromHostname,
@@ -114,6 +120,18 @@ export function proxy(request: NextRequest): NextResponse {
 
   if (resolution.hostnameRole === "deployment") {
     response.headers.set("X-Robots-Tag", NO_INDEX_HEADER);
+  }
+
+  // Edge cache policy. A preview (Draft Mode cookie) is personal and never
+  // shared; everything else on a served host may be held at the edge for the
+  // configured lifetime. Unset in the environment means no header at all, and
+  // Next's own dynamic default (`private, no-store`) applies as before.
+  const edgeSeconds = getEdgeCacheSeconds();
+
+  if (request.cookies.has(DRAFT_MODE_COOKIE)) {
+    response.headers.set("Cache-Control", PRIVATE_CACHE_CONTROL);
+  } else if (edgeSeconds !== null) {
+    response.headers.set("Cache-Control", publishedCacheControl(edgeSeconds));
   }
 
   return response;

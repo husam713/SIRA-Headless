@@ -76,7 +76,7 @@ export default async function ContentPageRoute({ params }: ContentPageProps) {
       {/* The title band carries the page's own <h1>; the prose column below
           starts at h2, which keeps the outline correct for a document whose
           headings were authored in the CMS. */}
-      <PageContainer className="digital-reveal pb-4 pt-[clamp(4rem,8vw,7rem)]">
+      <PageContainer className="reveal pb-4 pt-[clamp(4rem,8vw,7rem)]">
         <h1 className="digital-display max-w-[22ch] text-balance text-[clamp(2.25rem,1.5rem+3.6vw,4.5rem)] font-bold leading-[1.04] tracking-[-0.025em]">
           {page.title}
         </h1>
@@ -84,7 +84,7 @@ export default async function ContentPageRoute({ params }: ContentPageProps) {
 
       {page.html !== null ? (
         <PageContainer className="pb-[clamp(4rem,8vw,7rem)] pt-10">
-          <Prose className="digital-reveal">
+          <Prose className="reveal">
             {/* `record-prose` is the editorial type scale the newsroom already
                 uses. A CMS page is the same kind of document, so it reads with
                 the same rhythm rather than a second one invented here. The HTML

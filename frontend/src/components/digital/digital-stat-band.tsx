@@ -36,13 +36,13 @@ export function DigitalStatBand({ stats }: DigitalStatBandProps) {
           {stats.map((stat, index) => (
             <div
               key={`${stat.value}-${stat.label ?? String(index)}`}
-              className="digital-reveal digital-stat-band__cell"
+              className="reveal digital-stat-band__cell"
               // The same stagger the rest of the tenant uses: the range start
               // moves rather than a delay being added, because a scroll-driven
               // animation has no wall-clock delay to add.
               style={
                 {
-                  "--digital-reveal-offset": `${String(Math.min(index, 3) * 2)}%`,
+                  "--reveal-offset": `${String(Math.min(index, 3) * 2)}%`,
                 } as CSSProperties
               }
             >

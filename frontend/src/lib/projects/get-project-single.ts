@@ -12,11 +12,25 @@ import {
   type SiraProjectSingleQueryData,
   type SiraProjectSingleQueryVariables,
 } from "@/queries/project-single";
+import { entityCacheTag } from "@/lib/cache/tags";
 import type { SiteKey } from "@/types/site";
 
 export const PROJECT_SINGLE_CACHE_TAGS = Object.freeze([
   "post-type:sira_project",
 ]);
+
+/**
+ * The tags for one project's page: the type-wide tag plus the project's own
+ * `slug:sira_project:<slug>`, which is exactly what the WordPress revalidation
+ * webhook emits when that project changes. The id is not known before the
+ * response, the slug is, so the slug is the entity key.
+ */
+export function projectSingleCacheTags(uri: string): readonly string[] {
+  const entity = entityCacheTag("sira_project", uri.split("/").filter(Boolean).pop());
+  return entity === null
+    ? PROJECT_SINGLE_CACHE_TAGS
+    : Object.freeze([...PROJECT_SINGLE_CACHE_TAGS, entity]);
+}
 
 export type ProjectSingleQueryExecutor = (
   variables: SiraProjectSingleQueryVariables,
@@ -83,7 +97,7 @@ async function resolvePublishedProjectSingle(
       siteKey,
       SIRA_PROJECT_SINGLE_QUERY,
       variables,
-      { tags: PROJECT_SINGLE_CACHE_TAGS },
+      { tags: projectSingleCacheTags(uri) },
     ),
   );
 }

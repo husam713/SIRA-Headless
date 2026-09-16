@@ -35,6 +35,7 @@ export function BrandDocument({
       dir={direction}
       data-brand-key={brand.key}
       data-brand-source={brand.source}
+      data-motion={brand.motion}
       className={SIRA_FONT_VARIABLE_CLASSES}
       style={brandVariables}
     >

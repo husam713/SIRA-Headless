@@ -63,7 +63,7 @@ export function DigitalAboutHero({ hero }: DigitalAboutHeroProps) {
         </div>
       ) : null}
 
-      <PageContainer className="digital-reveal relative flex min-h-[clamp(30rem,68svh,46rem)] flex-col justify-center py-[clamp(4rem,8vw,7rem)]">
+      <PageContainer className="reveal relative flex min-h-[clamp(30rem,68svh,46rem)] flex-col justify-center py-[clamp(4rem,8vw,7rem)]">
         <div className="max-w-[36rem]">
           {hero.eyebrow !== null ? (
             <SectionEyebrow tone="accent" className="digital-eyebrow">

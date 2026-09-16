@@ -43,14 +43,14 @@ export function DigitalWorkflow({ steps, label }: DigitalWorkflowProps) {
         {steps.map((step, index) => (
           <li
             key={`${String(index)}-${step.title}`}
-            className="digital-workflow__item digital-reveal"
+            className="digital-workflow__item reveal"
             data-side={index % 2 === 0 ? "start" : "end"}
             style={
               {
                 "--wf-index": index,
                 // The stagger runs along the flow, so the eye is walked through
                 // the process in the order the process happens.
-                "--digital-reveal-offset": `${String(Math.min(index, 6) * 1.5)}%`,
+                "--reveal-offset": `${String(Math.min(index, 6) * 1.5)}%`,
               } as CSSProperties
             }
           >

@@ -1,6 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
+import { entityCacheTag } from "@/lib/cache/tags";
 import { fetchPublishedGraphQL, SiraGraphQLError } from "@/lib/graphql";
 import {
   SIRA_CONTENT_PAGE_QUERY,
@@ -187,6 +188,23 @@ function normalizeServiceIndex(data: unknown): readonly ServiceEntry[] {
   return Object.freeze(entries);
 }
 
+/**
+ * The CMS could not be asked. Distinct from "the CMS said there is no such
+ * page": that is a `null` and a 404. A transport failure, a timeout or a
+ * GraphQL error is thrown as this, so the route reaches its error boundary
+ * and answers with an error status instead of telling search engines — and
+ * any cache in front — that the page does not exist.
+ */
+export class ContentUnavailableError extends Error {
+  public readonly siteKey: SiteKey;
+
+  public constructor(what: string, siteKey: SiteKey, options?: ErrorOptions) {
+    super(`SIRA ${what} is unavailable.`, options);
+    this.name = "ContentUnavailableError";
+    this.siteKey = siteKey;
+  }
+}
+
 function logFailure(what: string, siteKey: SiteKey, error: unknown): void {
   console.warn(`SIRA ${what} query failed.`, {
     siteKey,
@@ -195,6 +213,18 @@ function logFailure(what: string, siteKey: SiteKey, error: unknown): void {
         ? error.name
         : "UnknownContentResolutionError",
   });
+}
+
+/**
+ * `content-page` is the frontend's blanket tag; `post-type:page` and
+ * `slug:page:<slug>` are what the WordPress webhook emits when a page is
+ * saved, so one page's edit can expire one page's cache.
+ */
+export function contentPageCacheTags(uri: string): readonly string[] {
+  const entity = entityCacheTag("page", uri.split("/").filter(Boolean).pop());
+  return entity === null
+    ? Object.freeze(["content-page", "post-type:page"])
+    : Object.freeze(["content-page", "post-type:page", entity]);
 }
 
 async function resolveContentPage(
@@ -207,12 +237,12 @@ async function resolveContentPage(
         siteKey,
         SIRA_CONTENT_PAGE_QUERY,
         { uri, asPreview: false },
-        { tags: ["content-page"] },
+        { tags: contentPageCacheTags(uri) },
       ),
     );
   } catch (error) {
     logFailure("content page", siteKey, error);
-    return null;
+    throw new ContentUnavailableError("content page", siteKey, { cause: error });
   }
 }
 
@@ -501,7 +531,7 @@ async function resolveIndustryDetail(
     );
   } catch (error) {
     logFailure("industry detail", siteKey, error);
-    return null;
+    throw new ContentUnavailableError("industry detail", siteKey, { cause: error });
   }
 }
 

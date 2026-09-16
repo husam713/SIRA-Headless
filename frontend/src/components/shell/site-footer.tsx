@@ -3,8 +3,10 @@ import type { ReactNode } from "react";
 import { PageContainer } from "@/components/layout/page-container";
 import type { ResolvedBrand } from "@/lib/brand";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { CHROME } from "@/lib/i18n/locale";
 import type { NavigationItem } from "@/lib/navigation";
 import { SITE_KEYS, type SiteKey } from "@/types/site";
+import type { LocaleCode } from "@/types/site";
 import { Wordmark } from "@/components/shell/wordmark";
 
 // Two shapes, both taken from the approved designs.
@@ -49,6 +51,7 @@ interface SiteFooterProps {
    * page composition does.
    */
   readonly layout: "compact" | "full";
+  readonly locale: LocaleCode;
   /** Cross-link back to SIRA GROUP, present on branch sites only. */
   readonly groupLink: GroupCrossLink | null;
   /**
@@ -147,7 +150,9 @@ export function SiteFooter({
   groupLink,
   taglineOverride,
   layout,
+  locale,
 }: SiteFooterProps) {
+  const chrome = CHROME[locale];
   const year = new Date().getFullYear();
   const isBranch = layout === "compact";
   const companies = portfolioCompanies(brand.siteKey);
@@ -198,7 +203,7 @@ export function SiteFooter({
           <BrandBlock brand={brand} taglineOverride={taglineOverride} className="max-w-xs" />
 
           {items.length > 0 ? (
-            <FooterColumn heading="Pages">
+            <FooterColumn heading={chrome.footerPages}>
               {items.map((item) => (
                 <li key={item.databaseId}>
                   <a
@@ -215,7 +220,7 @@ export function SiteFooter({
           ) : null}
 
           {companies.length > 0 ? (
-            <FooterColumn heading="Companies">
+            <FooterColumn heading={chrome.footerCompanies}>
               {companies.map((company) => (
                 <li key={company.key}>
                   <a
@@ -238,7 +243,7 @@ export function SiteFooter({
           ) : null}
 
           {hasConnect ? (
-            <FooterColumn heading="Connect">
+            <FooterColumn heading={chrome.footerConnect}>
               {brand.email !== null ? (
                 <li>
                   <a href={`mailto:${brand.email}`} className={FOOTER_LINK_CLASS}>
@@ -266,7 +271,7 @@ export function SiteFooter({
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-brand-on-deep/10 pt-6 text-xs">
           <span>
-            &copy; {year} {brand.name}. All rights reserved.
+            &copy; {year} {brand.name}. {chrome.allRightsReserved}
           </span>
           {/*
             No group link here. Only a branch site has one, and on a branch it

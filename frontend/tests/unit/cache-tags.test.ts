@@ -35,4 +35,13 @@ describe("GraphQL cache tags", () => {
 
     expect(() => normalizeCacheTags(tags)).toThrow(CacheTagError);
   });
+
+  it("scopes a caller tag to its tenant and leaves the tenant tags alone", async () => {
+    const { scopeCacheTag } = await import("@/lib/cache/tags");
+
+    expect(scopeCacheTag(2, "homepage")).toBe("site:2:homepage");
+    expect(scopeCacheTag(2, "Archive:SIRA_NEWS")).toBe("site:2:archive:sira_news");
+    expect(scopeCacheTag(2, "site:2")).toBe("site:2");
+    expect(scopeCacheTag(2, "brand:consulting")).toBe("brand:consulting");
+  });
 });

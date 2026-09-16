@@ -42,10 +42,11 @@ interface AboutPageProps {
 }
 
 async function resolve(params: AboutPageProps["params"]) {
-  const context = await resolveContentRoute(params, `${ROUTE}/`);
-  const about = await getDigitalAbout(
-    context.site.key,
-    localeUri(context.request.locale, context.site, `${ROUTE}/`),
+  const { extra: about, ...context } = await resolveContentRoute(
+    params,
+    `${ROUTE}/`,
+    (site, request) =>
+      getDigitalAbout(site.key, localeUri(request.locale, site, `${ROUTE}/`)),
   );
 
   return { ...context, about };
@@ -95,7 +96,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       {about?.hero != null ? <DigitalAboutHero hero={about.hero} /> : null}
 
       {!heroOwnsHeading ? (
-        <PageContainer className="digital-reveal pb-4 pt-[clamp(4rem,8vw,7rem)]">
+        <PageContainer className="reveal pb-4 pt-[clamp(4rem,8vw,7rem)]">
           <h1 className="digital-display max-w-[22ch] text-balance text-[clamp(2.25rem,1.5rem+3.6vw,4.5rem)] font-bold leading-[1.04] tracking-[-0.025em]">
             {page?.title ?? "About"}
           </h1>
@@ -120,7 +121,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
           rather than a replacement that loses content. */}
       {about?.statement == null && page?.html != null ? (
         <PageContainer className="pb-[clamp(4rem,8vw,7rem)] pt-10">
-          <Prose className="digital-reveal">
+          <Prose className="reveal">
             <div
               className="record-prose"
               dangerouslySetInnerHTML={{ __html: page.html }}

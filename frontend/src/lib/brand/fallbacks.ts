@@ -90,6 +90,7 @@ export const BRAND_PRESETS = Object.freeze({
       },
       markOnDark: WHITE_MARK,
     },
+    motion: "quiet",
   },
   consulting: {
     siteKey: "consulting",
@@ -114,6 +115,7 @@ export const BRAND_PRESETS = Object.freeze({
       },
       markOnDark: WHITE_MARK,
     },
+    motion: "quiet",
   },
   healthcare: {
     siteKey: "healthcare",
@@ -138,6 +140,7 @@ export const BRAND_PRESETS = Object.freeze({
       },
       markOnDark: WHITE_MARK,
     },
+    motion: "quiet",
   },
   lifestyle: {
     siteKey: "lifestyle",
@@ -163,6 +166,7 @@ export const BRAND_PRESETS = Object.freeze({
       },
       markOnDark: WHITE_MARK,
     },
+    motion: "quiet",
   },
   realestate: {
     siteKey: "realestate",
@@ -187,6 +191,7 @@ export const BRAND_PRESETS = Object.freeze({
       },
       markOnDark: WHITE_MARK,
     },
+    motion: "quiet",
   },
   // SIRA Digital is the one company whose ground is dark (ADR-033).
   //
@@ -240,6 +245,7 @@ export const BRAND_PRESETS = Object.freeze({
       mark: WHITE_MARK,
       markOnDark: WHITE_MARK,
     },
+    motion: "cinematic",
   },
 } as const satisfies Readonly<Record<SiteKey, BrandPreset>>);
 
@@ -274,6 +280,7 @@ export function createFallbackBrand(
       onDeep,
     }),
     assets: preset.assets,
+    motion: preset.motion,
     remoteLogo: null,
     remoteMark: null,
     email: null,

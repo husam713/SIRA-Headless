@@ -32,7 +32,7 @@ export function DigitalProcess({ process }: DigitalProcessProps) {
   return (
     <section id="process" aria-labelledby={headingId} className="scroll-mt-28">
       <PageContainer className="py-[clamp(4rem,8vw,6rem)]">
-        <div className="digital-reveal max-w-[42rem]">
+        <div className="reveal max-w-[42rem]">
           {process.eyebrow !== null ? (
             <SectionEyebrow tone="accent" className="digital-eyebrow">
               {process.eyebrow}
@@ -62,10 +62,10 @@ export function DigitalProcess({ process }: DigitalProcessProps) {
           {process.steps.map((step, index) => (
             <li
               key={step.title}
-              className="digital-reveal flex h-full flex-col rounded-2xl border border-brand-border bg-brand-ink/[0.02] p-7"
+              className="reveal flex h-full flex-col rounded-2xl border border-brand-border bg-brand-ink/[0.02] p-7"
               style={
                 {
-                  "--digital-reveal-offset": `${String(Math.min(index, 3) * 2)}%`,
+                  "--reveal-offset": `${String(Math.min(index, 3) * 2)}%`,
                 } as CSSProperties
               }
             >

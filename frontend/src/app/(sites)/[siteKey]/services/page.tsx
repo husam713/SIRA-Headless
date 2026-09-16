@@ -56,10 +56,10 @@ interface ServicesPageProps {
 }
 
 async function resolve(params: ServicesPageProps["params"]) {
-  const context = await resolveContentRoute(params, `${ROUTE}/`);
-  const services = await getServiceIndexForLocale(
-    context.site.key,
-    context.request.locale,
+  const { extra: services, ...context } = await resolveContentRoute(
+    params,
+    `${ROUTE}/`,
+    (site, request) => getServiceIndexForLocale(site.key, request.locale),
   );
 
   return { ...context, services };
@@ -170,10 +170,10 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
               <article
                 key={service.databaseId}
                 id={neutralSlug(service.slug)}
-                className="digital-reveal digital-index__block scroll-mt-8"
+                className="reveal digital-index__block scroll-mt-8"
                 style={
                   {
-                    "--digital-reveal-offset": `${String(Math.min(index, 3) * 2)}%`,
+                    "--reveal-offset": `${String(Math.min(index, 3) * 2)}%`,
                     "--digital-index-timeline": timelineName(index),
                   } as CSSProperties
                 }

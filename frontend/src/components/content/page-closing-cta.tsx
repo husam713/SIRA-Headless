@@ -44,7 +44,7 @@ export function PageClosingCta({
 
   return (
     <section className="border-t border-brand-border" aria-labelledby={headingId}>
-      <PageContainer className={`digital-reveal flex ${height === "full" ? "min-h-[calc(100svh-var(--layout-header-offset))]" : "min-h-[45svh]"} flex-col items-center justify-center gap-8 py-[clamp(4rem,8vw,7rem)] text-center`}>
+      <PageContainer className={`reveal flex ${height === "full" ? "min-h-[calc(100svh-var(--layout-header-offset))]" : "min-h-[45svh]"} flex-col items-center justify-center gap-8 py-[clamp(4rem,8vw,7rem)] text-center`}>
         <h2
           id={headingId}
           className="digital-display max-w-[20ch] text-balance text-[clamp(2.25rem,1.5rem+3.6vw,4.5rem)] font-bold leading-[1.04] tracking-[-0.025em]"

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LanguageSwitch } from "@/components/shell/language-switch";
 import { MobileMenu } from "@/components/shell/mobile-menu";
+import { NavLink } from "@/components/shell/nav-link";
 import { PageContainer } from "@/components/layout/page-container";
 import type { ResolvedBrand } from "@/lib/brand";
 import { CHROME } from "@/lib/i18n/locale";
@@ -114,16 +115,15 @@ export function SiteHeader({
             className="hidden items-center gap-8 lg:flex"
           >
             {items.map((item) => (
-              <a
+              <NavLink
                 key={item.databaseId}
                 href={item.href}
-                target={item.target ?? undefined}
-                rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
-                aria-current={isCurrentPath(item.href, currentPath) ? "page" : undefined}
+                target={item.target}
+                current={isCurrentPath(item.href, currentPath)}
                 className="nav-link text-xs font-semibold uppercase tracking-[0.08em] text-brand-ink-soft hover:text-brand-accent"
               >
                 {item.label}
-              </a>
+              </NavLink>
             ))}
           </nav>
         ) : null}

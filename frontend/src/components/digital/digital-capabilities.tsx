@@ -60,14 +60,14 @@ export function DigitalCapabilities({
           {capabilities.map((capability, index) => (
             <li
               key={`${capability.title ?? "capability"}-${String(index)}`}
-              className="digital-rail__item digital-reveal relative"
+              className="digital-rail__item reveal relative"
               // The stagger. A scroll-driven animation has no wall-clock delay,
               // so siblings are separated by starting their range slightly
               // later instead. Capped so the last column in a wide row is not
               // still waiting when the reader has already read it.
               style={
                 {
-                  "--digital-reveal-offset": `${String(Math.min(index, 5) * 2)}%`,
+                  "--reveal-offset": `${String(Math.min(index, 5) * 2)}%`,
                 } as CSSProperties
               }
             >

@@ -164,6 +164,10 @@ interface Chrome {
   readonly opportunityLabel: string;
   readonly previewMode: string;
   readonly exitPreview: string;
+  readonly footerPages: string;
+  readonly footerCompanies: string;
+  readonly footerConnect: string;
+  readonly allRightsReserved: string;
 }
 
 /**
@@ -198,6 +202,10 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     opportunityLabel: "What can be done",
     previewMode: "Preview Mode",
     exitPreview: "Exit Preview",
+    footerPages: "Pages",
+    footerCompanies: "Companies",
+    footerConnect: "Connect",
+    allRightsReserved: "All rights reserved.",
   }),
   ar: Object.freeze({
     skipToContent: "تخطَّ إلى المحتوى الرئيسي",
@@ -222,5 +230,9 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     opportunityLabel: "ما الذي يمكن عمله",
     previewMode: "وضع المعاينة",
     exitPreview: "إنهاء المعاينة",
+    footerPages: "الصفحات",
+    footerCompanies: "الشركات",
+    footerConnect: "تواصل",
+    allRightsReserved: "جميع الحقوق محفوظة.",
   }),
 });

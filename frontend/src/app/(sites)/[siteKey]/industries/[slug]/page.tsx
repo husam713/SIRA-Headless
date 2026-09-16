@@ -102,7 +102,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
     <article
       {...(contentLocale === request.locale ? {} : { lang: contentLocale })}
     >
-      <PageContainer className="digital-reveal pb-4 pt-[clamp(2.5rem,5vw,4rem)]">
+      <PageContainer className="reveal pb-4 pt-[clamp(2.5rem,5vw,4rem)]">
         <Link
           href={localeHref(site, request.locale, "/industries")}
           className="digital-back inline-flex items-center gap-2 text-sm font-medium text-brand-ink-faint"
@@ -137,7 +137,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
       </PageContainer>
 
       {industry.workflow.length > 0 ? (
-        <PageContainer className="digital-reveal mt-12">
+        <PageContainer className="reveal mt-12">
           <DigitalWorkflow
             steps={industry.workflow}
             label={chrome.automationWorkflow}
@@ -150,7 +150,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
           placeholder where a number should be reads as a broken page, and an
           invented one would be worse than either. */}
       {industry.stat !== null ? (
-        <PageContainer className="digital-reveal mt-14">
+        <PageContainer className="reveal mt-14">
           <p className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
             <span className="font-display text-[clamp(2.5rem,1.6rem+2.6vw,3.75rem)] font-bold leading-none tracking-[-0.03em] tabular-nums text-brand-accent">
               {industry.stat.value}
@@ -167,7 +167,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
       {industry.build.length > 0 || industry.stack.length > 0 ? (
         <PageContainer className="mt-14 grid gap-x-16 gap-y-12 pb-[clamp(3rem,6vw,5rem)] lg:grid-cols-2">
           {industry.build.length > 0 ? (
-            <section className="digital-reveal" aria-labelledby="industry-build">
+            <section className="reveal" aria-labelledby="industry-build">
               <h2
                 id="industry-build"
                 className="text-[1.375rem] font-semibold leading-[1.25] tracking-[-0.015em]"
@@ -178,10 +178,10 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
                 {industry.build.map((item, index) => (
                   <li
                     key={item}
-                    className="digital-reveal flex gap-3 text-[0.9375rem] leading-[1.6] text-brand-ink-soft"
+                    className="reveal flex gap-3 text-[0.9375rem] leading-[1.6] text-brand-ink-soft"
                     style={
                       {
-                        "--digital-reveal-offset": `${String(Math.min(index, 3) * 1.5)}%`,
+                        "--reveal-offset": `${String(Math.min(index, 3) * 1.5)}%`,
                       } as CSSProperties
                     }
                   >
@@ -199,7 +199,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
           ) : null}
 
           {industry.stack.length > 0 ? (
-            <section className="digital-reveal" aria-labelledby="industry-stack">
+            <section className="reveal" aria-labelledby="industry-stack">
               <h2
                 id="industry-stack"
                 className="text-[1.375rem] font-semibold leading-[1.25] tracking-[-0.015em]"
@@ -227,7 +227,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
         className="border-t border-brand-border"
         aria-labelledby="industry-cta"
       >
-        <PageContainer className="digital-reveal flex min-h-[40svh] flex-col items-center justify-center gap-8 py-[clamp(3rem,6vw,5rem)] text-center">
+        <PageContainer className="reveal flex min-h-[40svh] flex-col items-center justify-center gap-8 py-[clamp(3rem,6vw,5rem)] text-center">
           <h2
             id="industry-cta"
             className="digital-display max-w-[20ch] text-balance text-[clamp(1.75rem,1.2rem+2.2vw,3rem)] font-bold leading-[1.08] tracking-[-0.025em]"

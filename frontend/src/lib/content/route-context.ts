@@ -25,21 +25,30 @@ export interface ContentRouteContext {
   readonly page: ContentPage | null;
 }
 
-export async function resolveContentRoute(
+/**
+ * `alongside` runs the route's own index query in parallel with the page
+ * query. Both only need the tenant and the locale, which are known before
+ * either fetch starts, so the second round trip no longer waits for the first.
+ * On a warm Data Cache this is moot; on a cold instance it is the difference
+ * between one and two origin latencies before the page can render.
+ */
+export async function resolveContentRoute<TExtra = undefined>(
   params: Promise<{ readonly siteKey: string }>,
   path: string,
-): Promise<ContentRouteContext> {
+  alongside?: (site: SiteDefinition, request: RequestLocale) => Promise<TExtra>,
+): Promise<ContentRouteContext & { readonly extra: TExtra }> {
   const { siteKey } = await params;
   const site = getSiteDefinition(siteKey);
 
   if (site === null) notFound();
 
   const request = await getRequestLocale(site);
-  const page = await getContentPageForLocale(
-    site.key,
-    localeUri(request.locale, site, path),
-    path,
-  );
+  const [page, extra] = await Promise.all([
+    getContentPageForLocale(site.key, localeUri(request.locale, site, path), path),
+    alongside === undefined
+      ? Promise.resolve(undefined as TExtra)
+      : alongside(site, request),
+  ]);
 
-  return { site, request, page };
+  return { site, request, page, extra };
 }

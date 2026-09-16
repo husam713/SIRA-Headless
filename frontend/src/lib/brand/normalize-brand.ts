@@ -350,6 +350,7 @@ export function normalizeWordPressBrand(
       onDeep,
     }),
     assets: preset.assets,
+    motion: preset.motion,
     remoteLogo: normalizeMedia(data.logo),
     remoteMark: normalizeMedia(data.mark),
     email: normalizeText(data.email, 254),

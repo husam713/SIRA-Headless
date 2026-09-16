@@ -40,7 +40,7 @@ export function DigitalMarquee({ section }: DigitalMarqueeProps) {
       label={hasHeading ? undefined : "Sectors we work across"}
     >
       {(section.eyebrow !== null || hasHeading || section.body !== null) && (
-        <PageContainer className="digital-reveal text-center">
+        <PageContainer className="reveal text-center">
           {section.eyebrow !== null ? (
             <SectionEyebrow
               tone="bright"

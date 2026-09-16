@@ -3,6 +3,7 @@ import type { WordPressSiteConfig } from "@/config/wordpress";
 import {
   GraphQLAbortError,
   GraphQLHttpError,
+  GraphQLNetworkError,
   GraphQLProtocolError,
   GraphQLResponseError,
 } from "@/lib/graphql/errors";
@@ -58,6 +59,55 @@ describe("executeGraphQL", () => {
 
     expect(headers.get("authorization")).toBeNull();
     expect(headers.get("x-sira-site-key")).toBe("group");
+  });
+
+  // Next hashes every request header into the fetch Data Cache key. A
+  // per-call id on a cached request therefore defeats the cache: every render
+  // wrote a new entry and read none. The two calls below must produce
+  // byte-identical requests, or the cache is silently off again.
+  it("sends byte-identical cached requests across calls (no per-call header)", async () => {
+    const fetchImpl = vi.fn<typeof fetch>().mockImplementation(async () =>
+      Response.json({ data: { hello: "world" } }),
+    );
+    const options = {
+      cache: "force-cache" as const,
+      timeoutMs: 1000,
+      revalidate: 3600,
+      tags: ["site:1"],
+      fetchImpl,
+    };
+
+    await executeGraphQL(site, operation, {}, options);
+    await executeGraphQL(site, operation, {}, options);
+
+    const first = fetchImpl.mock.calls[0]?.[1];
+    const second = fetchImpl.mock.calls[1]?.[1];
+    const firstHeaders = Object.fromEntries(new Headers(first?.headers));
+    const secondHeaders = Object.fromEntries(new Headers(second?.headers));
+
+    expect(firstHeaders).toEqual(secondHeaders);
+    expect(firstHeaders["x-sira-request-id"]).toBeUndefined();
+    expect(first?.body).toBe(second?.body);
+  });
+
+  it("still identifies uncached preview requests by request id", async () => {
+    const fetchImpl = vi.fn<typeof fetch>().mockResolvedValue(
+      Response.json({ data: { hello: "world" } }),
+    );
+    const trace = vi.fn();
+
+    await executeGraphQL(site, operation, {}, {
+      cache: "no-store",
+      timeoutMs: 1000,
+      fetchImpl,
+      trace,
+    });
+
+    const [, init] = fetchImpl.mock.calls[0] ?? [];
+    const requestId = new Headers(init?.headers).get("x-sira-request-id");
+
+    expect(requestId).toMatch(/^[0-9a-f-]{36}$/u);
+    expect(trace).toHaveBeenCalledWith(expect.objectContaining({ requestId }));
   });
 
   it("fails closed when GraphQL returns partial data with errors", async () => {
@@ -184,5 +234,55 @@ describe("executeGraphQL", () => {
     expect(init?.body).toBe(
       '{"operationName":"HelloWithVariables","query":"query HelloWithVariables { hello }","variables":{"a":{"b":3,"y":2},"z":1}}',
     );
+  });
+
+  it("retries a network failure once when asked, and not an HTTP error", async () => {
+    const flaky = vi
+      .fn<typeof fetch>()
+      .mockRejectedValueOnce(new TypeError("fetch failed"))
+      .mockResolvedValueOnce(Response.json({ data: { hello: "second try" } }));
+    const sleep = vi.fn(async () => undefined);
+
+    const result = await executeGraphQL(site, operation, {}, {
+      cache: "force-cache",
+      timeoutMs: 1000,
+      fetchImpl: flaky,
+      retries: 1,
+      sleep,
+    });
+
+    expect(result).toEqual({ hello: "second try" });
+    expect(flaky).toHaveBeenCalledTimes(2);
+    expect(sleep).toHaveBeenCalledTimes(1);
+
+    const failing = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response("nope", { status: 502 }),
+    );
+
+    await expect(
+      executeGraphQL(site, operation, {}, {
+        cache: "force-cache",
+        timeoutMs: 1000,
+        fetchImpl: failing,
+        retries: 1,
+        sleep,
+      }),
+    ).rejects.toBeInstanceOf(GraphQLHttpError);
+    expect(failing).toHaveBeenCalledTimes(1);
+
+    const alwaysDown = vi
+      .fn<typeof fetch>()
+      .mockRejectedValue(new TypeError("fetch failed"));
+
+    await expect(
+      executeGraphQL(site, operation, {}, {
+        cache: "force-cache",
+        timeoutMs: 1000,
+        fetchImpl: alwaysDown,
+        retries: 1,
+        sleep,
+      }),
+    ).rejects.toBeInstanceOf(GraphQLNetworkError);
+    expect(alwaysDown).toHaveBeenCalledTimes(2);
   });
 });

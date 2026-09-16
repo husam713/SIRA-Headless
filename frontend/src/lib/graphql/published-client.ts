@@ -7,6 +7,7 @@ import {
 } from "@/config/wordpress";
 import {
   normalizeCacheTags,
+  scopeCacheTag,
   siteCacheTags,
 } from "@/lib/cache/tags";
 import {
@@ -19,7 +20,10 @@ import type {
   GraphQLOperation,
   GraphQLVariables,
 } from "@/lib/graphql/operation";
-import type { GraphQLTraceSink } from "@/lib/graphql/tracing";
+import {
+  defaultGraphQLTrace,
+  type GraphQLTraceSink,
+} from "@/lib/graphql/tracing";
 import type { SiteKey } from "@/types/site";
 
 export interface PublishedGraphQLOptions {
@@ -41,7 +45,7 @@ function publishedRequest(
   const site = getWordPressSiteConfig(siteKey);
   const tags = normalizeCacheTags([
     ...siteCacheTags(site.blogId, site.siteKey),
-    ...(options.tags ?? []),
+    ...(options.tags ?? []).map((tag) => scopeCacheTag(site.blogId, tag)),
   ]);
 
   return {
@@ -52,8 +56,12 @@ function publishedRequest(
       revalidate:
         options.revalidate ?? getGraphQLRevalidateSeconds(),
       tags,
+      // One bounded retry on a transport failure. Published reads are
+      // idempotent and a single re-ask absorbs a dropped connection or a slow
+      // cold origin without turning an outage into a storm.
+      retries: 1,
       ...(options.signal === undefined ? {} : { signal: options.signal }),
-      ...(options.trace === undefined ? {} : { trace: options.trace }),
+      trace: options.trace ?? defaultGraphQLTrace(),
       ...(options.fetchImpl === undefined
         ? {}
         : { fetchImpl: options.fetchImpl }),

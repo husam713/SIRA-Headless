@@ -43,7 +43,9 @@ async function resolveBrand(siteKey: SiteKey): Promise<ResolvedBrand> {
       SIRA_BRAND_QUERY,
       {},
       {
-        tags: ["brand-identity"],
+        // `brand` and `layout` are what the WordPress webhook emits for a
+        // brand-options save; `brand-identity` is the frontend's own name.
+        tags: ["brand-identity", "brand", "layout"],
       },
     );
 

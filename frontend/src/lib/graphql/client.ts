@@ -40,6 +40,22 @@ export interface GraphQLExecutionOptions {
   readonly signal?: AbortSignal;
   readonly trace?: GraphQLTraceSink;
   readonly fetchImpl?: typeof fetch;
+  /**
+   * How many times a transport failure (network error or timeout) is retried
+   * before it is thrown. HTTP, GraphQL and protocol errors are never retried:
+   * the origin answered, and asking again would only repeat the answer.
+   * Default 0. The published client sets 1 with a short jittered pause; a
+   * second attempt against a failing origin is bounded, a third is a storm.
+   */
+  readonly retries?: number;
+  readonly sleep?: (ms: number) => Promise<void>;
+}
+
+const RETRY_BASE_DELAY_MS = 150;
+const RETRY_JITTER_MS = 150;
+
+function defaultSleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function stableValue(value: unknown): unknown {
@@ -153,9 +169,21 @@ async function executeGraphQLCore<
       accept: "application/graphql-response+json, application/json;q=0.9",
       "content-type": "application/json",
       "x-sira-operation-name": operation.operationName,
-      "x-sira-request-id": requestId,
       "x-sira-site-key": site.siteKey,
     });
+
+    // The request id travels to WordPress only on uncached (preview) calls.
+    //
+    // Next's fetch Data Cache hashes every request header into the cache key
+    // (next/dist/server/lib/incremental-cache/index.js, `fetchCacheKey`), so a
+    // per-call UUID on a `force-cache` request made every published fetch a
+    // brand-new key: the cache was written on every render and read on none,
+    // and every page hit WordPress live. The id still identifies the call in
+    // traces and errors; it simply no longer changes the bytes on the wire for
+    // a request that is meant to be reused.
+    if (options.cache === "no-store") {
+      headers.set("x-sira-request-id", requestId);
+    }
 
     if (options.authorization !== undefined) {
       headers.set("authorization", options.authorization);
@@ -328,6 +356,43 @@ async function executeGraphQLCore<
  * contract is unchanged: any GraphQL error, HTTP error, protocol error,
  * timeout, or abort throws, including partial data accompanied by errors.
  */
+async function executeWithRetry<
+  TResult,
+  TVariables extends GraphQLVariables,
+>(
+  site: WordPressSiteConfig,
+  operation: GraphQLOperation<TResult, TVariables>,
+  variables: TVariables,
+  options: GraphQLExecutionOptions,
+  toleratePartialData: boolean,
+): Promise<TolerantGraphQLResult<TResult>> {
+  const retries = Math.max(0, options.retries ?? 0);
+  const sleep = options.sleep ?? defaultSleep;
+
+  for (let attempt = 0; ; attempt += 1) {
+    try {
+      return await executeGraphQLCore(
+        site,
+        operation,
+        variables,
+        options,
+        toleratePartialData,
+      );
+    } catch (error) {
+      const retryable =
+        error instanceof GraphQLNetworkError ||
+        error instanceof GraphQLTimeoutError;
+      const cancelled = options.signal?.aborted === true;
+
+      if (!retryable || cancelled || attempt >= retries) {
+        throw error;
+      }
+
+      await sleep(RETRY_BASE_DELAY_MS + Math.random() * RETRY_JITTER_MS);
+    }
+  }
+}
+
 export async function executeGraphQL<
   TResult,
   TVariables extends GraphQLVariables,
@@ -337,7 +402,7 @@ export async function executeGraphQL<
   variables: TVariables,
   options: GraphQLExecutionOptions,
 ): Promise<TResult> {
-  const result = await executeGraphQLCore(
+  const result = await executeWithRetry(
     site,
     operation,
     variables,
@@ -364,5 +429,5 @@ export async function executeGraphQLTolerant<
   variables: TVariables,
   options: GraphQLExecutionOptions,
 ): Promise<TolerantGraphQLResult<TResult>> {
-  return executeGraphQLCore(site, operation, variables, options, true);
+  return executeWithRetry(site, operation, variables, options, true);
 }

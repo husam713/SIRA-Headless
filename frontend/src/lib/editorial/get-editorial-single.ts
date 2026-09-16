@@ -4,6 +4,7 @@ import { cache } from "react";
 
 import type { EditorialSingleResolution } from "@/lib/editorial/editorial-single-types";
 import { normalizeEditorialSingle } from "@/lib/editorial/normalize-editorial-single";
+import { entityCacheTag } from "@/lib/cache/tags";
 import { fetchPublishedGraphQL } from "@/lib/graphql";
 import {
   SIRA_EDITORIAL_SINGLE_QUERY,
@@ -21,6 +22,25 @@ const EDITORIAL_SINGLE_CACHE_TAGS: readonly string[] = Object.freeze([
   "archive:sira_article",
   "archive:sira_press_release",
 ]);
+
+// The section of the URL is the WordPress post type's own base, so the type
+// IS known before the response for the purpose of the entity tag: the
+// revalidation webhook emits `slug:<post_type>:<slug>` and this is its twin.
+const SECTION_POST_TYPE: Readonly<Record<string, string>> = Object.freeze({
+  news: "sira_news",
+  insights: "sira_insight",
+  articles: "sira_article",
+  "press-releases": "sira_press_release",
+});
+
+export function editorialSingleCacheTags(uri: string): readonly string[] {
+  const [section, slug] = uri.split("/").filter(Boolean);
+  const postType = section === undefined ? undefined : SECTION_POST_TYPE[section];
+  const entity = postType === undefined ? null : entityCacheTag(postType, slug);
+  return entity === null
+    ? EDITORIAL_SINGLE_CACHE_TAGS
+    : Object.freeze([...EDITORIAL_SINGLE_CACHE_TAGS, entity]);
+}
 
 export type EditorialSingleQueryExecutor = (
   uri: string,
@@ -56,7 +76,7 @@ async function resolvePublishedEditorialSingle(
 ): Promise<EditorialSingleResolution> {
   return resolveEditorialSingle(siteKey, uri, async (requestedUri) =>
     fetchPublishedGraphQL(siteKey, SIRA_EDITORIAL_SINGLE_QUERY, { uri: requestedUri }, {
-      tags: EDITORIAL_SINGLE_CACHE_TAGS,
+      tags: editorialSingleCacheTags(requestedUri),
     }),
   );
 }

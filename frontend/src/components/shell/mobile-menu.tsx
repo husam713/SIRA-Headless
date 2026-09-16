@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CHROME } from "@/lib/i18n/locale";
 import type { NavigationItem } from "@/lib/navigation";
+import { NavLink } from "@/components/shell/nav-link";
 import { isCurrentPath } from "@/lib/navigation/current-path";
 import type { LocaleCode } from "@/types/site";
 
@@ -117,17 +118,16 @@ export function MobileMenu({
           {items.length > 0 ? (
             <nav aria-label={chrome.siteNav} className="mt-6 flex flex-col">
               {items.map((item) => (
-                <a
+                <NavLink
                   key={item.databaseId}
                   href={item.href}
-                  target={item.target ?? undefined}
-                  rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+                  target={item.target}
                   onClick={() => dialogRef.current?.close()}
-                  aria-current={isCurrentPath(item.href, currentPath) ? "page" : undefined}
+                  current={isCurrentPath(item.href, currentPath)}
                   className="site-menu__link border-b border-brand-on-deep/15 py-4 text-lg font-medium uppercase tracking-wide text-brand-on-deep/90"
                 >
                   {item.label}
-                </a>
+                </NavLink>
               ))}
             </nav>
           ) : null}

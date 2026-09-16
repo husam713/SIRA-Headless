@@ -39,10 +39,10 @@ interface ContactPageProps {
 }
 
 async function resolve(params: ContactPageProps["params"]) {
-  const context = await resolveContentRoute(params, `${ROUTE}/`);
-  const services = await getServiceIndexForLocale(
-    context.site.key,
-    context.request.locale,
+  const { extra: services, ...context } = await resolveContentRoute(
+    params,
+    `${ROUTE}/`,
+    (site, request) => getServiceIndexForLocale(site.key, request.locale),
   );
 
   return { ...context, services };
@@ -92,7 +92,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
             measure it is given, and details that sit at the foot of the column
             so the space becomes the gap between two blocks rather than the
             leftover under one. */}
-        <PageContainer className="digital-reveal grid gap-12 pb-[clamp(3rem,6vw,5rem)] pt-[clamp(4rem,8vw,7rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-16">
+        <PageContainer className="reveal grid gap-12 pb-[clamp(3rem,6vw,5rem)] pt-[clamp(4rem,8vw,7rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-16">
           <div className="flex flex-col">
             <SectionEyebrow tone="accent" className="digital-eyebrow">
               {intro?.eyebrow ?? copy.eyebrow}
@@ -169,7 +169,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
             the two uppercase micro-labels inside it — "Your business" and
             "Estimated impact" — already carry that register. A third would make
             three competing labels in one screen. */}
-        <PageContainer className="digital-reveal py-[clamp(4rem,8vw,7rem)]">
+        <PageContainer className="reveal py-[clamp(4rem,8vw,7rem)]">
           <h2
             id="calculator-heading"
             className="digital-display max-w-[20ch] text-balance text-[clamp(1.875rem,1.35rem+2.4vw,3.25rem)] font-bold leading-[1.06] tracking-[-0.02em]"

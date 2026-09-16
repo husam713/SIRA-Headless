@@ -41,10 +41,10 @@ interface IndustriesPageProps {
 }
 
 async function resolve(params: IndustriesPageProps["params"]) {
-  const context = await resolveContentRoute(params, `${ROUTE}/`);
-  const industries = await getIndustryIndexForLocale(
-    context.site.key,
-    context.request.locale,
+  const { extra: industries, ...context } = await resolveContentRoute(
+    params,
+    `${ROUTE}/`,
+    (site, request) => getIndustryIndexForLocale(site.key, request.locale),
   );
 
   return { ...context, industries };
@@ -99,10 +99,10 @@ export default async function IndustriesPage({ params }: IndustriesPageProps) {
               <li
                 key={industry.databaseId}
                 id={slug}
-                className="digital-reveal scroll-mt-8"
+                className="reveal scroll-mt-8"
                 style={
                   {
-                    "--digital-reveal-offset": `${String(Math.min(index, 5) * 1.5)}%`,
+                    "--reveal-offset": `${String(Math.min(index, 5) * 1.5)}%`,
                   } as CSSProperties
                 }
               >

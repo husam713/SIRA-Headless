@@ -13,7 +13,6 @@ import type { EditorialArticle } from "@/lib/editorial/editorial-single-types";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
-import type { SiteKey } from "@/types/site";
 
 // Editorial permalinks keep the bases WordPress owns — /news/, /insights/,
 // /articles/ and /press-releases/ — rather than being folded under one
@@ -99,10 +98,10 @@ export async function generateMetadata({
  * feed must not take the article down with it.
  */
 async function resolveAlsoInTheRecord(
-  siteKey: SiteKey,
+  feedPromise: ReturnType<typeof getEditorialFeed>,
   article: EditorialArticle,
 ): Promise<readonly EntryView[]> {
-  const feed = await getEditorialFeed(siteKey, RELATED_WINDOW);
+  const feed = await feedPromise;
 
   if (feed.status !== "ready") return [];
 
@@ -129,6 +128,10 @@ export default async function EditorialArticleRoute({
     notFound();
   }
 
+  // The related strip's feed is independent of the article, so it is asked
+  // for at the same time rather than after: one origin latency, not two, on
+  // a cold instance. A failed feed is still swallowed below.
+  const feedPromise = getEditorialFeed(site.key, RELATED_WINDOW);
   const resolution = await getEditorialSingle(site.key, uri);
 
   if (resolution.status === "not-found") {
@@ -147,7 +150,7 @@ export default async function EditorialArticleRoute({
   }
 
   const alsoInTheRecord = await resolveAlsoInTheRecord(
-    site.key,
+    feedPromise,
     resolution.article,
   );
 

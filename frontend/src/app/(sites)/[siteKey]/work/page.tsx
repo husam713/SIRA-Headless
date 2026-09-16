@@ -35,10 +35,10 @@ interface WorkPageProps {
 }
 
 async function resolve(params: WorkPageProps["params"]) {
-  const context = await resolveContentRoute(params, `${ROUTE}/`);
-  const work = await getWorkIndexForLocale(
-    context.site.key,
-    context.request.locale,
+  const { extra: work, ...context } = await resolveContentRoute(
+    params,
+    `${ROUTE}/`,
+    (site, request) => getWorkIndexForLocale(site.key, request.locale),
   );
 
   return { ...context, work };
@@ -88,9 +88,9 @@ export default async function WorkPage({ params }: WorkPageProps) {
             <li
               key={entry.databaseId}
               id={neutralSlug(entry.slug)}
-              className="digital-reveal scroll-mt-8 border-t border-brand-border py-[clamp(2.5rem,5vw,4rem)] first:border-t-0 first:pt-0"
+              className="reveal scroll-mt-8 border-t border-brand-border py-[clamp(2.5rem,5vw,4rem)] first:border-t-0 first:pt-0"
               style={
-                { "--digital-reveal-offset": `${String(Math.min(index, 3) * 2)}%` } as CSSProperties
+                { "--reveal-offset": `${String(Math.min(index, 3) * 2)}%` } as CSSProperties
               }
             >
               <article className="grid gap-8 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-16">

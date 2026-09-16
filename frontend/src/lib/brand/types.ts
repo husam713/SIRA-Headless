@@ -112,6 +112,7 @@ export interface ResolvedBrand {
   readonly identity: BrandIdentityTokens;
   readonly semantic: BrandSemanticTokens;
   readonly assets: BrandAssetSet;
+  readonly motion: BrandMotionPreset;
   readonly remoteLogo: RemoteBrandMedia | null;
   readonly remoteMark: RemoteBrandMedia | null;
   readonly email: string | null;
@@ -131,6 +132,17 @@ export interface ResolvedBrand {
   readonly diagnostics: readonly string[];
 }
 
+/**
+ * A tenant's motion language. Frontend-owned, like the semantic tokens: the
+ * CMS does not choose it. `quiet` is the house default — hover, focus and
+ * state feedback only, no entrance choreography. `cinematic` adds the
+ * scroll-driven reveals and kinetic chapters SIRA Digital was allowed
+ * (ADR-033). It is set on `<html data-motion>` and every entrance rule in
+ * the stylesheet is scoped by it, so one company's motion never leaks into
+ * another's pages.
+ */
+export type BrandMotionPreset = "quiet" | "cinematic";
+
 export interface BrandPreset {
   readonly siteKey: SiteKey;
   readonly name: string;
@@ -138,4 +150,5 @@ export interface BrandPreset {
   readonly identity: BrandIdentityTokens;
   readonly semantic: Omit<BrandSemanticTokens, "onAccent" | "onDeep">;
   readonly assets: BrandAssetSet;
+  readonly motion: BrandMotionPreset;
 }

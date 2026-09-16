@@ -35,7 +35,7 @@ export function DigitalHero({ hero }: DigitalHeroProps) {
       aria-labelledby={hasHeading ? "digital-hero-heading" : undefined}
       aria-label={hasHeading ? undefined : "Introduction"}
     >
-      <PageContainer className="digital-reveal py-16 lg:py-0">
+      <PageContainer className="reveal py-16 lg:py-0">
         <div className="max-w-[46rem]">
           {hero.eyebrow !== null ? (
             <SectionEyebrow tone="accent" className="digital-eyebrow">

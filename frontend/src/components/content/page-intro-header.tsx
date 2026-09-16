@@ -61,7 +61,7 @@ export function PageIntroHeader({
       className={`relative flex ${HEIGHT_CLASSES[height]}`}
       aria-labelledby={headingId}
     >
-      <PageContainer className="digital-reveal pb-12 pt-[clamp(4rem,8vw,7rem)]">
+      <PageContainer className="reveal pb-12 pt-[clamp(4rem,8vw,7rem)]">
         <SectionEyebrow tone="accent" className="digital-eyebrow">
           {intro?.eyebrow ?? fallbackEyebrow}
         </SectionEyebrow>

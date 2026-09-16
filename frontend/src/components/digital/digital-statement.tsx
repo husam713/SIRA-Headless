@@ -40,7 +40,7 @@ export function DigitalStatement({ statement }: DigitalStatementProps) {
       ) : null}
 
       <PageContainer className="relative py-[clamp(4rem,8vw,7rem)]">
-        <div className="digital-reveal ms-auto max-w-[38rem]">
+        <div className="reveal ms-auto max-w-[38rem]">
           {/* The section's accessible name. Visually it is the body copy, which
               is genuinely what this section is about — there is no separate
               headline to promote, and inventing one to satisfy the outline

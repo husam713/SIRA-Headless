@@ -48,7 +48,7 @@ export function DigitalTeamGrid({ header, people }: DigitalTeamGridProps) {
   return (
     <section id="team" aria-labelledby={headingId} className="scroll-mt-28">
       <PageContainer className="py-[clamp(4rem,8vw,6rem)]">
-        <div className="digital-reveal">
+        <div className="reveal">
           {header?.eyebrow != null ? (
             <SectionEyebrow tone="accent" className="digital-eyebrow">
               {header.eyebrow}
@@ -71,10 +71,10 @@ export function DigitalTeamGrid({ header, people }: DigitalTeamGridProps) {
           {people.map((person, index) => (
             <li
               key={person.databaseId}
-              className="digital-reveal text-center"
+              className="reveal text-center"
               style={
                 {
-                  "--digital-reveal-offset": `${String(Math.min(index, 4) * 1.5)}%`,
+                  "--reveal-offset": `${String(Math.min(index, 4) * 1.5)}%`,
                 } as CSSProperties
               }
             >

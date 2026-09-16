@@ -184,6 +184,7 @@ export default async function SiteLayout({
         groupLink={groupFooterLink}
         taglineOverride={branchFooter?.taglineOverride ?? null}
         layout={footerLayout}
+        locale={request.locale}
       />
     </BrandDocument>
   );

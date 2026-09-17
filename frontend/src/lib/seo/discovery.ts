@@ -7,6 +7,7 @@ import {
   getSiteDefinition,
   resolveSiteFromHostname,
 } from "@/lib/host/resolve-site";
+import { localeHref } from "@/lib/i18n/locale";
 import { buildCanonicalUrl } from "@/lib/seo/canonical";
 import type {
   HostnameRole,
@@ -74,8 +75,22 @@ export function buildRobotsPolicy(
   };
 }
 
+export interface SitemapEntryInput {
+  /** A locale-less path this app serves, e.g. `/news/` or `/insights/x/`. */
+  readonly path: string;
+  readonly lastModified?: string | null | undefined;
+}
+
+/**
+ * The sitemap for the host being asked. Empty on any host that is not the
+ * tenant's canonical one, so a deployment or alias host never advertises
+ * URLs. Every path is emitted for the default locale and, where the tenant's
+ * locale routes are approved (ADR-034), for each other locale under its
+ * prefix — the same rule the layout uses for hreflang.
+ */
 export function buildSitemap(
   hostname: string,
+  entries: readonly SitemapEntryInput[] = [],
   registry: SiteRegistry = getSiteRegistry(),
 ): MetadataRoute.Sitemap {
   const resolution = resolveSiteFromHostname(hostname, registry);
@@ -84,9 +99,25 @@ export function buildSitemap(
     return [];
   }
 
-  return [
-    {
-      url: buildCanonicalUrl(resolution.site.key, "/", registry).toString(),
-    },
-  ];
+  const site = resolution.site;
+  const locales = site.localeRoutesApproved ? site.supportedLocales : [site.defaultLocale];
+  const seen = new Set<string>();
+  const sitemap: MetadataRoute.Sitemap = [];
+
+  for (const entry of [{ path: "/" }, ...entries]) {
+    for (const locale of locales) {
+      const path = localeHref(site, locale, entry.path);
+      if (seen.has(path)) continue;
+      seen.add(path);
+
+      const url = buildCanonicalUrl(site.key, path, registry).toString();
+      const lastModified = entry.lastModified ?? null;
+
+      sitemap.push(
+        lastModified === null ? { url } : { url, lastModified: new Date(lastModified) },
+      );
+    }
+  }
+
+  return sitemap;
 }

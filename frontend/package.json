@@ -33,7 +33,8 @@
     "verify:fixtures": "vitest run tests/harness/compose-homepage-fixtures.test.ts && node scripts/verify-homepage-fixtures.mjs",
     "verify:alignment": "node scripts/verify-live-alignment.mjs",
     "preview:newsroom": "vitest run tests/harness/compose-newsroom-preview.test.ts tests/harness/compose-article-preview.test.ts && node scripts/preview-newsroom.mjs",
-    "qa:sweep": "node scripts/qa-sweep.mjs"
+    "qa:sweep": "node scripts/qa-sweep.mjs",
+    "measure:vitals": "node scripts/measure-web-vitals.mjs"
   },
   "dependencies": {
     "next": "16.2.12",

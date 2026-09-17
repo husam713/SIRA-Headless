@@ -3,6 +3,7 @@ import {
   createBrandCssVariables,
   type ResolvedBrand,
 } from "@/lib/brand";
+import { typographyPresetFor } from "@/lib/brand/typography";
 import { getTextDirection } from "@/lib/i18n/direction";
 import {
   SIRA_FONT_VARIABLE_CLASSES,
@@ -36,6 +37,7 @@ export function BrandDocument({
       data-brand-key={brand.key}
       data-brand-source={brand.source}
       data-motion={brand.motion}
+      data-typography={typographyPresetFor(brand.key)}
       className={SIRA_FONT_VARIABLE_CLASSES}
       style={brandVariables}
     >

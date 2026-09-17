@@ -73,7 +73,7 @@ export default async function SiteHomePage({
         )}
         <GroupTicker ticker={homepage.homepage.ticker} />
         <GroupLatestUpdates section={homepage.homepage.latestUpdates} />
-        <GroupCompanies section={homepage.homepage.companies} />
+        <GroupCompanies section={homepage.homepage.companies} locale={request.locale} />
         <GroupAbout
           section={homepage.homepage.about}
           image={homepage.homepage.hero?.slides.at(-1)?.image ?? null}
@@ -82,10 +82,11 @@ export default async function SiteHomePage({
         <GroupInvestor section={homepage.homepage.investor} />
         <GroupServices section={homepage.homepage.services} />
         <GroupProjects section={homepage.homepage.projects} />
-        <GroupInsights section={homepage.homepage.insights} />
+        <GroupInsights section={homepage.homepage.insights} locale={request.locale} />
         <GroupTestimonials section={homepage.homepage.testimonials} />
         <GroupPartners section={homepage.homepage.partners} />
         <GroupContact
+          locale={request.locale}
           section={homepage.homepage.contact}
           email={brand.email}
           address={brand.address}
@@ -120,8 +121,9 @@ export default async function SiteHomePage({
         />
         <DigitalMarquee section={digital.marquee} />
         <DigitalWordmark section={digital.wordmark} />
-        <GroupInsights section={digital.insights} />
+        <GroupInsights section={digital.insights} locale={request.locale} />
         <GroupContact
+          locale={request.locale}
           section={digital.contact}
           email={brand.email}
           address={brand.address}
@@ -149,8 +151,9 @@ export default async function SiteHomePage({
         <BranchStats statistics={branch.statistics} />
         <BranchOverview overview={branch.overview} focusAreas={branch.focusAreas} />
         <GroupProjects section={branch.projects} />
-        <GroupInsights section={branch.insights} />
+        <GroupInsights section={branch.insights} locale={request.locale} />
         <GroupContact
+          locale={request.locale}
           section={branch.contact}
           email={brand.email}
           address={brand.address}

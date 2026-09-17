@@ -742,7 +742,7 @@ export type SiraProjectSingleQueryVariables = Exact<{
 }>;
 
 
-export type SiraProjectSingleQuery = { readonly siraProject: { readonly databaseId: number, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly date: string | null, readonly content: string | null, readonly isRestricted: boolean | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null }> } | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null, readonly gallery: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null }> } | null, readonly statistics: ReadonlyArray<{ readonly label: string | null, readonly value: string | null } | null> | null, readonly relatedCompany: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<
+export type SiraProjectSingleQuery = { readonly siraProject: { readonly databaseId: number, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly date: string | null, readonly content: string | null, readonly isRestricted: boolean | null, readonly siraLocale: { readonly code: string | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null }> } | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null, readonly gallery: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null }> } | null, readonly statistics: ReadonlyArray<{ readonly label: string | null, readonly value: string | null } | null> | null, readonly relatedCompany: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<
           | { readonly __typename: 'MediaItem', readonly databaseId: number, readonly isRestricted: boolean | null }
           | { readonly __typename: 'Page', readonly databaseId: number, readonly isRestricted: boolean | null }
           | { readonly __typename: 'Post', readonly databaseId: number, readonly isRestricted: boolean | null }
@@ -783,7 +783,7 @@ export type SiraProjectsQueryVariables = Exact<{
 }>;
 
 
-export type SiraProjectsQuery = { readonly siraProjects: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly date: string | null, readonly isRestricted: boolean | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null }> } | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null, readonly relatedCompany: { readonly nodes: ReadonlyArray<
+export type SiraProjectsQuery = { readonly siraProjects: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly date: string | null, readonly isRestricted: boolean | null, readonly siraLocale: { readonly code: string | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null }> } | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null, readonly relatedCompany: { readonly nodes: ReadonlyArray<
             | { readonly title: string | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null }> } | null }
             | Record<PropertyKey, never>
           > } | null } | null }> } | null };
@@ -2618,6 +2618,9 @@ export const SiraProjectSingleDocument = new TypedDocumentString(`
     date
     content(format: RENDERED)
     isRestricted
+    siraLocale {
+      code
+    }
     businessUnit: siraBusinessUnits(first: 1) {
       nodes {
         ... on SiraBusinessUnit {
@@ -2703,6 +2706,9 @@ export const SiraProjectsDocument = new TypedDocumentString(`
       excerpt
       date
       isRestricted
+      siraLocale {
+        code
+      }
       businessUnit: siraBusinessUnits(first: 1) {
         nodes {
           ... on SiraBusinessUnit {

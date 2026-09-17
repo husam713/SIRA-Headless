@@ -1,4 +1,4 @@
-import type { SiteKey } from "@/types/site";
+import type { LocaleCode, SiteKey } from "@/types/site";
 
 export type ProjectArchiveDiagnosticCode =
   | "restricted-project"
@@ -37,7 +37,10 @@ export interface ProjectArchiveUnit {
 export interface ProjectArchiveItem {
   readonly databaseId: number;
   readonly title: string;
+  /** The public path this app serves for the record — `/ar/projects/…/` for a translation. */
   readonly href: string;
+  /** The language the record is written in (ADR-034). */
+  readonly locale: LocaleCode;
   readonly excerpt: string | null;
   readonly featuredImage: ProjectArchiveImage | null;
   readonly subtitle: string | null;

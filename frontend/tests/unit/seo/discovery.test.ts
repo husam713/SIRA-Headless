@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildSiteRegistry } from "@/config/sites";
+import { buildSiteRegistry, getSiteRegistry } from "@/config/sites";
 import {
   buildRobotsPolicy,
   buildSitemap,
@@ -55,8 +55,9 @@ describe("discovery policy", () => {
     ["healthcare.siratrgroup.com", "https://healthcare.siratrgroup.com/"],
     ["lifestyle.siratrgroup.com", "https://lifestyle.siratrgroup.com/"],
     ["realestate.siratrgroup.com", "https://realestate.siratrgroup.com/"],
-  ] as const)("emits only the canonical homepage for %s", (hostname, url) => {
-    expect(buildSitemap(hostname)).toEqual([{ url }]);
+  ] as const)("emits the canonical homepage in both languages for %s", (hostname, url) => {
+    // ADR-037: every Atlas tenant serves Arabic under `/ar/`.
+    expect(buildSitemap(hostname)).toEqual([{ url }, { url: `${url}ar/` }]);
   });
 
   it("does not treat a different tenant canonical host as production for the requested site", () => {
@@ -71,7 +72,6 @@ describe("discovery policy", () => {
   });
 
   it("lists supplied paths per approved locale with a last-modified date, homepage first", () => {
-    // Digital is the one tenant with approved locale routes.
     const digital = buildSitemap("digital.siratrgroup.com", [
       { path: "/news/" },
       { path: "/insights/istanbul-bridge/", lastModified: "2026-08-01T00:00:00Z" },
@@ -89,7 +89,19 @@ describe("discovery policy", () => {
     expect(digital[0]).not.toHaveProperty("lastModified");
 
     // A tenant without approved locale routes lists only its default locale.
-    const group = buildSitemap("siratrgroup.com", [{ path: "/news/" }]);
+    // None is left in the registry (ADR-037), so one is derived for the test.
+    const base = getSiteRegistry();
+    const gated = { ...base.sites.group, localeRoutesApproved: false };
+    const registry = {
+      sites: { ...base.sites, group: gated },
+      byHostname: new Map(
+        [...base.byHostname].map(([hostname, registration]) => [
+          hostname,
+          registration.site.key === "group" ? { ...registration, site: gated } : registration,
+        ]),
+      ),
+    };
+    const group = buildSitemap("siratrgroup.com", [{ path: "/news/" }], registry);
     expect(group.map((entry) => entry.url)).toEqual([
       "https://siratrgroup.com/",
       "https://siratrgroup.com/news/",

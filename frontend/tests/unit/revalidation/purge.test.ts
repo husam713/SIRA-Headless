@@ -21,6 +21,9 @@ describe("planEdgePurge", () => {
 
   it("ignores paths it cannot trust", () => {
     const plan = planEdgePurge("consulting", ["//evil", "/../x", "/ok/", "/bad path/"], ["slug:page:ok"], "fine");
-    expect(plan?.urls).toEqual(["https://consulting.siratrgroup.com/ok/"]);
+    expect(plan?.urls).toEqual([
+      "https://consulting.siratrgroup.com/ok/",
+      "https://consulting.siratrgroup.com/ar/ok/",
+    ]);
   });
 });

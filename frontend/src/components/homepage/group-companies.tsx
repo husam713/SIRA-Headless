@@ -14,6 +14,8 @@ import type {
   HomepageContentItem,
   HomepageContentSection,
 } from "@/lib/homepage/types";
+import { localeHref } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 
 // Atlas direction (owner-approved 2026-09-16): "the house". The companies are
 // not a card grid but a row of tall panels that share one frame; the panel
@@ -29,19 +31,22 @@ import type {
 
 interface GroupCompaniesProps {
   readonly section: HomepageContentSection | null;
+  /** The page's language; each panel links to the same language on its site. */
+  readonly locale?: LocaleCode;
 }
 
 interface PanelProps {
   readonly item: HomepageContentItem;
   readonly index: number;
   readonly accent: BusinessUnitAccent;
+  readonly locale: LocaleCode;
 }
 
-function companyHref(item: HomepageContentItem): string | null {
+function companyHref(item: HomepageContentItem, locale: LocaleCode): string | null {
   const siteKey = resolveBusinessUnitSiteKey(item.businessUnit);
   if (siteKey === null) return null;
   const site = getSiteDefinition(siteKey);
-  return site === null ? null : `https://${site.canonicalHostname}`;
+  return site === null ? null : `https://${site.canonicalHostname}${localeHref(site, locale, "/")}`;
 }
 
 function isLive(item: HomepageContentItem): boolean {
@@ -97,7 +102,7 @@ function PanelBody({ item, index, accent }: PanelProps) {
 }
 
 function Panel(props: PanelProps) {
-  const href = companyHref(props.item);
+  const href = companyHref(props.item, props.locale);
   const style = { "--c": props.accent.color } as CSSProperties;
 
   if (href === null) {
@@ -115,7 +120,7 @@ function Panel(props: PanelProps) {
   );
 }
 
-export function GroupCompanies({ section }: GroupCompaniesProps) {
+export function GroupCompanies({ section, locale = "en" }: GroupCompaniesProps) {
   if (section === null || section.selection.status !== "ready") return null;
 
   const groupPreset = getBrandPreset("group");
@@ -141,6 +146,7 @@ export function GroupCompanies({ section }: GroupCompaniesProps) {
               item={item}
               index={index}
               accent={resolveBusinessUnitAccent(item.businessUnit, fallbackAccent)}
+              locale={locale}
             />
           ))}
         </div>

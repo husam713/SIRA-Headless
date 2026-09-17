@@ -155,7 +155,7 @@ export async function DigitalContactPage({ params }: ContactPageProps) {
           </div>
 
           <div className="lg:pt-2">
-            <ContactForm services={subjects} />
+            <ContactForm services={subjects} locale={request.locale} />
           </div>
         </PageContainer>
       </section>

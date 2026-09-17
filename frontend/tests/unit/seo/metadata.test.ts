@@ -120,12 +120,18 @@ describe("tenant-aware metadata", () => {
     expect(metadata.robots).toMatchObject({ index: false, follow: false });
   });
 
-  it("does not emit hreflang without an approved localized route", () => {
+  it("emits hreflang for both languages once the localized route is approved (ADR-037)", () => {
     const metadata = buildSiteMetadata(
       resolveSiteDiscoveryContext("group", "siratrgroup.com"),
       createFallbackBrand("group"),
+      "/services/",
+      { locale: "en", path: "/services/" },
     );
 
-    expect(metadata.alternates).not.toHaveProperty("languages");
+    expect(metadata.alternates?.languages).toEqual({
+      en: "https://siratrgroup.com/services/",
+      ar: "https://siratrgroup.com/ar/services/",
+      "x-default": "https://siratrgroup.com/services/",
+    });
   });
 });

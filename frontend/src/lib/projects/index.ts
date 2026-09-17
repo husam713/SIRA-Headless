@@ -2,11 +2,13 @@ import "server-only";
 
 export {
   getProjectArchive,
+  getProjectArchiveForLocale,
   PROJECT_ARCHIVE_CACHE_TAGS,
   resolveProjectArchive,
 } from "@/lib/projects/get-project-archive";
 export {
   getProjectSingle,
+  getProjectSingleForLocale,
   PROJECT_SINGLE_CACHE_TAGS,
   resolveProjectSingle,
 } from "@/lib/projects/get-project-single";

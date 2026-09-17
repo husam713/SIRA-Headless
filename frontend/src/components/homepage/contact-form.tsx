@@ -2,6 +2,8 @@
 
 import { useId, useRef, useState } from "react";
 
+import type { LocaleCode } from "@/types/site";
+
 // The only interactive part of the contact section. Everything around it stays
 // a Server Component; this exists because a form needs submission state.
 //
@@ -14,22 +16,87 @@ type Status = "idle" | "submitting" | "sent" | "error";
 
 interface ContactFormProps {
   readonly services: readonly string[];
+  /** The page's language; the form speaks it. Defaults to English. */
+  readonly locale?: LocaleCode;
 }
 
-const FIELD_MESSAGES: Readonly<Record<string, string>> = Object.freeze({
-  required: "This field is required.",
-  invalid: "Enter a valid email address.",
-  too_short: "Please give us a little more detail.",
-});
+interface ContactFormCopy {
+  readonly fieldMessages: Readonly<Record<string, string>>;
+  readonly errorMessages: Readonly<Record<string, string>>;
+  readonly genericError: string;
+  readonly unreachable: string;
+  readonly checkField: string;
+  readonly sentHeading: string;
+  readonly sentBody: string;
+  readonly sendAnother: string;
+  readonly fullName: string;
+  readonly emailAddress: string;
+  readonly selectService: string;
+  readonly yourMessage: string;
+  readonly companyWebsite: string;
+  readonly sending: string;
+  readonly send: string;
+}
 
-const ERROR_MESSAGES: Readonly<Record<string, string>> = Object.freeze({
-  rate_limited:
-    "That is a few messages in a short time. Please try again in a few minutes.",
-  delivery_failed:
-    "We could not deliver the message just now. Please email us directly.",
-  unreachable:
-    "We could not reach our mail service just now. Please email us directly.",
-  not_configured: "The contact form is not available on this site yet.",
+// Every string the form shows, per language. The server's error codes are the
+// keys; the sentences are chosen here so the API stays language-neutral.
+const COPY: Readonly<Record<LocaleCode, ContactFormCopy>> = Object.freeze({
+  en: Object.freeze({
+    fieldMessages: Object.freeze({
+      required: "This field is required.",
+      invalid: "Enter a valid email address.",
+      too_short: "Please give us a little more detail.",
+    }),
+    errorMessages: Object.freeze({
+      rate_limited:
+        "That is a few messages in a short time. Please try again in a few minutes.",
+      delivery_failed:
+        "We could not deliver the message just now. Please email us directly.",
+      unreachable:
+        "We could not reach our mail service just now. Please email us directly.",
+      not_configured: "The contact form is not available on this site yet.",
+    }),
+    genericError: "Something went wrong. Please try again.",
+    unreachable: "We could not reach the server. Check your connection and try again.",
+    checkField: "Please check this field.",
+    sentHeading: "Thank you — your message has reached us.",
+    sentBody:
+      "A member of the SIRA GROUP team will respond directly, usually within two working days.",
+    sendAnother: "Send another message",
+    fullName: "Full Name",
+    emailAddress: "Email Address",
+    selectService: "Select Service",
+    yourMessage: "Your Message",
+    companyWebsite: "Company website",
+    sending: "Sending…",
+    send: "Send Message",
+  }),
+  ar: Object.freeze({
+    fieldMessages: Object.freeze({
+      required: "هذا الحقل مطلوب.",
+      invalid: "أدخل عنوان بريد إلكتروني صحيحًا.",
+      too_short: "نرجو إضافة مزيد من التفاصيل.",
+    }),
+    errorMessages: Object.freeze({
+      rate_limited: "وصلتنا عدة رسائل خلال وقت قصير. يُرجى المحاولة بعد بضع دقائق.",
+      delivery_failed: "تعذّر إيصال الرسالة الآن. يُرجى مراسلتنا عبر البريد الإلكتروني مباشرة.",
+      unreachable: "تعذّر الوصول إلى خدمة البريد الآن. يُرجى مراسلتنا عبر البريد الإلكتروني مباشرة.",
+      not_configured: "نموذج التواصل غير متاح على هذا الموقع بعد.",
+    }),
+    genericError: "حدث خطأ ما. يُرجى المحاولة مرة أخرى.",
+    unreachable: "تعذّر الوصول إلى الخادم. تحقّق من اتصالك ثم حاول مرة أخرى.",
+    checkField: "يُرجى مراجعة هذا الحقل.",
+    sentHeading: "شكرًا لك — وصلتنا رسالتك.",
+    sentBody: "سيتواصل معك أحد أعضاء فريق مجموعة سيرة مباشرة، خلال يومي عمل عادةً.",
+    sendAnother: "إرسال رسالة أخرى",
+    fullName: "الاسم الكامل",
+    emailAddress: "البريد الإلكتروني",
+    selectService: "اختر الخدمة",
+    yourMessage: "رسالتك",
+    companyWebsite: "موقع الشركة",
+    sending: "جارٍ الإرسال…",
+    send: "إرسال الرسالة",
+  }),
 });
 
 // min-h-11 is the 44px touch-target floor. The name and email fields measured
@@ -42,7 +109,8 @@ const inputClass =
 const labelClass =
   "flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-on-deep/60";
 
-export function ContactForm({ services }: ContactFormProps) {
+export function ContactForm({ services, locale = "en" }: ContactFormProps) {
+  const copy = COPY[locale];
   const formId = useId();
   const [status, setStatus] = useState<Status>("idle");
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<FieldName, string>>>({});
@@ -97,15 +165,10 @@ export function ContactForm({ services }: ContactFormProps) {
         return;
       }
 
-      setFormError(
-        ERROR_MESSAGES[detail.code ?? ""] ??
-          "Something went wrong. Please try again.",
-      );
+      setFormError(copy.errorMessages[detail.code ?? ""] ?? copy.genericError);
       setStatus("error");
     } catch {
-      setFormError(
-        "We could not reach the server. Check your connection and try again.",
-      );
+      setFormError(copy.unreachable);
       setStatus("error");
     }
   }
@@ -120,18 +183,17 @@ export function ContactForm({ services }: ContactFormProps) {
           aria-live="polite"
           className="font-display text-2xl leading-snug text-brand-on-deep"
         >
-          Thank you — your message has reached us.
+          {copy.sentHeading}
         </p>
         <p className="mt-4 text-sm leading-relaxed text-brand-on-deep/70">
-          A member of the SIRA GROUP team will respond directly, usually within
-          two working days.
+          {copy.sentBody}
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
           className="press mt-8 text-[11px] font-bold uppercase tracking-[0.1em] text-brand-accent-bright underline underline-offset-4 hover:text-brand-on-deep"
         >
-          Send another message
+          {copy.sendAnother}
         </button>
       </div>
     );
@@ -146,7 +208,7 @@ export function ContactForm({ services }: ContactFormProps) {
     >
       <div className="grid grid-cols-1 gap-6">
         <label className={labelClass} htmlFor={`${formId}-name`}>
-          Full Name
+          {copy.fullName}
           <input
             id={`${formId}-name`}
             name="name"
@@ -160,13 +222,13 @@ export function ContactForm({ services }: ContactFormProps) {
           />
           {fieldErrors.name ? (
             <span id={`${formId}-name-error`} className="text-[11px] normal-case text-brand-accent-bright">
-              {FIELD_MESSAGES[fieldErrors.name] ?? "Please check this field."}
+              {copy.fieldMessages[fieldErrors.name] ?? copy.checkField}
             </span>
           ) : null}
         </label>
 
         <label className={labelClass} htmlFor={`${formId}-email`}>
-          Email Address
+          {copy.emailAddress}
           <input
             id={`${formId}-email`}
             name="email"
@@ -180,14 +242,14 @@ export function ContactForm({ services }: ContactFormProps) {
           />
           {fieldErrors.email ? (
             <span id={`${formId}-email-error`} className="text-[11px] normal-case text-brand-accent-bright">
-              {FIELD_MESSAGES[fieldErrors.email] ?? "Please check this field."}
+              {copy.fieldMessages[fieldErrors.email] ?? copy.checkField}
             </span>
           ) : null}
         </label>
 
         {services.length > 0 ? (
           <label className={labelClass} htmlFor={`${formId}-service`}>
-            Select Service
+            {copy.selectService}
             <select
               id={`${formId}-service`}
               name="service"
@@ -204,7 +266,7 @@ export function ContactForm({ services }: ContactFormProps) {
         ) : null}
 
         <label className={labelClass} htmlFor={`${formId}-message`}>
-          Your Message
+          {copy.yourMessage}
           <textarea
             id={`${formId}-message`}
             name="message"
@@ -217,7 +279,7 @@ export function ContactForm({ services }: ContactFormProps) {
           />
           {fieldErrors.message ? (
             <span id={`${formId}-message-error`} className="text-[11px] normal-case text-brand-accent-bright">
-              {FIELD_MESSAGES[fieldErrors.message] ?? "Please check this field."}
+              {copy.fieldMessages[fieldErrors.message] ?? copy.checkField}
             </span>
           ) : null}
         </label>
@@ -225,7 +287,7 @@ export function ContactForm({ services }: ContactFormProps) {
         {/* Honeypot. Hidden from sight and from assistive technology, and never
             focusable, so only an automated filler reaches it. */}
         <div aria-hidden="true" className="absolute h-px w-px overflow-hidden opacity-0">
-          <label htmlFor={`${formId}-company-website`}>Company website</label>
+          <label htmlFor={`${formId}-company-website`}>{copy.companyWebsite}</label>
           <input
             id={`${formId}-company-website`}
             name="company_website"
@@ -246,7 +308,7 @@ export function ContactForm({ services }: ContactFormProps) {
           disabled={status === "submitting"}
           className="press mt-2 bg-brand-accent px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright disabled:cursor-progress disabled:opacity-60"
         >
-          {status === "submitting" ? "Sending…" : "Send Message"}
+          {status === "submitting" ? copy.sending : copy.send}
         </button>
       </div>
     </form>

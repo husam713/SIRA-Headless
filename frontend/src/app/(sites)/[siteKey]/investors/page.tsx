@@ -79,7 +79,7 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
   const packTrigger = (className: string) => (
     <InvestorPackDrawer
       chrome={chrome}
-      eyebrow={investor.eyebrow ?? "Investor relations"}
+      eyebrow={investor.eyebrow ?? chrome.investorRelations}
       trigger={
         <>
           {chrome.requestPack} <span aria-hidden="true">&rarr;</span>
@@ -191,7 +191,7 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
           <PageContainer>
             <SectionHead
               id="investors-process-heading"
-              eyebrow={intro?.ctaLabel ?? "How it works"}
+              eyebrow={intro?.ctaLabel ?? chrome.howItWorks}
               heading={stepsHeading.text === "" ? page?.title ?? null : stepsHeading.text}
             />
             <CapabilityCells entries={steps} />

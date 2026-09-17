@@ -22,7 +22,8 @@ import {
   resolveSiteKeyForBusinessUnitSlug,
 } from "@/lib/homepage/business-unit-accent";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
-import { getProjectArchive, getProjectSingle } from "@/lib/projects";
+import { localeHref } from "@/lib/i18n/locale";
+import { getProjectArchiveForLocale, getProjectSingleForLocale } from "@/lib/projects";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -51,7 +52,12 @@ async function resolve(params: ProjectPageProps["params"]) {
 
   if (!/^[a-z0-9-]+$/u.test(slug)) notFound();
 
-  const resolution = await getProjectSingle(context.site.key, projectUri(slug));
+  // The locale's own record first, then the default-locale one (ADR-034).
+  const resolution = await getProjectSingleForLocale(
+    context.site,
+    context.request.locale,
+    projectUri(slug),
+  );
 
   if (resolution.status !== "ready") notFound();
 
@@ -73,7 +79,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { site, chrome, project, href } = await resolve(params);
+  const { site, chrome, project, href, request } = await resolve(params);
 
   const unit = project.unit ?? project.relatedCompanies[0]?.unit ?? null;
   const accent = unit === null ? null : resolveAccentForBusinessUnitSlug(unit.slug);
@@ -82,7 +88,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const companySite = companySiteKey === null ? null : getSiteDefinition(companySiteKey);
 
   const [archive, feed] = await Promise.all([
-    getProjectArchive(site.key, ARCHIVE_SIZE),
+    getProjectArchiveForLocale(site.key, ARCHIVE_SIZE, request.locale),
     getEditorialFeed(site.key, 12),
   ]);
 
@@ -117,7 +123,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       ? [
           {
             label: accent?.label ?? company.title,
-            href: companySite === null ? null : `https://${companySite.canonicalHostname}`,
+            href:
+              companySite === null
+                ? null
+                : `https://${companySite.canonicalHostname}${localeHref(companySite, request.locale, "/")}`,
           },
         ]
       : []),
@@ -177,7 +186,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {site.key === "group" ? (
               <InvestorPackDrawer
                 chrome={chrome}
-                eyebrow="Investor relations"
+                eyebrow={chrome.investorRelations}
                 trigger={
                   <>
                     {chrome.requestPack} <span aria-hidden="true">&rarr;</span>
@@ -240,7 +249,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       ) : null}
 
       {next !== null ? (
-        <Link href={href(next.href)} className="atlas-next" aria-label={`${chrome.nextProjectLabel}: ${next.title}`}>
+        <Link href={next.href} className="atlas-next" aria-label={`${chrome.nextProjectLabel}: ${next.title}`}>
           {next.featuredImage !== null ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img

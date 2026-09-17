@@ -61,17 +61,17 @@ export default async function ContactPage(props: ContactPageProps) {
   if (await isDigital(props.params)) return DigitalContactPage(props);
 
   const context = await resolveAtlasPage(props.params, PAGE_URIS);
-  const { page, chrome, brand, homepage, closing, closingImage } = context;
+  const { page, chrome, brand, homepage, closing, closingImage, request } = context;
 
   const intro = page?.intro ?? null;
-  const heading = splitHighlight(intro?.heading ?? closing?.heading ?? page?.title ?? "Contact");
+  const heading = splitHighlight(intro?.heading ?? closing?.heading ?? page?.title ?? chrome.contact);
 
   const subjects =
     homepage !== null &&
     homepage.variant === "group" &&
     homepage.companies !== null &&
     homepage.companies.selection.status === "ready"
-      ? ["General enquiry", ...homepage.companies.selection.items.map((item) => item.title)]
+      ? [chrome.generalEnquiry, ...homepage.companies.selection.items.map((item) => item.title)]
       : [];
 
   return (
@@ -106,7 +106,7 @@ export default async function ContactPage(props: ContactPageProps) {
           </div>
 
           <div className="atlas-on-deep reveal">
-            <ContactForm services={subjects} />
+            <ContactForm services={subjects} locale={request.locale} />
           </div>
         </PageContainer>
       </Section>

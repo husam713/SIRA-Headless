@@ -11,6 +11,8 @@ import type {
   HomepageContentItem,
   HomepageEditorialSection,
 } from "@/lib/homepage/types";
+import { CHROME } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 
 // Atlas direction (owner-approved 2026-09-16): perspectives are an editorial
 // list, not a card row — dateline and kind on the left, the title as the
@@ -20,6 +22,8 @@ import type {
 
 interface GroupInsightsProps {
   readonly section: HomepageEditorialSection | null;
+  /** The page's language, for the dateline and the kind label. */
+  readonly locale?: LocaleCode;
 }
 
 interface InsightRowProps {
@@ -31,19 +35,18 @@ interface InsightRowProps {
    * so either every row has its picture or none reserves the space.
    */
   readonly withMedia: boolean;
+  readonly locale: LocaleCode;
 }
 
-const KIND_LABEL: Readonly<Record<string, string>> = Object.freeze({
-  article: "Article",
-  insight: "Insight",
-  news: "News",
-  "press-release": "Press release",
-});
+function kindLabel(kind: string, locale: LocaleCode): string | null {
+  const labels = CHROME[locale].editorialKinds;
+  return Object.hasOwn(labels, kind) ? labels[kind as keyof typeof labels] : null;
+}
 
-function InsightRow({ item, index, withMedia }: InsightRowProps) {
-  const date = formatContentDate(item.date);
+function InsightRow({ item, index, withMedia, locale }: InsightRowProps) {
+  const date = formatContentDate(item.date, locale);
   const href = editorialArticleHref(item.href);
-  const kind = KIND_LABEL[item.kind] ?? null;
+  const kind = kindLabel(item.kind, locale);
 
   return (
     <article
@@ -89,7 +92,7 @@ function InsightRow({ item, index, withMedia }: InsightRowProps) {
   );
 }
 
-export function GroupInsights({ section }: GroupInsightsProps) {
+export function GroupInsights({ section, locale = "en" }: GroupInsightsProps) {
   if (section === null || section.selection.status !== "ready") return null;
 
   const withMedia = section.selection.items.every((item) => item.featuredImage !== null);
@@ -103,7 +106,7 @@ export function GroupInsights({ section }: GroupInsightsProps) {
       <PageContainer>
         <SectionHead
           id="insights-heading"
-          eyebrow={section.eyebrow ?? "News & Perspectives"}
+          eyebrow={section.eyebrow ?? CHROME[locale].newsAndPerspectives}
           heading={section.heading}
           lead={section.description}
           action={
@@ -113,7 +116,13 @@ export function GroupInsights({ section }: GroupInsightsProps) {
 
         <div className="atlas-insights">
           {section.selection.items.map((item, index) => (
-            <InsightRow key={item.databaseId} item={item} index={index} withMedia={withMedia} />
+            <InsightRow
+              key={item.databaseId}
+              item={item}
+              index={index}
+              withMedia={withMedia}
+              locale={locale}
+            />
           ))}
         </div>
 

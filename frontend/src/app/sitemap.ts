@@ -4,7 +4,7 @@ import { getEditorialFeed } from "@/lib/editorial/get-editorial-feed";
 import { editorialArticleHref } from "@/lib/editorial/routes";
 import { resolveSiteFromHostname } from "@/lib/host/resolve-site";
 import { isAtlasTenant } from "@/lib/atlas/routes";
-import { getProjectArchive } from "@/lib/projects";
+import { getProjectArchiveForLocale } from "@/lib/projects";
 import { buildSitemap, type SitemapEntryInput } from "@/lib/seo/discovery";
 
 // How much of the archive the sitemap lists: the feed's own page size, up to
@@ -40,7 +40,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let after: string | null = null;
 
   if (isAtlasTenant(resolution.site.key)) {
-    const archive = await getProjectArchive(resolution.site.key, 48);
+    // The default-locale archive: `buildSitemap` lists each path once per
+    // approved locale, and a translation is reached at the same slug under
+    // its prefix, so listing the translated records too would double them.
+    const archive = await getProjectArchiveForLocale(
+      resolution.site.key,
+      48,
+      resolution.site.defaultLocale,
+    );
 
     if (archive.status === "ready") {
       entries.push({ path: "/projects/" });

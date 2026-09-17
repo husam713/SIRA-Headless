@@ -108,17 +108,18 @@ export function pageHeroImage(page: ContentPage | null): PageHeroImage | null {
       };
 }
 
-/** An archive item as the card renders it, with the company's accent. */
-export function toProjectCard(
-  item: ProjectArchiveItem,
-  href: (path: string) => string,
-): ProjectCardData {
+/**
+ * An archive item as the card renders it, with the company's accent. The
+ * item's href is already the public path for its language (a translation's
+ * is `/ar/projects/…/`), so it is not prefixed again here.
+ */
+export function toProjectCard(item: ProjectArchiveItem): ProjectCardData {
   const accent = item.unit === null ? null : resolveAccentForBusinessUnitSlug(item.unit.slug);
 
   return {
     databaseId: item.databaseId,
     title: item.title,
-    href: href(item.href),
+    href: item.href,
     excerpt: item.excerpt,
     featuredImage: item.featuredImage,
     status: item.status,

@@ -5,7 +5,7 @@ describe("preview discovery isolation", () => {
   it("does not emit Preview Entry or Exit routes in the canonical sitemap", () => {
     const urls = buildSitemap("siratrgroup.com").map((entry) => entry.url);
 
-    expect(urls).toEqual(["https://siratrgroup.com/"]);
+    expect(urls).toEqual(["https://siratrgroup.com/", "https://siratrgroup.com/ar/"]);
     expect(urls.some((url) => url.includes("/api/preview"))).toBe(false);
   });
 });

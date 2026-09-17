@@ -11,6 +11,9 @@ query SiraProjects($first: Int!, $after: String) {
       excerpt
       date
       isRestricted
+      siraLocale {
+        code
+      }
       businessUnit: siraBusinessUnits(first: 1) {
         nodes {
           ... on SiraBusinessUnit {

@@ -208,6 +208,15 @@ export interface Chrome {
   readonly fullName: string;
   readonly emailAddress: string;
   readonly close: string;
+  /** The first subject in a contact form's list: the route for anything else. */
+  readonly generalEnquiry: string;
+  /** Section fallbacks where the CMS eyebrow is empty. */
+  readonly getInTouch: string;
+  readonly investorRelations: string;
+  readonly howItWorks: string;
+  readonly contact: string;
+  /** Editorial kinds, as the homepage insights chapter labels them. */
+  readonly editorialKinds: Readonly<Record<"news" | "insight" | "article" | "press-release", string>>;
 }
 
 /**
@@ -285,6 +294,17 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     fullName: "Full name",
     emailAddress: "Email address",
     close: "Close",
+    generalEnquiry: "General enquiry",
+    getInTouch: "Get in Touch",
+    investorRelations: "Investor relations",
+    howItWorks: "How it works",
+    contact: "Contact",
+    editorialKinds: Object.freeze({
+      news: "News",
+      insight: "Insight",
+      article: "Article",
+      "press-release": "Press release",
+    }),
   }),
   ar: Object.freeze({
     skipToContent: "تخطَّ إلى المحتوى الرئيسي",
@@ -352,5 +372,16 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     fullName: "الاسم الكامل",
     emailAddress: "البريد الإلكتروني",
     close: "إغلاق",
+    generalEnquiry: "استفسار عام",
+    getInTouch: "تواصل معنا",
+    investorRelations: "علاقات المستثمرين",
+    howItWorks: "كيف نعمل",
+    contact: "تواصل",
+    editorialKinds: Object.freeze({
+      news: "أخبار",
+      insight: "رؤية",
+      article: "مقال",
+      "press-release": "بيان صحفي",
+    }),
   }),
 });

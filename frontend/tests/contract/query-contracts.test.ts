@@ -244,10 +244,12 @@ describe("approved SIRA GraphQL operation contracts", () => {
     );
 
     // Seventeen since ADR-033: the Digital variant contributes one more
-    // bounded editorial connection. The number is asserted rather than
+    // bounded editorial connection. Eighteen since the Atlas investor band:
+    // an opportunity now names the project it funds (`relatedProject`, bounded
+    // to one) so the card can link to it. The number is asserted rather than
     // derived on purpose — an UNBOUNDED relationship must fail here, and a
     // count that recomputed itself from the document could never notice one.
-    expect(relationshipBounds).toHaveLength(17);
+    expect(relationshipBounds).toHaveLength(18);
     expect([...new Set(relationshipBounds)].sort((left, right) => left - right)).toEqual([
       1,
       6,
@@ -316,9 +318,23 @@ describe("approved SIRA GraphQL operation contracts", () => {
     expect(SIRA_PROJECTS_QUERY.source).toContain("location");
     expect(SIRA_PROJECTS_QUERY.source).toContain("status");
     expect(SIRA_PROJECTS_QUERY.source).not.toContain("SiraProjectDetails");
+    // The archive stays light: no gallery, no statistics, no rendered body.
+    // Since the Atlas project ledger (owner decision, 2026-09-17) each row also
+    // carries its lineage — the date, the project's business unit, and the one
+    // related company with its unit — because the ledger sorts and labels by
+    // them. Both taxonomy reads are bounded to one term and the company
+    // relationship to one node; nothing on the row is unbounded.
     expect(SIRA_PROJECTS_QUERY.source).not.toMatch(
-      /\b(gallery|statistics|relatedCompany|slug|content|date|modified)\b/u,
+      /\b(gallery|statistics|content|modified)\b/u,
     );
+    expect(SIRA_PROJECTS_QUERY.source).toMatch(/\bdate\b/u);
+    expect(SIRA_PROJECTS_QUERY.source).toMatch(
+      /businessUnit:\s*siraBusinessUnits\s*\(\s*first:\s*1\s*\)/u,
+    );
+    expect(SIRA_PROJECTS_QUERY.source).toMatch(/relatedCompany\s*\(\s*first:\s*1\s*\)/u);
+    for (const bound of SIRA_PROJECTS_QUERY.source.matchAll(/relatedCompany\s*\(\s*first:\s*(\d+)/gu)) {
+      expect(bound[1]).toBe("1");
+    }
     expect(SIRA_PROJECTS_QUERY.source).not.toContain("orderby");
     expect(SIRA_PROJECTS_QUERY.source).not.toContain("_sira_");
   });
@@ -386,7 +402,10 @@ describe("approved SIRA GraphQL operation contracts", () => {
       /siraProject\s*\(\s*id:\s*\$uri,\s*idType:\s*URI,\s*asPreview:\s*false\s*\)/u,
     );
     expect(source).not.toMatch(/\bsiraProjects\s*\(/u);
-    expect(source).not.toMatch(/first:\s*1\b/u);
+    // No plural first-node fallback: the lookup is the singular native URI
+    // resolver, never `siraProjects(first: 1)`. A bounded taxonomy read on the
+    // resolved node (`siraBusinessUnits(first: 1)`) is not that fallback.
+    expect(source).not.toMatch(/\bsiraProjects\s*\(\s*first:\s*1\b/u);
     expect(source).toContain("projectDetails");
     expect(source).not.toContain("SiraProjectDetails");
     expect(source).toContain("content(format: RENDERED)");

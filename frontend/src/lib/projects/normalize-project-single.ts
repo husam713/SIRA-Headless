@@ -5,8 +5,10 @@ import type {
   ProjectSingleImage,
   ProjectSingleRelatedCompany,
   ProjectSingleResolution,
+  ProjectSingleUnit,
   ProjectSingleStatistic,
 } from "@/lib/projects/project-single-types";
+import { decodeEntities } from "@/lib/editorial/rich-text";
 import type { SiraProjectSingleQueryData } from "@/queries/project-single";
 import type { SiteKey } from "@/types/site";
 
@@ -49,7 +51,10 @@ function normalizePlainText(
     .replace(/\s+/gu, " ")
     .trim();
 
-  return plainText === "" ? null : plainText.slice(0, maximumLength);
+  // WordPress texturizes an excerpt (`&#8217;`); the page sets it as text.
+  const decoded = decodeEntities(plainText);
+
+  return decoded === "" ? null : decoded.slice(0, maximumLength);
 }
 
 export function normalizeProjectLocator(value: unknown): string | null {
@@ -364,10 +369,44 @@ function normalizeRelatedCompanies(
       continue;
     }
 
-    companies.push(Object.freeze({ databaseId, title, href }));
+    companies.push(
+      Object.freeze({
+        databaseId,
+        title,
+        href,
+        unit: normalizeUnit(node["businessUnit"]),
+      }),
+    );
   }
 
   return Object.freeze({ status: "ready", items: Object.freeze(companies) });
+}
+
+function normalizeUnit(value: unknown): ProjectSingleUnit | null {
+  if (!isRecord(value) || !Array.isArray(value["nodes"])) {
+    return null;
+  }
+
+  const node: unknown = value["nodes"][0];
+
+  if (!isRecord(node)) {
+    return null;
+  }
+
+  const slug = normalizePlainText(node["slug"], 120);
+  const name = normalizePlainText(node["name"], 120);
+
+  return slug === null || name === null ? null : Object.freeze({ slug, name });
+}
+
+function normalizeYear(value: unknown): string | null {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const match = /^(\d{4})-\d{2}-\d{2}/u.exec(value);
+
+  return match === null ? null : (match[1] ?? null);
 }
 
 export function normalizeProjectSingle(
@@ -489,6 +528,8 @@ export function normalizeProjectSingle(
       subtitle: normalizePlainText(details?.["subtitle"], 300),
       location: normalizePlainText(details?.["location"], 300),
       status: normalizePlainText(details?.["status"], 120),
+      year: normalizeYear(project["date"]),
+      unit: normalizeUnit(project["businessUnit"]),
       gallery: gallery.items,
       statistics: statistics.items,
       relatedCompanies: relatedCompanies.items,

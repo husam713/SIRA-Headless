@@ -6,7 +6,9 @@ import type {
   ProjectArchiveItem,
   ProjectArchivePageInfo,
   ProjectArchiveResolution,
+  ProjectArchiveUnit,
 } from "@/lib/projects/types";
+import { decodeEntities } from "@/lib/editorial/rich-text";
 import type { SiraProjectsQueryData } from "@/queries/projects";
 import type { SiteKey } from "@/types/site";
 
@@ -55,7 +57,10 @@ function normalizePlainText(
     .replace(/\s+/gu, " ")
     .trim();
 
-  return plainText === "" ? null : plainText.slice(0, maximumLength);
+  // WordPress texturizes an excerpt (`&#8217;`); the card sets it as text.
+  const decoded = decodeEntities(plainText);
+
+  return decoded === "" ? null : decoded.slice(0, maximumLength);
 }
 
 function normalizePublicHref(value: unknown): string | null {
@@ -131,6 +136,33 @@ function normalizeFeaturedImage(value: unknown): ProjectArchiveImage | null {
   });
 }
 
+function normalizeUnit(value: unknown): ProjectArchiveUnit | null {
+  if (!isRecord(value) || !Array.isArray(value["nodes"])) {
+    return null;
+  }
+
+  const node: unknown = value["nodes"][0];
+
+  if (!isRecord(node)) {
+    return null;
+  }
+
+  const slug = normalizePlainText(node["slug"], 120);
+  const name = normalizePlainText(node["name"], 120);
+
+  return slug === null || name === null ? null : Object.freeze({ slug, name });
+}
+
+function normalizeYear(value: unknown): string | null {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const match = /^(\d{4})-\d{2}-\d{2}/u.exec(value);
+
+  return match === null ? null : (match[1] ?? null);
+}
+
 function normalizeProject(
   value: unknown,
   diagnostics: ProjectArchiveDiagnostic[],
@@ -195,6 +227,14 @@ function normalizeProject(
     diagnostics.push(diagnostic("invalid-project-details", databaseId));
   }
 
+  const relatedCompany = isRecord(projectDetails?.["relatedCompany"])
+    ? projectDetails["relatedCompany"]
+    : null;
+  const company: unknown = Array.isArray(relatedCompany?.["nodes"])
+    ? relatedCompany["nodes"][0]
+    : null;
+  const companyRecord = isRecord(company) ? company : null;
+
   return Object.freeze({
     databaseId,
     title,
@@ -204,6 +244,11 @@ function normalizeProject(
     subtitle: normalizePlainText(projectDetails?.["subtitle"], 300),
     location: normalizePlainText(projectDetails?.["location"], 300),
     status: normalizePlainText(projectDetails?.["status"], 120),
+    year: normalizeYear(value["date"]),
+    unit:
+      normalizeUnit(value["businessUnit"]) ??
+      normalizeUnit(companyRecord?.["businessUnit"]),
+    companyTitle: normalizePlainText(companyRecord?.["title"], 240),
   });
 }
 

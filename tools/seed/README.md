@@ -41,3 +41,13 @@ about SIRA, and an editor must replace the claims rather than improve the prose:
 Everything else invents general market commentary attributed to SIRA, which is
 opinion rather than a claim about a third party. It still needs an editor, but
 it carries less risk.
+
+## Atlas production content (not placeholder)
+
+`atlas-seed.json` + `atlas-seed.php` write the Atlas page content for Group and
+the four companies. Unlike the two seeds above this is **production content**
+(owner instruction, 2026-09-17): it carries no `_sira_seed` marker and the
+launch gate does not count it. Imported photography is interim and marked
+`_sira_atlas_media=<key>` with its source and licence on the attachment. See
+`docs/tasks/atlas-production-content.md` for the record and the claims an
+editor must verify.

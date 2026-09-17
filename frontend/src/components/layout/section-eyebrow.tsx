@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import { joinClasses } from "@/components/layout/page-container";
 
@@ -35,6 +35,8 @@ interface SectionEyebrowProps {
   readonly as?: "p" | "h2";
   readonly id?: string;
   readonly className?: string;
+  /** Inline custom properties only — e.g. an arrival index (`--i`). */
+  readonly style?: CSSProperties | undefined;
 }
 
 export function SectionEyebrow({
@@ -43,10 +45,12 @@ export function SectionEyebrow({
   as: Element = "p",
   id,
   className,
+  style,
 }: SectionEyebrowProps) {
   return (
     <Element
       id={id}
+      style={style}
       className={joinClasses(
         "flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.12em]",
         TONE_CLASSES[tone],

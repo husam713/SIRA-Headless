@@ -652,6 +652,7 @@ describe("homepage server adapter", () => {
             investmentDetails: {
               publicDisplay: false,
               ticketSizeLabel: null,
+              relatedProject: null,
               relatedCompany: { nodes: [], pageInfo: { hasNextPage: false } },
             },
           },
@@ -666,6 +667,7 @@ describe("homepage server adapter", () => {
             investmentDetails: {
               publicDisplay: true,
               ticketSizeLabel: "Growth",
+              relatedProject: { nodes: [{ uri: "/projects/public/" }], pageInfo: { hasNextPage: false } },
               relatedCompany: { nodes: [], pageInfo: { hasNextPage: false } },
             },
           },

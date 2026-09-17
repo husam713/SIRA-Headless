@@ -1,9 +1,10 @@
-import type { CSSProperties } from "react";
-
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionHead } from "@/components/layout/section-head";
 import { CtaLink } from "@/components/homepage/cta-link";
+import { ProjectCard, type ProjectCardData } from "@/components/atlas/project-card";
+import { getBrandPreset } from "@/lib/brand";
+import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import type {
   HomepageContentItem,
   HomepageContentSection,
@@ -11,66 +12,40 @@ import type {
 
 // Atlas direction (owner-approved 2026-09-16): an editorial grid rather than
 // three equal cards — the first two projects share a row 7/5, the rest sit in
-// thirds — each with a status badge on the picture, the location as the
-// kicker, and the picture pushing in under the pointer. The cards arrive one
-// after another (`--reveal-offset`).
+// thirds — each with a status badge on the picture, the company and place as
+// the kicker, and the picture pushing in under the pointer. The cards arrive
+// one after another (`--reveal-offset`).
 //
-// Still not links: `item.href` is the project node's own URI and this app has
-// no project detail route yet (see get-project-single.ts, which serves the
-// branch-site route). The card becomes a link the day the route exists.
+// Each card links to the project's own page: `item.href` is the project's URI
+// in WordPress (`/projects/<slug>/`), which is the route this app serves.
 
 interface GroupProjectsProps {
   readonly section: HomepageContentSection | null;
+  readonly exploreLabel?: string;
 }
 
-interface ProjectCardProps {
-  readonly item: HomepageContentItem;
-  readonly index: number;
+function toCard(item: HomepageContentItem): ProjectCardData {
+  const groupPreset = getBrandPreset("group");
+  const fallback = Object.freeze({ label: groupPreset.name, color: groupPreset.identity.accent });
+  const unit = item.businessUnit.status === "ready" ? (item.businessUnit.items[0] ?? null) : null;
+  const accent = unit === null ? null : resolveBusinessUnitAccent(item.businessUnit, fallback);
+
+  return {
+    databaseId: item.databaseId,
+    title: item.title,
+    href: item.href,
+    excerpt: item.excerpt,
+    featuredImage: item.featuredImage,
+    status: item.status,
+    location: item.location,
+    year: item.date === null ? null : item.date.slice(0, 4),
+    unitLabel: unit?.name ?? accent?.label ?? null,
+    unitSlug: unit?.slug ?? null,
+    accentColor: accent?.color ?? null,
+  };
 }
 
-function ProjectCard({ item, index }: ProjectCardProps) {
-  return (
-    <article
-      className="atlas-card reveal"
-      style={{ "--reveal-offset": `${String(Math.min(index, 4) * 1.5)}%` } as CSSProperties}
-    >
-      <div className="atlas-card__media">
-        {item.status !== null ? (
-          <span className="atlas-card__badge">{item.status}</span>
-        ) : null}
-        {item.featuredImage !== null ? (
-          // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a
-          // plain <img> rather than next/image.
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={item.featuredImage.sourceUrl}
-            alt={item.featuredImage.altText ?? item.title}
-            width={item.featuredImage.width ?? undefined}
-            height={item.featuredImage.height ?? undefined}
-            loading="lazy"
-            decoding="async"
-          />
-        ) : null}
-      </div>
-
-      {item.location !== null || item.descriptor !== null ? (
-        <p className="atlas-card__meta">
-          <span>
-            {item.descriptor !== null ? <b>{item.descriptor}</b> : null}
-            {item.descriptor !== null && item.location !== null ? " · " : null}
-            {item.location}
-          </span>
-        </p>
-      ) : null}
-
-      <h3 className="atlas-card__title">{item.title}</h3>
-
-      {item.excerpt !== null ? <p className="atlas-card__copy">{item.excerpt}</p> : null}
-    </article>
-  );
-}
-
-export function GroupProjects({ section }: GroupProjectsProps) {
+export function GroupProjects({ section, exploreLabel = "Explore" }: GroupProjectsProps) {
   if (section === null || section.selection.status !== "ready") return null;
 
   return (
@@ -92,7 +67,7 @@ export function GroupProjects({ section }: GroupProjectsProps) {
 
         <div className="atlas-projects">
           {section.selection.items.map((item, index) => (
-            <ProjectCard key={item.databaseId} item={item} index={index} />
+            <ProjectCard key={item.databaseId} item={toCard(item)} index={index} exploreLabel={exploreLabel} />
           ))}
         </div>
 

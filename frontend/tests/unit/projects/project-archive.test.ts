@@ -20,12 +20,15 @@ function createNode(
     title: `Project ${databaseId}`,
     uri: `/projects/project-${databaseId}/`,
     excerpt: `<p>Summary ${databaseId}</p>`,
+    date: "2026-05-04T10:00:00",
     isRestricted: false,
+    businessUnit: null,
     featuredImage: null,
     projectDetails: {
       subtitle: `Subtitle ${databaseId}`,
       location: "Riyadh",
       status: "Completed",
+      relatedCompany: null,
     },
     ...overrides,
   };
@@ -47,6 +50,42 @@ function createData(
 }
 
 describe("project archive server adapter", () => {
+  it("takes the unit from the project's own term, else from the related company", () => {
+    const result = normalizeProjectArchive(
+      "group",
+      createData([
+        createNode(1, {
+          businessUnit: { nodes: [{ slug: "healthcare", name: "Healthcare" }] },
+        }),
+        createNode(2, {
+          projectDetails: {
+            subtitle: null,
+            location: null,
+            status: null,
+            relatedCompany: {
+              nodes: [
+                {
+                  title: "SIRA Lifestyle",
+                  businessUnit: { nodes: [{ slug: "lifestyle", name: "Lifestyle" }] },
+                },
+              ],
+            },
+          },
+        }),
+      ]),
+    );
+
+    if (result.status !== "ready") {
+      throw new Error(`Expected ready, received ${result.status}`);
+    }
+
+    expect(result.page.items.map((item) => item.unit)).toEqual([
+      { slug: "healthcare", name: "Healthcare" },
+      { slug: "lifestyle", name: "Lifestyle" },
+    ]);
+    expect(result.page.items[1]?.companyTitle).toBe("SIRA Lifestyle");
+  });
+
   it("normalizes a valid immutable archive page in source order", () => {
     const result = normalizeProjectArchive(
       "consulting",
@@ -90,6 +129,9 @@ describe("project archive server adapter", () => {
       subtitle: "Subtitle 9",
       location: "Riyadh",
       status: "Completed",
+      year: "2026",
+      unit: null,
+      companyTitle: null,
     });
     expect(result.page.pageInfo).toEqual({
       hasNextPage: true,

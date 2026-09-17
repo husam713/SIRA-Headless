@@ -10,6 +10,10 @@ import { PageContainer } from "@/components/layout/page-container";
 import { getBrand } from "@/lib/brand";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { getHomepageForRequest } from "@/lib/homepage";
+import { resolveBusinessUnitAccent, resolveBusinessUnitSiteKey } from "@/lib/homepage/business-unit-accent";
+import type { HomepageContentSection } from "@/lib/homepage/types";
+import { isAtlasPhotographRoute } from "@/lib/atlas/routes";
+import type { MegaMenuCompany } from "@/components/atlas/mega-menu";
 import { CHROME, localeHref, localeUri } from "@/lib/i18n/locale";
 import { getRequestLocale } from "@/lib/i18n/request-locale";
 import { getNavigationForLocale } from "@/lib/navigation";
@@ -38,6 +42,37 @@ function resolveGroupCrossLink(
   return groupSite === null
     ? null
     : { name: groupSite.name, canonicalHostname: groupSite.canonicalHostname };
+}
+
+/**
+ * The Group companies as the header's panel needs them: the same records the
+ * homepage house shows, each pointing at its own site. Empty when the section
+ * did not resolve, and the nav entry then stays an ordinary anchor link.
+ */
+function resolveMegaMenuCompanies(
+  section: HomepageContentSection | null,
+): readonly MegaMenuCompany[] {
+  if (section === null || section.selection.status !== "ready") return [];
+
+  const fallback = Object.freeze({ label: "SIRA GROUP", color: "var(--brand-accent)" });
+  const companies: MegaMenuCompany[] = [];
+
+  for (const item of section.selection.items) {
+    const siteKey = resolveBusinessUnitSiteKey(item.businessUnit);
+    const site = siteKey === null ? null : getSiteDefinition(siteKey);
+    if (site === null) continue;
+
+    companies.push({
+      key: site.key,
+      name: item.title,
+      tagline: item.descriptor ?? item.excerpt,
+      place: item.location,
+      href: `https://${site.canonicalHostname}`,
+      color: resolveBusinessUnitAccent(item.businessUnit, fallback).color,
+    });
+  }
+
+  return companies;
 }
 
 interface SiteLayoutProps {
@@ -134,9 +169,15 @@ export default async function SiteLayout({
   // when its hero resolved. Every other route opens on paper and keeps the
   // glass bar from the first pixel.
   const heroOverlay =
-    request.path === "/" &&
-    homepage.status === "ready" &&
-    homepage.homepage.hero !== null;
+    (request.path === "/" &&
+      homepage.status === "ready" &&
+      homepage.homepage.hero !== null) ||
+    isAtlasPhotographRoute(site.key, request.path);
+
+  const megaMenuCompanies =
+    homepage.status === "ready" && homepage.homepage.variant === "group"
+      ? resolveMegaMenuCompanies(homepage.homepage.companies)
+      : [];
 
   const languageAlternate =
     request.alternate === null
@@ -183,6 +224,7 @@ export default async function SiteLayout({
         languageAlternate={languageAlternate}
         currentPath={request.path}
         overlay={heroOverlay}
+        companies={megaMenuCompanies}
       />
 
       <main id="main-content">{children}</main>

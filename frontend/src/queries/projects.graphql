@@ -9,7 +9,16 @@ query SiraProjects($first: Int!, $after: String) {
       title
       uri
       excerpt
+      date
       isRestricted
+      businessUnit: siraBusinessUnits(first: 1) {
+        nodes {
+          ... on SiraBusinessUnit {
+            slug
+            name
+          }
+        }
+      }
       featuredImage {
         node {
           databaseId
@@ -25,6 +34,21 @@ query SiraProjects($first: Int!, $after: String) {
         subtitle
         location
         status
+        relatedCompany(first: 1) {
+          nodes {
+            ... on SiraCompany {
+              title
+              businessUnit: siraBusinessUnits(first: 1) {
+                nodes {
+                  ... on SiraBusinessUnit {
+                    slug
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

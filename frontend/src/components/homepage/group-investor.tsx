@@ -1,10 +1,12 @@
 import type { CSSProperties } from "react";
 
+import { InvestorPackDrawer } from "@/components/atlas/investor-pack-drawer";
 import { CountUp } from "@/components/homepage/count-up";
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionHead } from "@/components/layout/section-head";
 import { getBrandPreset } from "@/lib/brand";
+import { CHROME, type Chrome } from "@/lib/i18n/locale";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
@@ -12,6 +14,7 @@ import type {
   HomepageInvestorSection,
   HomepageMetric,
 } from "@/lib/homepage/types";
+import type { LocaleCode } from "@/types/site";
 
 // Design reference (SIRA Group Homepage.dc.html, #investors): dark section
 // (background: oklch(0.16 0.024 255), matching --brand-deep), unlike About
@@ -19,6 +22,7 @@ import type {
 
 interface GroupInvestorProps {
   readonly section: HomepageInvestorSection | null;
+  readonly locale?: LocaleCode;
 }
 
 interface TractionMetricProps {
@@ -91,108 +95,67 @@ function InvestmentCard({ item, accentColor, sectorLabel }: InvestmentCardProps)
 }
 
 /**
- * The request-pack submission itself is intentionally NOT wired up: the
- * forms backend/provider decision (2C4-B08) remains unresolved, so every
- * field and the submit control render as an inert visual shell only, per
- * the Step 4 charter's forms policy.
+ * The pack request. The submission travels the existing contact pipeline —
+ * the trusted Next.js route, the tenant's WordPress, private storage and
+ * authenticated delivery — with the investor type and range folded into the
+ * message, which is how the Digital contact form already ships enquiries.
+ * The sheet itself is `InvestorPackDrawer`.
  *
- * The one-pager is informational only, not a working download: the
- * approved GraphQL contract exposes document metadata only — the backend's
- * ACF file field is deliberately excluded from GraphQL
- * (`show_in_graphql: false` in AcfIntegration.php) pending a document
- * access/gating policy decision, and `onePager.href` is the document's own
- * content-node uri, not a file URL, with no detail route implemented
- * either. Advertising this as a working "Download" link would promise
- * something that cannot exist yet on two independent counts.
+ * The one-pager stays informational: the approved GraphQL contract exposes
+ * document metadata only (the ACF file field is `show_in_graphql: false` in
+ * AcfIntegration.php pending an access policy), and `onePager.href` is the
+ * document's content-node uri, not a file.
  */
-interface InvestorPackShellProps {
+interface InvestorPackPanelProps {
   readonly formHeading: string | null;
   readonly formDescription: string | null;
   readonly onePager: HomepageContentItem | null;
+  readonly eyebrow: string;
+  readonly chrome: Chrome;
 }
 
-function InvestorPackShell({
+function InvestorPackPanel({
   formHeading,
   formDescription,
   onePager,
-}: InvestorPackShellProps) {
+  eyebrow,
+  chrome,
+}: InvestorPackPanelProps) {
   return (
-    <div className="mt-16 border border-brand-deep-border bg-brand-deep-card p-8 sm:mt-20 sm:p-12">
-      {formHeading !== null ? (
-        <h3 className="font-display text-2xl font-normal text-brand-paper">{formHeading}</h3>
-      ) : null}
-      {formDescription !== null ? (
-        <p className="mt-4 max-w-md text-sm leading-relaxed text-brand-paper/70">
-          {formDescription}
-        </p>
-      ) : null}
-
-      <fieldset
-        disabled
-        className="mt-10 grid grid-cols-1 gap-6 opacity-70 sm:grid-cols-2"
-      >
-        <legend className="sr-only">Investor pack request (not yet available)</legend>
-        <label className="flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-paper/50">
-          Full Name
-          <input
-            type="text"
-            className="border-0 border-b border-brand-deep-border bg-transparent py-2 text-sm text-brand-paper"
-          />
-        </label>
-        <label className="flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-paper/50">
-          Email Address
-          <input
-            type="email"
-            className="border-0 border-b border-brand-deep-border bg-transparent py-2 text-sm text-brand-paper"
-          />
-        </label>
-        <label className="flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-paper/50">
-          Investor Type
-          <select className="border-0 border-b border-brand-deep-border bg-transparent py-2 text-sm text-brand-paper">
-            <option>Private / Individual</option>
-            <option>Institutional</option>
-            <option>Family Office</option>
-          </select>
-        </label>
-        <label className="flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-paper/50">
-          Indicative Ticket
-          <select className="border-0 border-b border-brand-deep-border bg-transparent py-2 text-sm text-brand-paper">
-            <option>$250K – $1M</option>
-            <option>$1M – $5M</option>
-            <option>$5M – $20M</option>
-            <option>$20M+</option>
-          </select>
-        </label>
-      </fieldset>
-
-      <button
-        type="button"
-        disabled
-        aria-disabled="true"
-        className="mt-8 w-full cursor-not-allowed bg-brand-paper/20 px-6 py-4 text-xs font-bold uppercase tracking-[0.1em] text-brand-paper opacity-70 sm:w-auto"
-      >
-        Request Pack
-      </button>
-      <p className="mt-3 text-xs text-brand-paper/50">
-        Online investor pack requests aren&apos;t available yet.
-      </p>
-
-      {onePager !== null ? (
-        <div className="mt-8 border-t border-brand-deep-border pt-8">
-          <p className="text-xs font-bold uppercase tracking-[0.1em] text-brand-paper/50">
+    <div className="mt-16 grid gap-8 border border-brand-deep-border bg-brand-deep-card p-8 sm:mt-20 sm:p-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+      <div>
+        {formHeading !== null ? (
+          <h3 className="font-display text-2xl font-normal text-brand-paper">{formHeading}</h3>
+        ) : null}
+        {formDescription !== null ? (
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-brand-paper/70">
+            {formDescription}
+          </p>
+        ) : null}
+        {onePager !== null ? (
+          <p className="mt-4 text-xs font-bold uppercase tracking-[0.1em] text-brand-paper/50">
             {onePager.title}
           </p>
-          <p className="mt-2 text-xs text-brand-paper/50">
-            Document downloads aren&apos;t available online yet.
-          </p>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
+      <InvestorPackDrawer
+        chrome={chrome}
+        eyebrow={eyebrow}
+        trigger={
+          <>
+            {chrome.requestPack} <span aria-hidden="true">&rarr;</span>
+          </>
+        }
+        triggerClassName="press inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright"
+      />
     </div>
   );
 }
 
-export function GroupInvestor({ section }: GroupInvestorProps) {
+export function GroupInvestor({ section, locale = "en" }: GroupInvestorProps) {
   if (section === null) return null;
+
+  const chrome = CHROME[locale];
 
   const groupPreset = getBrandPreset("group");
   const fallbackAccent = Object.freeze({
@@ -271,10 +234,12 @@ export function GroupInvestor({ section }: GroupInvestorProps) {
         ) : null}
 
         {hasFormShell ? (
-          <InvestorPackShell
+          <InvestorPackPanel
             formHeading={section.formHeading}
             formDescription={section.formDescription}
             onePager={onePager}
+            eyebrow={section.eyebrow ?? "Investor Relations"}
+            chrome={chrome}
           />
         ) : null}
       </PageContainer>

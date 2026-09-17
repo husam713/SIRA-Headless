@@ -1,190 +1,115 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 
+import { CityList } from "@/components/atlas/city-list";
+import { PageHero } from "@/components/atlas/page-hero";
 import { ContactForm } from "@/components/homepage/contact-form";
-import { ImpactCalculator } from "@/components/digital/impact-calculator";
 import { PageContainer } from "@/components/layout/page-container";
+import { Section } from "@/components/layout/section";
 import { SectionEyebrow } from "@/components/layout/section-eyebrow";
+import { splitHighlight } from "@/lib/atlas/highlight";
+import { atlasPageMetadata } from "@/lib/atlas/metadata";
+import { pageHeroImage, resolveAtlasPage } from "@/lib/atlas/page-context";
 import { getBrand } from "@/lib/brand";
-import { CALCULATOR_COPY } from "@/lib/calculator/copy";
-import { getServiceIndexForLocale } from "@/lib/content/get-content-page";
-import { resolveContentRoute } from "@/lib/content/route-context";
-import { CONTACT_COPY } from "@/lib/i18n/contact-copy";
+import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
-// The conversion surface.
+import {
+  DigitalContactPage,
+  generateDigitalMetadata,
+  type ContactPageProps,
+} from "./digital-contact";
+
+// The contact page.
 //
-// One page, two jobs, in this order: give somebody a reason to believe the
-// conversation is worth having, then make starting it trivial. The calculator
-// comes second on purpose — a tool above the form turns a contact page into a
-// toy, and a form above a reason to fill it in is a form nobody fills in.
+// Two compositions behind one route. SIRA Digital keeps its own page with the
+// impact calculator (ADR-033). Group and the four companies get the Atlas
+// page: the invitation on photography, then where the company works — the
+// brand's office locations — beside the form on its deep panel.
 //
-// The enquiry itself goes nowhere new: the existing SIRA pipeline already
-// resolves the tenant from the request host, so a submission from Digital is
-// attributed to the Digital tenant, stored privately on the Digital site and
-// delivered through the same authenticated transport as every other company's.
-// Nothing here needed a second backend.
-//
-// The enquiry-subject list is the live service index rather than a literal
-// array. That way it is the same vocabulary the homepage rail and the services
-// page use, in whichever language the reader is in, and it stays correct when
-// an editor adds a capability — the old hard-coded list would have gone stale
-// the first time somebody published a ninth service, silently.
+// The enquiry travels the existing pipeline: the trusted Next.js route resolves
+// the tenant from the request host and hands it to that site's WordPress.
+// The subject list is the homepage's companies on Group, so an enquiry can be
+// addressed to one of them, and empty on a company site, whose form is its own.
 
 const ROUTE = "/contact";
+const PAGE_URIS = Object.freeze(["/contact/", "/contact-us/"]);
 
-interface ContactPageProps {
-  readonly params: Promise<{ readonly siteKey: string }>;
+async function isDigital(params: ContactPageProps["params"]): Promise<boolean> {
+  const { siteKey } = await params;
+  return getSiteDefinition(siteKey)?.key === "digital";
 }
 
-async function resolve(params: ContactPageProps["params"]) {
-  const { extra: services, ...context } = await resolveContentRoute(
-    params,
-    `${ROUTE}/`,
-    (site, request) => getServiceIndexForLocale(site.key, request.locale),
-  );
+export async function generateMetadata(props: ContactPageProps): Promise<Metadata> {
+  if (await isDigital(props.params)) return generateDigitalMetadata(props);
 
-  return { ...context, services };
+  const { site, page, request } = await resolveAtlasPage(props.params, PAGE_URIS);
+  const [brand, requestHeaders] = await Promise.all([getBrand(site.key), headers()]);
+  const discovery = resolveSiteDiscoveryContext(site.key, requestHeaders.get("host") ?? "");
+  const title = page?.intro?.heading ?? page?.title ?? "Contact";
+
+  return atlasPageMetadata({
+    base: buildSiteMetadata(discovery, brand, ROUTE, { locale: request.locale, path: ROUTE }),
+    title,
+    description: page?.intro?.standfirst,
+    image: pageHeroImage(page),
+  });
 }
 
-export async function generateMetadata({
-  params,
-}: ContactPageProps): Promise<Metadata> {
-  const { site, page, request } = await resolve(params);
-  const [brand, requestHeaders] = await Promise.all([
-    getBrand(site.key),
-    headers(),
-  ]);
-  const discovery = resolveSiteDiscoveryContext(
-    site.key,
-    requestHeaders.get("host") ?? "",
-  );
+export default async function ContactPage(props: ContactPageProps) {
+  if (await isDigital(props.params)) return DigitalContactPage(props);
 
-  return {
-    ...buildSiteMetadata(discovery, brand, ROUTE, {
-      locale: request.locale,
-      path: ROUTE,
-    }),
-    title: `${page?.title ?? "Contact"} — ${brand.name}`,
-  };
-}
+  const context = await resolveAtlasPage(props.params, PAGE_URIS);
+  const { page, chrome, brand, homepage, closing, closingImage } = context;
 
-export default async function ContactPage({ params }: ContactPageProps) {
-  const { site, page, request, services } = await resolve(params);
-  const brand = await getBrand(site.key);
-  const copy = CONTACT_COPY[request.locale];
-  const calculator = CALCULATOR_COPY[request.locale];
   const intro = page?.intro ?? null;
+  const heading = splitHighlight(intro?.heading ?? closing?.heading ?? page?.title ?? "Contact");
 
-  const subjects = [
-    ...services.map((service) => service.title),
-    copy.notSureYet,
-  ];
+  const subjects =
+    homepage !== null &&
+    homepage.variant === "group" &&
+    homepage.companies !== null &&
+    homepage.companies.selection.status === "ready"
+      ? ["General enquiry", ...homepage.companies.selection.items.map((item) => item.title)]
+      : [];
 
   return (
     <>
-      <section aria-labelledby="contact-heading">
-        {/* The intro track was 940px holding 440px of text, so the page opened
-            on an L-shaped hole: dead width beside the headline and dead height
-            under the contact details. Three things close it without inventing
-            a single business fact — a wider form track, type that uses the
-            measure it is given, and details that sit at the foot of the column
-            so the space becomes the gap between two blocks rather than the
-            leftover under one. */}
-        <PageContainer className="reveal grid gap-12 pb-[clamp(3rem,6vw,5rem)] pt-[clamp(4rem,8vw,7rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-16">
-          <div className="flex flex-col">
-            <SectionEyebrow tone="accent" className="digital-eyebrow">
-              {intro?.eyebrow ?? copy.eyebrow}
+      <PageHero
+        headingId="contact-heading"
+        heading={heading.text}
+        highlight={heading.highlight}
+        eyebrow={intro?.eyebrow ?? closing?.eyebrow}
+        lead={intro?.standfirst ?? closing?.description}
+        image={pageHeroImage(page) ?? closingImage}
+        size="short"
+      />
+
+      <Section labelledBy="contact-heading" className="bg-brand-paper">
+        <PageContainer className="atlas-two-col">
+          <div>
+            <SectionEyebrow tone="accent" className="reveal">
+              {chrome.whereWeWork}
             </SectionEyebrow>
-            <h1
-              id="contact-heading"
-              className="digital-display mt-7 max-w-[15ch] text-balance text-[clamp(2.5rem,1.1rem+3.9vw,3.75rem)] font-bold leading-[0.98] tracking-[-0.03em]"
-            >
-              {intro?.heading ?? copy.heading}
-            </h1>
-            <p className="mt-7 max-w-[52ch] text-[1.0625rem] leading-[1.7] text-brand-ink-soft">
-              {intro?.standfirst ?? copy.standfirst}
-            </p>
-
-            {/* Pushed to the foot of the column at lg, so the details baseline
-                with the bottom of the form instead of leaving a hole beneath
-                themselves. `mt-12` stays as the floor for the stacked case.
-
-                Two columns only when there are two entries. A tenant with no
-                published address gets one entry, and halving the track for it
-                wrapped a single line of opening hours in two. */}
-            <dl
-              className={`mt-12 grid gap-6 lg:mt-auto lg:pt-12 ${
-                brand.email !== null ? "sm:grid-cols-2" : ""
-              }`}
-            >
-              {brand.email !== null ? (
-                <div>
-                  <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                    {copy.emailLabel}
-                  </dt>
-                  <dd className="mt-2">
-                    <a
-                      href={`mailto:${brand.email}`}
-                      // The address is Latin in both languages. An isolated LTR
-                      // run is what stops the bidi algorithm from reordering it
-                      // inside an Arabic block — an email address whose parts
-                      // appear in the wrong order is not a cosmetic problem.
-                      dir="ltr"
-                      className="inline-block text-[1.0625rem] text-brand-ink transition-colors hover:text-brand-accent-bright"
-                    >
-                      {brand.email}
-                    </a>
-                  </dd>
-                </div>
-              ) : null}
-              <div>
-                <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-ink-faint">
-                  {copy.hoursLabel}
-                </dt>
-                {/* Arabia Standard Time, and a Sunday-to-Thursday week, because
-                    that is the working week where this company operates.
-                    Specific opening times are deliberately absent: they are a
-                    business fact nobody has supplied. */}
-                <dd className="mt-2 text-[1.0625rem] text-brand-ink-soft">
-                  {copy.hoursValue}
-                </dd>
-              </div>
-            </dl>
+            <CityList offices={brand.offices} tone="paper" />
+            {brand.email !== null ? (
+              <p className="atlas-lead reveal mt-10">
+                <a href={`mailto:${brand.email}`} dir="ltr" className="transition-colors hover:text-brand-accent">
+                  {brand.email}
+                </a>
+              </p>
+            ) : null}
+            {brand.address !== null ? (
+              <p className="reveal mt-3 text-sm text-brand-ink-faint">{brand.address}</p>
+            ) : null}
           </div>
 
-          <div className="lg:pt-2">
+          <div className="atlas-on-deep reveal">
             <ContactForm services={subjects} />
           </div>
         </PageContainer>
-      </section>
-
-      <section
-        className="border-t border-brand-border"
-        aria-labelledby="calculator-heading"
-      >
-        {/* No eyebrow above this heading, unlike every other section on the
-            site. The reference opens the calculator on the headline itself, and
-            the two uppercase micro-labels inside it — "Your business" and
-            "Estimated impact" — already carry that register. A third would make
-            three competing labels in one screen. */}
-        <PageContainer className="reveal py-[clamp(4rem,8vw,7rem)]">
-          <h2
-            id="calculator-heading"
-            className="digital-display max-w-[20ch] text-balance text-[clamp(1.875rem,1.35rem+2.4vw,3.25rem)] font-bold leading-[1.06] tracking-[-0.02em]"
-          >
-            {calculator.sectionHeading}
-          </h2>
-          <p className="mt-5 max-w-[56ch] text-[1.0625rem] leading-[1.7] text-brand-ink-soft">
-            {calculator.sectionStandfirst}
-          </p>
-
-          <div className="mt-12">
-            <ImpactCalculator locale={request.locale} bookHref="#contact-heading" />
-          </div>
-        </PageContainer>
-      </section>
+      </Section>
     </>
   );
 }

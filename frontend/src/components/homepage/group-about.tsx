@@ -1,10 +1,12 @@
 import type { CSSProperties } from "react";
 
+import { CityList } from "@/components/atlas/city-list";
 import { CountUp } from "@/components/homepage/count-up";
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionEyebrow } from "@/components/layout/section-eyebrow";
-import type { HomepageMetric, HomepageMetricsSection } from "@/lib/homepage/types";
+import type { BrandOffice } from "@/lib/brand";
+import type { HomepageMedia, HomepageMetric, HomepageMetricsSection } from "@/lib/homepage/types";
 
 // Atlas direction (owner-approved 2026-09-16): the group's story is told as a
 // deep chapter — "where we work" — the narrative on the left, the four
@@ -15,6 +17,14 @@ import type { HomepageMetric, HomepageMetricsSection } from "@/lib/homepage/type
 
 interface GroupAboutProps {
   readonly section: HomepageMetricsSection | null;
+  /**
+   * The photograph behind the band, moving a little slower than the page.
+   * The chapter has no image field of its own; the page passes the hero's
+   * closing photograph so the band and the page's ending share one picture.
+   */
+  readonly image?: HomepageMedia | null;
+  /** Where the group works — the brand's office locations, as a list. */
+  readonly offices?: readonly BrandOffice[];
 }
 
 function Stat({ metric, index }: { readonly metric: HomepageMetric; readonly index: number }) {
@@ -31,7 +41,7 @@ function Stat({ metric, index }: { readonly metric: HomepageMetric; readonly ind
   );
 }
 
-export function GroupAbout({ section }: GroupAboutProps) {
+export function GroupAbout({ section, image = null, offices = [] }: GroupAboutProps) {
   if (section === null) return null;
 
   const hasHeading = section.heading !== null;
@@ -47,6 +57,19 @@ export function GroupAbout({ section }: GroupAboutProps) {
       label={hasHeading ? undefined : (section.eyebrow ?? "About SIRA Group")}
       className="atlas-places atlas-on-deep"
     >
+      {image !== null ? (
+        <div className="atlas-places__bg" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image.sourceUrl}
+            alt=""
+            width={image.width ?? undefined}
+            height={image.height ?? undefined}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ) : null}
       <PageContainer className="grid gap-12 lg:grid-cols-[7fr_5fr] lg:gap-20">
         <div>
           <SectionEyebrow tone="bright" className="reveal">
@@ -69,6 +92,7 @@ export function GroupAbout({ section }: GroupAboutProps) {
               {section.description}
             </p>
           ) : null}
+          <CityList offices={offices} />
         </div>
 
         {hasMetrics ? (

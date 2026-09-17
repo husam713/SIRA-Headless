@@ -1,51 +1,36 @@
-import type { CSSProperties } from "react";
-
+import { QuoteRotator, type RotatingQuote } from "@/components/atlas/quote-rotator";
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionHead } from "@/components/layout/section-head";
-import type {
-  HomepageContentItem,
-  HomepageContentSection,
-} from "@/lib/homepage/types";
+import type { HomepageContentSection } from "@/lib/homepage/types";
 
-// Atlas direction (owner-approved 2026-09-16): the words carry the chapter.
-// No cards — each quotation is set large in the display italic on the deep
-// ground, with the attribution beneath. Two to a row on wide screens.
+// Atlas direction (owner-approved 2026-09-16): one large-set quotation at a
+// time, turning over on its own, with a dot for each. Every testimonial the
+// CMS marks consent-approved is in the HTML; the rotation is presentation.
 
 interface GroupTestimonialsProps {
   readonly section: HomepageContentSection | null;
 }
 
-interface QuoteProps {
-  readonly item: HomepageContentItem;
-  readonly index: number;
-}
-
-function Quote({ item, index }: QuoteProps) {
-  const attribution = [item.role, item.organization].filter(
-    (value): value is string => value !== null,
-  );
-
-  if (item.excerpt === null) return null;
-
-  return (
-    <figure
-      className="atlas-quote reveal"
-      style={{ "--reveal-offset": `${String(index * 2)}%` } as CSSProperties}
-    >
-      <blockquote>{item.excerpt}</blockquote>
-      <figcaption>
-        <cite>
-          <b>{item.title}</b>
-          {attribution.length > 0 ? <span>{attribution.join(", ")}</span> : null}
-        </cite>
-      </figcaption>
-    </figure>
-  );
-}
-
 export function GroupTestimonials({ section }: GroupTestimonialsProps) {
   if (section === null || section.selection.status !== "ready") return null;
+
+  const quotes: RotatingQuote[] = section.selection.items.flatMap((item) => {
+    if (item.excerpt === null) return [];
+    const attribution = [item.role, item.organization].filter(
+      (value): value is string => value !== null,
+    );
+    return [
+      {
+        databaseId: item.databaseId,
+        quote: item.excerpt,
+        name: item.title,
+        attribution: attribution.length > 0 ? attribution.join(", ") : null,
+      },
+    ];
+  });
+
+  if (quotes.length === 0) return null;
 
   const hasHeading = section.heading !== null;
 
@@ -65,10 +50,8 @@ export function GroupTestimonials({ section }: GroupTestimonialsProps) {
           tone="bright"
         />
 
-        <div className="atlas-quotes">
-          {section.selection.items.map((item, index) => (
-            <Quote key={item.databaseId} item={item} index={index} />
-          ))}
+        <div className="reveal">
+          <QuoteRotator quotes={quotes} />
         </div>
       </PageContainer>
     </Section>

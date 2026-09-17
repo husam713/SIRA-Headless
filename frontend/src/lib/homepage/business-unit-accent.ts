@@ -77,3 +77,23 @@ export function resolveBusinessUnitSiteKey(
 
   return SITE_KEY_BY_BUSINESS_UNIT_SLUG[unit.slug];
 }
+
+/** The accent of a Business Unit by slug, or null for a slug that is not one. */
+export function resolveAccentForBusinessUnitSlug(
+  slug: string,
+): BusinessUnitAccent | null {
+  if (!isEditorialBusinessUnitSlug(slug)) {
+    return null;
+  }
+
+  const preset = getBrandPreset(SITE_KEY_BY_BUSINESS_UNIT_SLUG[slug]);
+
+  return Object.freeze({ label: preset.name, color: preset.identity.accent });
+}
+
+/** The site key of a Business Unit by slug, or null for a slug that is not one. */
+export function resolveSiteKeyForBusinessUnitSlug(slug: string): SiteKey | null {
+  return isEditorialBusinessUnitSlug(slug)
+    ? SITE_KEY_BY_BUSINESS_UNIT_SLUG[slug]
+    : null;
+}

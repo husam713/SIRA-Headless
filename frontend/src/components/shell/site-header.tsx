@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MegaMenu, type MegaMenuCompany } from "@/components/atlas/mega-menu";
 import { LanguageSwitch } from "@/components/shell/language-switch";
 import { MobileMenu } from "@/components/shell/mobile-menu";
 import { NavLink } from "@/components/shell/nav-link";
@@ -47,6 +48,19 @@ interface SiteHeaderProps {
    * on paper.
    */
   readonly overlay?: boolean;
+  /**
+   * The Group companies, when the header should open them as a panel under
+   * the "Companies" entry (the nav item whose href is the homepage's
+   * `#companies` anchor). Empty on every other tenant.
+   */
+  readonly companies?: readonly MegaMenuCompany[];
+}
+
+const NAV_LINK_CLASS =
+  "nav-link text-xs font-semibold uppercase tracking-[0.08em] text-brand-ink-soft hover:text-brand-accent";
+
+function isCompaniesAnchor(href: string): boolean {
+  return /^\/?(?:ar\/)?#companies$/u.test(href);
 }
 
 export function SiteHeader({
@@ -58,6 +72,7 @@ export function SiteHeader({
   languageAlternate,
   currentPath,
   overlay = false,
+  companies = [],
 }: SiteHeaderProps) {
   const chrome = CHROME[locale];
 
@@ -156,17 +171,26 @@ export function SiteHeader({
             aria-label={chrome.primaryNav}
             className="hidden items-center gap-8 lg:flex"
           >
-            {items.map((item) => (
-              <NavLink
-                key={item.databaseId}
-                href={item.href}
-                target={item.target}
-                current={isCurrentPath(item.href, currentPath)}
-                className="nav-link text-xs font-semibold uppercase tracking-[0.08em] text-brand-ink-soft hover:text-brand-accent"
-              >
-                {item.label}
-              </NavLink>
-            ))}
+            {items.map((item) =>
+              companies.length > 0 && isCompaniesAnchor(item.href) ? (
+                <MegaMenu
+                  key={item.databaseId}
+                  label={item.label}
+                  companies={companies}
+                  className={NAV_LINK_CLASS}
+                />
+              ) : (
+                <NavLink
+                  key={item.databaseId}
+                  href={item.href}
+                  target={item.target}
+                  current={isCurrentPath(item.href, currentPath)}
+                  className={NAV_LINK_CLASS}
+                >
+                  {item.label}
+                </NavLink>
+              ),
+            )}
           </nav>
         ) : null}
 

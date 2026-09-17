@@ -1,0 +1,290 @@
+{
+  "$comment": "Content for the Atlas pages on Group and the four companies, authored from the approved Atlas direction (frontend/prototypes/sira-atlas/data.js, PR #75). Written into WordPress by atlas-seed.php. Owner instruction 2026-09-17: this is production content, reviewed by the owner afterwards, not placeholder — it carries no _sira_seed marker. Photography is interim: every imported image records its source and licence on the attachment so the owner can replace it image by image.",
+  "media": {
+    "hero-services": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Angles_in_Architecture_%28Unsplash%29.jpg/1920px-Angles_in_Architecture_%28Unsplash%29.jpg", "file": "sira-services-architecture.jpg", "title": "Glass architecture against the sun", "alt": "Angular glass facade of a modern building against a bright sky", "credit": "Scott Webb, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Angles_in_Architecture_(Unsplash).jpg" },
+    "hero-investors": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Beautiful_urban_sunset_%28Unsplash%29.jpg/1920px-Beautiful_urban_sunset_%28Unsplash%29.jpg", "file": "sira-investors-city-sunset.jpg", "title": "City skyline at sunset", "alt": "A business district skyline lit by a dramatic sunset", "credit": "Dmitry Sytnik, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Beautiful_urban_sunset_(Unsplash).jpg" },
+    "hero-projects": { "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Bdg_ZieloneTarasy_cranes_05-2014.jpg", "file": "sira-projects-cranes.jpg", "title": "Construction cranes at sunset", "alt": "Silhouettes of construction cranes against a golden sunset", "credit": "Pit1233, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Bdg_ZieloneTarasy_cranes_05-2014.jpg" },
+    "hero-contact": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Modern_Istanbul_skyline_at_sunset.jpg/1920px-Modern_Istanbul_skyline_at_sunset.jpg", "file": "sira-contact-istanbul-skyline.jpg", "title": "Istanbul skyline at sunset", "alt": "The modern Istanbul skyline seen across the water at sunset", "credit": "Ben Morlok, via Wikimedia Commons", "license": "CC BY-SA 2.0", "page": "https://commons.wikimedia.org/wiki/File:Modern_Istanbul_skyline_at_sunset.jpg" },
+    "istanbul-bosphorus": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Istanbul_City_skyline_at_Sunset.jpg/1920px-Istanbul_City_skyline_at_Sunset.jpg", "file": "sira-istanbul-bosphorus-sunset.jpg", "title": "The Bosphorus at sunset", "alt": "The Bosphorus and the Istanbul shoreline at sunset", "credit": "Husain007, via Wikimedia Commons", "license": "CC BY-SA 4.0", "page": "https://commons.wikimedia.org/wiki/File:Istanbul_City_skyline_at_Sunset.jpg" },
+    "conference-room": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Bright_conference_room_%28Unsplash%29.jpg/1920px-Bright_conference_room_%28Unsplash%29.jpg", "file": "sira-advisory-conference-room.jpg", "title": "A bright conference room", "alt": "A bright, empty conference room with a long table and chairs", "credit": "Breather, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Bright_conference_room_(Unsplash).jpg" },
+    "business-district": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Sunny_business_district_roads_%28Unsplash%29.jpg/1920px-Sunny_business_district_roads_%28Unsplash%29.jpg", "file": "sira-financial-district-towers.jpg", "title": "Financial district towers", "alt": "Office towers of a financial district on a sunny day", "credit": "Olenka Kotyk, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Sunny_business_district_roads_(Unsplash).jpg" },
+    "skyscrapers": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Photographer_with_skyscrapers_%28Unsplash%29.jpg/1920px-Photographer_with_skyscrapers_%28Unsplash%29.jpg", "file": "sira-mixed-use-towers.jpg", "title": "Mixed-use towers", "alt": "Modern glass towers rising over a city street", "credit": "Jiawei Chen, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Photographer_with_skyscrapers_(Unsplash).jpg" },
+    "facade": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Futuristic_facade_%28Unsplash%29.jpg/1920px-Futuristic_facade_%28Unsplash%29.jpg", "file": "sira-contemporary-facade.jpg", "title": "Contemporary glass facade", "alt": "A contemporary angular glass facade against a blue sky", "credit": "Scott Webb, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Futuristic_facade_(Unsplash).jpg" },
+    "concrete-ribs": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Concrete_ribs_in_a_facade_%28Unsplash%29.jpg/1920px-Concrete_ribs_in_a_facade_%28Unsplash%29.jpg", "file": "sira-architecture-ribs.jpg", "title": "Architectural detail", "alt": "White concrete ribs of a contemporary building facade", "credit": "Luca Bravo, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Concrete_ribs_in_a_facade_(Unsplash).jpg" },
+    "resort": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Middle-Eastern_resort_%28Unsplash%29.jpg/1920px-Middle-Eastern_resort_%28Unsplash%29.jpg", "file": "sira-hospitality-resort.jpg", "title": "Resort on the water", "alt": "A low-rise resort beside a turquoise lagoon", "credit": "RKTKN, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Middle-Eastern_resort_(Unsplash).jpg" },
+    "beach-resort": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Negombo_Beach_resort_pool_%28Unsplash%29.jpg/1920px-Negombo_Beach_resort_pool_%28Unsplash%29.jpg", "file": "sira-leisure-beach-resort.jpg", "title": "Beach resort at dusk", "alt": "Palm trees reflected in a resort pool at dusk", "credit": "Recal Media, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Negombo_Beach_resort_pool_(Unsplash).jpg" },
+    "residences": { "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Apartment_building_balconies_%28Unsplash%29.jpg", "file": "sira-residences-balconies.jpg", "title": "Contemporary residences", "alt": "Balconies of a contemporary residential building against a clear sky", "credit": "Naomi Hutchinson, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Apartment_building_balconies_(Unsplash).jpg" },
+    "coastline": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Drone_view_of_the_coastline_%28Unsplash%29.jpg/1920px-Drone_view_of_the_coastline_%28Unsplash%29.jpg", "file": "sira-coastline-aerial.jpg", "title": "Coastline from above", "alt": "Aerial view of a sandy coastline and low-rise buildings", "credit": "Lance Asper, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Drone_view_of_the_coastline_(Unsplash).jpg" },
+    "pet-scanner": { "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/PET_scan.jpg", "file": "sira-pet-ct-scanner.jpg", "title": "PET-CT scanner", "alt": "A PET-CT scanner in an imaging suite", "credit": "liz west, via Wikimedia Commons", "license": "CC BY 2.0", "page": "https://commons.wikimedia.org/wiki/File:PET_scan.jpg" },
+    "paris": { "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Paris_skyline_view_%28Unsplash%29.jpg/1920px-Paris_skyline_view_%28Unsplash%29.jpg", "file": "sira-paris-skyline.jpg", "title": "Paris from above", "alt": "The Paris skyline with the Eiffel Tower in the distance", "credit": "Anthony Delanoix, Unsplash, via Wikimedia Commons", "license": "CC0 1.0", "page": "https://commons.wikimedia.org/wiki/File:Paris_skyline_view_(Unsplash).jpg" },
+    "villas-istanbul": { "path": "2026/04/Luxury-coastal-villas-in-istanbul.png", "file": "sira-prime-coastal-villas.png", "title": "Sira Prime coastal villas", "alt": "Coastal villas with terraces stepping down towards the sea", "credit": "SIRA GROUP", "license": "SIRA GROUP", "page": "" },
+    "villas-sunset": { "path": "2026/04/Luxury-coastal-villas-at-sunset.png", "file": "sira-villas-at-sunset.png", "title": "Villas at sunset", "alt": "Villas with private pools on a hillside at sunset", "credit": "SIRA GROUP", "license": "SIRA GROUP", "page": "" },
+    "rosina-mri": { "path": "2026/06/ROSINA-MRI-768x1365-1.jpeg", "file": "rosina-mri-suite.jpeg", "title": "Rosina Diagnostic Center MRI suite", "alt": "The MRI suite at Rosina Diagnostic Center", "credit": "SIRA Healthcare", "license": "SIRA GROUP", "page": "" },
+    "rosina-center": { "path": "2026/04/1737457106_48eebacda02d8841312d.png", "file": "rosina-diagnostic-center.png", "title": "Rosina Diagnostic Center", "alt": "The reception of Rosina Diagnostic Center in Nairobi", "credit": "SIRA Healthcare", "license": "SIRA GROUP", "page": "" },
+    "pet-machine": { "path": "2026/04/PET-scan-machine-body1.webp", "file": "pet-scan-machine.webp", "title": "PET-CT machine", "alt": "A PET-CT machine in a diagnostic imaging room", "credit": "SIRA Healthcare", "license": "SIRA GROUP", "page": "" },
+    "hospitality-bg": { "path": "2026/04/background2.png", "file": "sira-lifestyle-hospitality.png", "title": "SIRA Lifestyle hospitality concept", "alt": "A hospitality destination concept by the water", "credit": "SIRA Lifestyle", "license": "SIRA GROUP", "page": "" },
+    "istanbul-ifc": { "path": "sites/2/2026/09/istanbul-financial-center-skyline-2.webp-2.webp", "file": "istanbul-financial-center.webp", "title": "Istanbul Financial Center", "alt": "The towers of the Istanbul Financial Center", "credit": "SIRA Consulting", "license": "SIRA GROUP", "page": "" },
+    "sira-prime-catalogue": { "path": "sites/4/2026/09/SIRAPRIME_Katalog-R2.jpg", "file": "sira-prime-panorama.jpg", "title": "Sira Prime", "alt": "Panoramic rendering of the Sira Prime villa community", "credit": "SIRA Real Estate", "license": "SIRA GROUP", "page": "" }
+  },
+  "units": { "consulting": "Consulting", "healthcare": "Healthcare", "lifestyle": "Lifestyle", "real-estate": "Real Estate" },
+  "tenants": {
+    "https://siratrgroup.com": {
+      "repair": [
+        { "attachment": 836, "path": "sites/4/2026/09/SIRAPRIME_Katalog-R2.jpg" }
+      ],
+      "offices": [
+        { "name": "Istanbul", "address": "Headquarters · Real Estate", "email": "realestate@siratrgroup.com" },
+        { "name": "Nairobi", "address": "Healthcare operations", "email": "healthcare@siratrgroup.com" },
+        { "name": "Paris", "address": "Investor relations", "email": "contact@siratrgroup.com" },
+        { "name": "Riyadh", "address": "SIRA Digital", "email": "digital@siratrgroup.com" }
+      ],
+      "pages": [
+        { "slug": "our-services", "title": "Our Services", "image": "hero-services",
+          "intro": { "eyebrow": "What we do", "heading": "Advisory, development *and operation.*", "standfirst": "Advisory, development and operating capability offered across the group and delivered by the company closest to each market.", "cta_label": "Start a conversation", "cta_heading": "Ready to partner *with us?*" },
+          "content": "<p>Each service is led by the SIRA company that lives in that market every day, and backed by the group's capital, partners and shared operating systems.</p>" },
+        { "slug": "our-projects", "title": "Our Projects", "image": "hero-projects",
+          "intro": { "eyebrow": "Global footprint", "heading": "Developments and facilities *under way.*", "standfirst": "Developments and facilities under way across Türkiye, East Africa and the wider region.", "cta_label": "Start a conversation", "cta_heading": "Ready to partner *with us?*" },
+          "content": "" },
+        { "slug": "contact-us", "title": "Contact Us", "image": "hero-contact",
+          "intro": { "eyebrow": "Contact", "heading": "Start a *conversation.*", "standfirst": "We welcome investment inquiries, partnership opportunities and professional collaboration across our markets. A member of the SIRA GROUP team responds directly, usually within two working days.", "cta_label": "Send message", "cta_heading": "Where *we work.*" },
+          "content": "" },
+        { "slug": "investors", "title": "Investors", "image": "hero-investors",
+          "intro": { "eyebrow": "Investor relations", "heading": "Invest alongside *SIRA GROUP.*", "standfirst": "We partner with institutional and private investors seeking exposure to high-growth real estate and healthcare across Africa, Europe and the Middle East.", "cta_label": "Request the investor pack", "cta_heading": "How we work *with investors.*" },
+          "content": "<h3>Introduction</h3><p>Tell us who you are and what you are looking for. We reply within two working days and arrange a first conversation with the partner closest to your interest.</p><h3>The pack</h3><p>You receive the current investor pack: the group's structure, the opportunities open today, their stage, ticket size and timeline, and how each is governed.</p><h3>Diligence</h3><p>Full access to the data room for the opportunity you choose — the operating company, the asset, the counterparties and the audited numbers — together with site visits where they help.</p><h3>Structure</h3><p>Each opportunity is structured as a direct equity participation alongside SIRA GROUP, with the group as developer or operator. Terms are agreed before capital is called.</p><h3>Reporting</h3><p>Quarterly reporting on every position, an annual review, and a direct line to the partner responsible for the asset for as long as you hold it.</p>" }
+      ],
+      "services": [
+        { "slug": "real-estate-development-consulting", "title": "Real Estate Development & Consulting", "order": 1, "unit": "real-estate", "image": "villas-istanbul",
+          "excerpt": "Full-cycle development and advisory for residential and hospitality projects, from planning through post-development support.",
+          "content": "<p>Full-cycle development and advisory for residential and hospitality projects, from planning through post-development support.</p><ul><li>Land assembly and masterplanning</li><li>Design management</li><li>Pre-sales and marketing</li><li>Construction delivery</li><li>Post-delivery operation</li></ul>" },
+        { "slug": "medical-investment-smart-diagnostics", "title": "Medical Investment & Smart Diagnostics", "order": 2, "unit": "healthcare", "image": "rosina-mri",
+          "excerpt": "Strategic partnership and operation of advanced diagnostic centers powered by intelligent management systems.",
+          "content": "<p>Strategic partnership and operation of advanced diagnostic centers powered by intelligent management systems.</p><ul><li>Center feasibility and siting</li><li>Equipment procurement</li><li>Clinical partnerships</li><li>Facility-management systems</li><li>Operator model</li></ul>" },
+        { "slug": "hospitality-energy-ventures", "title": "Hospitality & Energy Ventures", "order": 3, "unit": "lifestyle", "image": "villas-sunset",
+          "excerpt": "Emerging investments in hospitality and energy infrastructure, extending our footprint into new markets.",
+          "content": "<p>Emerging investments in hospitality and energy infrastructure, extending our footprint into new markets.</p><ul><li>Platform formation</li><li>Operator selection</li><li>Founding partnerships</li><li>Destination concepts</li></ul>" },
+        { "slug": "service1", "title": "Market Entry & Investment Structuring", "order": 4, "unit": "consulting", "image": "istanbul-ifc",
+          "excerpt": "Execution support for partners moving capital between Europe, Africa and the Middle East.",
+          "content": "<p>Execution support for partners moving capital between Europe, Africa and the Middle East.</p><ul><li>Market entry</li><li>Investment structuring</li><li>Partnership formation</li><li>Regulatory pathway</li></ul>" }
+      ],
+      "projects": [
+        { "slug": "sira-prime", "title": "Sira Prime", "date": "2025-03-04", "unit": "real-estate", "company": "sira-real-estate", "image": "sira-prime-catalogue", "gallery": ["villas-istanbul", "villas-sunset", "istanbul-ifc"],
+          "subtitle": "Residential", "location": "Istanbul, Türkiye", "status": "Under development",
+          "excerpt": "Flagship villa development with pre-sales underway.",
+          "content": "<p>Sira Prime is a low-rise residential community on Istanbul's Asian shore: 64 villas set around a shared garden spine, with a private clubhouse, a wellness building and direct access to the coastal path.</p><p>Pre-sales opened in the second quarter of 2026 and the first phase is scheduled for handover in early 2028. The project is structured as an equity partnership, with SIRA Real Estate as developer and operator of the completed estate.</p>",
+          "stats": [["64 villas", "Units"], ["9.2 ha", "Site"], ["Q1 2028", "Handover"], ["Equity partnership", "Structure"]] },
+        { "slug": "rosina-diagnostic-center", "title": "Rosina Diagnostic Center", "date": "2021-05-18", "unit": "healthcare", "company": "sira-healthcare", "image": "rosina-mri", "gallery": ["rosina-center", "pet-machine", "rosina-mri"],
+          "subtitle": "Diagnostic imaging", "location": "Nairobi, Kenya", "status": "Operational",
+          "excerpt": "Advanced imaging and molecular diagnostics platform.",
+          "content": "<p>Rosina is SIRA Healthcare's flagship centre: MRI, CT, ultrasound and, since July 2026, a PET-CT molecular imaging wing for early-stage cancer diagnostics.</p><p>The centre runs on the group's own facility-management system, which schedules modalities, tracks consumables and reports to referring clinicians in real time. It performs more than thirty thousand scans a year and grew 42% year on year.</p>",
+          "stats": [["MRI · CT · US · PET-CT", "Modalities"], ["30,000+", "Scans a year"], ["2021", "Opened"], ["+42% YoY", "Growth"]] },
+        { "slug": "hospitality-platform", "title": "Hospitality Platform", "date": "2026-02-10", "unit": "lifestyle", "company": "sira-lifestyle", "image": "villas-sunset", "gallery": ["hospitality-bg", "resort", "beach-resort"],
+          "subtitle": "Hospitality", "location": "Middle East & Africa", "status": "Founding stage",
+          "excerpt": "Founding-partner opportunity in the group's newest hospitality division.",
+          "content": "<p>SIRA Lifestyle's first platform brings together branded residences and a boutique hospitality operator across two coastal sites now in review.</p><p>The division launched in 2026 and is open to a small number of founding partners who take a position across the platform rather than a single asset.</p>",
+          "stats": [["2 in review", "Sites"], ["Owner-operator", "Model"], ["2027", "First opening"], ["Founding partnership", "Structure"]] },
+        { "slug": "pet-ct-imaging-center", "title": "PET-CT Imaging Center", "date": "2026-04-22", "unit": "healthcare", "company": "sira-healthcare", "image": "pet-scanner", "gallery": ["pet-machine", "rosina-mri"],
+          "subtitle": "Molecular imaging", "location": "East Africa", "status": "Planned",
+          "excerpt": "Next-generation molecular imaging for early cancer diagnosis.",
+          "content": "<p>A stand-alone molecular imaging centre replicating the Rosina PET-CT wing in a second East African city, with a regional cyclotron partnership for isotope supply.</p><p>The centre is the first step of the diagnostic network expansion: the same operating system, the same clinical protocols and the same referral relationships, opened where the demand for advanced imaging is furthest from supply.</p>",
+          "stats": [["PET-CT", "Modality"], ["Site selection", "Stage"], ["2027", "Target opening"], ["Regional cyclotron", "Isotope partner"]] },
+        { "slug": "istanbul-financial-district-advisory", "title": "Istanbul Financial District Advisory", "date": "2025-09-09", "unit": "consulting", "company": "sira-consulting", "image": "istanbul-ifc", "gallery": ["business-district", "conference-room", "istanbul-bosphorus"],
+          "subtitle": "Advisory", "location": "Istanbul, Türkiye", "status": "Operational",
+          "excerpt": "Structuring East African healthcare and housing capital through Istanbul.",
+          "content": "<p>An ongoing advisory mandate structuring Turkish and Gulf capital into East African diagnostic and residential platforms, using Istanbul's financial district as the bridge jurisdiction.</p><p>SIRA Consulting leads the mandate from Istanbul with the group's own operating companies as reference cases: the structures that carried Rosina and Sira Prime, applied for partners who want the corridor without building it themselves.</p>",
+          "stats": [["Multi-year", "Mandate"], ["Türkiye ⇄ East Africa", "Corridor"], ["Healthcare · Housing", "Sectors"]] },
+        { "slug": "coastal-residences", "title": "Coastal Residences", "date": "2026-06-16", "unit": "real-estate", "company": "sira-real-estate", "image": "coastline", "gallery": ["villas-istanbul", "sira-prime-catalogue", "residences"],
+          "subtitle": "Branded residences", "location": "Istanbul, Türkiye", "status": "Planned",
+          "excerpt": "Branded residences on the Bosphorus approach, operated with SIRA Lifestyle.",
+          "content": "<p>A second-phase site adjoining Sira Prime, planned as branded residences with a hospitality operator from the group's own Lifestyle division.</p><p>The masterplan follows the Sira Prime brief — low, long and open to the water — and adds a residents' club run by the operator, so that the estate is managed as a hospitality asset from the first day of occupation.</p>",
+          "stats": [["38", "Units"], ["Masterplan", "Stage"], ["SIRA Lifestyle", "Operator"], ["2028", "Target"]] }
+      ],
+      "investments": [
+        { "slug": "diagnostic-network-expansion", "project": "pet-ct-imaging-center" }
+      ],
+      "testimonials": [
+        { "slug": "testimonial1", "title": "Selin Kaya", "role": "Principal", "organization": "Family office, Istanbul",
+          "quote": "They structure like a bank and deliver like a builder. That combination is why we keep coming back." }
+      ]
+    },
+    "https://cms-consulting.siratrgroup.com": {
+      "offices": [
+        { "name": "Istanbul", "address": "Head office · Levent", "email": "consulting@siratrgroup.com" },
+        { "name": "Paris", "address": "European desk", "email": "consulting@siratrgroup.com" }
+      ],
+      "pages": [
+        { "slug": "our-services", "title": "Our Services", "image": "conference-room",
+          "intro": { "eyebrow": "What we do", "heading": "Strategy for *new markets.*", "standfirst": "Market entry, investment structuring and execution support for partners moving capital between Europe, Africa and the Middle East.", "cta_label": "Request advisory", "cta_heading": "Ready to *begin?*" }, "content": "" },
+        { "slug": "our-projects", "title": "Our Work", "image": "business-district",
+          "intro": { "eyebrow": "Mandates", "heading": "Advisory mandates *under way.*", "standfirst": "The engagements SIRA Consulting is leading today, from Istanbul to East Africa and the Gulf.", "cta_label": "Request advisory", "cta_heading": "Ready to *begin?*" }, "content": "" },
+        { "slug": "contact-us", "title": "Contact Us", "image": "hero-contact",
+          "intro": { "eyebrow": "Contact", "heading": "Start a *conversation.*", "standfirst": "Tell us about the market you want to enter or the capital you want to place. A partner responds directly, usually within two working days.", "cta_label": "Send message", "cta_heading": "Where *we work.*" }, "content": "" }
+      ],
+      "services": [
+        { "slug": "market-entry", "title": "Market Entry", "order": 1, "unit": "consulting", "image": "istanbul-ifc",
+          "excerpt": "Execution support for partners entering Türkiye, East Africa and the Gulf.",
+          "content": "<p>Execution support for partners entering Türkiye, East Africa and the Gulf.</p><ul><li>Market assessment and entry strategy</li><li>Entity set-up and licensing</li><li>Local partner search</li><li>First-year operating support</li></ul>" },
+        { "slug": "investment-structuring", "title": "Investment Structuring", "order": 2, "unit": "consulting", "image": "business-district",
+          "excerpt": "Clear structures aligned with your commercial objectives, risk profile and local requirements.",
+          "content": "<p>Clear structures aligned with your commercial objectives, risk profile and local requirements.</p><ul><li>Vehicle and jurisdiction selection</li><li>Term sheets and governance</li><li>Tax and regulatory pathway</li><li>Capital-call and reporting design</li></ul>" },
+        { "slug": "partnership-formation", "title": "Partnership Formation", "order": 3, "unit": "consulting", "image": "conference-room",
+          "excerpt": "Support in identifying, assessing and establishing the right local and international partnerships.",
+          "content": "<p>Support in identifying, assessing and establishing the right local and international partnerships.</p><ul><li>Partner identification and diligence</li><li>Joint-venture design</li><li>Negotiation support</li><li>Post-signing integration</li></ul>" },
+        { "slug": "execution-support", "title": "Execution Support", "order": 4, "unit": "consulting", "image": "hero-services",
+          "excerpt": "Practical guidance from licensing to launch, with the group's own operating companies as reference.",
+          "content": "<p>Practical guidance from licensing to launch, with the group's own operating companies as reference.</p><ul><li>Programme management</li><li>Regulatory and licensing follow-through</li><li>Vendor and contractor selection</li><li>Launch readiness</li></ul>" }
+      ],
+      "projects": [
+        { "slug": "istanbul-financial-district-advisory", "title": "Istanbul Financial District Advisory", "date": "2025-09-09", "unit": "consulting", "image": "istanbul-ifc", "gallery": ["business-district", "conference-room", "istanbul-bosphorus"],
+          "subtitle": "Advisory", "location": "Istanbul, Türkiye", "status": "Operational",
+          "excerpt": "Structuring East African healthcare and housing capital through Istanbul.",
+          "content": "<p>An ongoing advisory mandate structuring Turkish and Gulf capital into East African diagnostic and residential platforms, using Istanbul's financial district as the bridge jurisdiction.</p><p>SIRA Consulting leads the mandate from Istanbul with the group's own operating companies as reference cases: the structures that carried Rosina and Sira Prime, applied for partners who want the corridor without building it themselves.</p>",
+          "stats": [["Multi-year", "Mandate"], ["Türkiye ⇄ East Africa", "Corridor"], ["Healthcare · Housing", "Sectors"]] },
+        { "slug": "east-africa-market-entry-programme", "title": "East Africa Market-Entry Programme", "date": "2026-01-20", "unit": "consulting", "image": "hero-investors", "gallery": ["rosina-center", "business-district"],
+          "subtitle": "Market entry", "location": "Nairobi, Kenya", "status": "Operational",
+          "excerpt": "A repeatable entry programme for operators following the group into East Africa.",
+          "content": "<p>A structured programme for European and Gulf operators entering Kenya and its neighbours: market assessment, entity set-up, licensing and the first year of local operation, run from Nairobi alongside SIRA Healthcare.</p><p>Each engagement reuses the legal, banking and regulatory pathway the group built for Rosina, so a partner arrives with the route already mapped.</p>",
+          "stats": [["Kenya · Tanzania · Uganda", "Markets"], ["12 months", "Programme"], ["Healthcare · Hospitality", "Sectors"]] },
+        { "slug": "gulf-capital-structuring-mandate", "title": "Gulf Capital Structuring Mandate", "date": "2026-05-12", "unit": "consulting", "image": "conference-room", "gallery": ["hero-investors", "istanbul-ifc"],
+          "subtitle": "Investment structuring", "location": "Riyadh · Istanbul", "status": "Under way",
+          "excerpt": "Structuring Gulf family capital into Turkish residential and hospitality platforms.",
+          "content": "<p>A structuring mandate for Gulf family offices placing capital into Turkish residential and hospitality developments through Istanbul vehicles, with SIRA Real Estate and SIRA Lifestyle as the operating partners.</p><p>The work covers vehicle design, governance, reporting and the regulatory pathway on both sides of the corridor.</p>",
+          "stats": [["Family offices", "Investors"], ["Istanbul vehicles", "Structure"], ["Residential · Hospitality", "Sectors"]] }
+      ]
+    },
+    "https://cms-healthcare.siratrgroup.com": {
+      "offices": [
+        { "name": "Nairobi", "address": "Rosina Diagnostic Center · Operations", "email": "healthcare@siratrgroup.com" },
+        { "name": "Istanbul", "address": "Group headquarters", "email": "contact@siratrgroup.com" }
+      ],
+      "pages": [
+        { "slug": "our-services", "title": "Our Services", "image": "rosina-mri",
+          "intro": { "eyebrow": "What we do", "heading": "Diagnostics *without compromise.*", "standfirst": "European diagnostic standards for East Africa — advanced imaging centers built on intelligent technology and operated for lasting patient impact.", "cta_label": "Start a conversation", "cta_heading": "Ready to partner *with us?*" }, "content": "" },
+        { "slug": "our-projects", "title": "Our Centers", "image": "pet-scanner",
+          "intro": { "eyebrow": "Our centers", "heading": "Facilities open *and under way.*", "standfirst": "The diagnostic centers SIRA Healthcare operates and the ones it is building next.", "cta_label": "Start a conversation", "cta_heading": "Ready to partner *with us?*" }, "content": "" },
+        { "slug": "contact-us", "title": "Contact Us", "image": "rosina-center",
+          "intro": { "eyebrow": "Contact", "heading": "Start a *conversation.*", "standfirst": "Clinical partnerships, referrals, equipment partners and investors — a member of the SIRA Healthcare team responds directly, usually within two working days.", "cta_label": "Send message", "cta_heading": "Where *we work.*" }, "content": "" }
+      ],
+      "services": [
+        { "slug": "diagnostic-imaging", "title": "Diagnostic Imaging", "order": 1, "unit": "healthcare", "image": "rosina-mri",
+          "excerpt": "MRI, CT, ultrasound and PET-CT delivered to European protocols, reported to referring clinicians in real time.",
+          "content": "<p>MRI, CT, ultrasound and PET-CT delivered to European protocols, reported to referring clinicians in real time.</p><ul><li>MRI and CT</li><li>Ultrasound</li><li>PET-CT molecular imaging</li><li>Tele-radiology reporting</li></ul>" },
+        { "slug": "center-development", "title": "Center Development", "order": 2, "unit": "healthcare", "image": "pet-scanner",
+          "excerpt": "Feasibility, siting, design and equipment procurement for new diagnostic centers.",
+          "content": "<p>Feasibility, siting, design and equipment procurement for new diagnostic centers.</p><ul><li>Feasibility and siting</li><li>Clinical design</li><li>Equipment procurement</li><li>Commissioning</li></ul>" },
+        { "slug": "clinical-partnerships", "title": "Clinical Partnerships", "order": 3, "unit": "healthcare", "image": "rosina-center",
+          "excerpt": "Referral networks, visiting specialists and hospital partnerships that put advanced imaging where patients are.",
+          "content": "<p>Referral networks, visiting specialists and hospital partnerships that put advanced imaging where patients are.</p><ul><li>Referral networks</li><li>Hospital partnerships</li><li>Visiting specialist programmes</li><li>Clinical governance</li></ul>" },
+        { "slug": "facility-management-systems", "title": "Facility Management Systems", "order": 4, "unit": "healthcare", "image": "pet-machine",
+          "excerpt": "The group's own operating system for diagnostic centers: scheduling, consumables, quality and reporting.",
+          "content": "<p>The group's own operating system for diagnostic centers: scheduling, consumables, quality and reporting.</p><ul><li>Modality scheduling</li><li>Consumables and maintenance</li><li>Quality and compliance</li><li>Real-time clinician reporting</li></ul>" }
+      ],
+      "projects": [
+        { "slug": "rosina-diagnostic-center", "title": "Rosina Diagnostic Center", "date": "2021-05-18", "unit": "healthcare", "company": "rosina-center", "image": "rosina-mri", "gallery": ["rosina-center", "pet-machine", "rosina-mri"],
+          "subtitle": "Diagnostic imaging", "location": "Nairobi, Kenya", "status": "Operational",
+          "excerpt": "Advanced imaging and molecular diagnostics platform.",
+          "content": "<p>Rosina is SIRA Healthcare's flagship centre: MRI, CT, ultrasound and, since July 2026, a PET-CT molecular imaging wing for early-stage cancer diagnostics.</p><p>The centre runs on the group's own facility-management system, which schedules modalities, tracks consumables and reports to referring clinicians in real time. It performs more than thirty thousand scans a year and grew 42% year on year.</p>",
+          "stats": [["MRI · CT · US · PET-CT", "Modalities"], ["30,000+", "Scans a year"], ["2021", "Opened"], ["+42% YoY", "Growth"]] },
+        { "slug": "pet-ct-imaging-center", "title": "PET-CT Imaging Center", "date": "2026-04-22", "unit": "healthcare", "image": "pet-scanner", "gallery": ["pet-machine", "rosina-mri"],
+          "subtitle": "Molecular imaging", "location": "East Africa", "status": "Planned",
+          "excerpt": "Next-generation molecular imaging for early cancer diagnosis.",
+          "content": "<p>A stand-alone molecular imaging centre replicating the Rosina PET-CT wing in a second East African city, with a regional cyclotron partnership for isotope supply.</p><p>The centre is the first step of the diagnostic network expansion: the same operating system, the same clinical protocols and the same referral relationships, opened where the demand for advanced imaging is furthest from supply.</p>",
+          "stats": [["PET-CT", "Modality"], ["Site selection", "Stage"], ["2027", "Target opening"], ["Regional cyclotron", "Isotope partner"]] },
+        { "slug": "regional-network-expansion", "title": "Regional Network Expansion", "date": "2026-07-07", "unit": "healthcare", "image": "rosina-center", "gallery": ["rosina-mri", "pet-scanner"],
+          "subtitle": "Diagnostic network", "location": "East Africa", "status": "Planned",
+          "excerpt": "Scaling a cash-flow-positive diagnostic platform into new East African cities.",
+          "content": "<p>The expansion of the Rosina model into three further East African cities over five years: each center opened on the same operating system, the same protocols and the same equipment partners, with radiology reported centrally from Nairobi.</p><p>The network is open to investors as a single platform position rather than a series of single-center investments.</p>",
+          "stats": [["3 cities", "Pipeline"], ["5 years", "Horizon"], ["$1M – $5M", "Ticket size"], ["Platform", "Structure"]] }
+      ]
+    },
+    "https://cms-realestate.siratrgroup.com": {
+      "offices": [
+        { "name": "Istanbul", "address": "Head office · Sira Prime sales gallery", "email": "realestate@siratrgroup.com" },
+        { "name": "Paris", "address": "Investor relations", "email": "contact@siratrgroup.com" }
+      ],
+      "pages": [
+        { "slug": "our-services", "title": "Our Services", "image": "facade",
+          "intro": { "eyebrow": "What we do", "heading": "Building enduring places *across markets.*", "standfirst": "Residential and mixed-use development across Türkiye and growth markets, from land assembly to post-delivery operation.", "cta_label": "Start a conversation", "cta_heading": "Ready to partner *with us?*" }, "content": "" },
+        { "slug": "our-projects", "title": "Our Projects", "image": "hero-projects",
+          "intro": { "eyebrow": "Developments", "heading": "Developments *under way.*", "standfirst": "The residential and mixed-use projects SIRA Real Estate is developing today, and the sites it is planning next.", "cta_label": "Start a conversation", "cta_heading": "Ready to partner *with us?*" }, "content": "" },
+        { "slug": "contact-us", "title": "Contact Us", "image": "istanbul-bosphorus",
+          "intro": { "eyebrow": "Contact", "heading": "Start a *conversation.*", "standfirst": "Buyers, land owners, contractors and investors — a member of the SIRA Real Estate team responds directly, usually within two working days.", "cta_label": "Send message", "cta_heading": "Where *we work.*" }, "content": "" }
+      ],
+      "services": [
+        { "slug": "full-cycle-development", "title": "Full-Cycle Development", "order": 1, "unit": "real-estate", "image": "villas-istanbul",
+          "excerpt": "From land assembly to handover and beyond, with SIRA as developer and long-term operator.",
+          "content": "<p>From land assembly to handover and beyond, with SIRA as developer and long-term operator.</p><ul><li>Land assembly and masterplanning</li><li>Design management</li><li>Pre-sales and marketing</li><li>Construction delivery</li><li>Post-delivery operation</li></ul>" },
+        { "slug": "branded-residences", "title": "Branded Residences", "order": 2, "unit": "real-estate", "image": "residences",
+          "excerpt": "Residences operated as hospitality assets from the first day of occupation, with SIRA Lifestyle.",
+          "content": "<p>Residences operated as hospitality assets from the first day of occupation, with SIRA Lifestyle.</p><ul><li>Operator selection</li><li>Residents' services design</li><li>Estate management</li><li>Rental programmes</li></ul>" },
+        { "slug": "mixed-use-masterplanning", "title": "Mixed-Use Masterplanning", "order": 3, "unit": "real-estate", "image": "skyscrapers",
+          "excerpt": "Masterplans that combine residential, retail and hospitality into places that work as a whole.",
+          "content": "<p>Masterplans that combine residential, retail and hospitality into places that work as a whole.</p><ul><li>Site and market studies</li><li>Programme and phasing</li><li>Design competitions</li><li>Approvals</li></ul>" },
+        { "slug": "advisory-structuring", "title": "Advisory & Structuring", "order": 4, "unit": "real-estate", "image": "conference-room",
+          "excerpt": "Development advisory and equity structuring for land owners and investors, with SIRA Consulting.",
+          "content": "<p>Development advisory and equity structuring for land owners and investors, with SIRA Consulting.</p><ul><li>Feasibility</li><li>Equity partnership design</li><li>Pre-sales financing</li><li>Exit planning</li></ul>" }
+      ],
+      "projects": [
+        { "slug": "sira-prime", "title": "Sira Prime", "date": "2025-03-04", "unit": "real-estate", "image": "sira-prime-catalogue", "gallery": ["villas-istanbul", "villas-sunset", "istanbul-ifc"],
+          "subtitle": "Residential", "location": "Istanbul, Türkiye", "status": "Under development",
+          "excerpt": "Flagship villa development with pre-sales underway.",
+          "content": "<p>Sira Prime is a low-rise residential community on Istanbul's Asian shore: 64 villas set around a shared garden spine, with a private clubhouse, a wellness building and direct access to the coastal path.</p><p>Pre-sales opened in the second quarter of 2026 and the first phase is scheduled for handover in early 2028. The project is structured as an equity partnership, with SIRA Real Estate as developer and operator of the completed estate.</p>",
+          "stats": [["64 villas", "Units"], ["9.2 ha", "Site"], ["Q1 2028", "Handover"], ["Equity partnership", "Structure"]] },
+        { "slug": "coastal-residences", "title": "Coastal Residences", "date": "2026-06-16", "unit": "real-estate", "image": "coastline", "gallery": ["villas-istanbul", "sira-prime-catalogue", "residences"],
+          "subtitle": "Branded residences", "location": "Istanbul, Türkiye", "status": "Planned",
+          "excerpt": "Branded residences on the Bosphorus approach, operated with SIRA Lifestyle.",
+          "content": "<p>A second-phase site adjoining Sira Prime, planned as branded residences with a hospitality operator from the group's own Lifestyle division.</p><p>The masterplan follows the Sira Prime brief — low, long and open to the water — and adds a residents' club run by the operator, so that the estate is managed as a hospitality asset from the first day of occupation.</p>",
+          "stats": [["38", "Units"], ["Masterplan", "Stage"], ["SIRA Lifestyle", "Operator"], ["2028", "Target"]] },
+        { "slug": "mixed-use-concept", "title": "Mixed-Use Concept", "date": "2026-08-04", "unit": "real-estate", "image": "skyscrapers", "gallery": ["facade", "concrete-ribs", "business-district"],
+          "subtitle": "Mixed-use", "location": "Istanbul, Türkiye", "status": "Concept",
+          "excerpt": "Residential, retail and hospitality on one urban site on the European side.",
+          "content": "<p>A mixed-use masterplan for an urban site on Istanbul's European side: residences above a retail base, a boutique hotel operated by SIRA Lifestyle and a public square that connects the three.</p><p>The project is at concept stage, with site and market studies complete and a design competition planned for 2027.</p>",
+          "stats": [["Residential · Retail · Hotel", "Programme"], ["Concept", "Stage"], ["2027", "Design competition"]] }
+      ]
+    },
+    "https://cms-lifestyle.siratrgroup.com": {
+      "offices": [
+        { "name": "Istanbul", "address": "Group headquarters", "email": "lifestyle@siratrgroup.com" },
+        { "name": "Riyadh", "address": "Gulf development", "email": "lifestyle@siratrgroup.com" }
+      ],
+      "pages": [
+        { "slug": "our-services", "title": "Our Services", "image": "resort",
+          "intro": { "eyebrow": "What we do", "heading": "Places people *return to.*", "standfirst": "Hospitality, branded residences and experience-led destinations — the group's newest division.", "cta_label": "Start a conversation", "cta_heading": "Ready to partner *with us?*" }, "content": "" },
+        { "slug": "our-projects", "title": "Our Destinations", "image": "beach-resort",
+          "intro": { "eyebrow": "Destinations", "heading": "Destinations *in the making.*", "standfirst": "The platform, the residences and the destinations SIRA Lifestyle is bringing to market.", "cta_label": "Start a conversation", "cta_heading": "Ready to partner *with us?*" }, "content": "" },
+        { "slug": "contact-us", "title": "Contact Us", "image": "hospitality-bg",
+          "intro": { "eyebrow": "Contact", "heading": "Start a *conversation.*", "standfirst": "Operators, land owners and founding partners — a member of the SIRA Lifestyle team responds directly, usually within two working days.", "cta_label": "Send message", "cta_heading": "Where *we work.*" }, "content": "" }
+      ],
+      "services": [
+        { "slug": "hospitality-platform", "title": "Hospitality Platform", "order": 1, "unit": "lifestyle", "image": "resort",
+          "excerpt": "A single platform of boutique hospitality assets, owned and operated with founding partners.",
+          "content": "<p>A single platform of boutique hospitality assets, owned and operated with founding partners.</p><ul><li>Platform formation</li><li>Asset acquisition</li><li>Operator model</li><li>Founding partnerships</li></ul>" },
+        { "slug": "branded-residences", "title": "Branded Residences", "order": 2, "unit": "lifestyle", "image": "villas-sunset",
+          "excerpt": "Residences run to hospitality standards, developed with SIRA Real Estate.",
+          "content": "<p>Residences run to hospitality standards, developed with SIRA Real Estate.</p><ul><li>Residents' services</li><li>Rental programmes</li><li>Estate management</li><li>Brand standards</li></ul>" },
+        { "slug": "destination-concepts", "title": "Destination Concepts", "order": 3, "unit": "lifestyle", "image": "beach-resort",
+          "excerpt": "Experience-led destination concepts for coastal and urban sites across the Middle East and Africa.",
+          "content": "<p>Experience-led destination concepts for coastal and urban sites across the Middle East and Africa.</p><ul><li>Concept and positioning</li><li>Programme design</li><li>Design management</li><li>Pre-opening</li></ul>" },
+        { "slug": "operator-partnerships", "title": "Operator Partnerships", "order": 4, "unit": "lifestyle", "image": "hospitality-bg",
+          "excerpt": "Selecting and partnering with the operators who run each destination.",
+          "content": "<p>Selecting and partnering with the operators who run each destination.</p><ul><li>Operator search and selection</li><li>Management agreements</li><li>Performance oversight</li><li>Brand partnerships</li></ul>" }
+      ],
+      "projects": [
+        { "slug": "hospitality-platform", "title": "Hospitality Platform", "date": "2026-02-10", "unit": "lifestyle", "image": "villas-sunset", "gallery": ["hospitality-bg", "resort", "beach-resort"],
+          "subtitle": "Hospitality", "location": "Middle East & Africa", "status": "Founding stage",
+          "excerpt": "Founding-partner opportunity in the group's newest hospitality division.",
+          "content": "<p>SIRA Lifestyle's first platform brings together branded residences and a boutique hospitality operator across two coastal sites now in review.</p><p>The division launched in 2026 and is open to a small number of founding partners who take a position across the platform rather than a single asset.</p>",
+          "stats": [["2 in review", "Sites"], ["Owner-operator", "Model"], ["2027", "First opening"], ["Founding partnership", "Structure"]] },
+        { "slug": "lifestyle-residences", "title": "Lifestyle Residences", "date": "2026-06-16", "unit": "lifestyle", "image": "residences", "gallery": ["villas-istanbul", "coastline", "villas-sunset"],
+          "subtitle": "Branded residences", "location": "Istanbul, Türkiye", "status": "Planned",
+          "excerpt": "The residences beside Sira Prime, run as a hospitality asset from the first day.",
+          "content": "<p>The Lifestyle division's operating role in the Coastal Residences beside Sira Prime: a residents' club, concierge and rental programme run to hospitality standards, so that the estate is managed as a destination rather than a development.</p><p>Developed with SIRA Real Estate; operated by SIRA Lifestyle.</p>",
+          "stats": [["38", "Residences"], ["SIRA Lifestyle", "Operator"], ["2028", "Target"]] },
+        { "slug": "leisure-destinations", "title": "Leisure Destinations", "date": "2026-08-25", "unit": "lifestyle", "image": "beach-resort", "gallery": ["resort", "hospitality-bg", "coastline"],
+          "subtitle": "Destination", "location": "Red Sea coast", "status": "In review",
+          "excerpt": "Two coastal sites in review for the platform's first destinations.",
+          "content": "<p>Two coastal sites — one on the Turkish Aegean, one on the Red Sea — in review as the hospitality platform's first destinations, each planned as a boutique property with branded residences and a beach club.</p><p>Site selection concludes in 2026; the first opening is planned for 2027.</p>",
+          "stats": [["2", "Sites in review"], ["Boutique · Residences · Beach club", "Programme"], ["2027", "First opening"]] }
+      ]
+    }
+  }
+}

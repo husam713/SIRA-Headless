@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { CSSProperties } from "react";
 
 import { InsightRows } from "@/components/atlas/insight-rows";
 import { InvestorPackDrawer } from "@/components/atlas/investor-pack-drawer";
@@ -148,13 +147,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <Section labelledBy="project-heading" className="bg-brand-paper">
         <PageContainer className="atlas-two-col">
           {paragraphs.length > 0 ? (
-            <div className="atlas-prose">
+            <div className="atlas-prose" data-stagger>
               {paragraphs.map((paragraph, index) => (
-                <p
-                  key={index}
-                  className="reveal"
-                  style={{ "--reveal-offset": `${String(Math.min(index, 4) * 1.5)}%` } as CSSProperties}
-                >
+                <p key={index} className="reveal">
                   {paragraph}
                 </p>
               ))}
@@ -163,7 +158,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <div />
           )}
 
-          <aside className="atlas-aside reveal" aria-label={chrome.atAGlance}>
+          <aside className="atlas-aside" data-reveal="fade" aria-label={chrome.atAGlance}>
             <p className="atlas-aside__label">{chrome.atAGlance}</p>
             {project.location !== null ? (
               <div className="atlas-aside__row">
@@ -189,7 +184,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 eyebrow={chrome.investorRelations}
                 trigger={
                   <>
-                    {chrome.requestPack} <span aria-hidden="true">&rarr;</span>
+                    {chrome.requestPack} <span aria-hidden="true" className="arrow">&rarr;</span>
                   </>
                 }
                 triggerClassName="atlas-aside__action press inline-flex items-center gap-2 rounded-sm bg-brand-ink px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-paper hover:bg-brand-ink/90"
@@ -199,7 +194,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 href={href("/contact")}
                 className="atlas-aside__action press inline-flex items-center gap-2 rounded-sm bg-brand-ink px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-paper hover:bg-brand-ink/90"
               >
-                {chrome.startConversation} <span aria-hidden="true">&rarr;</span>
+                {chrome.startConversation} <span aria-hidden="true" className="arrow">&rarr;</span>
               </Link>
             )}
           </aside>
@@ -212,13 +207,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <SectionEyebrow tone="accent" className="reveal">
               {chrome.gallery}
             </SectionEyebrow>
-            <div className="atlas-gallery mt-8">
-              {project.gallery.map((image, index) => (
-                <figure
-                  key={image.databaseId}
-                  className="reveal"
-                  style={{ "--reveal-offset": `${String(Math.min(index, 3) * 1.5)}%` } as CSSProperties}
-                >
+            <div className="atlas-gallery mt-8" data-stagger>
+              {project.gallery.map((image) => (
+                <figure key={image.databaseId} className="reveal">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={image.sourceUrl}
@@ -262,16 +253,18 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               decoding="async"
             />
           ) : null}
-          <PageContainer className="atlas-next__body">
-            <SectionEyebrow tone="bright" className="reveal">
-              {chrome.nextProjectLabel}
-            </SectionEyebrow>
-            <span className="atlas-display atlas-display--l reveal block">{next.title}</span>
-            {next.location !== null || next.status !== null ? (
-              <span className="atlas-lead reveal atlas-on-deep block">
-                {[next.location, next.status].filter((part) => part !== null).join(" · ")}
-              </span>
-            ) : null}
+          <PageContainer>
+            <div className="atlas-next__body" data-stagger>
+              <SectionEyebrow tone="bright" className="reveal">
+                {chrome.nextProjectLabel}
+              </SectionEyebrow>
+              <span className="atlas-display atlas-display--l reveal block">{next.title}</span>
+              {next.location !== null || next.status !== null ? (
+                <span className="atlas-lead reveal atlas-on-deep block">
+                  {[next.location, next.status].filter((part) => part !== null).join(" · ")}
+                </span>
+              ) : null}
+            </div>
           </PageContainer>
         </Link>
       ) : null}

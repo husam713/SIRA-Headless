@@ -16,7 +16,8 @@ import type {
 // three equal cards — the first two projects share a row 7/5, the rest sit in
 // thirds — each with a status badge on the picture, the company and place as
 // the kicker, and the picture pushing in under the pointer. The cards arrive
-// one after another (`--reveal-offset`).
+// one after another (the grid is a stagger group; each card's `--d` is its
+// place in it).
 //
 // Each card links to the project's own page: `item.href` is the project's URI
 // in WordPress (`/projects/<slug>/`), which is the route this app serves.
@@ -69,7 +70,7 @@ export function GroupProjects({ section, exploreLabel, locale = "en" }: GroupPro
           }
         />
 
-        <div className="atlas-projects">
+        <div className="atlas-projects" data-stagger>
           {section.selection.items.map((item, index) => (
             <ProjectCard key={item.databaseId} item={toCard(item, locale)} index={index} exploreLabel={explore} />
           ))}

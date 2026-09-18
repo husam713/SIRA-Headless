@@ -20,18 +20,31 @@ const BASE_CLASSES =
 // header CTA was squared to match in PR #60. These are the body CTAs, so they
 // carry the same radius: a pill here against a rectangle in the header is the
 // kind of split that made the eyebrow rule drift in the first place.
+//
+// The solid button lifts on hover (`btn-solid`, its accent cast as a shadow);
+// the ghost variants are the prototype's text links (`textlink`): the rule
+// is drawn from the leading edge under the pointer rather than faded in, and
+// the arrow at the end nudges along the reading direction.
 const VARIANT_CLASSES: Readonly<Record<CtaVariant, string>> = Object.freeze({
   solid:
-    "rounded-sm bg-brand-accent px-6 py-3 text-brand-on-accent hover:bg-brand-accent-bright",
+    "btn-solid rounded-sm bg-brand-accent px-6 py-3 text-brand-on-accent hover:bg-brand-accent-bright",
   outline:
     "rounded-sm border border-brand-on-deep/40 px-6 py-3 text-brand-on-deep hover:border-brand-on-deep",
   // For use over dark/image chapters (the hero, dark sections).
-  "ghost-dark":
-    "text-brand-on-deep underline decoration-brand-on-deep/40 underline-offset-4 hover:decoration-brand-on-deep",
+  "ghost-dark": "textlink text-brand-on-deep",
   // For use over the default paper/light chapters.
-  "ghost-light":
-    "text-brand-ink underline decoration-brand-ink/30 underline-offset-4 hover:decoration-brand-ink",
+  "ghost-light": "textlink text-brand-ink",
 });
+
+// Decorative: the label is the link's whole accessible name.
+function Arrow({ variant }: { readonly variant: CtaVariant }) {
+  if (!variant.startsWith("ghost")) return null;
+  return (
+    <span aria-hidden="true" className="arrow">
+      &rarr;
+    </span>
+  );
+}
 
 export function CtaLink({ link, variant, accentColor }: CtaLinkProps) {
   const label = link.label ?? link.href;
@@ -45,6 +58,7 @@ export function CtaLink({ link, variant, accentColor }: CtaLinkProps) {
     return (
       <Link href={link.href} className={className} style={style}>
         {label}
+        <Arrow variant={variant} />
       </Link>
     );
   }
@@ -58,6 +72,7 @@ export function CtaLink({ link, variant, accentColor }: CtaLinkProps) {
       rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
     >
       {label}
+      <Arrow variant={variant} />
     </a>
   );
 }

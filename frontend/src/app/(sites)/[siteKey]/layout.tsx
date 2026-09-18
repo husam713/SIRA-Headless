@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { BrandDocument } from "@/components/brand/brand-document";
+import { RevealChoreography } from "@/components/motion/reveal-choreography";
 import { SiteFooter } from "@/components/shell/site-footer";
 import { SiteHeader } from "@/components/shell/site-header";
 import { PageContainer } from "@/components/layout/page-container";
@@ -191,6 +192,10 @@ export default async function SiteLayout({
   return (
     <BrandDocument brand={brand} locale={request.locale}>
       <SiteStructuredDataScripts siteKey={site.key} brand={brand} />
+      {/* The one motion island: marks <html> as scripted, runs the reveal
+          observer over every section, and starts the hero entrance. Mounted
+          once here so no section has to be a Client Component to arrive. */}
+      <RevealChoreography />
 
       <a
         href="#main-content"

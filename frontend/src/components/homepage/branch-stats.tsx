@@ -22,7 +22,7 @@ function StatCell({ metric }: StatCellProps) {
     // gutter rather than a container. Taking it from --layout-gutter puts
     // the stat text on the same inline start as every other section.
     <div
-      className="flex flex-col gap-2 border-brand-on-accent-border py-8 [border-inline-start-width:1px] first:border-s-0"
+      className="reveal flex flex-col gap-2 border-brand-on-accent-border py-8 [border-inline-start-width:1px] first:border-s-0"
       style={{ paddingInline: "var(--layout-gutter)" }}
     >
       {metric.value !== null ? (
@@ -49,6 +49,7 @@ export function BranchStats({ statistics }: BranchStatsProps) {
       <div
         className="mx-auto grid w-full grid-cols-2 sm:grid-cols-4"
         style={{ maxWidth: "var(--layout-container)" }}
+        data-stagger
       >
         {statistics.map((metric, index) => (
           // The metric list is a fixed, non-reorderable server-rendered

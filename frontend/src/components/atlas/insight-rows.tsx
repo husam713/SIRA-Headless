@@ -32,8 +32,8 @@ export function InsightRows({ items, href, locale = "en" }: InsightRowsProps) {
   const withMedia = items.every((item) => item.featuredImage !== null);
 
   return (
-    <div className="atlas-insights">
-      {items.map((item, index) => {
+    <div className="atlas-insights" data-stagger>
+      {items.map((item) => {
         const desk = primaryDesk(item);
         const articleHref = editorialArticleHref(item.href);
         const date = locale === "en" ? formatShortDateline(item.publishedAt) : formatContentDate(item.publishedAt, locale);
@@ -43,12 +43,7 @@ export function InsightRows({ items, href, locale = "en" }: InsightRowsProps) {
           <article
             key={item.databaseId}
             className={`atlas-insight reveal${withMedia ? "" : " atlas-insight--text"}`}
-            style={
-              {
-                "--reveal-offset": `${String(Math.min(index, 5) * 1.5)}%`,
-                "--c": editorialDeskAccent(desk),
-              } as CSSProperties
-            }
+            style={{ "--c": editorialDeskAccent(desk) } as CSSProperties}
           >
             <p className="atlas-insight__meta">
               <b style={{ color: editorialDeskAccent(desk) }}>

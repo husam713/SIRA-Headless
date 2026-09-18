@@ -29,11 +29,12 @@ interface TractionMetricProps {
   readonly metric: HomepageMetric;
 }
 
-function TractionMetric({ metric, index }: TractionMetricProps & { readonly index: number }) {
+function TractionMetric({ metric }: TractionMetricProps) {
   // Atlas direction: figures on hairlines, not in cards; the value counts up
-  // as the band arrives.
+  // as the band arrives, each a step after the last (the band is a stagger
+  // group).
   return (
-    <div className="atlas-metric reveal" style={{ "--reveal-offset": `${String(index * 1.5)}%` } as CSSProperties}>
+    <div className="atlas-metric reveal">
       {metric.value !== null ? (
         <CountUp value={metric.value} className="atlas-metric__value" />
       ) : null}
@@ -144,10 +145,10 @@ function InvestorPackPanel({
         eyebrow={eyebrow}
         trigger={
           <>
-            {chrome.requestPack} <span aria-hidden="true">&rarr;</span>
+            {chrome.requestPack} <span aria-hidden="true" className="arrow">&rarr;</span>
           </>
         }
-        triggerClassName="press inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright"
+        triggerClassName="press btn-solid inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright"
       />
     </div>
   );
@@ -194,16 +195,16 @@ export function GroupInvestor({ section, locale = "en" }: GroupInvestorProps) {
           tone="bright"
         />
         {hasMetrics ? (
-          <div className="atlas-metrics">
+          <div className="atlas-metrics" data-stagger>
             {section.metrics.map((metric, index) => (
               // Fixed, non-reorderable server-rendered selection — index is a safe key.
-              <TractionMetric key={index} metric={metric} index={index} />
+              <TractionMetric key={index} metric={metric} />
             ))}
           </div>
         ) : null}
 
         {hasInvestments ? (
-          <div className="atlas-opps">
+          <div className="atlas-opps" data-stagger>
             {section.investments.items.map((item) => {
               const accent = resolveBusinessUnitAccent(item.businessUnit, fallbackAccent);
               // The raw business-unit name ("Real Estate"), not the resolved

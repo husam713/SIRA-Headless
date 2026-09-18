@@ -33,13 +33,23 @@ export interface ProjectCardData {
 
 interface ProjectCardProps {
   readonly item: ProjectCardData;
+  /** The card's place in its row, which is its turn in the arrival. */
   readonly index: number;
   readonly exploreLabel: string;
+  /**
+   * Filtered out of the archive. The card stays in the document (the list is
+   * complete without JavaScript) and is hidden with the attribute rather
+   * than a class, so the reveal state the motion island wrote survives.
+   */
+  readonly hidden?: boolean;
 }
 
-export function ProjectCard({ item, index, exploreLabel }: ProjectCardProps) {
+export function ProjectCard({ item, index, exploreLabel, hidden = false }: ProjectCardProps) {
+  // Six steps, then the sequence starts again: a long archive row does not
+  // wait a second for its last card, and a filtered grid re-deals on the
+  // same count.
   const style = {
-    "--reveal-offset": `${String(Math.min(index, 4) * 1.5)}%`,
+    "--d": String(index % 6),
     ...(item.accentColor !== null ? { "--c": item.accentColor } : {}),
   } as CSSProperties;
 
@@ -48,6 +58,7 @@ export function ProjectCard({ item, index, exploreLabel }: ProjectCardProps) {
       className="atlas-card reveal"
       style={style}
       data-unit={item.unitSlug ?? undefined}
+      hidden={hidden}
     >
       <div className="atlas-card__media">
         {item.status !== null ? (
@@ -99,7 +110,7 @@ export function ProjectCard({ item, index, exploreLabel }: ProjectCardProps) {
 
       {item.href !== null ? (
         <span aria-hidden="true" className="atlas-card__go">
-          {exploreLabel} <span>&rarr;</span>
+          {exploreLabel} <span className="arrow">&rarr;</span>
         </span>
       ) : null}
     </article>

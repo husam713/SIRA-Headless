@@ -84,7 +84,7 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
       eyebrow={investor.eyebrow ?? chrome.investorRelations}
       trigger={
         <>
-          {chrome.requestPack} <span aria-hidden="true">&rarr;</span>
+          {chrome.requestPack} <span aria-hidden="true" className="arrow">&rarr;</span>
         </>
       }
       triggerClassName={className}
@@ -102,20 +102,16 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
         image={pageHeroImage(page) ?? closingImage}
         size="short"
         actions={packTrigger(
-          "press inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright",
+          "press btn-solid inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright",
         )}
       />
 
       <Section labelledBy="investors-heading" tone="deep">
         <PageContainer className="atlas-on-deep">
           {investor.metrics.length > 0 ? (
-            <div className="atlas-metrics">
+            <div className="atlas-metrics" data-stagger>
               {investor.metrics.map((metric, index) => (
-                <div
-                  key={index}
-                  className="atlas-metric reveal"
-                  style={{ "--reveal-offset": `${String(index * 1.5)}%` } as CSSProperties}
-                >
+                <div key={index} className="atlas-metric reveal">
                   {metric.value !== null ? (
                     <CountUp value={metric.value} className="atlas-metric__value" />
                   ) : null}
@@ -134,7 +130,7 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
           ) : null}
 
           {investments.length > 0 ? (
-            <div className="atlas-opps">
+            <div className="atlas-opps" data-stagger>
               {investments.map((item) => {
                 const accent = resolveBusinessUnitAccent(item.businessUnit, fallbackAccent);
                 const target = opportunityHref(item);
@@ -180,7 +176,7 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
 
           <div className="mt-12 flex flex-wrap items-center gap-4">
             {packTrigger(
-              "press inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright",
+              "press btn-solid inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright",
             )}
             <Link
               href={href("/projects")}

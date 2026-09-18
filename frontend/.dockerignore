@@ -1,0 +1,43 @@
+# Build context hygiene. Everything here either bloats the image, invalidates
+# the layer cache on every edit, or must never reach a registry.
+
+# Dependencies and build output — reinstalled/rebuilt inside the image
+node_modules
+.next
+out
+build
+dist
+
+# Secrets. .env.example is kept: it documents the required keys and carries no
+# values. Every other .env form is excluded, including local overrides.
+.env
+.env.*
+!.env.example
+
+# VCS and tooling metadata
+.git
+.gitignore
+.gitattributes
+.github
+.vscode
+.idea
+
+# Tests, fixtures and generated QA output — not needed to build or serve
+tests
+coverage
+playwright-report
+test-results
+*.log
+
+# Repo documentation and working artifacts
+*.md
+!README.md
+artifacts
+docs
+
+# Schema tooling caches — the committed schema is used, not these
+.schema-introspection
+
+# OS noise
+.DS_Store
+Thumbs.db

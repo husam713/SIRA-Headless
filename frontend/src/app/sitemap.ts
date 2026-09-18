@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
-import { getEditorialFeed } from "@/lib/editorial/get-editorial-feed";
+import { getEditorialFeedForLocale } from "@/lib/editorial/get-editorial-feed";
 import { editorialArticleHref } from "@/lib/editorial/routes";
 import { resolveSiteFromHostname } from "@/lib/host/resolve-site";
 import { isAtlasTenant } from "@/lib/atlas/routes";
-import { getProjectArchive } from "@/lib/projects";
+import { getProjectArchiveForLocale } from "@/lib/projects";
 import { buildSitemap, type SitemapEntryInput } from "@/lib/seo/discovery";
 
 // How much of the archive the sitemap lists: the feed's own page size, up to
@@ -40,11 +40,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let after: string | null = null;
 
   if (isAtlasTenant(resolution.site.key)) {
-    const archive = await getProjectArchive(resolution.site.key, 48);
+    // The default-locale archive: `buildSitemap` lists each path once per
+    // approved locale, and a translation is reached at the same slug under
+    // its prefix, so listing the translated records too would double them.
+    const archive = await getProjectArchiveForLocale(
+      resolution.site.key,
+      48,
+      resolution.site.defaultLocale,
+    );
 
     if (archive.status === "ready") {
       entries.push({ path: "/projects/" });
+      // Only the default-locale records: a translation's href already carries
+      // its prefix, and `buildSitemap` adds one per locale.
       for (const item of archive.page.items) {
+        if (item.locale !== resolution.site.defaultLocale) continue;
         entries.push({ path: item.href });
       }
     }
@@ -54,10 +64,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   for (let page = 0; page < FEED_MAX_PAGES; page += 1) {
-    const feed = await getEditorialFeed(resolution.site.key, FEED_PAGE_SIZE, after);
+    const feed = await getEditorialFeedForLocale(
+      resolution.site.key,
+      FEED_PAGE_SIZE,
+      resolution.site.defaultLocale,
+      after,
+    );
     if (feed.status !== "ready") break;
 
     for (const item of feed.page.items) {
+      if (item.locale !== resolution.site.defaultLocale) continue;
       const href = editorialArticleHref(item.href);
       if (href === null) continue;
       entries.push({ path: href, lastModified: item.modifiedAt ?? item.publishedAt });

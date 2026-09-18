@@ -1091,6 +1091,18 @@ production content, reviewed by the owner), and the Step 2C.3C project-archive
 contract was **amended** by owner decision to carry lineage (date, business
 unit, one related company). Branch: `feat/atlas-production-site`.
 
+## Atlas Arabic edition — written 2026-09-17/18
+
+Every Atlas tenant (Group and the four companies) now serves Arabic under
+`/ar/` on ADR-034's model, by owner decision ADR-037. The Arabic records —
+five homepages, sixteen pages, twenty services, eighteen projects, five
+companies, three investments, three testimonials, ten menus — were written
+into live WordPress on blogs 1-5 by `tools/seed/atlas-seed-ar.php` after a
+verified `mysqldump`; the record is `docs/tasks/atlas-arabic-content.md`.
+The English office list, footer tagline and address on the Arabic pages are
+a known limit of the single-language brand options, not a gap in the seed.
+Branch: `feat/atlas-arabic`, on top of `feat/atlas-production-site` (PR #77).
+
 ## New owner decision — Group staging first
 
 The replacement public Group frontend for `siratrgroup.com` must be developed, integrated, QA'd, and owner-accepted on staging before production cutover.

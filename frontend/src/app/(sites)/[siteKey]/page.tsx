@@ -47,7 +47,7 @@ export default async function SiteHomePage({
   // rather than rendering different languages of the same page.
   const request = await getRequestLocale(site);
   const [brand, homepage] = await Promise.all([
-    getBrand(site.key),
+    getBrand(site.key, request.locale),
     getHomepageForRequest(site.key, localeUri(request.locale, site, "/")),
   ]);
 
@@ -72,20 +72,21 @@ export default async function SiteHomePage({
           <GroupHero hero={homepage.homepage.hero} locale={request.locale} />
         )}
         <GroupTicker ticker={homepage.homepage.ticker} />
-        <GroupLatestUpdates section={homepage.homepage.latestUpdates} />
-        <GroupCompanies section={homepage.homepage.companies} />
+        <GroupLatestUpdates section={homepage.homepage.latestUpdates} locale={request.locale} />
+        <GroupCompanies section={homepage.homepage.companies} locale={request.locale} />
         <GroupAbout
           section={homepage.homepage.about}
           image={homepage.homepage.hero?.slides.at(-1)?.image ?? null}
           offices={brand.offices}
         />
-        <GroupInvestor section={homepage.homepage.investor} />
+        <GroupInvestor section={homepage.homepage.investor} locale={request.locale} />
         <GroupServices section={homepage.homepage.services} />
-        <GroupProjects section={homepage.homepage.projects} />
-        <GroupInsights section={homepage.homepage.insights} />
+        <GroupProjects section={homepage.homepage.projects} locale={request.locale} />
+        <GroupInsights section={homepage.homepage.insights} locale={request.locale} />
         <GroupTestimonials section={homepage.homepage.testimonials} />
         <GroupPartners section={homepage.homepage.partners} />
         <GroupContact
+          locale={request.locale}
           section={homepage.homepage.contact}
           email={brand.email}
           address={brand.address}
@@ -120,8 +121,9 @@ export default async function SiteHomePage({
         />
         <DigitalMarquee section={digital.marquee} />
         <DigitalWordmark section={digital.wordmark} />
-        <GroupInsights section={digital.insights} />
+        <GroupInsights section={digital.insights} locale={request.locale} />
         <GroupContact
+          locale={request.locale}
           section={digital.contact}
           email={brand.email}
           address={brand.address}
@@ -148,9 +150,11 @@ export default async function SiteHomePage({
         {branch.hero !== null && <BranchHero hero={branch.hero} />}
         <BranchStats statistics={branch.statistics} />
         <BranchOverview overview={branch.overview} focusAreas={branch.focusAreas} />
-        <GroupProjects section={branch.projects} />
-        <GroupInsights section={branch.insights} />
+        <GroupServices section={branch.services} />
+        <GroupProjects section={branch.projects} locale={request.locale} />
+        <GroupInsights section={branch.insights} locale={request.locale} />
         <GroupContact
+          locale={request.locale}
           section={branch.contact}
           email={brand.email}
           address={brand.address}

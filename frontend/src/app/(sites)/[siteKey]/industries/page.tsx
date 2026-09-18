@@ -102,7 +102,7 @@ export default async function IndustriesPage({ params }: IndustriesPageProps) {
                 className="reveal scroll-mt-8"
                 style={
                   {
-                    "--reveal-offset": `${String(Math.min(index, 5) * 1.5)}%`,
+                    "--d": String(Math.min(index, 5)),
                   } as CSSProperties
                 }
               >

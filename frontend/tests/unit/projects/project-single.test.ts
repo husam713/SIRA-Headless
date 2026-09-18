@@ -54,6 +54,7 @@ function createProject(
     date: "2026-05-04T10:00:00",
     content: "<section><h2>Rich body</h2><p>Keep markup.</p></section>",
     isRestricted: false,
+    siraLocale: null,
     businessUnit: null,
     featuredImage: null,
     projectDetails: {

@@ -173,6 +173,18 @@ final class BrandSchema {
 						'type'        => 'String',
 						'description' => __( 'The public office email address.', 'sira-core' ),
 					),
+					'nameAr'  => array(
+						'type'        => 'String',
+						'description' => __( 'The public office name in Arabic (ADR-037).', 'sira-core' ),
+					),
+					'addressAr' => array(
+						'type'        => 'String',
+						'description' => __( 'The public office address in Arabic (ADR-037).', 'sira-core' ),
+					),
+					'businessUnit' => array(
+						'type'        => 'String',
+						'description' => __( 'The slug of the business unit the office belongs to.', 'sira-core' ),
+					),
 				),
 			)
 		);
@@ -326,6 +338,14 @@ final class BrandSchema {
 						'type'        => 'String',
 						'description' => __( 'The public brand tagline.', 'sira-core' ),
 					),
+					'taglineAr'          => array(
+						'type'        => 'String',
+						'description' => __( 'The public brand tagline in Arabic (ADR-037).', 'sira-core' ),
+					),
+					'addressAr'          => array(
+						'type'        => 'String',
+						'description' => __( 'The public postal address in Arabic (ADR-037).', 'sira-core' ),
+					),
 					'primaryColor'       => array(
 						'type'        => array( 'non_null' => 'String' ),
 						'description' => __( 'The primary brand color.', 'sira-core' ),
@@ -421,6 +441,8 @@ final class BrandSchema {
 			'name'               => (string) $brand['brand_name'],
 			'key'                => (string) $brand['brand_key'],
 			'tagline'            => $brand['tagline'],
+			'taglineAr'          => $brand['tagline_ar'],
+			'addressAr'          => $brand['address_ar'],
 			'primaryColor'       => (string) $brand['primary_color'],
 			'secondaryColor'     => (string) $brand['secondary_color'],
 			'accentColor'        => (string) $brand['accent_color'],
@@ -439,7 +461,19 @@ final class BrandSchema {
 			'mission'            => $brand['mission'],
 			'vision'             => $brand['vision'],
 			'values'             => $brand['values'],
-			'officeLocations'    => $brand['office_locations'],
+			// The rows carry snake_case keys; the type's camelCase fields need them
+			// under their own names for the default resolver to find them.
+			'officeLocations'    => array_map(
+				static fn( array $office ): array => array_merge(
+					$office,
+					array(
+						'nameAr'       => $office['name_ar'] ?? null,
+						'addressAr'    => $office['address_ar'] ?? null,
+						'businessUnit' => $office['business_unit'] ?? null,
+					)
+				),
+				(array) $brand['office_locations']
+			),
 			'socialProfiles'     => $brand['social_profiles'],
 			'announcementBanner' => $brand['announcement_banner'],
 			'emergencyBanner'    => $brand['emergency_banner'],

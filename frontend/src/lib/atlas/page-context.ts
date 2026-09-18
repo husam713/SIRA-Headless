@@ -14,11 +14,11 @@ import type {
   HomepageMedia,
 } from "@/lib/homepage/types";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
-import { CHROME, localeHref, localeUri, type Chrome } from "@/lib/i18n/locale";
+import { CHROME, localeHref, localeUri, localizeUnitLabel, type Chrome } from "@/lib/i18n/locale";
 import { getRequestLocale, type RequestLocale } from "@/lib/i18n/request-locale";
 import type { ProjectArchiveItem } from "@/lib/projects/types";
 import { isAtlasTenant } from "@/lib/atlas/routes";
-import type { SiteDefinition } from "@/types/site";
+import type { LocaleCode, SiteDefinition } from "@/types/site";
 
 // What every Atlas inner page needs before it can render: the tenant, the
 // language, its brand, the CMS page carrying its heading block, and the
@@ -72,7 +72,7 @@ export async function resolveAtlasPage(
 
   const request = await getRequestLocale(site);
   const [brand, homepageResolution, ...pages] = await Promise.all([
-    getBrand(site.key),
+    getBrand(site.key, request.locale),
     getHomepageForRequest(site.key, localeUri(request.locale, site, "/")),
     ...pageUris.map((uri) =>
       getContentPageForLocale(site.key, localeUri(request.locale, site, uri), uri),
@@ -108,23 +108,24 @@ export function pageHeroImage(page: ContentPage | null): PageHeroImage | null {
       };
 }
 
-/** An archive item as the card renders it, with the company's accent. */
-export function toProjectCard(
-  item: ProjectArchiveItem,
-  href: (path: string) => string,
-): ProjectCardData {
+/**
+ * An archive item as the card renders it, with the company's accent. The
+ * item's href is already the public path for its language (a translation's
+ * is `/ar/projects/…/`), so it is not prefixed again here.
+ */
+export function toProjectCard(item: ProjectArchiveItem, locale: LocaleCode = "en"): ProjectCardData {
   const accent = item.unit === null ? null : resolveAccentForBusinessUnitSlug(item.unit.slug);
 
   return {
     databaseId: item.databaseId,
     title: item.title,
-    href: href(item.href),
+    href: item.href,
     excerpt: item.excerpt,
     featuredImage: item.featuredImage,
     status: item.status,
     location: item.location,
     year: item.year,
-    unitLabel: item.unit?.name ?? accent?.label ?? item.companyTitle,
+    unitLabel: localizeUnitLabel(locale, item.unit?.slug ?? null, item.unit?.name ?? accent?.label ?? item.companyTitle),
     unitSlug: item.unit?.slug ?? null,
     accentColor: accent?.color ?? null,
   };

@@ -2,6 +2,7 @@ import "server-only";
 
 export {
   getEditorialFeed,
+  getEditorialFeedForLocale,
   resolveEditorialFeed,
   resolveSiteEditorialFeed,
 } from "@/lib/editorial/get-editorial-feed";

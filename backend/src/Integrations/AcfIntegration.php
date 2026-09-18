@@ -157,6 +157,15 @@ final class AcfIntegration {
 						'name'  => 'sira_brand_tagline',
 						'type'  => 'text',
 					),
+					// ADR-037: the brand options are one set per site, so the two
+					// strings the shell shows on every Arabic page carry their own
+					// Arabic column rather than a second options page.
+					array(
+						'key'   => 'field_sira_brand_tagline_ar',
+						'label' => 'Tagline (Arabic)',
+						'name'  => 'sira_brand_tagline_ar',
+						'type'  => 'text',
+					),
 					array(
 						'key'   => 'field_sira_brand_email',
 						'label' => 'Email',
@@ -173,6 +182,13 @@ final class AcfIntegration {
 						'key'   => 'field_sira_brand_address',
 						'label' => 'Address',
 						'name'  => 'sira_brand_address',
+						'type'  => 'textarea',
+						'rows'  => 3,
+					),
+					array(
+						'key'   => 'field_sira_brand_address_ar',
+						'label' => 'Address (Arabic)',
+						'name'  => 'sira_brand_address_ar',
 						'type'  => 'textarea',
 						'rows'  => 3,
 					),
@@ -299,6 +315,35 @@ final class AcfIntegration {
 								'label' => 'Email',
 								'name'  => 'email',
 								'type'  => 'email',
+							),
+							array(
+								'key'   => 'field_sira_office_name_ar',
+								'label' => 'Name (Arabic)',
+								'name'  => 'name_ar',
+								'type'  => 'text',
+							),
+							array(
+								'key'   => 'field_sira_office_address_ar',
+								'label' => 'Address (Arabic)',
+								'name'  => 'address_ar',
+								'type'  => 'textarea',
+								'rows'  => 2,
+							),
+							// Which company the office belongs to, so the places
+							// chapter can colour it with that company's accent.
+							array(
+								'key'           => 'field_sira_office_business_unit',
+								'label'         => 'Business Unit',
+								'name'          => 'business_unit',
+								'type'          => 'taxonomy',
+								'taxonomy'      => 'sira_business_unit',
+								'field_type'    => 'select',
+								'allow_null'    => 1,
+								'add_term'      => 0,
+								'save_terms'    => 0,
+								'load_terms'    => 0,
+								'return_format' => 'id',
+								'multiple'      => 0,
 							),
 						),
 					),

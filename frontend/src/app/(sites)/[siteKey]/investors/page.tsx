@@ -19,6 +19,7 @@ import { getBrand, getBrandPreset } from "@/lib/brand";
 import { parseHeadedList } from "@/lib/content/headed-list";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import type { HomepageContentItem } from "@/lib/homepage/types";
+import { localizeUnitLabel } from "@/lib/i18n/locale";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -54,14 +55,15 @@ export async function generateMetadata({ params }: InvestorsPageProps): Promise<
   });
 }
 
-function opportunityHref(item: HomepageContentItem, href: (path: string) => string): string | null {
-  // The opportunity's own record has no route; its related project does.
-  return item.relatedHref !== null ? href(item.relatedHref) : null;
+function opportunityHref(item: HomepageContentItem): string | null {
+  // The opportunity's own record has no route; its related project does, and
+  // its href is already the public path for the project's language.
+  return item.relatedHref;
 }
 
 export default async function InvestorsPage({ params }: InvestorsPageProps) {
   const context = await resolveAtlasPage(params, PAGE_URIS);
-  const { site, page, chrome, homepage, closing, closingImage, href } = context;
+  const { site, page, chrome, homepage, closing, closingImage, href, request } = context;
 
   if (site.key !== "group" || homepage === null || homepage.variant !== "group") notFound();
 
@@ -79,10 +81,10 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
   const packTrigger = (className: string) => (
     <InvestorPackDrawer
       chrome={chrome}
-      eyebrow={investor.eyebrow ?? "Investor relations"}
+      eyebrow={investor.eyebrow ?? chrome.investorRelations}
       trigger={
         <>
-          {chrome.requestPack} <span aria-hidden="true">&rarr;</span>
+          {chrome.requestPack} <span aria-hidden="true" className="arrow">&rarr;</span>
         </>
       }
       triggerClassName={className}
@@ -100,20 +102,16 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
         image={pageHeroImage(page) ?? closingImage}
         size="short"
         actions={packTrigger(
-          "press inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright",
+          "press btn-solid inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright",
         )}
       />
 
       <Section labelledBy="investors-heading" tone="deep">
         <PageContainer className="atlas-on-deep">
           {investor.metrics.length > 0 ? (
-            <div className="atlas-metrics">
+            <div className="atlas-metrics" data-stagger>
               {investor.metrics.map((metric, index) => (
-                <div
-                  key={index}
-                  className="atlas-metric reveal"
-                  style={{ "--reveal-offset": `${String(index * 1.5)}%` } as CSSProperties}
-                >
+                <div key={index} className="atlas-metric reveal">
                   {metric.value !== null ? (
                     <CountUp value={metric.value} className="atlas-metric__value" />
                   ) : null}
@@ -132,14 +130,18 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
           ) : null}
 
           {investments.length > 0 ? (
-            <div className="atlas-opps">
+            <div className="atlas-opps" data-stagger>
               {investments.map((item) => {
                 const accent = resolveBusinessUnitAccent(item.businessUnit, fallbackAccent);
-                const target = opportunityHref(item, href);
+                const target = opportunityHref(item);
                 const body = (
                   <>
                     <p className="text-[11px] font-bold uppercase tracking-[0.14em]" style={{ color: accent.color }}>
-                      {accent.label}
+                      {localizeUnitLabel(
+                        request.locale,
+                        item.businessUnit.status === "ready" ? (item.businessUnit.items[0]?.slug ?? null) : null,
+                        accent.label,
+                      )}
                     </p>
                     <h3 className="font-display text-2xl font-normal leading-tight text-brand-paper">
                       {item.title}
@@ -174,7 +176,7 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
 
           <div className="mt-12 flex flex-wrap items-center gap-4">
             {packTrigger(
-              "press inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright",
+              "press btn-solid inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright",
             )}
             <Link
               href={href("/projects")}
@@ -191,7 +193,7 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
           <PageContainer>
             <SectionHead
               id="investors-process-heading"
-              eyebrow={intro?.ctaLabel ?? "How it works"}
+              eyebrow={intro?.ctaLabel ?? chrome.howItWorks}
               heading={stepsHeading.text === "" ? page?.title ?? null : stepsHeading.text}
             />
             <CapabilityCells entries={steps} />

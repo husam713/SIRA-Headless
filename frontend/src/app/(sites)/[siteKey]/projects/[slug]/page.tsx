@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { CSSProperties } from "react";
 
 import { InsightRows } from "@/components/atlas/insight-rows";
 import { InvestorPackDrawer } from "@/components/atlas/investor-pack-drawer";
@@ -14,7 +13,7 @@ import { atlasPageMetadata } from "@/lib/atlas/metadata";
 import { resolveAtlasPage } from "@/lib/atlas/page-context";
 import { getBrand } from "@/lib/brand";
 import { parseParagraphs } from "@/lib/content/headed-list";
-import { getEditorialFeed } from "@/lib/editorial";
+import { getEditorialFeedForLocale } from "@/lib/editorial";
 import { isEditorialDeskKey } from "@/lib/editorial/desks";
 import type { EditorialItem } from "@/lib/editorial/types";
 import {
@@ -22,7 +21,8 @@ import {
   resolveSiteKeyForBusinessUnitSlug,
 } from "@/lib/homepage/business-unit-accent";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
-import { getProjectArchive, getProjectSingle } from "@/lib/projects";
+import { localeHref, localizeUnitLabel } from "@/lib/i18n/locale";
+import { getProjectArchiveForLocale, getProjectSingleForLocale } from "@/lib/projects";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -51,7 +51,12 @@ async function resolve(params: ProjectPageProps["params"]) {
 
   if (!/^[a-z0-9-]+$/u.test(slug)) notFound();
 
-  const resolution = await getProjectSingle(context.site.key, projectUri(slug));
+  // The locale's own record first, then the default-locale one (ADR-034).
+  const resolution = await getProjectSingleForLocale(
+    context.site,
+    context.request.locale,
+    projectUri(slug),
+  );
 
   if (resolution.status !== "ready") notFound();
 
@@ -73,7 +78,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { site, chrome, project, href } = await resolve(params);
+  const { site, chrome, project, href, request } = await resolve(params);
 
   const unit = project.unit ?? project.relatedCompanies[0]?.unit ?? null;
   const accent = unit === null ? null : resolveAccentForBusinessUnitSlug(unit.slug);
@@ -82,8 +87,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const companySite = companySiteKey === null ? null : getSiteDefinition(companySiteKey);
 
   const [archive, feed] = await Promise.all([
-    getProjectArchive(site.key, ARCHIVE_SIZE),
-    getEditorialFeed(site.key, 12),
+    getProjectArchiveForLocale(site.key, ARCHIVE_SIZE, request.locale),
+    getEditorialFeedForLocale(site.key, 12, request.locale),
   ]);
 
   // The next project in archive order, wrapping to the first.
@@ -116,8 +121,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     ...(company !== null
       ? [
           {
-            label: accent?.label ?? company.title,
-            href: companySite === null ? null : `https://${companySite.canonicalHostname}`,
+            label: localizeUnitLabel(request.locale, unit?.slug ?? null, accent?.label ?? company.title) ?? company.title,
+            href:
+              companySite === null
+                ? null
+                : `https://${companySite.canonicalHostname}${localeHref(companySite, request.locale, "/")}`,
           },
         ]
       : []),
@@ -139,13 +147,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <Section labelledBy="project-heading" className="bg-brand-paper">
         <PageContainer className="atlas-two-col">
           {paragraphs.length > 0 ? (
-            <div className="atlas-prose">
+            <div className="atlas-prose" data-stagger>
               {paragraphs.map((paragraph, index) => (
-                <p
-                  key={index}
-                  className="reveal"
-                  style={{ "--reveal-offset": `${String(Math.min(index, 4) * 1.5)}%` } as CSSProperties}
-                >
+                <p key={index} className="reveal">
                   {paragraph}
                 </p>
               ))}
@@ -154,7 +158,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <div />
           )}
 
-          <aside className="atlas-aside reveal" aria-label={chrome.atAGlance}>
+          <aside className="atlas-aside" data-reveal="fade" aria-label={chrome.atAGlance}>
             <p className="atlas-aside__label">{chrome.atAGlance}</p>
             {project.location !== null ? (
               <div className="atlas-aside__row">
@@ -177,10 +181,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {site.key === "group" ? (
               <InvestorPackDrawer
                 chrome={chrome}
-                eyebrow="Investor relations"
+                eyebrow={chrome.investorRelations}
                 trigger={
                   <>
-                    {chrome.requestPack} <span aria-hidden="true">&rarr;</span>
+                    {chrome.requestPack} <span aria-hidden="true" className="arrow">&rarr;</span>
                   </>
                 }
                 triggerClassName="atlas-aside__action press inline-flex items-center gap-2 rounded-sm bg-brand-ink px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-paper hover:bg-brand-ink/90"
@@ -190,7 +194,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 href={href("/contact")}
                 className="atlas-aside__action press inline-flex items-center gap-2 rounded-sm bg-brand-ink px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-paper hover:bg-brand-ink/90"
               >
-                {chrome.startConversation} <span aria-hidden="true">&rarr;</span>
+                {chrome.startConversation} <span aria-hidden="true" className="arrow">&rarr;</span>
               </Link>
             )}
           </aside>
@@ -203,13 +207,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <SectionEyebrow tone="accent" className="reveal">
               {chrome.gallery}
             </SectionEyebrow>
-            <div className="atlas-gallery mt-8">
-              {project.gallery.map((image, index) => (
-                <figure
-                  key={image.databaseId}
-                  className="reveal"
-                  style={{ "--reveal-offset": `${String(Math.min(index, 3) * 1.5)}%` } as CSSProperties}
-                >
+            <div className="atlas-gallery mt-8" data-stagger>
+              {project.gallery.map((image) => (
+                <figure key={image.databaseId} className="reveal">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={image.sourceUrl}
@@ -233,14 +233,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {chrome.newsAndPerspectives}
             </SectionEyebrow>
             <div className="mt-8">
-              <InsightRows items={related} href={href} />
+              <InsightRows items={related} href={href} locale={request.locale} />
             </div>
           </PageContainer>
         </Section>
       ) : null}
 
       {next !== null ? (
-        <Link href={href(next.href)} className="atlas-next" aria-label={`${chrome.nextProjectLabel}: ${next.title}`}>
+        <Link href={next.href} className="atlas-next" aria-label={`${chrome.nextProjectLabel}: ${next.title}`}>
           {next.featuredImage !== null ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -253,16 +253,18 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               decoding="async"
             />
           ) : null}
-          <PageContainer className="atlas-next__body">
-            <SectionEyebrow tone="bright" className="reveal">
-              {chrome.nextProjectLabel}
-            </SectionEyebrow>
-            <span className="atlas-display atlas-display--l reveal block">{next.title}</span>
-            {next.location !== null || next.status !== null ? (
-              <span className="atlas-lead reveal atlas-on-deep block">
-                {[next.location, next.status].filter((part) => part !== null).join(" · ")}
-              </span>
-            ) : null}
+          <PageContainer>
+            <div className="atlas-next__body" data-stagger>
+              <SectionEyebrow tone="bright" className="reveal">
+                {chrome.nextProjectLabel}
+              </SectionEyebrow>
+              <span className="atlas-display atlas-display--l reveal block">{next.title}</span>
+              {next.location !== null || next.status !== null ? (
+                <span className="atlas-lead reveal atlas-on-deep block">
+                  {[next.location, next.status].filter((part) => part !== null).join(" · ")}
+                </span>
+              ) : null}
+            </div>
           </PageContainer>
         </Link>
       ) : null}

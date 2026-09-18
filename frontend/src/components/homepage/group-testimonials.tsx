@@ -50,7 +50,7 @@ export function GroupTestimonials({ section }: GroupTestimonialsProps) {
           tone="bright"
         />
 
-        <div className="reveal">
+        <div data-reveal="fade">
           <QuoteRotator quotes={quotes} />
         </div>
       </PageContainer>

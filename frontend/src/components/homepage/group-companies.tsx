@@ -14,6 +14,8 @@ import type {
   HomepageContentItem,
   HomepageContentSection,
 } from "@/lib/homepage/types";
+import { localeHref, localizeCompanyStatus, localizeUnitLabel } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 
 // Atlas direction (owner-approved 2026-09-16): "the house". The companies are
 // not a card grid but a row of tall panels that share one frame; the panel
@@ -29,27 +31,31 @@ import type {
 
 interface GroupCompaniesProps {
   readonly section: HomepageContentSection | null;
+  /** The page's language; each panel links to the same language on its site. */
+  readonly locale?: LocaleCode;
 }
 
 interface PanelProps {
   readonly item: HomepageContentItem;
   readonly index: number;
   readonly accent: BusinessUnitAccent;
+  readonly locale: LocaleCode;
 }
 
-function companyHref(item: HomepageContentItem): string | null {
+function companyHref(item: HomepageContentItem, locale: LocaleCode): string | null {
   const siteKey = resolveBusinessUnitSiteKey(item.businessUnit);
   if (siteKey === null) return null;
   const site = getSiteDefinition(siteKey);
-  return site === null ? null : `https://${site.canonicalHostname}`;
+  return site === null ? null : `https://${site.canonicalHostname}${localeHref(site, locale, "/")}`;
 }
 
 function isLive(item: HomepageContentItem): boolean {
   return item.status === null || /^\s*active\s*$/iu.test(item.status);
 }
 
-function PanelBody({ item, index, accent }: PanelProps) {
+function PanelBody({ item, index, accent, locale }: PanelProps) {
   const copy = item.descriptor ?? item.excerpt;
+  const unitSlug = item.businessUnit.status === "ready" ? (item.businessUnit.items[0]?.slug ?? null) : null;
 
   return (
     <>
@@ -72,7 +78,7 @@ function PanelBody({ item, index, accent }: PanelProps) {
         <span
           className={`atlas-panel__status${isLive(item) ? "" : " atlas-panel__status--launching"}`}
         >
-          {item.status}
+          {localizeCompanyStatus(locale, item.status)}
         </span>
       ) : null}
 
@@ -88,7 +94,7 @@ function PanelBody({ item, index, accent }: PanelProps) {
           className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em]"
           style={{ color: accent.color }}
         >
-          {accent.label}
+          {localizeUnitLabel(locale, unitSlug, accent.label)}
           <span aria-hidden="true">&rarr;</span>
         </span>
       </div>
@@ -97,7 +103,7 @@ function PanelBody({ item, index, accent }: PanelProps) {
 }
 
 function Panel(props: PanelProps) {
-  const href = companyHref(props.item);
+  const href = companyHref(props.item, props.locale);
   const style = { "--c": props.accent.color } as CSSProperties;
 
   if (href === null) {
@@ -115,7 +121,7 @@ function Panel(props: PanelProps) {
   );
 }
 
-export function GroupCompanies({ section }: GroupCompaniesProps) {
+export function GroupCompanies({ section, locale = "en" }: GroupCompaniesProps) {
   if (section === null || section.selection.status !== "ready") return null;
 
   const groupPreset = getBrandPreset("group");
@@ -134,13 +140,14 @@ export function GroupCompanies({ section }: GroupCompaniesProps) {
           lead={section.description}
         />
 
-        <div className="atlas-house reveal">
+        <div className="atlas-house" data-reveal="fade">
           {section.selection.items.map((item, index) => (
             <Panel
               key={item.databaseId}
               item={item}
               index={index}
               accent={resolveBusinessUnitAccent(item.businessUnit, fallbackAccent)}
+              locale={locale}
             />
           ))}
         </div>

@@ -181,7 +181,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
                     className="reveal flex gap-3 text-[0.9375rem] leading-[1.6] text-brand-ink-soft"
                     style={
                       {
-                        "--reveal-offset": `${String(Math.min(index, 3) * 1.5)}%`,
+                        "--d": String(Math.min(index, 3)),
                       } as CSSProperties
                     }
                   >

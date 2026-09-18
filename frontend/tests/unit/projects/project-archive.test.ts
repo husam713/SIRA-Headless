@@ -22,6 +22,7 @@ function createNode(
     excerpt: `<p>Summary ${databaseId}</p>`,
     date: "2026-05-04T10:00:00",
     isRestricted: false,
+    siraLocale: null,
     businessUnit: null,
     featuredImage: null,
     projectDetails: {
@@ -118,6 +119,7 @@ describe("project archive server adapter", () => {
       databaseId: 9,
       title: "Project Nine",
       href: "/projects/project-9/",
+      locale: "en",
       excerpt: "Useful summary.",
       featuredImage: {
         databaseId: 90,
@@ -311,6 +313,27 @@ describe("project archive server adapter", () => {
         ],
       },
     });
+  });
+
+  it("gives a translation its public `/ar/` page and reads its language off the field, then the slug", () => {
+    const result = normalizeProjectArchive(
+      "group",
+      createData([
+        createNode(1, { uri: "/projects/ar-sira-prime/", siraLocale: { code: "ar" } }),
+        createNode(2, { uri: "/projects/ar-legacy/", siraLocale: null }),
+        createNode(3, { uri: "/projects/sira-prime/", siraLocale: { code: "en" } }),
+      ]),
+    );
+
+    if (result.status !== "ready") {
+      throw new Error("Expected a ready project archive.");
+    }
+
+    expect(result.page.items.map((item) => [item.href, item.locale])).toEqual([
+      ["/ar/projects/sira-prime/", "ar"],
+      ["/ar/projects/legacy/", "ar"],
+      ["/projects/sira-prime/", "en"],
+    ]);
   });
 
   it("uses the narrow project archive invalidation tag", () => {

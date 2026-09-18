@@ -14,7 +14,7 @@ import { atlasPageMetadata } from "@/lib/atlas/metadata";
 import { pageHeroImage, resolveAtlasPage, toProjectCard } from "@/lib/atlas/page-context";
 import { splitHighlight } from "@/lib/atlas/highlight";
 import { getBrand } from "@/lib/brand";
-import { getProjectArchive } from "@/lib/projects";
+import { getProjectArchiveForLocale } from "@/lib/projects";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -50,12 +50,12 @@ export async function generateMetadata({ params }: ProjectsPageProps): Promise<M
 
 export default async function ProjectsPage({ params }: ProjectsPageProps) {
   const context = await resolveAtlasPage(params, PAGE_URIS);
-  const { site, page, chrome, closing, closingImage, href } = context;
-  const archive = await getProjectArchive(site.key, ARCHIVE_SIZE);
+  const { site, page, chrome, closing, closingImage, href, request } = context;
+  const archive = await getProjectArchiveForLocale(site.key, ARCHIVE_SIZE, request.locale);
 
   if (archive.status !== "ready") notFound();
 
-  const items = archive.page.items.map((item) => toProjectCard(item, href));
+  const items = archive.page.items.map((item) => toProjectCard(item, request.locale));
   const filters: ProjectFilterOption[] = [];
 
   for (const item of items) {

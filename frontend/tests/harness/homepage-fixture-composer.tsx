@@ -99,6 +99,7 @@ export function composeBranchHomepage(homepage: BranchHomepage): ReactElement {
         overview={homepage.overview}
         focusAreas={homepage.focusAreas}
       />
+      <GroupServices section={homepage.services} />
       <GroupProjects section={homepage.projects} />
       <GroupInsights section={homepage.insights} />
       <GroupContact

@@ -17,7 +17,8 @@ import type {
   EditorialTypename,
 } from "@/lib/editorial/types";
 import type { SiraEditorialSingleQueryData } from "@/queries/editorial-single";
-import type { SiteKey } from "@/types/site";
+import { recordHrefLocale } from "@/lib/i18n/record-href";
+import type { LocaleCode, SiteKey } from "@/types/site";
 
 // The same four content types the feed accepts, resolved from one nodeByUri
 // call so a single route can serve every editorial permalink WordPress owns:
@@ -204,11 +205,18 @@ export function normalizeEditorialSingle(
     return invalid(siteKey, "content-too-large");
   }
 
+  const localeNode = node["siraLocale"];
+  const localeCode =
+    typeof localeNode === "object" && localeNode !== null ? (localeNode as { readonly code?: unknown }).code : null;
+  const locale: LocaleCode =
+    localeCode === "ar" || localeCode === "en" ? localeCode : (recordHrefLocale(uri) ?? "en");
+
   const article: EditorialArticle = Object.freeze({
     databaseId: Number(databaseId),
     typename: typename as EditorialTypename,
     contentTypeName: contract.contentTypeName,
     kind: contract.kind,
+    locale,
     title,
     excerpt: normalizePlainText(node["excerpt"], 400),
     href: uri,

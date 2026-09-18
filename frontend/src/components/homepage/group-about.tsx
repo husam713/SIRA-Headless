@@ -1,5 +1,3 @@
-import type { CSSProperties } from "react";
-
 import { CityList } from "@/components/atlas/city-list";
 import { CountUp } from "@/components/homepage/count-up";
 import { PageContainer } from "@/components/layout/page-container";
@@ -27,11 +25,11 @@ interface GroupAboutProps {
   readonly offices?: readonly BrandOffice[];
 }
 
-function Stat({ metric, index }: { readonly metric: HomepageMetric; readonly index: number }) {
+function Stat({ metric }: { readonly metric: HomepageMetric }) {
   if (metric.value === null) return null;
 
   return (
-    <div className="reveal" style={{ "--reveal-offset": `${String(index * 1.5)}%` } as CSSProperties}>
+    <div className="reveal">
       <CountUp value={metric.value} className="atlas-stat__value" />
       {metric.label !== null ? <span className="atlas-stat__label">{metric.label}</span> : null}
       {metric.supportingText !== null ? (
@@ -71,36 +69,30 @@ export function GroupAbout({ section, image = null, offices = [] }: GroupAboutPr
         </div>
       ) : null}
       <PageContainer className="grid gap-12 lg:grid-cols-[7fr_5fr] lg:gap-20">
-        <div>
+        {/* Two stagger groups, one per column, so the narrative and the
+            figures each arrive in their own order rather than one long
+            queue across both. */}
+        <div data-stagger>
           <SectionEyebrow tone="bright" className="reveal">
             {section.eyebrow ?? "About SIRA Group"}
           </SectionEyebrow>
           {hasHeading ? (
-            <h2
-              id="about-heading"
-              className="atlas-display atlas-display--l reveal mt-5"
-              style={{ "--reveal-offset": "2%" } as CSSProperties}
-            >
+            <h2 id="about-heading" className="atlas-display atlas-display--l reveal mt-5">
               {section.heading}
             </h2>
           ) : null}
           {hasCopy ? (
-            <p
-              className="atlas-lead reveal mt-6 max-w-[38rem]"
-              style={{ "--reveal-offset": "4%" } as CSSProperties}
-            >
-              {section.description}
-            </p>
+            <p className="atlas-lead reveal mt-6 max-w-[38rem]">{section.description}</p>
           ) : null}
           <CityList offices={offices} />
         </div>
 
         {hasMetrics ? (
-          <div className="atlas-stats self-start">
+          <div className="atlas-stats self-start" data-stagger>
             {section.metrics.map((metric, index) => (
               // The metric list is a fixed, non-reorderable server-rendered
               // selection with no stable identifier of its own — index is safe.
-              <Stat key={index} metric={metric} index={index} />
+              <Stat key={index} metric={metric} />
             ))}
           </div>
         ) : null}

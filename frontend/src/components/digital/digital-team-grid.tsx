@@ -74,7 +74,7 @@ export function DigitalTeamGrid({ header, people }: DigitalTeamGridProps) {
               className="reveal text-center"
               style={
                 {
-                  "--reveal-offset": `${String(Math.min(index, 4) * 1.5)}%`,
+                  "--d": String(Math.min(index, 4)),
                 } as CSSProperties
               }
             >

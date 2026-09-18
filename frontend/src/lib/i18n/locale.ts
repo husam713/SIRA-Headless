@@ -1,4 +1,4 @@
-import type { LocaleCode, SiteDefinition } from "@/types/site";
+import type { LocaleCode, SiteDefinition, SiteKey } from "@/types/site";
 
 /**
  * How a request's language is decided, and how it travels.
@@ -208,6 +208,24 @@ export interface Chrome {
   readonly fullName: string;
   readonly emailAddress: string;
   readonly close: string;
+  /** The first subject in a contact form's list: the route for anything else. */
+  readonly generalEnquiry: string;
+  /** Section fallbacks where the CMS eyebrow is empty. */
+  readonly getInTouch: string;
+  readonly investorRelations: string;
+  readonly howItWorks: string;
+  readonly contact: string;
+  /** Editorial kinds, as the homepage insights chapter labels them. */
+  readonly editorialKinds: Readonly<Record<"news" | "insight" | "article" | "press-release", string>>;
+  readonly readMore: string;
+  /**
+   * Names that live in English in the registry, the brand presets and the
+   * business-unit taxonomy, said in this language. Keyed by site key, by
+   * business-unit slug and by the company operating status.
+   */
+  readonly siteNames: Readonly<Record<SiteKey, string>>;
+  readonly businessUnits: Readonly<Record<string, string>>;
+  readonly companyStatus: Readonly<Record<string, string>>;
 }
 
 /**
@@ -285,6 +303,38 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     fullName: "Full name",
     emailAddress: "Email address",
     close: "Close",
+    generalEnquiry: "General enquiry",
+    getInTouch: "Get in Touch",
+    investorRelations: "Investor relations",
+    howItWorks: "How it works",
+    contact: "Contact",
+    editorialKinds: Object.freeze({
+      news: "News",
+      insight: "Insight",
+      article: "Article",
+      "press-release": "Press release",
+    }),
+    readMore: "Read More",
+    siteNames: Object.freeze({
+      group: "SIRA Group",
+      consulting: "SIRA Consulting",
+      healthcare: "SIRA Healthcare",
+      lifestyle: "SIRA Lifestyle",
+      realestate: "SIRA Real Estate",
+      digital: "SIRA Digital",
+    }),
+    businessUnits: Object.freeze({
+      consulting: "Consulting",
+      healthcare: "Healthcare",
+      lifestyle: "Lifestyle",
+      "real-estate": "Real Estate",
+      digital: "Digital",
+    }),
+    companyStatus: Object.freeze({
+      active: "Active",
+      comingSoon: "Coming soon",
+      inactive: "Inactive",
+    }),
   }),
   ar: Object.freeze({
     skipToContent: "تخطَّ إلى المحتوى الرئيسي",
@@ -352,5 +402,59 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     fullName: "الاسم الكامل",
     emailAddress: "البريد الإلكتروني",
     close: "إغلاق",
+    generalEnquiry: "استفسار عام",
+    getInTouch: "تواصل معنا",
+    investorRelations: "علاقات المستثمرين",
+    howItWorks: "كيف نعمل",
+    contact: "تواصل",
+    editorialKinds: Object.freeze({
+      news: "أخبار",
+      insight: "رؤية",
+      article: "مقال",
+      "press-release": "بيان صحفي",
+    }),
+    readMore: "اقرأ المزيد",
+    siteNames: Object.freeze({
+      group: "مجموعة سيرة",
+      consulting: "سيرة للاستشارات",
+      healthcare: "سيرة للرعاية الصحية",
+      lifestyle: "سيرة لايف ستايل",
+      realestate: "سيرة العقارية",
+      digital: "سيرة الرقمية",
+    }),
+    businessUnits: Object.freeze({
+      consulting: "الاستشارات",
+      healthcare: "الرعاية الصحية",
+      lifestyle: "أسلوب الحياة",
+      "real-estate": "العقارات",
+      digital: "الرقمية",
+    }),
+    companyStatus: Object.freeze({
+      active: "نشطة",
+      comingSoon: "قريبًا",
+      inactive: "غير نشطة",
+    }),
   }),
 });
+
+/**
+ * A business unit's name in the page's language. English keeps whatever the
+ * CMS or the preset said — the term name is the editor's — and Arabic reads
+ * the chrome, because the taxonomy is not localized (ADR-034 keeps terms
+ * per record type, and `sira_business_unit` is shared across languages).
+ */
+export function localizeUnitLabel(
+  locale: LocaleCode,
+  slug: string | null,
+  fallback: string | null,
+): string | null {
+  if (locale === "en" || slug === null) return fallback;
+  return CHROME[locale].businessUnits[slug] ?? fallback;
+}
+
+/** A company's operating status as a badge, in the page's language. */
+export function localizeCompanyStatus(locale: LocaleCode, status: string | null): string | null {
+  if (status === null) return null;
+  const key = status.trim();
+  return CHROME[locale].companyStatus[key] ?? status;
+}

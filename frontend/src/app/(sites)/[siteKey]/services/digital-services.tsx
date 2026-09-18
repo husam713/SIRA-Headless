@@ -173,7 +173,7 @@ export async function DigitalServicesPage({ params }: ServicesPageProps) {
                 className="reveal digital-index__block scroll-mt-8"
                 style={
                   {
-                    "--reveal-offset": `${String(Math.min(index, 3) * 2)}%`,
+                    "--d": String(Math.min(index, 3)),
                     "--digital-index-timeline": timelineName(index),
                   } as CSSProperties
                 }

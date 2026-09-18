@@ -1,3 +1,4 @@
+import type { LocaleCode } from "@/types/site";
 import type { SiteKey } from "@/types/site";
 
 export type EditorialTypename =
@@ -68,6 +69,8 @@ export interface EditorialItem {
   readonly typename: EditorialTypename;
   readonly contentTypeName: EditorialContentTypeName;
   readonly kind: EditorialKind;
+  /** The language the entry is written in (ADR-034 / ADR-037). */
+  readonly locale: LocaleCode;
   readonly title: string;
   readonly excerpt: string | null;
   readonly href: string;

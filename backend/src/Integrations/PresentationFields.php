@@ -531,6 +531,12 @@ final class PresentationFields {
 				'SiraIndustry',
 				'SiraProduct',
 				'SiraLeadershipProfile',
+				// The newsroom (2026-09-18): an Arabic article is its own record
+				// pointing at its English original, as everything else is.
+				'SiraNewsItem',
+				'SiraInsight',
+				'SiraArticle',
+				'SiraPressRelease',
 			),
 			'fields'                               => array(
 				self::radio(
@@ -552,7 +558,7 @@ final class PresentationFields {
 					'post_object',
 					'translationOf',
 					array(
-						'post_type'         => array( 'page', 'sira_service', 'sira_project', 'sira_product', 'sira_leadership' ),
+						'post_type'         => array( 'page', 'sira_service', 'sira_project', 'sira_product', 'sira_leadership', 'sira_news', 'sira_insight', 'sira_article', 'sira_press_release' ),
 						'return_format'     => 'id',
 						'multiple'          => 0,
 						'allow_null'        => 1,
@@ -603,6 +609,34 @@ final class PresentationFields {
 						'param'    => 'post_type',
 						'operator' => '==',
 						'value'    => 'sira_leadership',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'sira_news',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'sira_insight',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'sira_article',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'sira_press_release',
 					),
 				),
 				array(
@@ -1770,6 +1804,17 @@ final class PresentationFields {
 					'button_label' => 'Add focus area',
 					'max'          => 12,
 				)
+			),
+			// The company's services, curated, as the Group homepage has them. Until
+			// 2026-09-18 a branch homepage had no services chapter at all, so the
+			// services ledger was reachable only by typing its URL.
+			self::relationship_section(
+				'branch_services',
+				'Services',
+				'services',
+				array( 'sira_service' ),
+				'selectedServices',
+				12
 			),
 			self::relationship_section(
 				'branch_projects',

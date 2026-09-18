@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { PageContainer } from "@/components/layout/page-container";
 import type { ResolvedBrand } from "@/lib/brand";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
-import { CHROME } from "@/lib/i18n/locale";
+import { CHROME, localeHref } from "@/lib/i18n/locale";
 import type { NavigationItem } from "@/lib/navigation";
 import { SITE_KEYS, type SiteKey } from "@/types/site";
 import type { LocaleCode } from "@/types/site";
@@ -130,7 +130,7 @@ const FOOTER_LINK_CLASS =
  * the footer cannot drift from the sites it links to. Group is excluded: a
  * site does not list itself under "Companies".
  */
-function portfolioCompanies(currentSite: SiteKey) {
+function portfolioCompanies(currentSite: SiteKey, locale: LocaleCode) {
   return SITE_KEYS.filter((key) => key !== "group").flatMap((key) => {
     const site = getSiteDefinition(key);
     if (site === null) return [];
@@ -138,8 +138,9 @@ function portfolioCompanies(currentSite: SiteKey) {
     return [
       {
         key,
-        name: site.name,
-        href: `https://${site.canonicalHostname}`,
+        name: CHROME[locale].siteNames[key],
+        // The same language on the company's site (every tenant serves `/ar/`).
+        href: `https://${site.canonicalHostname}${localeHref(site, locale, "/")}`,
         isCurrent: key === currentSite,
       },
     ];
@@ -157,7 +158,7 @@ export function SiteFooter({
   const chrome = CHROME[locale];
   const year = new Date().getFullYear();
   const isBranch = layout === "compact";
-  const companies = portfolioCompanies(brand.siteKey);
+  const companies = portfolioCompanies(brand.siteKey, locale);
 
   const social = [
     ["LinkedIn", brand.socialProfiles.linkedin],

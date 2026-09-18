@@ -13,7 +13,8 @@ import {
   type SiraProjectSingleQueryVariables,
 } from "@/queries/project-single";
 import { entityCacheTag } from "@/lib/cache/tags";
-import type { SiteKey } from "@/types/site";
+import { recordUrisForLocale } from "@/lib/i18n/record-href";
+import type { LocaleCode, SiteDefinition, SiteKey } from "@/types/site";
 
 export const PROJECT_SINGLE_CACHE_TAGS = Object.freeze([
   "post-type:sira_project",
@@ -103,3 +104,24 @@ async function resolvePublishedProjectSingle(
 }
 
 export const getProjectSingle = cache(resolvePublishedProjectSingle);
+
+/**
+ * One project in the requested language, falling back to the default-locale
+ * record when it has no translation (ADR-034). The locale's copy lives at the
+ * same slug under a locale prefix (`/projects/ar-<slug>/`), so at most two
+ * lookups are made and the first hit wins.
+ */
+export async function getProjectSingleForLocale(
+  site: SiteDefinition,
+  locale: LocaleCode,
+  uri: string,
+): Promise<ProjectSingleResolution> {
+  let last: ProjectSingleResolution | null = null;
+
+  for (const candidate of recordUrisForLocale(site, locale, uri)) {
+    last = await getProjectSingle(site.key, candidate);
+    if (last.status !== "not-found") return last;
+  }
+
+  return last ?? Object.freeze({ status: "not-found", siteKey: site.key });
+}

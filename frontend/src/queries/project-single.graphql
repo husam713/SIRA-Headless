@@ -7,6 +7,9 @@ query SiraProjectSingle($uri: ID!) {
     date
     content(format: RENDERED)
     isRestricted
+    siraLocale {
+      code
+    }
     businessUnit: siraBusinessUnits(first: 1) {
       nodes {
         ... on SiraBusinessUnit {

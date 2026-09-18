@@ -27,7 +27,7 @@ interface ServiceRowProps {
 
 function ServiceRow({ item, index }: ServiceRowProps) {
   return (
-    <details className="atlas-service" name="sira-services" open={index === 0}>
+    <details className="atlas-service reveal" name="sira-services" open={index === 0}>
       <summary>
         <span aria-hidden="true" className="atlas-service__n">
           {String(index + 1).padStart(2, "0")}
@@ -68,7 +68,7 @@ export function GroupServices({ section }: GroupServicesProps) {
           }
         />
 
-        <div className="atlas-services reveal">
+        <div className="atlas-services" data-stagger>
           {section.selection.items.map((item, index) => (
             <ServiceRow key={item.databaseId} item={item} index={index} />
           ))}

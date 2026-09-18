@@ -34,6 +34,7 @@ import type {
   InvalidHomepageReason,
 } from "@/lib/homepage/types";
 import { decodeEntities } from "@/lib/editorial/rich-text";
+import { publicRecordHref } from "@/lib/i18n/record-href";
 import type { GraphQLErrorSummary } from "@/lib/graphql/errors";
 import type { SiraHomepageQueryData } from "@/queries/homepage";
 import type { SiteKey } from "@/types/site";
@@ -73,6 +74,10 @@ const CONTENT_CONTRACTS: Readonly<Record<string, ContentContract>> =
 
 const EMPTY_DIAGNOSTICS: readonly HomepageDiagnostic[] = Object.freeze([]);
 const EMPTY_ITEMS: readonly [] = Object.freeze([]);
+
+function localizedHref(uri: string | null): string | null {
+  return uri === null ? null : publicRecordHref(uri);
+}
 
 function isRecord(value: unknown): value is RecordValue {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -333,11 +338,14 @@ function normalizeItem(
   }
 
   const title = normalizePlainText(value["title"], 240);
-  const href = normalizePublicHref(value["uri"]);
-  if (title === null || href === null) {
+  const uri = normalizePublicHref(value["uri"]);
+  if (title === null || uri === null) {
     diagnostics.push(diagnostic("invalid-content-item", databaseId));
     return null;
   }
+  // A translation's WordPress slug carries its locale (`/projects/ar-…/`,
+  // ADR-034); the page this app serves for it is the `/ar/` route.
+  const href = publicRecordHref(uri);
 
   const detailsKey =
     contract.kind === "document" ||
@@ -413,7 +421,7 @@ function normalizeItem(
       details?.["externalWebsiteUrl"] ?? details?.["websiteUrl"] ?? details?.["sourceUrl"],
     ),
     relatedHref:
-      contract.kind === "investment" ? normalizePublicHref(investmentProjectUri) : null,
+      contract.kind === "investment" ? localizedHref(normalizePublicHref(investmentProjectUri)) : null,
     ticketSizeLabel: normalizePlainText(details?.["ticketSizeLabel"], 240),
     role: normalizePlainText(details?.["role"], 240),
     organization: normalizePlainText(details?.["organization"], 240),
@@ -931,6 +939,7 @@ export function normalizeHomepage(
     statistics: normalizeMetrics(statisticsField, 8),
     overview,
     focusAreas: Object.freeze(focusAreas),
+    services: normalizeContentSection(branchSections["services"], "selectedServices", "SiraService"),
     projects: normalizeContentSection(branchSections["projects"], "selectedProjects", "SiraProject"),
     insights: normalizeEditorialSection(branchSections["insights"]),
     contact: normalizeContact(branchSections["contact"]),

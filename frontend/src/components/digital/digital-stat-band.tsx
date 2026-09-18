@@ -42,7 +42,7 @@ export function DigitalStatBand({ stats }: DigitalStatBandProps) {
               // animation has no wall-clock delay to add.
               style={
                 {
-                  "--reveal-offset": `${String(Math.min(index, 3) * 2)}%`,
+                  "--d": String(Math.min(index, 3)),
                 } as CSSProperties
               }
             >

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { BrandDocument } from "@/components/brand/brand-document";
+import { RevealChoreography } from "@/components/motion/reveal-choreography";
 import { SiteFooter } from "@/components/shell/site-footer";
 import { SiteHeader } from "@/components/shell/site-header";
 import { PageContainer } from "@/components/layout/page-container";
@@ -21,7 +22,7 @@ import type { NavigationItem, NavigationResolution } from "@/lib/navigation";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { SiteStructuredDataScripts } from "@/lib/seo/structured-data";
-import { SITE_KEYS, type SiteKey } from "@/types/site";
+import { SITE_KEYS, type LocaleCode, type SiteDefinition, type SiteKey } from "@/types/site";
 import "@/styles/globals.css";
 
 function scopeItems(
@@ -34,14 +35,9 @@ function scopeItems(
 }
 
 /** Present on branch sites only — SIRA GROUP has no cross-link to itself. */
-function resolveGroupCrossLink(
-  siteKey: SiteKey,
-): { readonly name: string; readonly canonicalHostname: string } | null {
+function resolveGroupCrossLink(siteKey: SiteKey): SiteDefinition | null {
   if (siteKey === "group") return null;
-  const groupSite = getSiteDefinition("group");
-  return groupSite === null
-    ? null
-    : { name: groupSite.name, canonicalHostname: groupSite.canonicalHostname };
+  return getSiteDefinition("group");
 }
 
 /**
@@ -51,6 +47,7 @@ function resolveGroupCrossLink(
  */
 function resolveMegaMenuCompanies(
   section: HomepageContentSection | null,
+  locale: LocaleCode,
 ): readonly MegaMenuCompany[] {
   if (section === null || section.selection.status !== "ready") return [];
 
@@ -67,7 +64,8 @@ function resolveMegaMenuCompanies(
       name: item.title,
       tagline: item.descriptor ?? item.excerpt,
       place: item.location,
-      href: `https://${site.canonicalHostname}`,
+      // The same language on the company's site (every tenant serves `/ar/`).
+      href: `https://${site.canonicalHostname}${localeHref(site, locale, "/")}`,
       color: resolveBusinessUnitAccent(item.businessUnit, fallback).color,
     });
   }
@@ -133,7 +131,7 @@ export default async function SiteLayout({
   // therefore pass the SAME homepage URI, or the cache misses and the layout
   // and the page render two different languages of the same page.
   const [brand, draft, navigation, homepage] = await Promise.all([
-    getBrand(site.key),
+    getBrand(site.key, request.locale),
     draftMode(),
     getNavigationForLocale(site.key, request.locale, site.defaultLocale),
     getHomepageForRequest(site.key, localeUri(request.locale, site, "/")),
@@ -155,14 +153,18 @@ export default async function SiteLayout({
       : "full";
 
   const groupSite = resolveGroupCrossLink(site.key);
-  const groupHeaderLink = groupSite === null
+  const groupHref =
+    groupSite === null
+      ? null
+      : `https://${groupSite.canonicalHostname}${localeHref(groupSite, request.locale, "/")}`;
+  const groupHeaderLink = groupSite === null || groupHref === null
     ? null
-    : { label: `${groupSite.name} ↗`, href: `https://${groupSite.canonicalHostname}/` };
-  const groupFooterLink = groupSite === null
+    : { label: `${chrome.siteNames.group} ↗`, href: groupHref };
+  const groupFooterLink = groupSite === null || groupHref === null
     ? null
     : {
-        label: `${branchFooter?.groupLinkLabelOverride ?? `A ${groupSite.name} Company`} ↗`,
-        href: `https://${groupSite.canonicalHostname}/`,
+        label: `${branchFooter?.groupLinkLabelOverride ?? `A ${chrome.siteNames.group} Company`} ↗`,
+        href: groupHref,
       };
 
   // The header sits on the photograph only where there is one: the homepage,
@@ -176,7 +178,7 @@ export default async function SiteLayout({
 
   const megaMenuCompanies =
     homepage.status === "ready" && homepage.homepage.variant === "group"
-      ? resolveMegaMenuCompanies(homepage.homepage.companies)
+      ? resolveMegaMenuCompanies(homepage.homepage.companies, request.locale)
       : [];
 
   const languageAlternate =
@@ -190,6 +192,10 @@ export default async function SiteLayout({
   return (
     <BrandDocument brand={brand} locale={request.locale}>
       <SiteStructuredDataScripts siteKey={site.key} brand={brand} />
+      {/* The one motion island: marks <html> as scripted, runs the reveal
+          observer over every section, and starts the hero entrance. Mounted
+          once here so no section has to be a Client Component to arrive. */}
+      <RevealChoreography />
 
       <a
         href="#main-content"

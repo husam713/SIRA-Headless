@@ -6,7 +6,7 @@ import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionHead } from "@/components/layout/section-head";
 import { getBrandPreset } from "@/lib/brand";
-import { CHROME, type Chrome } from "@/lib/i18n/locale";
+import { CHROME, localizeUnitLabel, type Chrome } from "@/lib/i18n/locale";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
@@ -29,11 +29,12 @@ interface TractionMetricProps {
   readonly metric: HomepageMetric;
 }
 
-function TractionMetric({ metric, index }: TractionMetricProps & { readonly index: number }) {
+function TractionMetric({ metric }: TractionMetricProps) {
   // Atlas direction: figures on hairlines, not in cards; the value counts up
-  // as the band arrives.
+  // as the band arrives, each a step after the last (the band is a stagger
+  // group).
   return (
-    <div className="atlas-metric reveal" style={{ "--reveal-offset": `${String(index * 1.5)}%` } as CSSProperties}>
+    <div className="atlas-metric reveal">
       {metric.value !== null ? (
         <CountUp value={metric.value} className="atlas-metric__value" />
       ) : null}
@@ -54,9 +55,10 @@ interface InvestmentCardProps {
   readonly item: HomepageContentItem;
   readonly accentColor: string;
   readonly sectorLabel: string | null;
+  readonly ticketLabel: string;
 }
 
-function InvestmentCard({ item, accentColor, sectorLabel }: InvestmentCardProps) {
+function InvestmentCard({ item, accentColor, sectorLabel, ticketLabel }: InvestmentCardProps) {
   // Plain <div>, not a link: item.href is the investment content node's own
   // uri, but this app has no investment detail route yet — only the
   // homepage is implemented under (sites)/[siteKey]. Restore as a link
@@ -86,7 +88,7 @@ function InvestmentCard({ item, accentColor, sectorLabel }: InvestmentCardProps)
       ) : null}
       {item.ticketSizeLabel !== null ? (
         <div className="atlas-opp__ticket">
-          <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-paper/50">Ticket Size</span>
+          <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-paper/50">{ticketLabel}</span>
           <span className="font-display text-xl text-brand-paper">{item.ticketSizeLabel}</span>
         </div>
       ) : null}
@@ -143,10 +145,10 @@ function InvestorPackPanel({
         eyebrow={eyebrow}
         trigger={
           <>
-            {chrome.requestPack} <span aria-hidden="true">&rarr;</span>
+            {chrome.requestPack} <span aria-hidden="true" className="arrow">&rarr;</span>
           </>
         }
-        triggerClassName="press inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright"
+        triggerClassName="press btn-solid inline-flex items-center gap-2 rounded-sm bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-brand-on-accent hover:bg-brand-accent-bright"
       />
     </div>
   );
@@ -193,16 +195,16 @@ export function GroupInvestor({ section, locale = "en" }: GroupInvestorProps) {
           tone="bright"
         />
         {hasMetrics ? (
-          <div className="atlas-metrics">
+          <div className="atlas-metrics" data-stagger>
             {section.metrics.map((metric, index) => (
               // Fixed, non-reorderable server-rendered selection — index is a safe key.
-              <TractionMetric key={index} metric={metric} index={index} />
+              <TractionMetric key={index} metric={metric} />
             ))}
           </div>
         ) : null}
 
         {hasInvestments ? (
-          <div className="atlas-opps">
+          <div className="atlas-opps" data-stagger>
             {section.investments.items.map((item) => {
               const accent = resolveBusinessUnitAccent(item.businessUnit, fallbackAccent);
               // The raw business-unit name ("Real Estate"), not the resolved
@@ -210,10 +212,8 @@ export function GroupInvestor({ section, locale = "en" }: GroupInvestorProps) {
               // design's short sector label. Null (not the Group fallback
               // label) when the investment has no related company/business
               // unit, since "SIRA GROUP" isn't a sector.
-              const sectorLabel =
-                item.businessUnit.status === "ready"
-                  ? (item.businessUnit.items[0]?.name ?? null)
-                  : null;
+              const unit = item.businessUnit.status === "ready" ? (item.businessUnit.items[0] ?? null) : null;
+              const sectorLabel = localizeUnitLabel(locale, unit?.slug ?? null, unit?.name ?? null);
 
               return (
                 <InvestmentCard
@@ -221,6 +221,7 @@ export function GroupInvestor({ section, locale = "en" }: GroupInvestorProps) {
                   item={item}
                   accentColor={accent.color}
                   sectorLabel={sectorLabel}
+                  ticketLabel={chrome.ticketSize}
                 />
               );
             })}

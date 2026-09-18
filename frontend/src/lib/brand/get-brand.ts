@@ -15,7 +15,7 @@ import {
 import {
   SIRA_BRAND_QUERY,
 } from "@/queries/brand";
-import type { SiteKey } from "@/types/site";
+import type { LocaleCode, SiteKey } from "@/types/site";
 
 function logFallback(siteKey: SiteKey, error: unknown): void {
   if (error instanceof SiraGraphQLError) {
@@ -67,7 +67,40 @@ async function resolveBrand(siteKey: SiteKey): Promise<ResolvedBrand> {
 }
 
 /**
+ * The brand as one language's pages read it. English is the record as
+ * stored; Arabic folds the Arabic tagline, address and office columns in
+ * where an editor filled them and keeps the English where not, so a half-
+ * translated options page degrades to a mixed page rather than a blank one.
+ */
+function localizeBrand(brand: ResolvedBrand, locale: LocaleCode): ResolvedBrand {
+  if (locale !== "ar") return brand;
+
+  return Object.freeze({
+    ...brand,
+    tagline: brand.taglineAr ?? brand.tagline,
+    address: brand.addressAr ?? brand.address,
+    offices: Object.freeze(
+      brand.offices.map((office) =>
+        Object.freeze({
+          ...office,
+          name: office.nameAr ?? office.name,
+          address: office.addressAr ?? office.address,
+        }),
+      ),
+    ),
+  });
+}
+
+// The record is memoized once per request whatever languages ask for it;
+// only the fold differs, and that is cheap.
+const getBrandRecord = cache(resolveBrand);
+
+async function resolveBrandForLocale(siteKey: SiteKey, locale: LocaleCode = "en"): Promise<ResolvedBrand> {
+  return localizeBrand(await getBrandRecord(siteKey), locale);
+}
+
+/**
  * Memoized within a React Server Component render and backed by the
  * published GraphQL fetch cache across requests.
  */
-export const getBrand = cache(resolveBrand);
+export const getBrand = cache(resolveBrandForLocale);

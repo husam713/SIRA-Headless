@@ -9,7 +9,7 @@ import {
   type SiraProjectsQueryData,
   type SiraProjectsQueryVariables,
 } from "@/queries/projects";
-import type { SiteKey } from "@/types/site";
+import type { LocaleCode, SiteKey } from "@/types/site";
 
 const MAX_PROJECT_ARCHIVE_PAGE_SIZE = 50;
 
@@ -117,3 +117,33 @@ async function resolvePublishedProjectArchive(
 }
 
 export const getProjectArchive = cache(resolvePublishedProjectArchive);
+
+/**
+ * The archive in one language.
+ *
+ * ADR-034 keeps every translation in the same post type, so the raw archive
+ * carries both languages and each page shows one. An untranslated archive
+ * falls back to the language it does exist in rather than to an empty page —
+ * the same rule the Digital indexes apply — because a content gap should read
+ * as a gap and not as a broken build.
+ */
+export async function getProjectArchiveForLocale(
+  siteKey: SiteKey,
+  first: number,
+  locale: LocaleCode,
+): Promise<ProjectArchiveResolution> {
+  const resolution = await getProjectArchive(siteKey, first);
+
+  if (resolution.status !== "ready") return resolution;
+
+  const selected = resolution.page.items.filter((item) => item.locale === locale);
+
+  if (selected.length === 0 || selected.length === resolution.page.items.length) {
+    return resolution;
+  }
+
+  return Object.freeze({
+    ...resolution,
+    page: Object.freeze({ ...resolution.page, items: Object.freeze(selected) }),
+  });
+}

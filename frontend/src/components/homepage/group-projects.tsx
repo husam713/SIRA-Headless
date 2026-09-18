@@ -2,6 +2,8 @@ import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionHead } from "@/components/layout/section-head";
 import { CtaLink } from "@/components/homepage/cta-link";
+import { CHROME, localizeUnitLabel } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 import { ProjectCard, type ProjectCardData } from "@/components/atlas/project-card";
 import { getBrandPreset } from "@/lib/brand";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
@@ -14,7 +16,8 @@ import type {
 // three equal cards — the first two projects share a row 7/5, the rest sit in
 // thirds — each with a status badge on the picture, the company and place as
 // the kicker, and the picture pushing in under the pointer. The cards arrive
-// one after another (`--reveal-offset`).
+// one after another (the grid is a stagger group; each card's `--d` is its
+// place in it).
 //
 // Each card links to the project's own page: `item.href` is the project's URI
 // in WordPress (`/projects/<slug>/`), which is the route this app serves.
@@ -22,9 +25,10 @@ import type {
 interface GroupProjectsProps {
   readonly section: HomepageContentSection | null;
   readonly exploreLabel?: string;
+  readonly locale?: LocaleCode;
 }
 
-function toCard(item: HomepageContentItem): ProjectCardData {
+function toCard(item: HomepageContentItem, locale: LocaleCode): ProjectCardData {
   const groupPreset = getBrandPreset("group");
   const fallback = Object.freeze({ label: groupPreset.name, color: groupPreset.identity.accent });
   const unit = item.businessUnit.status === "ready" ? (item.businessUnit.items[0] ?? null) : null;
@@ -39,13 +43,14 @@ function toCard(item: HomepageContentItem): ProjectCardData {
     status: item.status,
     location: item.location,
     year: item.date === null ? null : item.date.slice(0, 4),
-    unitLabel: unit?.name ?? accent?.label ?? null,
+    unitLabel: localizeUnitLabel(locale, unit?.slug ?? null, unit?.name ?? accent?.label ?? null),
     unitSlug: unit?.slug ?? null,
     accentColor: accent?.color ?? null,
   };
 }
 
-export function GroupProjects({ section, exploreLabel = "Explore" }: GroupProjectsProps) {
+export function GroupProjects({ section, exploreLabel, locale = "en" }: GroupProjectsProps) {
+  const explore = exploreLabel ?? CHROME[locale].explore;
   if (section === null || section.selection.status !== "ready") return null;
 
   return (
@@ -65,9 +70,9 @@ export function GroupProjects({ section, exploreLabel = "Explore" }: GroupProjec
           }
         />
 
-        <div className="atlas-projects">
+        <div className="atlas-projects" data-stagger>
           {section.selection.items.map((item, index) => (
-            <ProjectCard key={item.databaseId} item={toCard(item)} index={index} exploreLabel={exploreLabel} />
+            <ProjectCard key={item.databaseId} item={toCard(item, locale)} index={index} exploreLabel={explore} />
           ))}
         </div>
 

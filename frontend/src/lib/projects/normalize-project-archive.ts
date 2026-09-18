@@ -9,14 +9,21 @@ import type {
   ProjectArchiveUnit,
 } from "@/lib/projects/types";
 import { decodeEntities } from "@/lib/editorial/rich-text";
+import { publicRecordHref, recordHrefLocale } from "@/lib/i18n/record-href";
 import type { SiraProjectsQueryData } from "@/queries/projects";
-import type { SiteKey } from "@/types/site";
+import type { LocaleCode, SiteKey } from "@/types/site";
 
 const EMPTY_DIAGNOSTICS: readonly ProjectArchiveDiagnostic[] =
   Object.freeze([]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function normalizeLocale(value: unknown): LocaleCode | null {
+  if (!isRecord(value)) return null;
+  const code = value["code"];
+  return code === "en" || code === "ar" ? code : null;
 }
 
 function diagnostic(
@@ -203,12 +210,20 @@ function normalizeProject(
     return null;
   }
 
-  const href = normalizePublicHref(value["uri"]);
+  const uri = normalizePublicHref(value["uri"]);
 
-  if (href === null) {
+  if (uri === null) {
     diagnostics.push(diagnostic("unsafe-uri", databaseId));
     return null;
   }
+
+  // ADR-034: the explicit field decides the language; the slug prefix is the
+  // fallback for a record written before the field existed. The href is the
+  // page this app serves for the record, which for a translation is the
+  // `/ar/` route rather than the WordPress slug.
+  const fieldLocale = normalizeLocale(value["siraLocale"]);
+  const locale = fieldLocale ?? recordHrefLocale(uri) ?? "en";
+  const href = publicRecordHref(uri, fieldLocale);
 
   const rawFeaturedImage = value["featuredImage"];
   const featuredImage =
@@ -239,6 +254,7 @@ function normalizeProject(
     databaseId,
     title,
     href,
+    locale,
     excerpt: normalizePlainText(value["excerpt"], 1200),
     featuredImage,
     subtitle: normalizePlainText(projectDetails?.["subtitle"], 300),

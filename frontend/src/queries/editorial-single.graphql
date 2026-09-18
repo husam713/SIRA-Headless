@@ -33,6 +33,11 @@ query SiraEditorialSingle($uri: String!) {
       modified
       isRestricted
     }
+    ... on WithAcfSiraLocale {
+      siraLocale {
+        code
+      }
+    }
     ... on SiraNewsItem {
       title
       excerpt

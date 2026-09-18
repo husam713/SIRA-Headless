@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import {
+  isSearchIndexingEnabled,
+  type SearchIndexingEnvironment,
+} from "@/config/search-indexing";
 import type { ResolvedBrand } from "@/lib/brand";
 import { buildCanonicalUrl } from "@/lib/seo/canonical";
 import type { SiteDiscoveryContext } from "@/lib/seo/discovery";
@@ -12,6 +16,11 @@ function getDescription(brand: ResolvedBrand): string | undefined {
 
 export interface SiteMetadataOptions {
   readonly forceNoIndex?: boolean;
+  /**
+   * Environment consulted for the deployment-wide `SIRA_SEARCH_INDEXING`
+   * switch. Injectable for tests; production callers leave it defaulted.
+   */
+  readonly environment?: SearchIndexingEnvironment;
   /** The language this response is in. Defaults to the site's own default. */
   readonly locale?: LocaleCode;
   /**
@@ -72,8 +81,13 @@ export function buildSiteMetadata(
   const canonicalUrl = buildCanonicalUrl(context.site.key, localizedPath);
   const metadataBase = buildCanonicalUrl(context.site.key, "/");
   const description = getDescription(brand);
+  // Three independent reasons a page is not indexable: it is not on the
+  // production canonical host, it is a draft preview, or the deployment-wide
+  // SIRA_SEARCH_INDEXING switch is off. Any one of them fails closed.
   const isIndexable =
-    context.isProductionCanonical && options.forceNoIndex !== true;
+    context.isProductionCanonical &&
+    options.forceNoIndex !== true &&
+    isSearchIndexingEnabled(options.environment);
   const languages = buildLanguageAlternates(context, options.path ?? pathname);
 
   return {

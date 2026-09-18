@@ -6,6 +6,8 @@ import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { editorialArticleHref } from "@/lib/editorial/routes";
 import { formatContentDate } from "@/lib/homepage/format-date";
+import { CHROME } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 import type {
   HomepageContentItem,
   HomepageEditorialSection,
@@ -30,26 +32,27 @@ type UpdatesGridStyle = CSSProperties & {
 
 interface GroupLatestUpdatesProps {
   readonly section: HomepageEditorialSection | null;
+  /** The page's language, for the kind label, the dateline and the link. */
+  readonly locale?: LocaleCode;
 }
-
-// Editorial kind, in the CMS's own vocabulary rather than an invented one.
-const KIND_LABELS: Readonly<Record<string, string>> = Object.freeze({
-  article: "Article",
-  insight: "Insight",
-  news: "News",
-  "press-release": "Press Release",
-});
 
 interface UpdateColumnProps {
   readonly item: HomepageContentItem;
+  readonly locale: LocaleCode;
 }
 
-function UpdateColumn({ item }: UpdateColumnProps) {
+// Editorial kind, in the CMS's own vocabulary rather than an invented one.
+function kindLabel(kind: string, locale: LocaleCode): string {
+  const labels = CHROME[locale].editorialKinds;
+  return Object.hasOwn(labels, kind) ? labels[kind as keyof typeof labels] : kind;
+}
+
+function UpdateColumn({ item, locale }: UpdateColumnProps) {
   // Only the four editorial bases have a detail route; anything else renders
   // unlinked rather than pointing at a 404.
   const href = editorialArticleHref(item.href);
-  const label = KIND_LABELS[item.kind] ?? item.kind;
-  const date = formatContentDate(item.date);
+  const label = kindLabel(item.kind, locale);
+  const date = formatContentDate(item.date, locale);
 
   return (
     // The rule is a leading border rather than a card outline: the reference
@@ -94,7 +97,7 @@ function UpdateColumn({ item }: UpdateColumnProps) {
             href={href}
             className="group inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.1em] text-brand-ink transition-colors hover:text-brand-accent"
           >
-            Read More
+            {CHROME[locale].readMore}
             <span
               aria-hidden="true"
               className="transition-transform duration-200 group-hover:translate-x-1"
@@ -108,7 +111,7 @@ function UpdateColumn({ item }: UpdateColumnProps) {
   );
 }
 
-export function GroupLatestUpdates({ section }: GroupLatestUpdatesProps) {
+export function GroupLatestUpdates({ section, locale = "en" }: GroupLatestUpdatesProps) {
   if (section === null || section.selection.status !== "ready") return null;
 
   // The homepage shows at most three. The data contract asks for more than it
@@ -157,7 +160,7 @@ export function GroupLatestUpdates({ section }: GroupLatestUpdatesProps) {
           style={{ "--updates-count": items.length } as UpdatesGridStyle}
         >
           {items.map((item) => (
-            <UpdateColumn key={item.databaseId} item={item} />
+            <UpdateColumn key={item.databaseId} item={item} locale={locale} />
           ))}
         </div>
       </PageContainer>

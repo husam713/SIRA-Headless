@@ -14,7 +14,7 @@ import type {
   HomepageContentItem,
   HomepageContentSection,
 } from "@/lib/homepage/types";
-import { localeHref } from "@/lib/i18n/locale";
+import { localeHref, localizeCompanyStatus, localizeUnitLabel } from "@/lib/i18n/locale";
 import type { LocaleCode } from "@/types/site";
 
 // Atlas direction (owner-approved 2026-09-16): "the house". The companies are
@@ -53,8 +53,9 @@ function isLive(item: HomepageContentItem): boolean {
   return item.status === null || /^\s*active\s*$/iu.test(item.status);
 }
 
-function PanelBody({ item, index, accent }: PanelProps) {
+function PanelBody({ item, index, accent, locale }: PanelProps) {
   const copy = item.descriptor ?? item.excerpt;
+  const unitSlug = item.businessUnit.status === "ready" ? (item.businessUnit.items[0]?.slug ?? null) : null;
 
   return (
     <>
@@ -77,7 +78,7 @@ function PanelBody({ item, index, accent }: PanelProps) {
         <span
           className={`atlas-panel__status${isLive(item) ? "" : " atlas-panel__status--launching"}`}
         >
-          {item.status}
+          {localizeCompanyStatus(locale, item.status)}
         </span>
       ) : null}
 
@@ -93,7 +94,7 @@ function PanelBody({ item, index, accent }: PanelProps) {
           className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em]"
           style={{ color: accent.color }}
         >
-          {accent.label}
+          {localizeUnitLabel(locale, unitSlug, accent.label)}
           <span aria-hidden="true">&rarr;</span>
         </span>
       </div>

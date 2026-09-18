@@ -27,7 +27,7 @@ function serviceOptions(locale: LocaleCode): readonly string[] {
     CHROME[locale].generalEnquiry,
     ...SITE_KEYS.filter((key) => key !== "group").flatMap((key) => {
       const site = getSiteDefinition(key);
-      return site === null ? [] : [site.name];
+      return site === null ? [] : [CHROME[locale].siteNames[key]];
     }),
   ];
 }

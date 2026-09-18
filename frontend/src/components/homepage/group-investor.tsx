@@ -6,7 +6,7 @@ import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionHead } from "@/components/layout/section-head";
 import { getBrandPreset } from "@/lib/brand";
-import { CHROME, type Chrome } from "@/lib/i18n/locale";
+import { CHROME, localizeUnitLabel, type Chrome } from "@/lib/i18n/locale";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import { CtaLink } from "@/components/homepage/cta-link";
 import type {
@@ -54,9 +54,10 @@ interface InvestmentCardProps {
   readonly item: HomepageContentItem;
   readonly accentColor: string;
   readonly sectorLabel: string | null;
+  readonly ticketLabel: string;
 }
 
-function InvestmentCard({ item, accentColor, sectorLabel }: InvestmentCardProps) {
+function InvestmentCard({ item, accentColor, sectorLabel, ticketLabel }: InvestmentCardProps) {
   // Plain <div>, not a link: item.href is the investment content node's own
   // uri, but this app has no investment detail route yet — only the
   // homepage is implemented under (sites)/[siteKey]. Restore as a link
@@ -86,7 +87,7 @@ function InvestmentCard({ item, accentColor, sectorLabel }: InvestmentCardProps)
       ) : null}
       {item.ticketSizeLabel !== null ? (
         <div className="atlas-opp__ticket">
-          <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-paper/50">Ticket Size</span>
+          <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-paper/50">{ticketLabel}</span>
           <span className="font-display text-xl text-brand-paper">{item.ticketSizeLabel}</span>
         </div>
       ) : null}
@@ -210,10 +211,8 @@ export function GroupInvestor({ section, locale = "en" }: GroupInvestorProps) {
               // design's short sector label. Null (not the Group fallback
               // label) when the investment has no related company/business
               // unit, since "SIRA GROUP" isn't a sector.
-              const sectorLabel =
-                item.businessUnit.status === "ready"
-                  ? (item.businessUnit.items[0]?.name ?? null)
-                  : null;
+              const unit = item.businessUnit.status === "ready" ? (item.businessUnit.items[0] ?? null) : null;
+              const sectorLabel = localizeUnitLabel(locale, unit?.slug ?? null, unit?.name ?? null);
 
               return (
                 <InvestmentCard
@@ -221,6 +220,7 @@ export function GroupInvestor({ section, locale = "en" }: GroupInvestorProps) {
                   item={item}
                   accentColor={accent.color}
                   sectorLabel={sectorLabel}
+                  ticketLabel={chrome.ticketSize}
                 />
               );
             })}

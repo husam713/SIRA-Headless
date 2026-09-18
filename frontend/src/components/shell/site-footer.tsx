@@ -138,7 +138,7 @@ function portfolioCompanies(currentSite: SiteKey, locale: LocaleCode) {
     return [
       {
         key,
-        name: site.name,
+        name: CHROME[locale].siteNames[key],
         // The same language on the company's site (every tenant serves `/ar/`).
         href: `https://${site.canonicalHostname}${localeHref(site, locale, "/")}`,
         isCurrent: key === currentSite,

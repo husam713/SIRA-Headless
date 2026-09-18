@@ -19,6 +19,7 @@ import { getBrand, getBrandPreset } from "@/lib/brand";
 import { parseHeadedList } from "@/lib/content/headed-list";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import type { HomepageContentItem } from "@/lib/homepage/types";
+import { localizeUnitLabel } from "@/lib/i18n/locale";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -54,14 +55,15 @@ export async function generateMetadata({ params }: InvestorsPageProps): Promise<
   });
 }
 
-function opportunityHref(item: HomepageContentItem, href: (path: string) => string): string | null {
-  // The opportunity's own record has no route; its related project does.
-  return item.relatedHref !== null ? href(item.relatedHref) : null;
+function opportunityHref(item: HomepageContentItem): string | null {
+  // The opportunity's own record has no route; its related project does, and
+  // its href is already the public path for the project's language.
+  return item.relatedHref;
 }
 
 export default async function InvestorsPage({ params }: InvestorsPageProps) {
   const context = await resolveAtlasPage(params, PAGE_URIS);
-  const { site, page, chrome, homepage, closing, closingImage, href } = context;
+  const { site, page, chrome, homepage, closing, closingImage, href, request } = context;
 
   if (site.key !== "group" || homepage === null || homepage.variant !== "group") notFound();
 
@@ -135,11 +137,15 @@ export default async function InvestorsPage({ params }: InvestorsPageProps) {
             <div className="atlas-opps">
               {investments.map((item) => {
                 const accent = resolveBusinessUnitAccent(item.businessUnit, fallbackAccent);
-                const target = opportunityHref(item, href);
+                const target = opportunityHref(item);
                 const body = (
                   <>
                     <p className="text-[11px] font-bold uppercase tracking-[0.14em]" style={{ color: accent.color }}>
-                      {accent.label}
+                      {localizeUnitLabel(
+                        request.locale,
+                        item.businessUnit.status === "ready" ? (item.businessUnit.items[0]?.slug ?? null) : null,
+                        accent.label,
+                      )}
                     </p>
                     <h3 className="font-display text-2xl font-normal leading-tight text-brand-paper">
                       {item.title}

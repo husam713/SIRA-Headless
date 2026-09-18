@@ -22,7 +22,7 @@ import {
   resolveSiteKeyForBusinessUnitSlug,
 } from "@/lib/homepage/business-unit-accent";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
-import { localeHref } from "@/lib/i18n/locale";
+import { localeHref, localizeUnitLabel } from "@/lib/i18n/locale";
 import { getProjectArchiveForLocale, getProjectSingleForLocale } from "@/lib/projects";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
@@ -122,7 +122,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     ...(company !== null
       ? [
           {
-            label: accent?.label ?? company.title,
+            label: localizeUnitLabel(request.locale, unit?.slug ?? null, accent?.label ?? company.title) ?? company.title,
             href:
               companySite === null
                 ? null
@@ -242,7 +242,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {chrome.newsAndPerspectives}
             </SectionEyebrow>
             <div className="mt-8">
-              <InsightRows items={related} href={href} />
+              <InsightRows items={related} href={href} locale={request.locale} />
             </div>
           </PageContainer>
         </Section>

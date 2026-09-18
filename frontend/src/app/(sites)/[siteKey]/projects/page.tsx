@@ -55,7 +55,7 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 
   if (archive.status !== "ready") notFound();
 
-  const items = archive.page.items.map((item) => toProjectCard(item));
+  const items = archive.page.items.map((item) => toProjectCard(item, request.locale));
   const filters: ProjectFilterOption[] = [];
 
   for (const item of items) {

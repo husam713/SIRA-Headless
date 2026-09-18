@@ -158,11 +158,11 @@ export default async function SiteLayout({
       : `https://${groupSite.canonicalHostname}${localeHref(groupSite, request.locale, "/")}`;
   const groupHeaderLink = groupSite === null || groupHref === null
     ? null
-    : { label: `${groupSite.name} ↗`, href: groupHref };
+    : { label: `${chrome.siteNames.group} ↗`, href: groupHref };
   const groupFooterLink = groupSite === null || groupHref === null
     ? null
     : {
-        label: `${branchFooter?.groupLinkLabelOverride ?? `A ${groupSite.name} Company`} ↗`,
+        label: `${branchFooter?.groupLinkLabelOverride ?? `A ${chrome.siteNames.group} Company`} ↗`,
         href: groupHref,
       };
 

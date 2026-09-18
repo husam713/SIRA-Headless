@@ -10,6 +10,9 @@ import { formatShortDateline } from "@/lib/editorial/entry-view";
 import { editorialKindSingular } from "@/lib/editorial/record";
 import { editorialArticleHref } from "@/lib/editorial/routes";
 import type { EditorialItem } from "@/lib/editorial/types";
+import { formatContentDate } from "@/lib/homepage/format-date";
+import { CHROME, localizeUnitLabel } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 
 // Editorial rows from the newsroom feed, set the way the homepage insights
 // chapter sets them: desk and kind as the kicker, the title, one line, the
@@ -19,9 +22,11 @@ import type { EditorialItem } from "@/lib/editorial/types";
 interface InsightRowsProps {
   readonly items: readonly EditorialItem[];
   readonly href: (path: string) => string;
+  /** The page's language, for the kicker; the articles themselves stay as written. */
+  readonly locale?: LocaleCode;
 }
 
-export function InsightRows({ items, href }: InsightRowsProps) {
+export function InsightRows({ items, href, locale = "en" }: InsightRowsProps) {
   if (items.length === 0) return null;
 
   const withMedia = items.every((item) => item.featuredImage !== null);
@@ -31,7 +36,8 @@ export function InsightRows({ items, href }: InsightRowsProps) {
       {items.map((item, index) => {
         const desk = primaryDesk(item);
         const articleHref = editorialArticleHref(item.href);
-        const date = formatShortDateline(item.publishedAt);
+        const date = locale === "en" ? formatShortDateline(item.publishedAt) : formatContentDate(item.publishedAt, locale);
+        const kind = locale === "en" ? editorialKindSingular(item.kind) : CHROME[locale].editorialKinds[item.kind];
 
         return (
           <article
@@ -45,9 +51,11 @@ export function InsightRows({ items, href }: InsightRowsProps) {
             }
           >
             <p className="atlas-insight__meta">
-              <b style={{ color: editorialDeskAccent(desk) }}>{editorialDeskLabel(desk)}</b>
+              <b style={{ color: editorialDeskAccent(desk) }}>
+                {localizeUnitLabel(locale, desk, editorialDeskLabel(desk))}
+              </b>
               <span>
-                {editorialKindSingular(item.kind)}
+                {kind}
                 {date !== null ? ` · ${date}` : null}
               </span>
             </p>

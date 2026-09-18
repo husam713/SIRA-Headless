@@ -72,16 +72,16 @@ export default async function SiteHomePage({
           <GroupHero hero={homepage.homepage.hero} locale={request.locale} />
         )}
         <GroupTicker ticker={homepage.homepage.ticker} />
-        <GroupLatestUpdates section={homepage.homepage.latestUpdates} />
+        <GroupLatestUpdates section={homepage.homepage.latestUpdates} locale={request.locale} />
         <GroupCompanies section={homepage.homepage.companies} locale={request.locale} />
         <GroupAbout
           section={homepage.homepage.about}
           image={homepage.homepage.hero?.slides.at(-1)?.image ?? null}
           offices={brand.offices}
         />
-        <GroupInvestor section={homepage.homepage.investor} />
+        <GroupInvestor section={homepage.homepage.investor} locale={request.locale} />
         <GroupServices section={homepage.homepage.services} />
-        <GroupProjects section={homepage.homepage.projects} />
+        <GroupProjects section={homepage.homepage.projects} locale={request.locale} />
         <GroupInsights section={homepage.homepage.insights} locale={request.locale} />
         <GroupTestimonials section={homepage.homepage.testimonials} />
         <GroupPartners section={homepage.homepage.partners} />
@@ -150,7 +150,7 @@ export default async function SiteHomePage({
         {branch.hero !== null && <BranchHero hero={branch.hero} />}
         <BranchStats statistics={branch.statistics} />
         <BranchOverview overview={branch.overview} focusAreas={branch.focusAreas} />
-        <GroupProjects section={branch.projects} />
+        <GroupProjects section={branch.projects} locale={request.locale} />
         <GroupInsights section={branch.insights} locale={request.locale} />
         <GroupContact
           locale={request.locale}

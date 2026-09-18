@@ -433,4 +433,12 @@ foreach ( (array) ( $sira_ar_tenant['menus'] ?? array() ) as $sira_ar_location =
 	sira_ar_menu( $sira_ar_menu_prefix . ' ' . ucwords( str_replace( '_', ' ', (string) $sira_ar_location ) ), (string) $sira_ar_location, (array) $sira_ar_items );
 }
 
+// WPGraphQL Smart Cache keeps executed responses in the object cache and only
+// learns about editor saves; a WP-CLI write is invisible to it, so a response
+// executed before this run would be served until it expires. Purge it.
+if ( ! SIRA_ATLAS_AR_DRY_RUN && function_exists( 'do_action' ) ) {
+	do_action( 'wpgraphql_cache_purge_all' );
+	sira_ar_log( 'purged the WPGraphQL object cache' );
+}
+
 WP_CLI::success( ( SIRA_ATLAS_AR_DRY_RUN ? 'Planned' : 'Wrote' ) . " Arabic Atlas content for {$sira_ar_home}: " . count( $sira_ar_translations ) . ' translations linked.' );

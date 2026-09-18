@@ -10,8 +10,14 @@
           "hero_heading_highlight": "مستقبلًا أذكى",
           "hero_heading_after": "",
           "hero_description": "مجموعة استثمار وتطوير متعددة الجنسيات تعمل في العقارات والرعاية الصحية والضيافة والاستشارات في أوروبا وأفريقيا والشرق الأوسط.",
-          "hero_primary_cta": { "title": "استعرض المشاريع", "url": "#projects" },
-          "hero_secondary_cta": { "title": "اطلب استشارة", "url": "#contact" },
+          "hero_primary_cta": {
+            "title": "استعرض المشاريع",
+            "url": "/ar/projects/"
+          },
+          "hero_secondary_cta": {
+            "title": "اطلب استشارة",
+            "url": "/ar/contact/"
+          },
           "hero_slides_0_eyebrow_override": "سيرة العقارية",
           "hero_slides_0_location_override": "إسطنبول، تركيا",
           "hero_slides_0_title_override": "سيرة برايم",
@@ -28,27 +34,51 @@
           "hero_slides_2_description_override": "مشاريع ضيافة وأسلوب حياة تتشكّل عبر الشرق الأوسط وأفريقيا.",
           "hero_slides_2_image_alt_override": "مشاريع الضيافة",
           "ticker_items_0_label": "العقارات — إسطنبول",
-          "ticker_items_0_link": { "title": "سيرة برايم", "url": "/ar/projects/sira-prime/" },
+          "ticker_items_0_link": {
+            "title": "سيرة برايم",
+            "url": "/ar/projects/sira-prime/"
+          },
           "ticker_items_1_label": "الرعاية الصحية — نيروبي",
-          "ticker_items_1_link": { "title": "الاستثمار الطبي والتشخيص الذكي", "url": "/ar/services/" },
+          "ticker_items_1_link": {
+            "title": "الاستثمار الطبي والتشخيص الذكي",
+            "url": "/ar/services/"
+          },
           "ticker_items_2_label": "أسلوب الحياة — الشرق الأوسط وأفريقيا",
-          "ticker_items_2_link": { "title": "مشاريع الضيافة والطاقة", "url": "/ar/services/" },
+          "ticker_items_2_link": {
+            "title": "مشاريع الضيافة والطاقة",
+            "url": "/ar/services/"
+          },
           "ticker_items_3_label": "الاستشارات — الخدمات الاستشارية",
-          "ticker_items_3_link": { "title": "الاستشارة الاستثمارية لمركز إسطنبول المالي", "url": "/ar/projects/istanbul-financial-district-advisory/" },
+          "ticker_items_3_link": {
+            "title": "الاستشارة الاستثمارية لمركز إسطنبول المالي",
+            "url": "/ar/projects/istanbul-financial-district-advisory/"
+          },
           "ticker_items_4_label": "إسطنبول · باريس — المقر الرئيسي",
-          "ticker_items_4_link": { "title": "علاقات المستثمرين", "url": "/ar/investors/" },
+          "ticker_items_4_link": {
+            "title": "علاقات المستثمرين",
+            "url": "/ar/investors/"
+          },
           "latest_updates_eyebrow": "آخر المستجدات",
           "latest_updates_heading": "آخر المستجدات",
           "latest_updates_description": "ما يستجد في شركات المجموعة وأسواقها.",
-          "latest_updates_link": { "title": "كل الأخبار", "url": "#insights" },
+          "latest_updates_link": {
+            "title": "كل الأخبار",
+            "url": "#insights"
+          },
           "companies_eyebrow": "شركاتنا",
           "companies_heading": "مجموعة واحدة، ومحفظة شركات تتوسّع",
           "companies_description": "تعمل مجموعة سيرة كبيت من الشركات المتخصصة، تركّز كل واحدة منها على سوق بعينه — وتُطلق أقسامًا جديدة كلما توسّعت المجموعة.",
-          "companies_link": { "title": "الشركات", "url": "#companies" },
+          "companies_link": {
+            "title": "الشركات",
+            "url": "#companies"
+          },
           "about_eyebrow": "عن مجموعة سيرة",
           "about_heading": "نصل القارات باستثمار ذكي",
           "about_description": "من مقرّيها في إسطنبول وباريس، تستثمر مجموعة سيرة وتدير مشاريع في العقارات والرعاية الصحية والضيافة والطاقة — لتبني البنية التحتية للجيل القادم من النمو في أفريقيا والشرق الأوسط.",
-          "about_link": { "title": "من نحن", "url": "/ar/about-us/" },
+          "about_link": {
+            "title": "من نحن",
+            "url": "/ar/about-us/"
+          },
           "about_body": "<p>بدأت مجموعة سيرة في تركيا عام 2014 شركةً للتجارة الدولية، ثم توسّعت إلى التطوير العقاري والاستشارات، وهي اليوم بيت من الشركات المتخصصة يعمل في ثلاث قارات.</p><p>يعمل كل قسم بقيادته وتركيزه السوقي الخاص، مدعومًا برأس مال وحوكمة ومعايير مشتركة.</p>",
           "about_metrics_0_value": "10+",
           "about_metrics_0_label": "سنوات من الخبرة",
@@ -65,7 +95,10 @@
           "investor_eyebrow": "علاقات المستثمرين",
           "investor_heading": "استثمر إلى جانب مجموعة سيرة",
           "investor_description": "نشارك المستثمرين المؤسسيين والأفراد الباحثين عن فرص عالية النمو في العقارات والرعاية الصحية عبر أفريقيا وأوروبا والشرق الأوسط.",
-          "investor_link": { "title": "علاقات المستثمرين", "url": "/ar/investors/" },
+          "investor_link": {
+            "title": "علاقات المستثمرين",
+            "url": "/ar/investors/"
+          },
           "investor_body": "<p>نعمل مع المستثمرين المؤسسيين والأفراد في التطوير العقاري والبنية التحتية الصحية والضيافة، ونهيكل المشاركة على مستوى المشروع أو القسم.</p>",
           "investor_metrics_0_value": "$120M+",
           "investor_metrics_0_label": "أصول قيد التطوير",
@@ -84,15 +117,24 @@
           "services_eyebrow": "ما نقوم به",
           "services_heading": "خدماتنا الأساسية",
           "services_description": "قدرات استشارية وتطويرية وتشغيلية تُقدَّم على مستوى المجموعة وتنفّذها الشركة الأقرب إلى كل سوق.",
-          "services_link": { "title": "خدماتنا", "url": "/ar/services/" },
+          "services_link": {
+            "title": "خدماتنا",
+            "url": "/ar/services/"
+          },
           "projects_eyebrow": "بصمة عالمية",
           "projects_heading": "مشاريعنا",
           "projects_description": "مشاريع ومنشآت قيد التنفيذ في تركيا وشرق أفريقيا والمنطقة الأوسع.",
-          "projects_link": { "title": "استعرض المشاريع", "url": "/ar/projects/" },
+          "projects_link": {
+            "title": "استعرض المشاريع",
+            "url": "/ar/projects/"
+          },
           "insights_eyebrow": "أخبار ورؤى",
           "insights_heading": "رؤى",
           "insights_description": "قراءات في الأسواق التي نبني فيها، بأقلام الفرق التي تعمل فيها.",
-          "insights_link": { "title": "كل الأخبار", "url": "/ar/news/" },
+          "insights_link": {
+            "title": "كل الأخبار",
+            "url": "/ar/news/"
+          },
           "testimonials_eyebrow": "بكلماتهم",
           "testimonials_heading": "موضع ثقة الشركاء في كل أسواقنا",
           "testimonials_description": "ما يقوله الشركاء والمستثمرون والعملاء عن العمل معنا.",
@@ -215,7 +257,24 @@
           "status": "قيد التطوير",
           "excerpt": "مشروع فلل رائد، والبيع المسبق جارٍ.",
           "content": "<p>سيرة برايم مجمّع سكني منخفض الارتفاع على الشاطئ الآسيوي لإسطنبول: 64 فيلا تحيط بمحور حدائق مشترك، مع نادٍ خاص ومبنى للعافية ووصول مباشر إلى الممشى الساحلي.</p><p>افتُتح البيع المسبق في الربع الثاني من 2026، ومن المقرر تسليم المرحلة الأولى مطلع 2028. يُهيكل المشروع كشراكة في حقوق الملكية، تكون فيها سيرة العقارية المطوّر ومشغّل المجمّع بعد اكتماله.</p>",
-          "stats": [["64 فيلا", "الوحدات"], ["9.2 هكتار", "الموقع"], ["الربع الأول 2028", "التسليم"], ["شراكة في حقوق الملكية", "الهيكل"]]
+          "stats": [
+            [
+              "64 فيلا",
+              "الوحدات"
+            ],
+            [
+              "9.2 هكتار",
+              "الموقع"
+            ],
+            [
+              "الربع الأول 2028",
+              "التسليم"
+            ],
+            [
+              "شراكة في حقوق الملكية",
+              "الهيكل"
+            ]
+          ]
         },
         {
           "slug": "rosina-diagnostic-center",
@@ -225,7 +284,24 @@
           "status": "قيد التشغيل",
           "excerpt": "منصة متقدمة للتصوير والتشخيص الجزيئي.",
           "content": "<p>روزينا هو المركز الرائد لسيرة للرعاية الصحية: رنين مغناطيسي، وأشعة مقطعية، وموجات فوق صوتية، ومنذ يوليو 2026 جناح للتصوير الجزيئي PET-CT للكشف المبكر عن السرطان.</p><p>يعمل المركز على نظام إدارة المنشآت الخاص بالمجموعة، الذي يجدول الأجهزة ويتتبّع المستهلكات ويرفع التقارير إلى الأطباء المحوّلين في الوقت الفعلي. يُجري المركز أكثر من ثلاثين ألف فحص سنويًا، ونما بنسبة 42% على أساس سنوي.</p>",
-          "stats": [["MRI · CT · US · PET-CT", "الأجهزة"], ["30,000+", "فحص سنويًا"], ["2021", "الافتتاح"], ["+42% سنويًا", "النمو"]]
+          "stats": [
+            [
+              "MRI · CT · US · PET-CT",
+              "الأجهزة"
+            ],
+            [
+              "30,000+",
+              "فحص سنويًا"
+            ],
+            [
+              "2021",
+              "الافتتاح"
+            ],
+            [
+              "+42% سنويًا",
+              "النمو"
+            ]
+          ]
         },
         {
           "slug": "hospitality-platform",
@@ -235,7 +311,24 @@
           "status": "مرحلة التأسيس",
           "excerpt": "فرصة شريك مؤسس في أحدث أقسام المجموعة في الضيافة.",
           "content": "<p>تجمع المنصة الأولى لسيرة لايف ستايل بين مساكن ذات علامة تجارية ومشغّل ضيافة بوتيكي في موقعين ساحليين قيد الدراسة.</p><p>انطلق القسم في 2026، وهو مفتوح لعدد محدود من الشركاء المؤسسين الذين يتخذون مركزًا على مستوى المنصة لا في أصل واحد.</p>",
-          "stats": [["2 قيد الدراسة", "المواقع"], ["مالك ومشغّل", "النموذج"], ["2027", "الافتتاح الأول"], ["شراكة تأسيسية", "الهيكل"]]
+          "stats": [
+            [
+              "2 قيد الدراسة",
+              "المواقع"
+            ],
+            [
+              "مالك ومشغّل",
+              "النموذج"
+            ],
+            [
+              "2027",
+              "الافتتاح الأول"
+            ],
+            [
+              "شراكة تأسيسية",
+              "الهيكل"
+            ]
+          ]
         },
         {
           "slug": "pet-ct-imaging-center",
@@ -245,7 +338,24 @@
           "status": "مخطط",
           "excerpt": "الجيل القادم من التصوير الجزيئي للكشف المبكر عن السرطان.",
           "content": "<p>مركز مستقل للتصوير الجزيئي يكرّر جناح PET-CT في روزينا في مدينة ثانية في شرق أفريقيا، مع شراكة إقليمية لتوريد النظائر المشعّة عبر سيكلوترون.</p><p>المركز هو الخطوة الأولى في توسيع شبكة التشخيص: نظام التشغيل نفسه، والبروتوكولات السريرية نفسها، وعلاقات التحويل نفسها، تُفتح حيث يكون الطلب على التصوير المتقدم أبعد ما يكون عن العرض.</p>",
-          "stats": [["PET-CT", "الجهاز"], ["اختيار الموقع", "المرحلة"], ["2027", "الافتتاح المستهدف"], ["سيكلوترون إقليمي", "شريك النظائر"]]
+          "stats": [
+            [
+              "PET-CT",
+              "الجهاز"
+            ],
+            [
+              "اختيار الموقع",
+              "المرحلة"
+            ],
+            [
+              "2027",
+              "الافتتاح المستهدف"
+            ],
+            [
+              "سيكلوترون إقليمي",
+              "شريك النظائر"
+            ]
+          ]
         },
         {
           "slug": "istanbul-financial-district-advisory",
@@ -255,7 +365,20 @@
           "status": "قيد التشغيل",
           "excerpt": "هيكلة رأس المال الموجّه إلى الرعاية الصحية والإسكان في شرق أفريقيا عبر إسطنبول.",
           "content": "<p>تفويض استشاري مستمر لهيكلة رأس المال التركي والخليجي في منصات التشخيص والسكن في شرق أفريقيا، باتخاذ مركز إسطنبول المالي ولايةً جسريّة.</p><p>تقود سيرة للاستشارات التفويض من إسطنبول، والشركات المشغّلة التابعة للمجموعة هي الحالات المرجعية: الهياكل التي حملت روزينا وسيرة برايم، مطبَّقةً للشركاء الذين يريدون الممر من دون بنائه بأنفسهم.</p>",
-          "stats": [["متعدد السنوات", "التفويض"], ["تركيا ⇄ شرق أفريقيا", "الممر"], ["الرعاية الصحية · الإسكان", "القطاعات"]]
+          "stats": [
+            [
+              "متعدد السنوات",
+              "التفويض"
+            ],
+            [
+              "تركيا ⇄ شرق أفريقيا",
+              "الممر"
+            ],
+            [
+              "الرعاية الصحية · الإسكان",
+              "القطاعات"
+            ]
+          ]
         },
         {
           "slug": "coastal-residences",
@@ -265,7 +388,24 @@
           "status": "مخطط",
           "excerpt": "مساكن ذات علامة تجارية على مقربة من البوسفور، تُشغَّل مع سيرة لايف ستايل.",
           "content": "<p>موقع من المرحلة الثانية متاخم لسيرة برايم، مخطط كمساكن ذات علامة تجارية مع مشغّل ضيافة من قسم لايف ستايل التابع للمجموعة.</p><p>يتبع المخطط الرئيسي موجز سيرة برايم — منخفض، ممتد، ومفتوح على الماء — ويضيف ناديًا للسكان يديره المشغّل، بحيث يُدار المجمّع كأصل ضيافة من اليوم الأول للسكن.</p>",
-          "stats": [["38", "الوحدات"], ["المخطط الرئيسي", "المرحلة"], ["سيرة لايف ستايل", "المشغّل"], ["2028", "المستهدف"]]
+          "stats": [
+            [
+              "38",
+              "الوحدات"
+            ],
+            [
+              "المخطط الرئيسي",
+              "المرحلة"
+            ],
+            [
+              "سيرة لايف ستايل",
+              "المشغّل"
+            ],
+            [
+              "2028",
+              "المستهدف"
+            ]
+          ]
         }
       ],
       "investments": [
@@ -316,21 +456,55 @@
       ],
       "menus": {
         "primary_ar": [
-          { "title": "الشركات", "url": "/ar/#companies" },
-          { "title": "المستثمرون", "url": "/ar/investors/" },
-          { "title": "المشاريع", "url": "/ar/projects/" },
-          { "title": "رؤى", "url": "/ar/#insights" },
-          { "title": "تواصل", "url": "/ar/contact/" }
+          {
+            "title": "الشركات",
+            "url": "/ar/#companies"
+          },
+          {
+            "title": "الخدمات",
+            "url": "/ar/services/"
+          },
+          {
+            "title": "المشاريع",
+            "url": "/ar/projects/"
+          },
+          {
+            "title": "المستثمرون",
+            "url": "/ar/investors/"
+          },
+          {
+            "title": "رؤى",
+            "url": "/ar/news/"
+          },
+          {
+            "title": "تواصل",
+            "url": "/ar/contact/"
+          }
         ],
         "footer_ar": [
-          { "title": "الرئيسية", "url": "/ar/" },
-          { "title": "الخدمات", "url": "/ar/services/" },
-          { "title": "المشاريع", "url": "/ar/projects/" },
-          { "title": "عن مجموعة سيرة", "url": "/ar/#about" }
+          {
+            "title": "الرئيسية",
+            "url": "/ar/"
+          },
+          {
+            "title": "الخدمات",
+            "url": "/ar/services/"
+          },
+          {
+            "title": "المشاريع",
+            "url": "/ar/projects/"
+          },
+          {
+            "title": "المستثمرون",
+            "url": "/ar/investors/"
+          },
+          {
+            "title": "عن مجموعة سيرة",
+            "url": "/ar/#about"
+          }
         ]
       }
     },
-
     "https://cms-consulting.siratrgroup.com": {
       "menu_prefix": "Consulting Arabic",
       "home": {
@@ -343,8 +517,14 @@
           "branch_hero_heading_after": "",
           "branch_hero_description": "تقدّم سيرة للاستشارات المشورة للشركاء والمستثمرين الداخلين إلى أفريقيا والشرق الأوسط — من دخول السوق والهيكلة إلى التنفيذ على الأرض.",
           "branch_hero_image_alt": "أفق مركز إسطنبول المالي",
-          "branch_hero_primary_cta": { "title": "استعرض الأعمال", "url": "#projects" },
-          "branch_hero_secondary_cta": { "title": "اطلب استشارة", "url": "#contact" },
+          "branch_hero_primary_cta": {
+            "title": "استعرض الأعمال",
+            "url": "/ar/projects/"
+          },
+          "branch_hero_secondary_cta": {
+            "title": "اطلب استشارة",
+            "url": "/ar/contact/"
+          },
           "branch_statistics_0_value": "3",
           "branch_statistics_0_label": "قارات",
           "branch_statistics_0_supporting_text": "أوروبا وأفريقيا والشرق الأوسط",
@@ -360,7 +540,10 @@
           "branch_overview_eyebrow": "نظرة عامة",
           "branch_overview_heading": "استشارات استراتيجية واستثمارية",
           "branch_overview_description": "نساعد المؤسسات والمستثمرين والمشغّلين على اجتياز أسواق معقّدة عالية النمو — جامعين بين الحضور المحلي وانضباط مجموعة استثمار دولية.",
-          "branch_overview_link": { "title": "نظرة عامة", "url": "#overview" },
+          "branch_overview_link": {
+            "title": "نظرة عامة",
+            "url": "#overview"
+          },
           "branch_overview_body": "<p>نقدّم المشورة للمؤسسات والمستثمرين والمشغّلين الداخلين إلى أفريقيا والشرق الأوسط أو المتوسّعين فيهما، من أعمال الجدوى الأولى إلى التسليم على الأرض.</p>",
           "branch_focus_areas_0_title": "دخول الأسواق",
           "branch_focus_areas_0_description": "دراسات الجدوى والتموضع واستراتيجية الدخول إلى الأسواق للمناطق الجديدة.",
@@ -371,17 +554,65 @@
           "branch_projects_eyebrow": "الأعمال",
           "branch_projects_heading": "كيف نعمل",
           "branch_projects_description": "كيف نعمل مع عملائنا، من دراسات دخول السوق إلى هيكلة الصفقات ودعم التنفيذ.",
-          "branch_projects_link": { "title": "كيف نعمل", "url": "/ar/projects/" },
-          "branch_projects_selected_items": { "@records": [["sira_project", "istanbul-financial-district-advisory"], ["sira_project", "east-africa-market-entry-programme"], ["sira_project", "gulf-capital-structuring-mandate"]] },
+          "branch_projects_link": {
+            "title": "كيف نعمل",
+            "url": "/ar/projects/"
+          },
+          "branch_projects_selected_items": {
+            "@records": [
+              [
+                "sira_project",
+                "istanbul-financial-district-advisory"
+              ],
+              [
+                "sira_project",
+                "east-africa-market-entry-programme"
+              ],
+              [
+                "sira_project",
+                "gulf-capital-structuring-mandate"
+              ]
+            ]
+          },
           "branch_insights_eyebrow": "أخبار ورؤى",
           "branch_insights_heading": "من مكتب الاستشارات",
           "branch_insights_description": "ملاحظات وتحليلات عن الأسواق من فريقنا الاستشاري.",
-          "branch_insights_link": { "title": "كل الأخبار", "url": "/ar/news/" },
+          "branch_insights_link": {
+            "title": "كل الأخبار",
+            "url": "/ar/news/"
+          },
           "branch_contact_eyebrow": "تواصل معنا",
           "branch_contact_heading": "ادخل الأسواق الجديدة بثقة",
           "branch_contact_description": "تحدّث إلى فريقنا الاستشاري عن دخول السوق والهيكلة والتنفيذ في أفريقيا والشرق الأوسط.",
           "branch_footer_tagline_override": "استشارات استراتيجية واستثمارية في الشرق الأوسط وأفريقيا، بدعم من مجموعة سيرة.",
-          "branch_footer_group_link_label_override": "مجموعة سيرة"
+          "branch_footer_group_link_label_override": "مجموعة سيرة",
+          "branch_services_eyebrow": "ما نقوم به",
+          "branch_services_heading": "خدماتنا",
+          "branch_services_description": "دخول الأسواق، وهيكلة الاستثمار، وتأسيس الشراكات، ودعم التنفيذ — أربع خدمات يقودها شريك من إسطنبول.",
+          "branch_services_link": {
+            "title": "كل الخدمات",
+            "url": "/ar/services/"
+          },
+          "branch_services_selected_items": {
+            "@records": [
+              [
+                "sira_service",
+                "market-entry"
+              ],
+              [
+                "sira_service",
+                "investment-structuring"
+              ],
+              [
+                "sira_service",
+                "partnership-formation"
+              ],
+              [
+                "sira_service",
+                "execution-support"
+              ]
+            ]
+          }
         }
       },
       "pages": [
@@ -457,7 +688,20 @@
           "status": "قيد التشغيل",
           "excerpt": "هيكلة رأس المال الموجّه إلى الرعاية الصحية والإسكان في شرق أفريقيا عبر إسطنبول.",
           "content": "<p>تفويض استشاري مستمر لهيكلة رأس المال التركي والخليجي في منصات التشخيص والسكن في شرق أفريقيا، باتخاذ مركز إسطنبول المالي ولايةً جسريّة.</p><p>تقود سيرة للاستشارات التفويض من إسطنبول، والشركات المشغّلة التابعة للمجموعة هي الحالات المرجعية: الهياكل التي حملت روزينا وسيرة برايم، مطبَّقةً للشركاء الذين يريدون الممر من دون بنائه بأنفسهم.</p>",
-          "stats": [["متعدد السنوات", "التفويض"], ["تركيا ⇄ شرق أفريقيا", "الممر"], ["الرعاية الصحية · الإسكان", "القطاعات"]]
+          "stats": [
+            [
+              "متعدد السنوات",
+              "التفويض"
+            ],
+            [
+              "تركيا ⇄ شرق أفريقيا",
+              "الممر"
+            ],
+            [
+              "الرعاية الصحية · الإسكان",
+              "القطاعات"
+            ]
+          ]
         },
         {
           "slug": "east-africa-market-entry-programme",
@@ -467,7 +711,20 @@
           "status": "قيد التشغيل",
           "excerpt": "برنامج دخول قابل للتكرار للمشغّلين الذين يتبعون المجموعة إلى شرق أفريقيا.",
           "content": "<p>برنامج منظّم للمشغّلين الأوروبيين والخليجيين الداخلين إلى كينيا وجيرانها: تقييم السوق، وتأسيس الكيان، والترخيص، والسنة الأولى من التشغيل المحلي، يُدار من نيروبي إلى جانب سيرة للرعاية الصحية.</p><p>يعيد كل تكليف استخدام المسار القانوني والمصرفي والتنظيمي الذي بنته المجموعة لروزينا، فيصل الشريك والطريق مرسوم سلفًا.</p>",
-          "stats": [["كينيا · تنزانيا · أوغندا", "الأسواق"], ["12 شهرًا", "البرنامج"], ["الرعاية الصحية · الضيافة", "القطاعات"]]
+          "stats": [
+            [
+              "كينيا · تنزانيا · أوغندا",
+              "الأسواق"
+            ],
+            [
+              "12 شهرًا",
+              "البرنامج"
+            ],
+            [
+              "الرعاية الصحية · الضيافة",
+              "القطاعات"
+            ]
+          ]
         },
         {
           "slug": "gulf-capital-structuring-mandate",
@@ -477,25 +734,65 @@
           "status": "قيد التنفيذ",
           "excerpt": "هيكلة رأس مال العائلات الخليجية في منصات سكنية وضيافة تركية.",
           "content": "<p>تفويض هيكلة لمكاتب عائلية خليجية توظّف رأس مالها في مشاريع سكنية ومشاريع ضيافة تركية عبر أوعية في إسطنبول، وسيرة العقارية وسيرة لايف ستايل هما الشريكان المشغّلان.</p><p>يشمل العمل تصميم الوعاء، والحوكمة، والتقارير، والمسار التنظيمي على جانبي الممر.</p>",
-          "stats": [["مكاتب عائلية", "المستثمرون"], ["أوعية في إسطنبول", "الهيكل"], ["سكني · ضيافة", "القطاعات"]]
+          "stats": [
+            [
+              "مكاتب عائلية",
+              "المستثمرون"
+            ],
+            [
+              "أوعية في إسطنبول",
+              "الهيكل"
+            ],
+            [
+              "سكني · ضيافة",
+              "القطاعات"
+            ]
+          ]
         }
       ],
       "menus": {
         "primary_ar": [
-          { "title": "نظرة عامة", "url": "/ar/#overview" },
-          { "title": "الأعمال", "url": "/ar/projects/" },
-          { "title": "رؤى", "url": "/ar/#insights" },
-          { "title": "تواصل", "url": "/ar/contact/" }
+          {
+            "title": "نظرة عامة",
+            "url": "/ar/#overview"
+          },
+          {
+            "title": "الخدمات",
+            "url": "/ar/services/"
+          },
+          {
+            "title": "الأعمال",
+            "url": "/ar/projects/"
+          },
+          {
+            "title": "رؤى",
+            "url": "/ar/news/"
+          },
+          {
+            "title": "تواصل",
+            "url": "/ar/contact/"
+          }
         ],
         "footer_ar": [
-          { "title": "الرئيسية", "url": "/ar/" },
-          { "title": "نظرة عامة", "url": "/ar/#overview" },
-          { "title": "الأعمال", "url": "/ar/projects/" },
-          { "title": "تواصل", "url": "/ar/contact/" }
+          {
+            "title": "الرئيسية",
+            "url": "/ar/"
+          },
+          {
+            "title": "الخدمات",
+            "url": "/ar/services/"
+          },
+          {
+            "title": "الأعمال",
+            "url": "/ar/projects/"
+          },
+          {
+            "title": "تواصل",
+            "url": "/ar/contact/"
+          }
         ]
       }
     },
-
     "https://cms-healthcare.siratrgroup.com": {
       "menu_prefix": "Healthcare Arabic",
       "home": {
@@ -508,8 +805,14 @@
           "branch_hero_heading_after": "",
           "branch_hero_description": "تنقل سيرة للرعاية الصحية معايير التشخيص الأوروبية إلى شرق أفريقيا — مراكز تصوير متقدمة مبنية على تقنية ذكية وتُشغَّل من أجل أثر دائم على المرضى.",
           "branch_hero_image_alt": "جناح التصوير التشخيصي في مركز روزينا للتشخيص، نيروبي",
-          "branch_hero_primary_cta": { "title": "استعرض المراكز", "url": "#projects" },
-          "branch_hero_secondary_cta": { "title": "نظرة عامة", "url": "#overview" },
+          "branch_hero_primary_cta": {
+            "title": "استعرض المراكز",
+            "url": "/ar/projects/"
+          },
+          "branch_hero_secondary_cta": {
+            "title": "نظرة عامة",
+            "url": "#overview"
+          },
           "branch_statistics_0_value": "30K+",
           "branch_statistics_0_label": "فحص للمرضى سنويًا",
           "branch_statistics_0_supporting_text": "في المراكز العاملة",
@@ -525,7 +828,10 @@
           "branch_overview_eyebrow": "نظرة عامة",
           "branch_overview_heading": "نرتقي بالطب التشخيصي في شرق أفريقيا",
           "branch_overview_description": "نستثمر في مراكز تشخيص متقدمة ونبنيها ونشغّلها، جامعين بين التقنية الطبية الأوروبية والإدارة الذكية للمنشآت — لنسدّ الفجوة بين التصوير العالمي المستوى والمجتمعات الأشدّ حاجة إليه.",
-          "branch_overview_link": { "title": "نظرة عامة", "url": "#overview" },
+          "branch_overview_link": {
+            "title": "نظرة عامة",
+            "url": "#overview"
+          },
           "branch_overview_body": "<p>نستثمر في مراكز تشخيص ونبنيها ونشغّلها لتضع التصوير الحديث في متناول المرضى والأطباء المحوّلين في شرق أفريقيا.</p><p>يُخطَّط كل مركز حول المعدات والكوادر ومعايير الخدمة التي تحتاجها المنطقة فعلًا، لا حول قالب مستورد كما هو.</p>",
           "branch_focus_areas_0_title": "التصوير التشخيصي",
           "branch_focus_areas_0_description": "خدمات الرنين المغناطيسي والأشعة المقطعية والموجات فوق الصوتية وفق المعايير السريرية الأوروبية.",
@@ -536,17 +842,65 @@
           "branch_projects_eyebrow": "المراكز",
           "branch_projects_heading": "شبكة متنامية من مراكز التشخيص",
           "branch_projects_description": "مراكز عاملة ومنشآت قيد التطوير في أنحاء المنطقة.",
-          "branch_projects_link": { "title": "استعرض المراكز", "url": "/ar/projects/" },
-          "branch_projects_selected_items": { "@records": [["sira_project", "rosina-diagnostic-center"], ["sira_project", "pet-ct-imaging-center"], ["sira_project", "regional-network-expansion"]] },
+          "branch_projects_link": {
+            "title": "استعرض المراكز",
+            "url": "/ar/projects/"
+          },
+          "branch_projects_selected_items": {
+            "@records": [
+              [
+                "sira_project",
+                "rosina-diagnostic-center"
+              ],
+              [
+                "sira_project",
+                "pet-ct-imaging-center"
+              ],
+              [
+                "sira_project",
+                "regional-network-expansion"
+              ]
+            ]
+          },
           "branch_insights_eyebrow": "أخبار ورؤى",
           "branch_insights_heading": "من مكتب الرعاية الصحية",
           "branch_insights_description": "ملاحظات من فرقنا السريرية والاستثمارية عن الرعاية الصحية التشخيصية في شرق أفريقيا.",
-          "branch_insights_link": { "title": "كل الأخبار", "url": "/ar/news/" },
+          "branch_insights_link": {
+            "title": "كل الأخبار",
+            "url": "/ar/news/"
+          },
           "branch_contact_eyebrow": "تواصل معنا",
           "branch_contact_heading": "كن شريكًا في الرعاية الصحية الأفريقية",
           "branch_contact_description": "نعمل مع المستثمرين الطبيين والمؤسسيين ومستثمري الأثر الذين يوسّعون الوصول إلى التشخيص المتقدم في المنطقة.",
           "branch_footer_tagline_override": "رعاية صحية تشخيصية متقدمة في شرق أفريقيا، بدعم من مجموعة سيرة.",
-          "branch_footer_group_link_label_override": "مجموعة سيرة"
+          "branch_footer_group_link_label_override": "مجموعة سيرة",
+          "branch_services_eyebrow": "ما نقوم به",
+          "branch_services_heading": "خدماتنا",
+          "branch_services_description": "التصوير التشخيصي، وتطوير المراكز، والشراكات السريرية، وأنظمة إدارة المنشآت — من التخطيط إلى التشغيل.",
+          "branch_services_link": {
+            "title": "كل الخدمات",
+            "url": "/ar/services/"
+          },
+          "branch_services_selected_items": {
+            "@records": [
+              [
+                "sira_service",
+                "diagnostic-imaging"
+              ],
+              [
+                "sira_service",
+                "center-development"
+              ],
+              [
+                "sira_service",
+                "clinical-partnerships"
+              ],
+              [
+                "sira_service",
+                "facility-management-systems"
+              ]
+            ]
+          }
         }
       },
       "pages": [
@@ -630,7 +984,24 @@
           "status": "قيد التشغيل",
           "excerpt": "منصة متقدمة للتصوير والتشخيص الجزيئي.",
           "content": "<p>روزينا هو المركز الرائد لسيرة للرعاية الصحية: رنين مغناطيسي، وأشعة مقطعية، وموجات فوق صوتية، ومنذ يوليو 2026 جناح للتصوير الجزيئي PET-CT للكشف المبكر عن السرطان.</p><p>يعمل المركز على نظام إدارة المنشآت الخاص بالمجموعة، الذي يجدول الأجهزة ويتتبّع المستهلكات ويرفع التقارير إلى الأطباء المحوّلين في الوقت الفعلي. يُجري المركز أكثر من ثلاثين ألف فحص سنويًا، ونما بنسبة 42% على أساس سنوي.</p>",
-          "stats": [["MRI · CT · US · PET-CT", "الأجهزة"], ["30,000+", "فحص سنويًا"], ["2021", "الافتتاح"], ["+42% سنويًا", "النمو"]]
+          "stats": [
+            [
+              "MRI · CT · US · PET-CT",
+              "الأجهزة"
+            ],
+            [
+              "30,000+",
+              "فحص سنويًا"
+            ],
+            [
+              "2021",
+              "الافتتاح"
+            ],
+            [
+              "+42% سنويًا",
+              "النمو"
+            ]
+          ]
         },
         {
           "slug": "pet-ct-imaging-center",
@@ -640,7 +1011,24 @@
           "status": "مخطط",
           "excerpt": "الجيل القادم من التصوير الجزيئي للكشف المبكر عن السرطان.",
           "content": "<p>مركز مستقل للتصوير الجزيئي يكرّر جناح PET-CT في روزينا في مدينة ثانية في شرق أفريقيا، مع شراكة إقليمية لتوريد النظائر المشعّة عبر سيكلوترون.</p><p>المركز هو الخطوة الأولى في توسيع شبكة التشخيص: نظام التشغيل نفسه، والبروتوكولات السريرية نفسها، وعلاقات التحويل نفسها، تُفتح حيث يكون الطلب على التصوير المتقدم أبعد ما يكون عن العرض.</p>",
-          "stats": [["PET-CT", "الجهاز"], ["اختيار الموقع", "المرحلة"], ["2027", "الافتتاح المستهدف"], ["سيكلوترون إقليمي", "شريك النظائر"]]
+          "stats": [
+            [
+              "PET-CT",
+              "الجهاز"
+            ],
+            [
+              "اختيار الموقع",
+              "المرحلة"
+            ],
+            [
+              "2027",
+              "الافتتاح المستهدف"
+            ],
+            [
+              "سيكلوترون إقليمي",
+              "شريك النظائر"
+            ]
+          ]
         },
         {
           "slug": "regional-network-expansion",
@@ -650,25 +1038,69 @@
           "status": "مخطط",
           "excerpt": "توسيع منصة تشخيص ذات تدفق نقدي إيجابي إلى مدن جديدة في شرق أفريقيا.",
           "content": "<p>توسيع نموذج روزينا إلى ثلاث مدن أخرى في شرق أفريقيا خلال خمس سنوات: يُفتح كل مركز على نظام التشغيل نفسه والبروتوكولات نفسها وشركاء المعدات أنفسهم، مع قراءة الأشعة مركزيًا من نيروبي.</p><p>الشبكة مفتوحة للمستثمرين كمركز واحد على مستوى المنصة، لا كسلسلة من الاستثمارات في مراكز منفردة.</p>",
-          "stats": [["3 مدن", "خط التوسّع"], ["5 سنوات", "الأفق"], ["$1M – $5M", "حجم التذكرة"], ["منصة", "الهيكل"]]
+          "stats": [
+            [
+              "3 مدن",
+              "خط التوسّع"
+            ],
+            [
+              "5 سنوات",
+              "الأفق"
+            ],
+            [
+              "$1M – $5M",
+              "حجم التذكرة"
+            ],
+            [
+              "منصة",
+              "الهيكل"
+            ]
+          ]
         }
       ],
       "menus": {
         "primary_ar": [
-          { "title": "نظرة عامة", "url": "/ar/#overview" },
-          { "title": "المراكز", "url": "/ar/projects/" },
-          { "title": "رؤى", "url": "/ar/#insights" },
-          { "title": "تواصل", "url": "/ar/contact/" }
+          {
+            "title": "نظرة عامة",
+            "url": "/ar/#overview"
+          },
+          {
+            "title": "الخدمات",
+            "url": "/ar/services/"
+          },
+          {
+            "title": "المراكز",
+            "url": "/ar/projects/"
+          },
+          {
+            "title": "رؤى",
+            "url": "/ar/news/"
+          },
+          {
+            "title": "تواصل",
+            "url": "/ar/contact/"
+          }
         ],
         "footer_ar": [
-          { "title": "الرئيسية", "url": "/ar/" },
-          { "title": "نظرة عامة", "url": "/ar/#overview" },
-          { "title": "المراكز", "url": "/ar/projects/" },
-          { "title": "تواصل", "url": "/ar/contact/" }
+          {
+            "title": "الرئيسية",
+            "url": "/ar/"
+          },
+          {
+            "title": "الخدمات",
+            "url": "/ar/services/"
+          },
+          {
+            "title": "المراكز",
+            "url": "/ar/projects/"
+          },
+          {
+            "title": "تواصل",
+            "url": "/ar/contact/"
+          }
         ]
       }
     },
-
     "https://cms-realestate.siratrgroup.com": {
       "menu_prefix": "Real Estate Arabic",
       "home": {
@@ -681,8 +1113,14 @@
           "branch_hero_heading_after": "",
           "branch_hero_description": "تطوير سكني ومتعدد الاستخدامات في تركيا وأسواق النمو، من تجميع الأراضي إلى التشغيل بعد التسليم.",
           "branch_hero_image_alt": "فلل سيرة برايم، إسطنبول",
-          "branch_hero_primary_cta": { "title": "استعرض المشاريع", "url": "#projects" },
-          "branch_hero_secondary_cta": { "title": "تواصل معنا", "url": "#contact" },
+          "branch_hero_primary_cta": {
+            "title": "استعرض المشاريع",
+            "url": "/ar/projects/"
+          },
+          "branch_hero_secondary_cta": {
+            "title": "تواصل معنا",
+            "url": "/ar/contact/"
+          },
           "branch_statistics_0_value": "$80M+",
           "branch_statistics_0_label": "قيد التطوير",
           "branch_statistics_0_supporting_text": "في المشاريع النشطة",
@@ -698,7 +1136,10 @@
           "branch_overview_eyebrow": "نظرة عامة",
           "branch_overview_heading": "تطوير عقاري من البداية إلى التسليم",
           "branch_overview_description": "نطوّر مجمّعات سكنية ومشاريع متعددة الاستخدامات في تركيا وأسواق النمو، ونديرها بعد التسليم بصفتنا المطوّر والمشغّل طويل الأمد.",
-          "branch_overview_link": { "title": "نظرة عامة", "url": "#overview" },
+          "branch_overview_link": {
+            "title": "نظرة عامة",
+            "url": "#overview"
+          },
           "branch_overview_body": "<p>من تجميع الأراضي والتخطيط الرئيسي، مرورًا بالتصميم والبيع المسبق والإنشاء، إلى تشغيل المجمّع بعد اكتماله — نبقى في المشروع طوال دورة حياته.</p>",
           "branch_focus_areas_0_title": "تطوير متكامل",
           "branch_focus_areas_0_description": "من الاستحواذ على الأراضي والتخطيط إلى الإنشاء والتسليم.",
@@ -709,17 +1150,65 @@
           "branch_projects_eyebrow": "المشاريع",
           "branch_projects_heading": "مشاريع قيد التنفيذ",
           "branch_projects_description": "المشاريع السكنية والمتعددة الاستخدامات التي تطوّرها سيرة العقارية اليوم، والمواقع التي تخطّط لها تاليًا.",
-          "branch_projects_link": { "title": "استعرض المشاريع", "url": "/ar/projects/" },
-          "branch_projects_selected_items": { "@records": [["sira_project", "sira-prime"], ["sira_project", "coastal-residences"], ["sira_project", "mixed-use-concept"]] },
+          "branch_projects_link": {
+            "title": "استعرض المشاريع",
+            "url": "/ar/projects/"
+          },
+          "branch_projects_selected_items": {
+            "@records": [
+              [
+                "sira_project",
+                "sira-prime"
+              ],
+              [
+                "sira_project",
+                "coastal-residences"
+              ],
+              [
+                "sira_project",
+                "mixed-use-concept"
+              ]
+            ]
+          },
           "branch_insights_eyebrow": "أخبار ورؤى",
           "branch_insights_heading": "من مكتب العقارات",
           "branch_insights_description": "ملاحظات من فريق التطوير عن السوق العقاري في إسطنبول وأسواق النمو.",
-          "branch_insights_link": { "title": "كل الأخبار", "url": "/ar/news/" },
+          "branch_insights_link": {
+            "title": "كل الأخبار",
+            "url": "/ar/news/"
+          },
           "branch_contact_eyebrow": "تواصل معنا",
           "branch_contact_heading": "لنبنِ معًا",
           "branch_contact_description": "مشترون، ومُلّاك أراضٍ، ومقاولون، ومستثمرون — تحدّث إلى فريق سيرة العقارية.",
           "branch_footer_tagline_override": "تطوير سكني ومتعدد الاستخدامات في تركيا وأسواق النمو، بدعم من مجموعة سيرة.",
-          "branch_footer_group_link_label_override": "مجموعة سيرة"
+          "branch_footer_group_link_label_override": "مجموعة سيرة",
+          "branch_services_eyebrow": "ما نقوم به",
+          "branch_services_heading": "خدماتنا",
+          "branch_services_description": "تطوير على مدى الدورة الكاملة، ومساكن ذات علامة تجارية، وتخطيط رئيسي متعدد الاستخدامات، واستشارات وهيكلة.",
+          "branch_services_link": {
+            "title": "كل الخدمات",
+            "url": "/ar/services/"
+          },
+          "branch_services_selected_items": {
+            "@records": [
+              [
+                "sira_service",
+                "full-cycle-development"
+              ],
+              [
+                "sira_service",
+                "branded-residences"
+              ],
+              [
+                "sira_service",
+                "mixed-use-masterplanning"
+              ],
+              [
+                "sira_service",
+                "advisory-structuring"
+              ]
+            ]
+          }
         }
       },
       "pages": [
@@ -795,7 +1284,24 @@
           "status": "قيد التطوير",
           "excerpt": "مشروع فلل رائد، والبيع المسبق جارٍ.",
           "content": "<p>سيرة برايم مجمّع سكني منخفض الارتفاع على الشاطئ الآسيوي لإسطنبول: 64 فيلا تحيط بمحور حدائق مشترك، مع نادٍ خاص ومبنى للعافية ووصول مباشر إلى الممشى الساحلي.</p><p>افتُتح البيع المسبق في الربع الثاني من 2026، ومن المقرر تسليم المرحلة الأولى مطلع 2028. يُهيكل المشروع كشراكة في حقوق الملكية، تكون فيها سيرة العقارية المطوّر ومشغّل المجمّع بعد اكتماله.</p>",
-          "stats": [["64 فيلا", "الوحدات"], ["9.2 هكتار", "الموقع"], ["الربع الأول 2028", "التسليم"], ["شراكة في حقوق الملكية", "الهيكل"]]
+          "stats": [
+            [
+              "64 فيلا",
+              "الوحدات"
+            ],
+            [
+              "9.2 هكتار",
+              "الموقع"
+            ],
+            [
+              "الربع الأول 2028",
+              "التسليم"
+            ],
+            [
+              "شراكة في حقوق الملكية",
+              "الهيكل"
+            ]
+          ]
         },
         {
           "slug": "coastal-residences",
@@ -805,7 +1311,24 @@
           "status": "مخطط",
           "excerpt": "مساكن ذات علامة تجارية على مقربة من البوسفور، تُشغَّل مع سيرة لايف ستايل.",
           "content": "<p>موقع من المرحلة الثانية متاخم لسيرة برايم، مخطط كمساكن ذات علامة تجارية مع مشغّل ضيافة من قسم لايف ستايل التابع للمجموعة.</p><p>يتبع المخطط الرئيسي موجز سيرة برايم — منخفض، ممتد، ومفتوح على الماء — ويضيف ناديًا للسكان يديره المشغّل، بحيث يُدار المجمّع كأصل ضيافة من اليوم الأول للسكن.</p>",
-          "stats": [["38", "الوحدات"], ["المخطط الرئيسي", "المرحلة"], ["سيرة لايف ستايل", "المشغّل"], ["2028", "المستهدف"]]
+          "stats": [
+            [
+              "38",
+              "الوحدات"
+            ],
+            [
+              "المخطط الرئيسي",
+              "المرحلة"
+            ],
+            [
+              "سيرة لايف ستايل",
+              "المشغّل"
+            ],
+            [
+              "2028",
+              "المستهدف"
+            ]
+          ]
         },
         {
           "slug": "mixed-use-concept",
@@ -815,25 +1338,65 @@
           "status": "مفهوم",
           "excerpt": "سكني وتجاري وضيافة في موقع حضري واحد على الجانب الأوروبي.",
           "content": "<p>مخطط رئيسي متعدد الاستخدامات لموقع حضري على الجانب الأوروبي من إسطنبول: مساكن فوق قاعدة تجارية، وفندق بوتيكي تشغّله سيرة لايف ستايل، وساحة عامة تصل بين الثلاثة.</p><p>المشروع في مرحلة المفهوم، وقد اكتملت دراسات الموقع والسوق، ومن المخطط إقامة مسابقة تصميم في 2027.</p>",
-          "stats": [["سكني · تجاري · فندق", "البرنامج"], ["مفهوم", "المرحلة"], ["2027", "مسابقة التصميم"]]
+          "stats": [
+            [
+              "سكني · تجاري · فندق",
+              "البرنامج"
+            ],
+            [
+              "مفهوم",
+              "المرحلة"
+            ],
+            [
+              "2027",
+              "مسابقة التصميم"
+            ]
+          ]
         }
       ],
       "menus": {
         "primary_ar": [
-          { "title": "نظرة عامة", "url": "/ar/#overview" },
-          { "title": "المشاريع", "url": "/ar/projects/" },
-          { "title": "رؤى", "url": "/ar/#insights" },
-          { "title": "تواصل", "url": "/ar/contact/" }
+          {
+            "title": "نظرة عامة",
+            "url": "/ar/#overview"
+          },
+          {
+            "title": "الخدمات",
+            "url": "/ar/services/"
+          },
+          {
+            "title": "المشاريع",
+            "url": "/ar/projects/"
+          },
+          {
+            "title": "رؤى",
+            "url": "/ar/news/"
+          },
+          {
+            "title": "تواصل",
+            "url": "/ar/contact/"
+          }
         ],
         "footer_ar": [
-          { "title": "الرئيسية", "url": "/ar/" },
-          { "title": "نظرة عامة", "url": "/ar/#overview" },
-          { "title": "المشاريع", "url": "/ar/projects/" },
-          { "title": "تواصل", "url": "/ar/contact/" }
+          {
+            "title": "الرئيسية",
+            "url": "/ar/"
+          },
+          {
+            "title": "الخدمات",
+            "url": "/ar/services/"
+          },
+          {
+            "title": "المشاريع",
+            "url": "/ar/projects/"
+          },
+          {
+            "title": "تواصل",
+            "url": "/ar/contact/"
+          }
         ]
       }
     },
-
     "https://cms-lifestyle.siratrgroup.com": {
       "menu_prefix": "Lifestyle Arabic",
       "home": {
@@ -846,8 +1409,14 @@
           "branch_hero_heading_after": "",
           "branch_hero_description": "تطوّر سيرة لايف ستايل مفاهيم ضيافة وأسلوب حياة تمدّ المجموعة إلى أسواق جديدة — حيث يلتقي التصميم والخدمة والتجربة.",
           "branch_hero_image_alt": "مفهوم ضيافة من سيرة لايف ستايل",
-          "branch_hero_primary_cta": { "title": "استكشف المفاهيم", "url": "#projects" },
-          "branch_hero_secondary_cta": { "title": "كن شريكًا", "url": "#contact" },
+          "branch_hero_primary_cta": {
+            "title": "استكشف الوجهات",
+            "url": "/ar/projects/"
+          },
+          "branch_hero_secondary_cta": {
+            "title": "كن شريكًا",
+            "url": "/ar/contact/"
+          },
           "branch_statistics_0_value": "جديد",
           "branch_statistics_0_label": "انطلاقة 2026",
           "branch_statistics_0_supporting_text": "أولى المنشآت",
@@ -863,7 +1432,10 @@
           "branch_overview_eyebrow": "نظرة عامة",
           "branch_overview_heading": "جيل جديد من الضيافة",
           "branch_overview_description": "يجمع أحدث أقسامنا بين الضيافة والترفيه ومشاريع أسلوب الحياة — فرص للشركاء المؤسسين في تجارب مصمّمة لسوق إقليمي رفيع الذوق.",
-          "branch_overview_link": { "title": "نظرة عامة", "url": "#overview" },
+          "branch_overview_link": {
+            "title": "نظرة عامة",
+            "url": "#overview"
+          },
           "branch_overview_body": "<p>يجمع أحدث أقسامنا مشاريع الضيافة وأسلوب الحياة تحت علامة تشغيلية واحدة، مبنية حول تجربة ضيف مميزة لا حول قالب معياري.</p>",
           "branch_focus_areas_0_title": "مفاهيم الضيافة",
           "branch_focus_areas_0_description": "صيغ ضيافة بوتيكية وأسلوب حياة مصمّمة وفق الطلب الإقليمي.",
@@ -874,17 +1446,65 @@
           "branch_projects_eyebrow": "الوجهات",
           "branch_projects_heading": "وجهات في طور التكوين",
           "branch_projects_description": "المنصة، والمساكن، والوجهات التي تطرحها سيرة لايف ستايل في السوق.",
-          "branch_projects_link": { "title": "استعرض الوجهات", "url": "/ar/projects/" },
-          "branch_projects_selected_items": { "@records": [["sira_project", "hospitality-platform"], ["sira_project", "lifestyle-residences"], ["sira_project", "leisure-destinations"]] },
+          "branch_projects_link": {
+            "title": "استعرض الوجهات",
+            "url": "/ar/projects/"
+          },
+          "branch_projects_selected_items": {
+            "@records": [
+              [
+                "sira_project",
+                "hospitality-platform"
+              ],
+              [
+                "sira_project",
+                "lifestyle-residences"
+              ],
+              [
+                "sira_project",
+                "leisure-destinations"
+              ]
+            ]
+          },
           "branch_insights_eyebrow": "أخبار ورؤى",
           "branch_insights_heading": "من مكتب لايف ستايل",
           "branch_insights_description": "ملاحظات من فريق الضيافة عن الوجهات والتجارب في الشرق الأوسط وأفريقيا.",
-          "branch_insights_link": { "title": "كل الأخبار", "url": "/ar/news/" },
+          "branch_insights_link": {
+            "title": "كل الأخبار",
+            "url": "/ar/news/"
+          },
           "branch_contact_eyebrow": "تواصل معنا",
           "branch_contact_heading": "شارك في صياغة علامة ضيافة جديدة",
           "branch_contact_description": "ندعو شركاء مؤسسين إلى أحدث أقسام المجموعة في مرحلة مبكرة وتكوينية.",
           "branch_footer_tagline_override": "مشاريع ضيافة وأسلوب حياة في الشرق الأوسط وأفريقيا، بدعم من مجموعة سيرة.",
-          "branch_footer_group_link_label_override": "مجموعة سيرة"
+          "branch_footer_group_link_label_override": "مجموعة سيرة",
+          "branch_services_eyebrow": "ما نقوم به",
+          "branch_services_heading": "خدماتنا",
+          "branch_services_description": "منصة الضيافة، والمساكن ذات العلامة التجارية، ومفاهيم الوجهات، والشراكات مع المشغّلين.",
+          "branch_services_link": {
+            "title": "كل الخدمات",
+            "url": "/ar/services/"
+          },
+          "branch_services_selected_items": {
+            "@records": [
+              [
+                "sira_service",
+                "hospitality-platform"
+              ],
+              [
+                "sira_service",
+                "branded-residences"
+              ],
+              [
+                "sira_service",
+                "destination-concepts"
+              ],
+              [
+                "sira_service",
+                "operator-partnerships"
+              ]
+            ]
+          }
         }
       },
       "pages": [
@@ -960,7 +1580,24 @@
           "status": "مرحلة التأسيس",
           "excerpt": "فرصة شريك مؤسس في أحدث أقسام المجموعة في الضيافة.",
           "content": "<p>تجمع المنصة الأولى لسيرة لايف ستايل بين مساكن ذات علامة تجارية ومشغّل ضيافة بوتيكي في موقعين ساحليين قيد الدراسة.</p><p>انطلق القسم في 2026، وهو مفتوح لعدد محدود من الشركاء المؤسسين الذين يتخذون مركزًا على مستوى المنصة لا في أصل واحد.</p>",
-          "stats": [["2 قيد الدراسة", "المواقع"], ["مالك ومشغّل", "النموذج"], ["2027", "الافتتاح الأول"], ["شراكة تأسيسية", "الهيكل"]]
+          "stats": [
+            [
+              "2 قيد الدراسة",
+              "المواقع"
+            ],
+            [
+              "مالك ومشغّل",
+              "النموذج"
+            ],
+            [
+              "2027",
+              "الافتتاح الأول"
+            ],
+            [
+              "شراكة تأسيسية",
+              "الهيكل"
+            ]
+          ]
         },
         {
           "slug": "lifestyle-residences",
@@ -970,7 +1607,20 @@
           "status": "مخطط",
           "excerpt": "المساكن المجاورة لسيرة برايم، تُدار كأصل ضيافة من اليوم الأول.",
           "content": "<p>الدور التشغيلي لقسم لايف ستايل في المساكن الساحلية المجاورة لسيرة برايم: نادٍ للسكان، وخدمة كونسيرج، وبرنامج تأجير يُدار وفق معايير الضيافة، بحيث يُدار المجمّع كوجهة لا كمشروع تطوير.</p><p>يُطوَّر مع سيرة العقارية؛ وتشغّله سيرة لايف ستايل.</p>",
-          "stats": [["38", "مسكنًا"], ["سيرة لايف ستايل", "المشغّل"], ["2028", "المستهدف"]]
+          "stats": [
+            [
+              "38",
+              "مسكنًا"
+            ],
+            [
+              "سيرة لايف ستايل",
+              "المشغّل"
+            ],
+            [
+              "2028",
+              "المستهدف"
+            ]
+          ]
         },
         {
           "slug": "leisure-destinations",
@@ -980,21 +1630,62 @@
           "status": "قيد الدراسة",
           "excerpt": "موقعان ساحليان قيد الدراسة ليكونا أولى وجهات المنصة.",
           "content": "<p>موقعان ساحليان — أحدهما على بحر إيجه التركي، والآخر على البحر الأحمر — قيد الدراسة ليكونا أولى وجهات منصة الضيافة، يُخطَّط كل منهما كمنشأة بوتيكية مع مساكن ذات علامة تجارية ونادٍ شاطئي.</p><p>يُختتم اختيار الموقع في 2026؛ والافتتاح الأول مخطط في 2027.</p>",
-          "stats": [["2", "موقعان قيد الدراسة"], ["بوتيك · مساكن · نادٍ شاطئي", "البرنامج"], ["2027", "الافتتاح الأول"]]
+          "stats": [
+            [
+              "2",
+              "موقعان قيد الدراسة"
+            ],
+            [
+              "بوتيك · مساكن · نادٍ شاطئي",
+              "البرنامج"
+            ],
+            [
+              "2027",
+              "الافتتاح الأول"
+            ]
+          ]
         }
       ],
       "menus": {
         "primary_ar": [
-          { "title": "نظرة عامة", "url": "/ar/#overview" },
-          { "title": "الوجهات", "url": "/ar/projects/" },
-          { "title": "رؤى", "url": "/ar/#insights" },
-          { "title": "تواصل", "url": "/ar/contact/" }
+          {
+            "title": "نظرة عامة",
+            "url": "/ar/#overview"
+          },
+          {
+            "title": "الخدمات",
+            "url": "/ar/services/"
+          },
+          {
+            "title": "الوجهات",
+            "url": "/ar/projects/"
+          },
+          {
+            "title": "رؤى",
+            "url": "/ar/news/"
+          },
+          {
+            "title": "تواصل",
+            "url": "/ar/contact/"
+          }
         ],
         "footer_ar": [
-          { "title": "الرئيسية", "url": "/ar/" },
-          { "title": "نظرة عامة", "url": "/ar/#overview" },
-          { "title": "الوجهات", "url": "/ar/projects/" },
-          { "title": "تواصل", "url": "/ar/contact/" }
+          {
+            "title": "الرئيسية",
+            "url": "/ar/"
+          },
+          {
+            "title": "الخدمات",
+            "url": "/ar/services/"
+          },
+          {
+            "title": "الوجهات",
+            "url": "/ar/projects/"
+          },
+          {
+            "title": "تواصل",
+            "url": "/ar/contact/"
+          }
         ]
       }
     }

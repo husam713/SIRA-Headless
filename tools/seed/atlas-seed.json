@@ -236,22 +236,33 @@
         {
           "name": "Istanbul",
           "address": "Headquarters · Real Estate",
-          "email": "realestate@siratrgroup.com"
+          "email": "realestate@siratrgroup.com",
+          "name_ar": "إسطنبول",
+          "address_ar": "المقر الرئيسي · العقارات",
+          "unit": "real-estate"
         },
         {
           "name": "Nairobi",
           "address": "Healthcare operations",
-          "email": "healthcare@siratrgroup.com"
+          "email": "healthcare@siratrgroup.com",
+          "name_ar": "نيروبي",
+          "address_ar": "عمليات الرعاية الصحية",
+          "unit": "healthcare"
         },
         {
           "name": "Paris",
           "address": "Investor relations",
-          "email": "contact@siratrgroup.com"
+          "email": "contact@siratrgroup.com",
+          "name_ar": "باريس",
+          "address_ar": "علاقات المستثمرين"
         },
         {
           "name": "Riyadh",
           "address": "SIRA Digital",
-          "email": "digital@siratrgroup.com"
+          "email": "digital@siratrgroup.com",
+          "name_ar": "الرياض",
+          "address_ar": "سيرة الرقمية",
+          "unit": "digital"
         }
       ],
       "pages": [
@@ -672,6 +683,10 @@
             "url": "/#about"
           }
         ]
+      },
+      "brand": {
+        "tagline_ar": "نصوغ مستقبلًا أذكى.",
+        "address_ar": "إسطنبول، تركيا · باريس، فرنسا"
       }
     },
     "https://cms-consulting.siratrgroup.com": {
@@ -679,12 +694,18 @@
         {
           "name": "Istanbul",
           "address": "Head office · Levent",
-          "email": "consulting@siratrgroup.com"
+          "email": "consulting@siratrgroup.com",
+          "name_ar": "إسطنبول",
+          "address_ar": "المكتب الرئيسي · ليفنت",
+          "unit": "consulting"
         },
         {
           "name": "Paris",
           "address": "European desk",
-          "email": "consulting@siratrgroup.com"
+          "email": "consulting@siratrgroup.com",
+          "name_ar": "باريس",
+          "address_ar": "المكتب الأوروبي",
+          "unit": "consulting"
         }
       ],
       "pages": [
@@ -877,6 +898,33 @@
           "branch_insights_link": {
             "title": "All News",
             "url": "/news/"
+          },
+          "branch_services_eyebrow": "What we do",
+          "branch_services_heading": "Our Services",
+          "branch_services_description": "Market entry, investment structuring, partnership formation and execution support — four services, each led by a partner from Istanbul.",
+          "branch_services_link": {
+            "title": "All services",
+            "url": "/services/"
+          },
+          "branch_services_selected_items": {
+            "@records": [
+              [
+                "sira_service",
+                "market-entry"
+              ],
+              [
+                "sira_service",
+                "investment-structuring"
+              ],
+              [
+                "sira_service",
+                "partnership-formation"
+              ],
+              [
+                "sira_service",
+                "execution-support"
+              ]
+            ]
           }
         }
       },
@@ -921,6 +969,10 @@
             "url": "/contact/"
           }
         ]
+      },
+      "brand": {
+        "tagline_ar": "استراتيجية للأسواق الجديدة.",
+        "address_ar": "إسطنبول، تركيا · باريس، فرنسا"
       }
     },
     "https://cms-healthcare.siratrgroup.com": {
@@ -928,12 +980,17 @@
         {
           "name": "Nairobi",
           "address": "Rosina Diagnostic Center · Operations",
-          "email": "healthcare@siratrgroup.com"
+          "email": "healthcare@siratrgroup.com",
+          "name_ar": "نيروبي",
+          "address_ar": "مركز روزينا للتشخيص · العمليات",
+          "unit": "healthcare"
         },
         {
           "name": "Istanbul",
           "address": "Group headquarters",
-          "email": "contact@siratrgroup.com"
+          "email": "contact@siratrgroup.com",
+          "name_ar": "إسطنبول",
+          "address_ar": "المقر الرئيسي للمجموعة"
         }
       ],
       "pages": [
@@ -1139,6 +1196,33 @@
           "branch_insights_link": {
             "title": "All News",
             "url": "/news/"
+          },
+          "branch_services_eyebrow": "What we do",
+          "branch_services_heading": "Our Services",
+          "branch_services_description": "Diagnostic imaging, center development, clinical partnerships and facility-management systems — from planning to operation.",
+          "branch_services_link": {
+            "title": "All services",
+            "url": "/services/"
+          },
+          "branch_services_selected_items": {
+            "@records": [
+              [
+                "sira_service",
+                "diagnostic-imaging"
+              ],
+              [
+                "sira_service",
+                "center-development"
+              ],
+              [
+                "sira_service",
+                "clinical-partnerships"
+              ],
+              [
+                "sira_service",
+                "facility-management-systems"
+              ]
+            ]
           }
         }
       },
@@ -1183,6 +1267,10 @@
             "url": "/contact/"
           }
         ]
+      },
+      "brand": {
+        "tagline_ar": "نرتقي بالبنية التحتية للتشخيص والرعاية الصحية.",
+        "address_ar": "نيروبي، كينيا · شرق أفريقيا"
       }
     },
     "https://cms-realestate.siratrgroup.com": {
@@ -1190,12 +1278,17 @@
         {
           "name": "Istanbul",
           "address": "Head office · Sira Prime sales gallery",
-          "email": "realestate@siratrgroup.com"
+          "email": "realestate@siratrgroup.com",
+          "name_ar": "إسطنبول",
+          "address_ar": "المكتب الرئيسي · معرض مبيعات سيرة برايم",
+          "unit": "real-estate"
         },
         {
           "name": "Paris",
           "address": "Investor relations",
-          "email": "contact@siratrgroup.com"
+          "email": "contact@siratrgroup.com",
+          "name_ar": "باريس",
+          "address_ar": "علاقات المستثمرين"
         }
       ],
       "pages": [
@@ -1398,6 +1491,33 @@
           "branch_insights_link": {
             "title": "All News",
             "url": "/news/"
+          },
+          "branch_services_eyebrow": "What we do",
+          "branch_services_heading": "Our Services",
+          "branch_services_description": "Full-cycle development, branded residences, mixed-use masterplanning, and advisory and structuring.",
+          "branch_services_link": {
+            "title": "All services",
+            "url": "/services/"
+          },
+          "branch_services_selected_items": {
+            "@records": [
+              [
+                "sira_service",
+                "full-cycle-development"
+              ],
+              [
+                "sira_service",
+                "branded-residences"
+              ],
+              [
+                "sira_service",
+                "mixed-use-masterplanning"
+              ],
+              [
+                "sira_service",
+                "advisory-structuring"
+              ]
+            ]
           }
         }
       },
@@ -1442,6 +1562,10 @@
             "url": "/contact/"
           }
         ]
+      },
+      "brand": {
+        "tagline_ar": "نبني أماكن تدوم في كل الأسواق.",
+        "address_ar": "إسطنبول، تركيا"
       }
     },
     "https://cms-lifestyle.siratrgroup.com": {
@@ -1449,12 +1573,17 @@
         {
           "name": "Istanbul",
           "address": "Group headquarters",
-          "email": "lifestyle@siratrgroup.com"
+          "email": "lifestyle@siratrgroup.com",
+          "name_ar": "إسطنبول",
+          "address_ar": "المقر الرئيسي للمجموعة"
         },
         {
           "name": "Riyadh",
           "address": "Gulf development",
-          "email": "lifestyle@siratrgroup.com"
+          "email": "lifestyle@siratrgroup.com",
+          "name_ar": "الرياض",
+          "address_ar": "تطوير الخليج",
+          "unit": "lifestyle"
         }
       ],
       "pages": [
@@ -1653,6 +1782,33 @@
           "branch_insights_link": {
             "title": "All News",
             "url": "/news/"
+          },
+          "branch_services_eyebrow": "What we do",
+          "branch_services_heading": "Our Services",
+          "branch_services_description": "The hospitality platform, branded residences, destination concepts and operator partnerships.",
+          "branch_services_link": {
+            "title": "All services",
+            "url": "/services/"
+          },
+          "branch_services_selected_items": {
+            "@records": [
+              [
+                "sira_service",
+                "hospitality-platform"
+              ],
+              [
+                "sira_service",
+                "branded-residences"
+              ],
+              [
+                "sira_service",
+                "destination-concepts"
+              ],
+              [
+                "sira_service",
+                "operator-partnerships"
+              ]
+            ]
           }
         }
       },
@@ -1697,6 +1853,10 @@
             "url": "/contact/"
           }
         ]
+      },
+      "brand": {
+        "tagline_ar": "نصنع تجارب ضيافة وأسلوب حياة تقودها الوجهة.",
+        "address_ar": "الشرق الأوسط وأفريقيا"
       }
     }
   }

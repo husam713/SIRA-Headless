@@ -461,7 +461,19 @@ final class BrandSchema {
 			'mission'            => $brand['mission'],
 			'vision'             => $brand['vision'],
 			'values'             => $brand['values'],
-			'officeLocations'    => $brand['office_locations'],
+			// The rows carry snake_case keys; the type's camelCase fields need them
+			// under their own names for the default resolver to find them.
+			'officeLocations'    => array_map(
+				static fn( array $office ): array => array_merge(
+					$office,
+					array(
+						'nameAr'       => $office['name_ar'] ?? null,
+						'addressAr'    => $office['address_ar'] ?? null,
+						'businessUnit' => $office['business_unit'] ?? null,
+					)
+				),
+				(array) $brand['office_locations']
+			),
 			'socialProfiles'     => $brand['social_profiles'],
 			'announcementBanner' => $brand['announcement_banner'],
 			'emergencyBanner'    => $brand['emergency_banner'],

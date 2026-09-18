@@ -65,11 +65,14 @@ assignments were kept; the `_ar` locations were added beside them.
    `/ar/contact/`, `/ar/investors/`) where the English menus still link to
    homepage anchors (`/#projects`). Both work; the English menus predate the
    Atlas pages and were left as the owner accepted them.
-3. **Brand options stay single-language.** `sira_office_locations`,
-   `sira_brand_tagline` and `sira_brand_address` have no locale, so the
-   office list on `/ar/contact/`, the footer tagline and the address read in
-   English on Arabic pages. Fixing it is a backend field + plugin deployment
-   (ADR-037 "known limit"), not authorized here.
+3. **Brand options — closed 2026-09-18.** The brand options gained
+   `sira_brand_tagline_ar` / `sira_brand_address_ar`, and each office row
+   `name_ar`, `address_ar` and `business_unit`; the four plugin files were
+   linted and installed on the origin (rollback copies `*.bak-20260918T042026Z`
+   and `BrandSchema.php.bak-20260918T044806Z`), the schema recaptured over
+   SSH, and `getBrand(siteKey, "ar")` folds the Arabic columns in. The seeds
+   write them. WPGraphQL Smart Cache served a stale response until purged;
+   both seeds now purge it at the end.
 4. **The newsroom is English-only.** Arabic pages list its items as written,
    with Arabic kickers (kind, dateline, desk). The Group homepage's
    latest-updates and insights chapters therefore show English headlines.
@@ -129,7 +132,7 @@ easy to change in one place (`atlas-seed.ar.json`, `frontend/src/lib/i18n/locale
 | Browser 1440 px, Group: `/ar/`, `/ar/services/`, `/ar/projects/`, `/ar/projects/sira-prime/`, `/ar/investors/`, `/ar/contact/` | PASS — RTL, Arabic type, filters, accordion, drawer label, closing, footer |
 | Browser 1440 px: Consulting, Healthcare, Real Estate, Lifestyle `/ar/`; Healthcare `/ar/projects/regional-network-expansion/` | PASS |
 | Browser 390 px: Group `/ar/`, Lifestyle `/ar/services/` | PASS |
-| Remaining English on Arabic pages | office list, footer tagline/address (decision 3); newsroom headlines (decision 4); the Group mobile hero's interim image carries baked-in English text (owner replaces images) |
+| Remaining English on Arabic pages | newsroom headlines (decision 4); the Group mobile hero's interim image carries baked-in English text (owner replaces images). The office list, tagline and address are Arabic since 2026-09-18 (decision 3) |
 | CI | NOT RUN (PR to be opened) |
 
 ## Rollback

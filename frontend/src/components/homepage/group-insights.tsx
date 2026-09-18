@@ -1,5 +1,4 @@
 import Link from "next/link";
-import type { CSSProperties } from "react";
 
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
@@ -28,7 +27,6 @@ interface GroupInsightsProps {
 
 interface InsightRowProps {
   readonly item: HomepageContentItem;
-  readonly index: number;
   /**
    * Whether the rows carry a picture plate at all. Decided once for the
    * list: a plate on one row and a blank on the next reads as broken rows,
@@ -43,7 +41,7 @@ function kindLabel(kind: string, locale: LocaleCode): string | null {
   return Object.hasOwn(labels, kind) ? labels[kind as keyof typeof labels] : null;
 }
 
-function InsightRow({ item, index, withMedia, locale }: InsightRowProps) {
+function InsightRow({ item, withMedia, locale }: InsightRowProps) {
   const date = formatContentDate(item.date, locale);
   const href = editorialArticleHref(item.href);
   const kind = kindLabel(item.kind, locale);
@@ -51,7 +49,6 @@ function InsightRow({ item, index, withMedia, locale }: InsightRowProps) {
   return (
     <article
       className={`atlas-insight reveal${withMedia ? "" : " atlas-insight--text"}`}
-      style={{ "--reveal-offset": `${String(Math.min(index, 5) * 1.5)}%` } as CSSProperties}
     >
       <p className="atlas-insight__meta">
         {kind !== null ? <b>{kind}</b> : null}
@@ -114,12 +111,11 @@ export function GroupInsights({ section, locale = "en" }: GroupInsightsProps) {
           }
         />
 
-        <div className="atlas-insights">
-          {section.selection.items.map((item, index) => (
+        <div className="atlas-insights" data-stagger>
+          {section.selection.items.map((item) => (
             <InsightRow
               key={item.databaseId}
               item={item}
-              index={index}
               withMedia={withMedia}
               locale={locale}
             />

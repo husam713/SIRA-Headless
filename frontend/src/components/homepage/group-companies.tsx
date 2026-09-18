@@ -140,7 +140,7 @@ export function GroupCompanies({ section, locale = "en" }: GroupCompaniesProps) 
           lead={section.description}
         />
 
-        <div className="atlas-house reveal">
+        <div className="atlas-house" data-reveal="fade">
           {section.selection.items.map((item, index) => (
             <Panel
               key={item.databaseId}

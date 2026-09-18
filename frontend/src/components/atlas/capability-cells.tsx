@@ -14,17 +14,12 @@ export function CapabilityCells({ entries, accentColor }: CapabilityCellsProps) 
   if (entries.length === 0) return null;
 
   return (
-    <div className="atlas-caps">
+    <div className="atlas-caps" data-stagger>
       {entries.map((entry, index) => (
         <div
           key={`${entry.title}-${String(index)}`}
           className="atlas-cap reveal"
-          style={
-            {
-              "--reveal-offset": `${String(Math.min(index, 3) * 1.5)}%`,
-              ...(accentColor !== undefined ? { "--c": accentColor } : {}),
-            } as CSSProperties
-          }
+          style={accentColor !== undefined ? ({ "--c": accentColor } as CSSProperties) : undefined}
         >
           <span aria-hidden="true" className="atlas-cap__n">
             {String(index + 1).padStart(2, "0")}

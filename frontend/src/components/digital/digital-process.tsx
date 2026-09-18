@@ -65,7 +65,7 @@ export function DigitalProcess({ process }: DigitalProcessProps) {
               className="reveal flex h-full flex-col rounded-2xl border border-brand-border bg-brand-ink/[0.02] p-7"
               style={
                 {
-                  "--reveal-offset": `${String(Math.min(index, 3) * 2)}%`,
+                  "--d": String(Math.min(index, 3)),
                 } as CSSProperties
               }
             >

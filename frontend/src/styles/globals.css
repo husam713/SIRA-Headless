@@ -140,6 +140,20 @@
   --motion-fast: 120ms;
   --motion-base: 220ms;
   --motion-slow: 450ms;
+
+  /* The Atlas choreography scale, from the approved prototype
+     (frontend/prototypes/sira-atlas/styles.css). `--t-slow` is an arrival —
+     a section revealing, the hero copy — and `--t-cine` is the one longer
+     move a photograph or a headline line is allowed. `--ease-cine` starts
+     faster and settles longer than the house curve, which is what makes a
+     picture push or a line rising from under its clip read as filmic rather
+     than mechanical. `--reveal-y` is how far a revealed block rises. */
+  --t-fast: 160ms;
+  --t-base: 320ms;
+  --t-slow: 700ms;
+  --t-cine: 1200ms;
+  --ease-cine: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-y: 28px;
 }
 
 /* The `modern` typography preset: the display face becomes the interface
@@ -515,29 +529,30 @@ a {
   }
 }
 
-/* The hero's slow push, measured from the approved design: the active slide's
-   photograph travels from 1 to 1.14 across 7.5s on an ease-out, once, so the
-   motion is fastest as the slide arrives and has all but stopped by the time a
-   reader has finished the headline. A resting 1.02 on the inactive slides keeps
-   the crossfade from snapping between two differently-scaled frames.
+/* The hero's slow push, from the approved Atlas prototype: the active slide's
+   photograph travels from 1.04 to 1.12 across 8s on the cinematic curve, once,
+   so the motion is fastest as the slide arrives and has all but stopped by the
+   time a reader has finished the headline. The inactive slides rest at the
+   same 1.04 the push starts from, so the crossfade never snaps between two
+   differently-scaled frames.
 
-   `forwards` matters: without it the image would drop back to 1.02 the instant
+   `forwards` matters: without it the image would drop back to 1.04 the instant
    the animation ends, in the middle of the slide's own dwell. */
 @keyframes hero-zoom {
   from {
-    transform: scale(1);
+    transform: scale(1.04);
   }
   to {
-    transform: scale(1.14);
+    transform: scale(1.12);
   }
 }
 
 .hero-media img {
-  transform: scale(1.02);
+  transform: scale(1.04);
 }
 
 .hero-media--active img {
-  animation: hero-zoom 7500ms ease-out forwards;
+  animation: hero-zoom 8000ms var(--ease-cine) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -871,7 +886,7 @@ a {
    decision and is deliberately not made here. */
 .press {
   transition-property: color, background-color, border-color,
-    text-decoration-color, opacity, transform;
+    text-decoration-color, opacity, transform, box-shadow;
   transition-duration: var(--motion-base);
   transition-timing-function: var(--ease-out);
 }
@@ -884,6 +899,72 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .press:active:not(:disabled) {
     transform: none;
+  }
+}
+
+/* --- Arrows, text links, the solid button ------------------------------------
+   From the Atlas prototype. The arrow at the end of a control nudges along
+   the reading direction under the pointer — and is mirrored in Arabic, so
+   it points the way the reader is going there too. A text link draws its
+   rule from the leading edge rather than fading one in. The solid button
+   casts its accent as a shadow on hover: the "lift" that says it is the
+   primary action. */
+.arrow {
+  display: inline-block;
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+:is(.press, .textlink, .atlas-card, .atlas-next):hover .arrow,
+:is(.press, .textlink):focus-visible .arrow,
+.atlas-card:focus-within .arrow {
+  transform: translateX(0.3rem);
+}
+
+[dir="rtl"] .arrow { transform: scaleX(-1); }
+
+[dir="rtl"] :is(.press, .textlink, .atlas-card, .atlas-next):hover .arrow,
+[dir="rtl"] :is(.press, .textlink):focus-visible .arrow,
+[dir="rtl"] .atlas-card:focus-within .arrow {
+  transform: scaleX(-1) translateX(0.3rem);
+}
+
+.textlink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.textlink::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -0.35rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: inline-start;
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.textlink:hover::after,
+.textlink:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.btn-solid:hover {
+  box-shadow: 0 12px 30px -14px color-mix(in oklab, var(--brand-accent) 70%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.press, .textlink, .atlas-card, .atlas-next):hover .arrow,
+  .atlas-card:focus-within .arrow {
+    transform: none;
+  }
+
+  [dir="rtl"] :is(.press, .textlink, .atlas-card, .atlas-next):hover .arrow,
+  [dir="rtl"] .atlas-card:focus-within .arrow {
+    transform: scaleX(-1);
   }
 }
 
@@ -921,9 +1002,10 @@ a {
 
    Everything here is built on the brand tokens, so it is one system for six
    tenants: a Consulting page is purple where a Group page is gold because the
-   tokens say so, not because any rule below does. Motion is a tenant's choice
-   (`html[data-motion]`), reduced motion keeps every page complete, and every
-   physical direction has its RTL twin.
+   tokens say so, not because any rule below does. Entrance motion is gated
+   once, on `html.js.motion` (written by the motion island on mount, withheld
+   under reduced motion), so every page is complete before and without it;
+   and every physical direction has its RTL twin.
 
    Sections: type · section head · hero arrival · header overlay · the house ·
    the places band · metrics and opportunities · service rows · project grid ·
@@ -992,35 +1074,128 @@ html:lang(ar) .atlas-display .atlas-accent {
   .atlas-head > .atlas-lead { padding-bottom: 0.5rem; }
 }
 
+/* --- Reveal choreography -----------------------------------------------------
+   The prototype's arrival, site-wide. A block carrying `data-reveal` or the
+   `.reveal` hook waits at opacity 0, 28px below its place, until the motion
+   island (src/components/motion/reveal-choreography.tsx) sees it enter the
+   viewport and adds `.in`; it then rises over 700ms on the house curve, its
+   turn in the sequence set by `--d` (90ms a step — written by the island
+   inside a `[data-stagger]` group, or by a component that knows the order).
+
+   Three things are deliberate here:
+
+   - The hidden state exists only on `html.js.motion`. Both classes are
+     written by the island on mount, and `motion` is withheld under reduced
+     motion, so a page without JavaScript, a reader who asked for stillness,
+     and a browser with no observer all see the finished page. Nothing in
+     the markup ever carries an inline hidden state.
+   - The arrival is an animation, not a transition on the element, and it
+     fills `backwards` only: while it waits for its turn the block holds the
+     from-state, and once it has landed the block is exactly what it was —
+     the hover transition on an insight row or a card, and the archive's
+     filter fade, keep their own `transition` and `opacity` untouched.
+   - `data-reveal="fade"` arrives without the rise (a whole band, where 28px
+     would move a photograph) and `data-reveal="clip"` wipes upward from
+     under a clip on the cinematic curve. */
+@keyframes atlas-reveal {
+  from { opacity: 0; transform: translateY(var(--reveal-y)); }
+}
+
+@keyframes atlas-reveal-clip {
+  from { clip-path: inset(0 0 100% 0); }
+}
+
+html.js.motion :is([data-reveal], .reveal):not(.in) {
+  opacity: 0;
+  transform: translateY(var(--reveal-y));
+}
+
+html.js.motion :is([data-reveal], .reveal).in {
+  animation: atlas-reveal var(--t-slow) var(--ease-out) backwards;
+  animation-delay: calc(var(--d, 0) * 90ms);
+}
+
+html.js.motion [data-reveal="fade"] { --reveal-y: 0px; }
+
+html.js.motion [data-reveal="clip"]:not(.in) {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 100% 0);
+}
+
+html.js.motion [data-reveal="clip"].in {
+  animation: atlas-reveal-clip var(--t-cine) var(--ease-cine) backwards;
+  animation-delay: calc(var(--d, 0) * 90ms);
+}
+
 /* --- Hero arrival --------------------------------------------------------------
-   Played once on load: the tag, each headline line from under a clip, the
-   lead, the actions, 90ms apart. It is a from-state of elements already in the
-   document, gated by the tenant's motion preset, and stilled under reduced
-   motion — the page is complete without it. */
+   Played once, the frame after the page mounts: the tag, each headline line
+   from under its clip, the lead, the actions — the prototype's choreography
+   (`.hero.is-ready`). The from-state exists only on `html.js.motion`, which
+   the motion island writes on mount, and `.is-ready` is what releases it; a
+   page without JavaScript, a reader who asked for stillness, or a hero the
+   island never reached is simply complete.
+
+   `--i` is each part's place in the sequence: the copy lands 90ms apart
+   from 100ms, the headline lines 100ms apart from 150ms on the longer
+   cinematic curve, so the last line is still settling as the lead arrives. */
 .atlas-hero { min-height: 100svh; }
 
-@media (prefers-reduced-motion: no-preference) {
-  html[data-motion="cinematic"] .atlas-arrive > * {
-    animation: atlas-rise var(--motion-slow, 450ms) var(--ease-out) both;
-    animation-delay: calc(var(--i, 0) * 90ms + 120ms);
-  }
-
-  html[data-motion="cinematic"] .atlas-arrive .atlas-line > span {
-    display: block;
-    animation: atlas-line 1200ms cubic-bezier(0.16, 1, 0.3, 1) both;
-    animation-delay: calc(var(--i, 0) * 100ms + 150ms);
-  }
+html.js.motion .atlas-arrive > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--t-slow) var(--ease-out),
+    transform var(--t-slow) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 90ms + 100ms);
 }
+
+html.js.motion .atlas-arrive .atlas-line > span {
+  transform: translateY(110%);
+  transition: transform var(--t-cine) var(--ease-cine);
+  transition-delay: calc(var(--i, 0) * 100ms + 150ms);
+}
+
+html.js.motion .is-ready .atlas-arrive > * { opacity: 1; transform: none; }
+html.js.motion .is-ready .atlas-arrive .atlas-line > span { transform: none; }
 
 .atlas-line { display: block; overflow: hidden; }
 .atlas-line > span { display: block; }
 
-@keyframes atlas-rise {
-  from { opacity: 0; transform: translateY(18px); }
+/* The slide's origin line above the headline is the one part of the copy
+   that changes with the slide. It arrives with the rest (100ms), and on a
+   slide change it leaves — a short drop — while the new frame is already
+   crossfading in beneath, then returns with the new slide's words. */
+html.js.motion .atlas-hero__tag {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--t-slow) var(--ease-out),
+    transform var(--t-slow) var(--ease-out),
+    color var(--t-slow) var(--ease-out);
+  transition-delay: 100ms;
 }
 
-@keyframes atlas-line {
-  from { transform: translateY(110%); }
+html.js.motion .is-ready .atlas-hero__tag { opacity: 1; transform: none; }
+
+html.js.motion .is-ready .atlas-hero__tag.is-swapping {
+  opacity: 0;
+  transform: translateY(6px);
+  transition-duration: var(--t-base);
+  transition-delay: 0ms;
+}
+
+/* The slide index: the dwell bar fills across the slide's time on stage and
+   holds still while the reader's pointer is on the selector, which is also
+   when the rotation waits. */
+.atlas-hero__bar {
+  animation: hero-progress var(--dwell, 7000ms) linear forwards;
+}
+
+.is-paused .atlas-hero__bar { animation-play-state: paused; }
+
+@keyframes atlas-rise {
+  from { opacity: 0; transform: translateY(18px); }
 }
 
 .atlas-scroll-cue {
@@ -1042,10 +1217,15 @@ html:lang(ar) .atlas-display .atlas-accent {
   transform: translateY(-100%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html[data-motion="cinematic"] .atlas-scroll-cue::after {
-    animation: atlas-cue 2200ms var(--ease-in-out) infinite;
-  }
+/* The cue runs for whoever has motion at all; it is hidden, not merely
+   stilled, under reduced motion, because a static line at the foot of the
+   hero says nothing. */
+html.motion .atlas-scroll-cue::after {
+  animation: atlas-cue 2200ms var(--ease-in-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-scroll-cue { display: none; }
 }
 
 @keyframes atlas-cue {
@@ -1305,7 +1485,7 @@ html:lang(ar) .atlas-display .atlas-accent {
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    html[data-motion="cinematic"] .atlas-places__bg {
+    .atlas-places__bg {
       animation: atlas-parallax linear both;
       animation-timeline: view();
       animation-range: entry 0% exit 100%;
@@ -3148,18 +3328,12 @@ html:lang(ar) .site-menu--full .site-menu__link { font-weight: 500; }
    ADR-028's constraint holds: none of it may be required for navigation,
    comprehension, accessibility, forms, or core CTA behaviour.
 
-   It is built on scroll-driven CSS animations rather than on
-   IntersectionObserver, for three reasons in this order:
-
-     1. Content is visible by default. A reveal here is an animation that plays,
-        not a hidden state waiting to be released, so a browser without
-        scroll-driven animations — or a page whose JavaScript never runs — shows
-        a complete readable section rather than blank ground. A JS-gated reveal
-        gets this wrong the moment hydration fails.
-     2. Every section stays a Server Component. The architecture lock keeps
-        Client Components to required interaction, and a decorative reveal is
-        not required interaction.
-     3. It runs off the main thread.
+   The kinetic chapters below are scroll-driven CSS animations, so a section
+   is visible by default and stays a Server Component. The section reveal
+   (`.reveal`) is no longer one of them: it is the site-wide choreography
+   under "Reveal choreography" in the Atlas layer, gated on `html.js.motion`
+   so that a page without JavaScript is still complete, and its stagger is
+   `--d` (an index) rather than the range offset it once was.
 
    Reduced motion is handled twice on purpose: the global kill switch earlier in
    this file collapses durations, and each block below adds a STRUCTURAL
@@ -3170,48 +3344,10 @@ html:lang(ar) .site-menu--full .site-menu__link { font-weight: 500; }
   /* The house easing for this tenant. One curve for every reveal and nudge;
      consistency of easing is most of what reads as craft. */
   --digital-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --reveal-distance: 1.25rem;
   /* The kinetic band's scroll runway, as a multiple of the stage. */
   --digital-kinetic-track: 220svh;
   --digital-kinetic-size-start: clamp(3.5rem, 14vw, 13.5rem);
   --digital-kinetic-size-end: clamp(1.75rem, 4vw, 3.5rem);
-}
-
-/* --- Reveal ---------------------------------------------------------------
-   Opacity 0 to 1 with a 20px rise, played against the element's own view
-   timeline. The 6% entry point is what an observer threshold would otherwise
-   express, and finishing at 26% of cover means nothing is still animating while
-   it is being read.
-
-   --reveal-offset staggers siblings by moving the START of the range
-   rather than by adding a delay: a scroll-driven animation has no wall-clock
-   delay to add, and offsetting the range is what produces the same cascade. */
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(var(--reveal-distance));
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* `.reveal` is a platform hook: any chapter may carry it. Whether it MOVES is
-   the tenant's decision, made once in its brand preset and written to
-   `<html data-motion>`. Only a `cinematic` tenant plays the entrance; on a
-   `quiet` tenant the same markup is simply visible, so SIRA Consulting's
-   privacy page does not inherit SIRA Digital's choreography by sharing a
-   route. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    html[data-motion="cinematic"] .reveal {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry calc(6% + var(--reveal-offset, 0%)) cover
-        calc(26% + var(--reveal-offset, 0%));
-    }
-  }
 }
 
 /* --- Capability rail ------------------------------------------------------ */
@@ -4396,12 +4532,26 @@ html[dir="rtl"] .atlas-page-hero::after {
   border-color: var(--brand-ink);
 }
 
-.atlas-projects.is-filtering > * {
-  opacity: 0;
-  transition: opacity var(--motion-base, 220ms) var(--ease-out);
+/* Choosing a chip: the grid drops out — every card, together — the set
+   changes underneath, and the cards that remain come back in their new
+   order, each on its own `--d` step, so the re-sort reads as a re-deal
+   rather than a jump. The hidden ones are `hidden`, an attribute React
+   toggles without rewriting the card's classes (which would take `.in`
+   with them). */
+.atlas-projects > * {
+  transition:
+    opacity var(--t-base) var(--ease-out),
+    transform var(--t-base) var(--ease-out);
+  transition-delay: calc(var(--d, 0) * 90ms);
 }
 
-.atlas-projects > .is-hidden { display: none; }
+.atlas-projects.is-filtering > * {
+  opacity: 0;
+  transform: translateY(8px);
+  transition-delay: 0ms;
+}
+
+.atlas-projects > [hidden] { display: none; }
 
 /* --- Prose and aside --------------------------------------------------------------- */
 .atlas-two-col {
@@ -4672,7 +4822,13 @@ html:lang(ar) .atlas-city__name { font-weight: 500; }
 
 /* --- Investor drawer -------------------------------------------------------------------------
    A sheet from the trailing edge over a scrim. Native <dialog>, so focus,
-   Escape and inertness come from the platform. */
+   Escape and inertness come from the platform.
+
+   It slides in AND out: the prototype's sheet leaves over the same 700ms on
+   the cinematic curve, and a `<dialog>` can only do that as a transition
+   with `display` and `overlay` allowed to wait for it — the same Layer B
+   mechanism the mobile menu uses. A browser without it opens with the slide
+   and closes at once, which is what this drawer always did. */
 .atlas-drawer {
   position: fixed;
   inset: 0;
@@ -4688,6 +4844,9 @@ html:lang(ar) .atlas-city__name { font-weight: 500; }
   border: 0;
   background: transparent;
   color: var(--brand-on-deep);
+  transition:
+    overlay var(--t-slow) allow-discrete,
+    display var(--t-slow) allow-discrete;
 }
 
 .atlas-drawer:not([open]) { display: none; }
@@ -4696,7 +4855,8 @@ html:lang(ar) .atlas-city__name { font-weight: 500; }
 
 .atlas-drawer__scrim {
   background: color-mix(in oklab, var(--brand-deep) 60%, transparent);
-  animation: atlas-fade-in var(--motion-base, 220ms) var(--ease-out) both;
+  opacity: 0;
+  transition: opacity var(--t-base) var(--ease-out);
 }
 
 .atlas-drawer__sheet {
@@ -4706,23 +4866,28 @@ html:lang(ar) .atlas-city__name { font-weight: 500; }
   padding: 2rem;
   overflow: auto;
   background: var(--brand-deep-card);
-  animation: atlas-drawer-in var(--motion-slow, 450ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform: translateX(100%);
+  transition: transform var(--t-slow) var(--ease-cine);
 }
 
 html[dir="rtl"] .atlas-drawer { grid-template-columns: min(100%, 30rem) 1fr; }
-html[dir="rtl"] .atlas-drawer__sheet { order: -1; animation-name: atlas-drawer-in-rtl; }
+html[dir="rtl"] .atlas-drawer__sheet { order: -1; transform: translateX(-100%); }
 
-@keyframes atlas-drawer-in {
-  from { transform: translateX(100%); }
-}
+.atlas-drawer[open] .atlas-drawer__scrim { opacity: 1; }
+.atlas-drawer[open] .atlas-drawer__sheet { transform: none; }
 
-@keyframes atlas-drawer-in-rtl {
-  from { transform: translateX(-100%); }
+@starting-style {
+  .atlas-drawer[open] .atlas-drawer__scrim { opacity: 0; }
+  .atlas-drawer[open] .atlas-drawer__sheet { transform: translateX(100%); }
+  html[dir="rtl"] .atlas-drawer[open] .atlas-drawer__sheet { transform: translateX(-100%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .atlas-drawer__sheet,
-  .atlas-drawer__scrim { animation: none; }
+  html[dir="rtl"] .atlas-drawer__sheet {
+    transform: none;
+    transition: none;
+  }
 }
 
 .atlas-drawer__top {

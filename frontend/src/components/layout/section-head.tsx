@@ -34,19 +34,21 @@ export function SectionHead({
   className,
 }: SectionHeadProps) {
   return (
-    <div className={joinClasses("atlas-head", className)}>
+    // A stagger group: the eyebrow, the display line and the lead arrive one
+    // after another, as every chapter opening in the prototype does.
+    <div className={joinClasses("atlas-head", className)} data-stagger>
       <div>
-        <SectionEyebrow tone={tone}>{eyebrow}</SectionEyebrow>
+        <SectionEyebrow tone={tone} className="reveal">{eyebrow}</SectionEyebrow>
         {heading !== null ? (
-          <h2 id={id} className={`atlas-display atlas-display--${size} atlas-head__title`}>
+          <h2 id={id} className={`atlas-display atlas-display--${size} atlas-head__title reveal`}>
             {heading}
           </h2>
         ) : null}
       </div>
       {lead !== undefined && lead !== null ? (
-        <p className="atlas-lead">{lead}</p>
+        <p className="atlas-lead reveal">{lead}</p>
       ) : action !== undefined ? (
-        <div className="lg:justify-self-end lg:pb-2">{action}</div>
+        <div className="reveal lg:justify-self-end lg:pb-2">{action}</div>
       ) : null}
     </div>
   );

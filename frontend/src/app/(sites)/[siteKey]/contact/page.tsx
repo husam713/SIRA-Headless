@@ -88,7 +88,7 @@ export default async function ContactPage(props: ContactPageProps) {
 
       <Section labelledBy="contact-heading" className="bg-brand-paper">
         <PageContainer className="atlas-two-col">
-          <div>
+          <div data-stagger>
             <SectionEyebrow tone="accent" className="reveal">
               {chrome.whereWeWork}
             </SectionEyebrow>
@@ -105,7 +105,7 @@ export default async function ContactPage(props: ContactPageProps) {
             ) : null}
           </div>
 
-          <div className="atlas-on-deep reveal">
+          <div className="atlas-on-deep" data-reveal="fade">
             <ContactForm services={subjects} locale={request.locale} />
           </div>
         </PageContainer>

@@ -67,7 +67,7 @@ export function DigitalCapabilities({
               // still waiting when the reader has already read it.
               style={
                 {
-                  "--reveal-offset": `${String(Math.min(index, 5) * 2)}%`,
+                  "--d": String(Math.min(index, 5)),
                 } as CSSProperties
               }
             >

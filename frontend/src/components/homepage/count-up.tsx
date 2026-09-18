@@ -11,13 +11,17 @@ interface CountUpProps {
 const DURATION_MS = 1400;
 
 /**
- * A figure that counts to its value as it scrolls into view.
+ * A figure that counts to its value as it scrolls into view — the prototype's
+ * "counting numbers": 1.4s on an ease-out cubic, started once 60% of the
+ * figure is on screen.
  *
- * The value is the CMS's own string ("$120M+", "14–18%", "30K+"): only the
- * first run of digits is animated and the rest of the string is kept verbatim,
- * so nothing an editor wrote is reformatted. The final text is what the server
- * rendered; the animation is a from-state, and a browser that never runs it —
- * or a reader who asked for reduced motion — sees the finished number at once.
+ * The value is the CMS's own string ("$120M+", "14–18%", "2.5K", "1,200"):
+ * only the first run of digits is animated and the rest of the string is
+ * kept verbatim, so nothing an editor wrote is reformatted. A decimal is
+ * counted to the same number of places it was written with, and a grouped
+ * figure stays grouped. The final text is what the server rendered; the
+ * animation is a from-state, and a browser that never runs it — or a reader
+ * who asked for reduced motion — sees the finished number at once.
  */
 export function CountUp({ value, className }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -26,15 +30,15 @@ export function CountUp({ value, className }: CountUpProps) {
     const element = ref.current;
     if (element === null) return undefined;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
-    if (document.documentElement.dataset["motion"] !== "cinematic") return undefined;
 
-    const match = /^([^\d]*)(\d[\d,]*)(.*)$/u.exec(value);
+    const match = /^([^\d]*)(\d[\d,.]*)(.*)$/u.exec(value);
     if (match === null) return undefined;
 
     const [, prefix = "", digits = "0", suffix = ""] = match;
-    const target = Number(digits.replace(/,/gu, ""));
+    const target = Number.parseFloat(digits.replace(/,/gu, ""));
     if (!Number.isFinite(target)) return undefined;
 
+    const decimals = (digits.split(".")[1] ?? "").length;
     const grouped = digits.includes(",");
     let frame = 0;
 
@@ -47,9 +51,15 @@ export function CountUp({ value, className }: CountUpProps) {
         const tick = (now: number) => {
           const progress = Math.min(1, (now - startedAt) / DURATION_MS);
           const eased = 1 - Math.pow(1 - progress, 3);
-          const current = Math.round(target * eased);
+          const current = target * eased;
           element.textContent =
-            prefix + (grouped ? current.toLocaleString("en-US") : String(current)) + suffix;
+            prefix +
+            current.toLocaleString("en-US", {
+              minimumFractionDigits: decimals,
+              maximumFractionDigits: decimals,
+              useGrouping: grouped,
+            }) +
+            suffix;
           if (progress < 1) {
             frame = requestAnimationFrame(tick);
           } else {

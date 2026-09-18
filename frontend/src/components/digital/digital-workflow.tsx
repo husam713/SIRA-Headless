@@ -50,7 +50,7 @@ export function DigitalWorkflow({ steps, label }: DigitalWorkflowProps) {
                 "--wf-index": index,
                 // The stagger runs along the flow, so the eye is walked through
                 // the process in the order the process happens.
-                "--reveal-offset": `${String(Math.min(index, 6) * 1.5)}%`,
+                "--d": String(Math.min(index, 6)),
               } as CSSProperties
             }
           >

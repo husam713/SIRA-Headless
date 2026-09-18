@@ -21,6 +21,7 @@ export function CityList({ offices, tone = "deep", className }: CityListProps) {
   return (
     <ol
       className={`atlas-cities${tone === "paper" ? " atlas-cities--paper" : ""}${className === undefined ? "" : ` ${className}`}`}
+      data-stagger
     >
       {offices.map((office, index) => (
         <li

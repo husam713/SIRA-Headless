@@ -90,7 +90,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
               id={neutralSlug(entry.slug)}
               className="reveal scroll-mt-8 border-t border-brand-border py-[clamp(2.5rem,5vw,4rem)] first:border-t-0 first:pt-0"
               style={
-                { "--reveal-offset": `${String(Math.min(index, 3) * 2)}%` } as CSSProperties
+                { "--d": String(Math.min(index, 3)) } as CSSProperties
               }
             >
               <article className="grid gap-8 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-16">

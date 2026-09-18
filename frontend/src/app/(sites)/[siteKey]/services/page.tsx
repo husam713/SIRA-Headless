@@ -68,7 +68,7 @@ function ServiceRow({ service, index }: { readonly service: ServiceEntry; readon
 
   return (
     <details
-      className="atlas-service"
+      className="atlas-service reveal"
       name="sira-services"
       open={index === 0}
       style={accent === null ? undefined : ({ "--c": accent.color } as CSSProperties)}
@@ -135,7 +135,7 @@ export default async function ServicesPage(props: ServicesPageProps) {
 
       <Section labelledBy="services-heading" className="bg-brand-paper">
         <PageContainer>
-          <div className="atlas-services reveal">
+          <div className="atlas-services" data-stagger>
             {services.map((service, index) => (
               <ServiceRow key={service.databaseId} service={service} index={index} />
             ))}

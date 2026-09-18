@@ -24,6 +24,8 @@ load automatically from `.claude/rules/` when you touch those paths.
 | CMS-origin relocation reconciliation (ADR-036 / SOT-003) + Group cutover plan | merged on `main` — PR **#68** @ `db090be6`, 2026-09-15 | Git |
 | Backend starter importer | PR **#45** (draft, 2026-08-28) — stale | GitHub |
 | PR **#37** | Vercel bot; Vercel is no longer used — close when convenient | owner decision 2026-09-15 |
+| Atlas inner pages + production content (EN) | PR **#77** `feat/atlas-production-site`, open, CI green (2026-09-17) | GitHub |
+| Atlas Arabic edition (ADR-037) | branch `feat/atlas-arabic` on top of #77; live WordPress content written 2026-09-17/18 | Git, `docs/tasks/atlas-arabic-content.md` |
 | Owner's local uncommitted work (Cloud Run Dockerfile, search-indexing switch, newsroom design pass, backend CI) | intentional, in the main checkout, not on any branch yet | owner statement 2026-09-15 |
 
 ## Durable-state carriers
@@ -60,7 +62,7 @@ post-merge verification has not been performed.
 - **RB-009** restore rehearsal has never been performed — recoverability is inferred, not proven.
 - **ADR-032**: Hostinger CDN returns 403 + bot challenge to server-side GraphQL fetches from unrecognised IPs; live captures go over SSH (`tools/capture-live-feed.mjs`). Launch blocker.
 - `blog_public = 0` on the tenants and 37+ `_sira_seed=1` placeholder records: `node tools/verify-no-seed-content.mjs` must pass before launch.
-- `2C4-B09` (Step 3D.3) and `PREVIEW-AUTH-001` remain deferred; full Step 3D closure must not be claimed.
+- `2C4-B09` is decided for every tenant (ADR-034 Digital, ADR-037 the other five, 2026-09-18) on branch `feat/atlas-arabic`; `PREVIEW-AUTH-001` remains deferred and full Step 3D closure must not be claimed.
 - Deploy target is in transition (Vercel dropped; Cloud Run files exist locally, untracked).
 
 ## Next step

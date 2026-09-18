@@ -8,6 +8,17 @@ query SiraContentPage($uri: ID!, $asPreview: Boolean = false) {
     siraLocale {
       code
     }
+    featuredImage {
+      node {
+        databaseId
+        sourceUrl
+        altText
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
     pageIntro {
       eyebrow
       heading
@@ -33,6 +44,25 @@ query SiraServiceIndex {
       title
       excerpt
       content
+      featuredImage {
+        node {
+          databaseId
+          sourceUrl
+          altText
+          mediaDetails {
+            width
+            height
+          }
+        }
+      }
+      businessUnit: siraBusinessUnits(first: 1) {
+        nodes {
+          ... on SiraBusinessUnit {
+            slug
+            name
+          }
+        }
+      }
       siraLocale {
         code
       }

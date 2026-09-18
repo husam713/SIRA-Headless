@@ -64,6 +64,8 @@ export interface HomepageContentItem {
   readonly status: string | null;
   readonly descriptor: string | null;
   readonly externalHref: string | null;
+  /** For investments: the related project's own URI, when one is linked. */
+  readonly relatedHref: string | null;
   readonly ticketSizeLabel: string | null;
   readonly role: string | null;
   readonly organization: string | null;

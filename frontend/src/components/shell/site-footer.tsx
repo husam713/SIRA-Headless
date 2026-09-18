@@ -112,13 +112,15 @@ function FooterColumn({ heading, children }: FooterColumnProps) {
       <h2 className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-on-deep/50">
         {heading}
       </h2>
-      <ul className="mt-5 flex flex-col gap-3">{children}</ul>
+      <ul className="mt-3 flex flex-col">{children}</ul>
     </div>
   );
 }
 
+// min-h-11 / py: every footer link is a 44px touch target on a phone; the
+// list's gap is reduced to keep the column's rhythm where it was.
 const FOOTER_LINK_CLASS =
-  "text-sm text-brand-on-deep/70 transition-colors hover:text-brand-accent-bright";
+  "inline-flex min-h-11 items-center text-sm text-brand-on-deep/70 transition-colors hover:text-brand-accent-bright";
 
 /**
  * The four portfolio companies, from the trusted site registry.
@@ -186,7 +188,7 @@ export function SiteFooter({
             {groupLink !== null ? (
               <a
                 href={groupLink.href}
-                className="text-[11px] font-bold uppercase tracking-[0.1em] text-brand-on-deep/70 transition-colors hover:text-brand-accent-bright"
+                className="inline-flex min-h-11 items-center text-[11px] font-bold uppercase tracking-[0.1em] text-brand-on-deep/70 transition-colors hover:text-brand-accent-bright"
               >
                 {groupLink.label}
               </a>
@@ -231,7 +233,7 @@ export function SiteFooter({
                     aria-current={company.isCurrent ? "page" : undefined}
                     className={
                       company.isCurrent
-                        ? "text-sm text-brand-on-deep"
+                        ? "inline-flex min-h-11 items-center text-sm text-brand-on-deep"
                         : FOOTER_LINK_CLASS
                     }
                   >

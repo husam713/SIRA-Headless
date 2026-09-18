@@ -4,8 +4,17 @@ query SiraProjectSingle($uri: ID!) {
     title
     uri
     excerpt
+    date
     content(format: RENDERED)
     isRestricted
+    businessUnit: siraBusinessUnits(first: 1) {
+      nodes {
+        ... on SiraBusinessUnit {
+          slug
+          name
+        }
+      }
+    }
     featuredImage {
       node {
         databaseId
@@ -54,6 +63,14 @@ query SiraProjectSingle($uri: ID!) {
           ... on SiraCompany {
             title
             uri
+            businessUnit: siraBusinessUnits(first: 1) {
+              nodes {
+                ... on SiraBusinessUnit {
+                  slug
+                  name
+                }
+              }
+            }
           }
         }
       }

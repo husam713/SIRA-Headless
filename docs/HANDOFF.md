@@ -1077,6 +1077,20 @@ not pre-authorized through a Task Packet, and it went beyond the bounded
   deferred with the Group relocation; per `AGENTS.md` Bricks is not a production
   headless dependency, so it is documented, not maintained.
 
+## Atlas production content — written 2026-09-17
+
+The Atlas pages (`/services/`, `/projects/`, `/projects/<slug>/`, `/investors/`,
+`/contact/`) now have production content and interim photography on Group and
+the four companies, written into live WordPress under an in-session owner
+instruction after a verified `mysqldump`. The record — authorization, backup
+coordinates, what was written per tenant, the claims an editor must verify,
+the image specifications and the rollback — is
+`docs/tasks/atlas-production-content.md`. Two things to know before touching
+those records: they carry **no** `_sira_seed` marker (owner decision: this is
+production content, reviewed by the owner), and the Step 2C.3C project-archive
+contract was **amended** by owner decision to carry lineage (date, business
+unit, one related company). Branch: `feat/atlas-production-site`.
+
 ## New owner decision — Group staging first
 
 The replacement public Group frontend for `siratrgroup.com` must be developed, integrated, QA'd, and owner-accepted on staging before production cutover.

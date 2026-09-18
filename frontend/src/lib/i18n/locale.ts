@@ -123,7 +123,7 @@ export function intlLocale(locale: LocaleCode): string {
   return locale === "ar" ? "ar-SA" : "en-SA";
 }
 
-interface Chrome {
+export interface Chrome {
   readonly skipToContent: string;
   readonly switchLanguage: string;
   readonly switchLanguageShort: string;
@@ -168,6 +168,46 @@ interface Chrome {
   readonly footerCompanies: string;
   readonly footerConnect: string;
   readonly allRightsReserved: string;
+  readonly errorTitle: string;
+  readonly errorBody: string;
+  readonly tryAgain: string;
+  readonly notFoundTitle: string;
+  readonly notFoundBody: string;
+  readonly featuredProjects: string;
+  readonly previousProject: string;
+  readonly nextProject: string;
+  readonly pause: string;
+  readonly play: string;
+  readonly featuredVentures: string;
+  /** `{index}`, `{count}` and `{title}` are substituted. */
+  readonly showingSlide: string;
+  readonly projects: string;
+  readonly companies: string;
+  readonly allProjects: string;
+  readonly filterAll: string;
+  readonly statusLabel: string;
+  readonly yearLabel: string;
+  readonly atAGlance: string;
+  readonly gallery: string;
+  readonly nextProjectLabel: string;
+  readonly ticketSize: string;
+  readonly requestPack: string;
+  readonly whereWeWork: string;
+  readonly startConversation: string;
+  readonly viewProjects: string;
+  readonly explore: string;
+  readonly newsAndPerspectives: string;
+  readonly fromTheDesk: string;
+  readonly packLead: string;
+  readonly packInvestorType: string;
+  readonly packInvestorTypes: readonly string[];
+  readonly packRange: string;
+  readonly packRanges: readonly string[];
+  readonly packCta: string;
+  readonly packDone: string;
+  readonly fullName: string;
+  readonly emailAddress: string;
+  readonly close: string;
 }
 
 /**
@@ -206,6 +246,45 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     footerCompanies: "Companies",
     footerConnect: "Connect",
     allRightsReserved: "All rights reserved.",
+    errorTitle: "This page could not be loaded.",
+    errorBody: "Please try again. No private error details are displayed.",
+    tryAgain: "Try again",
+    notFoundTitle: "Page not found",
+    notFoundBody: "The requested SIRA page does not exist.",
+    featuredProjects: "Featured Projects",
+    previousProject: "Previous featured project",
+    nextProject: "Next featured project",
+    pause: "Pause",
+    play: "Play",
+    featuredVentures: "Featured ventures",
+    showingSlide: "Showing {index} of {count}: {title}",
+    projects: "Projects",
+    companies: "Companies",
+    allProjects: "All projects",
+    filterAll: "All",
+    statusLabel: "Status",
+    yearLabel: "Year",
+    atAGlance: "At a glance",
+    gallery: "Gallery",
+    nextProjectLabel: "Next project",
+    ticketSize: "Ticket size",
+    requestPack: "Request the investor pack",
+    whereWeWork: "Where we work",
+    startConversation: "Start a conversation",
+    viewProjects: "View projects",
+    explore: "Explore",
+    newsAndPerspectives: "News & perspectives",
+    fromTheDesk: "From the {name} desk",
+    packLead: "Tell us who you are and we will send the current pack and arrange an introduction.",
+    packInvestorType: "Investor type",
+    packInvestorTypes: ["Private / individual", "Family office", "Institutional"],
+    packRange: "Indicative range",
+    packRanges: ["$250K – $1M", "$1M – $5M", "$5M+"],
+    packCta: "Request pack",
+    packDone: "Requested — we will be in touch within two working days.",
+    fullName: "Full name",
+    emailAddress: "Email address",
+    close: "Close",
   }),
   ar: Object.freeze({
     skipToContent: "تخطَّ إلى المحتوى الرئيسي",
@@ -234,5 +313,44 @@ export const CHROME: Readonly<Record<LocaleCode, Chrome>> = Object.freeze({
     footerCompanies: "الشركات",
     footerConnect: "تواصل",
     allRightsReserved: "جميع الحقوق محفوظة.",
+    errorTitle: "تعذّر تحميل هذه الصفحة.",
+    errorBody: "يرجى المحاولة مرة أخرى. لا تُعرض أي تفاصيل خاصة عن الخطأ.",
+    tryAgain: "حاول مرة أخرى",
+    notFoundTitle: "الصفحة غير موجودة",
+    notFoundBody: "صفحة سيرا المطلوبة غير موجودة.",
+    featuredProjects: "مشاريع مميزة",
+    previousProject: "المشروع المميز السابق",
+    nextProject: "المشروع المميز التالي",
+    pause: "إيقاف مؤقت",
+    play: "تشغيل",
+    featuredVentures: "مشاريع مميزة",
+    showingSlide: "عرض {index} من {count}: {title}",
+    projects: "المشاريع",
+    companies: "الشركات",
+    allProjects: "كل المشاريع",
+    filterAll: "الكل",
+    statusLabel: "الحالة",
+    yearLabel: "السنة",
+    atAGlance: "لمحة سريعة",
+    gallery: "معرض",
+    nextProjectLabel: "المشروع التالي",
+    ticketSize: "حجم الاستثمار",
+    requestPack: "اطلب ملف المستثمر",
+    whereWeWork: "أين نعمل",
+    startConversation: "ابدأ محادثة",
+    viewProjects: "استعرض المشاريع",
+    explore: "استكشف",
+    newsAndPerspectives: "أخبار ورؤى",
+    fromTheDesk: "من مكتب {name}",
+    packLead: "أخبرنا من أنت وسنرسل الملف الحالي ونرتب تعريفاً.",
+    packInvestorType: "نوع المستثمر",
+    packInvestorTypes: ["فرد / خاص", "مكتب عائلي", "مؤسسي"],
+    packRange: "النطاق التقريبي",
+    packRanges: ["$250K – $1M", "$1M – $5M", "$5M+"],
+    packCta: "اطلب الملف",
+    packDone: "تم الطلب — سنتواصل معك خلال يومي عمل.",
+    fullName: "الاسم الكامل",
+    emailAddress: "البريد الإلكتروني",
+    close: "إغلاق",
   }),
 });

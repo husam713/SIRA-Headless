@@ -26,10 +26,15 @@ fragment HomepageProjectNode on SiraProject {
   contentTypeName
   title
   uri
+  date
   excerpt
   isRestricted
   featuredImage { ...HomepageFeaturedImage }
   projectDetails { subtitle location status }
+  businessUnit: siraBusinessUnits(first: 1) {
+    nodes { ... on SiraBusinessUnit { databaseId name slug } }
+    pageInfo { hasNextPage }
+  }
 }
 
 fragment HomepageCompanyNode on SiraCompany {
@@ -78,6 +83,14 @@ fragment HomepageInvestmentNode on SiraInvestment {
   investmentDetails {
     publicDisplay
     ticketSizeLabel
+    relatedProject(first: 1) {
+      nodes {
+        ... on SiraProject {
+          uri
+        }
+      }
+      pageInfo { hasNextPage }
+    }
     relatedCompany(first: 1) {
       nodes {
         ... on SiraCompany {

@@ -22,6 +22,18 @@ export interface ProjectArchiveImage {
   readonly height: number | null;
 }
 
+/**
+ * The company a project belongs to, as the archive needs it: the name for the
+ * card kicker and the Business Unit slug for the filter and the accent. Taken
+ * from the project's own Business Unit term when it has one, otherwise from
+ * the related company's, so a Group project filed only through its company
+ * still filters and colours correctly.
+ */
+export interface ProjectArchiveUnit {
+  readonly slug: string;
+  readonly name: string;
+}
+
 export interface ProjectArchiveItem {
   readonly databaseId: number;
   readonly title: string;
@@ -31,6 +43,10 @@ export interface ProjectArchiveItem {
   readonly subtitle: string | null;
   readonly location: string | null;
   readonly status: string | null;
+  /** Four-digit year of the record's publish date, or null. */
+  readonly year: string | null;
+  readonly unit: ProjectArchiveUnit | null;
+  readonly companyTitle: string | null;
 }
 
 export interface ProjectArchivePageInfo {

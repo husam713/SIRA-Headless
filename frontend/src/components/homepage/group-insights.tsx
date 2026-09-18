@@ -1,8 +1,9 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
-import { SectionEyebrow } from "@/components/layout/section-eyebrow";
+import { SectionHead } from "@/components/layout/section-head";
 import { CtaLink } from "@/components/homepage/cta-link";
 import { editorialArticleHref } from "@/lib/editorial/routes";
 import { formatContentDate } from "@/lib/homepage/format-date";
@@ -11,72 +12,78 @@ import type {
   HomepageEditorialSection,
 } from "@/lib/homepage/types";
 
+// Atlas direction (owner-approved 2026-09-16): perspectives are an editorial
+// list, not a card row — dateline and kind on the left, the title as the
+// line, the picture as a small plate on the right. The whole row is the link
+// (the title's anchor is stretched over it) when the item has a route this
+// app serves; otherwise the title stands unlinked.
+
 interface GroupInsightsProps {
   readonly section: HomepageEditorialSection | null;
 }
 
-interface InsightCardProps {
+interface InsightRowProps {
   readonly item: HomepageContentItem;
+  readonly index: number;
   /**
-   * Whether this ROW carries media at all.
-   *
-   * Decided once for the section rather than per card: with a mixed row, one
-   * article showed a photograph while its neighbours reserved an empty grey
-   * rectangle of identical height, which reads as three broken cards rather
-   * than one row. Either every card reserves the block, or none does.
+   * Whether the rows carry a picture plate at all. Decided once for the
+   * list: a plate on one row and a blank on the next reads as broken rows,
+   * so either every row has its picture or none reserves the space.
    */
   readonly withMedia: boolean;
 }
 
-function InsightCard({ item, withMedia }: InsightCardProps) {
+const KIND_LABEL: Readonly<Record<string, string>> = Object.freeze({
+  article: "Article",
+  insight: "Insight",
+  news: "News",
+  "press-release": "Press release",
+});
+
+function InsightRow({ item, index, withMedia }: InsightRowProps) {
   const date = formatContentDate(item.date);
-  // item.href is the content node's own uri. The [section]/[slug] route serves
-  // the four editorial bases verbatim, so anything under them links; anything
-  // else stays unlinked rather than pointing at a 404.
   const href = editorialArticleHref(item.href);
+  const kind = KIND_LABEL[item.kind] ?? null;
 
   return (
-    <article className="card-hover flex flex-col gap-5">
+    <article
+      className={`atlas-insight reveal${withMedia ? "" : " atlas-insight--text"}`}
+      style={{ "--reveal-offset": `${String(Math.min(index, 5) * 1.5)}%` } as CSSProperties}
+    >
+      <p className="atlas-insight__meta">
+        {kind !== null ? <b>{kind}</b> : null}
+        {date !== null ? <span>{date}</span> : null}
+      </p>
+
+      <div>
+        <h3 className="atlas-insight__title">
+          {href === null ? (
+            item.title
+          ) : (
+            <Link href={href} className="transition-colors hover:text-brand-accent">
+              {item.title}
+            </Link>
+          )}
+        </h3>
+        {item.excerpt !== null ? <p className="atlas-insight__copy">{item.excerpt}</p> : null}
+      </div>
+
       {withMedia ? (
-      <div className="card-media aspect-[16/11] w-full bg-brand-tint">
+      <div className="atlas-insight__thumb" aria-hidden="true">
         {item.featuredImage !== null ? (
-          // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a plain
-          // <img> is used rather than next/image, which would require configuring
-          // remote patterns.
+          // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a
+          // plain <img>. Decorative: the row is named by its title.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={item.featuredImage.sourceUrl}
-            alt={item.featuredImage.altText ?? item.title}
+            alt=""
             width={item.featuredImage.width ?? undefined}
             height={item.featuredImage.height ?? undefined}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover"
           />
         ) : null}
       </div>
-      ) : null}
-      <div className="flex items-center gap-3">
-        {date !== null ? (
-          <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-brand-accent">
-            {date}
-          </span>
-        ) : null}
-        <span aria-hidden="true" className="h-px flex-1 bg-brand-border" />
-      </div>
-      <h3 className="font-display text-xl font-normal leading-snug">
-        {href === null ? (
-          item.title
-        ) : (
-          <Link href={href} className="hover:text-brand-accent">
-            {item.title}
-          </Link>
-        )}
-      </h3>
-      {item.excerpt !== null ? (
-        <p className="text-[15px] leading-relaxed text-brand-ink-soft">
-          {item.excerpt}
-        </p>
       ) : null}
     </article>
   );
@@ -85,13 +92,7 @@ function InsightCard({ item, withMedia }: InsightCardProps) {
 export function GroupInsights({ section }: GroupInsightsProps) {
   if (section === null || section.selection.status !== "ready") return null;
 
-  // EVERY, not some. Reserving the block when only part of the row has art
-  // leaves the rest as empty rectangles of identical height, which reads worse
-  // than no art at all — and filling them would mean inventing imagery the CMS
-  // does not have. A partially-illustrated row becomes a typographic row.
-  const rowHasMedia = section.selection.items.every(
-    (item) => item.featuredImage !== null,
-  );
+  const withMedia = section.selection.items.every((item) => item.featuredImage !== null);
 
   return (
     <Section
@@ -100,34 +101,27 @@ export function GroupInsights({ section }: GroupInsightsProps) {
       className="border-b border-brand-border"
     >
       <PageContainer>
-        <div className="flex flex-wrap items-end justify-between gap-8">
-          <div>
-            <SectionEyebrow>{section.eyebrow ?? "News & Perspectives"}</SectionEyebrow>
-            {section.heading !== null ? (
-              <h2
-                id="insights-heading"
-                className="mt-4 text-balance font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.05]"
-              >
-                {section.heading}
-              </h2>
-            ) : null}
-          </div>
-          {section.link !== null ? (
-            <CtaLink link={section.link} variant="ghost-light" />
-          ) : null}
-        </div>
+        <SectionHead
+          id="insights-heading"
+          eyebrow={section.eyebrow ?? "News & Perspectives"}
+          heading={section.heading}
+          lead={section.description}
+          action={
+            section.link !== null ? <CtaLink link={section.link} variant="ghost-light" /> : undefined
+          }
+        />
 
-        {section.description !== null ? (
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-brand-ink-soft">
-            {section.description}
-          </p>
-        ) : null}
-
-        <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {section.selection.items.map((item) => (
-            <InsightCard key={item.databaseId} item={item} withMedia={rowHasMedia} />
+        <div className="atlas-insights">
+          {section.selection.items.map((item, index) => (
+            <InsightRow key={item.databaseId} item={item} index={index} withMedia={withMedia} />
           ))}
         </div>
+
+        {section.link !== null && section.description !== null ? (
+          <p className="mt-10">
+            <CtaLink link={section.link} variant="ghost-light" />
+          </p>
+        ) : null}
       </PageContainer>
     </Section>
   );

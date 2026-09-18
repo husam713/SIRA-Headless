@@ -1,6 +1,7 @@
 import { revalidateTag } from "next/cache";
 import { NextResponse, type NextRequest } from "next/server";
 import { recentRevalidationEvents } from "@/lib/revalidation/dedupe";
+import { planEdgePurge } from "@/lib/revalidation/purge";
 import {
   mapRevalidationTags,
   readRevalidationGranularity,
@@ -54,6 +55,8 @@ interface RevalidationLog {
   readonly postId?: number | null;
   readonly tagsApplied?: readonly string[];
   readonly tagsDropped?: readonly string[];
+  /** What an edge purge would cover; logged until a CDN purge client exists. */
+  readonly edgePurge?: { readonly wholeHost: boolean; readonly urls: readonly string[] } | null;
   readonly durationMs: number;
 }
 
@@ -98,12 +101,14 @@ export async function POST(request: NextRequest): Promise<Response> {
     );
   }
 
+  const granularity = readRevalidationGranularity();
   const { tags, dropped } = mapRevalidationTags(
     event.siteKey,
     event.blogId,
     event.tags,
-    readRevalidationGranularity(),
+    granularity,
   );
+  const purge = planEdgePurge(event.siteKey, event.paths, event.tags, granularity);
 
   try {
     for (const tag of tags) {
@@ -122,11 +127,13 @@ export async function POST(request: NextRequest): Promise<Response> {
     severity: "INFO", event: "revalidation", outcome: "accepted",
     eventId: event.eventId, siteKey: event.siteKey, blogId: event.blogId,
     source: event.source, operation: event.operation, postType: event.postType, postId: event.postId,
-    tagsApplied: tags, tagsDropped: dropped, durationMs: durationMs(),
+    tagsApplied: tags, tagsDropped: dropped,
+    edgePurge: purge === null ? null : { wholeHost: purge.wholeHost, urls: purge.urls },
+    durationMs: durationMs(),
   });
 
   return NextResponse.json(
-    { accepted: true, duplicate: false, eventId: event.eventId, siteKey: event.siteKey, tags },
+    { accepted: true, duplicate: false, eventId: event.eventId, siteKey: event.siteKey, tags, edgePurge: purge },
     { headers: NO_STORE },
   );
 }

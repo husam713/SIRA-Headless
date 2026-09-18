@@ -230,8 +230,11 @@ function editorialWhereArguments(source: string): string {
 
   it("keeps Project Archive light and Project Single native and bounded", () => {
     expect(SIRA_PROJECTS_QUERY.source).toMatch(/\bsiraProjects\s*\(/u);
+    // `relatedCompany(first: 1)` joined the archive row with the Atlas project
+    // ledger (2026-09-17); the archive still carries no gallery, statistics or
+    // rendered body — see query-contracts.test.ts for the full row shape.
     expect(SIRA_PROJECTS_QUERY.source).not.toMatch(
-      /\b(gallery|statistics|relatedCompany|content)\b/u,
+      /\b(gallery|statistics|content)\b/u,
     );
     expect(SIRA_PROJECT_SINGLE_QUERY.source).toMatch(
       /siraProject\s*\(\s*id:\s*\$uri,\s*idType:\s*URI,\s*asPreview:\s*false/u,

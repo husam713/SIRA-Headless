@@ -35,6 +35,14 @@ export interface PageIntro {
   readonly ctaHeading: string | null;
 }
 
+export interface ContentImage {
+  readonly databaseId: number;
+  readonly sourceUrl: string;
+  readonly altText: string | null;
+  readonly width: number | null;
+  readonly height: number | null;
+}
+
 export interface ContentPage {
   readonly databaseId: number;
   readonly uri: string;
@@ -42,6 +50,8 @@ export interface ContentPage {
   readonly html: string | null;
   readonly modified: string | null;
   readonly intro: PageIntro | null;
+  /** The page's featured image — an Atlas page opens on it. */
+  readonly featuredImage: ContentImage | null;
 }
 
 export interface ServiceEntry {
@@ -64,6 +74,9 @@ export interface ServiceEntry {
   readonly outcome: string | null;
   /** The per-service call to action. Falls back to the page's own label. */
   readonly ctaLabel: string | null;
+  readonly featuredImage: ContentImage | null;
+  /** The company this service is delivered by, when the CMS files it under one. */
+  readonly unit: { readonly slug: string; readonly name: string } | null;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -109,6 +122,42 @@ function editorialHtml(value: unknown): string | null {
   return cleaned === "" ? null : cleaned;
 }
 
+function normalizeImage(value: unknown): ContentImage | null {
+  if (!isRecord(value) || !isRecord(value["node"])) return null;
+
+  const node = value["node"];
+  const databaseId = Number(node["databaseId"]);
+  const sourceUrl = node["sourceUrl"];
+
+  if (!Number.isSafeInteger(databaseId) || databaseId <= 0) return null;
+  if (typeof sourceUrl !== "string" || !/^https:\/\//u.test(sourceUrl)) return null;
+
+  const details = isRecord(node["mediaDetails"]) ? node["mediaDetails"] : null;
+  const dimension = (raw: unknown): number | null =>
+    Number.isSafeInteger(raw) && Number(raw) > 0 ? Number(raw) : null;
+
+  return Object.freeze({
+    databaseId,
+    sourceUrl,
+    altText: plainText(node["altText"], 300),
+    width: dimension(details?.["width"]),
+    height: dimension(details?.["height"]),
+  });
+}
+
+function normalizeUnit(value: unknown): { readonly slug: string; readonly name: string } | null {
+  if (!isRecord(value) || !Array.isArray(value["nodes"])) return null;
+
+  const node: unknown = value["nodes"][0];
+
+  if (!isRecord(node)) return null;
+
+  const slug = plainText(node["slug"], 120);
+  const name = plainText(node["name"], 120);
+
+  return slug === null || name === null ? null : Object.freeze({ slug, name });
+}
+
 function normalizeContentPage(data: unknown): ContentPage | null {
   if (!isRecord(data) || !isRecord(data["page"])) return null;
 
@@ -127,6 +176,7 @@ function normalizeContentPage(data: unknown): ContentPage | null {
     html: editorialHtml(page["content"]),
     modified: typeof page["modified"] === "string" ? page["modified"] : null,
     intro: normalizeIntro(page["pageIntro"]),
+    featuredImage: normalizeImage(page["featuredImage"]),
   });
 }
 
@@ -181,6 +231,8 @@ function normalizeServiceIndex(data: unknown): readonly ServiceEntry[] {
         challenge: plainText(digital["challenge"], 400),
         outcome: plainText(digital["outcome"], 400),
         ctaLabel: plainText(digital["ctaLabel"], 80),
+        featuredImage: normalizeImage(node["featuredImage"]),
+        unit: normalizeUnit(node["businessUnit"]),
       });
     })
     .filter((entry): entry is ServiceEntry => entry !== null);

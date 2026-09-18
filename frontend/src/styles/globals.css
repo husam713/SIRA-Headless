@@ -142,6 +142,14 @@
   --motion-slow: 450ms;
 }
 
+/* The `modern` typography preset: the display face becomes the interface
+   face. Both are already loaded; the preset only re-points the token, so a
+   tenant on it costs no extra font bytes. Arabic is unaffected — its rules
+   below re-point all three tokens to Noto Kufi regardless of preset. */
+html[data-typography="modern"] {
+  --font-sira-display: var(--font-archivo), Arial, Helvetica, sans-serif;
+}
+
 html:lang(ar) {
   --font-sira-body:
     var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
@@ -904,6 +912,960 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .settle-in {
     animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Atlas — the production composition language for the Group and branch
+   homepages (owner-approved design direction, 2026-09-16)
+
+   Everything here is built on the brand tokens, so it is one system for six
+   tenants: a Consulting page is purple where a Group page is gold because the
+   tokens say so, not because any rule below does. Motion is a tenant's choice
+   (`html[data-motion]`), reduced motion keeps every page complete, and every
+   physical direction has its RTL twin.
+
+   Sections: type · section head · hero arrival · header overlay · the house ·
+   the places band · metrics and opportunities · service rows · project grid ·
+   insight rows · quotes · closing · full-screen menu.
+   --------------------------------------------------------------------------- */
+
+/* --- Type ------------------------------------------------------------------
+   The display voice is Newsreader at 300, tight, with the CMS-provided
+   highlight phrase in italic accent. Arabic keeps weight and loses italics. */
+.atlas-display {
+  font-family: var(--font-sira-display);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.atlas-display em,
+.atlas-display .atlas-accent {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--atlas-accent, var(--brand-accent));
+}
+
+html:lang(ar) .atlas-display {
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+html:lang(ar) .atlas-display em,
+html:lang(ar) .atlas-display .atlas-accent {
+  font-style: normal;
+}
+
+.atlas-display--xl { font-size: clamp(3rem, 9vw, 8.5rem); }
+.atlas-display--l { font-size: clamp(2.5rem, 5.6vw, 5rem); }
+.atlas-display--m { font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.08; }
+
+.atlas-lead {
+  font-family: var(--font-sira-display);
+  font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--brand-ink-soft);
+}
+
+.atlas-on-deep .atlas-lead,
+.atlas-on-deep.atlas-lead {
+  color: color-mix(in oklab, var(--brand-on-deep) 72%, transparent);
+}
+
+/* --- Section head ------------------------------------------------------------
+   Eyebrow over the display line on the left, the lead on the right, bottoms
+   aligned. One shape for every chapter so the page reads as one document. */
+.atlas-head {
+  display: grid;
+  gap: 1.5rem;
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.atlas-head__title { margin-top: 1.25rem; }
+
+@media (min-width: 60rem) {
+  .atlas-head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  .atlas-head > .atlas-lead { padding-bottom: 0.5rem; }
+}
+
+/* --- Hero arrival --------------------------------------------------------------
+   Played once on load: the tag, each headline line from under a clip, the
+   lead, the actions, 90ms apart. It is a from-state of elements already in the
+   document, gated by the tenant's motion preset, and stilled under reduced
+   motion — the page is complete without it. */
+.atlas-hero { min-height: 100svh; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-motion="cinematic"] .atlas-arrive > * {
+    animation: atlas-rise var(--motion-slow, 450ms) var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 120ms);
+  }
+
+  html[data-motion="cinematic"] .atlas-arrive .atlas-line > span {
+    display: block;
+    animation: atlas-line 1200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 100ms + 150ms);
+  }
+}
+
+.atlas-line { display: block; overflow: hidden; }
+.atlas-line > span { display: block; }
+
+@keyframes atlas-rise {
+  from { opacity: 0; transform: translateY(18px); }
+}
+
+@keyframes atlas-line {
+  from { transform: translateY(110%); }
+}
+
+.atlas-scroll-cue {
+  position: absolute;
+  bottom: 1.5rem;
+  inset-inline-start: var(--layout-gutter);
+  z-index: 2;
+  width: 1px;
+  height: 3rem;
+  background: color-mix(in oklab, var(--brand-on-deep) 25%, transparent);
+  overflow: hidden;
+}
+
+.atlas-scroll-cue::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--brand-accent-bright);
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-motion="cinematic"] .atlas-scroll-cue::after {
+    animation: atlas-cue 2200ms var(--ease-in-out) infinite;
+  }
+}
+
+@keyframes atlas-cue {
+  0% { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(100%); }
+}
+
+/* --- Header over the hero --------------------------------------------------------
+   On a page that opens on photography the header sits on it, transparent, in
+   the on-deep colour, and becomes the paper-glass bar once the page has moved.
+   Driven by a scroll timeline where supported; the fallback is the glass bar
+   from the start, which is the header every other page already has. */
+.site-header--overlay {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  border-color: transparent;
+  background: transparent;
+  color: var(--brand-on-deep);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.site-header--overlay .nav-link,
+.site-header--overlay .lang,
+.site-header--overlay .burger {
+  color: inherit;
+}
+
+.site-header--overlay .nav-link { color: color-mix(in oklab, currentColor 85%, transparent); }
+.site-header--overlay .nav-link:hover,
+.site-header--overlay .nav-link[aria-current="page"] { color: currentColor; }
+/* The wordmark and the ghost controls take the header's colour so the one
+   keyframe below carries them from on-deep to ink. The contact CTA is the
+   exception: it is set in the accent at every scroll position, which reads on
+   the photograph and on paper alike. */
+.site-header--overlay .text-brand-ink,
+.site-header--overlay .text-brand-ink-soft,
+.site-header--overlay .border-brand-border { color: inherit; border-color: currentColor; }
+.site-header--overlay .bg-brand-ink { background: var(--brand-accent); color: var(--brand-on-accent); }
+/* The company half of the wordmark in the bright accent over photography. */
+.site-header--overlay .text-brand-accent { color: var(--brand-accent-bright); }
+
+/* Two marks, one visible at a time: the on-dark mark over the photograph, the
+   standard mark once the header has settled onto paper. */
+.site-header__mark--dark { opacity: 1; }
+.site-header__mark--light { opacity: 0; position: absolute; inset: 0; }
+.site-header__marks { position: relative; }
+
+@supports (animation-timeline: scroll()) {
+  .site-header--overlay {
+    animation: atlas-header-settle linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 6rem;
+  }
+  .site-header--overlay .site-header__mark--dark {
+    animation: atlas-fade-out linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 6rem;
+  }
+  .site-header--overlay .site-header__mark--light {
+    animation: atlas-fade-in linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 6rem;
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  .site-header--overlay {
+    background: var(--brand-paper-glass);
+    color: var(--brand-ink);
+    border-color: var(--brand-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .site-header--overlay .site-header__mark--dark { opacity: 0; }
+  .site-header--overlay .site-header__mark--light { opacity: 1; }
+}
+
+@keyframes atlas-fade-out { to { opacity: 0; } }
+@keyframes atlas-fade-in { to { opacity: 1; } }
+
+@keyframes atlas-header-settle {
+  to {
+    background: var(--brand-paper-glass);
+    color: var(--brand-ink);
+    border-color: var(--brand-border);
+    box-shadow: 0 14px 40px -28px var(--brand-shadow);
+  }
+}
+
+/* The overlay header must not paint over the page beneath once settled; the
+   page starts under it, so the hero carries the top clearance itself. */
+.site-header--overlay + main { padding-top: 0; }
+
+/* --- The house ---------------------------------------------------------------------
+   Five company panels. The one under the pointer takes the room; its picture
+   sharpens and its summary unfolds. Stacked and always open on small screens,
+   which is also the keyboard and touch answer. */
+.atlas-house {
+  display: grid;
+  gap: 2px;
+  background: var(--brand-deep-border);
+}
+
+/* Wide: one row, the panels share it equally and the hovered one grows.
+   `flex-grow` animates, and it does not care how many companies there are. */
+@media (min-width: 60rem) {
+  .atlas-house {
+    display: flex;
+    height: clamp(28rem, 62vh, 40rem);
+  }
+  .atlas-house > .atlas-panel {
+    flex: 1 1 0;
+    min-width: 0;
+    transition: flex-grow var(--motion-slow, 450ms) cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .atlas-house > .atlas-panel:hover,
+  .atlas-house > .atlas-panel:focus-within { flex-grow: 2.4; }
+}
+
+.atlas-panel {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  align-content: end;
+  min-height: 16rem;
+  padding: 1.5rem;
+  background: var(--brand-deep);
+  color: var(--brand-on-deep);
+  --c: var(--brand-accent);
+}
+
+.atlas-panel__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  transform: scale(1.05);
+  transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1), opacity var(--motion-slow, 450ms) var(--ease-out);
+}
+
+.atlas-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgb(15 22 34 / 0.1) 0%, rgb(15 22 34 / 0.35) 40%, rgb(15 22 34 / 0.95) 100%);
+}
+
+.atlas-panel::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--c);
+  transform: scaleX(0);
+  transform-origin: inline-start;
+  transition: transform var(--motion-slow, 450ms) var(--ease-out);
+}
+
+.atlas-panel:hover .atlas-panel__media,
+.atlas-panel:focus-within .atlas-panel__media { transform: scale(1); opacity: 0.8; }
+.atlas-panel:hover::after,
+.atlas-panel:focus-within::after { transform: scaleX(1); }
+
+.atlas-panel__n {
+  font-family: var(--font-sira-display);
+  font-size: 1.1rem;
+  color: var(--c);
+  margin-bottom: auto;
+}
+
+.atlas-panel__title {
+  font-family: var(--font-sira-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  line-height: 1.1;
+  margin-top: 8rem;
+}
+
+.atlas-panel__more {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height var(--motion-slow, 450ms) cubic-bezier(0.16, 1, 0.3, 1), opacity var(--motion-slow, 450ms) var(--ease-out);
+}
+
+.atlas-panel:hover .atlas-panel__more,
+.atlas-panel:focus-within .atlas-panel__more { max-height: 14rem; opacity: 1; }
+
+.atlas-panel__more p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--brand-on-deep) 78%, transparent);
+  max-width: 26rem;
+}
+
+.atlas-panel__status {
+  position: absolute;
+  top: 1.25rem;
+  inset-inline-end: 1.25rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid color-mix(in oklab, var(--brand-on-deep) 35%, transparent);
+  border-radius: 2px;
+  color: color-mix(in oklab, var(--brand-on-deep) 85%, transparent);
+}
+
+.atlas-panel__status--launching { border-color: var(--c); color: var(--c); }
+
+@media (max-width: 59.99rem) {
+  .atlas-panel__title { margin-top: 5rem; }
+  .atlas-panel__more { max-height: none; opacity: 1; }
+  .atlas-panel__media { opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-panel__media, .atlas-panel:hover .atlas-panel__media { transform: none; }
+  .atlas-house > .atlas-panel { transition: none; }
+}
+
+/* --- The places band ------------------------------------------------------------------
+   A deep chapter with a layered photograph moving a little slower than the
+   page (scroll timeline, Layer C) and the numbers counting up as they arrive. */
+.atlas-places {
+  position: relative;
+  color: var(--brand-on-deep);
+  background: var(--brand-deep);
+  overflow: clip;
+  isolation: isolate;
+}
+
+.atlas-places__bg {
+  position: absolute;
+  inset: -12% 0;
+  z-index: -2;
+}
+
+.atlas-places__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.32;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    html[data-motion="cinematic"] .atlas-places__bg {
+      animation: atlas-parallax linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+
+@keyframes atlas-parallax {
+  from { transform: translateY(-6%); }
+  to { transform: translateY(6%); }
+}
+
+.atlas-places::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--brand-deep) 95%, transparent) 0%, color-mix(in oklab, var(--brand-deep) 70%, transparent) 60%, color-mix(in oklab, var(--brand-deep) 45%, transparent) 100%);
+}
+
+html[dir="rtl"] .atlas-places::before {
+  background: linear-gradient(270deg, color-mix(in oklab, var(--brand-deep) 95%, transparent) 0%, color-mix(in oklab, var(--brand-deep) 70%, transparent) 60%, color-mix(in oklab, var(--brand-deep) 45%, transparent) 100%);
+}
+
+.atlas-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem 2rem;
+}
+
+.atlas-stat__value {
+  display: block;
+  font-family: var(--font-sira-display);
+  font-weight: 300;
+  font-size: clamp(2.75rem, 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--brand-accent-bright);
+  font-variant-numeric: tabular-nums;
+}
+
+.atlas-stat__label { display: block; margin-top: 0.5rem; font-size: 0.9rem; }
+
+.atlas-stat__note {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--brand-on-deep) 50%, transparent);
+}
+
+/* Numbers written by the CMS as prose ("$120M+", "14–18%") are shown as is;
+   the count-up only touches the digits it can count. */
+[data-count] { direction: ltr; unicode-bidi: isolate; }
+
+/* --- Metrics and opportunities ------------------------------------------------------------ */
+.atlas-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--brand-deep-border);
+  border-bottom: 1px solid var(--brand-deep-border);
+}
+
+@media (min-width: 60rem) {
+  .atlas-metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.atlas-metric {
+  padding: 2rem 1.5rem 2rem 0;
+  border-inline-end: 1px solid var(--brand-deep-border);
+}
+
+.atlas-metric:last-child { border-inline-end: 0; }
+
+@media (max-width: 59.99rem) {
+  .atlas-metric:nth-child(2n) { border-inline-end: 0; }
+  .atlas-metric:nth-child(-n + 2) { border-bottom: 1px solid var(--brand-deep-border); }
+}
+
+.atlas-metric__value {
+  display: block;
+  font-family: var(--font-sira-display);
+  font-weight: 300;
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.atlas-metric__label {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: color-mix(in oklab, var(--brand-on-deep) 75%, transparent);
+}
+
+.atlas-metric__note {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-accent-bright);
+}
+
+.atlas-opps {
+  display: grid;
+  gap: 1px;
+  background: var(--brand-deep-border);
+  margin-top: 3rem;
+}
+
+@media (min-width: 60rem) {
+  .atlas-opps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.atlas-opp {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  padding: 2rem;
+  background: var(--brand-deep-card);
+  --c: var(--brand-accent);
+  transition: background-color var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-opp::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--c);
+  transform: scaleY(0.25);
+  transform-origin: top;
+  transition: transform var(--motion-slow, 450ms) var(--ease-out);
+}
+
+.atlas-opp:hover { background: color-mix(in oklab, var(--brand-deep-card) 80%, var(--brand-on-deep) 20%); }
+.atlas-opp:hover::before { transform: scaleY(1); }
+
+.atlas-opp__ticket {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--brand-deep-border);
+}
+
+/* --- Service rows ----------------------------------------------------------------------------
+   Numbered rows that open in place. Native <details>: no script, and the
+   `name` attribute keeps one open at a time where the browser supports it. */
+.atlas-services { border-top: 1px solid var(--brand-border); }
+
+.atlas-service { border-bottom: 1px solid var(--brand-border); }
+
+.atlas-service > summary {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  cursor: pointer;
+  transition: padding-inline-start var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-service > summary::-webkit-details-marker { display: none; }
+.atlas-service > summary:hover { padding-inline-start: 0.5rem; }
+
+.atlas-service__n {
+  font-family: var(--font-sira-display);
+  font-size: 1.5rem;
+  color: var(--brand-accent);
+}
+
+.atlas-service__title {
+  font-family: var(--font-sira-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.1;
+}
+
+.atlas-service__plus {
+  position: relative;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--brand-border);
+  border-radius: 50%;
+  transition: transform var(--motion-slow, 450ms) cubic-bezier(0.16, 1, 0.3, 1), background-color var(--motion-base, 220ms), border-color var(--motion-base, 220ms), color var(--motion-base, 220ms);
+}
+
+.atlas-service__plus::before,
+.atlas-service__plus::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.8rem;
+  height: 1px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.atlas-service__plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+
+.atlas-service[open] .atlas-service__plus {
+  transform: rotate(45deg);
+  background: var(--brand-ink);
+  color: var(--brand-paper);
+  border-color: var(--brand-ink);
+}
+
+.atlas-service__body {
+  display: grid;
+  gap: 2rem;
+  padding: 0 0 2.5rem 5rem;
+  animation: atlas-open var(--motion-slow, 450ms) var(--ease-out) both;
+}
+
+@media (min-width: 60rem) {
+  .atlas-service__body { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; }
+}
+
+@media (max-width: 59.99rem) {
+  .atlas-service__body { padding-inline-start: 0; }
+  .atlas-service > summary { grid-template-columns: 2.5rem 1fr auto; }
+}
+
+.atlas-service__body p {
+  color: var(--brand-ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+@keyframes atlas-open {
+  from { opacity: 0; transform: translateY(-8px); }
+}
+
+/* --- Project grid ------------------------------------------------------------------------------
+   Editorial proportions: the first two share a row 7/5, the rest sit in
+   thirds. Pictures push in under the pointer; the rise is the shared card lift. */
+.atlas-projects {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 48rem) {
+  .atlas-projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 64rem) {
+  .atlas-projects { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .atlas-projects > :nth-child(1) { grid-column: span 7; }
+  .atlas-projects > :nth-child(2) { grid-column: span 5; }
+  .atlas-projects > :nth-child(n + 3) { grid-column: span 4; }
+  .atlas-projects--even > :nth-child(n) { grid-column: span 4; }
+}
+
+.atlas-card {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  --c: var(--brand-accent);
+}
+
+.atlas-card__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--brand-deep-card);
+  border-radius: 2px;
+}
+
+.atlas-projects > :nth-child(1) .atlas-card__media { aspect-ratio: 16 / 10; }
+.atlas-projects--even > :nth-child(n) .atlas-card__media { aspect-ratio: 4 / 3; }
+
+.atlas-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);
+  transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.atlas-card:hover .atlas-card__media img,
+.atlas-card:focus-within .atlas-card__media img { transform: scale(1.05); }
+
+.atlas-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgb(15 22 34 / 0.55) 100%);
+  opacity: 0;
+  transition: opacity var(--motion-slow, 450ms) var(--ease-out);
+}
+
+.atlas-card:hover .atlas-card__media::after { opacity: 1; }
+
+.atlas-card__badge {
+  position: absolute;
+  top: 1rem;
+  inset-inline-start: 1rem;
+  z-index: 1;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: var(--c);
+  color: var(--brand-deep);
+  padding: 0.4rem 0.6rem;
+  border-radius: 2px;
+}
+
+.atlas-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--brand-ink-faint);
+}
+
+.atlas-card__meta b { color: var(--c); font-weight: 700; }
+
+.atlas-card__title {
+  font-family: var(--font-sira-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 1.8vw, 1.9rem);
+  line-height: 1.15;
+}
+
+.atlas-card__copy { color: var(--brand-ink-soft); font-size: 0.95rem; line-height: 1.55; }
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-card:hover .atlas-card__media img { transform: none; }
+}
+
+/* The card is one link: the title's anchor covers the whole card, so the
+   picture and the summary are part of the target without nesting anchors. */
+.atlas-card__cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.atlas-card__cover:focus-visible { outline: none; }
+.atlas-card:has(.atlas-card__cover:focus-visible) { outline: 2px solid var(--brand-accent); outline-offset: 4px; }
+
+.atlas-card__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c, var(--brand-accent));
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity var(--motion-base, 220ms) var(--ease-out),
+    transform var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-card:hover .atlas-card__go,
+.atlas-card:focus-within .atlas-card__go { opacity: 1; transform: none; }
+
+/* --- Insight rows ------------------------------------------------------------------------------ */
+.atlas-insights { display: grid; border-top: 1px solid var(--brand-border); }
+
+.atlas-insight {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--brand-border);
+  --c: var(--brand-accent);
+  transition: padding-inline-start var(--motion-base, 220ms) var(--ease-out);
+}
+
+@media (min-width: 60rem) {
+  .atlas-insight { grid-template-columns: 9rem minmax(0, 1fr) 12rem; gap: 2rem; }
+  .atlas-insight--text { grid-template-columns: 9rem minmax(0, 1fr); }
+}
+
+.atlas-insight:hover { padding-inline-start: 0.75rem; }
+
+.atlas-insight__meta {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--brand-ink-faint);
+}
+
+.atlas-insight__meta b { color: var(--c); }
+
+.atlas-insight__title {
+  font-family: var(--font-sira-display);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  line-height: 1.15;
+}
+
+.atlas-insight__title a::after { content: ""; position: absolute; inset: 0; }
+
+.atlas-insight__copy { color: var(--brand-ink-soft); font-size: 0.95rem; margin-top: 0.4rem; }
+
+.atlas-insight__thumb {
+  display: none;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--brand-tint);
+}
+
+@media (min-width: 60rem) { .atlas-insight__thumb { display: block; } }
+
+.atlas-insight__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);
+  transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.atlas-insight:hover .atlas-insight__thumb img { transform: scale(1.06); }
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-insight:hover .atlas-insight__thumb img { transform: none; }
+}
+
+/* --- Quotes ---------------------------------------------------------------------------------- */
+.atlas-quotes { display: grid; gap: 3rem; }
+
+@media (min-width: 60rem) { .atlas-quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem; } }
+
+.atlas-quote { display: grid; gap: 1.5rem; align-content: start; }
+
+.atlas-quote blockquote {
+  margin: 0;
+  font-family: var(--font-sira-display);
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  line-height: 1.3;
+  font-style: italic;
+  font-weight: 300;
+}
+
+html:lang(ar) .atlas-quote blockquote { font-style: normal; }
+
+.atlas-quote blockquote::before { content: "\201C"; color: var(--brand-accent-bright); }
+
+.atlas-quote cite { font-style: normal; display: grid; gap: 0.15rem; font-size: 0.85rem; }
+.atlas-quote cite b { font-weight: 600; }
+.atlas-quote cite span { color: color-mix(in oklab, var(--brand-on-deep) 55%, transparent); }
+
+/* One quotation on stage at a time: the stack shares one cell, the active one
+   is visible, the rest wait beneath it. The rotation is the client island
+   `QuoteRotator`; without it the first quotation simply stands. */
+.atlas-quote-stage { display: grid; }
+
+.atlas-quote--stage {
+  grid-area: 1 / 1;
+  max-width: 52rem;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition:
+    opacity var(--motion-slow, 450ms) var(--ease-out),
+    transform var(--motion-slow, 450ms) var(--ease-out);
+}
+
+.atlas-quote--stage.is-active { opacity: 1; transform: none; pointer-events: auto; }
+
+.atlas-quote--stage blockquote { font-size: clamp(1.6rem, 2.8vw, 2.6rem); }
+
+.atlas-quote-nav { display: flex; gap: 0.5rem; margin-top: 2.5rem; }
+
+.atlas-quote-nav button {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.atlas-quote-nav button::before {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 2rem;
+  height: 2px;
+  transform: translate(-50%, -50%);
+  background: color-mix(in oklab, var(--brand-on-deep) 30%, transparent);
+  transition: background-color var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-quote-nav button[aria-current="true"]::before { background: var(--brand-accent-bright); }
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-quote--stage { transition: none; }
+}
+
+/* --- Full-screen menu ------------------------------------------------------------------------
+   The mobile menu becomes a page of its own: the big serif entries arrive one
+   after another under the wordmark. It is the same <dialog>; only the panel's
+   shape and the entries' arrival change. */
+.site-menu--full .site-menu__panel {
+  width: 100%;
+  margin-inline: 0;
+  padding: 1.5rem var(--layout-gutter) 2rem;
+  transform: none;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0;
+}
+
+.site-menu--full .site-menu__link {
+  font-family: var(--font-sira-display);
+  font-size: clamp(2.2rem, 9vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  text-transform: none;
+  letter-spacing: 0;
+  padding-block: 0.35rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.site-menu--full .site-menu__link small {
+  font-family: var(--font-sira-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--brand-accent-bright);
+  font-weight: 700;
+}
+
+html:lang(ar) .site-menu--full .site-menu__link { font-weight: 500; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-menu--full[open] .site-menu__link {
+    animation: atlas-rise var(--motion-slow, 450ms) var(--ease-out) both;
+    animation-delay: calc(80ms + var(--i, 0) * 45ms);
   }
 }
 
@@ -2573,4 +3535,770 @@ html:lang(ar) .digital-display {
 html:lang(ar) .digital-kinetic__word {
   line-height: 1.15;
   --digital-kinetic-size-start: clamp(3rem, 9vw, 8.5rem);
+}
+
+/* ---------------------------------------------------------------------------
+   Atlas — the inner pages (projects, project, services, investors, contact)
+
+   The same language as the homepages, extended to the pages the homepage
+   chapters open onto. Every rule is on the brand tokens; every physical
+   direction has its RTL twin through logical properties.
+
+   Sections: page hero · closing · filters · prose and aside · gallery ·
+   capability cells · city list · next project · investor drawer · mega menu ·
+   service row body.
+   --------------------------------------------------------------------------- */
+
+/* --- Page hero -----------------------------------------------------------------
+   Opens on photography under the overlay header, copy at the foot. `--short`
+   is the index pages; the full height is a single project. */
+.atlas-page-hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: 74svh;
+  overflow: clip;
+  isolation: isolate;
+  color: var(--brand-on-deep);
+  background: var(--brand-deep);
+}
+
+.atlas-page-hero--short { min-height: 56svh; }
+
+.atlas-page-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.atlas-page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--brand-deep) 55%, transparent) 0%,
+    color-mix(in oklab, var(--brand-deep) 35%, transparent) 35%,
+    color-mix(in oklab, var(--brand-deep) 97%, transparent) 100%
+  );
+}
+
+.atlas-page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to right,
+    color-mix(in oklab, var(--brand-deep) 55%, transparent) 0%,
+    transparent 65%
+  );
+}
+
+html[dir="rtl"] .atlas-page-hero::after {
+  background: linear-gradient(
+    to left,
+    color-mix(in oklab, var(--brand-deep) 55%, transparent) 0%,
+    transparent 65%
+  );
+}
+
+.atlas-page-hero__body {
+  display: grid;
+  gap: 1.5rem;
+  padding-block: calc(var(--layout-header-offset) + 4rem) 3.5rem;
+}
+
+.atlas-page-hero .atlas-display { max-width: 22ch; }
+
+.atlas-page-hero .atlas-lead {
+  max-width: 40rem;
+  color: color-mix(in oklab, var(--brand-on-deep) 86%, transparent);
+}
+
+.atlas-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--brand-on-deep) 60%, transparent);
+}
+
+.atlas-crumbs a { transition: color var(--motion-base, 220ms) var(--ease-out); }
+.atlas-crumbs a:hover { color: var(--brand-accent-bright); }
+
+.atlas-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+  margin-top: 1rem;
+}
+
+.atlas-facts > div { display: grid; gap: 0.2rem; }
+
+.atlas-facts b {
+  font-family: var(--font-sira-display);
+  font-weight: 300;
+  font-size: 1.6rem;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.atlas-facts span {
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--brand-on-deep) 55%, transparent);
+}
+
+.atlas-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* --- Closing ----------------------------------------------------------------------
+   The invitation every inner page ends on: a photograph behind a centred
+   display line and the two actions. */
+.atlas-closing {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 70svh;
+  overflow: clip;
+  isolation: isolate;
+  text-align: center;
+  color: var(--brand-on-deep);
+  background: var(--brand-deep);
+}
+
+.atlas-closing__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+
+.atlas-closing::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    60% 60% at 50% 60%,
+    color-mix(in oklab, var(--brand-deep) 20%, transparent),
+    color-mix(in oklab, var(--brand-deep) 90%, transparent)
+  );
+}
+
+.atlas-closing__body {
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  padding-block: var(--space-section);
+}
+
+.atlas-closing .atlas-lead {
+  max-width: 36rem;
+  color: color-mix(in oklab, var(--brand-on-deep) 80%, transparent);
+}
+
+.atlas-closing__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* --- Filters ------------------------------------------------------------------------ */
+.atlas-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.atlas-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--brand-border);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand-ink-soft);
+  transition:
+    background-color var(--motion-base, 220ms) var(--ease-out),
+    color var(--motion-base, 220ms) var(--ease-out),
+    border-color var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-chip i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c, var(--brand-ink));
+}
+
+.atlas-chip:hover { border-color: var(--brand-ink); color: var(--brand-ink); }
+
+.atlas-chip[aria-pressed="true"] {
+  background: var(--brand-ink);
+  color: var(--brand-paper);
+  border-color: var(--brand-ink);
+}
+
+.atlas-projects.is-filtering > * {
+  opacity: 0;
+  transition: opacity var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-projects > .is-hidden { display: none; }
+
+/* --- Prose and aside --------------------------------------------------------------- */
+.atlas-two-col {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 60rem) {
+  .atlas-two-col {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: 5rem;
+  }
+}
+
+.atlas-prose {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 42rem;
+}
+
+.atlas-prose p {
+  font-family: var(--font-sira-display);
+  font-size: clamp(1.15rem, 1.4vw, 1.35rem);
+  line-height: 1.6;
+}
+
+.atlas-prose p:first-child::first-letter {
+  float: inline-start;
+  padding-inline-end: 0.5rem;
+  font-size: 3.2em;
+  font-style: italic;
+  line-height: 0.85;
+  color: var(--brand-accent);
+}
+
+html:lang(ar) .atlas-prose p:first-child::first-letter {
+  float: none;
+  padding: 0;
+  font-size: 1em;
+  font-style: normal;
+}
+
+.atlas-prose h2,
+.atlas-prose h3 {
+  font-family: var(--font-sira-display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin-top: 0.5rem;
+}
+
+.atlas-prose ul {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.atlas-prose li {
+  padding-inline-start: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.atlas-prose li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.8em;
+  width: 0.9rem;
+  height: 1px;
+  background: var(--brand-accent);
+}
+
+.atlas-aside {
+  display: grid;
+  gap: 0;
+  align-content: start;
+  border-top: 1px solid var(--brand-border);
+}
+
+.atlas-aside__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--brand-border);
+  font-size: 0.9rem;
+}
+
+.atlas-aside__row span {
+  align-self: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-ink-faint);
+}
+
+.atlas-aside__row b {
+  font-weight: 500;
+  text-align: end;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.atlas-aside__label {
+  padding: 0.9rem 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-ink-faint);
+}
+
+.atlas-aside > .atlas-aside__action { margin-top: 1.5rem; justify-self: start; }
+
+/* --- Gallery ------------------------------------------------------------------------- */
+.atlas-gallery {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 48rem) {
+  .atlas-gallery { grid-template-columns: repeat(12, 1fr); }
+  .atlas-gallery > :nth-child(3n + 1) { grid-column: span 8; }
+  .atlas-gallery > :nth-child(3n + 2) { grid-column: span 4; }
+  .atlas-gallery > :nth-child(3n) { grid-column: span 12; aspect-ratio: 21 / 9; }
+}
+
+.atlas-gallery figure {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 2px;
+  background: var(--brand-tint);
+}
+
+.atlas-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);
+  transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.atlas-gallery figure:hover img { transform: scale(1.04); }
+
+/* --- Capability cells ------------------------------------------------------------------ */
+.atlas-caps {
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--brand-border);
+  background: var(--brand-border);
+}
+
+@media (min-width: 48rem) { .atlas-caps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 64rem) { .atlas-caps { grid-template-columns: repeat(4, 1fr); } }
+
+.atlas-cap {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  min-height: 12rem;
+  padding: 2rem 1.5rem;
+  background: var(--brand-paper);
+  transition: background-color var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-cap:hover { background: var(--brand-tint); }
+
+.atlas-cap__n {
+  font-family: var(--font-sira-display);
+  font-size: 1.25rem;
+  color: var(--c, var(--brand-accent));
+}
+
+.atlas-cap h3 {
+  font-family: var(--font-sira-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.atlas-cap p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--brand-ink-soft);
+}
+
+/* --- City list ---------------------------------------------------------------------------- */
+.atlas-cities {
+  display: grid;
+  margin-top: 3rem;
+  border-top: 1px solid var(--brand-deep-border);
+}
+
+.atlas-cities--paper { border-top-color: var(--brand-border); }
+
+.atlas-city {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--brand-deep-border);
+  transition: padding-inline-start var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-cities--paper .atlas-city { border-bottom-color: var(--brand-border); }
+
+a.atlas-city:hover { padding-inline-start: 0.75rem; }
+
+.atlas-city__n {
+  font-family: var(--font-sira-display);
+  color: var(--c, var(--brand-accent));
+}
+
+.atlas-city__name {
+  font-family: var(--font-sira-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+html:lang(ar) .atlas-city__name { font-weight: 500; }
+
+.atlas-city__role {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: end;
+  color: color-mix(in oklab, var(--brand-on-deep) 55%, transparent);
+}
+
+.atlas-cities--paper .atlas-city__role { color: var(--brand-ink-faint); }
+
+/* --- Next project --------------------------------------------------------------------------- */
+.atlas-next {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 50svh;
+  overflow: clip;
+  isolation: isolate;
+  color: var(--brand-on-deep);
+  background: var(--brand-deep);
+}
+
+.atlas-next__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  transform: scale(1.001);
+  transition:
+    transform 1200ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity var(--motion-slow, 450ms) var(--ease-out);
+}
+
+.atlas-next:hover .atlas-next__bg { transform: scale(1.04); opacity: 0.5; }
+
+.atlas-next__body { display: grid; gap: 1rem; padding-block: 5rem; }
+
+/* --- Investor drawer -------------------------------------------------------------------------
+   A sheet from the trailing edge over a scrim. Native <dialog>, so focus,
+   Escape and inertness come from the platform. */
+.atlas-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  grid-template-columns: 1fr min(100%, 30rem);
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--brand-on-deep);
+}
+
+.atlas-drawer:not([open]) { display: none; }
+
+.atlas-drawer::backdrop { background: transparent; }
+
+.atlas-drawer__scrim {
+  background: color-mix(in oklab, var(--brand-deep) 60%, transparent);
+  animation: atlas-fade-in var(--motion-base, 220ms) var(--ease-out) both;
+}
+
+.atlas-drawer__sheet {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+  padding: 2rem;
+  overflow: auto;
+  background: var(--brand-deep-card);
+  animation: atlas-drawer-in var(--motion-slow, 450ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+html[dir="rtl"] .atlas-drawer { grid-template-columns: min(100%, 30rem) 1fr; }
+html[dir="rtl"] .atlas-drawer__sheet { order: -1; animation-name: atlas-drawer-in-rtl; }
+
+@keyframes atlas-drawer-in {
+  from { transform: translateX(100%); }
+}
+
+@keyframes atlas-drawer-in-rtl {
+  from { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-drawer__sheet,
+  .atlas-drawer__scrim { animation: none; }
+}
+
+.atlas-drawer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.atlas-drawer__close {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--brand-deep-border);
+  border-radius: 50%;
+  color: inherit;
+  transition: border-color var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-drawer__close:hover { border-color: var(--brand-accent-bright); }
+
+.atlas-drawer h2 {
+  font-family: var(--font-sira-display);
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+html:lang(ar) .atlas-drawer h2 { font-weight: 500; }
+
+.atlas-seg { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.atlas-seg button {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--brand-deep-border);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: inherit;
+  transition:
+    background-color var(--motion-base, 220ms) var(--ease-out),
+    color var(--motion-base, 220ms) var(--ease-out),
+    border-color var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-seg button[aria-pressed="true"] {
+  background: var(--brand-accent);
+  color: var(--brand-on-accent);
+  border-color: var(--brand-accent);
+}
+
+/* --- Mega menu ---------------------------------------------------------------------------------
+   The companies panel under the Group header: one cell per company, each
+   striped in its own colour on hover. Opens on hover or on the button. */
+.atlas-mega {
+  position: fixed;
+  inset-inline: 0;
+  top: var(--layout-header-offset);
+  z-index: 39;
+  color: var(--brand-on-deep);
+  background: var(--brand-deep);
+  border-bottom: 1px solid var(--brand-deep-border);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition:
+    opacity var(--motion-base, 220ms) var(--ease-out),
+    transform var(--motion-base, 220ms) var(--ease-out),
+    visibility 0s linear var(--motion-base, 220ms);
+}
+
+.atlas-mega[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.atlas-mega__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1px;
+  background: var(--brand-deep-border);
+}
+
+.atlas-mega__item {
+  position: relative;
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  min-height: 11rem;
+  padding: 1.75rem 1.5rem 1.5rem;
+  overflow: hidden;
+  background: var(--brand-deep);
+  transition: background-color var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-mega__item::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--c, var(--brand-accent));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--motion-base, 220ms) var(--ease-out);
+}
+
+.atlas-mega__item:hover { background: var(--brand-deep-card); }
+.atlas-mega__item:hover::before { transform: scaleY(1); }
+
+.atlas-mega__n {
+  font-family: var(--font-sira-display);
+  font-size: 1.5rem;
+  color: var(--c, var(--brand-accent));
+}
+
+.atlas-mega__name {
+  font-family: var(--font-sira-display);
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.atlas-mega__tag {
+  font-size: 0.85rem;
+  color: color-mix(in oklab, var(--brand-on-deep) 60%, transparent);
+}
+
+.atlas-mega__place {
+  margin-top: auto;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--brand-on-deep) 45%, transparent);
+}
+
+.nav-link--mega {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* --- Service row body -----------------------------------------------------------------------------
+   The body of an open row: the summary, a list of what the service covers,
+   and its picture, in three columns from the desktop step. */
+.atlas-service__body--rich {
+  display: grid;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 60rem) {
+  .atlas-service__body--rich {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr);
+    gap: 3rem;
+    padding-inline-start: 5rem;
+  }
+}
+
+.atlas-service__body--rich > p {
+  max-width: 34rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--brand-ink-soft);
+}
+
+.atlas-service__list {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--brand-border);
+}
+
+.atlas-service__list li {
+  position: relative;
+  padding: 0.75rem 0;
+  padding-inline-start: 1.5rem;
+  border-bottom: 1px solid var(--brand-border);
+  font-size: 0.95rem;
+}
+
+.atlas-service__list li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 1.3em;
+  width: 0.9rem;
+  height: 1px;
+  background: var(--c, var(--brand-accent));
+}
+
+.atlas-service__figure {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 2px;
+  background: var(--brand-tint);
+}
+
+.atlas-service__figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

@@ -1,40 +1,47 @@
-import { GridItem, PageGrid } from "@/components/layout/page-grid";
+import type { CSSProperties } from "react";
+
+import { CityList } from "@/components/atlas/city-list";
+import { CountUp } from "@/components/homepage/count-up";
+import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionEyebrow } from "@/components/layout/section-eyebrow";
-import type { HomepageMetric, HomepageMetricsSection } from "@/lib/homepage/types";
+import type { BrandOffice } from "@/lib/brand";
+import type { HomepageMedia, HomepageMetric, HomepageMetricsSection } from "@/lib/homepage/types";
 
-// Design reference (SIRA Group Homepage.dc.html, #about): no background
-// override at all — light section on the page's own paper background, dark
-// ink text, accent-colored stat values. The dark treatment belongs to the
-// Investor section (#investors) instead, not here.
+// Atlas direction (owner-approved 2026-09-16): the group's story is told as a
+// deep chapter — "where we work" — the narrative on the left, the four
+// figures on the right counting up as they arrive, on a layered ground that
+// moves a little slower than the page. The design's photograph behind the band
+// is not a field the about section carries, so the ground is the brand's deep
+// tone; a background image can be added the day the CMS models one.
 
 interface GroupAboutProps {
   readonly section: HomepageMetricsSection | null;
+  /**
+   * The photograph behind the band, moving a little slower than the page.
+   * The chapter has no image field of its own; the page passes the hero's
+   * closing photograph so the band and the page's ending share one picture.
+   */
+  readonly image?: HomepageMedia | null;
+  /** Where the group works — the brand's office locations, as a list. */
+  readonly offices?: readonly BrandOffice[];
 }
 
-interface MetricProps {
-  readonly metric: HomepageMetric;
-}
+function Stat({ metric, index }: { readonly metric: HomepageMetric; readonly index: number }) {
+  if (metric.value === null) return null;
 
-function Metric({ metric }: MetricProps) {
   return (
-    <div>
-      <p className="font-display text-[clamp(2rem,4vw,3.5rem)] font-normal leading-none text-brand-accent">
-        {metric.value}
-      </p>
-      {metric.label !== null ? (
-        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-ink-faint">
-          {metric.label}
-        </p>
-      ) : null}
+    <div className="reveal" style={{ "--reveal-offset": `${String(index * 1.5)}%` } as CSSProperties}>
+      <CountUp value={metric.value} className="atlas-stat__value" />
+      {metric.label !== null ? <span className="atlas-stat__label">{metric.label}</span> : null}
       {metric.supportingText !== null ? (
-        <p className="mt-2 text-xs text-brand-ink-faint/70">{metric.supportingText}</p>
+        <span className="atlas-stat__note">{metric.supportingText}</span>
       ) : null}
     </div>
   );
 }
 
-export function GroupAbout({ section }: GroupAboutProps) {
+export function GroupAbout({ section, image = null, offices = [] }: GroupAboutProps) {
   if (section === null) return null;
 
   const hasHeading = section.heading !== null;
@@ -43,54 +50,61 @@ export function GroupAbout({ section }: GroupAboutProps) {
 
   if (!hasHeading && !hasCopy && !hasMetrics) return null;
 
-  // Was py-24 sm:py-32 lg:py-40 — the one section running ~20% taller than
-  // its peers. Now on the shared rhythm.
   return (
     <Section
       id="about"
       labelledBy={hasHeading ? "about-heading" : undefined}
       label={hasHeading ? undefined : (section.eyebrow ?? "About SIRA Group")}
+      className="atlas-places atlas-on-deep"
     >
-      <PageGrid className="gap-y-12 lg:gap-y-10">
-        {/* Eyebrow rail, then narrative, then metrics BESIDE the narrative.
-            The reference sets the figures alongside the copy rather than under
-            it; stacking them ran this section 219px taller than the reference
-            and separated the numbers from the sentence they belong to. */}
-        <GridItem span={3}>
-          <SectionEyebrow>{section.eyebrow ?? "About SIRA Group"}</SectionEyebrow>
-        </GridItem>
-
-        <GridItem span={5} start={4} className="flex flex-col gap-8">
+      {image !== null ? (
+        <div className="atlas-places__bg" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image.sourceUrl}
+            alt=""
+            width={image.width ?? undefined}
+            height={image.height ?? undefined}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ) : null}
+      <PageContainer className="grid gap-12 lg:grid-cols-[7fr_5fr] lg:gap-20">
+        <div>
+          <SectionEyebrow tone="bright" className="reveal">
+            {section.eyebrow ?? "About SIRA Group"}
+          </SectionEyebrow>
           {hasHeading ? (
             <h2
               id="about-heading"
-              className="text-balance font-display text-[clamp(2.25rem,4vw,3.5rem)] font-normal leading-[1.05]"
+              className="atlas-display atlas-display--l reveal mt-5"
+              style={{ "--reveal-offset": "2%" } as CSSProperties}
             >
               {section.heading}
             </h2>
           ) : null}
-
           {hasCopy ? (
-            <p className="max-w-[38rem] text-[clamp(0.9375rem,1.1vw,1.0625rem)] leading-relaxed text-brand-ink-soft">
+            <p
+              className="atlas-lead reveal mt-6 max-w-[38rem]"
+              style={{ "--reveal-offset": "4%" } as CSSProperties}
+            >
               {section.description}
             </p>
           ) : null}
-        </GridItem>
+          <CityList offices={offices} />
+        </div>
 
         {hasMetrics ? (
-          // Two columns, matching the reference's 2x2 block, and top-aligned
-          // with the heading rather than trailing the copy.
-          <GridItem span={4} start={9} className="self-start">
-            <div className="grid grid-cols-2 gap-x-8 gap-y-10">
-              {section.metrics.map((metric, index) => (
-                // The metric list is a fixed, non-reorderable server-rendered
-                // selection with no stable identifier of its own — index is safe here.
-                <Metric key={index} metric={metric} />
-              ))}
-            </div>
-          </GridItem>
+          <div className="atlas-stats self-start">
+            {section.metrics.map((metric, index) => (
+              // The metric list is a fixed, non-reorderable server-rendered
+              // selection with no stable identifier of its own — index is safe.
+              <Stat key={index} metric={metric} index={index} />
+            ))}
+          </div>
         ) : null}
-      </PageGrid>
+      </PageContainer>
     </Section>
   );
 }

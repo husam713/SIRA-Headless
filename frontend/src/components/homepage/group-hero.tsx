@@ -1,7 +1,11 @@
+import type { CSSProperties } from "react";
+
 import { PageContainer } from "@/components/layout/page-container";
 import { getBrandPreset } from "@/lib/brand";
 import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import type { GroupHomepageHero } from "@/lib/homepage/types";
+import { CHROME } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 import { CtaLink } from "@/components/homepage/cta-link";
 import {
   GroupHeroCarousel,
@@ -10,9 +14,12 @@ import {
 
 interface GroupHeroProps {
   readonly hero: GroupHomepageHero;
+  /** Defaults to the site's default language for callers that have none. */
+  readonly locale?: LocaleCode;
 }
 
-export function GroupHero({ hero }: GroupHeroProps) {
+export function GroupHero({ hero, locale = "en" }: GroupHeroProps) {
+  const chrome = CHROME[locale];
   const groupPreset = getBrandPreset("group");
   const fallbackAccent = Object.freeze({
     label: groupPreset.name,
@@ -43,31 +50,46 @@ export function GroupHero({ hero }: GroupHeroProps) {
     hero.headingHighlight !== null ||
     hero.headingAfter !== null;
 
+  // Atlas direction: the headline is set line by line — before, highlight,
+  // after — each rising from under its own clip on arrival. The three CMS
+  // fields are exactly those three lines, which is what makes the choreography
+  // editorial rather than a split this component guesses at.
+  const lines = [
+    hero.headingBefore,
+    hero.headingHighlight,
+    hero.headingAfter,
+  ].filter((line): line is string => line !== null);
+
   const headingContent = (
-    <div className="flex flex-col gap-8 text-brand-paper">
+    <div className="atlas-arrive flex flex-col gap-8 text-brand-paper">
       {hasHeading ? (
-        <h1 className="text-balance font-display text-[clamp(2.75rem,9vw,7.5rem)] font-normal leading-[0.95] tracking-tight">
-          {hero.headingBefore}
-          {hero.headingHighlight !== null ? (
-            <>
-              {hero.headingBefore !== null ? " " : ""}
-              <span className="italic" style={{ color: highlightColor }}>
-                {hero.headingHighlight}
-              </span>
-            </>
-          ) : null}
-          {hero.headingAfter !== null ? ` ${hero.headingAfter}` : ""}
+        <h1
+          className="atlas-display atlas-display--xl"
+          style={{ "--i": 1, "--atlas-accent": highlightColor } as CSSProperties}
+        >
+          {lines.map((line, index) => (
+            <span
+              key={index}
+              className={`atlas-line${line === hero.headingHighlight ? " atlas-accent" : ""}`}
+              style={{ "--i": index } as CSSProperties}
+            >
+              <span>{line}</span>
+            </span>
+          ))}
         </h1>
       ) : null}
 
       {hero.description !== null ? (
-        <p className="max-w-[34rem] text-pretty text-base leading-7 text-brand-paper/80 sm:text-lg">
+        <p
+          className="max-w-[34rem] text-pretty text-base leading-7 text-brand-paper/80 sm:text-lg"
+          style={{ "--i": 5 } as CSSProperties}
+        >
           {hero.description}
         </p>
       ) : null}
 
       {hero.primaryCta !== null || hero.secondaryCta !== null ? (
-        <div className="flex flex-wrap items-center gap-4 pt-2">
+        <div className="flex flex-wrap items-center gap-4 pt-2" style={{ "--i": 6 } as CSSProperties}>
           {hero.primaryCta !== null ? (
             <CtaLink link={hero.primaryCta} variant="solid" />
           ) : null}
@@ -82,15 +104,29 @@ export function GroupHero({ hero }: GroupHeroProps) {
   return (
     <section
       aria-label="SIRA Group"
-      className="relative isolate flex min-h-[85svh] flex-col justify-end overflow-hidden bg-brand-deep lg:min-h-[95svh]"
+      className="atlas-hero relative isolate flex flex-col justify-end overflow-hidden bg-brand-deep"
     >
       {preparedSlides.length > 0 ? (
-        <GroupHeroCarousel slides={preparedSlides}>{headingContent}</GroupHeroCarousel>
+        <GroupHeroCarousel
+          slides={preparedSlides}
+          labels={{
+            featuredProjects: chrome.featuredProjects,
+            previousProject: chrome.previousProject,
+            nextProject: chrome.nextProject,
+            pause: chrome.pause,
+            play: chrome.play,
+            featuredVentures: chrome.featuredVentures,
+            showingSlide: chrome.showingSlide,
+          }}
+        >
+          {headingContent}
+        </GroupHeroCarousel>
       ) : (
         <PageContainer className="relative z-[2] pb-16 pt-32 sm:pb-20 lg:pb-24">
           {headingContent}
         </PageContainer>
       )}
+      <div aria-hidden="true" className="atlas-scroll-cue" />
     </section>
   );
 }

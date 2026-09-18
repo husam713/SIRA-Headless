@@ -1,78 +1,51 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
-import { SectionEyebrow } from "@/components/layout/section-eyebrow";
+import { SectionHead } from "@/components/layout/section-head";
 import { CtaLink } from "@/components/homepage/cta-link";
+import { ProjectCard, type ProjectCardData } from "@/components/atlas/project-card";
+import { getBrandPreset } from "@/lib/brand";
+import { resolveBusinessUnitAccent } from "@/lib/homepage/business-unit-accent";
 import type {
   HomepageContentItem,
   HomepageContentSection,
 } from "@/lib/homepage/types";
 
+// Atlas direction (owner-approved 2026-09-16): an editorial grid rather than
+// three equal cards — the first two projects share a row 7/5, the rest sit in
+// thirds — each with a status badge on the picture, the company and place as
+// the kicker, and the picture pushing in under the pointer. The cards arrive
+// one after another (`--reveal-offset`).
+//
+// Each card links to the project's own page: `item.href` is the project's URI
+// in WordPress (`/projects/<slug>/`), which is the route this app serves.
+
 interface GroupProjectsProps {
   readonly section: HomepageContentSection | null;
+  readonly exploreLabel?: string;
 }
 
-interface ProjectCardProps {
-  readonly item: HomepageContentItem;
+function toCard(item: HomepageContentItem): ProjectCardData {
+  const groupPreset = getBrandPreset("group");
+  const fallback = Object.freeze({ label: groupPreset.name, color: groupPreset.identity.accent });
+  const unit = item.businessUnit.status === "ready" ? (item.businessUnit.items[0] ?? null) : null;
+  const accent = unit === null ? null : resolveBusinessUnitAccent(item.businessUnit, fallback);
+
+  return {
+    databaseId: item.databaseId,
+    title: item.title,
+    href: item.href,
+    excerpt: item.excerpt,
+    featuredImage: item.featuredImage,
+    status: item.status,
+    location: item.location,
+    year: item.date === null ? null : item.date.slice(0, 4),
+    unitLabel: unit?.name ?? accent?.label ?? null,
+    unitSlug: unit?.slug ?? null,
+    accentColor: accent?.color ?? null,
+  };
 }
 
-function ProjectCard({ item }: ProjectCardProps) {
-  return (
-    // No per-item link: item.href is the project content node's own uri, but
-    // this app has no project detail route yet — same policy as Companies.
-    // The section-level `link` below (real CMS data, when present) is the
-    // only outbound affordance here.
-    <article className="card-lift card-hover flex flex-col border border-brand-border bg-brand-paper">
-      <div className="card-media aspect-[16/10] bg-brand-deep">
-        {item.featuredImage !== null ? (
-          // WPGraphQL media-origin allowlisting (2C4-B07) is unresolved, so a plain
-          // <img> is used rather than next/image, which would require configuring
-          // remote patterns.
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={item.featuredImage.sourceUrl}
-            alt={item.featuredImage.altText ?? item.title}
-            width={item.featuredImage.width ?? undefined}
-            height={item.featuredImage.height ?? undefined}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover"
-          />
-        ) : null}
-        {item.status !== null ? (
-          <span
-            aria-hidden="true"
-            className="absolute left-0 top-0 bg-brand-accent px-4 py-3 text-[10px] font-bold uppercase tracking-[0.1em] text-brand-on-accent"
-          >
-            {item.status}
-          </span>
-        ) : null}
-      </div>
-
-      <div className="flex flex-1 flex-col gap-3 p-8">
-        {item.location !== null ? (
-          <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-brand-accent">
-            {item.location}
-          </p>
-        ) : null}
-        <h3 className="font-display text-2xl font-normal leading-tight">
-          {item.title}
-        </h3>
-        {item.excerpt !== null ? (
-          <p className="text-[15px] leading-relaxed text-brand-ink-soft">
-            {item.excerpt}
-          </p>
-        ) : null}
-        {item.status !== null ? (
-          <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-ink-faint">
-            {item.status}
-          </p>
-        ) : null}
-      </div>
-    </article>
-  );
-}
-
-export function GroupProjects({ section }: GroupProjectsProps) {
+export function GroupProjects({ section, exploreLabel = "Explore" }: GroupProjectsProps) {
   if (section === null || section.selection.status !== "ready") return null;
 
   return (
@@ -82,34 +55,27 @@ export function GroupProjects({ section }: GroupProjectsProps) {
       className="border-b border-brand-border bg-brand-tint"
     >
       <PageContainer>
-        <div className="flex flex-wrap items-end justify-between gap-8">
-          <div>
-            <SectionEyebrow>{section.eyebrow ?? "Global Footprint"}</SectionEyebrow>
-            {section.heading !== null ? (
-              <h2
-                id="projects-heading"
-                className="mt-4 text-balance font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.05]"
-              >
-                {section.heading}
-              </h2>
-            ) : null}
-          </div>
-          {section.link !== null ? (
-            <CtaLink link={section.link} variant="ghost-light" />
-          ) : null}
-        </div>
+        <SectionHead
+          id="projects-heading"
+          eyebrow={section.eyebrow ?? "Global Footprint"}
+          heading={section.heading}
+          lead={section.description}
+          action={
+            section.link !== null ? <CtaLink link={section.link} variant="ghost-light" /> : undefined
+          }
+        />
 
-        {section.description !== null ? (
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-brand-ink-soft">
-            {section.description}
-          </p>
-        ) : null}
-
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {section.selection.items.map((item) => (
-            <ProjectCard key={item.databaseId} item={item} />
+        <div className="atlas-projects">
+          {section.selection.items.map((item, index) => (
+            <ProjectCard key={item.databaseId} item={toCard(item)} index={index} exploreLabel={exploreLabel} />
           ))}
         </div>
+
+        {section.link !== null && section.description !== null ? (
+          <p className="mt-12">
+            <CtaLink link={section.link} variant="ghost-light" />
+          </p>
+        ) : null}
       </PageContainer>
     </Section>
   );

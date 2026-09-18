@@ -129,7 +129,11 @@ describe("SectionEyebrow", () => {
     for (const file of CONVERTED_SECTION_FILES) {
       const source = readFileSync(join(HOMEPAGE_DIR, file), "utf8");
 
-      expect(source, `${file} should use the shared eyebrow`).toContain("SectionEyebrow");
+      // SectionHead is the Atlas chapter opening; it renders SectionEyebrow
+      // itself, so a section using it is using the one shared eyebrow.
+      expect(source, `${file} should use the shared eyebrow`).toMatch(
+        /SectionEyebrow|SectionHead/u,
+      );
       expect(
         source.includes(EYEBROW_TYPOGRAPHY),
         `${file} still hand-rolls the eyebrow typography`,

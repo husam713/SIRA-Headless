@@ -28,7 +28,7 @@ describe("discovery policy", () => {
         disallow: "/",
       },
     });
-    expect(buildSitemap("group.localhost", registry)).toEqual([]);
+    expect(buildSitemap("group.localhost", [], registry)).toEqual([]);
   });
 
   it("fails closed for redirect aliases and unknown hosts", () => {
@@ -68,5 +68,31 @@ describe("discovery policy", () => {
     expect(context.site.key).toBe("healthcare");
     expect(context.hostnameRole).toBeNull();
     expect(context.isProductionCanonical).toBe(false);
+  });
+
+  it("lists supplied paths per approved locale with a last-modified date, homepage first", () => {
+    // Digital is the one tenant with approved locale routes.
+    const digital = buildSitemap("digital.siratrgroup.com", [
+      { path: "/news/" },
+      { path: "/insights/istanbul-bridge/", lastModified: "2026-08-01T00:00:00Z" },
+    ]);
+
+    expect(digital.map((entry) => entry.url)).toEqual([
+      "https://digital.siratrgroup.com/",
+      "https://digital.siratrgroup.com/ar/",
+      "https://digital.siratrgroup.com/news/",
+      "https://digital.siratrgroup.com/ar/news/",
+      "https://digital.siratrgroup.com/insights/istanbul-bridge/",
+      "https://digital.siratrgroup.com/ar/insights/istanbul-bridge/",
+    ]);
+    expect(digital[4]?.lastModified).toEqual(new Date("2026-08-01T00:00:00Z"));
+    expect(digital[0]).not.toHaveProperty("lastModified");
+
+    // A tenant without approved locale routes lists only its default locale.
+    const group = buildSitemap("siratrgroup.com", [{ path: "/news/" }]);
+    expect(group.map((entry) => entry.url)).toEqual([
+      "https://siratrgroup.com/",
+      "https://siratrgroup.com/news/",
+    ]);
   });
 });

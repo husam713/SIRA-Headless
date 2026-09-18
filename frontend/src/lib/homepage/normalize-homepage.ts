@@ -33,6 +33,7 @@ import type {
   HomepageVariant,
   InvalidHomepageReason,
 } from "@/lib/homepage/types";
+import { decodeEntities } from "@/lib/editorial/rich-text";
 import type { GraphQLErrorSummary } from "@/lib/graphql/errors";
 import type { SiraHomepageQueryData } from "@/queries/homepage";
 import type { SiteKey } from "@/types/site";
@@ -92,7 +93,10 @@ export function normalizePlainText(value: unknown, maximumLength: number): strin
     .replace(/\s+/gu, " ")
     .trim();
 
-  return normalized === "" ? null : normalized.slice(0, maximumLength);
+  // WordPress texturizes plain fields (`&#8217;`); every consumer sets them as text.
+  const decoded = decodeEntities(normalized);
+
+  return decoded === "" ? null : decoded.slice(0, maximumLength);
 }
 
 /**
@@ -382,6 +386,15 @@ function normalizeItem(
   const investmentBusinessUnit = isRecord(investmentCompanyNodes[0])
     ? investmentCompanyNodes[0]["businessUnit"]
     : null;
+  const investmentRelatedProject = isRecord(details?.["relatedProject"])
+    ? details["relatedProject"]
+    : null;
+  const investmentProjectNodes = Array.isArray(investmentRelatedProject?.["nodes"])
+    ? investmentRelatedProject["nodes"]
+    : [];
+  const investmentProjectUri = isRecord(investmentProjectNodes[0])
+    ? investmentProjectNodes[0]["uri"]
+    : null;
 
   return Object.freeze({
     kind: contract.kind,
@@ -399,6 +412,8 @@ function normalizeItem(
     externalHref: normalizePublicHref(
       details?.["externalWebsiteUrl"] ?? details?.["websiteUrl"] ?? details?.["sourceUrl"],
     ),
+    relatedHref:
+      contract.kind === "investment" ? normalizePublicHref(investmentProjectUri) : null,
     ticketSizeLabel: normalizePlainText(details?.["ticketSizeLabel"], 240),
     role: normalizePlainText(details?.["role"], 240),
     organization: normalizePlainText(details?.["organization"], 240),

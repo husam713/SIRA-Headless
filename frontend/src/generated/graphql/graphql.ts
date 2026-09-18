@@ -39,12 +39,12 @@ export type SiraContentPageQueryVariables = Exact<{
 }>;
 
 
-export type SiraContentPageQuery = { readonly page: { readonly databaseId: number, readonly uri: string | null, readonly title: string | null, readonly content: string | null, readonly modified: string | null, readonly siraLocale: { readonly code: string | null } | null, readonly pageIntro: { readonly eyebrow: string | null, readonly heading: string | null, readonly standfirst: string | null, readonly ctaLabel: string | null, readonly ctaHeading: string | null } | null, readonly seo: { readonly variant: string | null } | null } | null };
+export type SiraContentPageQuery = { readonly page: { readonly databaseId: number, readonly uri: string | null, readonly title: string | null, readonly content: string | null, readonly modified: string | null, readonly siraLocale: { readonly code: string | null } | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly pageIntro: { readonly eyebrow: string | null, readonly heading: string | null, readonly standfirst: string | null, readonly ctaLabel: string | null, readonly ctaHeading: string | null } | null, readonly seo: { readonly variant: string | null } | null } | null };
 
 export type SiraServiceIndexQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiraServiceIndexQuery = { readonly siraServices: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly uri: string | null, readonly title: string | null, readonly excerpt: string | null, readonly content: string | null, readonly siraLocale: { readonly code: string | null } | null, readonly digitalService: { readonly challenge: string | null, readonly outcome: string | null, readonly ctaLabel: string | null } | null }> } | null };
+export type SiraServiceIndexQuery = { readonly siraServices: { readonly pageInfo: { readonly hasNextPage: boolean }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly slug: string | null, readonly uri: string | null, readonly title: string | null, readonly excerpt: string | null, readonly content: string | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null }> } | null, readonly siraLocale: { readonly code: string | null } | null, readonly digitalService: { readonly challenge: string | null, readonly outcome: string | null, readonly ctaLabel: string | null } | null }> } | null };
 
 export type SiraWorkIndexQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -298,7 +298,7 @@ export type HomepageMediaFragment = { readonly databaseId: number, readonly sour
 
 export type HomepageFeaturedImageFragment = { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } };
 
-export type HomepageProjectNodeFragment = { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null };
+export type HomepageProjectNodeFragment = { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly date: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null };
 
 export type HomepageCompanyNodeFragment = { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly companyDetails: { readonly shortDescriptor: string | null, readonly operatingStatus: string | null, readonly externalWebsiteUrl: string | null, readonly cardImageOverride: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null };
 
@@ -401,7 +401,10 @@ export type HomepageEditorialNodeFragment =
   | HomepageEditorialNode_SiraWhitepaper_Fragment
 ;
 
-export type HomepageInvestmentNodeFragment = { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly investmentDetails: { readonly publicDisplay: boolean | null, readonly ticketSizeLabel: string | null, readonly relatedCompany: { readonly nodes: ReadonlyArray<
+export type HomepageInvestmentNodeFragment = { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly investmentDetails: { readonly publicDisplay: boolean | null, readonly ticketSizeLabel: string | null, readonly relatedProject: { readonly nodes: ReadonlyArray<
+        | { readonly uri: string | null }
+        | Record<PropertyKey, never>
+      >, readonly pageInfo: { readonly hasNextPage: boolean } } | null, readonly relatedCompany: { readonly nodes: ReadonlyArray<
         | { readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null }
         | Record<PropertyKey, never>
       >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null };
@@ -521,7 +524,7 @@ export type SiraHomepageQuery = { readonly page: { readonly databaseId: number, 
               | { readonly databaseId: number, readonly name: string | null, readonly slug: string | null }
               | Record<PropertyKey, never>
             >, readonly pageInfo: { readonly hasNextPage: boolean } } | null, readonly relatedProject: { readonly nodes: ReadonlyArray<
-              | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null }
+              | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly date: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null }
               | Record<PropertyKey, never>
             >, readonly pageInfo: { readonly hasNextPage: boolean } } | null, readonly relatedCompany: { readonly nodes: ReadonlyArray<
               | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly companyDetails: { readonly shortDescriptor: string | null, readonly operatingStatus: string | null, readonly externalWebsiteUrl: string | null, readonly cardImageOverride: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null }
@@ -566,7 +569,10 @@ export type SiraHomepageQuery = { readonly page: { readonly databaseId: number, 
             | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly companyDetails: { readonly shortDescriptor: string | null, readonly operatingStatus: string | null, readonly externalWebsiteUrl: string | null, readonly cardImageOverride: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null }
             | Record<PropertyKey, never>
           >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null, readonly about: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly body: string | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly metrics: ReadonlyArray<{ readonly value: string | null, readonly label: string | null, readonly supportingText: string | null } | null> | null } | null, readonly investor: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly body: string | null, readonly formHeading: string | null, readonly formDescription: string | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly metrics: ReadonlyArray<{ readonly value: string | null, readonly label: string | null, readonly supportingText: string | null } | null> | null, readonly selectedInvestments: { readonly nodes: ReadonlyArray<
-            | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly investmentDetails: { readonly publicDisplay: boolean | null, readonly ticketSizeLabel: string | null, readonly relatedCompany: { readonly nodes: ReadonlyArray<
+            | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly investmentDetails: { readonly publicDisplay: boolean | null, readonly ticketSizeLabel: string | null, readonly relatedProject: { readonly nodes: ReadonlyArray<
+                    | { readonly uri: string | null }
+                    | Record<PropertyKey, never>
+                  >, readonly pageInfo: { readonly hasNextPage: boolean } } | null, readonly relatedCompany: { readonly nodes: ReadonlyArray<
                     | { readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null }
                     | Record<PropertyKey, never>
                   >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null }
@@ -608,7 +614,7 @@ export type SiraHomepageQuery = { readonly page: { readonly databaseId: number, 
             | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null }
             | Record<PropertyKey, never>
           >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null, readonly projects: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly selectedProjects: { readonly nodes: ReadonlyArray<
-            | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null }
+            | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly date: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null }
             | Record<PropertyKey, never>
           >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null, readonly insights: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly sourceMode: string | null, readonly itemLimit: number | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly selectedItems: { readonly nodes: ReadonlyArray<
             | { readonly __typename: 'MediaItem' }
@@ -650,7 +656,7 @@ export type SiraHomepageQuery = { readonly page: { readonly databaseId: number, 
             | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly partnerDetails: { readonly logoAltOverride: string | null, readonly relationshipLabel: string | null, readonly websiteUrl: string | null } | null }
             | Record<PropertyKey, never>
           >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null, readonly contact: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly formVariant: string | null, readonly formContext: string | null } | null } | null, readonly branchHomepage: { readonly hero: { readonly eyebrow: string | null, readonly headingBefore: string | null, readonly headingHighlight: string | null, readonly headingAfter: string | null, readonly description: string | null, readonly region: string | null, readonly imageAlt: string | null, readonly image: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly mobileImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly primaryCta: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly secondaryCta: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null } | null, readonly statistics: ReadonlyArray<{ readonly value: string | null, readonly label: string | null, readonly supportingText: string | null } | null> | null, readonly overview: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly body: string | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null } | null, readonly focusAreas: ReadonlyArray<{ readonly title: string | null, readonly description: string | null } | null> | null, readonly projects: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly selectedProjects: { readonly nodes: ReadonlyArray<
-            | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null }
+            | { readonly databaseId: number, readonly contentTypeName: string, readonly title: string | null, readonly uri: string | null, readonly date: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly name: string | null, readonly slug: string | null }>, readonly pageInfo: { readonly hasNextPage: boolean } } | null }
             | Record<PropertyKey, never>
           >, readonly pageInfo: { readonly hasNextPage: boolean } } | null } | null, readonly insights: { readonly eyebrow: string | null, readonly heading: string | null, readonly description: string | null, readonly sourceMode: string | null, readonly itemLimit: number | null, readonly link: { readonly title: string | null, readonly url: string | null, readonly target: string | null } | null, readonly selectedItems: { readonly nodes: ReadonlyArray<
             | { readonly __typename: 'MediaItem' }
@@ -736,7 +742,7 @@ export type SiraProjectSingleQueryVariables = Exact<{
 }>;
 
 
-export type SiraProjectSingleQuery = { readonly siraProject: { readonly databaseId: number, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly content: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null, readonly gallery: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null }> } | null, readonly statistics: ReadonlyArray<{ readonly label: string | null, readonly value: string | null } | null> | null, readonly relatedCompany: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<
+export type SiraProjectSingleQuery = { readonly siraProject: { readonly databaseId: number, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly date: string | null, readonly content: string | null, readonly isRestricted: boolean | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null }> } | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null, readonly gallery: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly isRestricted: boolean | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null }> } | null, readonly statistics: ReadonlyArray<{ readonly label: string | null, readonly value: string | null } | null> | null, readonly relatedCompany: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<
           | { readonly __typename: 'MediaItem', readonly databaseId: number, readonly isRestricted: boolean | null }
           | { readonly __typename: 'Page', readonly databaseId: number, readonly isRestricted: boolean | null }
           | { readonly __typename: 'Post', readonly databaseId: number, readonly isRestricted: boolean | null }
@@ -745,7 +751,7 @@ export type SiraProjectSingleQuery = { readonly siraProject: { readonly database
           | { readonly __typename: 'SiraBoardMember', readonly databaseId: number, readonly isRestricted: boolean | null }
           | { readonly __typename: 'SiraCareerArea', readonly databaseId: number, readonly isRestricted: boolean | null }
           | { readonly __typename: 'SiraCaseStudy', readonly databaseId: number, readonly isRestricted: boolean | null }
-          | { readonly __typename: 'SiraCompany', readonly title: string | null, readonly uri: string | null, readonly databaseId: number, readonly isRestricted: boolean | null }
+          | { readonly __typename: 'SiraCompany', readonly title: string | null, readonly uri: string | null, readonly databaseId: number, readonly isRestricted: boolean | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null }> } | null }
           | { readonly __typename: 'SiraCsrInitiative', readonly databaseId: number, readonly isRestricted: boolean | null }
           | { readonly __typename: 'SiraDocument', readonly databaseId: number, readonly isRestricted: boolean | null }
           | { readonly __typename: 'SiraDownload', readonly databaseId: number, readonly isRestricted: boolean | null }
@@ -777,7 +783,10 @@ export type SiraProjectsQueryVariables = Exact<{
 }>;
 
 
-export type SiraProjectsQuery = { readonly siraProjects: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly isRestricted: boolean | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null } | null }> } | null };
+export type SiraProjectsQuery = { readonly siraProjects: { readonly pageInfo: { readonly hasNextPage: boolean, readonly endCursor: string | null }, readonly nodes: ReadonlyArray<{ readonly databaseId: number, readonly title: string | null, readonly uri: string | null, readonly excerpt: string | null, readonly date: string | null, readonly isRestricted: boolean | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null }> } | null, readonly featuredImage: { readonly node: { readonly databaseId: number, readonly sourceUrl: string | null, readonly altText: string | null, readonly mediaDetails: { readonly width: number | null, readonly height: number | null } | null } } | null, readonly projectDetails: { readonly subtitle: string | null, readonly location: string | null, readonly status: string | null, readonly relatedCompany: { readonly nodes: ReadonlyArray<
+            | { readonly title: string | null, readonly businessUnit: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null }> } | null }
+            | Record<PropertyKey, never>
+          > } | null } | null }> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -914,6 +923,7 @@ export const HomepageProjectNodeFragmentDoc = new TypedDocumentString(`
   contentTypeName
   title
   uri
+  date
   excerpt
   isRestricted
   featuredImage {
@@ -923,6 +933,18 @@ export const HomepageProjectNodeFragmentDoc = new TypedDocumentString(`
     subtitle
     location
     status
+  }
+  businessUnit: siraBusinessUnits(first: 1) {
+    nodes {
+      ... on SiraBusinessUnit {
+        databaseId
+        name
+        slug
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
   }
 }
     fragment HomepageMedia on MediaItem {
@@ -1074,6 +1096,16 @@ export const HomepageInvestmentNodeFragmentDoc = new TypedDocumentString(`
   investmentDetails {
     publicDisplay
     ticketSizeLabel
+    relatedProject(first: 1) {
+      nodes {
+        ... on SiraProject {
+          uri
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
+    }
     relatedCompany(first: 1) {
       nodes {
         ... on SiraCompany {
@@ -1368,6 +1400,17 @@ export const SiraContentPageDocument = new TypedDocumentString(`
     siraLocale {
       code
     }
+    featuredImage {
+      node {
+        databaseId
+        sourceUrl
+        altText
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
     pageIntro {
       eyebrow
       heading
@@ -1397,6 +1440,25 @@ export const SiraServiceIndexDocument = new TypedDocumentString(`
       title
       excerpt
       content
+      featuredImage {
+        node {
+          databaseId
+          sourceUrl
+          altText
+          mediaDetails {
+            width
+            height
+          }
+        }
+      }
+      businessUnit: siraBusinessUnits(first: 1) {
+        nodes {
+          ... on SiraBusinessUnit {
+            slug
+            name
+          }
+        }
+      }
       siraLocale {
         code
       }
@@ -2271,6 +2333,7 @@ fragment HomepageProjectNode on SiraProject {
   contentTypeName
   title
   uri
+  date
   excerpt
   isRestricted
   featuredImage {
@@ -2280,6 +2343,18 @@ fragment HomepageProjectNode on SiraProject {
     subtitle
     location
     status
+  }
+  businessUnit: siraBusinessUnits(first: 1) {
+    nodes {
+      ... on SiraBusinessUnit {
+        databaseId
+        name
+        slug
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
   }
 }
 fragment HomepageCompanyNode on SiraCompany {
@@ -2383,6 +2458,16 @@ fragment HomepageInvestmentNode on SiraInvestment {
   investmentDetails {
     publicDisplay
     ticketSizeLabel
+    relatedProject(first: 1) {
+      nodes {
+        ... on SiraProject {
+          uri
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
+    }
     relatedCompany(first: 1) {
       nodes {
         ... on SiraCompany {
@@ -2530,8 +2615,17 @@ export const SiraProjectSingleDocument = new TypedDocumentString(`
     title
     uri
     excerpt
+    date
     content(format: RENDERED)
     isRestricted
+    businessUnit: siraBusinessUnits(first: 1) {
+      nodes {
+        ... on SiraBusinessUnit {
+          slug
+          name
+        }
+      }
+    }
     featuredImage {
       node {
         databaseId
@@ -2580,6 +2674,14 @@ export const SiraProjectSingleDocument = new TypedDocumentString(`
           ... on SiraCompany {
             title
             uri
+            businessUnit: siraBusinessUnits(first: 1) {
+              nodes {
+                ... on SiraBusinessUnit {
+                  slug
+                  name
+                }
+              }
+            }
           }
         }
       }
@@ -2599,7 +2701,16 @@ export const SiraProjectsDocument = new TypedDocumentString(`
       title
       uri
       excerpt
+      date
       isRestricted
+      businessUnit: siraBusinessUnits(first: 1) {
+        nodes {
+          ... on SiraBusinessUnit {
+            slug
+            name
+          }
+        }
+      }
       featuredImage {
         node {
           databaseId
@@ -2615,6 +2726,21 @@ export const SiraProjectsDocument = new TypedDocumentString(`
         subtitle
         location
         status
+        relatedCompany(first: 1) {
+          nodes {
+            ... on SiraCompany {
+              title
+              businessUnit: siraBusinessUnits(first: 1) {
+                nodes {
+                  ... on SiraBusinessUnit {
+                    slug
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

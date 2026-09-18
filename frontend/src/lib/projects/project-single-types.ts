@@ -28,10 +28,16 @@ export interface ProjectSingleStatistic {
   readonly value: string;
 }
 
+export interface ProjectSingleUnit {
+  readonly slug: string;
+  readonly name: string;
+}
+
 export interface ProjectSingleRelatedCompany {
   readonly databaseId: number;
   readonly title: string;
   readonly href: string;
+  readonly unit: ProjectSingleUnit | null;
 }
 
 export interface ProjectSingleProject {
@@ -44,6 +50,10 @@ export interface ProjectSingleProject {
   readonly subtitle: string | null;
   readonly location: string | null;
   readonly status: string | null;
+  /** Four-digit year of the record's publish date, or null. */
+  readonly year: string | null;
+  /** The project's own Business Unit term, when it carries one. */
+  readonly unit: ProjectSingleUnit | null;
   readonly gallery: readonly ProjectSingleImage[];
   readonly statistics: readonly ProjectSingleStatistic[];
   readonly relatedCompanies: readonly ProjectSingleRelatedCompany[];

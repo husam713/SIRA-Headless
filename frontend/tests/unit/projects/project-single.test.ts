@@ -51,8 +51,10 @@ function createProject(
     title: "Project Forty Two",
     uri: "/projects/project-forty-two/",
     excerpt: "<p>Public summary.</p>",
+    date: "2026-05-04T10:00:00",
     content: "<section><h2>Rich body</h2><p>Keep markup.</p></section>",
     isRestricted: false,
+    businessUnit: null,
     featuredImage: null,
     projectDetails: {
       subtitle: "Sustainable landmark",
@@ -302,6 +304,7 @@ describe("project single normalization", () => {
         databaseId: 1,
         title: "Company 1",
         href: "/companies/company-1/",
+        unit: null,
       },
     ]);
     expect(result.project.diagnostics.map(({ code }) => code)).toEqual([

@@ -142,14 +142,14 @@ describe("ADR-033 / ADR-035 Digital tenant topology", () => {
     );
   });
 
-  it("keeps the deferred Group main-site relocation visible", () => {
-    // ADR-036 relocated the five non-Group tenants and deliberately left blog 1
-    // alone: it is the network main site, its relocation touches
-    // DOMAIN_CURRENT_SITE and the wp_site row, and `siratrgroup.com` still
-    // serves the live legacy Group site ADR-025 requires kept live. That work
-    // belongs in the frontend production-cutover window, not before it.
-    expect(state.openGates["groupCmsOriginRelocation"]).toMatch(/^OPEN_/u);
-    expect(state.openGates["groupCmsOriginRelocation"]).toContain("ADR_036");
+  it("records the Group main-site relocation as executed, with its rollback", () => {
+    // ADR-036 relocated the five non-Group tenants and left blog 1 for the
+    // production-cutover window; ADR-038 executed it on 2026-09-18 — blog 1
+    // on `cms-group`, a sunrise mapping keeping the apex alive, a verified
+    // dump named as the rollback. The gate must say so, not reopen.
+    expect(state.openGates["groupCmsOriginRelocation"]).toMatch(/^CLOSED_ADR_038/u);
+    expect(state.openGates["groupCmsOriginRelocation"]).toContain("CMS_GROUP_SIRATRGROUP_COM");
+    expect(state.openGates["groupCmsOriginRelocation"]).toMatch(/ROLLBACK_DUMP_\d{8}T\d{6}Z/u);
   });
 
   it("agrees with the code the application actually runs", () => {

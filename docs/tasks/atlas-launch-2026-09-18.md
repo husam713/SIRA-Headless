@@ -59,3 +59,36 @@ English body, and every entry needs an Arabic twin.
    per the plan in `docs/tasks/` (branch `docs/cms-origin-relocation-reconciliation`,
    commit `b7ecda7f`), then give the owner the DNS records.
 7. WordPress SEO settings check.
+
+## Outcome (2026-09-18, end of pass)
+
+| Step | Status |
+|---|---|
+| Newsroom: locale on the four editorial types (backend installed, rollback `PresentationFields.php.bak-20260918T081812Z`), `/ar/news/`, translation-first article route, feed fallback rule | PASS |
+| Newsroom content: 34 unique entries final in English (11 bodies kept, 23 written), all with Arabic twins, photographs from each tenant's pool, seed markers removed, four junk records trashed, one slug renamed | PASS — `verify-no-seed-content`: blogs 1–5 clean |
+| Newsroom design review: lead headline capped at 4rem; chrome localized; placeholder caveat removed | PASS |
+| Code review (plugin, medium): 7 findings, all fixed and pinned (`e0efa529`) | PASS |
+| Merge: #77 then #78 into `main` (`ed781fdc`), CI green on both | PASS |
+| Build + deploy: Cloud Build image `nextjs:ed781fdc`, Cloud Run `sira-frontend` rev `00006-ts6`; smoke test on the four subdomains + run.app in both languages | PASS |
+| Blog 1 relocation to `cms-group` + sunrise mapping (ADR-038) | PASS — see ADR-038 for the evidence |
+| Apex domain mappings `siratrgroup.com`, `www.siratrgroup.com` | CREATED — waiting for DNS |
+| SEO audit of a live page: title, description, canonical, `hreflang` ×3, Open Graph, JSON-LD; robots `noindex` while the switch is off; sitemap empty by the same switch | PASS |
+| WordPress SEO (Yoast, network-active) | NOT APPLICABLE to the public site — the frontend owns SEO; `blog_public=0` stays on every `cms-*` origin |
+
+### Claims an editor must confirm (invented specifics in the final newsroom)
+
+The same list as `docs/tasks/atlas-production-content.md`, plus: the OVAN
+partnership's "three districts" and quote; the PET-CT wing's isotope
+partnership and published turnaround times; the consulting mandate's
+"European healthcare operator" client and "third mandate"; the four senior
+appointments; the 2025 portfolio review's "no position exited"; the Group CIO
+appointment; the referral agreement's three practices and specialties; every
+Arabic rendering of a proper noun (سيرة برايم، روزينا، OVAN).
+
+### DNS hand-over (owner)
+
+`siratrgroup.com` — A: 216.239.32.21, 216.239.34.21, 216.239.36.21,
+216.239.38.21; AAAA: 2001:4860:4802:32::15, 2001:4860:4802:34::15,
+2001:4860:4802:36::15, 2001:4860:4802:38::15. `www.siratrgroup.com` — CNAME
+`ghs.googlehosted.com.`. Remove the Hostinger A/CNAME records for those two
+names first. Google issues the certificate once the records resolve.

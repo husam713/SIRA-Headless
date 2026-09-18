@@ -373,6 +373,18 @@ foreach ( array( 'companies' => 'sira_company', 'services' => 'sira_service', 'p
 	}
 }
 
+// -- Translations written by other seeds ---------------------------------------
+// The newsroom's Arabic twins (newsroom-final.php) carry the same link, so a
+// homepage chapter that curates English articles curates their Arabic
+// twins instead once they exist.
+
+foreach ( get_posts( array( 'post_type' => array( 'sira_news', 'sira_insight', 'sira_article', 'sira_press_release' ), 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids', 'meta_key' => 'sira_locale', 'meta_value' => 'ar' ) ) as $sira_ar_twin_id ) {
+	$sira_ar_original = (int) get_post_meta( $sira_ar_twin_id, 'sira_translation_of', true );
+	if ( $sira_ar_original > 0 ) {
+		$sira_ar_translations[ $sira_ar_original ] = (int) $sira_ar_twin_id;
+	}
+}
+
 // -- The Arabic homepage: the `ar` page --------------------------------------
 
 $sira_ar_front = (int) get_option( 'page_on_front' );

@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 
 import { NewsroomPage as NewsroomPageView } from "@/components/record/newsroom-page";
 import { getBrand } from "@/lib/brand";
-import { getEditorialFeed } from "@/lib/editorial";
+import { getEditorialFeedForLocale } from "@/lib/editorial";
+import { getRequestLocale } from "@/lib/i18n/request-locale";
 import { resolveDeskFilter } from "@/lib/editorial/desks";
 import { resolveKindFilter } from "@/lib/editorial/record";
 import type { EditorialItem } from "@/lib/editorial/types";
@@ -76,9 +77,10 @@ export default async function NewsroomRoute({
     notFound();
   }
 
+  const request = await getRequestLocale(site);
   const [brand, feed, requestHeaders] = await Promise.all([
-    getBrand(site.key),
-    getEditorialFeed(site.key, PAGE_SIZE),
+    getBrand(site.key, request.locale),
+    getEditorialFeedForLocale(site.key, PAGE_SIZE, request.locale),
     headers(),
   ]);
 

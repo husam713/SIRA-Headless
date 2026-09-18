@@ -41,6 +41,7 @@ const SYNTHETIC: EditorialArticle = Object.freeze({
   typename: "SiraArticle" as const,
   contentTypeName: "sira_article" as const,
   kind: "article" as const,
+  locale: "en",
   title: "Inside Nairobi's Diagnostic Imaging Boom",
   excerpt:
     "Demand for advanced radiology is reshaping how healthcare investors think about East Africa.",

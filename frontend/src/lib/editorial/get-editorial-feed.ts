@@ -13,7 +13,7 @@ import {
   type SiraEditorialFeedQueryData,
   type SiraEditorialFeedQueryVariables,
 } from "@/queries/editorial-feed";
-import type { SiteKey } from "@/types/site";
+import type { LocaleCode, SiteKey } from "@/types/site";
 
 const MAX_EDITORIAL_PAGE_SIZE = 50;
 const EDITORIAL_CACHE_TAGS = Object.freeze([
@@ -202,3 +202,40 @@ async function resolvePublishedEditorialFeed(
 }
 
 export const getEditorialFeed = cache(resolvePublishedEditorialFeed);
+
+/**
+ * The feed in one language, with the Digital indexes' fallback: an entry
+ * with no translation is shown as written rather than dropped, so an Arabic
+ * newsroom that is half translated reads as half translated, not half empty.
+ * Every English entry whose Arabic twin is present is replaced by the twin;
+ * the twin is matched by `sira_translation_of` when the feed carries it and
+ * by the neutral slug otherwise.
+ */
+export async function getEditorialFeedForLocale(
+  siteKey: SiteKey,
+  first: number,
+  locale: LocaleCode,
+  after: string | null = null,
+): Promise<EditorialFeedResolution> {
+  const resolution = await getEditorialFeed(siteKey, first, after);
+
+  if (resolution.status !== "ready") return resolution;
+
+  const items = resolution.page.items;
+  const translated = new Set(
+    items.filter((item) => item.locale === locale).map((item) => neutralHref(item.href)),
+  );
+  const selected = items.filter(
+    (item) => item.locale === locale || !translated.has(neutralHref(item.href)),
+  );
+
+  return Object.freeze({
+    ...resolution,
+    page: Object.freeze({ ...resolution.page, items: Object.freeze(selected) }),
+  });
+}
+
+/** `/ar/articles/x/` and `/articles/x/` are the same entry in two languages. */
+function neutralHref(href: string): string {
+  return href.replace(/^\/(?:ar|en)\//u, "/");
+}

@@ -23,6 +23,7 @@ function item(
     typename: "SiraNewsItem",
     contentTypeName: "sira_news",
     kind: "news",
+    locale: "en",
     title: `Entry ${databaseId}`,
     excerpt: null,
     href: `/news/entry-${databaseId}/`,

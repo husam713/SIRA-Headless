@@ -1,45 +1,45 @@
 {
-  "canonicalSha256": "dcb45417592e374dad3c84a6c72aef5eb04d60e150a30b2e00c4c9f297fb5e88",
+  "canonicalSha256": "871df23bd513c53cdcdb12758fbaec514af4926c459d63d8e5055b75d80a1e53",
   "canonicalSite": "consulting",
-  "fetchedAt": "2026-09-18T04:24:56.611Z",
+  "fetchedAt": "2026-09-18T08:19:42.223Z",
   "groupAuditSite": "group",
-  "groupSha256": "3afb5d2a09d12364b71bc0ce1b4e6e97a3b91007f1def12be6a7330075484607",
+  "groupSha256": "8a562dc445d2df382d20c903c3414e5f086bd7037616c6eb5f2e80be20f7f380",
   "policy": "branch-peers-exact-group-structural-superset",
   "sites": [
     {
       "hostname": "siratrgroup.com",
       "role": "group-audit",
-      "sha256": "3afb5d2a09d12364b71bc0ce1b4e6e97a3b91007f1def12be6a7330075484607",
+      "sha256": "8a562dc445d2df382d20c903c3414e5f086bd7037616c6eb5f2e80be20f7f380",
       "siteKey": "group"
     },
     {
       "hostname": "cms-consulting.siratrgroup.com",
       "role": "canonical-branch",
-      "sha256": "dcb45417592e374dad3c84a6c72aef5eb04d60e150a30b2e00c4c9f297fb5e88",
+      "sha256": "871df23bd513c53cdcdb12758fbaec514af4926c459d63d8e5055b75d80a1e53",
       "siteKey": "consulting"
     },
     {
       "hostname": "cms-healthcare.siratrgroup.com",
       "role": "branch",
-      "sha256": "dcb45417592e374dad3c84a6c72aef5eb04d60e150a30b2e00c4c9f297fb5e88",
+      "sha256": "871df23bd513c53cdcdb12758fbaec514af4926c459d63d8e5055b75d80a1e53",
       "siteKey": "healthcare"
     },
     {
       "hostname": "cms-lifestyle.siratrgroup.com",
       "role": "branch",
-      "sha256": "dcb45417592e374dad3c84a6c72aef5eb04d60e150a30b2e00c4c9f297fb5e88",
+      "sha256": "871df23bd513c53cdcdb12758fbaec514af4926c459d63d8e5055b75d80a1e53",
       "siteKey": "lifestyle"
     },
     {
       "hostname": "cms-realestate.siratrgroup.com",
       "role": "branch",
-      "sha256": "dcb45417592e374dad3c84a6c72aef5eb04d60e150a30b2e00c4c9f297fb5e88",
+      "sha256": "871df23bd513c53cdcdb12758fbaec514af4926c459d63d8e5055b75d80a1e53",
       "siteKey": "realestate"
     },
     {
       "hostname": "cms-digital.siratrgroup.com",
       "role": "branch",
-      "sha256": "dcb45417592e374dad3c84a6c72aef5eb04d60e150a30b2e00c4c9f297fb5e88",
+      "sha256": "871df23bd513c53cdcdb12758fbaec514af4926c459d63d8e5055b75d80a1e53",
       "siteKey": "digital"
     }
   ],

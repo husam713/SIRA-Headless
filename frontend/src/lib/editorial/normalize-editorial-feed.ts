@@ -21,7 +21,8 @@ import type {
   SiraEditorialFeedQueryData,
 } from "@/queries/editorial-feed";
 import { decodeEntities } from "@/lib/editorial/rich-text";
-import type { SiteKey } from "@/types/site";
+import { publicRecordHref, recordHrefLocale } from "@/lib/i18n/record-href";
+import type { LocaleCode, SiteKey } from "@/types/site";
 
 type BranchFeedConnection = NonNullable<
   SiraBusinessUnitEditorialFeedQueryData["siraBusinessUnit"]
@@ -313,12 +314,18 @@ function normalizeNode(
     return null;
   }
 
-  const href = normalizePublicHref(node.uri);
+  const uri = normalizePublicHref(node.uri);
 
-  if (href === null) {
+  if (uri === null) {
     diagnostics.push(diagnostic("unsafe-uri", nodeDatabaseId));
     return null;
   }
+
+  // ADR-037: a translation's WordPress slug carries its locale
+  // (`/articles/ar-…/`); the page this app serves for it is `/ar/articles/…/`.
+  const href = publicRecordHref(uri);
+  const locale: LocaleCode =
+    normalizeLocale("siraLocale" in node ? node.siraLocale : null) ?? recordHrefLocale(uri) ?? "en";
 
   const publishedAt = normalizeDate(node.date);
   const modifiedAt = normalizeDate(node.modified);
@@ -348,6 +355,7 @@ function normalizeNode(
     typename: node.__typename,
     contentTypeName: contract.contentTypeName,
     kind: contract.kind,
+    locale,
     title,
     excerpt: normalizePlainText(node.excerpt, 1200),
     href,
@@ -363,6 +371,12 @@ function normalizeNode(
       diagnostics,
     ),
   });
+}
+
+function normalizeLocale(value: unknown): LocaleCode | null {
+  if (typeof value !== "object" || value === null) return null;
+  const code = (value as { readonly code?: unknown }).code;
+  return code === "en" || code === "ar" ? code : null;
 }
 
 function normalizePageInfo(

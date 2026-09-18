@@ -99,6 +99,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "A joint venture to accelerate residential delivery in Istanbul, combining capital, land and delivery capability across three districts.",
     kind: "news",
+    locale: "en",
     desks: ["real-estate", "group"],
     publishedAt: "2026-07-14T09:00:00",
     image: true,
@@ -109,6 +110,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "The facility expands into early-stage cancer diagnostics with next-generation molecular imaging, and becomes the first in the region to publish reporting turnaround times.",
     kind: "news",
+    locale: "en",
     desks: ["healthcare"],
     publishedAt: "2026-06-02T08:30:00",
     image: true,
@@ -118,6 +120,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "The five tests every SIRA investment has to pass before capital moves, and the one that disqualifies most opportunities.",
     kind: "insight",
+    locale: "en",
     desks: ["group"],
     publishedAt: "2026-05-21T10:00:00",
     image: false,
@@ -126,6 +129,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     title: "SIRA Lifestyle Opens Founding-Partner Applications for Its First Coastal Property",
     excerpt: null,
     kind: "press-release",
+    locale: "en",
     desks: ["lifestyle"],
     publishedAt: "2026-05-04T07:00:00",
     image: true,
@@ -135,6 +139,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "Why demand for advanced radiology is reshaping healthcare investment across East Africa. Imaging volumes are rising faster than bed capacity, and reporting turnaround — not machine count — has become the binding constraint.",
     kind: "article",
+    locale: "en",
     desks: ["healthcare"],
     publishedAt: "2026-04-28T12:00:00",
     image: false,
@@ -144,6 +149,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "The fundamentals continuing to draw international capital into Turkish real estate, and the two that have quietly weakened.",
     kind: "insight",
+    locale: "en",
     desks: ["real-estate"],
     publishedAt: "2026-04-09T09:15:00",
     image: true,
@@ -153,6 +159,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "The mandate covers market entry, licensing and clinical partnership structure across two jurisdictions.",
     kind: "news",
+    locale: "en",
     desks: ["consulting", "healthcare"],
     publishedAt: "2026-03-30T11:00:00",
     image: false,
@@ -162,6 +169,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "How a house of specialised companies is building infrastructure for the next generation of growth.",
     kind: "article",
+    locale: "en",
     desks: ["group"],
     publishedAt: "2026-03-11T09:00:00",
     image: true,
@@ -170,6 +178,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     title: "A Second Diagnostic Center for East Africa",
     excerpt: "Site selection has begun for a second facility, targeting 2027.",
     kind: "news",
+    locale: "en",
     desks: ["healthcare"],
     publishedAt: "2026-02-19T08:00:00",
     image: false,
@@ -179,6 +188,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "Three markets where the entry price moved against patient capital in eighteen months.",
     kind: "insight",
+    locale: "en",
     desks: ["consulting"],
     publishedAt: "2026-02-02T10:30:00",
     image: false,
@@ -188,6 +198,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "The Istanbul development reaches structural completion ahead of programme, with handover now expected in the first quarter.",
     kind: "news",
+    locale: "en",
     desks: ["real-estate"],
     publishedAt: "2026-01-15T09:45:00",
     image: true,
@@ -196,6 +207,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     title: "Statement on the 2025 Portfolio Review",
     excerpt: null,
     kind: "press-release",
+    locale: "en",
     desks: ["group"],
     publishedAt: "2026-01-08T16:00:00",
     image: false,
@@ -205,6 +217,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "Why SIRA Lifestyle staffs before it buys, and what that has cost us twice.",
     kind: "insight",
+    locale: "en",
     desks: ["lifestyle"],
     publishedAt: "2025-11-24T09:00:00",
     image: false,
@@ -214,6 +227,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "The transaction closes a nine-month process and gives the group a majority position in the facility.",
     kind: "news",
+    locale: "en",
     desks: ["healthcare", "group"],
     publishedAt: "2025-10-06T08:00:00",
     image: true,
@@ -223,6 +237,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "What running an Istanbul development team and a Nairobi clinical team out of one investment committee actually requires, and the three things we would do differently.",
     kind: "article",
+    locale: "en",
     desks: ["group"],
     publishedAt: "2025-09-12T09:00:00",
     image: false,
@@ -231,6 +246,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     title: "Consulting Practice Expands Its Market-Entry Team",
     excerpt: "Four senior appointments across Istanbul and Nairobi.",
     kind: "news",
+    locale: "en",
     desks: ["consulting"],
     publishedAt: "2025-08-19T10:00:00",
     image: false,
@@ -240,6 +256,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "The architectural principles behind SIRA Lifestyle's first ground-up development.",
     kind: "article",
+    locale: "en",
     desks: ["lifestyle"],
     publishedAt: "2025-07-01T09:00:00",
     image: true,
@@ -248,6 +265,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     title: "SIRA GROUP Turns Ten",
     excerpt: null,
     kind: "news",
+    locale: "en",
     desks: ["group"],
     publishedAt: "2025-05-30T12:00:00",
     image: false,
@@ -257,6 +275,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "Six years of acquisition on one Istanbul block, told through the four deals that nearly ended it.",
     kind: "article",
+    locale: "en",
     desks: ["real-estate"],
     publishedAt: "2025-03-17T09:00:00",
     image: true,
@@ -265,6 +284,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     title: "Appointment of a Group Chief Investment Officer",
     excerpt: null,
     kind: "press-release",
+    locale: "en",
     desks: ["group"],
     publishedAt: "2024-11-11T15:00:00",
     image: false,
@@ -274,6 +294,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "Partnerships are underwritten on the pitch and judged on the second year. A note on what SIRA measures once the novelty is gone.",
     kind: "insight",
+    locale: "en",
     desks: ["group", "consulting"],
     publishedAt: "2024-08-05T09:00:00",
     image: false,
@@ -282,6 +303,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     title: "First Clinical Partnership Signed in Nairobi",
     excerpt: "A referral agreement covering three private practices.",
     kind: "news",
+    locale: "en",
     desks: ["healthcare"],
     publishedAt: "2024-04-22T08:30:00",
     image: false,
@@ -291,6 +313,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     excerpt:
       "Demographics, currency and construction cost, and what each of them is likely to do to yields between now and 2034.",
     kind: "insight",
+    locale: "en",
     desks: ["real-estate"],
     publishedAt: "2023-12-04T09:00:00",
     image: true,
@@ -299,6 +322,7 @@ const SEEDS: readonly DemoSeed[] = Object.freeze([
     title: "Corporate Information Notice",
     excerpt: "Registered office and filing details.",
     kind: "press-release",
+    locale: "en",
     desks: ["group"],
     publishedAt: null,
     image: false,
@@ -323,6 +347,7 @@ function toItem(seed: DemoSeed, index: number): EditorialItem {
     typename: TYPENAME_BY_KIND[kind],
     contentTypeName: CONTENT_TYPE_BY_KIND[kind],
     kind,
+    locale: "en",
     title: seed.title,
     excerpt: seed.excerpt,
     href: `/${SECTION_BY_KIND[kind]}/${slugify(seed.title)}/`,

@@ -4,13 +4,16 @@ import { notFound } from "next/navigation";
 
 import { ArticlePage } from "@/components/record/article-page";
 import { getBrand } from "@/lib/brand";
-import { getEditorialFeed } from "@/lib/editorial";
+import { getEditorialFeedForLocale } from "@/lib/editorial";
+import { recordUrisForLocale } from "@/lib/i18n/record-href";
+import { getRequestLocale } from "@/lib/i18n/request-locale";
 import { primaryDesk } from "@/lib/editorial/desks";
 import { toEntryViews, type EntryView } from "@/lib/editorial/entry-view";
 import { getEditorialSingle } from "@/lib/editorial/get-editorial-single";
 import { EDITORIAL_SECTIONS } from "@/lib/editorial/routes";
 import type { EditorialArticle } from "@/lib/editorial/editorial-single-types";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
+import type { LocaleCode, SiteDefinition } from "@/types/site";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -45,6 +48,23 @@ interface ArticleRouteProps {
  * The WordPress URI for a section and slug, or null when either is not
  * something this route serves.
  */
+/**
+ * The entry in the requested language, falling back to the original
+ * (ADR-037): `/ar/articles/x/` tries `/articles/ar-x/` and then `/articles/x/`.
+ */
+async function resolveEditorialForLocale(
+  site: SiteDefinition,
+  locale: LocaleCode,
+  uri: string,
+) {
+  let last: Awaited<ReturnType<typeof getEditorialSingle>> | null = null;
+  for (const candidate of recordUrisForLocale(site, locale, uri)) {
+    last = await getEditorialSingle(site.key, candidate);
+    if (last.status !== "not-found") return last;
+  }
+  return last ?? Object.freeze({ status: "not-found" as const, siteKey: site.key });
+}
+
 function resolveUri(section: string, slug: string): string | null {
   if (!EDITORIAL_SECTIONS.includes(section)) return null;
   if (!SLUG.test(slug) || slug.length > 200) return null;
@@ -66,7 +86,7 @@ export async function generateMetadata({
     getBrand(site.key),
     headers(),
     draftMode(),
-    getEditorialSingle(site.key, uri),
+    getRequestLocale(site).then((request) => resolveEditorialForLocale(site, request.locale, uri)),
   ]);
 
   const discovery = resolveSiteDiscoveryContext(
@@ -98,7 +118,7 @@ export async function generateMetadata({
  * feed must not take the article down with it.
  */
 async function resolveAlsoInTheRecord(
-  feedPromise: ReturnType<typeof getEditorialFeed>,
+  feedPromise: ReturnType<typeof getEditorialFeedForLocale>,
   article: EditorialArticle,
 ): Promise<readonly EntryView[]> {
   const feed = await feedPromise;
@@ -131,8 +151,9 @@ export default async function EditorialArticleRoute({
   // The related strip's feed is independent of the article, so it is asked
   // for at the same time rather than after: one origin latency, not two, on
   // a cold instance. A failed feed is still swallowed below.
-  const feedPromise = getEditorialFeed(site.key, RELATED_WINDOW);
-  const resolution = await getEditorialSingle(site.key, uri);
+  const request = await getRequestLocale(site);
+  const feedPromise = getEditorialFeedForLocale(site.key, RELATED_WINDOW, request.locale);
+  const resolution = await resolveEditorialForLocale(site, request.locale, uri);
 
   if (resolution.status === "not-found") {
     notFound();

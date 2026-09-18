@@ -13,7 +13,7 @@ import { atlasPageMetadata } from "@/lib/atlas/metadata";
 import { resolveAtlasPage } from "@/lib/atlas/page-context";
 import { getBrand } from "@/lib/brand";
 import { parseParagraphs } from "@/lib/content/headed-list";
-import { getEditorialFeed } from "@/lib/editorial";
+import { getEditorialFeedForLocale } from "@/lib/editorial";
 import { isEditorialDeskKey } from "@/lib/editorial/desks";
 import type { EditorialItem } from "@/lib/editorial/types";
 import {
@@ -88,7 +88,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const [archive, feed] = await Promise.all([
     getProjectArchiveForLocale(site.key, ARCHIVE_SIZE, request.locale),
-    getEditorialFeed(site.key, 12),
+    getEditorialFeedForLocale(site.key, 12, request.locale),
   ]);
 
   // The next project in archive order, wrapping to the first.

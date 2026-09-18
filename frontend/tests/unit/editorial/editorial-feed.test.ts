@@ -400,6 +400,7 @@ describe("native editorial feed server adapter", () => {
       typename: "SiraInsight",
       contentTypeName: "sira_insight",
       kind: "insight",
+      locale: "en",
       title: "A clear title",
       excerpt: "Useful summary.",
       href: "https://news.example/item-12/",

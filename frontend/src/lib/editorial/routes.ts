@@ -24,6 +24,14 @@ export const EDITORIAL_SECTIONS: readonly string[] = Object.freeze([
 export function editorialArticleHref(href: string): string | null {
   if (!href.startsWith("/") || href.startsWith("//")) return null;
 
+  // A translation's public path carries its locale first (ADR-037); the
+  // route beneath it is the same four sections.
+  const localized = /^\/(ar)\/(.*)$/u.exec(href);
+  if (localized !== null) {
+    const inner = editorialArticleHref(`/${localized[2] ?? ""}`);
+    return inner === null ? null : `/${localized[1]}${inner}`;
+  }
+
   const [, section, slug, ...rest] = href.split("/");
 
   if (

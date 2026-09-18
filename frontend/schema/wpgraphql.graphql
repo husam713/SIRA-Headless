@@ -28231,7 +28231,7 @@ type Settings {
 }
 
 """The SiraArticle type"""
-type SiraArticle implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable {
+type SiraArticle implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSiraLocale {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -28474,6 +28474,9 @@ type SiraArticle implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
     """Arguments for filtering the connection"""
     where: SiraArticleToSiraBusinessUnitConnectionWhereArgs
   ): SiraArticleToSiraBusinessUnitConnection
+
+  """Fields of the SiraLocale ACF Field Group"""
+  siraLocale: SiraLocale
 
   """
   The URL-friendly, human-readable identifier for the content node, used in its permalink.
@@ -42997,7 +43000,7 @@ type SiraIndustryToTaxonomyConnectionEdge implements Edge & OneToOneConnection &
 }
 
 """The SiraInsight type"""
-type SiraInsight implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable {
+type SiraInsight implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSiraLocale {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -43240,6 +43243,9 @@ type SiraInsight implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
 
   """The unique numeric identifier for the content node."""
   siraInsightId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+
+  """Fields of the SiraLocale ACF Field Group"""
+  siraLocale: SiraLocale
 
   """Connection between the SiraInsight type and the SiraSector type"""
   siraSectors(
@@ -49361,7 +49367,7 @@ type SiraMediaItemToSiraMediaItemConnectionPageInfo implements PageInfo & SiraMe
 }
 
 """The SiraNewsItem type"""
-type SiraNewsItem implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable {
+type SiraNewsItem implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSiraLocale {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -49601,6 +49607,9 @@ type SiraNewsItem implements ContentNode & DatabaseIdentifier & MenuItemLinkable
     """Arguments for filtering the connection"""
     where: SiraNewsItemToSiraBusinessUnitConnectionWhereArgs
   ): SiraNewsItemToSiraBusinessUnitConnection
+
+  """Fields of the SiraLocale ACF Field Group"""
+  siraLocale: SiraLocale
 
   """The unique numeric identifier for the content node."""
   siraNewsItemId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
@@ -53624,7 +53633,7 @@ input SiraPortfolioItemToTermNodeConnectionWhereArgs {
 }
 
 """The SiraPressRelease type"""
-type SiraPressRelease implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable {
+type SiraPressRelease implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSiraLocale {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -53870,6 +53879,9 @@ type SiraPressRelease implements ContentNode & DatabaseIdentifier & MenuItemLink
     """Arguments for filtering the connection"""
     where: SiraPressReleaseToSiraBusinessUnitConnectionWhereArgs
   ): SiraPressReleaseToSiraBusinessUnitConnection
+
+  """Fields of the SiraLocale ACF Field Group"""
+  siraLocale: SiraLocale
 
   """The unique numeric identifier for the content node."""
   siraPressReleaseId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")

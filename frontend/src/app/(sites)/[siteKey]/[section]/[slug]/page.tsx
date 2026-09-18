@@ -120,6 +120,7 @@ export async function generateMetadata({
 async function resolveAlsoInTheRecord(
   feedPromise: ReturnType<typeof getEditorialFeedForLocale>,
   article: EditorialArticle,
+  locale: LocaleCode,
 ): Promise<readonly EntryView[]> {
   const feed = await feedPromise;
 
@@ -134,6 +135,7 @@ async function resolveAlsoInTheRecord(
           item.databaseId !== article.databaseId && item.desks.includes(desk),
       )
       .slice(0, RELATED_COUNT),
+    locale,
   );
 }
 
@@ -170,10 +172,7 @@ export default async function EditorialArticleRoute({
     );
   }
 
-  const alsoInTheRecord = await resolveAlsoInTheRecord(
-    feedPromise,
-    resolution.article,
-  );
+  const alsoInTheRecord = await resolveAlsoInTheRecord(feedPromise, resolution.article, request.locale);
 
   return <ArticlePage article={resolution.article} related={alsoInTheRecord} locale={request.locale} />;
 }

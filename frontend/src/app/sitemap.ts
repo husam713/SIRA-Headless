@@ -51,7 +51,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     if (archive.status === "ready") {
       entries.push({ path: "/projects/" });
+      // Only the default-locale records: a translation's href already carries
+      // its prefix, and `buildSitemap` adds one per locale.
       for (const item of archive.page.items) {
+        if (item.locale !== resolution.site.defaultLocale) continue;
         entries.push({ path: item.href });
       }
     }
@@ -70,6 +73,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (feed.status !== "ready") break;
 
     for (const item of feed.page.items) {
+      if (item.locale !== resolution.site.defaultLocale) continue;
       const href = editorialArticleHref(item.href);
       if (href === null) continue;
       entries.push({ path: href, lastModified: item.modifiedAt ?? item.publishedAt });

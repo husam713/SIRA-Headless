@@ -21,12 +21,13 @@ import type { LocaleCode } from "@/types/site";
 
 interface InsightRowsProps {
   readonly items: readonly EditorialItem[];
-  readonly href: (path: string) => string;
+  /** Unused since the feed's hrefs became public paths; kept so callers need not change. */
+  readonly href?: (path: string) => string;
   /** The page's language, for the kicker; the articles themselves stay as written. */
   readonly locale?: LocaleCode;
 }
 
-export function InsightRows({ items, href, locale = "en" }: InsightRowsProps) {
+export function InsightRows({ items, locale = "en" }: InsightRowsProps) {
   if (items.length === 0) return null;
 
   const withMedia = items.every((item) => item.featuredImage !== null);
@@ -47,7 +48,11 @@ export function InsightRows({ items, href, locale = "en" }: InsightRowsProps) {
           >
             <p className="atlas-insight__meta">
               <b style={{ color: editorialDeskAccent(desk) }}>
-                {localizeUnitLabel(locale, desk, editorialDeskLabel(desk))}
+                {desk === "group"
+                  ? locale === "en"
+                    ? editorialDeskLabel(desk)
+                    : CHROME[locale].siteNames.group
+                  : localizeUnitLabel(locale, desk, editorialDeskLabel(desk))}
               </b>
               <span>
                 {kind}
@@ -60,7 +65,7 @@ export function InsightRows({ items, href, locale = "en" }: InsightRowsProps) {
                 {articleHref === null ? (
                   item.title
                 ) : (
-                  <Link href={href(articleHref)} className="transition-colors hover:text-brand-accent">
+                  <Link href={articleHref} className="transition-colors hover:text-brand-accent">
                     {item.title}
                   </Link>
                 )}

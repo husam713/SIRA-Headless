@@ -323,9 +323,9 @@ function normalizeNode(
 
   // ADR-037: a translation's WordPress slug carries its locale
   // (`/articles/ar-…/`); the page this app serves for it is `/ar/articles/…/`.
-  const href = publicRecordHref(uri);
-  const locale: LocaleCode =
-    normalizeLocale("siraLocale" in node ? node.siraLocale : null) ?? recordHrefLocale(uri) ?? "en";
+  const fieldLocale = normalizeLocale("siraLocale" in node ? node.siraLocale : null);
+  const locale: LocaleCode = fieldLocale ?? recordHrefLocale(uri) ?? "en";
+  const href = publicRecordHref(uri, fieldLocale);
 
   const publishedAt = normalizeDate(node.date);
   const modifiedAt = normalizeDate(node.modified);

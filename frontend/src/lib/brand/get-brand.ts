@@ -91,8 +91,12 @@ function localizeBrand(brand: ResolvedBrand, locale: LocaleCode): ResolvedBrand 
   });
 }
 
+// The record is memoized once per request whatever languages ask for it;
+// only the fold differs, and that is cheap.
+const getBrandRecord = cache(resolveBrand);
+
 async function resolveBrandForLocale(siteKey: SiteKey, locale: LocaleCode = "en"): Promise<ResolvedBrand> {
-  return localizeBrand(await resolveBrand(siteKey), locale);
+  return localizeBrand(await getBrandRecord(siteKey), locale);
 }
 
 /**

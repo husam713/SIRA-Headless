@@ -32,6 +32,9 @@ export interface NewsroomCopy {
   readonly articleDetails: string;
   readonly onThisPage: string;
   readonly exploreAll: string;
+  readonly deskOf: (desk: string) => string;
+  readonly updated: (date: string) => string;
+  readonly moreFrom: (desk: string) => string;
 }
 
 const EN: NewsroomCopy = Object.freeze({
@@ -60,6 +63,9 @@ const EN: NewsroomCopy = Object.freeze({
   articleDetails: "Article details",
   onThisPage: "On this page",
   exploreAll: "Explore all insights",
+  deskOf: (desk: string) => `${desk} desk`,
+  updated: (date: string) => `Updated ${date}`,
+  moreFrom: (desk: string) => `More from ${desk}`,
 });
 
 const AR: NewsroomCopy = Object.freeze({
@@ -88,6 +94,9 @@ const AR: NewsroomCopy = Object.freeze({
   articleDetails: "تفاصيل المقال",
   onThisPage: "في هذه الصفحة",
   exploreAll: "استعرض كل الرؤى",
+  deskOf: (desk: string) => `مكتب ${desk}`,
+  updated: (date: string) => `حُدِّث في ${date}`,
+  moreFrom: (desk: string) => `المزيد من ${desk}`,
 });
 
 export const NEWSROOM_COPY: Readonly<Record<LocaleCode, NewsroomCopy>> = Object.freeze({ en: EN, ar: AR });

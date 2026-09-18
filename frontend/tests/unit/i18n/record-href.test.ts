@@ -27,6 +27,14 @@ describe("publicRecordHref", () => {
     expect(publicRecordHref("/projects/en-prime/")).toBe("/projects/en-prime/");
   });
 
+  it("leaves an English record alone even when its slug begins with a locale code", () => {
+    // A field says the language where one exists; the slug rule is only the
+    // fallback for records written before the field.
+    expect(publicRecordHref("/projects/ar-rayyan-tower/", "en")).toBe("/projects/ar-rayyan-tower/");
+    expect(publicRecordHref("/projects/ar-rayyan-tower/", "ar")).toBe("/ar/projects/rayyan-tower/");
+    expect(publicRecordHref("/projects/ar-rayyan-tower/", null)).toBe("/ar/projects/rayyan-tower/");
+  });
+
   it("does not touch a page URI, whose locale is already a parent segment", () => {
     expect(publicRecordHref("/ar/our-services/")).toBe("/ar/our-services/");
   });

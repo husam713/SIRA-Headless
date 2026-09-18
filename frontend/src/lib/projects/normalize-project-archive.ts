@@ -221,8 +221,9 @@ function normalizeProject(
   // fallback for a record written before the field existed. The href is the
   // page this app serves for the record, which for a translation is the
   // `/ar/` route rather than the WordPress slug.
-  const href = publicRecordHref(uri);
-  const locale = normalizeLocale(value["siraLocale"]) ?? recordHrefLocale(uri) ?? "en";
+  const fieldLocale = normalizeLocale(value["siraLocale"]);
+  const locale = fieldLocale ?? recordHrefLocale(uri) ?? "en";
+  const href = publicRecordHref(uri, fieldLocale);
 
   const rawFeaturedImage = value["featuredImage"];
   const featuredImage =

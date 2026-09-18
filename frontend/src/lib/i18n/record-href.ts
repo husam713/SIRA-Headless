@@ -29,7 +29,11 @@ export function recordHrefLocale(uri: string): LocaleCode | null {
   return code !== undefined && Object.hasOwn(LOCALE_PREFIX, code) ? LOCALE_PREFIX[code] ?? null : null;
 }
 
-export function publicRecordHref(uri: string): string {
+export function publicRecordHref(uri: string, locale: LocaleCode | null = null): string {
+  // Where the record's language is known from its field, an English record
+  // whose slug happens to begin `ar-` (a name, a place) stays where it is.
+  if (locale !== null && locale !== "ar") return uri;
+
   const segments = uri.split("/").filter(Boolean);
   const last = segments[segments.length - 1];
   const match = last === undefined ? null : RECORD_SLUG_PREFIX.exec(last);

@@ -122,8 +122,8 @@ export function ArticlePage({ article, related, locale = "en" }: ArticlePageProp
                 </time>
               ) : null}
               {minutes !== null ? <span>{copy.readingTime(minutes)}</span> : null}
-              <span>{entry.deskLabel} desk</span>
-              {updated !== null ? <span>Updated {updated}</span> : null}
+              <span>{copy.deskOf(entry.deskLabel)}</span>
+              {updated !== null ? <span>{copy.updated(updated)}</span> : null}
             </p>
           </div>
 
@@ -188,7 +188,7 @@ export function ArticlePage({ article, related, locale = "en" }: ArticlePageProp
         {related.length > 0 ? (
           <section className="editorial-related" aria-labelledby="related-stories">
             <div className="editorial-related__head">
-              <h2 id="related-stories">More from {entry.deskLabel}</h2>
+              <h2 id="related-stories">{copy.moreFrom(entry.deskLabel)}</h2>
               <span>{copy.latest}</span>
             </div>
             <div className="record-register">

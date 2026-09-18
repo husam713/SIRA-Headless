@@ -5,7 +5,7 @@ older is provenance. Machine-readable twin: `project-state.json`. Full history
 and registries: `docs/HANDOFF.md`, `docs/SOURCE-OF-TRUTH.md`,
 `docs/PROJECT-STATE.md`, `docs/DECISIONS.md`.
 
-**Verified through:** 2026-09-15 · `main` @ `db090be6` (merge of PR #68, 2026-09-15)
+**Verified through:** 2026-09-18 · `main` @ `ed781fdc` (merge of PR #78, 2026-09-18)
 
 ## What this repo is
 
@@ -24,8 +24,9 @@ load automatically from `.claude/rules/` when you touch those paths.
 | CMS-origin relocation reconciliation (ADR-036 / SOT-003) + Group cutover plan | merged on `main` — PR **#68** @ `db090be6`, 2026-09-15 | Git |
 | Backend starter importer | PR **#45** (draft, 2026-08-28) — stale | GitHub |
 | PR **#37** | Vercel bot; Vercel is no longer used — close when convenient | owner decision 2026-09-15 |
-| Atlas inner pages + production content (EN) | PR **#77** `feat/atlas-production-site`, open, CI green (2026-09-17) | GitHub |
-| Atlas Arabic edition (ADR-037) | branch `feat/atlas-arabic` on top of #77; live WordPress content written 2026-09-17/18 | Git, `docs/tasks/atlas-arabic-content.md` |
+| Atlas inner pages + production content (EN) | merged on `main` — PR **#77**, 2026-09-18 | Git |
+| Atlas Arabic edition (ADR-037), owner's newsroom, final newsroom content EN/AR, prototype motion, Cloud Run deployment | merged on `main` — PR **#78** @ `ed781fdc`, 2026-09-18 | Git, `docs/tasks/atlas-launch-2026-09-18.md` |
+| Production | Cloud Run `sira-frontend` (europe-west1) serves `main` @ `ed781fdc` on the four company subdomains; `siratrgroup.com` mapped, waiting for the owner's DNS (ADR-038) | gcloud, ADR-038 |
 | Owner's local uncommitted work (Cloud Run Dockerfile, search-indexing switch, newsroom design pass, backend CI) | intentional, in the main checkout, not on any branch yet | owner statement 2026-09-15 |
 
 ## Durable-state carriers
@@ -36,8 +37,8 @@ terms, placeholder editorial seeding (ADR-030/031), blog 6 provisioning
 `cms-<tenant>.siratrgroup.com` (ADR-036 / SOT-003) — are on `main` since PR
 #68 (2026-09-15). Do not edit CMS origins or `SIRA_WP_*_GRAPHQL_URL` without
 reading `docs/HANDOFF.md` section "CMS origin relocation — executed
-2026-09-10". Group / blog 1 is still on the apex
-(`openGates.groupCmsOriginRelocation` OPEN).
+2026-09-10". Group / blog 1 moved to `cms-group.siratrgroup.com` on 2026-09-18
+(ADR-038); the apex still answers through a sunrise mapping until DNS moves.
 
 PRs #64, #65, #66 and #68 were merged on 2026-09-15 under an explicit owner
 merge authorization given in-session; each head was brought up to date with
@@ -61,9 +62,9 @@ post-merge verification has not been performed.
 
 - **RB-009** restore rehearsal has never been performed — recoverability is inferred, not proven.
 - **ADR-032**: Hostinger CDN returns 403 + bot challenge to server-side GraphQL fetches from unrecognised IPs; live captures go over SSH (`tools/capture-live-feed.mjs`). Launch blocker.
-- `blog_public = 0` on the tenants and 37+ `_sira_seed=1` placeholder records: `node tools/verify-no-seed-content.mjs` must pass before launch.
+- `node tools/verify-no-seed-content.mjs`: the five Atlas tenants are clean (2026-09-18); Digital still carries 94 placeholder records. `blog_public = 0` stays on every `cms-*` origin by design — the public site's indexing is the frontend's `SIRA_SEARCH_INDEXING` switch, off until the owner's final review.
 - `2C4-B09` is decided for every tenant (ADR-034 Digital, ADR-037 the other five, 2026-09-18) on branch `feat/atlas-arabic`; `PREVIEW-AUTH-001` remains deferred and full Step 3D closure must not be claimed.
-- Deploy target is in transition (Vercel dropped; Cloud Run files exist locally, untracked).
+- Deploy target is Cloud Run (ADR-038); Dockerfile and `.gcloudignore` are on `main`.
 
 ## Next step
 

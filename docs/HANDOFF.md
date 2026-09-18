@@ -1103,6 +1103,19 @@ The English office list, footer tagline and address on the Arabic pages are
 a known limit of the single-language brand options, not a gap in the seed.
 Branch: `feat/atlas-arabic`, on top of `feat/atlas-production-site` (PR #77).
 
+## Launch pass — 2026-09-18
+
+Under the owner's same-day authorization: PRs #77 and #78 merged to `main`
+(`ed781fdc`); the newsroom is final in English and Arabic with no placeholder
+marker left on blogs 1–5 (`tools/seed/newsroom-final.{php,json}`); the
+prototype's motion is in production; the frontend was built by Cloud Build and
+deployed to Cloud Run (`sira-frontend`, europe-west1); blog 1's CMS origin was
+relocated to `cms-group.siratrgroup.com` with a sunrise mapping keeping the
+apex alive (ADR-038); the apex and `www` domain mappings exist and wait for the
+owner's DNS. Record: `docs/tasks/atlas-launch-2026-09-18.md`. Deployment env:
+`SIRA_WP_GROUP_GRAPHQL_URL` now names `cms-group`; every local `.env.local`
+must follow.
+
 ## New owner decision — Group staging first
 
 The replacement public Group frontend for `siratrgroup.com` must be developed, integrated, QA'd, and owner-accepted on staging before production cutover.

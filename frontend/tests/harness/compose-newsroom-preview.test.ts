@@ -230,11 +230,14 @@ describe("newsroom preview", () => {
     expect(branch).not.toContain("/news?desk=");
   });
 
-  it("carries no media in the register at all", () => {
-    // THE RECORD is typographic by design: the archive is rules and type, so a
-    // CMS with art and a CMS without it produce the same geometry.
+  it("carries media only in the lead, never in the register", () => {
+    // The owner's newsroom (2026-09) opens on the lead's photograph; the
+    // register below stays typographic, so a CMS with art and a CMS without
+    // it produce the same geometry from the first band down.
     for (const testCase of CASES) {
-      expect(render(testCase), testCase.file).not.toContain("<img");
+      const markup = render(testCase);
+      const register = markup.slice(markup.indexOf('class="record-register"'));
+      expect(register, testCase.file).not.toContain("<img");
     }
   });
 

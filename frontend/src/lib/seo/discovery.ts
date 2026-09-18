@@ -1,5 +1,9 @@
 import type { MetadataRoute } from "next";
 import {
+  isSearchIndexingEnabled,
+  type SearchIndexingEnvironment,
+} from "@/config/search-indexing";
+import {
   getSiteRegistry,
   type SiteRegistry,
 } from "@/config/sites";
@@ -45,19 +49,28 @@ export function resolveSiteDiscoveryContext(
   });
 }
 
+const DISALLOW_ALL: MetadataRoute.Robots = {
+  rules: {
+    userAgent: "*",
+    disallow: "/",
+  },
+};
+
 export function buildRobotsPolicy(
   hostname: string,
   registry: SiteRegistry = getSiteRegistry(),
+  environment: SearchIndexingEnvironment = process.env,
 ): MetadataRoute.Robots {
+  // The deployment-wide switch wins over hostname role: while indexing is off,
+  // even the production canonical host fails closed and advertises no sitemap.
+  if (!isSearchIndexingEnabled(environment)) {
+    return DISALLOW_ALL;
+  }
+
   const resolution = resolveSiteFromHostname(hostname, registry);
 
   if (resolution === null || resolution.hostnameRole !== "canonical") {
-    return {
-      rules: {
-        userAgent: "*",
-        disallow: "/",
-      },
-    };
+    return DISALLOW_ALL;
   }
 
   return {
@@ -92,7 +105,12 @@ export function buildSitemap(
   hostname: string,
   entries: readonly SitemapEntryInput[] = [],
   registry: SiteRegistry = getSiteRegistry(),
+  environment: SearchIndexingEnvironment = process.env,
 ): MetadataRoute.Sitemap {
+  if (!isSearchIndexingEnabled(environment)) {
+    return [];
+  }
+
   const resolution = resolveSiteFromHostname(hostname, registry);
 
   if (resolution === null || resolution.hostnameRole !== "canonical") {

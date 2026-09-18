@@ -78,6 +78,10 @@ describe("article preview", () => {
       expect(markup, tag).toContain(tag);
     }
     expect(markup).not.toContain("&lt;h2");
+    expect(markup).toContain('aria-label="On this page"');
+    // The owner's image-led article ids its sections `article-section-<n>`.
+    expect(markup).toContain('href="#article-section-3"');
+    expect(markup).toContain('id="article-section-3"');
   });
 
   it("renders the live payload through the real normalizer", () => {

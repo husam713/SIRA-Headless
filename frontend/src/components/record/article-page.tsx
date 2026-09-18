@@ -1,3 +1,5 @@
+import { NEWSROOM_COPY } from "@/lib/editorial/newsroom-copy";
+import type { LocaleCode } from "@/types/site";
 import Link from "next/link";
 
 import { RichText } from "@/components/editorial/rich-text";
@@ -16,6 +18,8 @@ import { editorialSectionLabel } from "@/lib/editorial/routes";
 interface ArticlePageProps {
   readonly article: EditorialArticle;
   readonly related: readonly EntryView[];
+  /** The page's language; the chrome speaks it, the article speaks its own. */
+  readonly locale?: LocaleCode;
 }
 
 interface ArticleSection {
@@ -51,12 +55,12 @@ function articleSections(body: readonly RichTextNode[]): readonly ArticleSection
   return sections;
 }
 
-function formatFullDate(value: string | null): string | null {
+function formatFullDate(value: string | null, locale: LocaleCode = "en"): string | null {
   if (value === null) return null;
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return null;
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(locale === "ar" ? "ar-SA-u-nu-latn-ca-gregory" : "en-GB", {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -74,12 +78,14 @@ function readingMinutes(article: EditorialArticle): number | null {
  * The CMS-provided featured image is the visual lead. When there is no image,
  * the text hero grows into the available space rather than showing a filler.
  */
-export function ArticlePage({ article, related }: ArticlePageProps) {
-  const entry = toEntryView(article);
-  const published = formatFullDate(article.publishedAt);
+export function ArticlePage({ article, related, locale = "en" }: ArticlePageProps) {
+  const copy = NEWSROOM_COPY[locale];
+  const newsHref = locale === "en" ? "/news" : `/${locale}/news`;
+  const entry = toEntryView(article, locale);
+  const published = formatFullDate(article.publishedAt, locale);
   const updated =
     article.modifiedAt !== null && article.modifiedAt !== article.publishedAt
-      ? formatFullDate(article.modifiedAt)
+      ? formatFullDate(article.modifiedAt, locale)
       : null;
   const minutes = readingMinutes(article);
   const sections = articleSections(article.body);
@@ -88,7 +94,7 @@ export function ArticlePage({ article, related }: ArticlePageProps) {
     <RecordShell label={article.title}>
       <article className="editorial-article" style={accentStyle(entry.accent)}>
         <header className="editorial-crumb">
-          <Link href="/news">Newsroom</Link>
+          <Link href={newsHref}>{copy.newsroom}</Link>
           <span aria-hidden="true">/</span>
           <span>{editorialSectionLabel(article.href) ?? entry.kindLabel}</span>
           <span aria-hidden="true">/</span>
@@ -115,7 +121,7 @@ export function ArticlePage({ article, related }: ArticlePageProps) {
                   {published}
                 </time>
               ) : null}
-              {minutes !== null ? <span>{minutes} min read</span> : null}
+              {minutes !== null ? <span>{copy.readingTime(minutes)}</span> : null}
               <span>{entry.deskLabel} desk</span>
               {updated !== null ? <span>Updated {updated}</span> : null}
             </p>
@@ -141,11 +147,11 @@ export function ArticlePage({ article, related }: ArticlePageProps) {
         </section>
 
         <section className="editorial-reading">
-          <aside className="editorial-details" aria-label="Article details">
-            <RecordRailEntry label="Desk" value={entry.deskLabel} />
-            <RecordRailEntry label="Format" value={entry.kindLabel} />
+          <aside className="editorial-details" aria-label={copy.articleDetails}>
+            <RecordRailEntry label={copy.desk} value={entry.deskLabel} />
+            <RecordRailEntry label={copy.format} value={entry.kindLabel} />
             {published !== null ? (
-              <RecordRailEntry label="Published" value={published} />
+              <RecordRailEntry label={copy.published} value={published} />
             ) : null}
           </aside>
 
@@ -161,13 +167,13 @@ export function ArticlePage({ article, related }: ArticlePageProps) {
                 }
               />
             ) : (
-              <p>This entry was filed as a summary only.</p>
+              <p>{copy.summaryOnly}</p>
             )}
           </div>
 
           {sections.length > 0 ? (
-            <nav className="editorial-contents" aria-label="On this page">
-              <p>In this article</p>
+            <nav className="editorial-contents" aria-label={copy.onThisPage}>
+              <p>{copy.inThisArticle}</p>
               <ol>
                 {sections.map((section) => (
                   <li key={section.id} data-level={section.level}>
@@ -183,7 +189,7 @@ export function ArticlePage({ article, related }: ArticlePageProps) {
           <section className="editorial-related" aria-labelledby="related-stories">
             <div className="editorial-related__head">
               <h2 id="related-stories">More from {entry.deskLabel}</h2>
-              <span>Latest insights</span>
+              <span>{copy.latest}</span>
             </div>
             <div className="record-register">
               {related.map((item) => (
@@ -194,7 +200,7 @@ export function ArticlePage({ article, related }: ArticlePageProps) {
         ) : null}
 
         <p className="editorial-return">
-          <Link href="/news">Explore all insights <span aria-hidden="true">&rarr;</span></Link>
+          <Link href={newsHref}>{copy.exploreAll} <span aria-hidden="true">&rarr;</span></Link>
         </p>
       </article>
     </RecordShell>

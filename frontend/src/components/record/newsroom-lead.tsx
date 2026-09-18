@@ -5,10 +5,12 @@ import type { EntryView } from "@/lib/editorial/entry-view";
 
 interface NewsroomLeadProps {
   readonly entry: EntryView;
+  /** The link's words in the page's language. */
+  readonly readLabel?: string;
 }
 
 /** The lead is editorially led by its actual image or, when absent, by type. */
-export function NewsroomLead({ entry }: NewsroomLeadProps) {
+export function NewsroomLead({ entry, readLabel = "Read the story" }: NewsroomLeadProps) {
   const { item } = entry;
 
   return (
@@ -35,7 +37,7 @@ export function NewsroomLead({ entry }: NewsroomLeadProps) {
         ) : null}
         {entry.href !== null ? (
           <Link href={entry.href} className="newsroom-hero__link">
-            Read the story <span aria-hidden="true">&rarr;</span>
+            {readLabel} <span aria-hidden="true">&rarr;</span>
           </Link>
         ) : null}
       </div>

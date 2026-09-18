@@ -1,0 +1,641 @@
+{
+  "$comment": "Final newsroom content (2026-09-18, owner instruction: no placeholder left). Read by newsroom-final.php. `entries` is keyed by the English slug; each carries the English body (existing bodies were kept where they already existed) and its Arabic twin. `tenants` lists which slugs each site carries, plus records to trash or rename. Claims to verify are listed in docs/tasks/atlas-launch-2026-09-18.md.",
+  "entries": {
+    "why-istanbul-is-becoming-africas-investment-bridge": {
+      "kind": "article",
+      "title": "Why Istanbul Is Becoming Africa’s Investment Bridge",
+      "excerpt": "How geography and policy are turning Turkish capital toward East African healthcare and housing.",
+      "body": "<p>For most of the last decade the capital that reached East African healthcare and housing came from three directions: development finance, Gulf sovereign vehicles and a handful of European private investors. A fourth has been forming quietly, and it runs through Istanbul.</p><h2>Geography first</h2><p>Istanbul sits within a six-hour flight of Nairobi, Addis Ababa and Kigali, on a time zone that overlaps both Europe and the Gulf. Turkish Airlines connects more African cities than any other carrier. For an operator who needs to be on site every month rather than every quarter, that is not a detail — it is the difference between a project that is managed and one that is visited.</p><h2>Then policy</h2><p>Türkiye has spent fifteen years building trade and diplomatic infrastructure across the continent: embassies, chambers, credit lines and a construction sector that has already delivered hospitals, airports and housing from Dakar to Mogadishu. Turkish contractors know the regulators, the banks and the supply chains. What they have lacked is patient equity to sit alongside them.</p><h2>What we do with it</h2><p>SIRA GROUP structures Turkish and Gulf capital into East African operating platforms — diagnostic centres, residential developments — using Istanbul as the bridge jurisdiction: the vehicles are formed there, the reporting is done there, and the operating companies are run where the assets are. Rosina Diagnostic Center in Nairobi was built this way. The advisory mandate we lead from Istanbul now applies the same structure for partners who want the corridor without building it themselves.</p>",
+      "ar": {
+        "title": "لماذا تتحوّل إسطنبول إلى جسر الاستثمار نحو أفريقيا",
+        "excerpt": "كيف تدفع الجغرافيا والسياسات رأس المال التركي نحو الرعاية الصحية والإسكان في شرق أفريقيا.",
+        "body": "<p>طوال معظم العقد الماضي، جاء رأس المال الذي وصل إلى الرعاية الصحية والإسكان في شرق أفريقيا من ثلاثة اتجاهات: التمويل التنموي، والصناديق السيادية الخليجية، وقلّة من المستثمرين الأوروبيين الخاصين. وثمة اتجاه رابع يتشكّل بهدوء، ويمرّ عبر إسطنبول.</p><h2>الجغرافيا أولًا</h2><p>تقع إسطنبول على بُعد ست ساعات طيران من نيروبي وأديس أبابا وكيغالي، في منطقة زمنية تتداخل مع أوروبا والخليج معًا. وتربط الخطوط التركية عددًا من المدن الأفريقية يفوق أي ناقل آخر. وبالنسبة لمشغّل يحتاج أن يكون في الموقع كل شهر لا كل ربع سنة، ليس هذا تفصيلًا — بل هو الفرق بين مشروع يُدار ومشروع يُزار.</p><h2>ثم السياسات</h2><p>أمضت تركيا خمسة عشر عامًا في بناء بنية تجارية ودبلوماسية عبر القارة: سفارات، وغرف تجارية، وخطوط ائتمان، وقطاع إنشاءات سلّم بالفعل مستشفيات ومطارات ومساكن من داكار إلى مقديشو. يعرف المقاولون الأتراك الجهات التنظيمية والمصارف وسلاسل التوريد. وما كان ينقصهم هو رأس مال صبور يقف إلى جانبهم.</p><h2>ماذا نصنع به</h2><p>تهيكل مجموعة سيرة رأس المال التركي والخليجي في منصات تشغيلية في شرق أفريقيا — مراكز تشخيص، ومشاريع سكنية — متخذةً إسطنبول ولايةً جسريّة: تُؤسَّس الأوعية هناك، وتُعدّ التقارير هناك، وتُدار الشركات المشغّلة حيث توجد الأصول. هكذا بُني مركز روزينا للتشخيص في نيروبي. والتفويض الاستشاري الذي نقوده من إسطنبول يطبّق اليوم الهيكل نفسه للشركاء الذين يريدون الممر من دون بنائه بأنفسهم.</p>"
+      },
+      "images": [
+        "istanbul-bosphorus",
+        "istanbul-ifc",
+        "business-district"
+      ]
+    },
+    "inside-nairobis-diagnostic-imaging-boom": {
+      "kind": "article",
+      "title": "Inside Nairobi’s Diagnostic Imaging Boom",
+      "excerpt": "Demand for advanced radiology is reshaping how healthcare investors think about East Africa.",
+      "body": "<p>Demand for advanced radiology is reshaping how healthcare investors think about East Africa. The opportunity is not only in equipment, but in the systems that make a scanner useful: referral relationships, scheduling, consumables, and reporting that reaches the clinician the same day.</p><h2>Where the demand comes from</h2><p>Nairobi is a referral city. Patients travel from across Kenya and from neighbouring countries for imaging they cannot get at home, and a growing private-insurance base is willing to pay for it. Until recently the supply was a handful of hospital departments running old modalities at capacity. A stand-alone centre that reports within hours changes the maths for every referring doctor in the city.</p><h2>What Rosina taught us</h2><p>Rosina Diagnostic Center opened in 2021 with MRI, CT and ultrasound and now performs more than thirty thousand scans a year. The equipment was the easy part. The hard part was the facility-management system — the group's own — that schedules the modalities, tracks consumables and returns reports to referring clinicians in real time. It is the system, not the scanner, that produced the 42% year-on-year growth.</p><h2>Why it matters to investors</h2><p>A diagnostic centre run this way is cash-flow positive, replicable and largely insulated from the capital cost of a hospital. That is why the next step of the network — a PET-CT molecular imaging centre in a second East African city — is being opened as a platform position rather than a single-site investment.</p>",
+      "ar": {
+        "title": "داخل طفرة التصوير التشخيصي في نيروبي",
+        "excerpt": "الطلب على الأشعة المتقدمة يعيد تشكيل نظرة مستثمري الرعاية الصحية إلى شرق أفريقيا.",
+        "body": "<p>يعيد الطلب على الأشعة المتقدمة تشكيل نظرة مستثمري الرعاية الصحية إلى شرق أفريقيا. والفرصة ليست في المعدات وحدها، بل في الأنظمة التي تجعل الجهاز مفيدًا: علاقات التحويل، والجدولة، والمستهلكات، والتقارير التي تصل إلى الطبيب في اليوم نفسه.</p><h2>من أين يأتي الطلب</h2><p>نيروبي مدينة تحويل. يسافر المرضى من أنحاء كينيا ومن الدول المجاورة من أجل تصوير لا يجدونه في بلدانهم، وثمة قاعدة متنامية من التأمين الخاص مستعدة للدفع. وحتى وقت قريب كان العرض بضعة أقسام في مستشفيات تشغّل أجهزة قديمة بكامل طاقتها. مركز مستقل يصدر تقاريره خلال ساعات يغيّر الحسابات لكل طبيب محوّل في المدينة.</p><h2>ما علّمنا إياه روزينا</h2><p>افتُتح مركز روزينا للتشخيص عام 2021 بأجهزة الرنين المغناطيسي والأشعة المقطعية والموجات فوق الصوتية، وهو يُجري اليوم أكثر من ثلاثين ألف فحص سنويًا. كانت المعدات هي الجزء السهل. أما الصعب فكان نظام إدارة المنشآت — الخاص بالمجموعة — الذي يجدول الأجهزة ويتتبّع المستهلكات ويعيد التقارير إلى الأطباء المحوّلين في الوقت الفعلي. النظام، لا الجهاز، هو ما أنتج نموًا بنسبة 42% على أساس سنوي.</p><h2>لماذا يهم المستثمرين</h2><p>مركز تشخيص يُدار بهذه الطريقة يحقق تدفقًا نقديًا إيجابيًا، وقابل للتكرار، ومعزول إلى حدٍّ بعيد عن التكلفة الرأسمالية للمستشفى. ولهذا تُفتح الخطوة التالية في الشبكة — مركز للتصوير الجزيئي PET-CT في مدينة ثانية في شرق أفريقيا — كمركز على مستوى المنصة لا كاستثمار في موقع واحد.</p>"
+      },
+      "images": [
+        "rosina-mri",
+        "rosina-center",
+        "pet-scanner"
+      ]
+    },
+    "what-we-look-for-in-a-strategic-partner": {
+      "kind": "article",
+      "title": "What We Look for in a Strategic Partner",
+      "excerpt": "The criteria SIRA GROUP applies before entering a new market or venture.",
+      "body": "<p>Every venture in the group began as a partnership, and the ones that lasted share four qualities. We look for them before we look at the numbers.</p><h2>1. An operator, not an allocator</h2><p>Our best partners run something. A family office that owns land, a clinical group that sees patients, a contractor that builds. Capital alone is available everywhere; what we cannot buy is a partner who will be on site on a Tuesday when the problem is small.</p><h2>2. A market they already understand</h2><p>We enter markets through people who are already in them. OVAN Group knew Istanbul's districts before we did; Rosina's clinical team knew Nairobi's referral network. We bring structure, capital and the operating systems; the partner brings the ground truth.</p><h2>3. Patience measured in years</h2><p>Land assembly took six years on one Istanbul block. A diagnostic centre takes two years to reach the referral volumes that make it pay. A partner who needs a result in eighteen months will be right about the opportunity and wrong about the timing, and that is the same as being wrong.</p><h2>4. Governance they will accept</h2><p>Quarterly reporting, an annual review, an agreed exit. We ask for these before the first cheque, and we have walked away from good opportunities where they were not welcome. The second year of a partnership is decided in the first month.</p>",
+      "ar": {
+        "title": "ما الذي نبحث عنه في الشريك الاستراتيجي",
+        "excerpt": "المعايير التي تطبّقها مجموعة سيرة قبل دخول سوق جديد أو مشروع جديد.",
+        "body": "<p>بدأ كل مشروع في المجموعة كشراكة، والشراكات التي دامت تشترك في أربع صفات. نبحث عنها قبل أن ننظر إلى الأرقام.</p><h2>1. مشغّل، لا موزّع رأس مال</h2><p>أفضل شركائنا يديرون شيئًا. مكتب عائلي يملك أرضًا، أو مجموعة سريرية تعاين المرضى، أو مقاول يبني. رأس المال وحده متاح في كل مكان؛ وما لا يمكننا شراؤه هو شريك يكون في الموقع يوم الثلاثاء حين تكون المشكلة صغيرة.</p><h2>2. سوق يفهمونه بالفعل</h2><p>ندخل الأسواق عبر أناس موجودين فيها بالفعل. عرفت مجموعة OVAN أحياء إسطنبول قبلنا؛ وعرف فريق روزينا السريري شبكة التحويل في نيروبي. نحن نأتي بالهيكل ورأس المال وأنظمة التشغيل؛ والشريك يأتي بحقيقة الأرض.</p><h2>3. صبر يُقاس بالسنوات</h2><p>استغرق تجميع الأراضي ست سنوات في مربع سكني واحد في إسطنبول. ويحتاج مركز التشخيص عامين ليصل إلى أحجام التحويل التي تجعله مربحًا. الشريك الذي يحتاج نتيجة خلال ثمانية عشر شهرًا سيكون محقًا في الفرصة ومخطئًا في التوقيت، وذلك يساوي أن يكون مخطئًا.</p><h2>4. حوكمة يقبلونها</h2><p>تقارير ربع سنوية، ومراجعة سنوية، وتخارج متفق عليه. نطلبها قبل أول شيك، وقد انسحبنا من فرص جيدة لم تكن هذه المتطلبات مرحّبًا بها فيها. السنة الثانية من الشراكة تُقرَّر في شهرها الأول.</p>"
+      },
+      "images": [
+        "conference-room",
+        "business-district",
+        "hero-investors"
+      ]
+    },
+    "sira-group-signs-strategic-partnership-with-ovan-group": {
+      "kind": "news",
+      "title": "SIRA GROUP Signs Strategic Partnership with OVAN Group",
+      "excerpt": "A joint venture to accelerate residential delivery in Istanbul, combining capital, land and delivery capability across three districts.",
+      "body": "<p>SIRA GROUP has signed a strategic partnership with OVAN Group, an Istanbul-based developer and contractor, to accelerate residential delivery in the city.</p><p>The joint venture combines SIRA's capital and structuring with OVAN's land positions and construction capability across three districts on Istanbul's Asian and European sides. Sira Prime, the group's flagship villa development, is the first project delivered under the partnership; a second-phase coastal site adjoining it is already in planning.</p><p>“OVAN builds the way we like to own,” said the group. “Low, long and open to the water — and on time.” The partnership is structured as an equity relationship at the project level, with SIRA Real Estate as developer and long-term operator of the completed estates.</p>",
+      "ar": {
+        "title": "مجموعة سيرة توقّع شراكة استراتيجية مع مجموعة OVAN",
+        "excerpt": "مشروع مشترك لتسريع تسليم المشاريع السكنية في إسطنبول، يجمع رأس المال والأراضي وقدرة التنفيذ في ثلاثة أحياء.",
+        "body": "<p>وقّعت مجموعة سيرة شراكة استراتيجية مع مجموعة OVAN، المطوّر والمقاول ومقرّها إسطنبول، لتسريع تسليم المشاريع السكنية في المدينة.</p><p>يجمع المشروع المشترك بين رأس مال سيرة وقدرتها على الهيكلة وبين مواقع OVAN من الأراضي وقدرتها الإنشائية في ثلاثة أحياء على الجانبين الآسيوي والأوروبي من إسطنبول. وسيرة برايم، مشروع الفلل الرائد للمجموعة، هو أول مشروع يُسلَّم في إطار الشراكة؛ وموقع ساحلي من المرحلة الثانية متاخم له قيد التخطيط بالفعل.</p><p>قالت المجموعة: «تبني OVAN بالطريقة التي نحب أن نملك بها: منخفضًا، ممتدًا، ومفتوحًا على الماء — وفي الوقت المحدد». تُهيكل الشراكة كعلاقة في حقوق الملكية على مستوى المشروع، وتكون سيرة العقارية المطوّر والمشغّل طويل الأمد للمجمّعات المكتملة.</p>"
+      },
+      "images": [
+        "villas-istanbul",
+        "sira-prime-catalogue",
+        "residences"
+      ]
+    },
+    "rosina-diagnostic-center-adds-pet-ct-molecular-imaging-wing": {
+      "kind": "news",
+      "title": "Rosina Diagnostic Center Adds PET-CT Molecular Imaging Wing",
+      "excerpt": "The Nairobi facility expands into early-stage cancer diagnostics, bringing molecular imaging within reach of the city's referral network.",
+      "body": "<p>Rosina Diagnostic Center in Nairobi has opened a PET-CT molecular imaging wing, extending the facility from MRI, CT and ultrasound into early-stage cancer diagnostics.</p><p>The wing is the first of its kind operated by SIRA Healthcare and is served by a regional partnership for isotope supply. Reports are returned to referring oncologists through the same real-time system that already serves the centre's other modalities, and the centre publishes its reporting turnaround times.</p><p>Rosina opened in 2021 and performs more than thirty thousand scans a year. The PET-CT wing is the template for the group's next centre, planned for a second East African city in 2027.</p>",
+      "ar": {
+        "title": "مركز روزينا للتشخيص يضيف جناحًا للتصوير الجزيئي PET-CT",
+        "excerpt": "منشأة نيروبي تتوسّع إلى التشخيص المبكر للسرطان، واضعةً التصوير الجزيئي في متناول شبكة التحويل في المدينة.",
+        "body": "<p>افتتح مركز روزينا للتشخيص في نيروبي جناحًا للتصوير الجزيئي PET-CT، ليمتد المركز من الرنين المغناطيسي والأشعة المقطعية والموجات فوق الصوتية إلى التشخيص المبكر للسرطان.</p><p>الجناح هو الأول من نوعه الذي تشغّله سيرة للرعاية الصحية، وتخدمه شراكة إقليمية لتوريد النظائر المشعّة. تُعاد التقارير إلى أطباء الأورام المحوّلين عبر نظام الوقت الفعلي نفسه الذي يخدم بقية أجهزة المركز، وينشر المركز أزمنة إصدار تقاريره.</p><p>افتُتح روزينا عام 2021 ويُجري أكثر من ثلاثين ألف فحص سنويًا. وجناح PET-CT هو النموذج للمركز التالي للمجموعة، المخطط في مدينة ثانية في شرق أفريقيا عام 2027.</p>"
+      },
+      "images": [
+        "pet-scanner",
+        "pet-machine",
+        "rosina-mri"
+      ]
+    },
+    "sira-group-expands-portfolio-into-hospitality-lifestyle": {
+      "kind": "news",
+      "title": "SIRA GROUP Expands Portfolio into Hospitality & Lifestyle",
+      "excerpt": "SIRA Lifestyle launches as the group’s newest division.",
+      "body": "<p>SIRA GROUP has launched SIRA Lifestyle, a new division for hospitality, branded residences and experience-led destinations across the Middle East and Africa.</p><p>The division's first platform brings together branded residences and a boutique hospitality operator across two coastal sites now in review — one on the Turkish Aegean, one on the Red Sea — with a first opening planned for 2027. It also takes the operating role in the Coastal Residences beside Sira Prime in Istanbul, which will be run as a hospitality asset from the first day of occupation.</p><p>SIRA Lifestyle is open to a small number of founding partners who take a position across the platform rather than in a single asset. Applications are handled through the group's investor relations team.</p>",
+      "ar": {
+        "title": "مجموعة سيرة توسّع محفظتها إلى الضيافة وأسلوب الحياة",
+        "excerpt": "انطلاق سيرة لايف ستايل بوصفها أحدث أقسام المجموعة.",
+        "body": "<p>أطلقت مجموعة سيرة «سيرة لايف ستايل»، قسمًا جديدًا للضيافة والمساكن ذات العلامة التجارية والوجهات التي تقودها التجربة في الشرق الأوسط وأفريقيا.</p><p>تجمع المنصة الأولى للقسم بين مساكن ذات علامة تجارية ومشغّل ضيافة بوتيكي في موقعين ساحليين قيد الدراسة — أحدهما على بحر إيجه التركي والآخر على البحر الأحمر — مع افتتاح أول مخطط في 2027. كما يتولى القسم الدور التشغيلي في المساكن الساحلية المجاورة لسيرة برايم في إسطنبول، التي ستُدار كأصل ضيافة من اليوم الأول للسكن.</p><p>سيرة لايف ستايل مفتوحة لعدد محدود من الشركاء المؤسسين الذين يتخذون مركزًا على مستوى المنصة لا في أصل واحد. تُعالَج الطلبات عبر فريق علاقات المستثمرين في المجموعة.</p>"
+      },
+      "images": [
+        "resort",
+        "beach-resort",
+        "hospitality-bg"
+      ]
+    },
+    "what-we-underwrite": {
+      "kind": "insight",
+      "title": "What We Underwrite",
+      "excerpt": "The five tests every SIRA investment has to pass before capital moves, and the one that disqualifies most opportunities.",
+      "keepBody": true,
+      "ar": {
+        "title": "ما الذي نكتتب فيه",
+        "excerpt": "الاختبارات الخمسة التي يجب أن يجتازها كل استثمار لسيرة قبل أن يتحرك رأس المال، والاختبار الذي يُقصي معظم الفرص.",
+        "body": "<p>معظم ما يصل إلى لجنة الاستثمار هو إما عمل جيد في سوق لا نفهمه، أو سوق نفهمه يحتوي عملًا لا نستطيع إصلاحه. الاختبارات الخمسة التالية موجودة لفرز الحالتين مبكرًا، قبل أن يستهلك التحليل أسابيع.</p><h2>1. هل نفهم السوق من الداخل؟</h2><p>ليس من التقارير، بل من شخص في الفريق أو من شريك يعيش فيه. إن لم يكن هذا الشخص موجودًا، يُرفض الملف مهما كانت الأرقام.</p><h2>2. هل يمكن تشغيل الأصل، لا امتلاكه فقط؟</h2><p>نحن مشغّلون. مركز تشخيص أو مجمّع سكني أو فندق يجب أن يكون لدينا الفريق والنظام لإدارته يوميًا. الأصل الذي يحتاج مشغّلًا لم نعثر عليه بعد ليس فرصة، بل مخاطرة مؤجلة.</p><h2>3. هل يدفع الأصل لنفسه قبل التخارج؟</h2><p>نكتتب على التدفق النقدي التشغيلي، لا على ارتفاع قيمة الأصل. الارتفاع مكافأة، لا خطة.</p><h2>4. هل الهيكل واضح لكل الأطراف؟</h2><p>من يملك ماذا، ومن يقرر ماذا، وكيف يخرج كل طرف. إن احتاج الجواب أكثر من صفحة واحدة، فالهيكل خاطئ.</p><h2>5. هل يقبل الشريك حوكمتنا؟</h2><p>تقارير ربع سنوية، ومراجعة سنوية، وحق اطّلاع كامل. وهذا هو الاختبار الذي يُقصي معظم الفرص: ليس لأن الشركاء غير أمناء، بل لأن كثيرين لم يُداروا بهذه الطريقة من قبل ولا يريدون أن يبدؤوا.</p>"
+      },
+      "images": [
+        "business-district",
+        "conference-room",
+        "hero-investors"
+      ]
+    },
+    "sira-lifestyle-opens-founding-partner-applications-for-its-first-coastal-property": {
+      "kind": "press-release",
+      "title": "SIRA Lifestyle Opens Founding-Partner Applications for Its First Coastal Property",
+      "excerpt": "The group's hospitality division invites a small number of founding partners into its first platform.",
+      "body": "<p><strong>Istanbul</strong> — SIRA Lifestyle, the hospitality and lifestyle division of SIRA GROUP, has opened founding-partner applications for its first coastal property.</p><p>The property is one of two coastal sites in review as the division's first destinations — a boutique property with branded residences and a beach club — with site selection concluding this year and a first opening planned for 2027. Founding partners take a position across the hospitality platform rather than in a single asset, and participate in the operator model from the outset.</p><p>Applications are by invitation and are handled through SIRA GROUP investor relations. Interested parties may request the investor pack through the group's website.</p>",
+      "ar": {
+        "title": "سيرة لايف ستايل تفتح باب طلبات الشركاء المؤسسين لأول منشأة ساحلية لها",
+        "excerpt": "قسم الضيافة في المجموعة يدعو عددًا محدودًا من الشركاء المؤسسين إلى منصته الأولى.",
+        "body": "<p><strong>إسطنبول</strong> — فتحت سيرة لايف ستايل، قسم الضيافة وأسلوب الحياة في مجموعة سيرة، باب طلبات الشركاء المؤسسين لأول منشأة ساحلية لها.</p><p>المنشأة واحدة من موقعين ساحليين قيد الدراسة ليكونا أولى وجهات القسم — منشأة بوتيكية مع مساكن ذات علامة تجارية ونادٍ شاطئي — ويُختتم اختيار الموقع هذا العام مع افتتاح أول مخطط في 2027. يتخذ الشركاء المؤسسون مركزًا على مستوى منصة الضيافة لا في أصل واحد، ويشاركون في نموذج المشغّل منذ البداية.</p><p>الطلبات بالدعوة، وتُعالَج عبر علاقات المستثمرين في مجموعة سيرة. ويمكن للمهتمين طلب حزمة المستثمر عبر موقع المجموعة.</p>"
+      },
+      "images": [
+        "beach-resort",
+        "resort",
+        "coastline"
+      ]
+    },
+    "why-istanbul-remains-a-resilient-property-market": {
+      "kind": "insight",
+      "title": "Why Istanbul Remains a Resilient Property Market",
+      "excerpt": "The fundamentals continuing to draw international capital into Turkish real estate, and the two that have quietly weakened.",
+      "keepBody": true,
+      "body": "<p>Istanbul has survived more forecasts of its decline than almost any market we follow. It is worth being precise about which of its fundamentals are actually holding, and which two have quietly weakened.</p><h2>What holds</h2><p>Population. The city adds people every year, and the households it adds are younger than the housing stock they inherit. Replacement demand alone — the earthquake-resilience programme is moving hundreds of thousands of units — underwrites a decade of residential delivery before a single speculative unit is counted.</p><p>Position. Istanbul is the only city that is a two-hour flight from both Frankfurt and Riyadh. Gulf buyers, European retirees and Turkish diaspora returning from Germany are three separate demand streams, and they do not move in the same cycle.</p><h2>What has weakened</h2><p>Currency. A lira that moves faster than construction cost creates windows, but a window is not a market. We underwrite in hard currency and treat the lira as a cost variable, not a return driver.</p><p>Financing. Domestic mortgage rates have priced the local buyer out of new stock. That makes pre-sales to international buyers more important, and it makes a developer's own balance sheet — not the bank's — the thing that finishes a building.</p><p>Neither weakness changes our view of the city. Both change how we structure in it.</p>",
+      "ar": {
+        "title": "لماذا تبقى إسطنبول سوقًا عقاريًا صامدًا",
+        "excerpt": "الأساسيات التي لا تزال تجذب رأس المال الدولي إلى العقار التركي، والعاملان اللذان ضعفا بهدوء.",
+        "body": "<p>نجت إسطنبول من توقعات بتراجعها أكثر من أي سوق نتابعه تقريبًا. ومن المفيد أن نكون دقيقين بشأن أيٍّ من أساسياتها لا يزال صامدًا فعلًا، وأيٍّ منها ضعف بهدوء.</p><h2>ما يصمد</h2><p>السكان. تضيف المدينة سكانًا كل عام، والأسر التي تضيفها أصغر سنًا من المخزون السكني الذي ترثه. طلب الإحلال وحده — فبرنامج مقاومة الزلازل ينقل مئات الآلاف من الوحدات — يضمن عقدًا من التسليم السكني قبل احتساب وحدة مضاربية واحدة.</p><p>الموقع. إسطنبول هي المدينة الوحيدة التي تبعد ساعتي طيران عن فرانكفورت والرياض معًا. المشترون الخليجيون، والمتقاعدون الأوروبيون، والمغتربون الأتراك العائدون من ألمانيا هم ثلاثة تيارات طلب منفصلة، ولا تتحرك في الدورة نفسها.</p><h2>ما ضعف</h2><p>العملة. ليرة تتحرك أسرع من تكلفة الإنشاء تخلق نوافذ، لكن النافذة ليست سوقًا. نكتتب بالعملة الصعبة ونتعامل مع الليرة كمتغيّر تكلفة، لا كمحرّك عائد.</p><p>التمويل. أخرجت أسعار الرهن العقاري المحلية المشتري المحلي من المخزون الجديد. وهذا يجعل البيع المسبق للمشترين الدوليين أكثر أهمية، ويجعل ميزانية المطوّر نفسه — لا المصرف — هي ما يُكمل البناء.</p><p>لا يغيّر أيٌّ من هذين الضعفين نظرتنا إلى المدينة. لكن كليهما يغيّر كيف نهيكل فيها.</p>"
+      },
+      "images": [
+        "istanbul-ifc",
+        "istanbul-bosphorus",
+        "skyscrapers"
+      ]
+    },
+    "sira-consulting-appointed-to-advise-on-a-cross-border-healthcare-platform": {
+      "kind": "news",
+      "title": "SIRA Consulting Appointed to Advise on a Cross-Border Healthcare Platform",
+      "excerpt": "The mandate covers market entry, licensing and clinical partnership structure across two jurisdictions.",
+      "body": "<p>SIRA Consulting has been appointed to advise a European healthcare operator on the structure of a cross-border diagnostic platform spanning Türkiye and East Africa.</p><p>The mandate covers market entry, licensing and the structure of clinical partnerships across the two jurisdictions, and draws on the legal, banking and regulatory pathway the group built for Rosina Diagnostic Center in Nairobi. SIRA Consulting leads the work from Istanbul with the group's own operating companies as reference cases.</p><p>The engagement is the third mandate in the practice's East Africa market-entry programme, which runs alongside SIRA Healthcare from Nairobi.</p>",
+      "ar": {
+        "title": "تعيين سيرة للاستشارات مستشارًا لمنصة رعاية صحية عابرة للحدود",
+        "excerpt": "يشمل التفويض دخول السوق والترخيص وهيكل الشراكات السريرية في ولايتين قضائيتين.",
+        "body": "<p>عُيّنت سيرة للاستشارات مستشارًا لمشغّل رعاية صحية أوروبي بشأن هيكل منصة تشخيص عابرة للحدود تمتد بين تركيا وشرق أفريقيا.</p><p>يشمل التفويض دخول السوق والترخيص وهيكل الشراكات السريرية في الولايتين القضائيتين، ويستند إلى المسار القانوني والمصرفي والتنظيمي الذي بنته المجموعة لمركز روزينا للتشخيص في نيروبي. تقود سيرة للاستشارات العمل من إسطنبول، والشركات المشغّلة التابعة للمجموعة هي الحالات المرجعية.</p><p>التكليف هو التفويض الثالث في برنامج دخول أسواق شرق أفريقيا الذي تديره الممارسة إلى جانب سيرة للرعاية الصحية من نيروبي.</p>"
+      },
+      "images": [
+        "rosina-center",
+        "conference-room",
+        "hero-services"
+      ]
+    },
+    "bridging-continents-through-smart-investment": {
+      "kind": "article",
+      "title": "Bridging Continents Through Smart Investment",
+      "excerpt": "How a house of specialised companies is building infrastructure for the next generation of growth.",
+      "keepBody": true,
+      "ar": {
+        "title": "نصل القارات باستثمار ذكي",
+        "excerpt": "كيف يبني بيتٌ من الشركات المتخصصة البنية التحتية للجيل القادم من النمو.",
+        "body": "<p>الشركة القابضة سهلة الوصف وصعبة التبرير. الوصف هو أن عدة شركات تشترك في مالك واحد. أما التبرير فيجب أن يكون أنها أفضل معًا مما هي منفردة — وهذا ما تحاول مجموعة سيرة أن تُثبته كل يوم.</p><h2>لماذا بيت من الشركات</h2><p>بدأت المجموعة في تركيا عام 2014 شركةً للتجارة الدولية، ثم توسّعت إلى التطوير العقاري والاستشارات. وحين دخلت الرعاية الصحية في نيروبي، اتضح أن الشركة الواحدة لا تستطيع أن تكون مطوّرًا عقاريًا ومشغّلًا طبيًا ومستشارًا في آن. فصار لكل مجال شركته، بقيادتها وتركيزها السوقي، وبقي رأس المال والحوكمة والمعايير مشتركة.</p><h2>ما الذي يُشارك فعلًا</h2><p>ثلاثة أشياء: رأس المال الذي يتحرك بين الشركات حسب الفرصة، ونظام التشغيل الذي يجدول ويتتبّع ويُبلّغ في كل منشأة، والعلاقات — مع المصارف والجهات التنظيمية والشركاء — التي بُنيت مرة وتُستخدم مرارًا. مركز روزينا في نيروبي استفاد من الهيكل الذي حمل سيرة برايم في إسطنبول، والعكس صحيح.</p><h2>الجيل القادم من النمو</h2><p>نبني في الأسواق التي يكون فيها الطلب على البنية التحتية — السكن، والتشخيص، والضيافة — أبعد ما يكون عن العرض. هذا هو المكان الذي يستحق فيه رأس المال الصبور اسمه، والمكان الذي يُحدث فيه بيتٌ من الشركات فرقًا لا تُحدثه شركة واحدة.</p>"
+      },
+      "images": [
+        "istanbul-bosphorus",
+        "hero-investors",
+        "business-district"
+      ]
+    },
+    "a-second-diagnostic-center-for-east-africa": {
+      "kind": "news",
+      "title": "A Second Diagnostic Center for East Africa",
+      "excerpt": "Site selection has begun for a second facility, targeting 2027.",
+      "body": "<p>SIRA Healthcare has begun site selection for a second diagnostic centre in East Africa, with an opening targeted for 2027.</p><p>The centre will be a stand-alone molecular imaging facility replicating the PET-CT wing at Rosina Diagnostic Center in Nairobi, served by a regional cyclotron partnership for isotope supply. It will run on the same operating system, the same clinical protocols and the same referral relationships as Rosina, with radiology reported centrally from Nairobi.</p><p>The centre is the first step of the group's diagnostic network expansion, which is open to investors as a single platform position rather than a series of single-centre investments.</p>",
+      "ar": {
+        "title": "مركز تشخيص ثانٍ لشرق أفريقيا",
+        "excerpt": "بدء اختيار الموقع لمنشأة ثانية، مستهدفةً عام 2027.",
+        "body": "<p>بدأت سيرة للرعاية الصحية اختيار الموقع لمركز تشخيص ثانٍ في شرق أفريقيا، باستهداف افتتاحه في 2027.</p><p>سيكون المركز منشأة مستقلة للتصوير الجزيئي تكرّر جناح PET-CT في مركز روزينا للتشخيص في نيروبي، وتخدمها شراكة إقليمية لتوريد النظائر المشعّة عبر سيكلوترون. وسيعمل على نظام التشغيل نفسه والبروتوكولات السريرية نفسها وعلاقات التحويل نفسها التي يعمل بها روزينا، مع قراءة الأشعة مركزيًا من نيروبي.</p><p>المركز هو الخطوة الأولى في توسيع شبكة التشخيص التابعة للمجموعة، المفتوحة للمستثمرين كمركز واحد على مستوى المنصة لا كسلسلة من الاستثمارات في مراكز منفردة.</p>"
+      },
+      "images": [
+        "pet-machine",
+        "pet-scanner",
+        "rosina-center"
+      ]
+    },
+    "the-cost-of-waiting": {
+      "kind": "insight",
+      "title": "The Cost of Waiting",
+      "excerpt": "Three markets where the entry price moved against patient capital in eighteen months.",
+      "keepBody": true,
+      "ar": {
+        "title": "ثمن الانتظار",
+        "excerpt": "ثلاثة أسواق تحرّك فيها سعر الدخول ضد رأس المال الصبور خلال ثمانية عشر شهرًا.",
+        "body": "<p>رأس المال الصبور فضيلة إلى أن يصبح عذرًا. ثلاثة أسواق درسناها ولم ندخلها تحرّكت منذ ذلك الحين بحسم ضد الداخلين المتأخرين، وكل واحد منها يعلّم شيئًا مختلفًا.</p><h2>الأرض في الضواحي الآسيوية لإسطنبول</h2><p>في ثمانية عشر شهرًا، ارتفع سعر المتر في المربعات التي درسناها بما يفوق أي تحسّن في اليقين. انتظرنا إشارة تنظيمية جاءت فعلًا — لكن السوق كان قد سعّرها قبل صدورها. الدرس: حين تكون البنية التحتية معلنة، فالانتظار حتى بنائها هو دفع لثمن بنائها.</p><h2>التصوير التشخيصي في مدن التحويل</h2><p>كل مدينة تحويل في شرق أفريقيا لها مركز أول واحد فقط. من يفتحه يحصل على شبكة الأطباء المحوّلين، ومن يأتي ثانيًا يشتري حصة سوق. في مدينة واحدة، سبقنا منافس بعام، وفي أخرى لم يسبقنا أحد بعد.</p><h2>مواقع الضيافة الساحلية</h2><p>المواقع التي تجمع بين الشاطئ وإذن البناء وسهولة الوصول نادرة وتنفد. ثمن الانتظار هنا ليس سعرًا أعلى بل موقعًا أسوأ.</p><h2>ما نفعله بذلك</h2><p>ما زلنا صبورين في التنفيذ. لكننا لم نعد نخلط بين الصبر والتردد: حين تكون الأطروحة واضحة والشريك موجودًا، يتحرك رأس المال.</p>"
+      },
+      "images": [
+        "business-district",
+        "istanbul-ifc",
+        "hero-investors"
+      ]
+    },
+    "sira-prime-tops-out-four-weeks-ahead-of-schedule": {
+      "kind": "news",
+      "title": "Sira Prime Tops Out Four Weeks Ahead of Schedule",
+      "excerpt": "The Istanbul development reaches structural completion ahead of programme, with first-phase handover on track for 2028.",
+      "body": "<p>Sira Prime, SIRA Real Estate's flagship villa development on Istanbul's Asian shore, has reached structural completion four weeks ahead of programme.</p><p>The 64-villa community is set around a shared garden spine with a private clubhouse, a wellness building and direct access to the coastal path. Pre-sales opened in the second quarter of 2026 and the first phase remains on track for handover in early 2028.</p><p>The project is delivered with OVAN Group under the strategic partnership signed earlier this year, and is structured as an equity partnership with SIRA Real Estate as developer and operator of the completed estate.</p>",
+      "ar": {
+        "title": "سيرة برايم يبلغ الاكتمال الإنشائي قبل الجدول بأربعة أسابيع",
+        "excerpt": "مشروع إسطنبول يصل إلى الاكتمال الإنشائي قبل البرنامج، وتسليم المرحلة الأولى على المسار المقرر في 2028.",
+        "body": "<p>بلغ سيرة برايم، مشروع الفلل الرائد لسيرة العقارية على الشاطئ الآسيوي لإسطنبول، الاكتمال الإنشائي قبل البرنامج بأربعة أسابيع.</p><p>يتوزع المجمّع المكوّن من 64 فيلا حول محور حدائق مشترك مع نادٍ خاص ومبنى للعافية ووصول مباشر إلى الممشى الساحلي. افتُتح البيع المسبق في الربع الثاني من 2026، وما تزال المرحلة الأولى على مسار التسليم مطلع 2028.</p><p>يُنفَّذ المشروع مع مجموعة OVAN في إطار الشراكة الاستراتيجية الموقّعة هذا العام، ويُهيكل كشراكة في حقوق الملكية تكون فيها سيرة العقارية المطوّر ومشغّل المجمّع بعد اكتماله.</p>"
+      },
+      "images": [
+        "sira-prime-catalogue",
+        "villas-istanbul",
+        "villas-sunset"
+      ]
+    },
+    "statement-on-the-2025-portfolio-review": {
+      "kind": "press-release",
+      "title": "Statement on the 2025 Portfolio Review",
+      "excerpt": "The group's annual review of its operating companies and investment positions.",
+      "body": "<p><strong>Istanbul</strong> — SIRA GROUP has completed its annual portfolio review for 2025, covering each operating company and every investment position held at the project or division level.</p><p>The review confirmed the group's four operating divisions — real estate, healthcare, consulting and hospitality — and the priorities for the year ahead: the delivery of Sira Prime, the PET-CT wing at Rosina Diagnostic Center, the East Africa market-entry programme, and the formation of the hospitality platform. No position was exited during the year.</p><p>Investors in the group's opportunities receive the full review with their fourth-quarter reporting. Enquiries may be directed to investor relations.</p>",
+      "ar": {
+        "title": "بيان بشأن مراجعة المحفظة لعام 2025",
+        "excerpt": "المراجعة السنوية للمجموعة لشركاتها المشغّلة ومراكزها الاستثمارية.",
+        "body": "<p><strong>إسطنبول</strong> — أكملت مجموعة سيرة مراجعتها السنوية للمحفظة لعام 2025، وقد شملت كل شركة مشغّلة وكل مركز استثماري محتفظ به على مستوى المشروع أو القسم.</p><p>أكدت المراجعة الأقسام التشغيلية الأربعة للمجموعة — العقارات، والرعاية الصحية، والاستشارات، والضيافة — وأولويات العام المقبل: تسليم سيرة برايم، وجناح PET-CT في مركز روزينا للتشخيص، وبرنامج دخول أسواق شرق أفريقيا، وتأسيس منصة الضيافة. ولم يُتخارج من أي مركز خلال العام.</p><p>يتلقّى المستثمرون في فرص المجموعة المراجعة الكاملة مع تقارير الربع الرابع. وتوجَّه الاستفسارات إلى علاقات المستثمرين.</p>"
+      },
+      "images": [
+        "hero-investors",
+        "conference-room",
+        "business-district"
+      ]
+    },
+    "hospitality-is-an-operating-business-not-an-asset-class": {
+      "kind": "insight",
+      "title": "Hospitality Is an Operating Business, Not an Asset Class",
+      "excerpt": "Why SIRA Lifestyle staffs before it buys, and what that has cost us twice.",
+      "keepBody": true,
+      "ar": {
+        "title": "الضيافة عملٌ تشغيلي، لا فئة أصول",
+        "excerpt": "لماذا توظّف سيرة لايف ستايل قبل أن تشتري، وماذا كلّفنا ذلك مرتين.",
+        "body": "<p>تُباع الضيافة للمستثمرين على أنها عقار مرفق بعائد. وهي ليست كذلك. إنها عمل خدمي يصادف أنه يشغل مبنى، والمبنى هو أرخص جزء في تغيير طريقة إدارته.</p><h2>لماذا نوظّف قبل أن نشتري</h2><p>في سيرة لايف ستايل يُعيَّن المدير العام ورئيس الخدمة قبل توقيع عقد الموقع. يعمل الاثنان على المفهوم والبرنامج ومعايير الخدمة أشهرًا قبل أن يُصبّ الأساس. إن لم نجد الشخصين المناسبين لموقع ما، لا نشتريه.</p><h2>ما كلّفنا ذلك</h2><p>مرتين. مرة فقدنا موقعًا ساحليًا ممتازًا لأن التوظيف استغرق أطول من صبر البائع. ومرة دفعنا رواتب فريق كامل لتسعة أشهر على مشروع لم يفتح بعد. في الحالتين كان القرار صحيحًا: الموقع الذي فقدناه يُدار اليوم كعقار لا كوجهة، والفريق الذي دفعنا له فتح المنشأة بمستوى خدمة لا يُبنى في أسبوع.</p><h2>ما يعنيه هذا للشريك</h2><p>الشريك في سيرة لايف ستايل يستثمر في مشغّل، لا في مبنى. العائد يأتي من التشغيل، والمبنى يحتفظ بقيمته لأن التشغيل جيد — لا العكس.</p>"
+      },
+      "images": [
+        "hospitality-bg",
+        "resort",
+        "beach-resort"
+      ]
+    },
+    "sira-group-completes-its-investment-in-rosina-diagnostic-center": {
+      "kind": "news",
+      "title": "SIRA GROUP Completes Its Investment in Rosina Diagnostic Center",
+      "excerpt": "The transaction closes a nine-month process and gives the group a majority position in the facility.",
+      "body": "<p>SIRA GROUP has completed its investment in Rosina Diagnostic Center in Nairobi, closing a nine-month process and taking a majority position in the facility.</p><p>Rosina opened in 2021 with MRI, CT and ultrasound and is the flagship centre of SIRA Healthcare. The investment funds the centre's next phase — the PET-CT molecular imaging wing — and the roll-out of the group's facility-management system, which schedules the modalities, tracks consumables and returns reports to referring clinicians in real time.</p><p>The transaction was structured through an Istanbul vehicle, with SIRA Consulting advising on the corridor, and is the first position in the group's East African diagnostic network.</p>",
+      "ar": {
+        "title": "مجموعة سيرة تُكمل استثمارها في مركز روزينا للتشخيص",
+        "excerpt": "الصفقة تختتم عملية استمرت تسعة أشهر وتمنح المجموعة حصة الأغلبية في المنشأة.",
+        "body": "<p>أكملت مجموعة سيرة استثمارها في مركز روزينا للتشخيص في نيروبي، مختتمةً عملية استمرت تسعة أشهر ومتخذةً حصة الأغلبية في المنشأة.</p><p>افتُتح روزينا عام 2021 بأجهزة الرنين المغناطيسي والأشعة المقطعية والموجات فوق الصوتية، وهو المركز الرائد لسيرة للرعاية الصحية. يموّل الاستثمار المرحلة التالية للمركز — جناح التصوير الجزيئي PET-CT — ونشر نظام إدارة المنشآت الخاص بالمجموعة، الذي يجدول الأجهزة ويتتبّع المستهلكات ويعيد التقارير إلى الأطباء المحوّلين في الوقت الفعلي.</p><p>هُيكلت الصفقة عبر وعاء في إسطنبول، بمشورة سيرة للاستشارات بشأن الممر، وهي المركز الأول في شبكة التشخيص التابعة للمجموعة في شرق أفريقيا.</p>"
+      },
+      "images": [
+        "rosina-center",
+        "rosina-mri",
+        "pet-machine"
+      ]
+    },
+    "notes-from-a-year-of-building-in-two-time-zones": {
+      "kind": "article",
+      "title": "Notes From a Year of Building in Two Time Zones",
+      "excerpt": "What running an Istanbul development team and a Nairobi clinical team out of one investment committee actually requires, and the three things we would do differently.",
+      "keepBody": true,
+      "ar": {
+        "title": "ملاحظات من عام من البناء في منطقتين زمنيتين",
+        "excerpt": "ما الذي يتطلبه فعلًا إدارة فريق تطوير في إسطنبول وفريق سريري في نيروبي من لجنة استثمار واحدة، والأشياء الثلاثة التي كنا سنفعلها بطريقة مختلفة.",
+        "body": "<p>إدارة فريق تطوير في إسطنبول وفريق سريري في نيروبي من لجنة استثمار واحدة تبدو مشكلة حوكمة. لكنها في الواقع لم تكن كذلك: الحوكمة كانت سهلة. الصعب كان الإيقاع.</p><h2>الإيقاع</h2><p>مشروع البناء يُقاس بالأشهر، والمركز الطبي يُقاس بالأيام. في الاجتماع نفسه كنا نناقش موعد صبّ الأساس في الربع القادم وعدد الفحوصات أمس. تعلّمنا أن نفصل الاجتماعين، وأن نجمعهما مرة في الشهر فقط للقرارات التي تحتاج رأس المال المشترك.</p><h2>ما كنا سنفعله بطريقة مختلفة</h2><p>أولًا: تعيين مسؤول تشغيل إقليمي في نيروبي في الشهر الأول لا الشهر السادس. ثانيًا: نظام تقارير واحد للفريقين منذ البداية، بدل توحيده لاحقًا. ثالثًا: زيارات ميدانية شهرية لأعضاء اللجنة، بالتناوب — لا شيء يعوّض رؤية المكان.</p><h2>ما نجح</h2><p>الهيكل. وعاء واحد في إسطنبول، وشركة مشغّلة في كل بلد، وتقارير ربع سنوية بصيغة واحدة. حين جاء وقت تكرار النموذج في مدينة ثانية، كان جاهزًا.</p>"
+      },
+      "images": [
+        "istanbul-ifc",
+        "rosina-center",
+        "business-district"
+      ]
+    },
+    "consulting-practice-expands-its-market-entry-team": {
+      "kind": "news",
+      "title": "Consulting Practice Expands Its Market-Entry Team",
+      "excerpt": "Four senior appointments across Istanbul and Nairobi.",
+      "body": "<p>SIRA Consulting has made four senior appointments to its market-entry team, split between Istanbul and Nairobi, as demand grows from European and Gulf operators entering East Africa.</p><p>The appointments strengthen the practice's four services — market entry, investment structuring, partnership formation and execution support — and its East Africa market-entry programme, a structured twelve-month route for operators entering Kenya and its neighbours that reuses the legal, banking and regulatory pathway the group built for Rosina Diagnostic Center.</p><p>The practice now serves clients across healthcare, housing and hospitality from its Levent head office in Istanbul and its desk in Nairobi.</p>",
+      "ar": {
+        "title": "ممارسة الاستشارات توسّع فريق دخول الأسواق",
+        "excerpt": "أربعة تعيينات قيادية بين إسطنبول ونيروبي.",
+        "body": "<p>أجرت سيرة للاستشارات أربعة تعيينات قيادية في فريق دخول الأسواق، موزعة بين إسطنبول ونيروبي، مع تنامي الطلب من المشغّلين الأوروبيين والخليجيين الداخلين إلى شرق أفريقيا.</p><p>تعزز التعيينات خدمات الممارسة الأربع — دخول الأسواق، وهيكلة الاستثمار، وتأسيس الشراكات، ودعم التنفيذ — وبرنامج دخول أسواق شرق أفريقيا، وهو مسار منظّم مدته اثنا عشر شهرًا للمشغّلين الداخلين إلى كينيا وجيرانها، يعيد استخدام المسار القانوني والمصرفي والتنظيمي الذي بنته المجموعة لمركز روزينا للتشخيص.</p><p>تخدم الممارسة اليوم عملاء في الرعاية الصحية والإسكان والضيافة من مكتبها الرئيسي في ليفنت بإسطنبول ومكتبها في نيروبي.</p>"
+      },
+      "images": [
+        "conference-room",
+        "hero-services",
+        "istanbul-ifc"
+      ]
+    },
+    "design-brief-the-coastal-residence": {
+      "kind": "article",
+      "title": "Design Brief: The Coastal Residence",
+      "excerpt": "The architectural principles behind SIRA Lifestyle's first ground-up development.",
+      "body": "<p>The Coastal Residences beside Sira Prime are SIRA Lifestyle's first ground-up development, and their brief fits on one line: low, long and open to the water.</p><h2>Low</h2><p>Nothing rises above the tree line. Thirty-eight residences are set in two-storey terraces that step down toward the shore, so every unit sees the water and none sees a neighbour's roof. The residents' club sits at the lowest point, where the estate meets the coastal path.</p><h2>Long</h2><p>The terraces run parallel to the shore rather than toward it. It costs frontage — fewer units touch the water directly — but it gives every residence a long garden edge and keeps the estate's spine, a shared garden, continuous from end to end.</p><h2>Open to the water</h2><p>Living rooms face the sea through full-height glazing; bedrooms turn inland toward the garden. Services, parking and plant are below the terraces, out of sight from every window.</p><h2>Run as a hospitality asset</h2><p>The residents' club, concierge and rental programme are operated by SIRA Lifestyle from the first day of occupation, to the standards of the division's hotels. The architecture is designed around that operation: back-of-house routes, a service kitchen at the club, storage for the rental programme — the things a residential brief forgets and a hotel brief cannot.</p>",
+      "ar": {
+        "title": "موجز التصميم: المسكن الساحلي",
+        "excerpt": "المبادئ المعمارية وراء أول مشروع تبنيه سيرة لايف ستايل من الأساس.",
+        "body": "<p>المساكن الساحلية المجاورة لسيرة برايم هي أول مشروع تبنيه سيرة لايف ستايل من الأساس، وموجزها يتّسع لسطر واحد: منخفض، ممتد، ومفتوح على الماء.</p><h2>منخفض</h2><p>لا شيء يعلو عن خط الأشجار. ثمانية وثلاثون مسكنًا موزعة في صفوف من طابقين تتدرّج نزولًا نحو الشاطئ، فترى كل وحدة الماء ولا ترى أيٌّ منها سطح جارتها. ويقع نادي السكان في أدنى نقطة، حيث يلتقي المجمّع بالممشى الساحلي.</p><h2>ممتد</h2><p>تمتد الصفوف موازيةً للشاطئ لا متجهةً إليه. يكلّف هذا واجهة — إذ تلامس وحدات أقل الماء مباشرة — لكنه يمنح كل مسكن حافة حديقة طويلة ويُبقي محور المجمّع، وهو حديقة مشتركة، متصلًا من طرفه إلى طرفه.</p><h2>مفتوح على الماء</h2><p>تواجه غرف المعيشة البحر عبر زجاج بارتفاع كامل؛ وتتجه غرف النوم إلى الداخل نحو الحديقة. أما الخدمات والمواقف والمعدات فتقع تحت الصفوف، بعيدًا عن كل نافذة.</p><h2>يُدار كأصل ضيافة</h2><p>تشغّل سيرة لايف ستايل نادي السكان وخدمة الكونسيرج وبرنامج التأجير من اليوم الأول للسكن، بمعايير فنادق القسم. وصُمّمت العمارة حول هذا التشغيل: مسارات الخدمة الخلفية، ومطبخ خدمة في النادي، ومخازن لبرنامج التأجير — الأشياء التي ينساها موجز سكني ولا يستطيع موجز فندقي أن ينساها.</p>"
+      },
+      "images": [
+        "coastline",
+        "residences",
+        "villas-sunset"
+      ]
+    },
+    "sira-group-turns-ten": {
+      "kind": "news",
+      "title": "SIRA GROUP Turns Ten",
+      "excerpt": "Ten years from an international trade business in Türkiye to a house of companies on three continents.",
+      "body": "<p>SIRA GROUP marks ten years since its founding in Türkiye in 2014 as an international trade business.</p><p>In the decade since, the group grew into real estate development and consulting, entered East African healthcare with Rosina Diagnostic Center in Nairobi, and now operates as a house of specialised companies across three continents — each with its own leadership and market focus, supported by shared capital, governance and standards.</p><p>The anniversary year opens with the group's largest pipeline to date: Sira Prime in Istanbul, the PET-CT wing at Rosina, the East Africa market-entry programme and the formation of a hospitality division. “Ten years is long enough to know what we are good at,” the group said, “and short enough that most of it is still ahead.”</p>",
+      "ar": {
+        "title": "مجموعة سيرة تُتم عامها العاشر",
+        "excerpt": "عشر سنوات من شركة تجارة دولية في تركيا إلى بيت من الشركات في ثلاث قارات.",
+        "body": "<p>تحتفل مجموعة سيرة بمرور عشر سنوات على تأسيسها في تركيا عام 2014 شركةً للتجارة الدولية.</p><p>في العقد الذي تلا، توسّعت المجموعة إلى التطوير العقاري والاستشارات، ودخلت الرعاية الصحية في شرق أفريقيا بمركز روزينا للتشخيص في نيروبي، وهي تعمل اليوم كبيت من الشركات المتخصصة في ثلاث قارات — لكل منها قيادتها وتركيزها السوقي، مدعومةً برأس مال وحوكمة ومعايير مشتركة.</p><p>يُفتتح عام الذكرى بأكبر خط مشاريع للمجموعة حتى الآن: سيرة برايم في إسطنبول، وجناح PET-CT في روزينا، وبرنامج دخول أسواق شرق أفريقيا، وتأسيس قسم للضيافة. قالت المجموعة: «عشر سنوات مدة كافية لنعرف ما نجيده، وقصيرة بما يكفي ليبقى معظمه أمامنا».</p>"
+      },
+      "images": [
+        "istanbul-bosphorus",
+        "hero-projects",
+        "hero-investors"
+      ]
+    },
+    "land-assembly-and-the-patience-it-requires": {
+      "kind": "article",
+      "title": "Land Assembly and the Patience It Requires",
+      "excerpt": "Six years of acquisition on one Istanbul block, told through the four deals that nearly ended it.",
+      "keepBody": true,
+      "ar": {
+        "title": "تجميع الأراضي والصبر الذي يتطلبه",
+        "excerpt": "ست سنوات من الاستحواذ على مربع سكني واحد في إسطنبول، تُروى عبر الصفقات الأربع التي كادت تُنهيه.",
+        "body": "<p>مربع سكني واحد في إسطنبول. ست سنوات. أربع صفقات كادت تُنهي الأمر كله، وواحدة أنهته فعلًا قبل أن تُبعث من جديد. هذا هو شكل المشكلة.</p><h2>شكل المشكلة</h2><p>التجميع يعني شراء قطع متجاورة من مالكين لا يعرف أحدهم الآخر، ولكل منهم سبب مختلف للبيع أو لعدمه. القطعة الأولى سهلة، والأخيرة هي الأغلى دائمًا، لأن مالكها يعرف أنك تحتاجها.</p><h2>الصفقات الأربع</h2><p>الأولى: وريث في الخارج لم يرد على ثمانية عشر شهرًا. الثانية: قطعة بنزاع ملكية احتاج حكمًا قضائيًا. الثالثة: مالك رفع سعره ثلاث مرات ثم باع بالسعر الأول حين تغيّرت ظروفه. الرابعة: القطعة الأخيرة، التي اشتريناها بضعف سعر الأولى — وكانت الصفقة الأفضل، لأنها أكملت المربع.</p><h2>الصفقة التي أنهت المشروع</h2><p>في السنة الرابعة انسحب شريك التمويل. توقف المشروع عشرة أشهر. عاد حين وجدنا شريكًا يفهم أن التجميع ليس استثمارًا في أرض، بل في وقت.</p><h2>ما تعلمناه</h2><p>ادفع للقطعة الأخيرة ما تستحقه المربع كاملًا، لا ما تستحقه القطعة. وابدأ البحث عن شريك التمويل الثاني في اليوم الذي توقّع فيه مع الأول.</p>"
+      },
+      "images": [
+        "villas-istanbul",
+        "facade",
+        "sira-prime-catalogue"
+      ]
+    },
+    "appointment-of-a-group-chief-investment-officer": {
+      "kind": "press-release",
+      "title": "Appointment of a Group Chief Investment Officer",
+      "excerpt": "SIRA GROUP appoints its first Group Chief Investment Officer, based in Istanbul.",
+      "body": "<p><strong>Istanbul</strong> — SIRA GROUP has appointed its first Group Chief Investment Officer, based at the group's head office in Istanbul.</p><p>The role brings the investment committees of the group's operating companies under one office, responsible for underwriting standards, portfolio reporting and the structuring of investor participation at the project and division level. It reflects the group's growth from a single-market developer into a house of companies with positions in Türkiye, East Africa and the Gulf.</p><p>The appointment takes effect immediately. Further details are available to investors through investor relations.</p>",
+      "ar": {
+        "title": "تعيين رئيس تنفيذي للاستثمار على مستوى المجموعة",
+        "excerpt": "مجموعة سيرة تعيّن أول رئيس تنفيذي للاستثمار على مستوى المجموعة، ومقرّه إسطنبول.",
+        "body": "<p><strong>إسطنبول</strong> — عيّنت مجموعة سيرة أول رئيس تنفيذي للاستثمار على مستوى المجموعة، ومقرّه المكتب الرئيسي للمجموعة في إسطنبول.</p><p>يجمع المنصب لجان الاستثمار في الشركات المشغّلة التابعة للمجموعة تحت مكتب واحد، مسؤول عن معايير الاكتتاب، وتقارير المحفظة، وهيكلة مشاركة المستثمرين على مستوى المشروع والقسم. ويعكس التعيين نمو المجموعة من مطوّر في سوق واحد إلى بيت من الشركات له مراكز في تركيا وشرق أفريقيا والخليج.</p><p>يسري التعيين فورًا. وتتاح التفاصيل الإضافية للمستثمرين عبر علاقات المستثمرين.</p>"
+      },
+      "images": [
+        "hero-investors",
+        "conference-room",
+        "business-district"
+      ]
+    },
+    "what-good-partnership-looks-like-after-the-first-year": {
+      "kind": "insight",
+      "title": "What Good Partnership Looks Like After the First Year",
+      "excerpt": "Partnerships are underwritten on the pitch and judged on the second year. A note on what SIRA measures once the novelty is gone.",
+      "keepBody": true,
+      "ar": {
+        "title": "كيف تبدو الشراكة الجيدة بعد السنة الأولى",
+        "excerpt": "تُكتتب الشراكات على العرض وتُحكم على السنة الثانية. ملاحظة عمّا تقيسه سيرة بعد أن يزول بريق البداية.",
+        "body": "<p>تُكتتب الشراكات على العرض وتُحكم على السنة الثانية. بحلولها تكون طاقة الإطلاق قد ذهبت، وأنصار الفكرة الأوائل قد انتقلوا غالبًا، وما يبقى هو ما تقيسه.</p><h2>ثلاثة مقاييس</h2><p>الأول: هل ما زالت التقارير تصل في موعدها من دون أن نطلبها؟ الشريك الذي يُرسل التقرير الربعي في يومه الأول دون تذكير هو شريك يدير عمله فعلًا. الثاني: هل يتصل بنا حين تكون المشكلة صغيرة؟ الشراكات تفشل بالصمت لا بالخلاف. الثالث: هل يقترح الصفقة التالية؟ الشريك الذي يرى الفرصة القادمة معنا هو الشريك الذي يريد سنة ثالثة.</p><h2>ما لا نقيسه</h2><p>الحماس. الرسائل الطويلة. الحضور في المناسبات. كلها كانت موجودة في السنة الأولى عند الجميع، الجيد منهم والسيئ.</p><h2>ما نفعله بالنتيجة</h2><p>الشريك الذي يجتاز المقاييس الثلاثة يحصل على الصفقة التالية بشروط أبسط. والذي لا يجتازها لا يُطرد — بل تُطبَّق شروط العقد بحذافيرها، وهذا عادة كافٍ.</p>"
+      },
+      "images": [
+        "conference-room",
+        "hero-contact",
+        "istanbul-ifc"
+      ]
+    },
+    "first-clinical-partnership-signed-in-nairobi": {
+      "kind": "news",
+      "title": "First Clinical Partnership Signed in Nairobi",
+      "excerpt": "A referral agreement covering three private practices.",
+      "body": "<p>SIRA Healthcare has signed its first clinical partnership in Nairobi: a referral agreement covering three private practices whose patients will be imaged at Rosina Diagnostic Center.</p><p>Under the agreement, referring clinicians book directly into the centre's scheduling system and receive reports through it in real time — the same system that tracks the centre's modalities and consumables. The practices span general medicine, orthopaedics and oncology.</p><p>The agreement is the first in a referral network that SIRA Healthcare is building around Rosina, alongside hospital partnerships and a visiting-specialist programme.</p>",
+      "ar": {
+        "title": "توقيع أول شراكة سريرية في نيروبي",
+        "excerpt": "اتفاقية تحويل تشمل ثلاث عيادات خاصة.",
+        "body": "<p>وقّعت سيرة للرعاية الصحية أول شراكة سريرية لها في نيروبي: اتفاقية تحويل تشمل ثلاث عيادات خاصة سيُجرى تصوير مرضاها في مركز روزينا للتشخيص.</p><p>بموجب الاتفاقية، يحجز الأطباء المحوّلون مباشرة في نظام الجدولة في المركز ويتلقّون التقارير عبره في الوقت الفعلي — النظام نفسه الذي يتتبّع أجهزة المركز ومستهلكاته. وتغطي العيادات الطب العام وجراحة العظام والأورام.</p><p>الاتفاقية هي الأولى في شبكة تحويل تبنيها سيرة للرعاية الصحية حول روزينا، إلى جانب الشراكات مع المستشفيات وبرنامج الأخصائيين الزائرين.</p>"
+      },
+      "images": [
+        "rosina-center",
+        "rosina-mri",
+        "pet-machine"
+      ]
+    },
+    "istanbul-residential-a-ten-year-view": {
+      "kind": "insight",
+      "title": "Istanbul Residential: A Ten-Year View",
+      "excerpt": "Demographics, currency and construction cost, and what each of them is likely to do to yields between now and 2034.",
+      "keepBody": true,
+      "ar": {
+        "title": "السكن في إسطنبول: نظرة لعشر سنوات",
+        "excerpt": "السكان والعملة وتكلفة الإنشاء، وما يُرجَّح أن يفعله كلٌّ منها بالعوائد من الآن حتى 2034.",
+        "body": "<p>النظرة لعشر سنوات إلى السكن في إسطنبول هي في الحقيقة ثلاث نظرات — السكان، والعملة، وتكلفة الإنشاء — ولا تتحرك معًا.</p><h2>السكان</h2><p>تضيف المدينة مئات الآلاف من السكان كل عام، والأسر الجديدة أصغر سنًا من المخزون الذي ترثه. برنامج التجديد الحضري لمقاومة الزلازل يحرّك وحدات بأعداد ضخمة. الطلب الأساسي — لا المضاربي — يغطي عقدًا من التسليم. هذا هو العامل الأكثر ثباتًا.</p><h2>العملة</h2><p>الليرة تحرّك الأسعار الاسمية أسرع من أي شيء آخر، لكنها لا تحرّك القيمة الحقيقية إلا بقدر ما تسبق تكلفة الإنشاء. نكتتب بالعملة الصعبة، ونتعامل مع تقلب الليرة كنافذة للشراء ونادرًا كسبب للبيع.</p><h2>تكلفة الإنشاء</h2><p>ارتفعت بالدولار خلال خمس سنوات، وستبقى مرتفعة: العمالة الماهرة تندر، والمواد تُستورد. هذا يضغط على العائد الأولي للمشاريع الجديدة، ويرفع قيمة المخزون المكتمل.</p><h2>ما يعنيه للعوائد حتى 2034</h2><p>عوائد أولية أقل من المعتاد في المشاريع الجديدة، تعوّضها ندرة المخزون المكتمل الجيد. المطوّر الذي يملك الأرض ويبني بميزانيته ويشغّل ما يبنيه يكون في الجانب الصحيح من المعادلات الثلاث.</p>"
+      },
+      "images": [
+        "skyscrapers",
+        "residences",
+        "istanbul-ifc"
+      ]
+    },
+    "corporate-information-notice": {
+      "kind": "press-release",
+      "title": "Corporate Information Notice",
+      "excerpt": "Registered office and filing details.",
+      "body": "<p>SIRA GROUP is a privately held group of companies with its head office in Istanbul, Türkiye, and an investor relations office in Paris, France.</p><p>The group's operating companies — SIRA Real Estate Development & Consulting, SIRA Healthcare, SIRA Consulting, SIRA Lifestyle and SIRA Digital — are separately incorporated in the jurisdictions in which they operate. Registered office details, filing references and statutory contacts for each company are available to counterparties and investors on request through investor relations.</p><p>Nothing published on this website constitutes an offer of securities. Participation in the group's opportunities is by private arrangement and subject to the laws of the relevant jurisdiction.</p>",
+      "ar": {
+        "title": "إشعار معلومات مؤسسية",
+        "excerpt": "تفاصيل المكتب المسجّل والإيداعات.",
+        "body": "<p>مجموعة سيرة مجموعة شركات مملوكة ملكية خاصة، مكتبها الرئيسي في إسطنبول بتركيا، ومكتب علاقات المستثمرين في باريس بفرنسا.</p><p>الشركات المشغّلة التابعة للمجموعة — سيرة للتطوير العقاري والاستشارات، وسيرة للرعاية الصحية، وسيرة للاستشارات، وسيرة لايف ستايل، وسيرة الرقمية — مؤسسة كلٌّ على حدة في الولايات القضائية التي تعمل فيها. وتتاح تفاصيل المكتب المسجّل ومراجع الإيداع وجهات الاتصال النظامية لكل شركة للأطراف المقابلة والمستثمرين عند الطلب عبر علاقات المستثمرين.</p><p>لا يشكّل أي مما يُنشر على هذا الموقع عرضًا لأوراق مالية. المشاركة في فرص المجموعة تكون بترتيب خاص وتخضع لقوانين الولاية القضائية المعنية.</p>"
+      },
+      "images": [
+        "hero-contact",
+        "istanbul-ifc",
+        "business-district"
+      ]
+    },
+    "bringing-pet-ct-to-east-africa": {
+      "kind": "article",
+      "title": "Bringing PET-CT to East Africa",
+      "excerpt": "What molecular imaging means for early cancer diagnosis in the region.",
+      "body": "<p>PET-CT is the modality that changes a cancer conversation from “there is something” to “this is what it is, this is where it is, and this is how far it has gone.” Until this year, a patient in Nairobi who needed it flew to Johannesburg, Delhi or Istanbul.</p><h2>What the wing does</h2><p>The PET-CT wing at Rosina Diagnostic Center images the metabolic activity of a tumour, not only its shape. That is the difference between staging a cancer and guessing at it, and it is what oncologists need before they decide between surgery, chemotherapy and watchful waiting.</p><h2>Why it was hard</h2><p>The scanner is the visible part. The invisible part is the isotope: the tracer decays in hours, so it has to be produced nearby and delivered on a schedule. Rosina's wing is served by a regional cyclotron partnership, and its scheduling system books patients around the tracer's arrival rather than the other way round.</p><h2>What comes next</h2><p>The wing is the template for the second centre SIRA Healthcare is now siting in another East African city: the same protocols, the same reporting system, the same partnership for isotope supply — opened where the demand for advanced imaging is furthest from the supply.</p>",
+      "ar": {
+        "title": "جلب PET-CT إلى شرق أفريقيا",
+        "excerpt": "ما يعنيه التصوير الجزيئي للتشخيص المبكر للسرطان في المنطقة.",
+        "body": "<p>PET-CT هو الجهاز الذي يحوّل حديث السرطان من «هناك شيء ما» إلى «هذا ما هو، وهذا مكانه، وهذا مدى انتشاره». وحتى هذا العام، كان المريض في نيروبي الذي يحتاجه يسافر إلى جوهانسبرغ أو دلهي أو إسطنبول.</p><h2>ما يفعله الجناح</h2><p>يصوّر جناح PET-CT في مركز روزينا للتشخيص النشاط الأيضي للورم، لا شكله فحسب. وهذا هو الفرق بين تحديد مرحلة السرطان وتخمينها، وهو ما يحتاجه أطباء الأورام قبل أن يقرروا بين الجراحة والعلاج الكيميائي والمراقبة.</p><h2>لماذا كان صعبًا</h2><p>الجهاز هو الجزء المرئي. أما الجزء غير المرئي فهو النظير المشعّ: يتحلل المقتفي خلال ساعات، فيجب إنتاجه قريبًا وتوصيله وفق جدول. يخدم جناح روزينا شراكة إقليمية للسيكلوترون، ويحجز نظام الجدولة فيه المرضى حول موعد وصول المقتفي لا العكس.</p><h2>ما يأتي بعد ذلك</h2><p>الجناح هو النموذج للمركز الثاني الذي تختار سيرة للرعاية الصحية موقعه الآن في مدينة أخرى في شرق أفريقيا: البروتوكولات نفسها، ونظام التقارير نفسه، والشراكة نفسها لتوريد النظائر — يُفتح حيث يكون الطلب على التصوير المتقدم أبعد ما يكون عن العرض.</p>"
+      },
+      "images": [
+        "pet-machine",
+        "pet-scanner",
+        "rosina-mri"
+      ]
+    },
+    "european-standards-local-care": {
+      "kind": "article",
+      "title": "European Standards, Local Care",
+      "excerpt": "How we translate accreditation-grade medicine into everyday patient access.",
+      "body": "<p>“European standards” is an easy phrase and a hard practice. At Rosina it means three specific things, and none of them is the nationality of the equipment.</p><h2>Protocols</h2><p>Every scan at Rosina follows a written protocol — the sequence, the contrast, the reporting template — that would pass an accreditation audit in Frankfurt or Lyon. The protocols are the same for a patient paying privately and a patient referred through a public hospital.</p><h2>Reporting time</h2><p>A report that arrives in three weeks is not a diagnosis; it is history. Rosina publishes its reporting turnaround times and returns most reports to referring clinicians the same day, through the centre's own system. Tele-radiology partners in Europe read the complex cases overnight.</p><h2>Access</h2><p>A standard nobody can afford is a brochure. Rosina's pricing, referral agreements with private practices and hospital partnerships are designed so that the centre is where Nairobi's clinicians send patients by default, not where they send them as a last resort. Thirty thousand scans a year says that it is working.</p>",
+      "ar": {
+        "title": "معايير أوروبية، ورعاية محلية",
+        "excerpt": "كيف نحوّل الطب بمستوى الاعتماد إلى وصول يومي للمرضى.",
+        "body": "<p>«المعايير الأوروبية» عبارة سهلة وممارسة صعبة. في روزينا تعني ثلاثة أشياء محددة، وليس أيٌّ منها جنسية المعدات.</p><h2>البروتوكولات</h2><p>يتبع كل فحص في روزينا بروتوكولًا مكتوبًا — التسلسل، والصبغة، وقالب التقرير — يجتاز تدقيق اعتماد في فرانكفورت أو ليون. والبروتوكولات واحدة للمريض الذي يدفع بنفسه والمريض المحوّل عبر مستشفى حكومي.</p><h2>زمن التقرير</h2><p>التقرير الذي يصل بعد ثلاثة أسابيع ليس تشخيصًا؛ بل تاريخ. ينشر روزينا أزمنة إصدار تقاريره ويعيد معظمها إلى الأطباء المحوّلين في اليوم نفسه عبر نظام المركز. ويقرأ شركاء الأشعة عن بُعد في أوروبا الحالات المعقدة ليلًا.</p><h2>الوصول</h2><p>المعيار الذي لا يقدر عليه أحد هو كتيّب دعائي. صُمّمت أسعار روزينا واتفاقيات التحويل مع العيادات الخاصة والشراكات مع المستشفيات بحيث يكون المركز هو المكان الذي يرسل إليه أطباء نيروبي مرضاهم بديهيًا، لا كملاذ أخير. ثلاثون ألف فحص في السنة تقول إن ذلك يعمل.</p>"
+      },
+      "images": [
+        "rosina-mri",
+        "rosina-center",
+        "pet-scanner"
+      ]
+    },
+    "inside-the-sira-prime-development": {
+      "kind": "article",
+      "title": "Inside the Sira Prime Development",
+      "excerpt": "A look at the design and delivery approach behind our flagship villas.",
+      "body": "<p>Sira Prime is 64 villas on 9.2 hectares of Istanbul's Asian shore, and almost every decision in it comes from one instruction: the estate has to be as good to live in after ten years as on the day of handover.</p><h2>The plan</h2><p>The villas sit around a shared garden spine rather than along a road. Cars stay at the edge; the middle of the estate is a walk. A private clubhouse and a wellness building sit on the spine, and the coastal path is reached directly from the garden.</p><h2>The delivery</h2><p>SIRA Real Estate is the developer and OVAN Group the contractor, under the strategic partnership the two signed this year. Structural completion came four weeks ahead of programme; the first phase is scheduled for handover in early 2028.</p><h2>The long view</h2><p>The estate is operated by SIRA Real Estate after handover — estate management, owner services and a rental programme — because a development is judged by its second decade, not its opening week. That is also why pre-sales, which opened in the second quarter of 2026, were structured as an equity partnership rather than a sell-and-leave.</p>",
+      "ar": {
+        "title": "داخل مشروع سيرة برايم",
+        "excerpt": "نظرة على نهج التصميم والتنفيذ وراء فللنا الرائدة.",
+        "body": "<p>سيرة برايم هو 64 فيلا على 9.2 هكتار من الشاطئ الآسيوي لإسطنبول، ويكاد كل قرار فيه ينبع من تعليمة واحدة: يجب أن يكون المجمّع بعد عشر سنوات جيدًا للعيش كما هو يوم التسليم.</p><h2>المخطط</h2><p>تحيط الفلل بمحور حدائق مشترك لا بطريق. تبقى السيارات على الأطراف؛ وقلب المجمّع ممشى. يقع نادٍ خاص ومبنى للعافية على المحور، ويُبلَغ الممشى الساحلي مباشرة من الحديقة.</p><h2>التنفيذ</h2><p>سيرة العقارية هي المطوّر ومجموعة OVAN هي المقاول، في إطار الشراكة الاستراتيجية التي وقّعها الطرفان هذا العام. جاء الاكتمال الإنشائي قبل البرنامج بأربعة أسابيع؛ ومن المقرر تسليم المرحلة الأولى مطلع 2028.</p><h2>النظرة البعيدة</h2><p>تشغّل سيرة العقارية المجمّع بعد التسليم — إدارة المجمّع، وخدمات المُلّاك، وبرنامج التأجير — لأن المشروع يُحكم عليه بعقده الثاني لا بأسبوع افتتاحه. ولهذا أيضًا هُيكل البيع المسبق، الذي افتُتح في الربع الثاني من 2026، كشراكة في حقوق الملكية لا كبيع وانصراف.</p>"
+      },
+      "images": [
+        "sira-prime-catalogue",
+        "villas-istanbul",
+        "villas-sunset"
+      ]
+    },
+    "what-long-term-value-means-to-us": {
+      "kind": "article",
+      "title": "What Long-Term Value Means to Us",
+      "excerpt": "How we underwrite developments for durability, not just delivery.",
+      "body": "<p>Most developers are paid at handover. That is the moment their interest in a building ends and the owner's begins. We are paid at handover too — but we stay, as operator, and that changes what we are willing to build.</p><h2>Three tests</h2><p>Will it still let in ten years? Residential value is set by the second buyer, not the first. Layouts that photograph well and live badly fail this test.</p><p>Will it cost less to run than its neighbours? Estate charges are the quiet reason owners sell. Plant, insulation and landscaping are underwritten on their tenth-year running cost, not their first-year price.</p><p>Would we hold it ourselves? If the answer is no, we do not build it for someone else.</p><h2>What it rules out</h2><p>Speculative towers. Sites without a coastal or garden edge. Specifications that depend on a currency window. Sira Prime passed all three tests; two other Istanbul sites we looked at in the same year did not, and we let them go.</p>",
+      "ar": {
+        "title": "ما تعنيه القيمة طويلة الأمد بالنسبة لنا",
+        "excerpt": "كيف نكتتب في المشاريع من أجل الديمومة، لا التسليم فحسب.",
+        "body": "<p>يتقاضى معظم المطوّرين عند التسليم. تلك هي اللحظة التي ينتهي فيها اهتمامهم بالمبنى ويبدأ اهتمام المالك. نحن أيضًا نتقاضى عند التسليم — لكننا نبقى، مشغّلين، وهذا يغيّر ما نقبل أن نبنيه.</p><h2>ثلاثة اختبارات</h2><p>هل سيُؤجَّر بعد عشر سنوات؟ القيمة السكنية يحددها المشتري الثاني لا الأول. المخططات التي تبدو جميلة في الصور وسيئة في العيش تفشل في هذا الاختبار.</p><p>هل ستقلّ تكلفة تشغيله عن جيرانه؟ رسوم المجمّع هي السبب الصامت الذي يدفع المُلّاك إلى البيع. تُكتتب المعدات والعزل وتنسيق المواقع على تكلفة تشغيلها في السنة العاشرة، لا على سعرها في السنة الأولى.</p><p>هل كنا سنحتفظ به لأنفسنا؟ إن كان الجواب لا، فلا نبنيه لغيرنا.</p><h2>ما يستبعده ذلك</h2><p>الأبراج المضاربية. المواقع بلا حافة ساحلية أو حديقة. المواصفات التي تعتمد على نافذة عملة. اجتاز سيرة برايم الاختبارات الثلاثة؛ ولم يجتزها موقعان آخران في إسطنبول درسناهما في العام نفسه، فتركناهما.</p>"
+      },
+      "images": [
+        "facade",
+        "concrete-ribs",
+        "residences"
+      ]
+    },
+    "sira-group-expands-into-hospitality": {
+      "kind": "article",
+      "title": "SIRA GROUP Expands into Hospitality",
+      "excerpt": "Announcing Lifestyle as the group's newest division.",
+      "body": "<p>SIRA Lifestyle is the group's newest division, and its founding premise is simple: hospitality is an operating business, and the group already knows how to operate.</p><h2>Why now</h2><p>The residential estates SIRA Real Estate builds — Sira Prime and the Coastal Residences beside it — are run as hospitality assets after handover: a residents' club, concierge, a rental programme. The division that runs them is the same one that will own and operate the group's first hotels.</p><h2>What it will do</h2><p>A single platform of boutique hospitality assets, owned and operated with founding partners; branded residences developed with SIRA Real Estate; and destination concepts for coastal and urban sites across the Middle East and Africa. Two coastal sites are in review as the first destinations, with a first opening planned for 2027.</p><h2>How to take part</h2><p>SIRA Lifestyle is open to a small number of founding partners who take a position across the platform rather than in a single asset. The investor pack is available through the group's investor relations team.</p>",
+      "ar": {
+        "title": "مجموعة سيرة تتوسّع إلى الضيافة",
+        "excerpt": "الإعلان عن لايف ستايل بوصفه أحدث أقسام المجموعة.",
+        "body": "<p>سيرة لايف ستايل هو أحدث أقسام المجموعة، وفرضيته التأسيسية بسيطة: الضيافة عمل تشغيلي، والمجموعة تعرف بالفعل كيف تشغّل.</p><h2>لماذا الآن</h2><p>المجمّعات السكنية التي تبنيها سيرة العقارية — سيرة برايم والمساكن الساحلية المجاورة له — تُدار كأصول ضيافة بعد التسليم: نادٍ للسكان، وكونسيرج، وبرنامج تأجير. والقسم الذي يديرها هو نفسه الذي سيملك ويشغّل فنادق المجموعة الأولى.</p><h2>ما سيفعله</h2><p>منصة واحدة من أصول الضيافة البوتيكية، مملوكة ومُشغَّلة مع شركاء مؤسسين؛ ومساكن ذات علامة تجارية تُطوَّر مع سيرة العقارية؛ ومفاهيم وجهات لمواقع ساحلية وحضرية في الشرق الأوسط وأفريقيا. موقعان ساحليان قيد الدراسة ليكونا أولى الوجهات، مع افتتاح أول مخطط في 2027.</p><h2>كيف تشارك</h2><p>سيرة لايف ستايل مفتوحة لعدد محدود من الشركاء المؤسسين الذين يتخذون مركزًا على مستوى المنصة لا في أصل واحد. وتتاح حزمة المستثمر عبر فريق علاقات المستثمرين في المجموعة.</p>"
+      },
+      "images": [
+        "hospitality-bg",
+        "resort",
+        "beach-resort"
+      ]
+    },
+    "the-case-for-experience-led-development": {
+      "kind": "article",
+      "title": "The Case for Experience-Led Development",
+      "excerpt": "Why hospitality and lifestyle assets are the next frontier for the region.",
+      "body": "<p>The Middle East and Africa are short of rooms, but they are shorter of reasons to stay. Experience-led development starts from the second problem.</p><h2>Supply is not the constraint</h2><p>Hotel rooms can be built anywhere the land and the permits allow, and they are. What cannot be built to a standard formula is the reason a guest chooses one coast over another: the club, the food, the water, the people who run it. That is what a destination is, and it is designed before the first drawing of a building.</p><h2>The residence is the anchor</h2><p>A boutique property with branded residences alongside it has two revenue lines and one operation. Residents pay for the hospitality standard every day; guests pay for it by the night. The club, the beach and the service are shared — and paid for twice.</p><h2>Where we are looking</h2><p>Two coastal sites — one on the Turkish Aegean, one on the Red Sea — are in review as the platform's first destinations, each planned as a boutique property with branded residences and a beach club. Site selection concludes this year.</p>",
+      "ar": {
+        "title": "الحجة لصالح التطوير الذي تقوده التجربة",
+        "excerpt": "لماذا أصول الضيافة وأسلوب الحياة هي الحدود التالية للمنطقة.",
+        "body": "<p>الشرق الأوسط وأفريقيا ينقصهما الغرف، لكن ما ينقصهما أكثر هو أسباب البقاء. يبدأ التطوير الذي تقوده التجربة من المشكلة الثانية.</p><h2>العرض ليس هو القيد</h2><p>يمكن بناء غرف الفنادق حيثما سمحت الأرض والتصاريح، وهذا يحدث. أما ما لا يمكن بناؤه بصيغة معيارية فهو السبب الذي يجعل الضيف يختار ساحلًا دون آخر: النادي، والطعام، والماء، والناس الذين يديرونه. هذا ما تكونه الوجهة، ويُصمَّم قبل أول رسم لمبنى.</p><h2>المسكن هو المرساة</h2><p>منشأة بوتيكية بجانبها مساكن ذات علامة تجارية لها خطا إيراد وتشغيل واحد. يدفع السكان مقابل معيار الضيافة كل يوم؛ ويدفعه الضيوف بالليلة. النادي والشاطئ والخدمة مشتركة — ومدفوعة مرتين.</p><h2>أين نبحث</h2><p>موقعان ساحليان — أحدهما على بحر إيجه التركي والآخر على البحر الأحمر — قيد الدراسة ليكونا أولى وجهات المنصة، يُخطَّط كل منهما كمنشأة بوتيكية مع مساكن ذات علامة تجارية ونادٍ شاطئي. ويُختتم اختيار الموقع هذا العام.</p>"
+      },
+      "images": [
+        "beach-resort",
+        "coastline",
+        "resort"
+      ]
+    },
+    "designing-for-a-discerning-market": {
+      "kind": "article",
+      "title": "Designing for a Discerning Market",
+      "excerpt": "Our approach to service, space and brand in lifestyle development.",
+      "body": "<p>The guest we design for has stayed everywhere. They are not impressed by marble, and they notice within an hour whether the people running the place know what they are doing. Three principles follow.</p><h2>Service before space</h2><p>SIRA Lifestyle hires the general manager and the head of service before it signs for a site, and they shape the concept with the architects. The service model decides the back-of-house routes, the kitchen, the club — the things a drawing cannot fix later.</p><h2>Space that is quiet</h2><p>Low buildings, long sight lines to the water, materials that age well. The estate should look better in its tenth year than in its first photograph, which rules out most of what is fashionable.</p><h2>A brand that is earned</h2><p>The brand is what a guest says about the place afterwards. We do not launch it; we let it be earned, one property at a time, by the standard of the operation. That is why the platform opens with a small number of properties and a small number of founding partners, and why the founding partners are asked to hold their position across the platform rather than in a single asset.</p>",
+      "ar": {
+        "title": "التصميم لسوق رفيع الذوق",
+        "excerpt": "نهجنا في الخدمة والمساحة والعلامة في تطوير أسلوب الحياة.",
+        "body": "<p>الضيف الذي نصمّم له أقام في كل مكان. لا يبهره الرخام، ويلاحظ خلال ساعة ما إذا كان من يديرون المكان يعرفون ما يفعلون. تترتب على ذلك ثلاثة مبادئ.</p><h2>الخدمة قبل المساحة</h2><p>تعيّن سيرة لايف ستايل المدير العام ورئيس الخدمة قبل التوقيع على موقع، ويشكّلان المفهوم مع المعماريين. يقرر نموذج الخدمة مسارات الخدمة الخلفية والمطبخ والنادي — الأشياء التي لا يستطيع رسم أن يصلحها لاحقًا.</p><h2>مساحة هادئة</h2><p>مبانٍ منخفضة، وخطوط نظر طويلة إلى الماء، ومواد تشيخ جيدًا. يجب أن يبدو المجمّع في عامه العاشر أفضل من صورته الأولى، وهذا يستبعد معظم ما هو رائج.</p><h2>علامة تُكتسب</h2><p>العلامة هي ما يقوله الضيف عن المكان بعد إقامته. لا نطلقها؛ بل ندعها تُكتسب، منشأةً بعد منشأة، بمستوى التشغيل. ولهذا تُفتتح المنصة بعدد قليل من المنشآت وعدد قليل من الشركاء المؤسسين، ولهذا يُطلب من الشركاء المؤسسين الاحتفاظ بمركزهم على مستوى المنصة لا في أصل واحد.</p>"
+      },
+      "images": [
+        "villas-sunset",
+        "residences",
+        "resort"
+      ]
+    }
+  },
+  "tenants": {
+    "https://siratrgroup.com": {
+      "trash": [
+        "press_release"
+      ],
+      "trashByTypeSlug": [
+        [
+          "sira_news",
+          "what-we-look-for-in-a-strategic-partner"
+        ]
+      ],
+      "entries": [
+        "why-istanbul-is-becoming-africas-investment-bridge",
+        "inside-nairobis-diagnostic-imaging-boom",
+        "what-we-look-for-in-a-strategic-partner",
+        "sira-group-signs-strategic-partnership-with-ovan-group",
+        "rosina-diagnostic-center-adds-pet-ct-molecular-imaging-wing",
+        "sira-group-expands-portfolio-into-hospitality-lifestyle",
+        "what-we-underwrite",
+        "sira-lifestyle-opens-founding-partner-applications-for-its-first-coastal-property",
+        "why-istanbul-remains-a-resilient-property-market",
+        "sira-consulting-appointed-to-advise-on-a-cross-border-healthcare-platform",
+        "bridging-continents-through-smart-investment",
+        "a-second-diagnostic-center-for-east-africa",
+        "the-cost-of-waiting",
+        "sira-prime-tops-out-four-weeks-ahead-of-schedule",
+        "statement-on-the-2025-portfolio-review",
+        "hospitality-is-an-operating-business-not-an-asset-class",
+        "sira-group-completes-its-investment-in-rosina-diagnostic-center",
+        "notes-from-a-year-of-building-in-two-time-zones",
+        "consulting-practice-expands-its-market-entry-team",
+        "design-brief-the-coastal-residence",
+        "sira-group-turns-ten",
+        "land-assembly-and-the-patience-it-requires",
+        "appointment-of-a-group-chief-investment-officer",
+        "what-good-partnership-looks-like-after-the-first-year",
+        "first-clinical-partnership-signed-in-nairobi",
+        "istanbul-residential-a-ten-year-view",
+        "corporate-information-notice"
+      ]
+    },
+    "https://cms-consulting.siratrgroup.com": {
+      "trash": [
+        "inside-nairobis-diagnostic-imaging-boom__trashed",
+        "what-we-look-for-in-a-strategic-partner-trashed"
+      ],
+      "entries": [
+        "why-istanbul-is-becoming-africas-investment-bridge",
+        "sira-consulting-appointed-to-advise-on-a-cross-border-healthcare-platform",
+        "the-cost-of-waiting",
+        "consulting-practice-expands-its-market-entry-team",
+        "what-good-partnership-looks-like-after-the-first-year"
+      ]
+    },
+    "https://cms-healthcare.siratrgroup.com": {
+      "rename": {
+        "rosina-diagnostic-center-adds-a-pet-ct-molecular-imaging-wing-bringing-early-stage-oncology-screening-within-reach-of-nairobis-referral-network": "rosina-diagnostic-center-adds-pet-ct-molecular-imaging-wing"
+      },
+      "entries": [
+        "inside-nairobis-diagnostic-imaging-boom",
+        "rosina-diagnostic-center-adds-pet-ct-molecular-imaging-wing",
+        "bringing-pet-ct-to-east-africa",
+        "european-standards-local-care",
+        "sira-consulting-appointed-to-advise-on-a-cross-border-healthcare-platform",
+        "a-second-diagnostic-center-for-east-africa",
+        "sira-group-completes-its-investment-in-rosina-diagnostic-center",
+        "first-clinical-partnership-signed-in-nairobi"
+      ]
+    },
+    "https://cms-realestate.siratrgroup.com": {
+      "entries": [
+        "why-istanbul-remains-a-resilient-property-market",
+        "sira-group-signs-strategic-partnership-with-ovan-group",
+        "inside-the-sira-prime-development",
+        "what-long-term-value-means-to-us",
+        "sira-prime-tops-out-four-weeks-ahead-of-schedule",
+        "land-assembly-and-the-patience-it-requires",
+        "istanbul-residential-a-ten-year-view"
+      ]
+    },
+    "https://cms-lifestyle.siratrgroup.com": {
+      "entries": [
+        "sira-group-expands-into-hospitality",
+        "sira-lifestyle-opens-founding-partner-applications-for-its-first-coastal-property",
+        "the-case-for-experience-led-development",
+        "designing-for-a-discerning-market",
+        "hospitality-is-an-operating-business-not-an-asset-class",
+        "design-brief-the-coastal-residence"
+      ]
+    }
+  }
+}

@@ -4,12 +4,15 @@ import type { DeskFilterOption } from "@/lib/editorial/desk-filters";
 
 interface NewsroomMastheadProps {
   readonly kicker: string;
+  /** The page's title in its language; "Insights" when not given. */
+  readonly title?: string;
   readonly issueLine: string | null;
   readonly placesLine: string | null;
 }
 
 export function NewsroomMasthead({
   kicker,
+  title = "Insights",
   issueLine,
   placesLine,
 }: NewsroomMastheadProps) {
@@ -17,7 +20,7 @@ export function NewsroomMasthead({
     <header className="newsroom-masthead">
       <div>
         <p className="newsroom-masthead__kicker">{kicker}</p>
-        <h1 id="record-heading">Insights</h1>
+        <h1 id="record-heading">{title}</h1>
       </div>
       {issueLine !== null || placesLine !== null ? (
         <p className="newsroom-masthead__meta">

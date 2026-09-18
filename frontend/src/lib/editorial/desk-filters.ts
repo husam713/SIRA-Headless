@@ -1,3 +1,6 @@
+import { NEWSROOM_COPY } from "@/lib/editorial/newsroom-copy";
+import { CHROME, localizeUnitLabel } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 import {
   deskRegister,
   editorialDeskLabel,
@@ -33,13 +36,16 @@ export function buildDeskFilters(
   items: readonly EditorialItem[],
   activeDesk: EditorialDeskKey | null,
   activeKind: EditorialKind | null,
+  locale: LocaleCode = "en",
 ): readonly DeskFilterOption[] {
+  const copy = NEWSROOM_COPY[locale];
+  const base = locale === "en" ? "/news" : `/${locale}/news`;
   if (siteKey === "group") {
     return Object.freeze([
       {
         key: "all",
-        label: "All desks",
-        href: "/news",
+        label: copy.allDesks,
+        href: base,
         count: items.length,
         isActive: activeDesk === null,
       },
@@ -48,8 +54,13 @@ export function buildDeskFilters(
 
         return {
           key: desk,
-          label: editorialDeskLabel(desk),
-          href: `/news?desk=${desk}`,
+          label:
+            locale === "en"
+              ? editorialDeskLabel(desk)
+              : desk === "group"
+                ? CHROME[locale].siteNames.group
+                : (localizeUnitLabel(locale, desk, editorialDeskLabel(desk)) ?? editorialDeskLabel(desk)),
+          href: `${base}?desk=${desk}`,
           count: row?.count ?? 0,
           isActive: activeDesk === desk,
         };
@@ -60,15 +71,15 @@ export function buildDeskFilters(
   return Object.freeze([
     {
       key: "all",
-      label: "Everything",
-      href: "/news",
+      label: copy.everything,
+      href: base,
       count: items.length,
       isActive: activeKind === null,
     },
     ...countByKind(items).map((entry) => ({
       key: entry.kind,
-      label: editorialKindLabel(entry.kind),
-      href: `/news?kind=${entry.kind}`,
+      label: locale === "en" ? editorialKindLabel(entry.kind) : CHROME[locale].editorialKinds[entry.kind],
+      href: `${base}?kind=${entry.kind}`,
       count: entry.count,
       isActive: activeKind === entry.kind,
     })),
@@ -86,10 +97,11 @@ export function buildDeskFilters(
 export function buildIssueLine(
   items: readonly EditorialItem[],
   span: string | null,
+  locale: LocaleCode = "en",
 ): string | null {
   if (items.length === 0) return null;
 
-  const entries = `${items.length} ${items.length === 1 ? "ENTRY" : "ENTRIES"}`;
+  const entries = NEWSROOM_COPY[locale].entries(items.length);
 
   return span === null ? entries : `${entries} · ${span}`;
 }

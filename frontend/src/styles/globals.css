@@ -3143,7 +3143,10 @@ html:lang(ar) .site-menu--full .site-menu__link { font-weight: 500; }
   margin: 1.2rem 0;
   color: var(--brand-ink);
   font-family: var(--font-sira-display);
-  font-size: clamp(2.6rem, 5.2vw, 5rem);
+  /* Reviewed 2026-09-18: the lead ran to 80px at desktop, a poster next to
+     a 24px register. Capped at 4rem so it leads without shouting; the
+     register titles keep their scale. */
+  font-size: clamp(2.4rem, 4.4vw, 4rem);
   font-weight: 400;
   line-height: 0.94;
   letter-spacing: -0.055em;
@@ -3310,7 +3313,7 @@ html:lang(ar) .site-menu--full .site-menu__link { font-weight: 500; }
     padding: 2.35rem var(--layout-gutter);
   }
 
-  .newsroom-hero__copy h2 { font-size: clamp(2.8rem, 13vw, 4.6rem); }
+  .newsroom-hero__copy h2 { font-size: clamp(2.4rem, 11vw, 3.6rem); }
 
   .record-register { grid-template-columns: minmax(0, 1fr); }
 

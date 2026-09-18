@@ -121,8 +121,8 @@ describe("newsroom against live CMS data", () => {
       expect(markup).toContain("record-heading");
       expect(markup).toContain("record-shell");
       expect(markup).toContain("record-register");
-      // Off the canonical host the masthead states the placeholder caveat.
-      expect(markup).toContain("PLACEHOLDER EDITORIAL");
+      // The content is final (2026-09-18): no placeholder caveat anywhere.
+      expect(markup).not.toContain("PLACEHOLDER EDITORIAL");
     });
   }
 

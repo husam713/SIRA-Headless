@@ -99,6 +99,7 @@ export default async function NewsroomRoute({
       items={items}
       desk={resolveDeskFilter(query["desk"])}
       kind={resolveKindFilter(query["kind"])}
+      locale={request.locale}
       isFailure={feed.status === "invalid" || feed.status === "remote-error"}
       isProductionCanonical={discovery.isProductionCanonical}
     />

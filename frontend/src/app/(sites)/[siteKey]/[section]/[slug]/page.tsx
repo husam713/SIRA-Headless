@@ -175,5 +175,5 @@ export default async function EditorialArticleRoute({
     resolution.article,
   );
 
-  return <ArticlePage article={resolution.article} related={alsoInTheRecord} />;
+  return <ArticlePage article={resolution.article} related={alsoInTheRecord} locale={request.locale} />;
 }

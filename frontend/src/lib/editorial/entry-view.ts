@@ -6,6 +6,8 @@ import {
 import { calendarDate, editorialKindSingular } from "@/lib/editorial/record";
 import { editorialArticleHref } from "@/lib/editorial/routes";
 import type { EditorialDeskKey, EditorialItem } from "@/lib/editorial/types";
+import { CHROME, localizeUnitLabel } from "@/lib/i18n/locale";
+import type { LocaleCode } from "@/types/site";
 
 /**
  * Everything the newsroom needs to draw one entry, resolved once.
@@ -42,14 +44,14 @@ export interface EntryView {
  * UTC, so an entry can never file under one year and print another directly
  * beneath the band heading that contains it.
  */
-export function formatDateline(value: string | null): string | null {
+export function formatDateline(value: string | null, locale: LocaleCode = "en"): string | null {
   const date = calendarDate(value);
   if (date === null) return null;
 
   // en-GB for day-month-year. A record datelines "02 JUN 2026", not
   // "JUN 02 2026": the en-US ordering reads as an American press release and
   // is ambiguous to most of the international audience this page is for.
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(locale === "ar" ? "ar-SA-u-nu-latn-ca-gregory" : "en-GB", {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -61,11 +63,11 @@ export function formatDateline(value: string | null): string | null {
 }
 
 /** The register's month-and-year form, read through the same calendar date. */
-export function formatShortDateline(value: string | null): string | null {
+export function formatShortDateline(value: string | null, locale: LocaleCode = "en"): string | null {
   const date = calendarDate(value);
   if (date === null) return null;
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(locale === "ar" ? "ar-SA-u-nu-latn-ca-gregory" : "en-GB", {
     month: "short",
     year: "numeric",
     timeZone: "UTC",
@@ -74,23 +76,33 @@ export function formatShortDateline(value: string | null): string | null {
     .toUpperCase();
 }
 
-export function toEntryView(item: EditorialItem): EntryView {
+export function toEntryView(item: EditorialItem, locale: LocaleCode = "en"): EntryView {
   const desk = primaryDesk(item);
+
+  // The desk and kind are said in the page's language; the entry's own words
+  // are whatever language it was written in.
+  const deskLabel =
+    locale === "en"
+      ? editorialDeskLabel(desk)
+      : desk === "group"
+        ? CHROME[locale].siteNames.group
+        : (localizeUnitLabel(locale, desk, editorialDeskLabel(desk)) ?? editorialDeskLabel(desk));
 
   return Object.freeze({
     item,
     href: editorialArticleHref(item.href),
     desk,
-    deskLabel: editorialDeskLabel(desk),
+    deskLabel,
     accent: editorialDeskAccent(desk),
-    kindLabel: editorialKindSingular(item.kind),
-    dateline: formatDateline(item.publishedAt),
-    shortDateline: formatShortDateline(item.publishedAt),
+    kindLabel: locale === "en" ? editorialKindSingular(item.kind) : CHROME[locale].editorialKinds[item.kind],
+    dateline: formatDateline(item.publishedAt, locale),
+    shortDateline: formatShortDateline(item.publishedAt, locale),
   });
 }
 
 export function toEntryViews(
   items: readonly EditorialItem[],
+  locale: LocaleCode = "en",
 ): readonly EntryView[] {
-  return Object.freeze(items.map(toEntryView));
+  return Object.freeze(items.map((item) => toEntryView(item, locale)));
 }

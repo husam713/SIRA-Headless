@@ -20,7 +20,8 @@ import type {
   EditorialItem,
   EditorialKind,
 } from "@/lib/editorial/types";
-import type { SiteKey } from "@/types/site";
+import { NEWSROOM_COPY } from "@/lib/editorial/newsroom-copy";
+import type { LocaleCode, SiteKey } from "@/types/site";
 
 export interface NewsroomPageProps {
   readonly siteKey: SiteKey;
@@ -29,7 +30,10 @@ export interface NewsroomPageProps {
   readonly desk: EditorialDeskKey | null;
   readonly kind: EditorialKind | null;
   readonly isFailure: boolean;
+  /** Kept for the route's call; the newsroom no longer marks itself off-canonical (content is final, 2026-09-18). */
   readonly isProductionCanonical?: boolean;
+  /** The page's language; the chrome speaks it, the entries speak their own. */
+  readonly locale?: LocaleCode;
 }
 
 export function NewsroomPage({
@@ -39,8 +43,9 @@ export function NewsroomPage({
   desk,
   kind,
   isFailure,
-  isProductionCanonical = true,
+  locale = "en",
 }: NewsroomPageProps) {
+  const copy = NEWSROOM_COPY[locale];
   const isGroup = siteKey === "group";
   const activeDesk = isGroup ? desk : null;
   const activeKind = isGroup ? null : kind;
@@ -51,56 +56,54 @@ export function NewsroomPage({
         ? items.filter((item) => item.kind === activeKind)
         : items;
   const { lead, record } = composeNewsroom(selected);
-  const leadEntry = lead === null ? null : toEntryViews([lead])[0]!;
+  const leadEntry = lead === null ? null : toEntryViews([lead], locale)[0]!;
   const bands = record.map((band) => ({
     year: band.year,
-    entries: toEntryViews(band.items),
+    entries: toEntryViews(band.items, locale),
   }));
-  const filters = buildDeskFilters(siteKey, items, activeDesk, activeKind);
-  const issueLine = buildIssueLine(items, yearSpan(items));
+  const filters = buildDeskFilters(siteKey, items, activeDesk, activeKind, locale);
+  const issueLine = buildIssueLine(items, yearSpan(items), locale);
   const activeLabel =
     activeDesk !== null
-      ? editorialDeskLabel(activeDesk)
+      ? (filters.find((option) => option.isActive)?.label ?? editorialDeskLabel(activeDesk))
       : activeKind !== null
-        ? editorialKindLabel(activeKind)
+        ? (filters.find((option) => option.isActive)?.label ?? editorialKindLabel(activeKind))
         : isGroup
-          ? "all desks"
-          : "everything";
-  const countLine = `${selected.length} ${selected.length === 1 ? "story" : "stories"} · ${activeLabel.toLowerCase()}`;
+          ? copy.allDesks
+          : copy.everything;
+  const countLine = `${copy.stories(selected.length)} · ${activeLabel.toLowerCase()}`;
 
   return (
     <RecordShell label={`${brandName} newsroom`}>
       <NewsroomMasthead
-        kicker={`${isGroup ? "SIRA GROUP" : brandName} · Newsroom`}
+        kicker={`${isGroup ? "SIRA GROUP" : brandName} · ${copy.newsroom}`}
+        title={copy.title}
         issueLine={issueLine}
-        placesLine={
-          isProductionCanonical
-            ? null
-            : "PLACEHOLDER EDITORIAL · NOT SIRA ANNOUNCEMENTS"
-        }
+        placesLine={null}
       />
 
       {items.length > 0 ? (
         <DeskFilters
           options={filters}
-          label={isGroup ? "Filter insights by desk" : "Filter insights by format"}
+          label={isGroup ? copy.filterByDesk : copy.filterByFormat}
         />
       ) : null}
 
       {leadEntry !== null ? (
-        <NewsroomLead entry={leadEntry} />
+        <NewsroomLead entry={leadEntry} readLabel={copy.readTheStory} />
       ) : (
         <EmptyNewsroom
           filterLabel={activeDesk !== null || activeKind !== null ? activeLabel : null}
           brandName={brandName}
           isFailure={isFailure}
+          locale={locale}
         />
       )}
 
       {bands.length > 0 ? (
         <>
           <div className="newsroom-section-head">
-            <h2>Latest insights</h2>
+            <h2>{copy.latest}</h2>
             <p>{countLine}</p>
           </div>
 
@@ -109,9 +112,7 @@ export function NewsroomPage({
               {index > 0 ? (
                 <div className="newsroom-year">
                   <h3 id={`record-year-${band.year}`}>{band.year}</h3>
-                  <p>
-                    {band.entries.length} {band.entries.length === 1 ? "story" : "stories"}
-                  </p>
+                  <p>{copy.stories(band.entries.length)}</p>
                 </div>
               ) : (
                 <h3 id={`record-year-${band.year}`} className="sr-only">
@@ -129,8 +130,8 @@ export function NewsroomPage({
       ) : null}
 
       <RecordEndBar
-        statement="Keep exploring."
-        supporting={`${brandName} perspectives, updates and analysis.`}
+        statement={copy.keepExploring}
+        supporting={copy.keepExploringLead(brandName)}
         trailing={
           <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-paper/60">
             {countLine}
@@ -145,20 +146,22 @@ interface EmptyNewsroomProps {
   readonly filterLabel: string | null;
   readonly brandName: string;
   readonly isFailure: boolean;
+  readonly locale: LocaleCode;
 }
 
-function EmptyNewsroom({ filterLabel, brandName, isFailure }: EmptyNewsroomProps) {
+function EmptyNewsroom({ filterLabel, brandName, isFailure, locale }: EmptyNewsroomProps) {
+  const copy = NEWSROOM_COPY[locale];
   const message = isFailure
-    ? "The insights could not be loaded just now. Please try again shortly."
+    ? copy.couldNotLoad
     : filterLabel !== null
-      ? `Nothing has been published under ${filterLabel} yet.`
-      : `${brandName} has not published insights yet.`;
+      ? copy.nothingFor(filterLabel)
+      : copy.nothingYet(brandName);
 
   return (
     <div className="newsroom-empty">
       <p>{message}</p>
       {filterLabel !== null ? (
-        <Link href="/news">View all insights</Link>
+        <Link href={locale === "en" ? "/news" : `/${locale}/news`}>{copy.viewAll}</Link>
       ) : null}
     </div>
   );

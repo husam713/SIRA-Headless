@@ -292,6 +292,8 @@ export interface BranchHomepage {
   readonly statistics: readonly HomepageMetric[];
   readonly overview: HomepageRichTextSection | null;
   readonly focusAreas: readonly HomepageFocusArea[];
+  /** The company's services chapter, as the Group homepage has one (2026-09-18). */
+  readonly services: HomepageContentSection | null;
   readonly projects: HomepageContentSection | null;
   readonly insights: HomepageEditorialSection | null;
   readonly contact: HomepageContactSection | null;

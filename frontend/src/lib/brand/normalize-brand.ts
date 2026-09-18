@@ -259,6 +259,9 @@ function normalizeOffices(
         Object.freeze({
           name,
           address: normalizeText(office.address, 600),
+          nameAr: normalizeText(office.nameAr, 160),
+          addressAr: normalizeText(office.addressAr, 600),
+          unit: normalizeText(office.businessUnit, 80),
           phone: normalizeText(office.phone, 80),
           email: normalizeText(office.email, 254),
         }),
@@ -337,6 +340,8 @@ export function normalizeWordPressBrand(
     key: siteKey,
     name: name ?? preset.name,
     tagline: normalizeText(data.tagline, 300) ?? preset.tagline,
+    taglineAr: normalizeText(data.taglineAr, 300),
+    addressAr: normalizeText(data.addressAr, 600),
     identity: Object.freeze({
       primary,
       secondary,

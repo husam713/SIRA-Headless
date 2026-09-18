@@ -273,6 +273,8 @@ export function createFallbackBrand(
     key: siteKey,
     name: preset.name,
     tagline: preset.tagline,
+    taglineAr: null,
+    addressAr: null,
     identity: Object.freeze({ ...preset.identity }),
     semantic: Object.freeze({
       ...preset.semantic,

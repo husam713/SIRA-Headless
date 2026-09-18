@@ -261,6 +261,73 @@ function sira_atlas_repair( array $repair ): void {
 	wp_update_attachment_metadata( $attachment_id, wp_generate_attachment_metadata( $attachment_id, $target ) );
 }
 
+/**
+ * Writes authored values onto the front page by ACF meta name — the section
+ * links that should point at the Atlas pages (`/projects/`, `/services/`,
+ * `/investors/`) rather than at homepage anchors. A link field is stored as
+ * one serialized array of title, url and target.
+ */
+function sira_atlas_home_meta( int $post_id, array $meta ): void {
+	foreach ( $meta as $name => $value ) {
+		if ( is_array( $value ) && isset( $value['url'] ) ) {
+			$value = array(
+				'title'  => (string) ( $value['title'] ?? '' ),
+				'url'    => (string) $value['url'],
+				'target' => (string) ( $value['target'] ?? '' ),
+			);
+		}
+
+		if ( ! SIRA_ATLAS_DRY_RUN ) {
+			update_post_meta( $post_id, (string) $name, $value );
+		}
+	}
+	sira_atlas_log( 'homepage meta: ' . count( $meta ) . ' values' );
+}
+
+/** Replaces one menu's items and assigns it to a location, keeping the others. */
+function sira_atlas_menu( string $name, string $location, array $items ): void {
+
+	sira_atlas_log( "menu {$name} -> {$location}: " . count( $items ) . ' items' );
+
+	if ( SIRA_ATLAS_DRY_RUN ) {
+		return;
+	}
+
+	$menu = wp_get_nav_menu_object( $name );
+
+	if ( ! $menu ) {
+		$menu_id = wp_create_nav_menu( $name );
+
+		if ( is_wp_error( $menu_id ) ) {
+			WP_CLI::error( "Could not create menu {$name}: " . $menu_id->get_error_message() );
+		}
+	} else {
+		$menu_id = (int) $menu->term_id;
+
+		foreach ( wp_get_nav_menu_items( $menu_id ) ?: array() as $existing_item ) {
+			wp_delete_post( (int) $existing_item->ID, true );
+		}
+	}
+
+	foreach ( array_values( $items ) as $position => $item ) {
+		wp_update_nav_menu_item(
+			(int) $menu_id,
+			0,
+			array(
+				'menu-item-title'    => (string) $item['title'],
+				'menu-item-url'      => (string) $item['url'],
+				'menu-item-status'   => 'publish',
+				'menu-item-type'     => 'custom',
+				'menu-item-position' => $position + 1,
+			)
+		);
+	}
+
+	$locations              = (array) get_theme_mod( 'nav_menu_locations', array() );
+	$locations[ $location ] = (int) $menu_id;
+	set_theme_mod( 'nav_menu_locations', $locations );
+}
+
 $sira_atlas_seed   = sira_atlas_payload();
 $sira_atlas_home   = untrailingslashit( home_url() );
 $sira_atlas_tenant = $sira_atlas_seed['tenants'][ $sira_atlas_home ] ?? null;
@@ -411,6 +478,21 @@ foreach ( (array) ( $sira_atlas_tenant['testimonials'] ?? array() ) as $sira_atl
 		sira_atlas_field( 'field_sira_testimonial_consent', 1, $sira_atlas_id );
 		sira_atlas_field( 'field_sira_testimonial_consent_recorded', current_time( 'Y-m-d H:i:s' ), $sira_atlas_id );
 	}
+}
+
+// -- The front page's links and the menus ----------------------------------
+// 2026-09-18: the menus and section links pointed at homepage anchors from
+// before the Atlas pages existed; they now lead to the pages.
+
+$sira_atlas_front = (int) get_option( 'page_on_front' );
+if ( $sira_atlas_front > 0 && isset( $sira_atlas_tenant['home']['meta'] ) ) {
+	sira_atlas_home_meta( $sira_atlas_front, (array) $sira_atlas_tenant['home']['meta'] );
+}
+
+$sira_atlas_menu_prefix = (string) ( $sira_atlas_tenant['menu_prefix'] ?? 'Atlas' );
+
+foreach ( (array) ( $sira_atlas_tenant['menus'] ?? array() ) as $sira_atlas_location => $sira_atlas_items ) {
+	sira_atlas_menu( $sira_atlas_menu_prefix . ' ' . ucwords( (string) $sira_atlas_location ), (string) $sira_atlas_location, (array) $sira_atlas_items );
 }
 
 WP_CLI::success( ( SIRA_ATLAS_DRY_RUN ? 'Planned' : 'Wrote' ) . " Atlas content for {$sira_atlas_home}." );

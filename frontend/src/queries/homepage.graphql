@@ -275,6 +275,14 @@ query SiraHomepage($asPreview: Boolean = false, $uri: ID = "/") {
       link { ...HomepageLink }
     }
       focusAreas { title description }
+      services {
+      eyebrow heading description
+      link { ...HomepageLink }
+      selectedServices(first: 12) {
+        nodes { ...HomepageServiceNode }
+        pageInfo { hasNextPage }
+      }
+    }
       projects {
       eyebrow heading description
       link { ...HomepageLink }

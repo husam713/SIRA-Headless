@@ -47,7 +47,7 @@ export default async function SiteHomePage({
   // rather than rendering different languages of the same page.
   const request = await getRequestLocale(site);
   const [brand, homepage] = await Promise.all([
-    getBrand(site.key),
+    getBrand(site.key, request.locale),
     getHomepageForRequest(site.key, localeUri(request.locale, site, "/")),
   ]);
 
@@ -150,6 +150,7 @@ export default async function SiteHomePage({
         {branch.hero !== null && <BranchHero hero={branch.hero} />}
         <BranchStats statistics={branch.statistics} />
         <BranchOverview overview={branch.overview} focusAreas={branch.focusAreas} />
+        <GroupServices section={branch.services} />
         <GroupProjects section={branch.projects} locale={request.locale} />
         <GroupInsights section={branch.insights} locale={request.locale} />
         <GroupContact

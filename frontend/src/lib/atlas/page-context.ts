@@ -72,7 +72,7 @@ export async function resolveAtlasPage(
 
   const request = await getRequestLocale(site);
   const [brand, homepageResolution, ...pages] = await Promise.all([
-    getBrand(site.key),
+    getBrand(site.key, request.locale),
     getHomepageForRequest(site.key, localeUri(request.locale, site, "/")),
     ...pageUris.map((uri) =>
       getContentPageForLocale(site.key, localeUri(request.locale, site, uri), uri),

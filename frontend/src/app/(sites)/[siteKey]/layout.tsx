@@ -130,7 +130,7 @@ export default async function SiteLayout({
   // therefore pass the SAME homepage URI, or the cache misses and the layout
   // and the page render two different languages of the same page.
   const [brand, draft, navigation, homepage] = await Promise.all([
-    getBrand(site.key),
+    getBrand(site.key, request.locale),
     draftMode(),
     getNavigationForLocale(site.key, request.locale, site.defaultLocale),
     getHomepageForRequest(site.key, localeUri(request.locale, site, "/")),

@@ -939,6 +939,7 @@ export function normalizeHomepage(
     statistics: normalizeMetrics(statisticsField, 8),
     overview,
     focusAreas: Object.freeze(focusAreas),
+    services: normalizeContentSection(branchSections["services"], "selectedServices", "SiraService"),
     projects: normalizeContentSection(branchSections["projects"], "selectedProjects", "SiraProject"),
     insights: normalizeEditorialSection(branchSections["insights"]),
     contact: normalizeContact(branchSections["contact"]),

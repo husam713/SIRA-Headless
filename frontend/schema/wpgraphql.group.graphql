@@ -333,6 +333,11 @@ type BranchHomepage implements AcfFieldGroup & AcfFieldGroupFields & BranchHomep
   projects: BranchHomepageProjects
 
   """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  services: BranchHomepageServices
+
+  """
   Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
   """
   statistics: [BranchHomepageStatistics]
@@ -885,6 +890,104 @@ interface BranchHomepageProjects_Fields implements AcfFieldGroup & AcfFieldGroup
 }
 
 """
+The &quot;BranchHomepageServices&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BranchHomepageServices implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepageServices_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageServices&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageServices&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageServices&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageServices&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BranchHomepageServices&quot; Field Group
+  """
+  selectedServices(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+Interface representing fields of the ACF &quot;BranchHomepageServices&quot; Field Group
+"""
+interface BranchHomepageServices_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BranchHomepageServices&quot; Field Group
+  """
+  description: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageServices&quot; Field Group
+  """
+  eyebrow: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BranchHomepageServices&quot; Field Group
+  """
+  heading: String
+
+  """
+  Field of the &quot;link&quot; Field Type added to the schema as part of the &quot;BranchHomepageServices&quot; Field Group
+  """
+  link: AcfLink
+
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BranchHomepageServices&quot; Field Group
+  """
+  selectedServices(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
 The &quot;BranchHomepageStatistics&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BranchHomepageStatistics implements AcfFieldGroup & AcfFieldGroupFields & BranchHomepageStatistics_Fields {
@@ -971,6 +1074,11 @@ interface BranchHomepage_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
   """
   projects: BranchHomepageProjects
+
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
+  """
+  services: BranchHomepageServices
 
   """
   Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;BranchHomepage&quot; Field Group
@@ -1079,7 +1187,7 @@ type Category implements DatabaseIdentifier & HierarchicalNode & HierarchicalTer
     last: Int
   ): CategoryToAncestorsCategoryConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   categoryId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the category type and its children categories."""
@@ -1773,22 +1881,16 @@ type CategoryToTaxonomyConnectionEdge implements Edge & OneToOneConnection & Tax
 A response or reaction to content submitted by users. Comments are typically associated with a specific content entry.
 """
 type Comment implements DatabaseIdentifier & Node & UniformResourceIdentifiable {
-  """
-  User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL.
-  """
+  """User agent (browser or client) used to post the comment."""
   agent: String
 
-  """
-  The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL.
-  """
+  """The approval status of the comment."""
   approved: Boolean @deprecated(reason: "Deprecated in favor of the `status` field")
 
   """The author of the comment"""
   author: CommentToCommenterConnectionEdge
 
-  """
-  IP address for the author at the time of commenting. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL.
-  """
+  """IP address for the author at the time of commenting."""
   authorIp: String @deprecated(reason: "Use the ipAddress field on the edge between the comment and author")
 
   """ID for the comment, unique among comments."""
@@ -1797,9 +1899,7 @@ type Comment implements DatabaseIdentifier & Node & UniformResourceIdentifiable 
   """Connection between the Comment type and the ContentNode type"""
   commentedOn: CommentToContentNodeConnectionEdge
 
-  """
-  Content of the comment. This field is equivalent to WP_Comment-&gt;comment_content and the value matching the &quot;comment_content&quot; column in SQL.
-  """
+  """Content of the comment."""
   content(
     """Format of the field output"""
     format: PostObjectFieldFormatEnum
@@ -1808,14 +1908,10 @@ type Comment implements DatabaseIdentifier & Node & UniformResourceIdentifiable 
   """The unique identifier stored in the database"""
   databaseId: Int!
 
-  """
-  Date the comment was posted in local time. This field is equivalent to WP_Comment-&gt;date and the value matching the &quot;date&quot; column in SQL.
-  """
+  """Date the comment was posted in local time."""
   date: String
 
-  """
-  Date the comment was posted in GMT. This field is equivalent to WP_Comment-&gt;date_gmt and the value matching the &quot;date_gmt&quot; column in SQL.
-  """
+  """Date the comment was posted in GMT."""
   dateGmt: String
 
   """The globally unique identifier for the comment object"""
@@ -1839,9 +1935,7 @@ type Comment implements DatabaseIdentifier & Node & UniformResourceIdentifiable 
   """Whether the node is a Term"""
   isTermNode: Boolean!
 
-  """
-  Karma value for the comment. This field is equivalent to WP_Comment-&gt;comment_karma and the value matching the &quot;comment_karma&quot; column in SQL.
-  """
+  """Karma value for the comment."""
   karma: Int
 
   """The permalink of the comment"""
@@ -1883,14 +1977,10 @@ type Comment implements DatabaseIdentifier & Node & UniformResourceIdentifiable 
     where: CommentToCommentConnectionWhereArgs
   ): CommentToCommentConnection
 
-  """
-  The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL.
-  """
+  """The approval status of the comment."""
   status: CommentStatusEnum
 
-  """
-  Type of comment. This field is equivalent to WP_Comment-&gt;comment_type and the value matching the &quot;comment_type&quot; column in SQL.
-  """
+  """Type of comment."""
   type: String
 
   """The unique resource identifier path"""
@@ -2159,9 +2249,7 @@ type CommentToCommenterConnectionEdge implements CommenterConnectionEdge & Edge 
   """Email address representing the author for this particular comment"""
   email: String
 
-  """
-  IP address of the author at the time of making this comment. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL.
-  """
+  """IP address of the author at the time of making this comment."""
   ipAddress: String
 
   """The display name of the comment author for this particular comment"""
@@ -3021,7 +3109,7 @@ interface ContentNode implements Node & UniformResourceIdentifiable {
   ): ContentNodeToEnqueuedStylesheetConnection
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -3068,11 +3156,11 @@ interface ContentNode implements Node & UniformResourceIdentifiable {
   """The database id of the preview node"""
   previewRevisionDatabaseId: Int
 
-  """Whether the object is a node in the preview state"""
+  """The globally unique ID of the preview node"""
   previewRevisionId: ID
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -3509,6 +3597,9 @@ enum ContentTypeEnum {
   ATTACHMENT
 
   """The Type of Content object"""
+  GRAPHQL_DOCUMENT
+
+  """The Type of Content object"""
   PAGE
 
   """The Type of Content object"""
@@ -3773,6 +3864,12 @@ type ContentTypeToTaxonomyConnectionPageInfo implements PageInfo & TaxonomyConne
 enum ContentTypesOfCategoryEnum {
   """The Type of Content object"""
   POST
+}
+
+"""Allowed Content Types of the GraphqlDocumentGroup taxonomy."""
+enum ContentTypesOfGraphqlDocumentGroupEnum {
+  """The Type of Content object"""
+  GRAPHQL_DOCUMENT
 }
 
 """Allowed Content Types of the PostFormat taxonomy."""
@@ -4040,6 +4137,98 @@ type CreateCommentPayload {
   Whether the mutation succeeded. If the comment is not approved, the server will not return the comment to a non authenticated user, but a success message can be returned if the create succeeded, and the client can optimistically add the comment to the client cache
   """
   success: Boolean
+}
+
+"""Input for the createGraphqlDocumentGroup mutation."""
+input CreateGraphqlDocumentGroupInput {
+  """The slug that the graphql_document_group will be an alias of"""
+  aliasOf: String
+
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The description of the graphql_document_group object"""
+  description: String
+
+  """The name of the graphql_document_group object to mutate"""
+  name: String!
+
+  """
+  If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name.
+  """
+  slug: String
+}
+
+"""The payload for the createGraphqlDocumentGroup mutation."""
+type CreateGraphqlDocumentGroupPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The created graphql_document_group"""
+  graphqlDocumentGroup: GraphqlDocumentGroup
+}
+
+"""Input for the createGraphqlDocument mutation."""
+input CreateGraphqlDocumentInput {
+  """Alias names for saved GraphQL query documents"""
+  alias: [String!]
+
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The content of the object"""
+  content: String
+
+  """
+  The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17 
+  """
+  date: String
+
+  """Description for the saved GraphQL document"""
+  description: String
+
+  """Allow, deny or default access grant for specific query"""
+  grant: String
+
+  """Set connections between the graphqlDocument and graphqlDocumentGroups"""
+  graphqlDocumentGroups: GraphqlDocumentGraphqlDocumentGroupsInput
+
+  """HTTP Cache-Control max-age directive for a saved GraphQL document"""
+  maxAgeHeader: Int
+
+  """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+
+  """The password used to protect the content of the object"""
+  password: String
+
+  """The slug of the object"""
+  slug: String
+
+  """The status of the object"""
+  status: PostStatusEnum
+
+  """The title of the object"""
+  title: String
+}
+
+"""The payload for the createGraphqlDocument mutation."""
+type CreateGraphqlDocumentPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The Post object mutation type."""
+  graphqlDocument: GraphqlDocument
 }
 
 """Input for the createMediaItem mutation."""
@@ -6714,6 +6903,64 @@ type DeleteCommentPayload {
 
   """The deleted comment ID"""
   deletedId: ID
+}
+
+"""Input for the deleteGraphqlDocumentGroup mutation."""
+input DeleteGraphqlDocumentGroupInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The ID of the graphqlDocumentGroup to delete"""
+  id: ID!
+}
+
+"""The payload for the deleteGraphqlDocumentGroup mutation."""
+type DeleteGraphqlDocumentGroupPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The ID of the deleted object"""
+  deletedId: ID
+
+  """The deleted term object"""
+  graphqlDocumentGroup: GraphqlDocumentGroup
+}
+
+"""Input for the deleteGraphqlDocument mutation."""
+input DeleteGraphqlDocumentInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  Whether the object should be force deleted instead of being moved to the trash
+  """
+  forceDelete: Boolean
+
+  """The ID of the graphqlDocument to delete"""
+  id: ID!
+
+  """Override the edit lock when another user is editing the post"""
+  ignoreEditLock: Boolean
+}
+
+"""The payload for the deleteGraphqlDocument mutation."""
+type DeleteGraphqlDocumentPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The ID of the deleted object"""
+  deletedId: ID
+
+  """The object before it was deleted"""
+  graphqlDocument: GraphqlDocument
 }
 
 """Input for the deleteMediaItem mutation."""
@@ -9963,6 +10210,1136 @@ type GeneralSettingsToMediaItemConnectionEdge implements Edge & MediaItemConnect
   node: MediaItem!
 }
 
+"""Saved GraphQL Documents"""
+type GraphqlDocument implements ContentNode & DatabaseIdentifier & Node & NodeWithContentEditor & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable {
+  """Alias names for saved GraphQL query documents"""
+  alias: [String!]
+
+  """The ancestors of the content node."""
+  ancestors(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): GraphqlDocumentToGraphqlDocumentConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+
+  """The content of the post."""
+  content(
+    """Format of the field output"""
+    format: PostObjectFieldFormatEnum
+  ): String
+
+  """Connection between the ContentNode type and the ContentType type"""
+  contentType: ContentNodeToContentTypeConnectionEdge
+
+  """The name of the Content Type the node belongs to"""
+  contentTypeName: String!
+
+  """The unique identifier stored in the database"""
+  databaseId: Int!
+
+  """Post publishing date."""
+  date: String
+
+  """The publishing date set in GMT."""
+  dateGmt: String
+
+  """Description for the saved GraphQL document"""
+  description: String
+
+  """The desired slug of the post"""
+  desiredSlug: String
+
+  """
+  If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds
+  """
+  editingLockedBy: ContentNodeToEditLockConnectionEdge
+
+  """The RSS enclosure for the object"""
+  enclosure: String
+
+  """Connection between the ContentNode type and the EnqueuedScript type"""
+  enqueuedScripts(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """Arguments for filtering the connection"""
+    where: ContentNodeToEnqueuedScriptConnectionWhereArgs
+  ): ContentNodeToEnqueuedScriptConnection
+
+  """
+  Connection between the ContentNode type and the EnqueuedStylesheet type
+  """
+  enqueuedStylesheets(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """Arguments for filtering the connection"""
+    where: ContentNodeToEnqueuedStylesheetConnectionWhereArgs
+  ): ContentNodeToEnqueuedStylesheetConnection
+
+  """Allow, deny or default access grant for specific query"""
+  grant: String
+
+  """
+  Connection between the GraphqlDocument type and the graphqlDocumentGroup type
+  """
+  graphqlDocumentGroups(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """Arguments for filtering the connection"""
+    where: GraphqlDocumentToGraphqlDocumentGroupConnectionWhereArgs
+  ): GraphqlDocumentToGraphqlDocumentGroupConnection
+
+  """The unique numeric identifier for the content node."""
+  graphqlDocumentId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+
+  """
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
+  """
+  guid: String
+
+  """Whether the graphql_document object is password protected."""
+  hasPassword: Boolean
+
+  """The globally unique identifier of the graphql_document object."""
+  id: ID!
+
+  """Whether the node is a Comment"""
+  isComment: Boolean!
+
+  """Whether the node is a Content Node"""
+  isContentNode: Boolean!
+
+  """Whether the node represents the front page."""
+  isFrontPage: Boolean!
+
+  """Whether  the node represents the blog page."""
+  isPostsPage: Boolean!
+
+  """Whether the object is a node in the preview state"""
+  isPreview: Boolean
+
+  """Whether the object is restricted from the current viewer"""
+  isRestricted: Boolean
+
+  """Whether the node is a Term"""
+  isTermNode: Boolean!
+
+  """The user that most recently edited the node"""
+  lastEditedBy: ContentNodeToEditLastConnectionEdge
+
+  """The permalink of the post"""
+  link: String
+
+  """HTTP Cache-Control max-age directive for a saved GraphQL document"""
+  maxAgeHeader: Int
+
+  """
+  The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time.
+  """
+  modified: String
+
+  """
+  The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
+  """
+  modifiedGmt: String
+
+  """The parent of the content node."""
+  parent: GraphqlDocumentToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+
+  """The password for the graphql_document object."""
+  password: String
+
+  """
+  Connection between the graphqlDocument type and the graphqlDocument type
+  """
+  preview: GraphqlDocumentToPreviewConnectionEdge @deprecated(reason: "The &quot;GraphqlDocument&quot; Type is not publicly queryable and does not support previews. This field will be removed in the future.")
+
+  """The database id of the preview node"""
+  previewRevisionDatabaseId: Int
+
+  """The globally unique ID of the preview node"""
+  previewRevisionId: ID
+
+  """
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
+  """
+  slug: String
+
+  """The current status of the object"""
+  status: String
+
+  """The template assigned to the node"""
+  template: ContentTemplate
+
+  """Connection between the GraphqlDocument type and the TermNode type"""
+  terms(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """Arguments for filtering the connection"""
+    where: GraphqlDocumentToTermNodeConnectionWhereArgs
+  ): GraphqlDocumentToTermNodeConnection
+
+  """
+  The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
+  """
+  title(
+    """Format of the field output"""
+    format: PostObjectFieldFormatEnum
+  ): String
+
+  """The unique resource identifier path"""
+  uri: String
+}
+
+"""
+A paginated collection of graphqlDocument Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of graphqlDocument Nodes
+"""
+interface GraphqlDocumentConnection implements Connection {
+  """
+  A list of edges (relational context) between RootQuery and connected graphqlDocument Nodes
+  """
+  edges: [GraphqlDocumentConnectionEdge!]!
+
+  """A list of connected graphqlDocument Nodes"""
+  nodes: [GraphqlDocument!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: GraphqlDocumentConnectionPageInfo!
+}
+
+"""
+Represents a connection to a graphqlDocument. Contains both the graphqlDocument Node and metadata about the relationship.
+"""
+interface GraphqlDocumentConnectionEdge implements Edge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The connected graphqlDocument Node"""
+  node: GraphqlDocument!
+}
+
+"""
+Pagination metadata specific to &quot;GraphqlDocumentConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;GraphqlDocumentConnectionEdge&quot; Nodes.
+"""
+interface GraphqlDocumentConnectionPageInfo implements PageInfo & WPPageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""Set relationships between the graphqlDocument to graphqlDocumentGroups"""
+input GraphqlDocumentGraphqlDocumentGroupsInput {
+  """
+  If true, this will append the graphqlDocumentGroup to existing related graphqlDocumentGroups. If false, this will replace existing relationships. Default true.
+  """
+  append: Boolean
+
+  """The input list of items to set."""
+  nodes: [GraphqlDocumentGraphqlDocumentGroupsNodeInput]
+}
+
+"""
+List of graphqlDocumentGroups to connect the graphqlDocument to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists.
+"""
+input GraphqlDocumentGraphqlDocumentGroupsNodeInput {
+  """
+  The description of the graphqlDocumentGroup. This field is used to set a description of the graphqlDocumentGroup if a new one is created during the mutation.
+  """
+  description: String
+
+  """
+  The ID of the graphqlDocumentGroup. If present, this will be used to connect to the graphqlDocument. If no existing graphqlDocumentGroup exists with this ID, no connection will be made.
+  """
+  id: ID
+
+  """
+  The name of the graphqlDocumentGroup. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field.
+  """
+  name: String
+
+  """
+  The slug of the graphqlDocumentGroup. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation.
+  """
+  slug: String
+}
+
+"""
+Tag the saved query document with other queries as a &quot;group&quot;.
+"""
+type GraphqlDocumentGroup implements DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable {
+  """
+  Connection between the GraphqlDocumentGroup type and the ContentNode type
+  """
+  contentNodes(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """Arguments for filtering the connection"""
+    where: GraphqlDocumentGroupToContentNodeConnectionWhereArgs
+  ): GraphqlDocumentGroupToContentNodeConnection
+
+  """The number of objects connected to the object"""
+  count: Int
+
+  """The unique identifier stored in the database"""
+  databaseId: Int!
+
+  """The description of the object"""
+  description: String
+
+  """Connection between the TermNode type and the EnqueuedScript type"""
+  enqueuedScripts(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """Arguments for filtering the connection"""
+    where: TermNodeToEnqueuedScriptConnectionWhereArgs
+  ): TermNodeToEnqueuedScriptConnection
+
+  """Connection between the TermNode type and the EnqueuedStylesheet type"""
+  enqueuedStylesheets(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """Arguments for filtering the connection"""
+    where: TermNodeToEnqueuedStylesheetConnectionWhereArgs
+  ): TermNodeToEnqueuedStylesheetConnection
+
+  """The unique numeric identifier for the term."""
+  graphqlDocumentGroupId: Int @deprecated(reason: "Deprecated in favor of databaseId")
+
+  """
+  Connection between the GraphqlDocumentGroup type and the graphqlDocument type
+  """
+  graphqlDocuments(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """Arguments for filtering the connection"""
+    where: GraphqlDocumentGroupToGraphqlDocumentConnectionWhereArgs
+  ): GraphqlDocumentGroupToGraphqlDocumentConnection
+
+  """The globally unique ID for the object"""
+  id: ID!
+
+  """Whether the node is a Comment"""
+  isComment: Boolean!
+
+  """Whether the node is a Content Node"""
+  isContentNode: Boolean!
+
+  """Whether the node represents the front page."""
+  isFrontPage: Boolean!
+
+  """Whether  the node represents the blog page."""
+  isPostsPage: Boolean!
+
+  """Whether the object is restricted from the current viewer"""
+  isRestricted: Boolean
+
+  """Whether the node is a Term"""
+  isTermNode: Boolean!
+
+  """The link to the term"""
+  link: String
+
+  """The human friendly name of the object."""
+  name: String
+
+  """An alphanumeric identifier for the object unique to its type."""
+  slug: String
+
+  """Connection between the GraphqlDocumentGroup type and the Taxonomy type"""
+  taxonomy: GraphqlDocumentGroupToTaxonomyConnectionEdge
+
+  """The name of the taxonomy that the object is associated with"""
+  taxonomyName: String
+
+  """The ID of the term group that this term object belongs to"""
+  termGroupId: Int
+
+  """The taxonomy ID that the object is associated with"""
+  termTaxonomyId: Int
+
+  """The unique resource identifier path"""
+  uri: String
+}
+
+"""
+A paginated collection of graphqlDocumentGroup Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of graphqlDocumentGroup Nodes
+"""
+interface GraphqlDocumentGroupConnection implements Connection {
+  """
+  A list of edges (relational context) between RootQuery and connected graphqlDocumentGroup Nodes
+  """
+  edges: [GraphqlDocumentGroupConnectionEdge!]!
+
+  """A list of connected graphqlDocumentGroup Nodes"""
+  nodes: [GraphqlDocumentGroup!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: GraphqlDocumentGroupConnectionPageInfo!
+}
+
+"""
+Represents a connection to a graphqlDocumentGroup. Contains both the graphqlDocumentGroup Node and metadata about the relationship.
+"""
+interface GraphqlDocumentGroupConnectionEdge implements Edge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The connected graphqlDocumentGroup Node"""
+  node: GraphqlDocumentGroup!
+}
+
+"""
+Pagination metadata specific to &quot;GraphqlDocumentGroupConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;GraphqlDocumentGroupConnectionEdge&quot; Nodes.
+"""
+interface GraphqlDocumentGroupConnectionPageInfo implements PageInfo & WPPageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""
+Identifier types for retrieving a specific GraphqlDocumentGroup. Determines which unique property (global ID, database ID, slug, etc.) is used to locate the GraphqlDocumentGroup.
+"""
+enum GraphqlDocumentGroupIdType {
+  """The Database ID for the node"""
+  DATABASE_ID
+
+  """The hashed Global ID"""
+  ID
+
+  """The name of the node"""
+  NAME
+
+  """Url friendly name of the node"""
+  SLUG
+
+  """The URI for the node"""
+  URI
+}
+
+"""
+Connection between the GraphqlDocumentGroup type and the ContentNode type
+"""
+type GraphqlDocumentGroupToContentNodeConnection implements Connection & ContentNodeConnection {
+  """Edges for the GraphqlDocumentGroupToContentNodeConnection connection"""
+  edges: [GraphqlDocumentGroupToContentNodeConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [ContentNode!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: GraphqlDocumentGroupToContentNodeConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type GraphqlDocumentGroupToContentNodeConnectionEdge implements ContentNodeConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: ContentNode!
+}
+
+"""
+Pagination metadata specific to &quot;GraphqlDocumentGroupToContentNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of GraphqlDocumentGroupToContentNodeConnection Nodes.
+"""
+type GraphqlDocumentGroupToContentNodeConnectionPageInfo implements ContentNodeConnectionPageInfo & PageInfo & WPPageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""
+Arguments for filtering the GraphqlDocumentGroupToContentNodeConnection connection
+"""
+input GraphqlDocumentGroupToContentNodeConnectionWhereArgs {
+  """The Types of content to filter"""
+  contentTypes: [ContentTypesOfGraphqlDocumentGroupEnum]
+
+  """Filter the connection based on dates"""
+  dateQuery: DateQueryInput
+
+  """
+  True for objects with passwords; False for objects without passwords; null for all objects with or without passwords
+  """
+  hasPassword: Boolean
+
+  """Specific database ID of the object"""
+  id: Int
+
+  """Array of IDs for the objects to retrieve"""
+  in: [ID]
+
+  """
+  True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results.
+  """
+  isSticky: Boolean
+
+  """Get objects with a specific mimeType property"""
+  mimeType: MimeTypeEnum
+
+  """Slug / post_name of the object"""
+  name: String
+
+  """Specify objects to retrieve. Use slugs"""
+  nameIn: [String]
+
+  """
+  Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored
+  """
+  notIn: [ID]
+
+  """What parameter to use to order the objects by."""
+  orderby: [PostObjectsConnectionOrderbyInput]
+
+  """Use ID to return only children. Use 0 to return only top-level items"""
+  parent: ID
+
+  """Specify objects whose parent is in an array"""
+  parentIn: [ID]
+
+  """Specify posts whose parent is not in an array"""
+  parentNotIn: [ID]
+
+  """Show posts with a specific password."""
+  password: String
+
+  """Show Posts based on a keyword search"""
+  search: String
+
+  """Retrieve posts where post status is in an array."""
+  stati: [PostStatusEnum]
+
+  """Show posts with a specific status."""
+  status: PostStatusEnum
+
+  """Filter the connection to content assigned a specific template."""
+  template: ContentTemplateEnum
+
+  """Title of the object"""
+  title: String
+}
+
+"""
+Connection between the GraphqlDocumentGroup type and the graphqlDocument type
+"""
+type GraphqlDocumentGroupToGraphqlDocumentConnection implements Connection & GraphqlDocumentConnection {
+  """
+  Edges for the GraphqlDocumentGroupToGraphqlDocumentConnection connection
+  """
+  edges: [GraphqlDocumentGroupToGraphqlDocumentConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [GraphqlDocument!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: GraphqlDocumentGroupToGraphqlDocumentConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type GraphqlDocumentGroupToGraphqlDocumentConnectionEdge implements Edge & GraphqlDocumentConnectionEdge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: GraphqlDocument!
+}
+
+"""
+Pagination metadata specific to &quot;GraphqlDocumentGroupToGraphqlDocumentConnection&quot; collections. Provides cursors and flags for navigating through sets of GraphqlDocumentGroupToGraphqlDocumentConnection Nodes.
+"""
+type GraphqlDocumentGroupToGraphqlDocumentConnectionPageInfo implements GraphqlDocumentConnectionPageInfo & PageInfo & WPPageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""
+Arguments for filtering the GraphqlDocumentGroupToGraphqlDocumentConnection connection
+"""
+input GraphqlDocumentGroupToGraphqlDocumentConnectionWhereArgs {
+  """Filter the connection based on dates"""
+  dateQuery: DateQueryInput
+
+  """
+  True for objects with passwords; False for objects without passwords; null for all objects with or without passwords
+  """
+  hasPassword: Boolean
+
+  """Specific database ID of the object"""
+  id: Int
+
+  """Array of IDs for the objects to retrieve"""
+  in: [ID]
+
+  """
+  True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results.
+  """
+  isSticky: Boolean
+
+  """Get objects with a specific mimeType property"""
+  mimeType: MimeTypeEnum
+
+  """Slug / post_name of the object"""
+  name: String
+
+  """Specify objects to retrieve. Use slugs"""
+  nameIn: [String]
+
+  """
+  Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored
+  """
+  notIn: [ID]
+
+  """What parameter to use to order the objects by."""
+  orderby: [PostObjectsConnectionOrderbyInput]
+
+  """Use ID to return only children. Use 0 to return only top-level items"""
+  parent: ID
+
+  """Specify objects whose parent is in an array"""
+  parentIn: [ID]
+
+  """Specify posts whose parent is not in an array"""
+  parentNotIn: [ID]
+
+  """Show posts with a specific password."""
+  password: String
+
+  """Show Posts based on a keyword search"""
+  search: String
+
+  """Retrieve posts where post status is in an array."""
+  stati: [PostStatusEnum]
+
+  """Show posts with a specific status."""
+  status: PostStatusEnum
+
+  """Filter the connection to content assigned a specific template."""
+  template: ContentTemplateEnum
+
+  """Title of the object"""
+  title: String
+}
+
+"""Connection between the GraphqlDocumentGroup type and the Taxonomy type"""
+type GraphqlDocumentGroupToTaxonomyConnectionEdge implements Edge & OneToOneConnection & TaxonomyConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Taxonomy!
+}
+
+"""
+Identifier types for retrieving a specific GraphqlDocument. Specifies which unique attribute is used to find an exact GraphqlDocument.
+"""
+enum GraphqlDocumentIdType {
+  """Identify a resource by the Database ID."""
+  DATABASE_ID
+
+  """Identify a resource by the (hashed) Global ID."""
+  ID
+
+  """
+  Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier.
+  """
+  SLUG
+
+  """Identify a resource by the URI."""
+  URI
+}
+
+"""
+Connection between the graphqlDocument type and the graphqlDocument type
+"""
+type GraphqlDocumentToGraphqlDocumentConnection implements Connection & GraphqlDocumentConnection {
+  """Edges for the GraphqlDocumentToGraphqlDocumentConnection connection"""
+  edges: [GraphqlDocumentToGraphqlDocumentConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [GraphqlDocument!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: GraphqlDocumentToGraphqlDocumentConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type GraphqlDocumentToGraphqlDocumentConnectionEdge implements Edge & GraphqlDocumentConnectionEdge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: GraphqlDocument!
+}
+
+"""
+Pagination metadata specific to &quot;GraphqlDocumentToGraphqlDocumentConnection&quot; collections. Provides cursors and flags for navigating through sets of GraphqlDocumentToGraphqlDocumentConnection Nodes.
+"""
+type GraphqlDocumentToGraphqlDocumentConnectionPageInfo implements GraphqlDocumentConnectionPageInfo & PageInfo & WPPageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""
+Connection between the GraphqlDocument type and the graphqlDocumentGroup type
+"""
+type GraphqlDocumentToGraphqlDocumentGroupConnection implements Connection & GraphqlDocumentGroupConnection {
+  """
+  Edges for the GraphqlDocumentToGraphqlDocumentGroupConnection connection
+  """
+  edges: [GraphqlDocumentToGraphqlDocumentGroupConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [GraphqlDocumentGroup!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: GraphqlDocumentToGraphqlDocumentGroupConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type GraphqlDocumentToGraphqlDocumentGroupConnectionEdge implements Edge & GraphqlDocumentGroupConnectionEdge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: GraphqlDocumentGroup!
+}
+
+"""
+Pagination metadata specific to &quot;GraphqlDocumentToGraphqlDocumentGroupConnection&quot; collections. Provides cursors and flags for navigating through sets of GraphqlDocumentToGraphqlDocumentGroupConnection Nodes.
+"""
+type GraphqlDocumentToGraphqlDocumentGroupConnectionPageInfo implements GraphqlDocumentGroupConnectionPageInfo & PageInfo & WPPageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""
+Arguments for filtering the GraphqlDocumentToGraphqlDocumentGroupConnection connection
+"""
+input GraphqlDocumentToGraphqlDocumentGroupConnectionWhereArgs {
+  """
+  Unique cache key to be produced when this query is stored in an object cache. Default is 'core'.
+  """
+  cacheDomain: String
+
+  """
+  Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0.
+  """
+  childOf: Int
+
+  """
+  True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false.
+  """
+  childless: Boolean
+
+  """
+  Retrieve terms where the description is LIKE the input value. Default empty.
+  """
+  descriptionLike: String
+
+  """
+  Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array.
+  """
+  exclude: [ID]
+
+  """
+  Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array.
+  """
+  excludeTree: [ID]
+
+  """
+  Whether to hide terms not assigned to any posts. Accepts true or false. Default false
+  """
+  hideEmpty: Boolean
+
+  """
+  Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true.
+  """
+  hierarchical: Boolean
+
+  """Array of term ids to include. Default empty array."""
+  include: [ID]
+
+  """Array of names to return term(s) for. Default empty."""
+  name: [String]
+
+  """Retrieve terms where the name is LIKE the input value. Default empty."""
+  nameLike: String
+
+  """
+  Array of object IDs. Results will be limited to terms associated with these objects.
+  """
+  objectIds: [ID]
+
+  """Direction the connection should be ordered in"""
+  order: OrderEnum
+
+  """Field(s) to order terms by. Defaults to 'name'."""
+  orderby: TermObjectsConnectionOrderbyEnum
+
+  """
+  Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false.
+  """
+  padCounts: Boolean
+
+  """Parent term ID to retrieve direct-child terms of. Default empty."""
+  parent: Int
+
+  """
+  Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty.
+  """
+  search: String
+
+  """Array of slugs to return term(s) for. Default empty."""
+  slug: [String]
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomId: [ID] @deprecated(reason: "Use `termTaxonomyId` instead. This will be removed in the next major version of WPGraphQL.")
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomyId: [ID]
+
+  """Whether to prime meta caches for matched terms. Default true."""
+  updateTermMetaCache: Boolean
+}
+
+"""
+Connection between the graphqlDocument type and the graphqlDocument type
+"""
+type GraphqlDocumentToParentConnectionEdge implements Edge & GraphqlDocumentConnectionEdge & OneToOneConnection {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: GraphqlDocument!
+}
+
+"""
+Connection between the graphqlDocument type and the graphqlDocument type
+"""
+type GraphqlDocumentToPreviewConnectionEdge implements Edge & GraphqlDocumentConnectionEdge & OneToOneConnection {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: GraphqlDocument!
+}
+
+"""Connection between the GraphqlDocument type and the TermNode type"""
+type GraphqlDocumentToTermNodeConnection implements Connection & TermNodeConnection {
+  """Edges for the GraphqlDocumentToTermNodeConnection connection"""
+  edges: [GraphqlDocumentToTermNodeConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [TermNode!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: GraphqlDocumentToTermNodeConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type GraphqlDocumentToTermNodeConnectionEdge implements Edge & TermNodeConnectionEdge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: TermNode!
+}
+
+"""
+Pagination metadata specific to &quot;GraphqlDocumentToTermNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of GraphqlDocumentToTermNodeConnection Nodes.
+"""
+type GraphqlDocumentToTermNodeConnectionPageInfo implements PageInfo & TermNodeConnectionPageInfo & WPPageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""
+Arguments for filtering the GraphqlDocumentToTermNodeConnection connection
+"""
+input GraphqlDocumentToTermNodeConnectionWhereArgs {
+  """
+  Unique cache key to be produced when this query is stored in an object cache. Default is 'core'.
+  """
+  cacheDomain: String
+
+  """
+  Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0.
+  """
+  childOf: Int
+
+  """
+  True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false.
+  """
+  childless: Boolean
+
+  """
+  Retrieve terms where the description is LIKE the input value. Default empty.
+  """
+  descriptionLike: String
+
+  """
+  Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array.
+  """
+  exclude: [ID]
+
+  """
+  Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array.
+  """
+  excludeTree: [ID]
+
+  """
+  Whether to hide terms not assigned to any posts. Accepts true or false. Default false
+  """
+  hideEmpty: Boolean
+
+  """
+  Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true.
+  """
+  hierarchical: Boolean
+
+  """Array of term ids to include. Default empty array."""
+  include: [ID]
+
+  """Array of names to return term(s) for. Default empty."""
+  name: [String]
+
+  """Retrieve terms where the name is LIKE the input value. Default empty."""
+  nameLike: String
+
+  """
+  Array of object IDs. Results will be limited to terms associated with these objects.
+  """
+  objectIds: [ID]
+
+  """Direction the connection should be ordered in"""
+  order: OrderEnum
+
+  """Field(s) to order terms by. Defaults to 'name'."""
+  orderby: TermObjectsConnectionOrderbyEnum
+
+  """
+  Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false.
+  """
+  padCounts: Boolean
+
+  """Parent term ID to retrieve direct-child terms of. Default empty."""
+  parent: Int
+
+  """
+  Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty.
+  """
+  search: String
+
+  """Array of slugs to return term(s) for. Default empty."""
+  slug: [String]
+
+  """The Taxonomy to filter terms by"""
+  taxonomies: [TaxonomyEnum]
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomId: [ID] @deprecated(reason: "Use `termTaxonomyId` instead. This will be removed in the next major version of WPGraphQL.")
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomyId: [ID]
+
+  """Whether to prime meta caches for matched terms. Default true."""
+  updateTermMetaCache: Boolean
+}
+
 """
 The &quot;GroupHomepage&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
@@ -11796,7 +13173,7 @@ interface HierarchicalContentNode implements ContentNode & DatabaseIdentifier & 
   ): ContentNodeToEnqueuedStylesheetConnection
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -11852,11 +13229,11 @@ interface HierarchicalContentNode implements ContentNode & DatabaseIdentifier & 
   """The database id of the preview node"""
   previewRevisionDatabaseId: Int
 
-  """Whether the object is a node in the preview state"""
+  """The globally unique ID of the preview node"""
   previewRevisionId: ID
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -12618,7 +13995,7 @@ type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContent
   ): Int
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -12658,7 +14035,7 @@ type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContent
   """Details about the mediaItem"""
   mediaDetails: MediaDetails
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   mediaItemId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Url of the mediaItem"""
@@ -12695,7 +14072,7 @@ type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContent
   """The database id of the preview node"""
   previewRevisionDatabaseId: Int
 
-  """Whether the object is a node in the preview state"""
+  """The globally unique ID of the preview node"""
   previewRevisionId: ID
 
   """The sizes attribute value for an image."""
@@ -12705,7 +14082,7 @@ type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContent
   ): String
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -13104,10 +14481,10 @@ type Menu implements DatabaseIdentifier & Node {
     where: MenuToMenuItemConnectionWhereArgs
   ): MenuToMenuItemConnection
 
-  """Display name of the menu. Equivalent to WP_Term-&gt;name."""
+  """Display name of the menu."""
   name: String
 
-  """The url friendly name of the menu. Equivalent to WP_Term-&gt;slug"""
+  """The url friendly name of the menu."""
   slug: String
 }
 
@@ -14242,7 +15619,7 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   groupHomepage: GroupHomepage
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -14300,7 +15677,7 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   """
   modifiedGmt: String
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   pageId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Fields of the PageIntro ACF Field Group"""
@@ -14324,7 +15701,7 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   """The database id of the preview node"""
   previewRevisionDatabaseId: Int
 
-  """Whether the object is a node in the preview state"""
+  """The globally unique ID of the preview node"""
   previewRevisionId: ID
 
   """
@@ -14361,7 +15738,7 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
   siraLocale: SiraLocale
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -15217,7 +16594,7 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -15304,7 +16681,7 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
     where: PostToPostFormatConnectionWhereArgs
   ): PostToPostFormatConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   postId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Connection between the post type and the post type"""
@@ -15344,7 +16721,7 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   ): PostToRevisionConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -15601,7 +16978,7 @@ type PostFormat implements DatabaseIdentifier & Node & TermNode & UniformResourc
   """The human friendly name of the object."""
   name: String
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   postFormatId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the PostFormat type and the post type"""
@@ -17288,7 +18665,7 @@ type Project implements ContentNode & DatabaseIdentifier & HierarchicalContentNo
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -17353,10 +18730,10 @@ type Project implements ContentNode & DatabaseIdentifier & HierarchicalContentNo
   """The database id of the preview node"""
   previewRevisionDatabaseId: Int
 
-  """Whether the object is a node in the preview state"""
+  """The globally unique ID of the preview node"""
   previewRevisionId: ID
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   projectId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Fields of the ProjectItem ACF Field Group"""
@@ -17407,7 +18784,7 @@ type Project implements ContentNode & DatabaseIdentifier & HierarchicalContentNo
   ): ProjectToProjectSectorConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -17975,7 +19352,7 @@ type ProjectLocation implements DatabaseIdentifier & HierarchicalNode & Hierarch
   """The globally unique identifier of the parent node."""
   parentId: ID
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   projectLocationId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the ProjectLocation type and the project type"""
@@ -18728,7 +20105,7 @@ type ProjectSector implements DatabaseIdentifier & HierarchicalNode & Hierarchic
   """The globally unique identifier of the parent node."""
   parentId: ID
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   projectSectorId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the ProjectSector type and the project type"""
@@ -19808,6 +21185,18 @@ type RootMutation {
     input: CreateCommentInput!
   ): CreateCommentPayload
 
+  """The createGraphqlDocument mutation"""
+  createGraphqlDocument(
+    """Input for the createGraphqlDocument mutation"""
+    input: CreateGraphqlDocumentInput!
+  ): CreateGraphqlDocumentPayload
+
+  """The createGraphqlDocumentGroup mutation"""
+  createGraphqlDocumentGroup(
+    """Input for the createGraphqlDocumentGroup mutation"""
+    input: CreateGraphqlDocumentGroupInput!
+  ): CreateGraphqlDocumentGroupPayload
+
   """The createMediaItem mutation"""
   createMediaItem(
     """Input for the createMediaItem mutation"""
@@ -20119,6 +21508,18 @@ type RootMutation {
     """Input for the deleteComment mutation"""
     input: DeleteCommentInput!
   ): DeleteCommentPayload
+
+  """The deleteGraphqlDocument mutation"""
+  deleteGraphqlDocument(
+    """Input for the deleteGraphqlDocument mutation"""
+    input: DeleteGraphqlDocumentInput!
+  ): DeleteGraphqlDocumentPayload
+
+  """The deleteGraphqlDocumentGroup mutation"""
+  deleteGraphqlDocumentGroup(
+    """Input for the deleteGraphqlDocumentGroup mutation"""
+    input: DeleteGraphqlDocumentGroupInput!
+  ): DeleteGraphqlDocumentGroupPayload
 
   """The deleteMediaItem mutation"""
   deleteMediaItem(
@@ -20461,6 +21862,18 @@ type RootMutation {
     """Input for the updateComment mutation"""
     input: UpdateCommentInput!
   ): UpdateCommentPayload
+
+  """The updateGraphqlDocument mutation"""
+  updateGraphqlDocument(
+    """Input for the updateGraphqlDocument mutation"""
+    input: UpdateGraphqlDocumentInput!
+  ): UpdateGraphqlDocumentPayload
+
+  """The updateGraphqlDocumentGroup mutation"""
+  updateGraphqlDocumentGroup(
+    """Input for the updateGraphqlDocumentGroup mutation"""
+    input: UpdateGraphqlDocumentGroupInput!
+  ): UpdateGraphqlDocumentGroupPayload
 
   """The updateMediaItem mutation"""
   updateMediaItem(
@@ -20847,7 +22260,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """
     The content type the node is used for. Required when idType is set to "name" or "slug"
@@ -20921,12 +22334,98 @@ type RootQuery {
   """Fields of the &#039;GeneralSettings&#039; settings group"""
   generalSettings: GeneralSettings
 
+  """An object of the graphqlDocument Type. Saved GraphQL Documents"""
+  graphqlDocument(
+    """
+    Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
+    """
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
+
+    """The globally unique identifier of the object."""
+    id: ID!
+
+    """Type of unique identifier to fetch by. Default is Global ID"""
+    idType: GraphqlDocumentIdType
+  ): GraphqlDocument
+
+  """A graphqlDocument object"""
+  graphqlDocumentBy(
+    """Get the graphqlDocument by its database ID"""
+    graphqlDocumentId: Int
+
+    """Get the graphqlDocument object by its global ID"""
+    id: ID
+
+    """
+    Get the graphqlDocument by its slug (only available for non-hierarchical types)
+    """
+    slug: String
+
+    """Get the graphqlDocument by its uri"""
+    uri: String
+  ): GraphqlDocument @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
+
+  """A 0bject"""
+  graphqlDocumentGroup(
+    """The globally unique identifier of the object."""
+    id: ID!
+
+    """Type of unique identifier to fetch by. Default is Global ID"""
+    idType: GraphqlDocumentGroupIdType
+  ): GraphqlDocumentGroup
+
+  """
+  Connection between the RootQuery type and the graphqlDocumentGroup type
+  """
+  graphqlDocumentGroups(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """Arguments for filtering the connection"""
+    where: RootQueryToGraphqlDocumentGroupConnectionWhereArgs
+  ): RootQueryToGraphqlDocumentGroupConnection
+
+  """Connection between the RootQuery type and the graphqlDocument type"""
+  graphqlDocuments(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """Arguments for filtering the connection"""
+    where: RootQueryToGraphqlDocumentConnectionWhereArgs
+  ): RootQueryToGraphqlDocumentConnection
+
   """An object of the mediaItem Type. """
   mediaItem(
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21057,7 +22556,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21136,7 +22635,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21218,7 +22717,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21397,7 +22896,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21445,7 +22944,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21498,7 +22997,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21551,7 +23050,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21640,7 +23139,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21715,7 +23214,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21768,7 +23267,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21830,7 +23329,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21914,7 +23413,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -21967,7 +23466,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22020,7 +23519,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22073,7 +23572,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22126,7 +23625,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22210,7 +23709,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22263,7 +23762,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22347,7 +23846,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22400,7 +23899,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22453,7 +23952,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22508,7 +24007,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22561,7 +24060,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22614,7 +24113,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22698,7 +24197,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22751,7 +24250,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22804,7 +24303,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22857,7 +24356,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -22910,7 +24409,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -23025,7 +24524,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -23142,7 +24641,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -23195,7 +24694,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -23248,7 +24747,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -23301,7 +24800,7 @@ type RootQuery {
     """
     Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
     """
-    asPreview: Boolean
+    asPreview: Boolean @deprecated(reason: "Use the request-level preview context instead: send the `X-GraphQL-Preview` request header (or a `preview` object in the request `extensions`). When a request carries preview context, the context is applied and `asPreview` is ignored. This argument is planned for removal in a future major version.")
 
     """The globally unique identifier of the object."""
     id: ID!
@@ -24040,6 +25539,242 @@ input RootQueryToEnqueuedStylesheetConnectionWhereArgs {
   Limit results to assets whose handle is in the provided list. Handles that do not match an asset are ignored. An empty list matches no assets, while omitting the argument (or passing null) leaves the connection unfiltered.
   """
   handlesIn: [String]
+}
+
+"""Connection between the RootQuery type and the graphqlDocument type"""
+type RootQueryToGraphqlDocumentConnection implements Connection & GraphqlDocumentConnection {
+  """Edges for the RootQueryToGraphqlDocumentConnection connection"""
+  edges: [RootQueryToGraphqlDocumentConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [GraphqlDocument!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: RootQueryToGraphqlDocumentConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type RootQueryToGraphqlDocumentConnectionEdge implements Edge & GraphqlDocumentConnectionEdge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: GraphqlDocument!
+}
+
+"""
+Pagination metadata specific to &quot;RootQueryToGraphqlDocumentConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToGraphqlDocumentConnection Nodes.
+"""
+type RootQueryToGraphqlDocumentConnectionPageInfo implements GraphqlDocumentConnectionPageInfo & PageInfo & WPPageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""
+Arguments for filtering the RootQueryToGraphqlDocumentConnection connection
+"""
+input RootQueryToGraphqlDocumentConnectionWhereArgs {
+  """Filter the connection based on dates"""
+  dateQuery: DateQueryInput
+
+  """
+  True for objects with passwords; False for objects without passwords; null for all objects with or without passwords
+  """
+  hasPassword: Boolean
+
+  """Specific database ID of the object"""
+  id: Int
+
+  """Array of IDs for the objects to retrieve"""
+  in: [ID]
+
+  """
+  True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results.
+  """
+  isSticky: Boolean
+
+  """Get objects with a specific mimeType property"""
+  mimeType: MimeTypeEnum
+
+  """Slug / post_name of the object"""
+  name: String
+
+  """Specify objects to retrieve. Use slugs"""
+  nameIn: [String]
+
+  """
+  Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored
+  """
+  notIn: [ID]
+
+  """What parameter to use to order the objects by."""
+  orderby: [PostObjectsConnectionOrderbyInput]
+
+  """Use ID to return only children. Use 0 to return only top-level items"""
+  parent: ID
+
+  """Specify objects whose parent is in an array"""
+  parentIn: [ID]
+
+  """Specify posts whose parent is not in an array"""
+  parentNotIn: [ID]
+
+  """Show posts with a specific password."""
+  password: String
+
+  """Show Posts based on a keyword search"""
+  search: String
+
+  """Retrieve posts where post status is in an array."""
+  stati: [PostStatusEnum]
+
+  """Show posts with a specific status."""
+  status: PostStatusEnum
+
+  """Filter the connection to content assigned a specific template."""
+  template: ContentTemplateEnum
+
+  """Title of the object"""
+  title: String
+}
+
+"""
+Connection between the RootQuery type and the graphqlDocumentGroup type
+"""
+type RootQueryToGraphqlDocumentGroupConnection implements Connection & GraphqlDocumentGroupConnection {
+  """Edges for the RootQueryToGraphqlDocumentGroupConnection connection"""
+  edges: [RootQueryToGraphqlDocumentGroupConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [GraphqlDocumentGroup!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: RootQueryToGraphqlDocumentGroupConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type RootQueryToGraphqlDocumentGroupConnectionEdge implements Edge & GraphqlDocumentGroupConnectionEdge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: GraphqlDocumentGroup!
+}
+
+"""
+Pagination metadata specific to &quot;RootQueryToGraphqlDocumentGroupConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToGraphqlDocumentGroupConnection Nodes.
+"""
+type RootQueryToGraphqlDocumentGroupConnectionPageInfo implements GraphqlDocumentGroupConnectionPageInfo & PageInfo & WPPageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""
+Arguments for filtering the RootQueryToGraphqlDocumentGroupConnection connection
+"""
+input RootQueryToGraphqlDocumentGroupConnectionWhereArgs {
+  """
+  Unique cache key to be produced when this query is stored in an object cache. Default is 'core'.
+  """
+  cacheDomain: String
+
+  """
+  Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0.
+  """
+  childOf: Int
+
+  """
+  True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false.
+  """
+  childless: Boolean
+
+  """
+  Retrieve terms where the description is LIKE the input value. Default empty.
+  """
+  descriptionLike: String
+
+  """
+  Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array.
+  """
+  exclude: [ID]
+
+  """
+  Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array.
+  """
+  excludeTree: [ID]
+
+  """
+  Whether to hide terms not assigned to any posts. Accepts true or false. Default false
+  """
+  hideEmpty: Boolean
+
+  """
+  Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true.
+  """
+  hierarchical: Boolean
+
+  """Array of term ids to include. Default empty array."""
+  include: [ID]
+
+  """Array of names to return term(s) for. Default empty."""
+  name: [String]
+
+  """Retrieve terms where the name is LIKE the input value. Default empty."""
+  nameLike: String
+
+  """
+  Array of object IDs. Results will be limited to terms associated with these objects.
+  """
+  objectIds: [ID]
+
+  """Direction the connection should be ordered in"""
+  order: OrderEnum
+
+  """Field(s) to order terms by. Defaults to 'name'."""
+  orderby: TermObjectsConnectionOrderbyEnum
+
+  """
+  Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false.
+  """
+  padCounts: Boolean
+
+  """Parent term ID to retrieve direct-child terms of. Default empty."""
+  parent: Int
+
+  """
+  Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty.
+  """
+  search: String
+
+  """Array of slugs to return term(s) for. Default empty."""
+  slug: [String]
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomId: [ID] @deprecated(reason: "Use `termTaxonomyId` instead. This will be removed in the next major version of WPGraphQL.")
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomyId: [ID]
+
+  """Whether to prime meta caches for matched terms. Default true."""
+  updateTermMetaCache: Boolean
 }
 
 """Connection between the RootQuery type and the mediaItem type"""
@@ -30826,7 +32561,7 @@ type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNo
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -30891,17 +32626,17 @@ type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNo
   """The database id of the preview node"""
   previewRevisionDatabaseId: Int
 
-  """Whether the object is a node in the preview state"""
+  """The globally unique ID of the preview node"""
   previewRevisionId: ID
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   serviceId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Fields of the ServiceItem ACF Field Group"""
   serviceItem: ServiceItem
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -31455,7 +33190,7 @@ type SiraArticle implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -31547,7 +33282,7 @@ type SiraArticle implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
     where: SiraArticleToRevisionConnectionWhereArgs
   ): SiraArticleToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraArticleId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Connection between the SiraArticle type and the SiraBusinessUnit type"""
@@ -31573,7 +33308,7 @@ type SiraArticle implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   ): SiraArticleToSiraBusinessUnitConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -32283,7 +34018,7 @@ type SiraAward implements ContentNode & DatabaseIdentifier & MenuItemLinkable & 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -32375,11 +34110,11 @@ type SiraAward implements ContentNode & DatabaseIdentifier & MenuItemLinkable & 
     where: SiraAwardToRevisionConnectionWhereArgs
   ): SiraAwardToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraAwardId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -32774,7 +34509,7 @@ type SiraBoardMember implements ContentNode & DatabaseIdentifier & MenuItemLinka
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -32873,11 +34608,11 @@ type SiraBoardMember implements ContentNode & DatabaseIdentifier & MenuItemLinka
     where: SiraBoardMemberToRevisionConnectionWhereArgs
   ): SiraBoardMemberToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraBoardMemberId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -33162,6 +34897,9 @@ type SiraBrand {
   """The approved public contact address."""
   address: String
 
+  """The public postal address in Arabic (ADR-037)."""
+  addressAr: String
+
   """The currently active typed announcement banner."""
   announcement: SiraBrandBanner
 
@@ -33218,6 +34956,9 @@ type SiraBrand {
 
   """The public brand tagline."""
   tagline: String
+
+  """The public brand tagline in Arabic (ADR-037)."""
+  taglineAr: String
 
   """The approved public brand values."""
   values: [SiraBrandValue]
@@ -33300,11 +35041,20 @@ type SiraBrandOffice {
   """The public office address."""
   address: String
 
+  """The public office address in Arabic (ADR-037)."""
+  addressAr: String
+
+  """The slug of the business unit the office belongs to."""
+  businessUnit: String
+
   """The public office email address."""
   email: String
 
   """The public office name."""
   name: String!
+
+  """The public office name in Arabic (ADR-037)."""
+  nameAr: String
 
   """The public office phone number."""
   phone: String
@@ -33516,7 +35266,7 @@ type SiraBusinessUnit implements DatabaseIdentifier & HierarchicalNode & Hierarc
     where: SiraBusinessUnitToSiraArticleConnectionWhereArgs
   ): SiraBusinessUnitToSiraArticleConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   siraBusinessUnitId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the SiraBusinessUnit type and the SiraCompany type"""
@@ -35155,7 +36905,7 @@ type SiraCareerArea implements ContentNode & DatabaseIdentifier & MenuItemLinkab
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -35247,7 +36997,7 @@ type SiraCareerArea implements ContentNode & DatabaseIdentifier & MenuItemLinkab
     where: SiraCareerAreaToRevisionConnectionWhereArgs
   ): SiraCareerAreaToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraCareerAreaId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Connection between the SiraCareerArea type and the SiraDepartment type"""
@@ -35273,7 +37023,7 @@ type SiraCareerArea implements ContentNode & DatabaseIdentifier & MenuItemLinkab
   ): SiraCareerAreaToSiraDepartmentConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -35987,7 +37737,7 @@ type SiraCaseStudy implements ContentNode & DatabaseIdentifier & MenuItemLinkabl
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -36079,7 +37829,7 @@ type SiraCaseStudy implements ContentNode & DatabaseIdentifier & MenuItemLinkabl
     where: SiraCaseStudyToRevisionConnectionWhereArgs
   ): SiraCaseStudyToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraCaseStudyId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Connection between the SiraCaseStudy type and the SiraIndustry type"""
@@ -36105,7 +37855,7 @@ type SiraCaseStudy implements ContentNode & DatabaseIdentifier & MenuItemLinkabl
   ): SiraCaseStudyToSiraIndustryConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -36813,7 +38563,7 @@ type SiraCompany implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -36932,7 +38682,7 @@ type SiraCompany implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
     where: SiraCompanyToSiraBusinessUnitConnectionWhereArgs
   ): SiraCompanyToSiraBusinessUnitConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraCompanyId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Connection between the SiraCompany type and the SiraCountry type"""
@@ -37002,7 +38752,7 @@ type SiraCompany implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   ): SiraCompanyToSiraRegionConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -38240,7 +39990,7 @@ type SiraCountry implements DatabaseIdentifier & HierarchicalNode & Hierarchical
     where: SiraCountryToSiraCompanyConnectionWhereArgs
   ): SiraCountryToSiraCompanyConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   siraCountryId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the SiraCountry type and the SiraEvent type"""
@@ -39435,7 +41185,7 @@ type SiraCsrInitiative implements ContentNode & DatabaseIdentifier & MenuItemLin
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -39531,11 +41281,11 @@ type SiraCsrInitiative implements ContentNode & DatabaseIdentifier & MenuItemLin
     where: SiraCsrInitiativeToRevisionConnectionWhereArgs
   ): SiraCsrInitiativeToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraCsrInitiativeId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -39996,7 +41746,7 @@ type SiraDepartment implements DatabaseIdentifier & HierarchicalNode & Hierarchi
     where: SiraDepartmentToSiraCareerAreaConnectionWhereArgs
   ): SiraDepartmentToSiraCareerAreaConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   siraDepartmentId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the SiraDepartment type and the SiraExecutive type"""
@@ -41058,7 +42808,7 @@ type SiraDocument implements ContentNode & DatabaseIdentifier & MenuItemLinkable
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -41150,7 +42900,7 @@ type SiraDocument implements ContentNode & DatabaseIdentifier & MenuItemLinkable
     where: SiraDocumentToRevisionConnectionWhereArgs
   ): SiraDocumentToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraDocumentId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
@@ -41178,7 +42928,7 @@ type SiraDocument implements ContentNode & DatabaseIdentifier & MenuItemLinkable
   ): SiraDocumentToSiraResourceCategoryConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -41897,7 +43647,7 @@ type SiraDownload implements ContentNode & DatabaseIdentifier & MenuItemLinkable
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -41989,7 +43739,7 @@ type SiraDownload implements ContentNode & DatabaseIdentifier & MenuItemLinkable
     where: SiraDownloadToRevisionConnectionWhereArgs
   ): SiraDownloadToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraDownloadId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
@@ -42017,7 +43767,7 @@ type SiraDownload implements ContentNode & DatabaseIdentifier & MenuItemLinkable
   ): SiraDownloadToSiraResourceCategoryConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -42733,7 +44483,7 @@ type SiraEvent implements ContentNode & DatabaseIdentifier & MenuItemLinkable & 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -42847,7 +44597,7 @@ type SiraEvent implements ContentNode & DatabaseIdentifier & MenuItemLinkable & 
     where: SiraEventToSiraCountryConnectionWhereArgs
   ): SiraEventToSiraCountryConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraEventId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Connection between the SiraEvent type and the SiraRegion type"""
@@ -42873,7 +44623,7 @@ type SiraEvent implements ContentNode & DatabaseIdentifier & MenuItemLinkable & 
   ): SiraEventToSiraRegionConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -43745,7 +45495,7 @@ type SiraExecutive implements ContentNode & DatabaseIdentifier & MenuItemLinkabl
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -43862,11 +45612,11 @@ type SiraExecutive implements ContentNode & DatabaseIdentifier & MenuItemLinkabl
     where: SiraExecutiveToSiraDepartmentConnectionWhereArgs
   ): SiraExecutiveToSiraDepartmentConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraExecutiveId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -44580,7 +46330,7 @@ type SiraFaq implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -44672,11 +46422,11 @@ type SiraFaq implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
     where: SiraFaqToRevisionConnectionWhereArgs
   ): SiraFaqToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraFaqId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -45174,7 +46924,7 @@ type SiraIndustry implements DatabaseIdentifier & HierarchicalNode & Hierarchica
     where: SiraIndustryToSiraCompanyConnectionWhereArgs
   ): SiraIndustryToSiraCompanyConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   siraIndustryId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the SiraIndustry type and the SiraInvestment type"""
@@ -46206,7 +47956,7 @@ type SiraInsight implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -46320,7 +48070,7 @@ type SiraInsight implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
     where: SiraInsightToSiraBusinessUnitConnectionWhereArgs
   ): SiraInsightToSiraBusinessUnitConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraInsightId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Connection between the SiraInsight type and the SiraSector type"""
@@ -46346,7 +48096,7 @@ type SiraInsight implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   ): SiraInsightToSiraSectorConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -47220,7 +48970,7 @@ type SiraInvestment implements ContentNode & DatabaseIdentifier & MenuItemLinkab
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -47359,7 +49109,7 @@ type SiraInvestment implements ContentNode & DatabaseIdentifier & MenuItemLinkab
     where: SiraInvestmentToSiraIndustryConnectionWhereArgs
   ): SiraInvestmentToSiraIndustryConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraInvestmentId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
@@ -47431,7 +49181,7 @@ type SiraInvestment implements ContentNode & DatabaseIdentifier & MenuItemLinkab
   ): SiraInvestmentToSiraSectorConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -47882,7 +49632,7 @@ type SiraInvestmentStage implements DatabaseIdentifier & HierarchicalNode & Hier
   """The globally unique identifier of the parent node."""
   parentId: ID
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   siraInvestmentStageId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """
@@ -49660,7 +51410,7 @@ type SiraInvestor implements ContentNode & DatabaseIdentifier & Node & NodeWithA
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -49752,11 +51502,11 @@ type SiraInvestor implements ContentNode & DatabaseIdentifier & Node & NodeWithA
     where: SiraInvestorToRevisionConnectionWhereArgs
   ): SiraInvestorToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraInvestorId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -50153,7 +51903,7 @@ type SiraJob implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -50289,11 +52039,11 @@ type SiraJob implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
     where: SiraJobToSiraDepartmentConnectionWhereArgs
   ): SiraJobToSiraDepartmentConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraJobId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -51158,7 +52908,7 @@ type SiraLeadershipProfile implements ContentNode & DatabaseIdentifier & MenuIte
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -51286,14 +53036,14 @@ type SiraLeadershipProfile implements ContentNode & DatabaseIdentifier & MenuIte
     where: SiraLeadershipProfileToSiraDepartmentConnectionWhereArgs
   ): SiraLeadershipProfileToSiraDepartmentConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraLeadershipProfileId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Fields of the SiraLocale ACF Field Group"""
   siraLocale: SiraLocale
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -52077,7 +53827,7 @@ type SiraMediaItem implements ContentNode & DatabaseIdentifier & MenuItemLinkabl
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -52169,11 +53919,11 @@ type SiraMediaItem implements ContentNode & DatabaseIdentifier & MenuItemLinkabl
     where: SiraMediaItemToRevisionConnectionWhereArgs
   ): SiraMediaItemToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraMediaItemId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -52570,7 +54320,7 @@ type SiraNewsItem implements ContentNode & DatabaseIdentifier & MenuItemLinkable
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -52684,11 +54434,11 @@ type SiraNewsItem implements ContentNode & DatabaseIdentifier & MenuItemLinkable
     where: SiraNewsItemToSiraBusinessUnitConnectionWhereArgs
   ): SiraNewsItemToSiraBusinessUnitConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraNewsItemId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -53402,7 +55152,7 @@ type SiraOffice implements ContentNode & DatabaseIdentifier & MenuItemLinkable &
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -53516,7 +55266,7 @@ type SiraOffice implements ContentNode & DatabaseIdentifier & MenuItemLinkable &
     where: SiraOfficeToSiraCountryConnectionWhereArgs
   ): SiraOfficeToSiraCountryConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraOfficeId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Connection between the SiraOffice type and the SiraOfficeRegion type"""
@@ -53564,7 +55314,7 @@ type SiraOffice implements ContentNode & DatabaseIdentifier & MenuItemLinkable &
   ): SiraOfficeToSiraRegionConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -53833,7 +55583,7 @@ type SiraOfficeRegion implements DatabaseIdentifier & HierarchicalNode & Hierarc
   """The globally unique identifier of the parent node."""
   parentId: ID
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   siraOfficeRegionId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the SiraOfficeRegion type and the SiraOffice type"""
@@ -55299,7 +57049,7 @@ type SiraPartner implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -55394,11 +57144,11 @@ type SiraPartner implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
     where: SiraPartnerToRevisionConnectionWhereArgs
   ): SiraPartnerToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraPartnerId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -55793,7 +57543,7 @@ type SiraPortfolioItem implements ContentNode & DatabaseIdentifier & MenuItemLin
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -55913,7 +57663,7 @@ type SiraPortfolioItem implements ContentNode & DatabaseIdentifier & MenuItemLin
     where: SiraPortfolioItemToSiraInvestmentStageConnectionWhereArgs
   ): SiraPortfolioItemToSiraInvestmentStageConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraPortfolioItemId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Connection between the SiraPortfolioItem type and the SiraSector type"""
@@ -55939,7 +57689,7 @@ type SiraPortfolioItem implements ContentNode & DatabaseIdentifier & MenuItemLin
   ): SiraPortfolioItemToSiraSectorConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -56833,7 +58583,7 @@ type SiraPressRelease implements ContentNode & DatabaseIdentifier & MenuItemLink
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -56953,11 +58703,11 @@ type SiraPressRelease implements ContentNode & DatabaseIdentifier & MenuItemLink
     where: SiraPressReleaseToSiraBusinessUnitConnectionWhereArgs
   ): SiraPressReleaseToSiraBusinessUnitConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraPressReleaseId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -57672,7 +59422,7 @@ type SiraProduct implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -57772,11 +59522,11 @@ type SiraProduct implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   """Fields of the SiraLocale ACF Field Group"""
   siraLocale: SiraLocale
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraProductId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -58155,7 +59905,7 @@ type SiraProject implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -58319,7 +60069,7 @@ type SiraProject implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   """Fields of the SiraLocale ACF Field Group"""
   siraLocale: SiraLocale
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraProjectId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """Connection between the SiraProject type and the SiraProjectStatus type"""
@@ -58389,7 +60139,7 @@ type SiraProject implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   ): SiraProjectToSiraSectorConnection
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -58874,7 +60624,7 @@ type SiraProjectStatus implements DatabaseIdentifier & HierarchicalNode & Hierar
   """The globally unique identifier of the parent node."""
   parentId: ID
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   siraProjectStatusId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the SiraProjectStatus type and the SiraProject type"""
@@ -60756,7 +62506,7 @@ type SiraRegion implements DatabaseIdentifier & HierarchicalNode & HierarchicalT
     where: SiraRegionToSiraProjectConnectionWhereArgs
   ): SiraRegionToSiraProjectConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   siraRegionId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """An alphanumeric identifier for the object unique to its type."""
@@ -61861,7 +63611,7 @@ type SiraResource implements ContentNode & DatabaseIdentifier & MenuItemLinkable
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -61977,11 +63727,11 @@ type SiraResource implements ContentNode & DatabaseIdentifier & MenuItemLinkable
     where: SiraResourceToSiraResourceCategoryConnectionWhereArgs
   ): SiraResourceToSiraResourceCategoryConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraResourceId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -62235,7 +63985,7 @@ type SiraResourceCategory implements DatabaseIdentifier & HierarchicalNode & Hie
     where: SiraResourceCategoryToSiraDownloadConnectionWhereArgs
   ): SiraResourceCategoryToSiraDownloadConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   siraResourceCategoryId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """
@@ -63966,7 +65716,7 @@ type SiraSector implements DatabaseIdentifier & HierarchicalNode & HierarchicalT
     where: SiraSectorToSiraProjectConnectionWhereArgs
   ): SiraSectorToSiraProjectConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   siraSectorId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """An alphanumeric identifier for the object unique to its type."""
@@ -64970,7 +66720,7 @@ type SiraService implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -65087,11 +66837,11 @@ type SiraService implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   """Fields of the SiraLocale ACF Field Group"""
   siraLocale: SiraLocale
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraServiceId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -65801,7 +67551,7 @@ type SiraTestimonial implements ContentNode & DatabaseIdentifier & MenuItemLinka
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -65897,11 +67647,11 @@ type SiraTestimonial implements ContentNode & DatabaseIdentifier & MenuItemLinka
     where: SiraTestimonialToRevisionConnectionWhereArgs
   ): SiraTestimonialToRevisionConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraTestimonialId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -66312,7 +68062,7 @@ type SiraWhitepaper implements ContentNode & DatabaseIdentifier & MenuItemLinkab
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -66428,11 +68178,11 @@ type SiraWhitepaper implements ContentNode & DatabaseIdentifier & MenuItemLinkab
     where: SiraWhitepaperToSiraResourceCategoryConnectionWhereArgs
   ): SiraWhitepaperToSiraResourceCategoryConnection
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   siraWhitepaperId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -67138,7 +68888,7 @@ type SliderImage implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   featuredImageId: ID
 
   """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes.
   """
   guid: String
 
@@ -67200,11 +68950,11 @@ type SliderImage implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the content node."""
   sliderImageId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  The URL-friendly, human-readable identifier for the content node, used in its permalink.
   """
   slug: String
 
@@ -67482,7 +69232,7 @@ type Tag implements DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Un
   """An alphanumeric identifier for the object unique to its type."""
   slug: String
 
-  """The id field matches the WP_Post-&gt;ID field."""
+  """The unique numeric identifier for the term."""
   tagId: Int @deprecated(reason: "Deprecated in favor of databaseId")
 
   """Connection between the Tag type and the Taxonomy type"""
@@ -67879,9 +69629,7 @@ type Taxonomy implements Node {
     last: Int
   ): TaxonomyToTermNodeConnection
 
-  """
-  Description of the taxonomy. This field is equivalent to WP_Taxonomy-&gt;description
-  """
+  """Description of the taxonomy."""
   description: String
 
   """The plural name of the post type within the GraphQL Schema."""
@@ -67902,9 +69650,7 @@ type Taxonomy implements Node {
   """Name of the taxonomy shown in the menu. Usually plural."""
   label: String
 
-  """
-  The display name of the taxonomy. This field is equivalent to WP_Taxonomy-&gt;label
-  """
+  """The display name of the taxonomy."""
   name: String
 
   """Whether the taxonomy is publicly queryable"""
@@ -67918,9 +69664,7 @@ type Taxonomy implements Node {
   """The REST Controller class assigned to handling this content type."""
   restControllerClass: String
 
-  """
-  Whether to show the taxonomy as part of a tag cloud widget. This field is equivalent to WP_Taxonomy-&gt;show_tagcloud
-  """
+  """Whether to show the taxonomy as part of a tag cloud widget."""
   showCloud: Boolean
 
   """
@@ -68003,6 +69747,9 @@ Available classification systems for organizing content. Identifies the differen
 enum TaxonomyEnum {
   """Taxonomy enum category"""
   CATEGORY
+
+  """Taxonomy enum graphql_document_group"""
+  GRAPHQLDOCUMENTGROUP
 
   """Taxonomy enum post_format"""
   POSTFORMAT
@@ -68480,19 +70227,13 @@ interface TestimonialDetails_Fields implements AcfFieldGroup & AcfFieldGroupFiel
 
 """A theme object"""
 type Theme implements Node {
-  """
-  Name of the theme author(s), could also be a company name. This field is equivalent to WP_Theme-&gt;get( &quot;Author&quot; ).
-  """
+  """Name of the theme author(s), could also be a company name."""
   author: String
 
-  """
-  URI for the author/company website. This field is equivalent to WP_Theme-&gt;get( &quot;AuthorURI&quot; ).
-  """
+  """URI for the author/company website."""
   authorUri: String
 
-  """
-  The description of the theme. This field is equivalent to WP_Theme-&gt;get( &quot;Description&quot; ).
-  """
+  """The description of the theme."""
   description: String
 
   """The globally unique identifier of the theme object."""
@@ -68501,34 +70242,30 @@ type Theme implements Node {
   """Whether the object is restricted from the current viewer"""
   isRestricted: Boolean
 
-  """
-  Display name of the theme. This field is equivalent to WP_Theme-&gt;get( &quot;Name&quot; ).
-  """
+  """Display name of the theme."""
   name: String
 
   """
-  The URL of the screenshot for the theme. The screenshot is intended to give an overview of what the theme looks like. This field is equivalent to WP_Theme-&gt;get_screenshot().
+  The URL of the screenshot for the theme. The screenshot is intended to give an overview of what the theme looks like.
   """
   screenshot: String
 
   """
-  The theme slug is used to internally match themes. Theme slugs can have subdirectories like: my-theme/sub-theme. This field is equivalent to WP_Theme-&gt;get_stylesheet().
+  The theme slug is used to internally match themes. Theme slugs can have subdirectories like: my-theme/sub-theme.
   """
   slug: String
 
   """
-  URI for the author/company website. This field is equivalent to WP_Theme-&gt;get( &quot;Tags&quot; ).
+  A list of tags associated with the theme, typically describing its features (e.g. custom-logo, accessibility-ready, full-site-editing).
   """
   tags: [String]
 
   """
-  A URI if the theme has a website associated with it. The Theme URI is handy for directing users to a theme site for support etc. This field is equivalent to WP_Theme-&gt;get( &quot;ThemeURI&quot; ).
+  A URI if the theme has a website associated with it. The Theme URI is handy for directing users to a theme site for support etc.
   """
   themeUri: String
 
-  """
-  The current version of the theme. This field is equivalent to WP_Theme-&gt;get( &quot;Version&quot; ).
-  """
+  """The current version of the theme."""
   version: String
 }
 
@@ -68707,6 +70444,107 @@ type UpdateCommentPayload {
   Whether the mutation succeeded. If the comment is not approved, the server will not return the comment to a non authenticated user, but a success message can be returned if the create succeeded, and the client can optimistically add the comment to the client cache
   """
   success: Boolean
+}
+
+"""Input for the updateGraphqlDocumentGroup mutation."""
+input UpdateGraphqlDocumentGroupInput {
+  """The slug that the graphql_document_group will be an alias of"""
+  aliasOf: String
+
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The description of the graphql_document_group object"""
+  description: String
+
+  """The ID of the graphqlDocumentGroup object to update"""
+  id: ID!
+
+  """The name of the graphql_document_group object to mutate"""
+  name: String
+
+  """
+  If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name.
+  """
+  slug: String
+}
+
+"""The payload for the updateGraphqlDocumentGroup mutation."""
+type UpdateGraphqlDocumentGroupPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The created graphql_document_group"""
+  graphqlDocumentGroup: GraphqlDocumentGroup
+}
+
+"""Input for the updateGraphqlDocument mutation."""
+input UpdateGraphqlDocumentInput {
+  """Alias names for saved GraphQL query documents"""
+  alias: [String!]
+
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The content of the object"""
+  content: String
+
+  """
+  The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17 
+  """
+  date: String
+
+  """Description for the saved GraphQL document"""
+  description: String
+
+  """Allow, deny or default access grant for specific query"""
+  grant: String
+
+  """Set connections between the graphqlDocument and graphqlDocumentGroups"""
+  graphqlDocumentGroups: GraphqlDocumentGraphqlDocumentGroupsInput
+
+  """The ID of the graphqlDocument object"""
+  id: ID!
+
+  """Override the edit lock when another user is editing the post"""
+  ignoreEditLock: Boolean
+
+  """HTTP Cache-Control max-age directive for a saved GraphQL document"""
+  maxAgeHeader: Int
+
+  """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+
+  """The password used to protect the content of the object"""
+  password: String
+
+  """The slug of the object"""
+  slug: String
+
+  """The status of the object"""
+  status: PostStatusEnum
+
+  """The title of the object"""
+  title: String
+}
+
+"""The payload for the updateGraphqlDocument mutation."""
+type UpdateGraphqlDocumentPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The Post object mutation type."""
+  graphqlDocument: GraphqlDocument
 }
 
 """Input for the updateMediaItem mutation."""
@@ -71734,9 +73572,7 @@ type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIden
   """Description of the user."""
   description: String
 
-  """
-  Email address of the user. This is equivalent to the WP_User-&gt;user_email property.
-  """
+  """Email address of the user."""
   email: String
 
   """Connection between the User type and the EnqueuedScript type"""
@@ -71784,13 +73620,11 @@ type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIden
   ): UserToEnqueuedStylesheetConnection
 
   """
-  A complete list of capabilities including capabilities inherited from a role. This is equivalent to the array keys of WP_User-&gt;allcaps.
+  A complete list of capabilities including capabilities inherited from a role.
   """
   extraCapabilities: [String]
 
-  """
-  First name of the user. This is equivalent to the WP_User-&gt;user_first_name property.
-  """
+  """First name of the user."""
   firstName: String
 
   """
@@ -71829,9 +73663,7 @@ type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIden
   """Whether the node is a Term"""
   isTermNode: Boolean!
 
-  """
-  Last name of the user. This is equivalent to the WP_User-&gt;user_last_name property.
-  """
+  """Last name of the user."""
   lastName: String
 
   """
@@ -71861,13 +73693,11 @@ type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIden
     where: UserToMediaItemConnectionWhereArgs
   ): UserToMediaItemConnection
 
-  """
-  Display name of the user. This is equivalent to the WP_User-&gt;display_name property.
-  """
+  """Display name of the user."""
   name: String
 
   """
-  The nicename for the user. This field is equivalent to WP_User-&gt;user_nicename
+  The url friendly name for the user, used to reference the user in a public url.
   """
   nicename: String
 
@@ -72541,9 +74371,7 @@ type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIden
     where: UserToSiraWhitepaperConnectionWhereArgs
   ): UserToSiraWhitepaperConnection
 
-  """
-  The slug for the user. This field is equivalent to WP_User-&gt;user_nicename
-  """
+  """The url friendly identifier for the user."""
   slug: String
 
   """The unique resource identifier path"""
@@ -72552,11 +74380,11 @@ type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIden
   """A website url that is associated with the user."""
   url: String
 
-  """The Id of the user. Equivalent to WP_User-&gt;ID"""
+  """The unique numeric identifier for the user."""
   userId: Int @deprecated(reason: "Deprecated in favor of the databaseId field")
 
   """
-  Username for the user. This field is equivalent to WP_User-&gt;user_login.
+  Username for the user. This is the unique identifier the user provides to log in.
   """
   username: String
 }

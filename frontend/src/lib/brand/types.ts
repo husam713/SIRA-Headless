@@ -76,6 +76,11 @@ export interface BrandOffice {
   readonly address: string | null;
   readonly phone: string | null;
   readonly email: string | null;
+  /** The Arabic name and address (ADR-037), null until an editor fills them. */
+  readonly nameAr: string | null;
+  readonly addressAr: string | null;
+  /** The slug of the company the office belongs to, for its accent; null when unassigned. */
+  readonly unit: string | null;
 }
 
 export interface BrandSocialProfiles {
@@ -109,6 +114,14 @@ export interface ResolvedBrand {
   readonly key: SiteKey;
   readonly name: string;
   readonly tagline: string | null;
+  /**
+   * The Arabic tagline and address (ADR-037). The brand options are one set
+   * per site, so these ride beside the English rather than in a second set;
+   * `getBrand(siteKey, "ar")` folds them into `tagline`, `address` and the
+   * offices so a page never chooses.
+   */
+  readonly taglineAr: string | null;
+  readonly addressAr: string | null;
   readonly identity: BrandIdentityTokens;
   readonly semantic: BrandSemanticTokens;
   readonly assets: BrandAssetSet;

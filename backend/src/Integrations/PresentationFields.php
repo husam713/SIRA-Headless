@@ -1771,6 +1771,17 @@ final class PresentationFields {
 					'max'          => 12,
 				)
 			),
+			// The company's services, curated, as the Group homepage has them. Until
+			// 2026-09-18 a branch homepage had no services chapter at all, so the
+			// services ledger was reachable only by typing its URL.
+			self::relationship_section(
+				'branch_services',
+				'Services',
+				'services',
+				array( 'sira_service' ),
+				'selectedServices',
+				12
+			),
 			self::relationship_section(
 				'branch_projects',
 				'Projects',

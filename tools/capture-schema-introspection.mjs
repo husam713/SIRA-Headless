@@ -31,13 +31,16 @@ import { createRequire } from "node:module";
 const require = createRequire(new URL("../frontend/package.json", import.meta.url));
 const { getIntrospectionQuery } = require("graphql");
 
+// The WordPress site URLs, which `wp --url` must match exactly. Since the
+// CMS-origin relocation (ADR-036, 2026-09-10) the five non-Group tenants
+// live on `cms-<tenant>`; Group is still on the apex.
 const SITES = Object.freeze({
   group: "siratrgroup.com",
-  consulting: "consulting.siratrgroup.com",
-  healthcare: "healthcare.siratrgroup.com",
-  lifestyle: "lifestyle.siratrgroup.com",
-  realestate: "realestate.siratrgroup.com",
-  digital: "digital.siratrgroup.com",
+  consulting: "cms-consulting.siratrgroup.com",
+  healthcare: "cms-healthcare.siratrgroup.com",
+  lifestyle: "cms-lifestyle.siratrgroup.com",
+  realestate: "cms-realestate.siratrgroup.com",
+  digital: "cms-digital.siratrgroup.com",
 });
 
 const WP_ROOT = "~/domains/siratrgroup.com/public_html";

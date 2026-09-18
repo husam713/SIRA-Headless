@@ -3,6 +3,7 @@ query SiraBrand {
     name
     key
     tagline
+    taglineAr
     primaryColor
     secondaryColor
     accentColor
@@ -38,6 +39,7 @@ query SiraBrand {
     email
     phone
     address
+    addressAr
     description
     mission
     vision
@@ -52,6 +54,9 @@ query SiraBrand {
       address
       phone
       email
+      nameAr
+      addressAr
+      businessUnit
     }
 
     socialProfiles {

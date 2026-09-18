@@ -28,6 +28,8 @@ function createBrand(
     name: "SIRA Consulting",
     key: "consulting",
     tagline: "Strategy for new markets.",
+    taglineAr: null,
+    addressAr: null,
     primaryColor: "#8B5AAE",
     secondaryColor: "#2B1F36",
     accentColor: "#8B5AAE",

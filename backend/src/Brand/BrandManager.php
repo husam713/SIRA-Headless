@@ -141,6 +141,8 @@ final class BrandManager {
 				'email'              => '',
 				'phone'              => '',
 				'address'            => '',
+				'tagline_ar'         => '',
+				'address_ar'         => '',
 				'description'        => '',
 				'mission'            => '',
 				'vision'             => '',
@@ -248,6 +250,7 @@ final class BrandManager {
 				(string) $defaults['brand_key']
 			),
 			'tagline'             => self::public_optional_text( $brand['tagline'] ?? null ),
+			'tagline_ar'          => self::public_optional_text( $brand['tagline_ar'] ?? null ),
 			'primary_color'       => self::public_color(
 				$brand['primary_color'] ?? null,
 				(string) $defaults['primary_color']
@@ -273,6 +276,7 @@ final class BrandManager {
 			'email'               => self::public_optional_email( $brand['email'] ?? null ),
 			'phone'               => self::public_optional_text( $brand['phone'] ?? null ),
 			'address'             => self::public_optional_textarea( $brand['address'] ?? null ),
+			'address_ar'          => self::public_optional_textarea( $brand['address_ar'] ?? null ),
 			'description'         => self::public_optional_html( $brand['description'] ?? null ),
 			'mission'             => self::public_optional_textarea( $brand['mission'] ?? null ),
 			'vision'              => self::public_optional_textarea( $brand['vision'] ?? null ),
@@ -307,6 +311,7 @@ final class BrandManager {
 			'brand_name'       => array( 'sira_brand_name', 'field_sira_brand_name' ),
 			'brand_key'        => array( 'sira_brand_key', 'field_sira_brand_key' ),
 			'tagline'          => array( 'sira_brand_tagline', 'field_sira_brand_tagline' ),
+			'tagline_ar'       => array( 'sira_brand_tagline_ar', 'field_sira_brand_tagline_ar' ),
 			'logo_id'          => array( 'sira_brand_logo', 'field_sira_brand_logo' ),
 			'mark_id'          => array( 'sira_brand_mark', 'field_sira_brand_mark' ),
 			'primary_color'    => array( 'sira_primary_color', 'field_sira_primary_color' ),
@@ -317,6 +322,7 @@ final class BrandManager {
 			'email'            => array( 'sira_brand_email', 'field_sira_brand_email' ),
 			'phone'            => array( 'sira_brand_phone', 'field_sira_brand_phone' ),
 			'address'          => array( 'sira_brand_address', 'field_sira_brand_address' ),
+			'address_ar'       => array( 'sira_brand_address_ar', 'field_sira_brand_address_ar' ),
 			'description'      => array( 'sira_brand_description', 'field_sira_brand_description' ),
 			'mission'          => array( 'sira_brand_mission', 'field_sira_brand_mission' ),
 			'vision'           => array( 'sira_brand_vision', 'field_sira_brand_vision' ),
@@ -462,7 +468,7 @@ final class BrandManager {
 	}
 
 	/**
-	 * @return array<int,array{name:string,address:?string,phone:?string,email:?string}>
+	 * @return array<int,array{name:string,address:?string,phone:?string,email:?string,name_ar:?string,address_ar:?string,business_unit:?string}>
 	 */
 	private static function public_offices( mixed $value ): array {
 		if ( ! is_array( $value ) ) {
@@ -483,14 +489,34 @@ final class BrandManager {
 			}
 
 			$rows[] = array(
-				'name'    => $name,
-				'address' => self::public_optional_textarea( $row['address'] ?? null ),
-				'phone'   => self::public_optional_text( $row['phone'] ?? null ),
-				'email'   => self::public_optional_email( $row['email'] ?? null ),
+				'name'          => $name,
+				'address'       => self::public_optional_textarea( $row['address'] ?? null ),
+				'phone'         => self::public_optional_text( $row['phone'] ?? null ),
+				'email'         => self::public_optional_email( $row['email'] ?? null ),
+				'name_ar'       => self::public_optional_text( $row['name_ar'] ?? null ),
+				'address_ar'    => self::public_optional_textarea( $row['address_ar'] ?? null ),
+				'business_unit' => self::public_business_unit_slug( $row['business_unit'] ?? null ),
 			);
 		}
 
 		return $rows;
+	}
+
+	/**
+	 * The slug of a `sira_business_unit` term the field stored by id, or null.
+	 * The slug is what the frontend keys its accents by; the id means nothing
+	 * off this site.
+	 */
+	private static function public_business_unit_slug( mixed $value ): ?string {
+		$id = is_array( $value ) ? ( $value[0] ?? 0 ) : $value;
+
+		if ( is_object( $id ) && isset( $id->slug ) ) {
+			return (string) $id->slug;
+		}
+
+		$term = get_term( absint( $id ), 'sira_business_unit' );
+
+		return $term instanceof \WP_Term ? $term->slug : null;
 	}
 
 	/**
@@ -507,8 +533,10 @@ final class BrandManager {
 			'brand_name',
 			'brand_key',
 			'tagline',
+			'tagline_ar',
 			'phone',
 			'address',
+			'address_ar',
 			'analytics_id',
 			'emergency_banner',
 			'announcement_bar',

@@ -249,7 +249,7 @@ describe("approved SIRA GraphQL operation contracts", () => {
     // to one) so the card can link to it. The number is asserted rather than
     // derived on purpose — an UNBOUNDED relationship must fail here, and a
     // count that recomputed itself from the document could never notice one.
-    expect(relationshipBounds).toHaveLength(18);
+    expect(relationshipBounds).toHaveLength(19);
     expect([...new Set(relationshipBounds)].sort((left, right) => left - right)).toEqual([
       1,
       6,

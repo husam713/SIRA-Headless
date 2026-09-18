@@ -173,6 +173,18 @@ final class BrandSchema {
 						'type'        => 'String',
 						'description' => __( 'The public office email address.', 'sira-core' ),
 					),
+					'nameAr'  => array(
+						'type'        => 'String',
+						'description' => __( 'The public office name in Arabic (ADR-037).', 'sira-core' ),
+					),
+					'addressAr' => array(
+						'type'        => 'String',
+						'description' => __( 'The public office address in Arabic (ADR-037).', 'sira-core' ),
+					),
+					'businessUnit' => array(
+						'type'        => 'String',
+						'description' => __( 'The slug of the business unit the office belongs to.', 'sira-core' ),
+					),
 				),
 			)
 		);
@@ -326,6 +338,14 @@ final class BrandSchema {
 						'type'        => 'String',
 						'description' => __( 'The public brand tagline.', 'sira-core' ),
 					),
+					'taglineAr'          => array(
+						'type'        => 'String',
+						'description' => __( 'The public brand tagline in Arabic (ADR-037).', 'sira-core' ),
+					),
+					'addressAr'          => array(
+						'type'        => 'String',
+						'description' => __( 'The public postal address in Arabic (ADR-037).', 'sira-core' ),
+					),
 					'primaryColor'       => array(
 						'type'        => array( 'non_null' => 'String' ),
 						'description' => __( 'The primary brand color.', 'sira-core' ),
@@ -421,6 +441,8 @@ final class BrandSchema {
 			'name'               => (string) $brand['brand_name'],
 			'key'                => (string) $brand['brand_key'],
 			'tagline'            => $brand['tagline'],
+			'taglineAr'          => $brand['tagline_ar'],
+			'addressAr'          => $brand['address_ar'],
 			'primaryColor'       => (string) $brand['primary_color'],
 			'secondaryColor'     => (string) $brand['secondary_color'],
 			'accentColor'        => (string) $brand['accent_color'],

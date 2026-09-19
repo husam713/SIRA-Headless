@@ -1,0 +1,47 @@
+# What `gcloud builds submit` uploads to the Cloud Build source bucket.
+#
+# gcloud reads THIS file, not .dockerignore. Without it, gcloud falls back to a
+# .gitignore-derived default, which still shipped a 62.9 MiB / 426-file tarball
+# because local build output was swept in. Keep the two lists roughly in sync
+# with .dockerignore, but remember they serve different stages: this one governs
+# what leaves your machine, .dockerignore governs what the daemon sees.
+
+# Dependencies and build output — reinstalled/rebuilt inside the image
+node_modules
+.next
+out
+build
+dist
+
+# Secrets. .env.example is documentation and carries no values; everything else
+# is excluded so it never reaches the source bucket.
+.env
+.env.*
+!.env.example
+
+# VCS and tooling metadata
+.git
+.gitignore
+.github
+.vscode
+.idea
+
+# Tests, fixtures and QA output — not needed to build or serve
+tests
+coverage
+playwright-report
+test-results
+*.log
+
+# Docs and working artifacts
+*.md
+!README.md
+artifacts
+docs
+
+# Schema tooling caches — the committed schema is what is used
+.schema-introspection
+
+# OS noise
+.DS_Store
+Thumbs.db

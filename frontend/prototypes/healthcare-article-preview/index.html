@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SIRA Healthcare — Article design preview</title>
+    <style>
+      :root {
+        --canvas: #f3f7fb;
+        --surface: #fbfaf7;
+        --ink: #10243c;
+        --muted: #5a6c82;
+        --line: #d7e2ee;
+        --blue: #1066b1;
+        --signal: #1e73be;
+        --navy: #0e2e4e;
+        --display: Georgia, "Times New Roman", serif;
+        --body: Arial, Helvetica, sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--canvas);
+        font-family: var(--body);
+      }
+
+      .site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 78px;
+        padding: 0 5.5vw;
+        border-bottom: 1px solid var(--line);
+        background: rgb(251 250 247 / 92%);
+      }
+      .brand { display: flex; align-items: center; gap: 10px; color: var(--blue); font: 700 22px/1 var(--display); }
+      .brand-mark { width: 25px; height: 25px; border: 3px solid currentColor; transform: rotate(45deg); border-radius: 3px; }
+      .site-header nav { display: flex; gap: clamp(16px, 2.6vw, 40px); }
+      .site-header a { color: var(--ink); text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+      .contact { padding: 13px 18px; color: white !important; background: var(--signal); border-radius: 3px; }
+
+      .article { max-width: 1400px; margin: 0 auto; padding: 28px clamp(18px, 4vw, 64px) 0; }
+      .crumb { margin: 0 0 26px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+      .hero { display: grid; grid-template-columns: minmax(0, .96fr) minmax(0, 1.04fr); background: var(--surface); border: 1px solid var(--line); }
+      .hero-copy { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(30px, 5vw, 82px); }
+      .eyebrow { margin: 0; color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+      h1, h2 { font-family: var(--display); font-weight: 400; }
+      h1 { max-width: 9ch; margin: 19px 0 22px; font-size: clamp(50px, 6.1vw, 95px); line-height: .91; letter-spacing: -.06em; }
+      .deck { max-width: 46ch; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.6; }
+      .meta { display: flex; flex-wrap: wrap; gap: 14px 21px; margin: 50px 0 0; padding-top: 17px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .meta span:first-child { color: var(--blue); }
+      .hero-image { min-height: 570px; margin: 0; position: relative; overflow: hidden; background: var(--navy); }
+      .hero-image img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: 55% center; }
+      .hero-image figcaption { position: absolute; right: 20px; bottom: 17px; left: 20px; margin: 0; padding: 8px 10px; color: white; background: rgb(14 46 78 / 78%); font-size: 10px; line-height: 1.45; }
+
+      .article-grid { display: grid; grid-template-columns: minmax(0, 1fr) 195px; gap: clamp(36px, 8vw, 130px); max-width: 1040px; margin: clamp(54px, 8vw, 112px) auto; }
+      .prose { max-width: 700px; font-family: var(--display); font-size: 19px; line-height: 1.72; }
+      .prose p { margin: 0 0 29px; }
+      .prose .lead { color: var(--ink); font-size: clamp(24px, 2.5vw, 32px); line-height: 1.38; }
+      .prose h2 { margin: 67px 0 16px; color: var(--navy); font-size: clamp(34px, 4vw, 49px); line-height: 1; letter-spacing: -.035em; }
+      .prose ul { padding: 0 0 0 21px; margin: 0 0 34px; }
+      .prose li { margin: 10px 0; }
+      blockquote { margin: 48px 0; padding: 5px 0 5px 25px; border-left: 3px solid var(--signal); color: var(--navy); font-size: clamp(25px, 3vw, 37px); line-height: 1.2; }
+      .contents { align-self: start; position: sticky; top: 24px; padding-top: 14px; border-top: 2px solid var(--signal); }
+      .contents p { margin: 0 0 15px; color: var(--navy); font: 400 19px/1.1 var(--display); }
+      .contents a { display: block; margin: 0 0 12px; color: var(--muted); text-decoration: none; font-size: 10px; font-weight: 700; letter-spacing: .09em; line-height: 1.4; text-transform: uppercase; }
+      .contents a:hover { color: var(--blue); }
+
+      .related { margin: 0 -1px; border-top: 1px solid var(--line); background: var(--surface); }
+      .related-head { display: flex; justify-content: space-between; align-items: baseline; max-width: 1400px; margin: auto; padding: 30px clamp(18px, 4vw, 64px) 20px; }
+      .related h2 { margin: 0; font-size: clamp(29px, 3vw, 43px); letter-spacing: -.03em; }
+      .related-head span { color: var(--blue); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+      .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 1400px; margin: auto; border-top: 1px solid var(--line); }
+      .story { min-height: 215px; padding: 26px clamp(18px, 3vw, 40px); border-right: 1px solid var(--line); }
+      .story:last-child { border-right: 0; }
+      .story p { margin: 0; color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+      .story h3 { margin: 20px 0 0; font: 400 24px/1.08 var(--display); }
+      .story a { color: inherit; text-decoration: none; }
+
+      .group-footer { margin-top: 0; padding: 40px clamp(18px, 5vw, 72px) 25px; color: #e9f3fc; background: var(--navy); }
+      .footer-inner { display: flex; justify-content: space-between; gap: 35px; max-width: 1400px; margin: auto; }
+      .footer-title { margin: 0; font: 400 25px/1 var(--display); }
+      .footer-copy { margin: 8px 0 0; color: #b8cce0; font-size: 12px; }
+      .footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 13px 24px; max-width: 570px; }
+      .footer-links a { color: #e9f3fc; font-size: 10px; font-weight: 700; letter-spacing: .09em; text-decoration: none; text-transform: uppercase; }
+      .copyright { max-width: 1400px; margin: 32px auto 0; padding-top: 17px; border-top: 1px solid rgb(233 243 252 / 20%); color: #9ab4ca; font-size: 10px; }
+
+      @media (max-width: 760px) {
+        .site-header { min-height: 64px; padding: 0 18px; }
+        .brand { font-size: 18px; }
+        .brand-mark { width: 19px; height: 19px; }
+        .site-header nav a:not(.contact) { display: none; }
+        .contact { padding: 10px 12px; font-size: 9px !important; }
+        .article { padding: 18px 0 0; }
+        .crumb { padding: 0 18px; margin-bottom: 18px; }
+        .hero { grid-template-columns: 1fr; border-inline: 0; }
+        .hero-copy { padding: 34px 18px 28px; }
+        h1 { max-width: 11ch; font-size: clamp(47px, 15vw, 70px); }
+        .deck { font-size: 16px; }
+        .meta { margin-top: 32px; gap: 10px 14px; }
+        .hero-image { min-height: 300px; order: -1; }
+        .hero-image figcaption { right: 12px; bottom: 12px; left: 12px; }
+        .article-grid { display: block; margin: 53px 18px 72px; }
+        .contents { position: static; margin: 0 0 38px; }
+        .prose { font-size: 18px; }
+        .prose h2 { margin-top: 52px; }
+        .related-head { padding: 26px 18px 18px; }
+        .related-grid { grid-template-columns: 1fr; }
+        .story { min-height: 0; padding: 24px 18px; border-right: 0; border-bottom: 1px solid var(--line); }
+        .footer-inner { display: block; }
+        .footer-links { justify-content: flex-start; margin-top: 25px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="SIRA Healthcare home"><span class="brand-mark"></span>SIRA Health</a>
+      <nav aria-label="Primary navigation">
+        <a href="#overview">Overview</a><a href="#projects">Projects</a><a href="#insights">Insights</a><a href="#footer">SIRA Group</a><a class="contact" href="#footer">Contact us</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <article class="article">
+        <p class="crumb">Newsroom / Articles / Healthcare</p>
+        <section class="hero" aria-labelledby="article-title">
+          <div class="hero-copy">
+            <div>
+              <p class="eyebrow">Healthcare · Article</p>
+              <h1 id="article-title">Inside Nairobi’s Diagnostic Imaging Boom</h1>
+              <p class="deck">Why demand for advanced radiology is reshaping East African healthcare investment.</p>
+            </div>
+            <p class="meta"><span>27 Aug 2026</span><span>5 min read</span><span>Healthcare desk</span></p>
+          </div>
+          <figure class="hero-image">
+            <img src="featured-mri-preview.png" alt="Modern MRI scanner in a calm clinical setting" />
+            <figcaption>Featured image — supplied by the WordPress Featured Image field.</figcaption>
+          </figure>
+        </section>
+
+        <div class="article-grid" id="overview">
+          <div class="prose">
+            <p class="lead">Demand for advanced radiology is reshaping how healthcare investors think about East Africa. The opportunity is not only in equipment, but in the systems that make diagnostics accessible, dependable and timely.</p>
+            <h2 id="why-now">Why now</h2>
+            <p>Three forces are converging: broader access to equipment financing, growing confidence in cross-facility reporting, and demand for diagnostics closer to where patients live and work.</p>
+            <ul><li>Imaging demand can grow faster than hospital-bed capacity.</li><li>Reporting turnaround can matter as much as scanner capacity.</li><li>Outpatient diagnostic access can change how care pathways are designed.</li></ul>
+            <blockquote>The critical question is not only where to place a scanner, but how to build the operating system around it.</blockquote>
+            <h2 id="operators">What this means for operators</h2>
+            <p>Operators need to consider the full diagnostic pathway: referral patterns, patient access, staffing, reporting workflows, maintenance and payer relationships. A strong clinical asset depends on how those parts work together.</p>
+            <p>As access expands, the strongest platforms will be those that combine clinical quality with operational discipline and a clear understanding of local care needs.</p>
+          </div>
+          <nav class="contents" aria-label="On this page">
+            <p>In this article</p>
+            <a href="#why-now">Why now</a>
+            <a href="#operators">What this means for operators</a>
+          </nav>
+        </div>
+      </article>
+
+      <section class="related" id="insights" aria-labelledby="related-title">
+        <div class="related-head"><h2 id="related-title">More from SIRA Healthcare</h2><span>Latest insights</span></div>
+        <div class="related-grid">
+          <article class="story"><p>Article</p><h3><a href="#top">The operating system behind diagnostic access</a></h3></article>
+          <article class="story"><p>Insight</p><h3><a href="#top">Why clinical turnaround is a strategic metric</a></h3></article>
+          <article class="story"><p>News</p><h3><a href="#top">Building access through specialist healthcare platforms</a></h3></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="group-footer" id="footer">
+      <div class="footer-inner">
+        <div><p class="footer-title">SIRA Group</p><p class="footer-copy">Shaping a smarter future.</p></div>
+        <nav class="footer-links" aria-label="Group links"><a href="#top">SIRA Healthcare</a><a href="#top">SIRA Consulting</a><a href="#top">SIRA Lifestyle</a><a href="#top">SIRA Real Estate</a><a href="#top">contact@siratrgroup.com</a></nav>
+      </div>
+      <p class="copyright">© 2026 SIRA Group. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

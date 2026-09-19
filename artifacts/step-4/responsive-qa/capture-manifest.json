@@ -1,0 +1,2223 @@
+{
+  "tool": "frontend/scripts/visual-diff.mjs",
+  "startedAt": "2026-09-05T03:52:18.215Z",
+  "finishedAt": "2026-09-05T03:54:20.022Z",
+  "outDir": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa",
+  "requestedTargets": [
+    "group",
+    "healthcare",
+    "consulting",
+    "realestate",
+    "lifestyle"
+  ],
+  "requestedViewports": [
+    375,
+    768,
+    1024,
+    1440,
+    1920
+  ],
+  "source": "fixture",
+  "references": {
+    "group": "SIRA Group Homepage.dc.html",
+    "healthcare": "Sira Healthcare.dc.html",
+    "consulting": "Sira Consulting.dc.html",
+    "realestate": "Sira Real Estate.dc.html",
+    "lifestyle": "Sira Lifestyle.dc.html"
+  },
+  "summary": {
+    "requested": 50,
+    "passed": 50,
+    "failed": 0,
+    "skipped": 0
+  },
+  "captures": [
+    {
+      "tenant": "group",
+      "side": "reference",
+      "viewport": 375,
+      "url": "http://127.0.0.1:62669/SIRA%20Group%20Homepage.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:20.170Z",
+      "finishedAt": "2026-09-05T03:52:26.498Z",
+      "error": null,
+      "files": [
+        {
+          "path": "group-reference-375-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-00.png",
+          "size": 371632,
+          "sha256": "a953c3ed86276d96c5417e3dc766c3f9da7ec238be8b8ff3a15c19053d17f60c"
+        },
+        {
+          "path": "group-reference-375-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-01.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-02.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-03.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-04.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-05.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-06.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-06.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-07.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-07.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-08.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-08.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-09.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-09.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-10.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-10.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-11.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-11.png",
+          "size": 4005,
+          "sha256": "930624ee58a2cde578ae750a96f0466725d0421aec5bf8e37d67175fa81987e6"
+        },
+        {
+          "path": "group-reference-375-12.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-12.png",
+          "size": 38890,
+          "sha256": "113fd77993d1ce3328c9595fc08b87b59c014cb36363e17c9c78fc411a4c7ed4"
+        },
+        {
+          "path": "group-reference-375-13.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-375-13.png",
+          "size": 4224,
+          "sha256": "205f9a6a08bef288a982a7698d77ca2ff6f75b83367539d0e933b06b6ff666a6"
+        }
+      ]
+    },
+    {
+      "tenant": "group",
+      "side": "reference",
+      "viewport": 768,
+      "url": "http://127.0.0.1:62669/SIRA%20Group%20Homepage.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:26.517Z",
+      "finishedAt": "2026-09-05T03:52:32.452Z",
+      "error": null,
+      "files": [
+        {
+          "path": "group-reference-768-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-768-00.png",
+          "size": 663775,
+          "sha256": "d10fd3b146a07cf0111645aba587bee63cde2573cc587982b674b23205c26821"
+        },
+        {
+          "path": "group-reference-768-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-768-01.png",
+          "size": 5641,
+          "sha256": "f29b4a3213171198d9a58345410e40a7d53d359c351e7e56808c381597c29c7d"
+        },
+        {
+          "path": "group-reference-768-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-768-02.png",
+          "size": 5641,
+          "sha256": "f29b4a3213171198d9a58345410e40a7d53d359c351e7e56808c381597c29c7d"
+        },
+        {
+          "path": "group-reference-768-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-768-03.png",
+          "size": 5641,
+          "sha256": "f29b4a3213171198d9a58345410e40a7d53d359c351e7e56808c381597c29c7d"
+        },
+        {
+          "path": "group-reference-768-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-768-04.png",
+          "size": 5641,
+          "sha256": "f29b4a3213171198d9a58345410e40a7d53d359c351e7e56808c381597c29c7d"
+        },
+        {
+          "path": "group-reference-768-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-768-05.png",
+          "size": 5641,
+          "sha256": "f29b4a3213171198d9a58345410e40a7d53d359c351e7e56808c381597c29c7d"
+        },
+        {
+          "path": "group-reference-768-06.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-768-06.png",
+          "size": 5641,
+          "sha256": "f29b4a3213171198d9a58345410e40a7d53d359c351e7e56808c381597c29c7d"
+        },
+        {
+          "path": "group-reference-768-07.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-768-07.png",
+          "size": 5641,
+          "sha256": "f29b4a3213171198d9a58345410e40a7d53d359c351e7e56808c381597c29c7d"
+        },
+        {
+          "path": "group-reference-768-08.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-768-08.png",
+          "size": 40649,
+          "sha256": "3ae355dcd74e8b77b23906a7df81297b04adb8109ae76cabf8b8a5589e0d7ad1"
+        },
+        {
+          "path": "group-reference-768-09.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-768-09.png",
+          "size": 6124,
+          "sha256": "8530f8b32bbfbd548136ff6f66c0925c70e628b756632c6b43cb8e13767f47b7"
+        }
+      ]
+    },
+    {
+      "tenant": "group",
+      "side": "reference",
+      "viewport": 1024,
+      "url": "http://127.0.0.1:62669/SIRA%20Group%20Homepage.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:32.467Z",
+      "finishedAt": "2026-09-05T03:52:38.173Z",
+      "error": null,
+      "files": [
+        {
+          "path": "group-reference-1024-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1024-00.png",
+          "size": 899853,
+          "sha256": "3190f1ee7ad427a0c4014c8b7205a6b99567434642cacd729905ed41b93b778a"
+        },
+        {
+          "path": "group-reference-1024-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1024-01.png",
+          "size": 6616,
+          "sha256": "ab0dd7e3258008c477ec9958abd3525dcc86790c1fbdc5082657fbe7b0da6bfc"
+        },
+        {
+          "path": "group-reference-1024-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1024-02.png",
+          "size": 6616,
+          "sha256": "ab0dd7e3258008c477ec9958abd3525dcc86790c1fbdc5082657fbe7b0da6bfc"
+        },
+        {
+          "path": "group-reference-1024-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1024-03.png",
+          "size": 6616,
+          "sha256": "ab0dd7e3258008c477ec9958abd3525dcc86790c1fbdc5082657fbe7b0da6bfc"
+        },
+        {
+          "path": "group-reference-1024-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1024-04.png",
+          "size": 6616,
+          "sha256": "ab0dd7e3258008c477ec9958abd3525dcc86790c1fbdc5082657fbe7b0da6bfc"
+        },
+        {
+          "path": "group-reference-1024-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1024-05.png",
+          "size": 6616,
+          "sha256": "ab0dd7e3258008c477ec9958abd3525dcc86790c1fbdc5082657fbe7b0da6bfc"
+        },
+        {
+          "path": "group-reference-1024-06.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1024-06.png",
+          "size": 6616,
+          "sha256": "ab0dd7e3258008c477ec9958abd3525dcc86790c1fbdc5082657fbe7b0da6bfc"
+        },
+        {
+          "path": "group-reference-1024-07.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1024-07.png",
+          "size": 42709,
+          "sha256": "eac0ea2da9fdc68d0b5d83f8081d2db7aac187354a596abc2aa847318d30cc8a"
+        }
+      ]
+    },
+    {
+      "tenant": "group",
+      "side": "reference",
+      "viewport": 1440,
+      "url": "http://127.0.0.1:62669/SIRA%20Group%20Homepage.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:38.188Z",
+      "finishedAt": "2026-09-05T03:52:44.191Z",
+      "error": null,
+      "files": [
+        {
+          "path": "group-reference-1440-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1440-00.png",
+          "size": 1264926,
+          "sha256": "0c3126fcd4666ecde5554bcd15ea487cc76d06071d8f83eedd8360365dc49fa1"
+        },
+        {
+          "path": "group-reference-1440-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1440-01.png",
+          "size": 8431,
+          "sha256": "90b807e50445e1cbf1caddefa46d943dc42fb81eb31d4b34bc3886d9b081ef08"
+        },
+        {
+          "path": "group-reference-1440-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1440-02.png",
+          "size": 8431,
+          "sha256": "90b807e50445e1cbf1caddefa46d943dc42fb81eb31d4b34bc3886d9b081ef08"
+        },
+        {
+          "path": "group-reference-1440-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1440-03.png",
+          "size": 8431,
+          "sha256": "90b807e50445e1cbf1caddefa46d943dc42fb81eb31d4b34bc3886d9b081ef08"
+        },
+        {
+          "path": "group-reference-1440-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1440-04.png",
+          "size": 8431,
+          "sha256": "90b807e50445e1cbf1caddefa46d943dc42fb81eb31d4b34bc3886d9b081ef08"
+        },
+        {
+          "path": "group-reference-1440-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1440-05.png",
+          "size": 8431,
+          "sha256": "90b807e50445e1cbf1caddefa46d943dc42fb81eb31d4b34bc3886d9b081ef08"
+        },
+        {
+          "path": "group-reference-1440-06.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1440-06.png",
+          "size": 8431,
+          "sha256": "90b807e50445e1cbf1caddefa46d943dc42fb81eb31d4b34bc3886d9b081ef08"
+        },
+        {
+          "path": "group-reference-1440-07.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1440-07.png",
+          "size": 39658,
+          "sha256": "0f058d6bc5e574a6f6f77283d0297f79274233c305031bb666287f082bbca0f9"
+        }
+      ]
+    },
+    {
+      "tenant": "group",
+      "side": "reference",
+      "viewport": 1920,
+      "url": "http://127.0.0.1:62669/SIRA%20Group%20Homepage.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:44.214Z",
+      "finishedAt": "2026-09-05T03:52:51.163Z",
+      "error": null,
+      "files": [
+        {
+          "path": "group-reference-1920-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1920-00.png",
+          "size": 1731893,
+          "sha256": "1ab24440580683c6eabb4c8ddaa37afb4f0e13ed8d46811d74ff14129dcde897"
+        },
+        {
+          "path": "group-reference-1920-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1920-01.png",
+          "size": 10221,
+          "sha256": "f5ce8f6dcc5fc0e569deee7da9c6ecdba044cf5cd5ee3f2b43db78e772f7958d"
+        },
+        {
+          "path": "group-reference-1920-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1920-02.png",
+          "size": 10221,
+          "sha256": "f5ce8f6dcc5fc0e569deee7da9c6ecdba044cf5cd5ee3f2b43db78e772f7958d"
+        },
+        {
+          "path": "group-reference-1920-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1920-03.png",
+          "size": 10221,
+          "sha256": "f5ce8f6dcc5fc0e569deee7da9c6ecdba044cf5cd5ee3f2b43db78e772f7958d"
+        },
+        {
+          "path": "group-reference-1920-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1920-04.png",
+          "size": 10221,
+          "sha256": "f5ce8f6dcc5fc0e569deee7da9c6ecdba044cf5cd5ee3f2b43db78e772f7958d"
+        },
+        {
+          "path": "group-reference-1920-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1920-05.png",
+          "size": 10221,
+          "sha256": "f5ce8f6dcc5fc0e569deee7da9c6ecdba044cf5cd5ee3f2b43db78e772f7958d"
+        },
+        {
+          "path": "group-reference-1920-06.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1920-06.png",
+          "size": 10221,
+          "sha256": "f5ce8f6dcc5fc0e569deee7da9c6ecdba044cf5cd5ee3f2b43db78e772f7958d"
+        },
+        {
+          "path": "group-reference-1920-07.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-reference-1920-07.png",
+          "size": 40672,
+          "sha256": "729eefabe8574fa152d7652b4c8d12fa2144e472fb78d3548bfdb5002ca9a813"
+        }
+      ]
+    },
+    {
+      "tenant": "group",
+      "side": "fixture",
+      "viewport": 375,
+      "url": "http://127.0.0.1:62669/__fixture/group-complete.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:51.179Z",
+      "finishedAt": "2026-09-05T03:52:52.417Z",
+      "error": null,
+      "files": [
+        {
+          "path": "group-fixture-375-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-375-00.png",
+          "size": 32758,
+          "sha256": "785d4c0ed54659b0a0f07ad9ef066739adf093db6a0061fe97e1c956386cb240"
+        },
+        {
+          "path": "group-fixture-375-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-375-01.png",
+          "size": 42124,
+          "sha256": "909efea27c470874ed733807a6c87a2aa04b2aa25234bde5da7f58a2f951f76e"
+        },
+        {
+          "path": "group-fixture-375-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-375-02.png",
+          "size": 35908,
+          "sha256": "656a462a5834aa85727dc6a1a0e353ec6d1484baf76a4a4f4c9b32e36713efa0"
+        },
+        {
+          "path": "group-fixture-375-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-375-03.png",
+          "size": 33208,
+          "sha256": "0dddf793184db49d2388bb4b89fa2d109ae7a85472dd92d0add8b32bc232cb31"
+        },
+        {
+          "path": "group-fixture-375-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-375-04.png",
+          "size": 28812,
+          "sha256": "0901804d9b5d71469d2e08b7c363792c88d1146821952cc226e0d1aef42ac968"
+        },
+        {
+          "path": "group-fixture-375-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-375-05.png",
+          "size": 39179,
+          "sha256": "fc89eb4b4280a2342b80918ebb9413fe5bfe15cc8161dea4e88dfc6442ca52e2"
+        },
+        {
+          "path": "group-fixture-375-06.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-375-06.png",
+          "size": 6672,
+          "sha256": "3aecf6594a9f42bcdb6386bd3bc39a8a8a7fbe73b2320e489b8717ce11bcefc2"
+        }
+      ]
+    },
+    {
+      "tenant": "group",
+      "side": "fixture",
+      "viewport": 768,
+      "url": "http://127.0.0.1:62669/__fixture/group-complete.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:52.426Z",
+      "finishedAt": "2026-09-05T03:52:53.800Z",
+      "error": null,
+      "files": [
+        {
+          "path": "group-fixture-768-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-768-00.png",
+          "size": 49331,
+          "sha256": "b5ad5dbe196d0ca1a2350aa03dca012dd7fb1b247f2615ced30f0b9a386beae1"
+        },
+        {
+          "path": "group-fixture-768-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-768-01.png",
+          "size": 39571,
+          "sha256": "4ee01ba64b41380767dc8debeece268217491f5123c15985cfac72770602c6ae"
+        },
+        {
+          "path": "group-fixture-768-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-768-02.png",
+          "size": 39675,
+          "sha256": "9f983efb2f8fd8dafb7c45c3d63dbfca3b1343a2cead7ac8e232a2d17978b26a"
+        },
+        {
+          "path": "group-fixture-768-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-768-03.png",
+          "size": 37337,
+          "sha256": "2020c06517c09175b9fcec721aaedc08374159e07c2eb893d38b70f65ae58d8f"
+        },
+        {
+          "path": "group-fixture-768-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-768-04.png",
+          "size": 42187,
+          "sha256": "77824216196d7b79d76581ccd46684eaaaa1709b4e4ac8d30f54bd58aedb14a5"
+        },
+        {
+          "path": "group-fixture-768-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-768-05.png",
+          "size": 29974,
+          "sha256": "5ba8b582311b622773ea688d42a545466c9974a6e4fd51c3c982f85ddaac13e5"
+        }
+      ]
+    },
+    {
+      "tenant": "group",
+      "side": "fixture",
+      "viewport": 1024,
+      "url": "http://127.0.0.1:62669/__fixture/group-complete.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:53.809Z",
+      "finishedAt": "2026-09-05T03:52:55.368Z",
+      "error": null,
+      "files": [
+        {
+          "path": "group-fixture-1024-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1024-00.png",
+          "size": 50828,
+          "sha256": "8de9e3e9e503c15e5928eb4ad09698d4fc7a9c6ae40207faf39dc4c976e174d3"
+        },
+        {
+          "path": "group-fixture-1024-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1024-01.png",
+          "size": 62187,
+          "sha256": "3ed1965b44a636365ca692d0e472e280894a1f873b1128219773701c7f82c967"
+        },
+        {
+          "path": "group-fixture-1024-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1024-02.png",
+          "size": 56305,
+          "sha256": "8c2d9736c59ef56b8fa41aa3c19b2cf0406d0a329a5f0785da4659aef790a35d"
+        },
+        {
+          "path": "group-fixture-1024-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1024-03.png",
+          "size": 49651,
+          "sha256": "e041c5fa5df4035869286354cdeda6f996d9bed3e739a2e27f95b4e409d396ec"
+        },
+        {
+          "path": "group-fixture-1024-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1024-04.png",
+          "size": 38941,
+          "sha256": "c5ab11c486449f1a6d8ca042cedd99a55342f3a54ad02bfa22f368ab9dce58b0"
+        },
+        {
+          "path": "group-fixture-1024-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1024-05.png",
+          "size": 56023,
+          "sha256": "25f32169d5d66dde48b6f8e22d8696b0e0cbdec68c3998d133d334e1bec29fb5"
+        },
+        {
+          "path": "group-fixture-1024-06.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1024-06.png",
+          "size": 4384,
+          "sha256": "640bc31fd5d0811cb7ce1cbdd444675859c09a84e162d9322bbe6eab3ea4e523"
+        }
+      ]
+    },
+    {
+      "tenant": "group",
+      "side": "fixture",
+      "viewport": 1440,
+      "url": "http://127.0.0.1:62669/__fixture/group-complete.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:55.378Z",
+      "finishedAt": "2026-09-05T03:52:57.080Z",
+      "error": null,
+      "files": [
+        {
+          "path": "group-fixture-1440-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1440-00.png",
+          "size": 69215,
+          "sha256": "ffdd737005a978b575960e7ae1b41630de746d9c9f282a169aa29c9d81b5bbfc"
+        },
+        {
+          "path": "group-fixture-1440-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1440-01.png",
+          "size": 64742,
+          "sha256": "4b264bdc1056e8a72a3200bc18b5ecf94a917c334126080992caae0ec52f7678"
+        },
+        {
+          "path": "group-fixture-1440-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1440-02.png",
+          "size": 60668,
+          "sha256": "d68d139dc92f9cf8ec89f214111b94d4ca57988dc24c2b5f554625863e7d0173"
+        },
+        {
+          "path": "group-fixture-1440-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1440-03.png",
+          "size": 48217,
+          "sha256": "d0d385d994a87d8e765633ba0aacffe0175019b0bd80c1dec867dbbe0dcfe6fb"
+        },
+        {
+          "path": "group-fixture-1440-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1440-04.png",
+          "size": 40284,
+          "sha256": "c4a76684b09eb149354e5c0a0022f3c92541842cec671e8a5f68c82af9cf829a"
+        },
+        {
+          "path": "group-fixture-1440-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1440-05.png",
+          "size": 59439,
+          "sha256": "d48d4d629db2a1e73f6f151eb680966572340ddcf41a2d56c06c380c5dd5c287"
+        },
+        {
+          "path": "group-fixture-1440-06.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1440-06.png",
+          "size": 46016,
+          "sha256": "3125fd932627f185b1d63fae394924f5fd2fac2faf05d1a59d6f5a661620a8c6"
+        },
+        {
+          "path": "group-fixture-1440-07.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1440-07.png",
+          "size": 748,
+          "sha256": "b47f8d8e51e4451a1b0b4eccbb3d94bf37d04f5d2bca7a29a663dede2b3a76f8"
+        }
+      ]
+    },
+    {
+      "tenant": "group",
+      "side": "fixture",
+      "viewport": 1920,
+      "url": "http://127.0.0.1:62669/__fixture/group-complete.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:57.092Z",
+      "finishedAt": "2026-09-05T03:52:58.815Z",
+      "error": null,
+      "files": [
+        {
+          "path": "group-fixture-1920-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1920-00.png",
+          "size": 69711,
+          "sha256": "4c8ee53cd5b884fee35a05ae6acc3cf46b3032eda6ebda6a542e3a9373d8ed96"
+        },
+        {
+          "path": "group-fixture-1920-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1920-01.png",
+          "size": 67129,
+          "sha256": "cf1b6213ae22fd31688705ea69444ebe10e6784364d44b300a86dd127b1df471"
+        },
+        {
+          "path": "group-fixture-1920-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1920-02.png",
+          "size": 62289,
+          "sha256": "8b7f08955540bbffe25d7205acec0707b666b5b469614631fc699f86ae9e77dc"
+        },
+        {
+          "path": "group-fixture-1920-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1920-03.png",
+          "size": 52476,
+          "sha256": "5a70995c5c80723d719bfed086f7c79935ac2cf53c459daf324c1b60f9c9215d"
+        },
+        {
+          "path": "group-fixture-1920-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1920-04.png",
+          "size": 58373,
+          "sha256": "bf642e8e06e01b943a884f8f3a218dd7318606d5ebcbcef83d899066639e46cf"
+        },
+        {
+          "path": "group-fixture-1920-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1920-05.png",
+          "size": 56735,
+          "sha256": "64a61ccae7e486dbb811259b05868700cbf6fe4b5af149d55fc4110a864d230b"
+        },
+        {
+          "path": "group-fixture-1920-06.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1920-06.png",
+          "size": 63580,
+          "sha256": "de95e481cb3371606844148cc964681cdc10a616ef0b42b2fe4c6debaf9b7d8c"
+        },
+        {
+          "path": "group-fixture-1920-07.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\group-fixture-1920-07.png",
+          "size": 7789,
+          "sha256": "f0b82d76178da5e71de28430a8b180cd3473660006607d559c2881ed8041be69"
+        }
+      ]
+    },
+    {
+      "tenant": "healthcare",
+      "side": "reference",
+      "viewport": 375,
+      "url": "http://127.0.0.1:62669/Sira%20Healthcare.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:52:58.826Z",
+      "finishedAt": "2026-09-05T03:53:01.297Z",
+      "error": null,
+      "files": [
+        {
+          "path": "healthcare-reference-375-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-375-00.png",
+          "size": 66848,
+          "sha256": "3756531f5646e9dd6f4debf3915cf56e6560e6c28836fe3adba0695d2753a3d6"
+        },
+        {
+          "path": "healthcare-reference-375-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-375-01.png",
+          "size": 45512,
+          "sha256": "c4bc69dcc6ec0e2d1ac431419cd001512f399ad6c0fa9baf55030859b05c8e6c"
+        },
+        {
+          "path": "healthcare-reference-375-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-375-02.png",
+          "size": 35542,
+          "sha256": "909c65f130607b6a148e3403c1de3627ac002de9ead79fb153f59b4672ad93f4"
+        },
+        {
+          "path": "healthcare-reference-375-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-375-03.png",
+          "size": 37602,
+          "sha256": "7a41b28be2b76e9b41ba13cfe2f3d36a76262dc7c2598a3c292f9883ee6e9053"
+        },
+        {
+          "path": "healthcare-reference-375-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-375-04.png",
+          "size": 47547,
+          "sha256": "a078c31116ab1d496c1c8cfcc9ec0721d2fa35c1c6a3da57f07f4d37fc6def87"
+        },
+        {
+          "path": "healthcare-reference-375-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-375-05.png",
+          "size": 38068,
+          "sha256": "4f938f99e9949b3b9e95add133fbd78bec5f555a4517fe5d7b31d5dc5c77e589"
+        }
+      ]
+    },
+    {
+      "tenant": "healthcare",
+      "side": "reference",
+      "viewport": 768,
+      "url": "http://127.0.0.1:62669/Sira%20Healthcare.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:01.318Z",
+      "finishedAt": "2026-09-05T03:53:03.588Z",
+      "error": null,
+      "files": [
+        {
+          "path": "healthcare-reference-768-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-768-00.png",
+          "size": 81554,
+          "sha256": "69bb3d10c914efdf29ed72f81977eb22d4d9deb720408b82970dfaa52045c344"
+        },
+        {
+          "path": "healthcare-reference-768-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-768-01.png",
+          "size": 67431,
+          "sha256": "5caeed11839405d164d577405e5fb909d048d598196db8c211b905010aae07c2"
+        },
+        {
+          "path": "healthcare-reference-768-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-768-02.png",
+          "size": 52306,
+          "sha256": "473b590d13d902155feddba6d23a28e3e188fbc489cf43f39be478adb0a6758b"
+        },
+        {
+          "path": "healthcare-reference-768-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-768-03.png",
+          "size": 69794,
+          "sha256": "d77ff5772ecb737177b0777f66f6fb8f7c071bb17e0c4c05749c55310183d4a8"
+        },
+        {
+          "path": "healthcare-reference-768-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-768-04.png",
+          "size": 16074,
+          "sha256": "4478887d5a70b196dd08ec187c88b43d936ceacdba450d85bcca007dbb81f383"
+        }
+      ]
+    },
+    {
+      "tenant": "healthcare",
+      "side": "reference",
+      "viewport": 1024,
+      "url": "http://127.0.0.1:62669/Sira%20Healthcare.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:03.599Z",
+      "finishedAt": "2026-09-05T03:53:06.210Z",
+      "error": null,
+      "files": [
+        {
+          "path": "healthcare-reference-1024-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1024-00.png",
+          "size": 105283,
+          "sha256": "a43487dcb67be1f3c659d354a4e75b5d0e50b4ea4fe189eed820562918eb9422"
+        },
+        {
+          "path": "healthcare-reference-1024-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1024-01.png",
+          "size": 82418,
+          "sha256": "e4451097dac3a8db9513805aa1a741dbb6fd7b33d4ed4c9aa7fe702a2a77f2f0"
+        },
+        {
+          "path": "healthcare-reference-1024-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1024-02.png",
+          "size": 67893,
+          "sha256": "7fe1011d373c57e0b96bf3e84546bbed4df3003dbf102c51edce4e59b5b336d7"
+        },
+        {
+          "path": "healthcare-reference-1024-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1024-03.png",
+          "size": 75138,
+          "sha256": "76f29d22989f27d7e2b19f9bd4fcf671226250fa7ffdd330b5a26961d0151180"
+        }
+      ]
+    },
+    {
+      "tenant": "healthcare",
+      "side": "reference",
+      "viewport": 1440,
+      "url": "http://127.0.0.1:62669/Sira%20Healthcare.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:06.218Z",
+      "finishedAt": "2026-09-05T03:53:10.273Z",
+      "error": null,
+      "files": [
+        {
+          "path": "healthcare-reference-1440-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1440-00.png",
+          "size": 140239,
+          "sha256": "f3ffd27bdbb4e745b3632aac7d0ef35aa346a8bd214f42c8668194afd5649cda"
+        },
+        {
+          "path": "healthcare-reference-1440-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1440-01.png",
+          "size": 103817,
+          "sha256": "ba3d253544477c7f0853512a48455232a503a56568deda290e0bd7cc7039803a"
+        },
+        {
+          "path": "healthcare-reference-1440-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1440-02.png",
+          "size": 80195,
+          "sha256": "437769d9a76996c7bc9640131bd477607707c2da2a6fea7894efd6998bbd688b"
+        },
+        {
+          "path": "healthcare-reference-1440-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1440-03.png",
+          "size": 58569,
+          "sha256": "d8c1a02cd9ed65ab350ad3a96ed0cd0485b6576a98fbe40adf98861d75ee2153"
+        }
+      ]
+    },
+    {
+      "tenant": "healthcare",
+      "side": "reference",
+      "viewport": 1920,
+      "url": "http://127.0.0.1:62669/Sira%20Healthcare.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:10.282Z",
+      "finishedAt": "2026-09-05T03:53:13.154Z",
+      "error": null,
+      "files": [
+        {
+          "path": "healthcare-reference-1920-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1920-00.png",
+          "size": 156114,
+          "sha256": "1860e3acb9bc3b63ee64ab584d263d674d6771882f0bdbdbd66a6702d6a83053"
+        },
+        {
+          "path": "healthcare-reference-1920-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1920-01.png",
+          "size": 108013,
+          "sha256": "1287ab4e1ef8eda0118442241839a910bdb61942fa3b7f57452806d9f4adc160"
+        },
+        {
+          "path": "healthcare-reference-1920-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1920-02.png",
+          "size": 82481,
+          "sha256": "dd448844f1ee5d7167c928fe8af1b142b9921208814ff56b0ced177b9d8b75bd"
+        },
+        {
+          "path": "healthcare-reference-1920-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-reference-1920-03.png",
+          "size": 60438,
+          "sha256": "1ee82e4ffb4e610265970de62bd4b562d423fc9c45698566f862837a2d8fdc96"
+        }
+      ]
+    },
+    {
+      "tenant": "healthcare",
+      "side": "fixture",
+      "viewport": 375,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-healthcare.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:13.165Z",
+      "finishedAt": "2026-09-05T03:53:14.215Z",
+      "error": null,
+      "files": [
+        {
+          "path": "healthcare-fixture-375-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-375-00.png",
+          "size": 45175,
+          "sha256": "3ede3cb62897623498aa4e3af741ecef1d0b31ff41e87e0dcb66d9dfc318e57f"
+        },
+        {
+          "path": "healthcare-fixture-375-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-375-01.png",
+          "size": 37666,
+          "sha256": "958128ccd6905ee97515df9fa20caf20da91fb4f33234c0c7eb07b8cdef194d3"
+        },
+        {
+          "path": "healthcare-fixture-375-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-375-02.png",
+          "size": 35843,
+          "sha256": "03d273c8d1346f5baf844ac659f38bbda23d70343af18bbb09e7bbbbb8ecd123"
+        },
+        {
+          "path": "healthcare-fixture-375-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-375-03.png",
+          "size": 5166,
+          "sha256": "afa280b00dce7930699854916d3936fe4ded8b4670d2bfb3de7bde9bd5dd3ea1"
+        }
+      ]
+    },
+    {
+      "tenant": "healthcare",
+      "side": "fixture",
+      "viewport": 768,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-healthcare.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:14.222Z",
+      "finishedAt": "2026-09-05T03:53:15.328Z",
+      "error": null,
+      "files": [
+        {
+          "path": "healthcare-fixture-768-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-768-00.png",
+          "size": 60719,
+          "sha256": "fced0bf841c336281ac410a33990e49ad171bffe03cb3fc60d930a3ae81f0d88"
+        },
+        {
+          "path": "healthcare-fixture-768-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-768-01.png",
+          "size": 44836,
+          "sha256": "c445fb4f7a5041256b693b7927a14163ff2cc3182ef43df931c9d3c227dfe870"
+        },
+        {
+          "path": "healthcare-fixture-768-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-768-02.png",
+          "size": 32275,
+          "sha256": "db64955cbc23091f6971781d073fb3b84c3add116651c11917b256e836cf9f6a"
+        },
+        {
+          "path": "healthcare-fixture-768-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-768-03.png",
+          "size": 2690,
+          "sha256": "faa4eed29783ccc8c0e2aa1427edbe2203ea3691523e9184bbbacdc691ff5c23"
+        }
+      ]
+    },
+    {
+      "tenant": "healthcare",
+      "side": "fixture",
+      "viewport": 1024,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-healthcare.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:15.334Z",
+      "finishedAt": "2026-09-05T03:53:16.549Z",
+      "error": null,
+      "files": [
+        {
+          "path": "healthcare-fixture-1024-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1024-00.png",
+          "size": 70696,
+          "sha256": "8f69e492761706a7a6913b9d4d1c30d0978e9d12f702efcfb8d0c81d9c5bb14d"
+        },
+        {
+          "path": "healthcare-fixture-1024-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1024-01.png",
+          "size": 53799,
+          "sha256": "e757972f110324bab28619a1dd6392124b300ec5097126f46fc4641a46ec4eed"
+        },
+        {
+          "path": "healthcare-fixture-1024-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1024-02.png",
+          "size": 48420,
+          "sha256": "ecfcb68488e130bfb51559077a7a542779eecbd5e622c6c9b19e62e26d6ee597"
+        },
+        {
+          "path": "healthcare-fixture-1024-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1024-03.png",
+          "size": 717,
+          "sha256": "bc890db8832098d586298b0eac048a522f757a5568f1e04391ea89a683473265"
+        }
+      ]
+    },
+    {
+      "tenant": "healthcare",
+      "side": "fixture",
+      "viewport": 1440,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-healthcare.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:16.558Z",
+      "finishedAt": "2026-09-05T03:53:17.771Z",
+      "error": null,
+      "files": [
+        {
+          "path": "healthcare-fixture-1440-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1440-00.png",
+          "size": 84829,
+          "sha256": "5ca53d075167ca0a3c4d5e0acf41acbf2e6bb681d567b9d0ec3532d09e51b4c4"
+        },
+        {
+          "path": "healthcare-fixture-1440-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1440-01.png",
+          "size": 66460,
+          "sha256": "3a04957bea93c1647aa81891ea038e8989782832b551d3e075dd41f7a984b5c7"
+        },
+        {
+          "path": "healthcare-fixture-1440-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1440-02.png",
+          "size": 52213,
+          "sha256": "aedebaf06b40099830be20a4e840545110c8d5947e08b58343ee3eb45f5ad8e7"
+        },
+        {
+          "path": "healthcare-fixture-1440-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1440-03.png",
+          "size": 7181,
+          "sha256": "d7212566b8e6624e94176f446412f36d3606dd8bf569e96e5235360e3d1292a3"
+        }
+      ]
+    },
+    {
+      "tenant": "healthcare",
+      "side": "fixture",
+      "viewport": 1920,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-healthcare.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:17.780Z",
+      "finishedAt": "2026-09-05T03:53:19.088Z",
+      "error": null,
+      "files": [
+        {
+          "path": "healthcare-fixture-1920-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1920-00.png",
+          "size": 89225,
+          "sha256": "57b559082d1c9760df4c3daae882854fc53bcad74418a1079955b4eba33be41b"
+        },
+        {
+          "path": "healthcare-fixture-1920-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1920-01.png",
+          "size": 69943,
+          "sha256": "24b76f2c6e6cf01bd68676441e73a704e64e6aaa52aa786c3235a72def35f652"
+        },
+        {
+          "path": "healthcare-fixture-1920-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1920-02.png",
+          "size": 52764,
+          "sha256": "b8c4d2de38dda7919fdceb288a4cfbd24c6b9be7032b9fbc71399cdf95885642"
+        },
+        {
+          "path": "healthcare-fixture-1920-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\healthcare-fixture-1920-03.png",
+          "size": 13180,
+          "sha256": "5e719b0683dc483b0751dfdb75cf93e0b9b955feccc04ce08faaacc51941e438"
+        }
+      ]
+    },
+    {
+      "tenant": "consulting",
+      "side": "reference",
+      "viewport": 375,
+      "url": "http://127.0.0.1:62669/Sira%20Consulting.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:19.096Z",
+      "finishedAt": "2026-09-05T03:53:21.879Z",
+      "error": null,
+      "files": [
+        {
+          "path": "consulting-reference-375-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-375-00.png",
+          "size": 60183,
+          "sha256": "56be114d134495d91889deee65bd73948ab79e935ef5203b76f57de2ec7cdbc6"
+        },
+        {
+          "path": "consulting-reference-375-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-375-01.png",
+          "size": 41457,
+          "sha256": "326b264faaa98e6f3a59f868fdd035169b602ec2c097f43d1082e55e1d59f1a4"
+        },
+        {
+          "path": "consulting-reference-375-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-375-02.png",
+          "size": 32830,
+          "sha256": "d00b61a5498e652360a1c4204597fe8b1f573d98a6f3a190bd2a93289894927e"
+        },
+        {
+          "path": "consulting-reference-375-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-375-03.png",
+          "size": 39759,
+          "sha256": "8dbd3e9fdc5e67271abe92345a262c14027499dbf2aae0a893c6109f53dbb301"
+        },
+        {
+          "path": "consulting-reference-375-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-375-04.png",
+          "size": 52831,
+          "sha256": "b0b4f03080bb61283c140cc14455bcce68c49b80982e068227ea4ff04fd8c8f9"
+        },
+        {
+          "path": "consulting-reference-375-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-375-05.png",
+          "size": 27561,
+          "sha256": "12795a3dfca84b491ffff02e8a54d40fb0c039ec565871aa34c2b879dc81fa1b"
+        }
+      ]
+    },
+    {
+      "tenant": "consulting",
+      "side": "reference",
+      "viewport": 768,
+      "url": "http://127.0.0.1:62669/Sira%20Consulting.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:21.889Z",
+      "finishedAt": "2026-09-05T03:53:24.133Z",
+      "error": null,
+      "files": [
+        {
+          "path": "consulting-reference-768-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-768-00.png",
+          "size": 74819,
+          "sha256": "9285f4430af6795c709b314798888654b5723ce8ea38ed3edeaf0feb006981d6"
+        },
+        {
+          "path": "consulting-reference-768-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-768-01.png",
+          "size": 62829,
+          "sha256": "26d44c6f599535fa10c6a149e85f412c2b57ca6648a4158622c4342d92adf482"
+        },
+        {
+          "path": "consulting-reference-768-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-768-02.png",
+          "size": 59215,
+          "sha256": "af3fb790434010a1933c2d7bdc4db83a888588d8c3e0c79dbb21ec71317005db"
+        },
+        {
+          "path": "consulting-reference-768-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-768-03.png",
+          "size": 70698,
+          "sha256": "127793af66d4ea8168bd37c9639b6a9c44814040962dda42549d114cb7e1597f"
+        },
+        {
+          "path": "consulting-reference-768-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-768-04.png",
+          "size": 15300,
+          "sha256": "bd27a2f50ff377c14579b1275b76222d53f63091668f0a9d339f601e6ecb28e5"
+        }
+      ]
+    },
+    {
+      "tenant": "consulting",
+      "side": "reference",
+      "viewport": 1024,
+      "url": "http://127.0.0.1:62669/Sira%20Consulting.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:24.140Z",
+      "finishedAt": "2026-09-05T03:53:26.715Z",
+      "error": null,
+      "files": [
+        {
+          "path": "consulting-reference-1024-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1024-00.png",
+          "size": 104510,
+          "sha256": "7e3715ef8b0ca71c698374388c70e21fc07dbc1ceb359c24ce8a035050ec939e"
+        },
+        {
+          "path": "consulting-reference-1024-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1024-01.png",
+          "size": 68968,
+          "sha256": "df979266406aebe64d90effb4ead610a53e6da5aec8c88b9b08e41cd3c564223"
+        },
+        {
+          "path": "consulting-reference-1024-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1024-02.png",
+          "size": 69951,
+          "sha256": "214482f62215ac11f20cb7bf144d0da4dab2f778fa1d4642f558168bdc5034fb"
+        },
+        {
+          "path": "consulting-reference-1024-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1024-03.png",
+          "size": 73622,
+          "sha256": "ed2c6a4d15e614a709f8f5c307b2c82b0f1a655cb5d110a84683cbdf016aa1e3"
+        }
+      ]
+    },
+    {
+      "tenant": "consulting",
+      "side": "reference",
+      "viewport": 1440,
+      "url": "http://127.0.0.1:62669/Sira%20Consulting.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:26.723Z",
+      "finishedAt": "2026-09-05T03:53:29.450Z",
+      "error": null,
+      "files": [
+        {
+          "path": "consulting-reference-1440-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1440-00.png",
+          "size": 147608,
+          "sha256": "0809dfc0c7eea2a23c689ce7135969645cb7432af56fbe7190a1910c469a3ca1"
+        },
+        {
+          "path": "consulting-reference-1440-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1440-01.png",
+          "size": 87951,
+          "sha256": "21628cab1adf0648a9e3178ed649469cbfd44e5b585ab5928a1eabde0b1842eb"
+        },
+        {
+          "path": "consulting-reference-1440-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1440-02.png",
+          "size": 77774,
+          "sha256": "9e9e0b36b4f84017292051e87b4d0422e85ca8abf509df232ded4f2b1e20adcd"
+        },
+        {
+          "path": "consulting-reference-1440-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1440-03.png",
+          "size": 63931,
+          "sha256": "5f68605da12954e4599f894337eb3ebd8b6b673e5005936b619f81a4e93fab83"
+        }
+      ]
+    },
+    {
+      "tenant": "consulting",
+      "side": "reference",
+      "viewport": 1920,
+      "url": "http://127.0.0.1:62669/Sira%20Consulting.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:29.457Z",
+      "finishedAt": "2026-09-05T03:53:32.042Z",
+      "error": null,
+      "files": [
+        {
+          "path": "consulting-reference-1920-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1920-00.png",
+          "size": 145279,
+          "sha256": "8a5003fcd2df62c38a6e5fd4b9645356e645a6fcce5b8e8e8acc80ee8bba697e"
+        },
+        {
+          "path": "consulting-reference-1920-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1920-01.png",
+          "size": 91978,
+          "sha256": "8ce8dac28cd3de566eefd15dc233b80f7824265a1c920382b60e6be9d5ee593a"
+        },
+        {
+          "path": "consulting-reference-1920-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1920-02.png",
+          "size": 80253,
+          "sha256": "cd9b3a01657497249ad8921a682190b88b95b8d88b58ad92afdde54ddadf5c0f"
+        },
+        {
+          "path": "consulting-reference-1920-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-reference-1920-03.png",
+          "size": 65947,
+          "sha256": "276be51b417ddee4f8100c8a50a4b55eb3eb5ffada5e9f8edea0841c592b2e00"
+        }
+      ]
+    },
+    {
+      "tenant": "consulting",
+      "side": "fixture",
+      "viewport": 375,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:32.052Z",
+      "finishedAt": "2026-09-05T03:53:33.114Z",
+      "error": null,
+      "files": [
+        {
+          "path": "consulting-fixture-375-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-375-00.png",
+          "size": 45923,
+          "sha256": "87624f0b62f44fac543bbb2df903deb622006db62d7604518b5f61739b8bfe2a"
+        },
+        {
+          "path": "consulting-fixture-375-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-375-01.png",
+          "size": 37362,
+          "sha256": "b111a1dc358b52e62bfa64a228067918781c24706068df93ed8c49deec31d6bb"
+        },
+        {
+          "path": "consulting-fixture-375-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-375-02.png",
+          "size": 35546,
+          "sha256": "a7fcb5c2232dd964dc957ab7d6ab701c13eae95c614d5c3e3966847685e5d9de"
+        },
+        {
+          "path": "consulting-fixture-375-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-375-03.png",
+          "size": 5148,
+          "sha256": "fd9b821bc44a9cde8e897f9903d72248a2d3b33469fccacf6bb5bdeeea2bce0d"
+        }
+      ]
+    },
+    {
+      "tenant": "consulting",
+      "side": "fixture",
+      "viewport": 768,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:33.121Z",
+      "finishedAt": "2026-09-05T03:53:34.213Z",
+      "error": null,
+      "files": [
+        {
+          "path": "consulting-fixture-768-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-768-00.png",
+          "size": 62441,
+          "sha256": "6764c2a48c0d08b20df0667fe425a4cdd085f2236dca1f423340458549a2d148"
+        },
+        {
+          "path": "consulting-fixture-768-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-768-01.png",
+          "size": 44211,
+          "sha256": "dc8755fd969d97dba1260f739f441ef9fc14a455fa37570964946ad54d407541"
+        },
+        {
+          "path": "consulting-fixture-768-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-768-02.png",
+          "size": 32147,
+          "sha256": "a6828446cf784bdefbcc8c6f7cfd4ac3953d301b72d517960ee9dc4d669b0a0c"
+        },
+        {
+          "path": "consulting-fixture-768-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-768-03.png",
+          "size": 2683,
+          "sha256": "7924571365880741ee744a30fbc7f1c43bc2c25349fd9d54023fa5c0bd06aca6"
+        }
+      ]
+    },
+    {
+      "tenant": "consulting",
+      "side": "fixture",
+      "viewport": 1024,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:34.220Z",
+      "finishedAt": "2026-09-05T03:53:35.364Z",
+      "error": null,
+      "files": [
+        {
+          "path": "consulting-fixture-1024-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1024-00.png",
+          "size": 74222,
+          "sha256": "8ac521cbc6ecf8618fb8a6d7b45e1bb04b13acfcd2881ea698f67f172d7c3a67"
+        },
+        {
+          "path": "consulting-fixture-1024-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1024-01.png",
+          "size": 54327,
+          "sha256": "b5a564b6c976ad489bc0de0a899ef54338f3574c9e0989a6c4c653c4f20d86c5"
+        },
+        {
+          "path": "consulting-fixture-1024-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1024-02.png",
+          "size": 48735,
+          "sha256": "1718932513a21ee27197765c4dee3162e6f3b739b740042b95769567eb5d206b"
+        },
+        {
+          "path": "consulting-fixture-1024-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1024-03.png",
+          "size": 721,
+          "sha256": "1ce931eade5e02c0f436a2562a901b9264bb2aebb677dbbad77c56fc19e5316b"
+        }
+      ]
+    },
+    {
+      "tenant": "consulting",
+      "side": "fixture",
+      "viewport": 1440,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:35.372Z",
+      "finishedAt": "2026-09-05T03:53:36.635Z",
+      "error": null,
+      "files": [
+        {
+          "path": "consulting-fixture-1440-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1440-00.png",
+          "size": 88618,
+          "sha256": "c5d52f46a630cadddeec22bac532aaaa9b0a13ca195ee6ddbbe5101d44198403"
+        },
+        {
+          "path": "consulting-fixture-1440-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1440-01.png",
+          "size": 67668,
+          "sha256": "cdfd0d860843098b063f15d5f092dca750d138d04e4aec609429d705fc47cb6c"
+        },
+        {
+          "path": "consulting-fixture-1440-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1440-02.png",
+          "size": 52592,
+          "sha256": "f95e0ac7ca8d3e74b88cced27995f90256f5e745059c28bbe1048bd1ffb80989"
+        },
+        {
+          "path": "consulting-fixture-1440-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1440-03.png",
+          "size": 7176,
+          "sha256": "a95153c7c1dbed9f6c0d5105ee36d8ae59d50b2b0f25be092b36829c6cc556bc"
+        }
+      ]
+    },
+    {
+      "tenant": "consulting",
+      "side": "fixture",
+      "viewport": 1920,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:36.645Z",
+      "finishedAt": "2026-09-05T03:53:37.969Z",
+      "error": null,
+      "files": [
+        {
+          "path": "consulting-fixture-1920-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1920-00.png",
+          "size": 92846,
+          "sha256": "285d9160b79ba20480a48175a4bdba2fe32e5f9cdc625dd9cf7d2d880ade55a6"
+        },
+        {
+          "path": "consulting-fixture-1920-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1920-01.png",
+          "size": 71144,
+          "sha256": "ee3a04ed4cb02029f980534bca30a8c6231dff6e30ce144664e6bc02e4ddcf50"
+        },
+        {
+          "path": "consulting-fixture-1920-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1920-02.png",
+          "size": 53183,
+          "sha256": "b2eadc592e66bf7677804e4df778c136561c7fae4cbc60fe31180366c683b1f7"
+        },
+        {
+          "path": "consulting-fixture-1920-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\consulting-fixture-1920-03.png",
+          "size": 13159,
+          "sha256": "447719bad07a8f13189bf8a3f9cf7b041ba6140e21c1824249ac825bc493cd7c"
+        }
+      ]
+    },
+    {
+      "tenant": "realestate",
+      "side": "reference",
+      "viewport": 375,
+      "url": "http://127.0.0.1:62669/Sira%20Real%20Estate.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:37.978Z",
+      "finishedAt": "2026-09-05T03:53:42.959Z",
+      "error": null,
+      "files": [
+        {
+          "path": "realestate-reference-375-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-375-00.png",
+          "size": 62728,
+          "sha256": "4545ae579d4cbabbade59d9e105504501a612d2d9e536b08da323eb435a7841b"
+        },
+        {
+          "path": "realestate-reference-375-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-375-01.png",
+          "size": 44893,
+          "sha256": "07417eb9cd135d42796127bc2b0c7672f5ddf796ee127d0fa43ff27c6b1fbfc3"
+        },
+        {
+          "path": "realestate-reference-375-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-375-02.png",
+          "size": 33156,
+          "sha256": "6c42402e8bd82eafa0945de8abb82d30a8f16abfb12b53e89d379262ede56911"
+        },
+        {
+          "path": "realestate-reference-375-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-375-03.png",
+          "size": 41821,
+          "sha256": "49bd86de000101974a8b01f40d2e9c22c2f6e366591d08b0d366d7358590a99c"
+        },
+        {
+          "path": "realestate-reference-375-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-375-04.png",
+          "size": 52976,
+          "sha256": "6ab4c76045cca894e370b7ec93f5da73c081f7cfca7ee7fff7ffd3d3747c52c9"
+        },
+        {
+          "path": "realestate-reference-375-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-375-05.png",
+          "size": 30557,
+          "sha256": "0f915e648d41d32a1809692e1737f33b560f4a6d29c1a0ab2a5f9246c0eaf856"
+        }
+      ]
+    },
+    {
+      "tenant": "realestate",
+      "side": "reference",
+      "viewport": 768,
+      "url": "http://127.0.0.1:62669/Sira%20Real%20Estate.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:42.968Z",
+      "finishedAt": "2026-09-05T03:53:45.514Z",
+      "error": null,
+      "files": [
+        {
+          "path": "realestate-reference-768-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-768-00.png",
+          "size": 80440,
+          "sha256": "bb769ab31a6af1fe2e35e807b6599b091d18d64e729f491b561ed7deb0142cb6"
+        },
+        {
+          "path": "realestate-reference-768-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-768-01.png",
+          "size": 59529,
+          "sha256": "996b5bbb9655576e503619c434644782bbbfef0037c60288d21d51c327e3d001"
+        },
+        {
+          "path": "realestate-reference-768-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-768-02.png",
+          "size": 52324,
+          "sha256": "b10ff885a8d29e4c86466da9d86946b73e169b48a277c6c9453c021d3d8b3f59"
+        },
+        {
+          "path": "realestate-reference-768-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-768-03.png",
+          "size": 63200,
+          "sha256": "1b5439de356e78d83d56ca32d27cef841e3f1fa2bb8a64bc071fb6a19c610522"
+        },
+        {
+          "path": "realestate-reference-768-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-768-04.png",
+          "size": 15373,
+          "sha256": "598dd66d5dfa80c7c18997dd3d0d389f919e36537f430f99bcd78be94fb13d15"
+        }
+      ]
+    },
+    {
+      "tenant": "realestate",
+      "side": "reference",
+      "viewport": 1024,
+      "url": "http://127.0.0.1:62669/Sira%20Real%20Estate.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:45.522Z",
+      "finishedAt": "2026-09-05T03:53:48.082Z",
+      "error": null,
+      "files": [
+        {
+          "path": "realestate-reference-1024-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1024-00.png",
+          "size": 99545,
+          "sha256": "a9079874d815eeaa1e51da2497691292bdc7b22f798d0376ec7f4bab7bab759a"
+        },
+        {
+          "path": "realestate-reference-1024-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1024-01.png",
+          "size": 75063,
+          "sha256": "eea559ef8d3d7ddad31e16e0ac3ab8793d452e987d3c9f4640a8688daaf3262f"
+        },
+        {
+          "path": "realestate-reference-1024-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1024-02.png",
+          "size": 67860,
+          "sha256": "706655dcdce8d3d9bfaa7578a196cf88ec031ca7872a41b8cb61d084072149e7"
+        },
+        {
+          "path": "realestate-reference-1024-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1024-03.png",
+          "size": 70174,
+          "sha256": "93e171ef54b7b6c834a2f99efef5c063696c8740ba8546974951d7c958268c32"
+        }
+      ]
+    },
+    {
+      "tenant": "realestate",
+      "side": "reference",
+      "viewport": 1440,
+      "url": "http://127.0.0.1:62669/Sira%20Real%20Estate.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:48.090Z",
+      "finishedAt": "2026-09-05T03:53:50.436Z",
+      "error": null,
+      "files": [
+        {
+          "path": "realestate-reference-1440-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1440-00.png",
+          "size": 139336,
+          "sha256": "5d0abfde934c2c15c12c40dddebac9ee94b4a43f2d6f17dfdf87ee18db37f5b4"
+        },
+        {
+          "path": "realestate-reference-1440-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1440-01.png",
+          "size": 92067,
+          "sha256": "e889dc6147f4950c6ad9b7b06817a066a5455e69d214f9fbb26835b36734652f"
+        },
+        {
+          "path": "realestate-reference-1440-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1440-02.png",
+          "size": 77822,
+          "sha256": "edfd580cc59edff2a80f62b695028c2ff8dced85d6789834d4067f6ebf9d7550"
+        },
+        {
+          "path": "realestate-reference-1440-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1440-03.png",
+          "size": 53823,
+          "sha256": "30e7494ebcb9ffc96c740c16070d15e6dbc92f0476b6c7a3889c34771d563d6d"
+        }
+      ]
+    },
+    {
+      "tenant": "realestate",
+      "side": "reference",
+      "viewport": 1920,
+      "url": "http://127.0.0.1:62669/Sira%20Real%20Estate.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:50.444Z",
+      "finishedAt": "2026-09-05T03:53:53.078Z",
+      "error": null,
+      "files": [
+        {
+          "path": "realestate-reference-1920-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1920-00.png",
+          "size": 151877,
+          "sha256": "66523929e39ea9aa25ea032050a91d14a8302f2d2628b3ba230b5f310237f6c1"
+        },
+        {
+          "path": "realestate-reference-1920-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1920-01.png",
+          "size": 88443,
+          "sha256": "c07eda6e7323b78c41525c062d43a34c7a2ac0856e9ae0dca9baf13dada87c8f"
+        },
+        {
+          "path": "realestate-reference-1920-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1920-02.png",
+          "size": 79790,
+          "sha256": "2cddd89a0f00fb4e808c330108dc17b5ec424f9a9c3a965024c673003b3745ab"
+        },
+        {
+          "path": "realestate-reference-1920-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-reference-1920-03.png",
+          "size": 55528,
+          "sha256": "1a0ef7270a92ee07312c105d43051328f67adbffdc4ee2e90808638faea30806"
+        }
+      ]
+    },
+    {
+      "tenant": "realestate",
+      "side": "fixture",
+      "viewport": 375,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-realestate.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:53.086Z",
+      "finishedAt": "2026-09-05T03:53:54.136Z",
+      "error": null,
+      "files": [
+        {
+          "path": "realestate-fixture-375-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-375-00.png",
+          "size": 44993,
+          "sha256": "05b89c2b9d52a4ed6c3d6b2fce7e04afbc281dff2ec1b99dce47a351b53bd577"
+        },
+        {
+          "path": "realestate-fixture-375-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-375-01.png",
+          "size": 37218,
+          "sha256": "c293c433da1b13a8376dea451d6f4626b42d2ef514d54d17e65ed41f2a855f45"
+        },
+        {
+          "path": "realestate-fixture-375-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-375-02.png",
+          "size": 35382,
+          "sha256": "0e8b3f23973caad644624be32f2722e304997a7f6e9b1cc3a7d5c0868caec666"
+        },
+        {
+          "path": "realestate-fixture-375-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-375-03.png",
+          "size": 5149,
+          "sha256": "b725c382a6d63e9be1212420f8afec0a1a7c7d24b409fab15ea20cf369ac9e5d"
+        }
+      ]
+    },
+    {
+      "tenant": "realestate",
+      "side": "fixture",
+      "viewport": 768,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-realestate.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:54.149Z",
+      "finishedAt": "2026-09-05T03:53:55.212Z",
+      "error": null,
+      "files": [
+        {
+          "path": "realestate-fixture-768-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-768-00.png",
+          "size": 60775,
+          "sha256": "9347141dc5715c6c65b610b3d0fcfb03ab58c3dfc19963229344d2702c53142d"
+        },
+        {
+          "path": "realestate-fixture-768-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-768-01.png",
+          "size": 44134,
+          "sha256": "94d64722cdcec9cf242f6165a89bf999e7f8464da3a2a910a3c6b3675556211a"
+        },
+        {
+          "path": "realestate-fixture-768-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-768-02.png",
+          "size": 32103,
+          "sha256": "7dd85070eb8b9509a3ad12251e24623126c327ec9d2a544a30baf528edcf4355"
+        },
+        {
+          "path": "realestate-fixture-768-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-768-03.png",
+          "size": 2678,
+          "sha256": "2960805d14d63f1beebb36c6d13c01e74e93fe600678463156636eebac88acae"
+        }
+      ]
+    },
+    {
+      "tenant": "realestate",
+      "side": "fixture",
+      "viewport": 1024,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-realestate.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:55.221Z",
+      "finishedAt": "2026-09-05T03:53:56.430Z",
+      "error": null,
+      "files": [
+        {
+          "path": "realestate-fixture-1024-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1024-00.png",
+          "size": 72424,
+          "sha256": "249a6376ab6e2f1e27ccb3a2f92fab8e64b490bee5ddb7c975c02fb74f5b6e25"
+        },
+        {
+          "path": "realestate-fixture-1024-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1024-01.png",
+          "size": 53974,
+          "sha256": "3dc38523a769e2d0f85e8b5d03011c7d496dc6c961b81573b893a7fd16055c0a"
+        },
+        {
+          "path": "realestate-fixture-1024-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1024-02.png",
+          "size": 48621,
+          "sha256": "0dfbc067d3ad2fcd27996f6fb6ccbc773de73aca9787e02148d432bf6b213c14"
+        },
+        {
+          "path": "realestate-fixture-1024-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1024-03.png",
+          "size": 720,
+          "sha256": "1e7364943492617639f0be38ac79a5cd96d46b87d7f460ee62196ccd01a5a0e5"
+        }
+      ]
+    },
+    {
+      "tenant": "realestate",
+      "side": "fixture",
+      "viewport": 1440,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-realestate.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:56.436Z",
+      "finishedAt": "2026-09-05T03:53:57.660Z",
+      "error": null,
+      "files": [
+        {
+          "path": "realestate-fixture-1440-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1440-00.png",
+          "size": 86655,
+          "sha256": "536625edd3fb6968441123062e281579c418f9726467ed0264d9810433e0b2e0"
+        },
+        {
+          "path": "realestate-fixture-1440-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1440-01.png",
+          "size": 67389,
+          "sha256": "055ce6ed563a6acff9cf3fcae9b2a15c1e48217713c006f8039b511083ea6f6d"
+        },
+        {
+          "path": "realestate-fixture-1440-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1440-02.png",
+          "size": 52666,
+          "sha256": "aa9d2c28183a6ebde949afbe7d38b69e28af42555df1bb4076065cd33755dc9f"
+        },
+        {
+          "path": "realestate-fixture-1440-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1440-03.png",
+          "size": 7172,
+          "sha256": "ff650e8614f9bd017382442f3e1c7501b2e2c708b5da82709256d7c373c1ed98"
+        }
+      ]
+    },
+    {
+      "tenant": "realestate",
+      "side": "fixture",
+      "viewport": 1920,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-realestate.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:57.671Z",
+      "finishedAt": "2026-09-05T03:53:58.981Z",
+      "error": null,
+      "files": [
+        {
+          "path": "realestate-fixture-1920-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1920-00.png",
+          "size": 90558,
+          "sha256": "3b3e8e433631616ac54b19dabe52cc921b5386da47ef18dc585dbc169ac2c6a6"
+        },
+        {
+          "path": "realestate-fixture-1920-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1920-01.png",
+          "size": 70832,
+          "sha256": "05cb5953dbf4346031439562512c31cc21eb591f916ecb643c7c16c36f607bcf"
+        },
+        {
+          "path": "realestate-fixture-1920-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1920-02.png",
+          "size": 53221,
+          "sha256": "34b4a48a8060652271379b6172401ff40449f6cd4984b95ab96aa3dc7c3ecc01"
+        },
+        {
+          "path": "realestate-fixture-1920-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\realestate-fixture-1920-03.png",
+          "size": 13209,
+          "sha256": "eb3c344fd3470fa3b4f77a4a8c842e4c0dea2d7bd7e3b802fd81aa3ab008cb13"
+        }
+      ]
+    },
+    {
+      "tenant": "lifestyle",
+      "side": "reference",
+      "viewport": 375,
+      "url": "http://127.0.0.1:62669/Sira%20Lifestyle.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:53:58.989Z",
+      "finishedAt": "2026-09-05T03:54:03.605Z",
+      "error": null,
+      "files": [
+        {
+          "path": "lifestyle-reference-375-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-375-00.png",
+          "size": 55848,
+          "sha256": "3287bec3dcd9e23f5d7879b7562702830f4ca499b57ad0038152156487520ee1"
+        },
+        {
+          "path": "lifestyle-reference-375-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-375-01.png",
+          "size": 44190,
+          "sha256": "5a3b45edc5eb4bb0eb934e8312a8c393051765f2ef066fcc2786a9678b938e61"
+        },
+        {
+          "path": "lifestyle-reference-375-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-375-02.png",
+          "size": 34643,
+          "sha256": "4904237aa996d853a3d7038ce8807f0d7ced528f75c4ed1360779bc0ffbc8f9a"
+        },
+        {
+          "path": "lifestyle-reference-375-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-375-03.png",
+          "size": 42073,
+          "sha256": "a20d4f95b184a34dc816fdb249cd16c6fadd52955b82abd19a0483d491aeb7b5"
+        },
+        {
+          "path": "lifestyle-reference-375-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-375-04.png",
+          "size": 55503,
+          "sha256": "883788bcc5f0c7661eef9d58f4e1d5208758e1e6a22cce161f3c554818c8a274"
+        },
+        {
+          "path": "lifestyle-reference-375-05.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-375-05.png",
+          "size": 28767,
+          "sha256": "70568537d2de5b478bb4385ddad146481cc3f3d0b1ae2b2b374bc3ea92f87036"
+        }
+      ]
+    },
+    {
+      "tenant": "lifestyle",
+      "side": "reference",
+      "viewport": 768,
+      "url": "http://127.0.0.1:62669/Sira%20Lifestyle.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:54:03.613Z",
+      "finishedAt": "2026-09-05T03:54:06.132Z",
+      "error": null,
+      "files": [
+        {
+          "path": "lifestyle-reference-768-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-768-00.png",
+          "size": 74827,
+          "sha256": "427785143cb3100c8e7bc2ffda548a9e40bd6dda8d35ab74592474fc508ee916"
+        },
+        {
+          "path": "lifestyle-reference-768-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-768-01.png",
+          "size": 61339,
+          "sha256": "283277005830e56f815cf4fd773ff82d91fa11dd52909ec55de638d6dd01ebe6"
+        },
+        {
+          "path": "lifestyle-reference-768-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-768-02.png",
+          "size": 60021,
+          "sha256": "e59661098b55d731ca4095f6a0eb13f89a4621465515645578963c2935ef0430"
+        },
+        {
+          "path": "lifestyle-reference-768-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-768-03.png",
+          "size": 70694,
+          "sha256": "0a14efc043445ded911d17b337dc2e154dcc8c1be28e2cf542a7354586190719"
+        },
+        {
+          "path": "lifestyle-reference-768-04.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-768-04.png",
+          "size": 15052,
+          "sha256": "f8ada6e6b4d82bdf707e6721b8324334ca27b6ffe55e49d3d95f36aee8bd7721"
+        }
+      ]
+    },
+    {
+      "tenant": "lifestyle",
+      "side": "reference",
+      "viewport": 1024,
+      "url": "http://127.0.0.1:62669/Sira%20Lifestyle.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:54:06.140Z",
+      "finishedAt": "2026-09-05T03:54:08.639Z",
+      "error": null,
+      "files": [
+        {
+          "path": "lifestyle-reference-1024-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1024-00.png",
+          "size": 95389,
+          "sha256": "19e0950b83d3e59335f750a5ba25d30173718106725acb404b0b155617eb0862"
+        },
+        {
+          "path": "lifestyle-reference-1024-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1024-01.png",
+          "size": 72817,
+          "sha256": "68f7a6701fe6bb251b7b6901e35494fe2708a356d60830edd46a8e08709391f9"
+        },
+        {
+          "path": "lifestyle-reference-1024-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1024-02.png",
+          "size": 71126,
+          "sha256": "7bab946d776841fae619e248c3815bdced56615647b9d36f48e407333703ac4b"
+        },
+        {
+          "path": "lifestyle-reference-1024-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1024-03.png",
+          "size": 72777,
+          "sha256": "a8d9a1d323a4b95bc40f49fab4a2492ee98650125b76c7eda3f5c491b4fc5916"
+        }
+      ]
+    },
+    {
+      "tenant": "lifestyle",
+      "side": "reference",
+      "viewport": 1440,
+      "url": "http://127.0.0.1:62669/Sira%20Lifestyle.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:54:08.648Z",
+      "finishedAt": "2026-09-05T03:54:11.275Z",
+      "error": null,
+      "files": [
+        {
+          "path": "lifestyle-reference-1440-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1440-00.png",
+          "size": 138448,
+          "sha256": "0eb757be2b3df537dcd9196aed060b7716694f08f293b608fdcd49d9c8e9bd7f"
+        },
+        {
+          "path": "lifestyle-reference-1440-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1440-01.png",
+          "size": 94949,
+          "sha256": "d9ffc2fbfe6122db4cbca97dd6860bd68a3c53342f0af70b9cfb55252b23c8b4"
+        },
+        {
+          "path": "lifestyle-reference-1440-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1440-02.png",
+          "size": 88029,
+          "sha256": "da341b7200b2964a681aa01014c6f563b8aebef18f2fd18ea8273ccc70475a54"
+        },
+        {
+          "path": "lifestyle-reference-1440-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1440-03.png",
+          "size": 58410,
+          "sha256": "391b7d6561150c94bd21e17795bcfdbd4eae2aa113f00c6d14d033fc40387664"
+        }
+      ]
+    },
+    {
+      "tenant": "lifestyle",
+      "side": "reference",
+      "viewport": 1920,
+      "url": "http://127.0.0.1:62669/Sira%20Lifestyle.dc.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:54:11.283Z",
+      "finishedAt": "2026-09-05T03:54:13.731Z",
+      "error": null,
+      "files": [
+        {
+          "path": "lifestyle-reference-1920-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1920-00.png",
+          "size": 138295,
+          "sha256": "6a652c0cef76a4e94c0dac38323bee2eaf98f542213e8b9b1072d09ed0faea08"
+        },
+        {
+          "path": "lifestyle-reference-1920-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1920-01.png",
+          "size": 99430,
+          "sha256": "ff6038f8cf54b15eb59781cf8eed067b25a5f527cf776a700a89619c241daae8"
+        },
+        {
+          "path": "lifestyle-reference-1920-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1920-02.png",
+          "size": 91199,
+          "sha256": "b7f0e9d803ccbdabea237fd5a83475338ffabd4ccda92cf08f895627df6051f0"
+        },
+        {
+          "path": "lifestyle-reference-1920-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-reference-1920-03.png",
+          "size": 59804,
+          "sha256": "92429b058d9a8f54d8b412deaf9ce06221a5ccb656fabd07f870065ccfd6b096"
+        }
+      ]
+    },
+    {
+      "tenant": "lifestyle",
+      "side": "fixture",
+      "viewport": 375,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-lifestyle.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:54:13.739Z",
+      "finishedAt": "2026-09-05T03:54:14.962Z",
+      "error": null,
+      "files": [
+        {
+          "path": "lifestyle-fixture-375-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-375-00.png",
+          "size": 43702,
+          "sha256": "af23bf0ea5407e78b059c8f527ced5cf49fb8551597c671260ede802bc0b1784"
+        },
+        {
+          "path": "lifestyle-fixture-375-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-375-01.png",
+          "size": 37373,
+          "sha256": "693f6cc5ce53ef388899ace3770ca4e46ea4aa1281ff5abf06dff117055f1bf3"
+        },
+        {
+          "path": "lifestyle-fixture-375-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-375-02.png",
+          "size": 35508,
+          "sha256": "317dafad1f3495bdeb4e25fa979b658d4609afa4257aa1ce43bf3e287b239236"
+        },
+        {
+          "path": "lifestyle-fixture-375-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-375-03.png",
+          "size": 5140,
+          "sha256": "be15c3134cd94fbe5b078f72cd76a34e659834e3e72381ccb1e5f0d0a4e0e157"
+        }
+      ]
+    },
+    {
+      "tenant": "lifestyle",
+      "side": "fixture",
+      "viewport": 768,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-lifestyle.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:54:14.968Z",
+      "finishedAt": "2026-09-05T03:54:16.078Z",
+      "error": null,
+      "files": [
+        {
+          "path": "lifestyle-fixture-768-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-768-00.png",
+          "size": 58909,
+          "sha256": "feeeb06e6488d0863c93ef18df0aa9cd48a5222da542a0e9534aa157286ccc52"
+        },
+        {
+          "path": "lifestyle-fixture-768-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-768-01.png",
+          "size": 44359,
+          "sha256": "c79e463c75d52908465244bcef62999016b7517b6314dfd64709f107062c6b43"
+        },
+        {
+          "path": "lifestyle-fixture-768-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-768-02.png",
+          "size": 32144,
+          "sha256": "10c319041da243555a9bdc5b3aafef1512c1983a91483aa5b4405a70ab09dde0"
+        },
+        {
+          "path": "lifestyle-fixture-768-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-768-03.png",
+          "size": 2685,
+          "sha256": "d355669be011d42eaf8d72b5ef41578e294049ffc509c2fb2ba1b8b0783c14b5"
+        }
+      ]
+    },
+    {
+      "tenant": "lifestyle",
+      "side": "fixture",
+      "viewport": 1024,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-lifestyle.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:54:16.084Z",
+      "finishedAt": "2026-09-05T03:54:17.225Z",
+      "error": null,
+      "files": [
+        {
+          "path": "lifestyle-fixture-1024-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1024-00.png",
+          "size": 69635,
+          "sha256": "def61aa2406536f77fa786b978f17aece0f75abc2a73f8e0308cfe4e9644b534"
+        },
+        {
+          "path": "lifestyle-fixture-1024-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1024-01.png",
+          "size": 53574,
+          "sha256": "c5204d004855bbd85786782dd9210b94d51fd5b3621c33250a0b09afda7362fb"
+        },
+        {
+          "path": "lifestyle-fixture-1024-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1024-02.png",
+          "size": 48225,
+          "sha256": "9d0d782533a9e5c8c80d7075995c779bc0725c0349d73e7952e667a17609ee22"
+        },
+        {
+          "path": "lifestyle-fixture-1024-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1024-03.png",
+          "size": 713,
+          "sha256": "aa4bdd170c4ae422d71a9cead344989297457c6e51fe70ec9b8c803682ec9f69"
+        }
+      ]
+    },
+    {
+      "tenant": "lifestyle",
+      "side": "fixture",
+      "viewport": 1440,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-lifestyle.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:54:17.233Z",
+      "finishedAt": "2026-09-05T03:54:18.459Z",
+      "error": null,
+      "files": [
+        {
+          "path": "lifestyle-fixture-1440-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1440-00.png",
+          "size": 83292,
+          "sha256": "04ff1118d7c3798afe3ad1f4aa289c5b8b64cc47d0400e0e074af8ffcb033d55"
+        },
+        {
+          "path": "lifestyle-fixture-1440-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1440-01.png",
+          "size": 66248,
+          "sha256": "6106041ea302403ec3ce2d7e5329ccaa69acba17f060462921944c6fa6e1cd11"
+        },
+        {
+          "path": "lifestyle-fixture-1440-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1440-02.png",
+          "size": 52022,
+          "sha256": "a86033297c7c71c2b800abd4ad5957fcaf0a8d3c583b393deba5278d2401a240"
+        },
+        {
+          "path": "lifestyle-fixture-1440-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1440-03.png",
+          "size": 7171,
+          "sha256": "df0562c134cd0973e9998dda9f9e65ae6f187fa2286261d0c2cdfbbc13802fa2"
+        }
+      ]
+    },
+    {
+      "tenant": "lifestyle",
+      "side": "fixture",
+      "viewport": 1920,
+      "url": "http://127.0.0.1:62669/__fixture/branch-complete-lifestyle.html",
+      "status": "PASS",
+      "httpStatus": 200,
+      "startedAt": "2026-09-05T03:54:18.471Z",
+      "finishedAt": "2026-09-05T03:54:19.921Z",
+      "error": null,
+      "files": [
+        {
+          "path": "lifestyle-fixture-1920-00.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1920-00.png",
+          "size": 86801,
+          "sha256": "2221b94e5ba635a78bcee7c38b41629e9d5726632c453944fcc5f0fa4b177318"
+        },
+        {
+          "path": "lifestyle-fixture-1920-01.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1920-01.png",
+          "size": 69747,
+          "sha256": "be5388847576d3c4939228e3be68db8a05aa0db4281be900aa46d84fe5c13dd4"
+        },
+        {
+          "path": "lifestyle-fixture-1920-02.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1920-02.png",
+          "size": 52621,
+          "sha256": "3f9319713f9831917a1c2821541006eee98d45e03f0dfff4c0430890b044a81e"
+        },
+        {
+          "path": "lifestyle-fixture-1920-03.png",
+          "absolutePath": "C:\\Users\\User\\Downloads\\SIRA-Headless\\artifacts\\step-4\\responsive-qa\\lifestyle-fixture-1920-03.png",
+          "size": 13148,
+          "sha256": "d31ba367b5cc820d82cdf789bd1d1aad5b0b76db46203d95c5a9eecec33f7d65"
+        }
+      ]
+    }
+  ],
+  "exitStatus": 0
+}

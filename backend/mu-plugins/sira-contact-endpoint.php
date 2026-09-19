@@ -58,6 +58,7 @@ if (!defined('ABSPATH')) {
 const SIRA_CONTACT_MAX_LENGTHS = [
     'name'    => 120,
     'email'   => 200,
+    'phone'   => 40,
     'service' => 80,
     'message' => 4000,
 ];
@@ -197,6 +198,7 @@ function sira_contact_handle(WP_REST_Request $request)
 
     $name    = sira_contact_clean((string) $request->get_param('name'), SIRA_CONTACT_MAX_LENGTHS['name']);
     $email   = sira_contact_clean((string) $request->get_param('email'), SIRA_CONTACT_MAX_LENGTHS['email']);
+    $phone   = sira_contact_clean((string) $request->get_param('phone'), SIRA_CONTACT_MAX_LENGTHS['phone']);
     $service = sira_contact_clean((string) $request->get_param('service'), SIRA_CONTACT_MAX_LENGTHS['service']);
     $message = sira_contact_clean((string) $request->get_param('message'), SIRA_CONTACT_MAX_LENGTHS['message'], true);
 
@@ -224,6 +226,7 @@ function sira_contact_handle(WP_REST_Request $request)
     $fields = [
         'name'    => $name,
         'email'   => $email,
+        'phone'   => $phone,
         'service' => $service,
         'message' => $message,
     ];
@@ -250,6 +253,7 @@ function sira_contact_handle(WP_REST_Request $request)
         '',
         'Name:    ' . $name,
         'Email:   ' . $email,
+        'Phone:   ' . ($phone !== '' ? $phone : 'Not provided'),
         'Service: ' . ($service !== '' ? $service : 'Not specified'),
         '',
         'Message:',
@@ -304,6 +308,7 @@ add_action('rest_api_init', static function (): void {
             'name'    => ['type' => 'string', 'required' => true],
             'email'   => ['type' => 'string', 'required' => true],
             'message' => ['type' => 'string', 'required' => true],
+            'phone'   => ['type' => 'string', 'required' => false],
             'service' => ['type' => 'string', 'required' => false],
         ],
     ]);

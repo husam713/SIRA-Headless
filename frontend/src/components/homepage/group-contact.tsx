@@ -2,37 +2,33 @@ import { ContactForm } from "@/components/homepage/contact-form";
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "@/components/layout/section";
 import { SectionEyebrow } from "@/components/layout/section-eyebrow";
-import { getSiteDefinition } from "@/lib/host/resolve-site";
 import type { HomepageContactSection } from "@/lib/homepage/types";
 import { CHROME } from "@/lib/i18n/locale";
-import { type LocaleCode, SITE_KEYS } from "@/types/site";
+import type { LocaleCode } from "@/types/site";
 
 interface GroupContactProps {
   readonly section: HomepageContactSection | null;
   readonly email: string | null;
   readonly address: string | null;
+  /**
+   * The "Select Service" options, in the site's own voice. The caller decides
+   * what these mean for its tenant — the Group homepage, the general-enquiry
+   * route, names its companies; every other tenant names its own services —
+   * so this component never has to know which site it is rendering on.
+   * Empty hides the control (`ContactForm`'s own rule).
+   */
+  readonly serviceOptions: readonly string[];
   /** The page's language; the form and the fallback labels speak it. */
   readonly locale?: LocaleCode;
 }
 
-/**
- * The service options offered by the "Select Service" control.
- *
- * Derived from the trusted site registry rather than written here, so the list
- * cannot drift from the companies the group actually operates. Group is the
- * general enquiry route and leads the list.
- */
-function serviceOptions(locale: LocaleCode): readonly string[] {
-  return [
-    CHROME[locale].generalEnquiry,
-    ...SITE_KEYS.filter((key) => key !== "group").flatMap((key) => {
-      const site = getSiteDefinition(key);
-      return site === null ? [] : [CHROME[locale].siteNames[key]];
-    }),
-  ];
-}
-
-export function GroupContact({ section, email, address, locale = "en" }: GroupContactProps) {
+export function GroupContact({
+  section,
+  email,
+  address,
+  serviceOptions,
+  locale = "en",
+}: GroupContactProps) {
   if (section === null) return null;
 
   const chrome = CHROME[locale];
@@ -88,7 +84,7 @@ export function GroupContact({ section, email, address, locale = "en" }: GroupCo
           ) : null}
         </div>
 
-        <ContactForm services={serviceOptions(locale)} locale={locale} />
+        <ContactForm services={serviceOptions} locale={locale} />
       </PageContainer>
     </Section>
   );

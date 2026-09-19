@@ -11,6 +11,10 @@ import { splitHighlight } from "@/lib/atlas/highlight";
 import { atlasPageMetadata } from "@/lib/atlas/metadata";
 import { pageHeroImage, resolveAtlasPage } from "@/lib/atlas/page-context";
 import { getBrand } from "@/lib/brand";
+import {
+  groupContactServiceOptions,
+  tenantContactServiceOptions,
+} from "@/lib/homepage/contact-service-options";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
@@ -31,7 +35,8 @@ import {
 // The enquiry travels the existing pipeline: the trusted Next.js route resolves
 // the tenant from the request host and hands it to that site's WordPress.
 // The subject list is the homepage's companies on Group, so an enquiry can be
-// addressed to one of them, and empty on a company site, whose form is its own.
+// addressed to one of them, and each branch's own services on a company site —
+// see contact-service-options.ts, the one place that decides this.
 
 const ROUTE = "/contact";
 const PAGE_URIS = Object.freeze(["/contact/", "/contact-us/"]);
@@ -67,12 +72,11 @@ export default async function ContactPage(props: ContactPageProps) {
   const heading = splitHighlight(intro?.heading ?? closing?.heading ?? page?.title ?? chrome.contact);
 
   const subjects =
-    homepage !== null &&
-    homepage.variant === "group" &&
-    homepage.companies !== null &&
-    homepage.companies.selection.status === "ready"
-      ? [chrome.generalEnquiry, ...homepage.companies.selection.items.map((item) => item.title)]
-      : [];
+    homepage !== null && homepage.variant === "group"
+      ? groupContactServiceOptions(request.locale)
+      : homepage !== null && homepage.variant === "branch"
+        ? tenantContactServiceOptions(homepage.services, request.locale)
+        : [];
 
   return (
     <>

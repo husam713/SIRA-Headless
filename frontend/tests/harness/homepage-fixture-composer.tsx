@@ -16,6 +16,10 @@ import { GroupTestimonials } from "@/components/homepage/group-testimonials";
 import { GroupTicker } from "@/components/homepage/group-ticker";
 import { createBrandCssVariables } from "@/lib/brand/css-variables";
 import { createFallbackBrand } from "@/lib/brand/fallbacks";
+import {
+  groupContactServiceOptions,
+  tenantContactServiceOptions,
+} from "@/lib/homepage/contact-service-options";
 import type { BranchHomepage, GroupHomepage } from "@/lib/homepage/types";
 import type { SiteKey } from "@/types/site";
 
@@ -82,6 +86,7 @@ export function composeGroupHomepage(homepage: GroupHomepage): ReactElement {
         section={homepage.contact}
         email={FIXTURE_EMAIL}
         address={FIXTURE_ADDRESS}
+        serviceOptions={groupContactServiceOptions("en")}
       />
     </>
   );
@@ -106,6 +111,7 @@ export function composeBranchHomepage(homepage: BranchHomepage): ReactElement {
         section={homepage.contact}
         email={FIXTURE_EMAIL}
         address={FIXTURE_ADDRESS}
+        serviceOptions={tenantContactServiceOptions(homepage.services, "en")}
       />
     </>
   );

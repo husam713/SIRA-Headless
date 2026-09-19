@@ -18,6 +18,7 @@ import { resolveSiteFromHostname } from "@/lib/host/resolve-site";
 const MAX = Object.freeze({
   name: 120,
   email: 200,
+  phone: 40,
   service: 80,
   message: 4000,
 });
@@ -107,6 +108,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
   const name = clean(body["name"], MAX.name);
   const email = clean(body["email"], MAX.email);
+  const phone = clean(body["phone"], MAX.phone);
   const service = clean(body["service"], MAX.service);
   const message = clean(body["message"], MAX.message, true);
 
@@ -133,7 +135,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     const upstream = await fetch(endpoint, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ name, email, service, message }),
+      body: JSON.stringify({ name, email, phone, service, message }),
       cache: "no-store",
       signal: AbortSignal.timeout(15_000),
     });

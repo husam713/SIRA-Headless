@@ -45,6 +45,7 @@ const SIRA_CONTACT_DELIVERY_UNCONFIGURED = 'unconfigured';
 const SIRA_CONTACT_META = [
     'name'         => '_sira_contact_name',
     'email'        => '_sira_contact_email',
+    'phone'        => '_sira_contact_phone',
     'service'      => '_sira_contact_service',
     'site'         => '_sira_contact_site',
     'submitted'    => '_sira_contact_submitted_at',
@@ -112,7 +113,7 @@ add_action('init', static function (): void {
  * Called before delivery is attempted. The caller records the outcome with
  * sira_contact_record_delivery().
  *
- * @param array{name:string,email:string,service:string,message:string} $fields
+ * @param array{name:string,email:string,phone:string,service:string,message:string} $fields
  */
 function sira_contact_store(array $fields)
 {
@@ -135,6 +136,7 @@ function sira_contact_store(array $fields)
     $values = [
         SIRA_CONTACT_META['name']      => $fields['name'],
         SIRA_CONTACT_META['email']     => $fields['email'],
+        SIRA_CONTACT_META['phone']     => $fields['phone'],
         SIRA_CONTACT_META['service']   => $fields['service'],
         SIRA_CONTACT_META['site']      => sprintf('%d:%s', get_current_blog_id(), get_bloginfo('name')),
         SIRA_CONTACT_META['submitted'] => $submitted,
@@ -174,6 +176,7 @@ add_filter('manage_' . SIRA_CONTACT_POST_TYPE . '_posts_columns', static functio
         'cb'             => $columns['cb'] ?? '',
         'title'          => 'Enquiry',
         'sira_email'     => 'Email',
+        'sira_phone'     => 'Phone',
         'sira_service'   => 'Service',
         'sira_site'      => 'Site',
         'sira_delivery'  => 'Delivery',
@@ -184,6 +187,7 @@ add_filter('manage_' . SIRA_CONTACT_POST_TYPE . '_posts_columns', static functio
 add_action('manage_' . SIRA_CONTACT_POST_TYPE . '_posts_custom_column', static function (string $column, int $post_id): void {
     $map = [
         'sira_email'    => SIRA_CONTACT_META['email'],
+        'sira_phone'    => SIRA_CONTACT_META['phone'],
         'sira_service'  => SIRA_CONTACT_META['service'],
         'sira_site'     => SIRA_CONTACT_META['site'],
     ];

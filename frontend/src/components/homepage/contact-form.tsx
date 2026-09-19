@@ -31,6 +31,8 @@ interface ContactFormCopy {
   readonly sendAnother: string;
   readonly fullName: string;
   readonly emailAddress: string;
+  readonly phoneNumber: string;
+  readonly optional: string;
   readonly selectService: string;
   readonly yourMessage: string;
   readonly companyWebsite: string;
@@ -65,6 +67,8 @@ const COPY: Readonly<Record<LocaleCode, ContactFormCopy>> = Object.freeze({
     sendAnother: "Send another message",
     fullName: "Full Name",
     emailAddress: "Email Address",
+    phoneNumber: "Phone Number",
+    optional: "Optional",
     selectService: "Select Service",
     yourMessage: "Your Message",
     companyWebsite: "Company website",
@@ -91,6 +95,8 @@ const COPY: Readonly<Record<LocaleCode, ContactFormCopy>> = Object.freeze({
     sendAnother: "إرسال رسالة أخرى",
     fullName: "الاسم الكامل",
     emailAddress: "البريد الإلكتروني",
+    phoneNumber: "رقم الجوال",
+    optional: "اختياري",
     selectService: "اختر الخدمة",
     yourMessage: "رسالتك",
     companyWebsite: "موقع الشركة",
@@ -140,6 +146,7 @@ export function ContactForm({ services, locale = "en" }: ContactFormProps) {
         body: JSON.stringify({
           name: data.get("name"),
           email: data.get("email"),
+          phone: data.get("phone"),
           service: data.get("service"),
           message: data.get("message"),
           company_website: data.get("company_website"),
@@ -245,6 +252,19 @@ export function ContactForm({ services, locale = "en" }: ContactFormProps) {
               {copy.fieldMessages[fieldErrors.email] ?? copy.checkField}
             </span>
           ) : null}
+        </label>
+
+        <label className={labelClass} htmlFor={`${formId}-phone`}>
+          {copy.phoneNumber}{" "}
+          <span className="normal-case tracking-normal opacity-70">({copy.optional})</span>
+          <input
+            id={`${formId}-phone`}
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            maxLength={40}
+            className={inputClass}
+          />
         </label>
 
         {services.length > 0 ? (

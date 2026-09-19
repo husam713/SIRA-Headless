@@ -23,6 +23,10 @@ import { GroupTestimonials } from "@/components/homepage/group-testimonials";
 import { GroupTicker } from "@/components/homepage/group-ticker";
 import { getBrand } from "@/lib/brand";
 import { getHomepageForRequest } from "@/lib/homepage";
+import {
+  groupContactServiceOptions,
+  tenantContactServiceOptions,
+} from "@/lib/homepage/contact-service-options";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { localeUri } from "@/lib/i18n/locale";
 import { getRequestLocale } from "@/lib/i18n/request-locale";
@@ -90,6 +94,7 @@ export default async function SiteHomePage({
           section={homepage.homepage.contact}
           email={brand.email}
           address={brand.address}
+          serviceOptions={groupContactServiceOptions(request.locale)}
         />
       </>
     );
@@ -127,6 +132,10 @@ export default async function SiteHomePage({
           section={digital.contact}
           email={brand.email}
           address={brand.address}
+          // DigitalHomepage carries no services section (ADR-033's own
+          // composition); a general-enquiry fallback beats naming the other
+          // five companies back at a Digital visitor.
+          serviceOptions={tenantContactServiceOptions(null, request.locale)}
         />
       </>
     );
@@ -158,6 +167,7 @@ export default async function SiteHomePage({
           section={branch.contact}
           email={brand.email}
           address={brand.address}
+          serviceOptions={tenantContactServiceOptions(branch.services, request.locale)}
         />
       </>
     );

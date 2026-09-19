@@ -69,4 +69,37 @@ describe("discovery policy", () => {
     expect(context.hostnameRole).toBeNull();
     expect(context.isProductionCanonical).toBe(false);
   });
+
+  it("fails closed on the production canonical host while SIRA_SEARCH_INDEXING is off", () => {
+    const registry = buildSiteRegistry();
+    const environment = { SIRA_SEARCH_INDEXING: "off" };
+
+    expect(buildRobotsPolicy("siratrgroup.com", registry, environment)).toEqual({
+      rules: {
+        userAgent: "*",
+        disallow: "/",
+      },
+    });
+    expect(buildSitemap("siratrgroup.com", registry, environment)).toEqual([]);
+  });
+
+  it("treats an unset or explicit 'on' switch identically to the default policy", () => {
+    const registry = buildSiteRegistry();
+    const expected = buildRobotsPolicy("siratrgroup.com", registry, {});
+
+    expect(
+      buildRobotsPolicy("siratrgroup.com", registry, {
+        SIRA_SEARCH_INDEXING: "on",
+      }),
+    ).toEqual(expected);
+    expect(expected.sitemap).toBe("https://siratrgroup.com/sitemap.xml");
+  });
+
+  it("rejects an unrecognised SIRA_SEARCH_INDEXING value instead of guessing", () => {
+    expect(() =>
+      buildRobotsPolicy("siratrgroup.com", buildSiteRegistry(), {
+        SIRA_SEARCH_INDEXING: "maybe",
+      }),
+    ).toThrow(/SIRA_SEARCH_INDEXING must be "on" or "off"/);
+  });
 });

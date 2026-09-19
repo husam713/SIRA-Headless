@@ -75,6 +75,27 @@ describe("tenant-aware metadata", () => {
     });
   });
 
+  it("forces noindex on the production canonical host while SIRA_SEARCH_INDEXING is off", () => {
+    const metadata = buildSiteMetadata(
+      resolveSiteDiscoveryContext("group", "siratrgroup.com"),
+      createFallbackBrand("group"),
+      "/",
+      { environment: { SIRA_SEARCH_INDEXING: "off" } },
+    );
+
+    // The canonical URL is unchanged: the switch hides the site from crawlers,
+    // it does not pretend the site lives somewhere else.
+    expect(metadata.alternates?.canonical?.toString()).toBe(
+      "https://siratrgroup.com/",
+    );
+    expect(metadata.robots).toMatchObject({
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: { index: false, follow: false, noimageindex: true },
+    });
+  });
+
   it("forces noindex in Draft Mode without changing the production canonical URL", () => {
     const metadata = buildSiteMetadata(
       resolveSiteDiscoveryContext("group", "siratrgroup.com"),

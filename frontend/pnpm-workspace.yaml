@@ -1,3 +1,23 @@
-﻿allowBuilds:
+# pnpm settings.
+#
+# pnpm 11 no longer reads the "pnpm" field in package.json — settings live here
+# instead (https://pnpm.io/settings). This file exists for that reason alone;
+# there is no `packages:` key because this is a single package, not a workspace.
+#
+# allowBuilds approves postinstall scripts for exactly these packages and
+# nothing else. Without it, pnpm 10+ exits non-zero with
+# ERR_PNPM_IGNORED_BUILDS and a container build cannot complete, because
+# `pnpm approve-builds` is interactive.
+#
+# Note the setting name: pnpm 10 used `onlyBuiltDependencies` (a list); pnpm 11
+# uses `allowBuilds` (a name -> boolean map). This project pins pnpm 11.17.0 in
+# package.json's packageManager field, so the map form is the correct one.
+#
+# Both packages are transitive, not direct dependencies:
+#   sharp          arrives with Next.js. Unused by this app's rendering path,
+#                  which deliberately uses plain <img> rather than next/image,
+#                  but it still needs its native binding built.
+#   unrs-resolver  arrives with the ESLint TypeScript import resolver.
+allowBuilds:
   sharp: true
   unrs-resolver: true

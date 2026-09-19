@@ -384,3 +384,90 @@ tunnel was disabled — the same client-network class ADR-032 describes.
 from the deployment platform's egress against one destination hostname,
 confirming a non-403 response. Until that runs, treat platform reachability as
 `UNKNOWN` — neither broken nor working.
+
+---
+
+# Main site — partial progress (routing-neutral phase only)
+
+The main site's relocation is **not complete**. Only the phase that carries no
+routing consequence has been executed. The identity change and the DNS cutover
+have not happened and are not authorised by this work.
+
+## Why the phase was split
+
+The main site's relocation cannot be a single operation the way a branch
+tenant's was. The moment its network-domain constant and its identity rows
+disagree with each other, the network bootstraps inconsistently, and the moment
+the apex stops being recognised, every visitor to the estate's front door gets
+an unknown-site redirect. That second condition is only tolerable if the apex
+simultaneously starts being served by the separate frontend. That frontend is
+not yet deployed, so the identity change would produce an outage with nothing
+on the receiving end.
+
+Everything that does **not** depend on that coordination was therefore done
+first, deliberately, to shorten the eventual window.
+
+## What was executed
+
+| Class | Rows changed | Destination |
+| --- | --- | --- |
+| Media and asset URLs, plain form | 587 | backend hostname |
+| Media and asset URLs, JSON-escaped form | 11 | backend hostname |
+| Builder and field-plugin query URLs | 13 | backend hostname |
+| **Total** | **611** | |
+
+Dry run reconciled exactly against SQL row counts across all nine
+table/column pairs before writing. Scope was the main site's own tables only:
+network-shared tables and the audit-log table were excluded, as were all
+branch-tenant tables.
+
+## What was deliberately left on the apex
+
+Editorial permalinks — the links the site's own front page uses to reach its
+services, projects and standing pages. 54 metadata rows. After the cutover the
+apex is served by the frontend, so these already point where a visitor should
+land; moving them would aim public content at the backend instead.
+
+This was verified rather than assumed. The links live in link-type custom
+fields on the front page and its revisions, not in post content, and they
+resolve to the current generation of content types rather than to the older
+generation, which lives under a different URL prefix entirely.
+
+## Guard rails, verified unchanged
+
+Before and after the write, all identical: staff email addresses on the apex
+domain, stored filesystem paths that happen to contain the domain name as a
+directory, branch-tenant hostnames, and the two identity rows. The
+scheme-anchored patterns cannot reach any of them by construction, and the
+counts confirm it.
+
+Post-write, all seven string forms return zero. Media URLs were confirmed to
+still serve: the rewritten asset paths return HTTP 200 with correct content
+types and sizes from the backend hostname, because assets are served directly
+by the web server from the document root and never touch site routing. That
+property is what made this phase safe to run outside the window at all, and it
+was tested before the write, not assumed.
+
+## A finding that matters for the remaining phase
+
+The platform's own API for updating a site's routing row writes to the sites
+table **only**. It does not touch the network identity row, and the platform
+ships no public setter for the network's domain at all. The network identity
+row therefore requires the single direct write in this entire migration —
+every other change across all six sites went through an API. That is now
+established from the platform's source, not inferred.
+
+The full identity sequence was rehearsed against the restored scratch schema:
+network identity row, main-site routing row, site-URL options and network
+site-URL metadata all moved together, with every branch tenant's row confirmed
+untouched.
+
+## Remaining, and still blocked
+
+1. The identity set, in one tight window, including the configuration-file
+   constant. Blocked on the frontend existing.
+2. The apex DNS cutover. Owner action.
+3. The frontend's per-tenant endpoint variables, which still name previous
+   hostnames.
+4. Platform egress reachability, still UNKNOWN and still requiring one
+   server-side fetch from the frontend's own platform.

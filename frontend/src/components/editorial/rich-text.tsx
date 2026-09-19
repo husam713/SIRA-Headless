@@ -43,7 +43,11 @@ function anchorProps(href: string): Record<string, string> {
     : { href };
 }
 
-function renderNode(node: RichTextNode, key: number): ReactNode {
+function renderNode(
+  node: RichTextNode,
+  key: number,
+  headingId?: string,
+): ReactNode {
   if (node.type === "text") return node.value;
 
   const { tag, attributes, children } = node;
@@ -70,22 +74,35 @@ function renderNode(node: RichTextNode, key: number): ReactNode {
 
   const extra =
     tag === "a" ? anchorProps(attributes["href"] ?? "") : {};
+  // IDs are owned by the page, not the CMS. This preserves the parser's rule
+  // that editors cannot inject page behaviour while still letting a long-form
+  // view offer a real table of contents.
+  const identifier =
+    (tag === "h2" || tag === "h3") && headingId !== undefined
+      ? { id: headingId }
+      : {};
 
   return createElement(
     tag,
-    { key, className, ...extra },
+    { key, className, ...extra, ...identifier },
     ...children.map((child, index) => renderNode(child, index)),
   );
 }
 
 interface RichTextProps {
   readonly nodes: readonly RichTextNode[];
+  /**
+   * Optional page-owned IDs for top-level section headings. CMS-authored IDs
+   * are stripped during parsing; callers that need in-page navigation supply
+   * their own stable identifiers here.
+   */
+  readonly headingId?: (node: RichTextNode, index: number) => string | undefined;
 }
 
-export function RichText({ nodes }: RichTextProps) {
+export function RichText({ nodes, headingId }: RichTextProps) {
   return createElement(
     Fragment,
     null,
-    ...nodes.map((node, index) => renderNode(node, index)),
+    ...nodes.map((node, index) => renderNode(node, index, headingId?.(node, index))),
   );
 }

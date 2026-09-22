@@ -18,18 +18,15 @@ import {
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
-
-import {
-  DigitalContactPage,
-  generateDigitalMetadata,
-  type ContactPageProps,
-} from "./digital-contact";
+import { DigitalContactPage } from "@/components/digital-site/pages/contact";
+import { buildDigitalMetadata } from "@/lib/digital-site/metadata";
+import { getRequestLocale } from "@/lib/i18n/request-locale";
 
 // The contact page.
 //
-// Two compositions behind one route. SIRA Digital keeps its own page with the
-// impact calculator (ADR-033). Group and the four companies get the Atlas
-// page: the invitation on photography, then where the company works — the
+// Two compositions behind one route. SIRA Digital renders its brief composer
+// from the repository's narrative (ADR-039, proposed). Group and the four
+// companies get the Atlas page: the invitation on photography, then where the company works — the
 // brand's office locations — beside the form on its deep panel.
 //
 // The enquiry travels the existing pipeline: the trusted Next.js route resolves
@@ -41,13 +38,30 @@ import {
 const ROUTE = "/contact";
 const PAGE_URIS = Object.freeze(["/contact/", "/contact-us/"]);
 
-async function isDigital(params: ContactPageProps["params"]): Promise<boolean> {
+interface ContactPageProps {
+  readonly params: Promise<{ readonly siteKey: string }>;
+}
+
+async function resolveDigital(params: ContactPageProps["params"]) {
   const { siteKey } = await params;
-  return getSiteDefinition(siteKey)?.key === "digital";
+  const site = getSiteDefinition(siteKey);
+  if (site === null || site.key !== "digital") return null;
+  const request = await getRequestLocale(site);
+  return { site, request };
 }
 
 export async function generateMetadata(props: ContactPageProps): Promise<Metadata> {
-  if (await isDigital(props.params)) return generateDigitalMetadata(props);
+  const digital = await resolveDigital(props.params);
+  if (digital !== null) {
+    const requestHeaders = await headers();
+    return buildDigitalMetadata({
+      site: digital.site,
+      locale: digital.request.locale,
+      path: ROUTE,
+      hostname: requestHeaders.get("host") ?? "",
+      page: "contact",
+    });
+  }
 
   const { site, page, request } = await resolveAtlasPage(props.params, PAGE_URIS);
   const [brand, requestHeaders] = await Promise.all([getBrand(site.key), headers()]);
@@ -63,7 +77,10 @@ export async function generateMetadata(props: ContactPageProps): Promise<Metadat
 }
 
 export default async function ContactPage(props: ContactPageProps) {
-  if (await isDigital(props.params)) return DigitalContactPage(props);
+  const digital = await resolveDigital(props.params);
+  if (digital !== null) {
+    return <DigitalContactPage site={digital.site} locale={digital.request.locale} />;
+  }
 
   const context = await resolveAtlasPage(props.params, PAGE_URIS);
   const { page, chrome, brand, homepage, closing, closingImage, request } = context;

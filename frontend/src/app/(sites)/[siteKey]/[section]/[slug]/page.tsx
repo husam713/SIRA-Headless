@@ -13,6 +13,7 @@ import { getEditorialSingle } from "@/lib/editorial/get-editorial-single";
 import { EDITORIAL_SECTIONS } from "@/lib/editorial/routes";
 import type { EditorialArticle } from "@/lib/editorial/editorial-single-types";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { notFoundOnDigital } from "@/lib/digital-site/routes";
 import type { LocaleCode, SiteDefinition } from "@/types/site";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
@@ -81,6 +82,7 @@ export async function generateMetadata({
   if (site === null || uri === null) {
     notFound();
   }
+  notFoundOnDigital(site.key);
 
   const [brand, requestHeaders, draft, resolution] = await Promise.all([
     getBrand(site.key),
@@ -149,6 +151,7 @@ export default async function EditorialArticleRoute({
   if (site === null || uri === null) {
     notFound();
   }
+  notFoundOnDigital(site.key);
 
   // The related strip's feed is independent of the article, so it is asked
   // for at the same time rather than after: one origin latency, not two, on

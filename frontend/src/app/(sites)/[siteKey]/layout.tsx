@@ -19,6 +19,7 @@ import { CHROME, localeHref, localeUri } from "@/lib/i18n/locale";
 import { getRequestLocale } from "@/lib/i18n/request-locale";
 import { getNavigationForLocale } from "@/lib/navigation";
 import type { NavigationItem, NavigationResolution } from "@/lib/navigation";
+import { buildDigitalMetadata } from "@/lib/digital-site/metadata";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { SiteStructuredDataScripts } from "@/lib/seo/structured-data";
@@ -94,6 +95,25 @@ export async function generateMetadata({
     notFound();
   }
 
+  // SIRA Digital's words are its own (see the tenant branch below); the
+  // platform's canonical, hreflang and robots logic still apply.
+  if (site.key === "digital") {
+    const [requestHeaders, draft, request] = await Promise.all([
+      headers(),
+      draftMode(),
+      getRequestLocale(site),
+    ]);
+
+    return buildDigitalMetadata({
+      site,
+      locale: request.locale,
+      path: request.path,
+      hostname: requestHeaders.get("host") ?? "",
+      page: "home",
+      forceNoIndex: draft.isEnabled,
+    });
+  }
+
   const [brand, requestHeaders, draft, request] = await Promise.all([
     getBrand(site.key),
     headers(),
@@ -123,6 +143,25 @@ export default async function SiteLayout({
 
   const request = await getRequestLocale(site);
   const chrome = CHROME[request.locale];
+
+  // SIRA Digital renders its own document (ADR-039, proposed): a designed
+  // identity rather than five CMS colours on the Atlas shell, with no brand,
+  // navigation or homepage query on any of its routes. The document module is
+  // loaded on this branch only; the bundler still emits its stylesheet in the
+  // shared CSS, where every rule is scoped to the Digital document and inert.
+  // Everything below this guard is unchanged for the other five tenants.
+  if (site.key === "digital") {
+    const [{ DigitalDocument }, draft] = await Promise.all([
+      import("@/components/digital-site/document"),
+      draftMode(),
+    ]);
+
+    return (
+      <DigitalDocument site={site} locale={request.locale} path={request.path} draft={draft.isEnabled}>
+        {children}
+      </DigitalDocument>
+    );
+  }
 
   // getHomepageForRequest is request-cached and already awaited by the page,
   // so this resolves the same promise rather than issuing a second query. The

@@ -6,6 +6,7 @@ import {
   DigitalMarquee,
   DigitalWordmark,
 } from "@/components/digital";
+import { DigitalHome } from "@/components/digital-site/pages/home";
 import { BranchHero } from "@/components/homepage/branch-hero";
 import { BranchOverview } from "@/components/homepage/branch-overview";
 import { BranchStats } from "@/components/homepage/branch-stats";
@@ -50,6 +51,15 @@ export default async function SiteHomePage({
   // Same URI the layout resolves, so the two share one request-cached query
   // rather than rendering different languages of the same page.
   const request = await getRequestLocale(site);
+
+  // SIRA Digital's homepage is composed in the repository (ADR-039, proposed),
+  // so it neither needs nor waits for the CMS homepage. The ADR-033 branch
+  // further down is therefore unreachable for this tenant; it stays on disk,
+  // tested, until the owner accepts this direction and it is retired.
+  if (site.key === "digital") {
+    return <DigitalHome site={site} locale={request.locale} />;
+  }
+
   const [brand, homepage] = await Promise.all([
     getBrand(site.key, request.locale),
     getHomepageForRequest(site.key, localeUri(request.locale, site, "/")),

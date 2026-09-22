@@ -12,6 +12,7 @@ import {
   neutralSlug,
 } from "@/lib/content/get-content-page";
 import { resolveContentRoute } from "@/lib/content/route-context";
+import { notFoundOnDigital } from "@/lib/digital-site/routes";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -35,6 +36,8 @@ interface WorkPageProps {
 }
 
 async function resolve(params: WorkPageProps["params"]) {
+  notFoundOnDigital((await params).siteKey);
+
   const { extra: work, ...context } = await resolveContentRoute(
     params,
     `${ROUTE}/`,

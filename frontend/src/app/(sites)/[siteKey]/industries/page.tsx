@@ -13,6 +13,7 @@ import {
   neutralSlug,
 } from "@/lib/content/get-content-page";
 import { resolveContentRoute } from "@/lib/content/route-context";
+import { notFoundOnDigital } from "@/lib/digital-site/routes";
 import { CHROME, localeHref } from "@/lib/i18n/locale";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
@@ -41,6 +42,8 @@ interface IndustriesPageProps {
 }
 
 async function resolve(params: IndustriesPageProps["params"]) {
+  notFoundOnDigital((await params).siteKey);
+
   const { extra: industries, ...context } = await resolveContentRoute(
     params,
     `${ROUTE}/`,

@@ -10,6 +10,7 @@ import { resolveDeskFilter } from "@/lib/editorial/desks";
 import { resolveKindFilter } from "@/lib/editorial/record";
 import type { EditorialItem } from "@/lib/editorial/types";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { notFoundOnDigital } from "@/lib/digital-site/routes";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -43,6 +44,7 @@ export async function generateMetadata({
   if (site === null) {
     notFound();
   }
+  notFoundOnDigital(site.key);
 
   const [brand, requestHeaders, draft] = await Promise.all([
     getBrand(site.key),
@@ -76,6 +78,7 @@ export default async function NewsroomRoute({
   if (site === null) {
     notFound();
   }
+  notFoundOnDigital(site.key);
 
   const request = await getRequestLocale(site);
   const [brand, feed, requestHeaders] = await Promise.all([

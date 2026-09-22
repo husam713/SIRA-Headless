@@ -18,6 +18,10 @@ import { resolveContentRoute } from "@/lib/content/route-context";
 import { localeUri } from "@/lib/i18n/locale";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
+import { DigitalAboutPage } from "@/components/digital-site/pages/about";
+import { buildDigitalMetadata } from "@/lib/digital-site/metadata";
+import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { getRequestLocale } from "@/lib/i18n/request-locale";
 
 // About.
 //
@@ -41,6 +45,16 @@ interface AboutPageProps {
   readonly params: Promise<{ readonly siteKey: string }>;
 }
 
+// SIRA Digital's company page is composed in the repository (ADR-039,
+// proposed) and never touches the CMS `digitalAbout` composition below.
+async function resolveDigital(params: AboutPageProps["params"]) {
+  const { siteKey } = await params;
+  const site = getSiteDefinition(siteKey);
+  if (site === null || site.key !== "digital") return null;
+  const request = await getRequestLocale(site);
+  return { site, request };
+}
+
 async function resolve(params: AboutPageProps["params"]) {
   const { extra: about, ...context } = await resolveContentRoute(
     params,
@@ -55,6 +69,18 @@ async function resolve(params: AboutPageProps["params"]) {
 export async function generateMetadata({
   params,
 }: AboutPageProps): Promise<Metadata> {
+  const digital = await resolveDigital(params);
+  if (digital !== null) {
+    const requestHeaders = await headers();
+    return buildDigitalMetadata({
+      site: digital.site,
+      locale: digital.request.locale,
+      path: ROUTE,
+      hostname: requestHeaders.get("host") ?? "",
+      page: "about",
+    });
+  }
+
   const { site, page, request } = await resolve(params);
   const [brand, requestHeaders] = await Promise.all([
     getBrand(site.key),
@@ -75,6 +101,11 @@ export async function generateMetadata({
 }
 
 export default async function AboutPage({ params }: AboutPageProps) {
+  const digital = await resolveDigital(params);
+  if (digital !== null) {
+    return <DigitalAboutPage site={digital.site} locale={digital.request.locale} />;
+  }
+
   const { about, page, site, request } = await resolve(params);
 
   // No page and no composition is a tenant that has not been given this route.

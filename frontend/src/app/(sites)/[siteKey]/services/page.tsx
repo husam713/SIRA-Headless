@@ -17,18 +17,15 @@ import { resolveAccentForBusinessUnitSlug } from "@/lib/homepage/business-unit-a
 import { getSiteDefinition } from "@/lib/host/resolve-site";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
-
-import {
-  DigitalServicesPage,
-  generateDigitalMetadata,
-  type ServicesPageProps,
-} from "./digital-services";
+import { DigitalServicesPage } from "@/components/digital-site/pages/services";
+import { buildDigitalMetadata } from "@/lib/digital-site/metadata";
+import { getRequestLocale } from "@/lib/i18n/request-locale";
 
 // The services page.
 //
-// Two compositions behind one route. SIRA Digital keeps its anchored
-// specification page (ADR-033). Group and the four companies get the Atlas
-// page: numbered rows that open in place — the summary, what the service
+// Two compositions behind one route. SIRA Digital renders its own page from
+// the repository's narrative (ADR-039, proposed). Group and the four
+// companies get the Atlas page: numbered rows that open in place — the summary, what the service
 // covers as a hairline list, and its photograph — with the first row open.
 //
 // Each row is a `sira_service` record: the excerpt is the summary, the body's
@@ -40,13 +37,30 @@ import {
 const ROUTE = "/services";
 const PAGE_URIS = Object.freeze(["/our-services/", "/services-page/"]);
 
-async function isDigital(params: ServicesPageProps["params"]): Promise<boolean> {
+interface ServicesPageProps {
+  readonly params: Promise<{ readonly siteKey: string }>;
+}
+
+async function resolveDigital(params: ServicesPageProps["params"]) {
   const { siteKey } = await params;
-  return getSiteDefinition(siteKey)?.key === "digital";
+  const site = getSiteDefinition(siteKey);
+  if (site === null || site.key !== "digital") return null;
+  const request = await getRequestLocale(site);
+  return { site, request };
 }
 
 export async function generateMetadata(props: ServicesPageProps): Promise<Metadata> {
-  if (await isDigital(props.params)) return generateDigitalMetadata(props);
+  const digital = await resolveDigital(props.params);
+  if (digital !== null) {
+    const requestHeaders = await headers();
+    return buildDigitalMetadata({
+      site: digital.site,
+      locale: digital.request.locale,
+      path: ROUTE,
+      hostname: requestHeaders.get("host") ?? "",
+      page: "services",
+    });
+  }
 
   const { site, page, request } = await resolveAtlasPage(props.params, PAGE_URIS);
   const [brand, requestHeaders] = await Promise.all([getBrand(site.key), headers()]);
@@ -110,7 +124,10 @@ function ServiceRow({ service, index }: { readonly service: ServiceEntry; readon
 }
 
 export default async function ServicesPage(props: ServicesPageProps) {
-  if (await isDigital(props.params)) return DigitalServicesPage(props);
+  const digital = await resolveDigital(props.params);
+  if (digital !== null) {
+    return <DigitalServicesPage site={digital.site} locale={digital.request.locale} />;
+  }
 
   const context = await resolveAtlasPage(props.params, PAGE_URIS);
   const { site, page, chrome, request, closing, closingImage, href } = context;

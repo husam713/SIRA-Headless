@@ -5,8 +5,12 @@ import { notFound } from "next/navigation";
 import { PageContainer } from "@/components/layout/page-container";
 import { Prose } from "@/components/layout/prose";
 import { getBrand } from "@/lib/brand";
-import { getContentPage } from "@/lib/content/get-content-page";
+import { DigitalProsePage } from "@/components/digital-site/pages/prose";
+import { buildDigitalMetadata } from "@/lib/digital-site/metadata";
+import { getContentPage, getContentPageForLocale } from "@/lib/content/get-content-page";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { localeUri } from "@/lib/i18n/locale";
+import { getRequestLocale } from "@/lib/i18n/request-locale";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -44,9 +48,37 @@ async function resolve(params: ContentPageProps["params"]) {
   return { site, slug, page };
 }
 
+// SIRA Digital's prose pages (privacy, terms) read in the reader's language
+// and in the Digital document's own voice (ADR-039, proposed).
+async function resolveDigital(params: ContentPageProps["params"]) {
+  const { siteKey, section: slug } = await params;
+  const site = getSiteDefinition(siteKey);
+
+  if (site === null || site.key !== "digital") return null;
+
+  const request = await getRequestLocale(site);
+  const uri = `/${slug}/`;
+  const page = await getContentPageForLocale(site.key, localeUri(request.locale, site, uri), uri);
+
+  return { site, slug, request, page };
+}
+
 export async function generateMetadata({
   params,
 }: ContentPageProps): Promise<Metadata> {
+  const digital = await resolveDigital(params);
+  if (digital !== null) {
+    if (digital.page === null) return {};
+    const requestHeaders = await headers();
+    return buildDigitalMetadata({
+      site: digital.site,
+      locale: digital.request.locale,
+      path: `/${digital.slug}`,
+      hostname: requestHeaders.get("host") ?? "",
+      page: { title: digital.page.title, description: null },
+    });
+  }
+
   const { site, slug, page } = await resolve(params);
 
   if (page === null) return {};
@@ -67,6 +99,12 @@ export async function generateMetadata({
 }
 
 export default async function ContentPageRoute({ params }: ContentPageProps) {
+  const digital = await resolveDigital(params);
+  if (digital !== null) {
+    if (digital.page === null) notFound();
+    return <DigitalProsePage page={digital.page} />;
+  }
+
   const { page } = await resolve(params);
 
   if (page === null) notFound();

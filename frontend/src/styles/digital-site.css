@@ -1,0 +1,2519 @@
+/* ==========================================================================
+   SIRA Digital — "Masar" (المسار)
+
+   The technology company's own document. One continuous line that turns at
+   right angles — the grammar of the SIRA mark — becomes the identity: it draws
+   itself across the hero, runs down the reading edge as a spine while the page
+   is read, marks every capability as a station, and ends at a conversation.
+   In Arabic the whole system runs right to left.
+
+   Palette: lapis on bone. Lapis (لازورد) is the pigment of Islamic geometric
+   art; here it is the colour of the line and of the deep chapters. Bone is the
+   paper. Ink is the type. One vermilion "signal" marks what is live — never
+   text. Every rule in this file is scoped to `html[data-site="digital"]` or a
+   `.dg-` class so the other five tenants are untouched even when this sheet is
+   loaded beside theirs.
+   ========================================================================== */
+
+html[data-site="digital"] {
+  /* Colour */
+  --dg-bone: #f4f4ef;
+  --dg-bone-2: #eaeae3;
+  --dg-ink: #101216;
+  --dg-ink-2: #464a52;
+  --dg-ink-3: #767a83;
+  --dg-lapis: #1c34d8;
+  --dg-lapis-bright: #4d63ff;
+  --dg-lapis-deep: #0f1e9c;
+  --dg-lapis-ink: #08114f;
+  --dg-signal: #ff4d1f;
+
+  --dg-line: color-mix(in oklab, var(--dg-ink) 14%, transparent);
+  --dg-line-2: color-mix(in oklab, var(--dg-ink) 30%, transparent);
+  --dg-on-deep: var(--dg-bone);
+  --dg-on-deep-2: color-mix(in oklab, var(--dg-bone) 74%, transparent);
+  --dg-on-deep-3: color-mix(in oklab, var(--dg-bone) 52%, transparent);
+  --dg-line-on-deep: color-mix(in oklab, var(--dg-bone) 20%, transparent);
+  --dg-line-on-deep-2: color-mix(in oklab, var(--dg-bone) 38%, transparent);
+
+  /* The current chapter's surface, re-pointed by each tone. */
+  --dg-surface: var(--dg-bone);
+  --dg-text: var(--dg-ink);
+  --dg-text-2: var(--dg-ink-2);
+  --dg-text-3: var(--dg-ink-3);
+  --dg-rule: var(--dg-line);
+  --dg-rule-2: var(--dg-line-2);
+  --dg-accent: var(--dg-lapis);
+
+  /* Type */
+  --dg-font-display: var(--font-archivo-wide), var(--font-archivo), Arial, Helvetica, sans-serif;
+  --dg-font-text: var(--font-archivo), Arial, Helvetica, sans-serif;
+  --dg-font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --dg-font-arabic: var(--font-noto-kufi-arabic), Tahoma, Arial, sans-serif;
+  --dg-display-stretch: 116%;
+
+  --dg-size-xl: clamp(2.75rem, 1rem + 5.8vw, 6.5rem);
+  --dg-size-l: clamp(2.125rem, 1rem + 3.4vw, 4.25rem);
+  --dg-size-m: clamp(1.5rem, 1rem + 1.6vw, 2.25rem);
+  --dg-size-s: clamp(1.25rem, 1rem + 0.8vw, 1.5rem);
+  --dg-size-lede: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --dg-size-body: 1.0625rem;
+  --dg-size-small: 0.9375rem;
+  --dg-size-mono: 0.75rem;
+
+  /* Layout */
+  --dg-container: var(--layout-container, 88.5rem);
+  --dg-gutter: clamp(1.25rem, 4vw, 3rem);
+  --dg-spine: 0.875rem;
+  --dg-section: clamp(5rem, 9vw, 8.5rem);
+  --dg-header: 4.25rem;
+  --dg-radius: 2px;
+  --dg-cell: 32px;
+
+  /* Motion — one curve, one short scale. */
+  --dg-ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --dg-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dg-t-1: 160ms;
+  --dg-t-2: 320ms;
+  --dg-t-3: 640ms;
+  --dg-t-4: 1100ms;
+
+  color-scheme: light;
+  background: var(--dg-bone);
+  color: var(--dg-ink);
+  scroll-padding-block-start: calc(var(--dg-header) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 64rem) {
+  html[data-site="digital"] {
+    --dg-spine: 1.75rem;
+  }
+}
+
+html[data-site="digital"] body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--dg-bone);
+  color: var(--dg-ink);
+  font-family: var(--dg-font-text);
+  font-size: var(--dg-size-body);
+  line-height: 1.6;
+  font-feature-settings: "kern", "liga", "ss01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+html[data-site="digital"] ::selection {
+  background: var(--dg-lapis);
+  color: var(--dg-bone);
+}
+
+html[data-site="digital"] :focus-visible {
+  outline: 2px solid var(--dg-accent);
+  outline-offset: 4px;
+  border-radius: var(--dg-radius);
+}
+
+/* Zero-specificity resets, so any `.dg-` class wins without a fight. */
+:where(html[data-site="digital"] a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(html[data-site="digital"] button) {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-site="digital"] {
+    scroll-behavior: smooth;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Arabic. Kufi joins; tracking severs the joins, so it is neutralised, and the
+   leading is relaxed. Display sizes step down a little: Kufi's ascenders and
+   dots need the room a Latin cap-height does not. Numerals stay Latin
+   (ADR-034). `lang="en"` islands keep their own treatment.
+   -------------------------------------------------------------------------- */
+
+html[data-site="digital"]:lang(ar) {
+  --dg-font-display: var(--dg-font-arabic);
+  --dg-font-text: var(--dg-font-arabic);
+  --dg-display-stretch: 100%;
+  --dg-size-xl: clamp(2.375rem, 1rem + 5vw, 5.5rem);
+  --dg-size-l: clamp(1.875rem, 1rem + 2.9vw, 3.75rem);
+}
+
+html[data-site="digital"]:lang(ar) body {
+  line-height: 1.85;
+}
+
+html[data-site="digital"]:lang(ar) :not(:lang(en)):not(.dg-mono) {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  font-stretch: 100% !important;
+}
+
+html[data-site="digital"]:lang(ar) .dg-display,
+html[data-site="digital"]:lang(ar) .dg-display-l,
+html[data-site="digital"]:lang(ar) .dg-display-m,
+html[data-site="digital"]:lang(ar) .dg-display-s {
+  line-height: 1.24;
+  font-weight: 600;
+}
+
+html[data-site="digital"] .dg-mono,
+html[data-site="digital"] .dg-num {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Skip link and the preview banner. */
+.dg-skip {
+  position: fixed;
+  inset-inline-start: 1rem;
+  inset-block-start: 1rem;
+  z-index: 60;
+  padding: 0.75rem 1rem;
+  border-radius: var(--dg-radius);
+  background: var(--dg-ink);
+  color: var(--dg-bone);
+  font-weight: 500;
+  translate: 0 -6rem;
+  transition: translate var(--dg-t-2) var(--dg-ease);
+}
+
+.dg-skip:focus-visible {
+  translate: 0 0;
+  outline-color: var(--dg-bone);
+}
+
+.dg-preview {
+  background: var(--dg-bone-2);
+  border-block-end: 1px solid var(--dg-line);
+  font-size: var(--dg-size-small);
+}
+
+.dg-preview__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 0.75rem;
+}
+
+.dg-preview a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* --------------------------------------------------------------------------
+   Type
+   -------------------------------------------------------------------------- */
+
+.dg-display,
+.dg-display-l,
+.dg-display-m,
+.dg-display-s {
+  font-family: var(--dg-font-display);
+  font-stretch: var(--dg-display-stretch);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+  text-wrap: balance;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.dg-display {
+  font-size: var(--dg-size-xl);
+}
+
+.dg-display-l {
+  font-size: var(--dg-size-l);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.dg-display-m {
+  font-size: var(--dg-size-m);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 560;
+}
+
+.dg-display-s {
+  font-size: var(--dg-size-s);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 560;
+}
+
+.dg-lede {
+  font-size: var(--dg-size-lede);
+  line-height: 1.5;
+  color: var(--dg-text-2);
+  text-wrap: pretty;
+  max-width: 36rem;
+  margin: 0;
+}
+
+.dg-body {
+  font-size: var(--dg-size-body);
+  line-height: 1.6;
+  color: var(--dg-text-2);
+  text-wrap: pretty;
+  max-width: 40rem;
+  margin: 0;
+}
+
+.dg-small {
+  font-size: var(--dg-size-small);
+  line-height: 1.55;
+}
+
+.dg-mono {
+  font-family: var(--dg-font-mono);
+  font-size: var(--dg-size-mono);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+html[data-site="digital"]:lang(ar) .dg-mono {
+  font-family: var(--dg-font-arabic);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+/* The eyebrow: a station mark, then the label. The mark is the one right-angle
+   turn — the smallest unit of the identity — and it points inline-forward. */
+.dg-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--dg-text-2);
+  margin: 0;
+}
+
+.dg-eyebrow::before {
+  content: "";
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+  flex: none;
+  border-inline-start: 1.5px solid var(--dg-accent);
+  border-block-end: 1.5px solid var(--dg-accent);
+  translate: 0 -2px;
+}
+
+/* --------------------------------------------------------------------------
+   Layout
+   -------------------------------------------------------------------------- */
+
+.dg-container {
+  inline-size: 100%;
+  max-inline-size: var(--dg-container);
+  margin-inline: auto;
+  padding-inline: var(--dg-gutter);
+  box-sizing: border-box;
+}
+
+.dg-section {
+  position: relative;
+  padding-block: var(--dg-section);
+}
+
+.dg-section--tight {
+  padding-block: calc(var(--dg-section) * 0.6);
+}
+
+/* Tones re-point the surface tokens, so every component reads its colours
+   from the chapter it sits in rather than knowing which chapter that is. */
+.dg-tone-deep {
+  --dg-surface: var(--dg-lapis-deep);
+  --dg-text: var(--dg-on-deep);
+  --dg-text-2: var(--dg-on-deep-2);
+  --dg-text-3: var(--dg-on-deep-3);
+  --dg-rule: var(--dg-line-on-deep);
+  --dg-rule-2: var(--dg-line-on-deep-2);
+  --dg-accent: var(--dg-bone);
+  background: var(--dg-surface);
+  color: var(--dg-text);
+}
+
+.dg-tone-ink {
+  --dg-surface: var(--dg-lapis-ink);
+  --dg-text: var(--dg-on-deep);
+  --dg-text-2: var(--dg-on-deep-2);
+  --dg-text-3: var(--dg-on-deep-3);
+  --dg-rule: var(--dg-line-on-deep);
+  --dg-rule-2: var(--dg-line-on-deep-2);
+  --dg-accent: var(--dg-lapis-bright);
+  background: var(--dg-surface);
+  color: var(--dg-text);
+}
+
+.dg-tone-bone-2 {
+  --dg-surface: var(--dg-bone-2);
+  background: var(--dg-surface);
+}
+
+.dg-tone-deep ::selection,
+.dg-tone-ink ::selection {
+  background: var(--dg-bone);
+  color: var(--dg-lapis-deep);
+}
+
+.dg-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--layout-grid-gap, 1.25rem);
+  row-gap: 2rem;
+}
+
+@media (min-width: 48rem) {
+  .dg-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .dg-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+.dg-section-head {
+  display: grid;
+  gap: 1.25rem;
+  margin-block-end: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+@media (min-width: 64rem) {
+  .dg-section-head {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: end;
+    gap: var(--layout-grid-gap, 1.25rem);
+  }
+
+  .dg-section-head > .dg-lede,
+  .dg-section-head > .dg-body {
+    justify-self: end;
+    max-width: 30rem;
+  }
+}
+
+.dg-section-head .dg-eyebrow {
+  margin-block-end: 1.25rem;
+}
+
+.dg-rule {
+  border: 0;
+  border-block-start: 1px solid var(--dg-rule);
+  margin: 0;
+}
+
+.dg-sr {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Controls
+   -------------------------------------------------------------------------- */
+
+.dg-btn {
+  --dg-btn-bg: var(--dg-ink);
+  --dg-btn-fg: var(--dg-bone);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-block-size: 3rem;
+  padding: 0.75rem 1.375rem;
+  border-radius: 999px;
+  background: var(--dg-btn-bg);
+  color: var(--dg-btn-fg);
+  font-weight: 500;
+  font-size: var(--dg-size-small);
+  line-height: 1;
+  white-space: nowrap;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    color var(--dg-t-2) var(--dg-ease),
+    translate var(--dg-t-2) var(--dg-ease);
+}
+
+/* The fill sweeps in from the inline-start on hover: the button routes. */
+.dg-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--dg-lapis);
+  translate: -101% 0;
+  transition: translate var(--dg-t-3) var(--dg-ease);
+  z-index: -1;
+}
+
+[dir="rtl"] .dg-btn::before {
+  translate: 101% 0;
+}
+
+.dg-btn > * {
+  position: relative;
+}
+
+.dg-btn__arrow {
+  inline-size: 1rem;
+  block-size: 1rem;
+  flex: none;
+  transition: translate var(--dg-t-2) var(--dg-ease);
+}
+
+[dir="rtl"] .dg-btn__arrow {
+  transform: scaleX(-1);
+}
+
+.dg-btn--ghost {
+  --dg-btn-bg: transparent;
+  --dg-btn-fg: var(--dg-text);
+  box-shadow: inset 0 0 0 1px var(--dg-rule-2);
+}
+
+.dg-btn--ghost::before {
+  background: var(--dg-text);
+}
+
+.dg-btn--bone {
+  --dg-btn-bg: var(--dg-bone);
+  --dg-btn-fg: var(--dg-lapis-deep);
+}
+
+.dg-btn--bone::before {
+  background: var(--dg-ink);
+}
+
+.dg-btn:active {
+  translate: 0 1px;
+}
+
+@media (hover: hover) {
+  .dg-btn:hover::before,
+  .dg-btn:focus-visible::before {
+    translate: 0 0;
+  }
+
+  .dg-btn:hover,
+  .dg-btn:focus-visible {
+    color: var(--dg-bone);
+  }
+
+  .dg-btn:hover .dg-btn__arrow {
+    translate: 4px 0;
+  }
+
+  [dir="rtl"] .dg-btn:hover .dg-btn__arrow {
+    translate: -4px 0;
+  }
+}
+
+/* A text link with an underline that routes in from the inline-start. */
+.dg-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: var(--dg-text);
+  padding-block: 0.25rem;
+}
+
+.dg-link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 1px;
+  background: var(--dg-accent);
+  transform-origin: 0 50%;
+  transform: scaleX(0.28);
+  transition: transform var(--dg-t-3) var(--dg-ease);
+}
+
+[dir="rtl"] .dg-link::after {
+  transform-origin: 100% 50%;
+}
+
+.dg-link__arrow {
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+  flex: none;
+  transition: translate var(--dg-t-2) var(--dg-ease);
+}
+
+[dir="rtl"] .dg-link__arrow {
+  transform: scaleX(-1);
+}
+
+@media (hover: hover) {
+  .dg-link:hover::after,
+  .dg-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .dg-link:hover .dg-link__arrow {
+    translate: 3px 0;
+  }
+
+  [dir="rtl"] .dg-link:hover .dg-link__arrow {
+    translate: -3px 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header — a sticky bar that starts transparent on the hero and gains its
+   paper and hairline as the page scrolls under it. Driven by the document's
+   scroll timeline where supported; elsewhere it simply has the hairline.
+   -------------------------------------------------------------------------- */
+
+.dg-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 40;
+  block-size: var(--dg-header);
+  background: color-mix(in oklab, var(--dg-bone) 92%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border-block-end: 1px solid var(--dg-line);
+  view-transition-name: dg-header;
+}
+
+.dg-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  block-size: 100%;
+}
+
+.dg-header__nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+.dg-header__link {
+  position: relative;
+  font-size: var(--dg-size-small);
+  font-weight: 500;
+  color: var(--dg-ink-2);
+  padding-block: 0.25rem;
+  transition: color var(--dg-t-2) var(--dg-ease);
+}
+
+.dg-header__link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: -2px;
+  block-size: 1.5px;
+  background: var(--dg-lapis);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--dg-t-3) var(--dg-ease);
+}
+
+[dir="rtl"] .dg-header__link::after {
+  transform-origin: 100% 50%;
+}
+
+.dg-header__link[aria-current="page"] {
+  color: var(--dg-ink);
+}
+
+.dg-header__link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) {
+  .dg-header__link:hover {
+    color: var(--dg-ink);
+  }
+
+  .dg-header__link:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.dg-header__tools {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dg-header__cta {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .dg-header__nav,
+  .dg-header__cta {
+    display: inline-flex;
+  }
+
+  .dg-header__menu {
+    display: none;
+  }
+}
+
+/* The wordmark: the name in the reading language, with the same name in the
+   other script set small beside it — the site's bilingual promise, in the
+   corner of every page. */
+.dg-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  min-block-size: 44px;
+  align-self: center;
+  font-family: var(--dg-font-display);
+  font-stretch: var(--dg-display-stretch);
+  font-weight: 640;
+  letter-spacing: -0.03em;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--dg-text);
+  white-space: nowrap;
+}
+
+.dg-wordmark__mark {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  flex: none;
+  align-self: center;
+  color: var(--dg-lapis);
+}
+
+.dg-tone-deep .dg-wordmark__mark,
+.dg-tone-ink .dg-wordmark__mark {
+  color: var(--dg-bone);
+}
+
+.dg-wordmark__echo {
+  font-family: var(--dg-font-arabic);
+  font-stretch: 100%;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  color: var(--dg-text-3);
+  translate: 0 -1px;
+}
+
+html[data-site="digital"]:lang(ar) .dg-wordmark__echo {
+  font-family: var(--font-archivo), Arial, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.dg-lang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding-inline: 0.75rem;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: var(--dg-size-small);
+  color: var(--dg-ink-2);
+  box-shadow: inset 0 0 0 1px var(--dg-line);
+  transition:
+    color var(--dg-t-2) var(--dg-ease),
+    box-shadow var(--dg-t-2) var(--dg-ease),
+    background-color var(--dg-t-2) var(--dg-ease);
+}
+
+.dg-lang[lang="ar"] {
+  font-family: var(--dg-font-arabic);
+  letter-spacing: 0;
+}
+
+.dg-lang[lang="en"] {
+  font-family: var(--font-archivo), Arial, sans-serif;
+}
+
+.dg-tone-ink .dg-lang,
+.dg-tone-deep .dg-lang {
+  color: var(--dg-text-2);
+  box-shadow: inset 0 0 0 1px var(--dg-rule-2);
+}
+
+@media (hover: hover) {
+  .dg-lang:hover {
+    color: var(--dg-ink);
+    box-shadow: inset 0 0 0 1px var(--dg-line-2);
+    background: color-mix(in oklab, var(--dg-ink) 4%, transparent);
+  }
+}
+
+.dg-header__menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-block-size: 44px;
+  min-inline-size: 44px;
+  justify-content: center;
+  padding-inline: 0.5rem;
+  font-size: var(--dg-size-small);
+  font-weight: 500;
+}
+
+.dg-header__menu-glyph {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+
+@media (max-width: 39.9375rem) {
+  .dg-header__menu > .dg-mono {
+    display: none;
+  }
+}
+
+@media (max-width: 29.9375rem) {
+  .dg-header .dg-wordmark__echo {
+    display: none;
+  }
+}
+
+/* The mobile menu is a popover: no script, the browser owns open/close,
+   focus and Escape. It enters with @starting-style. */
+.dg-menu {
+  position: fixed;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  max-inline-size: none;
+  max-block-size: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--dg-bone);
+  color: var(--dg-ink);
+  z-index: 50;
+  overflow: auto;
+}
+
+.dg-menu:popover-open {
+  display: grid;
+  grid-template-rows: var(--dg-header) 1fr auto;
+}
+
+.dg-menu::backdrop {
+  background: transparent;
+}
+
+.dg-menu__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-block-end: 1px solid var(--dg-line);
+}
+
+.dg-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 1.5rem 0 0;
+  display: grid;
+  align-content: start;
+  gap: 0;
+}
+
+.dg-menu__item {
+  border-block-end: 1px solid var(--dg-line);
+}
+
+.dg-menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.125rem;
+  font-family: var(--dg-font-display);
+  font-stretch: var(--dg-display-stretch);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  line-height: 1;
+}
+
+.dg-menu__link .dg-mono {
+  color: var(--dg-ink-3);
+}
+
+.dg-menu__foot {
+  display: grid;
+  gap: 1rem;
+  padding-block: 1.5rem 2rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dg-menu {
+    transition:
+      opacity var(--dg-t-2) var(--dg-ease),
+      translate var(--dg-t-3) var(--dg-ease),
+      display var(--dg-t-3) allow-discrete,
+      overlay var(--dg-t-3) allow-discrete;
+    opacity: 0;
+    translate: 0 -0.75rem;
+  }
+
+  .dg-menu:popover-open {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @starting-style {
+    .dg-menu:popover-open {
+      opacity: 0;
+      translate: 0 -0.75rem;
+    }
+  }
+
+  .dg-menu:popover-open .dg-menu__item {
+    animation: dg-rise var(--dg-t-3) var(--dg-ease) both;
+    animation-delay: calc(60ms + var(--i, 0) * 50ms);
+  }
+}
+
+html[data-site="digital"]:has(.dg-menu:popover-open) {
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   The spine — the route running down the reading edge while the page is read.
+   A fixed hairline, and a head that travels its length with the document's
+   scroll. Without scroll timelines the head rests at the top, which is still
+   an honest picture.
+   -------------------------------------------------------------------------- */
+
+.dg-spine {
+  position: fixed;
+  inset-block: var(--dg-header) 0;
+  inset-inline-start: var(--dg-spine);
+  inline-size: 1px;
+  z-index: 30;
+  pointer-events: none;
+  background: var(--dg-line);
+  view-transition-name: dg-spine;
+}
+
+.dg-spine__head {
+  position: absolute;
+  inset-inline-start: -3px;
+  inset-block-start: 0;
+  inline-size: 7px;
+  block-size: 7px;
+  background: var(--dg-signal);
+}
+
+.dg-spine__trail {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  inline-size: 1px;
+  block-size: 100%;
+  background: var(--dg-lapis);
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .dg-spine__head {
+      animation: dg-spine-travel linear both;
+      animation-timeline: scroll(root);
+    }
+
+    .dg-spine__trail {
+      animation: dg-spine-grow linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes dg-spine-travel {
+  from {
+    inset-block-start: 0;
+  }
+
+  to {
+    inset-block-start: calc(100% - 7px);
+  }
+}
+
+@keyframes dg-spine-grow {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .dg-spine {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.dg-hero {
+  position: relative;
+  min-block-size: calc(100svh - var(--dg-header));
+  display: grid;
+  align-content: end;
+  padding-block: clamp(3rem, 8vh, 6rem) clamp(1.5rem, 4vh, 2.5rem);
+  overflow: clip;
+  isolation: isolate;
+}
+
+.dg-hero__field {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.dg-hero__field svg,
+.dg-hero__field canvas {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  display: block;
+}
+
+.dg-hero__field svg {
+  transition: opacity var(--dg-t-4) var(--dg-ease);
+}
+
+.dg-hero__field[data-live="true"] svg {
+  opacity: 0;
+}
+
+.dg-hero__field canvas {
+  opacity: 0;
+  transition: opacity var(--dg-t-4) var(--dg-ease);
+}
+
+.dg-hero__field[data-live="true"] canvas {
+  opacity: 1;
+}
+
+/* Paper fades the field toward the reading area and the bottom, so the type
+   sits on calm ground without a box. */
+.dg-hero__field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--dg-bone) 0%, transparent) 40%,
+      color-mix(in oklab, var(--dg-bone) 82%, transparent) 78%,
+      var(--dg-bone) 100%
+    );
+}
+
+.dg-hero__content {
+  position: relative;
+  display: grid;
+  gap: 1.75rem;
+  max-inline-size: 64rem;
+}
+
+.dg-hero__title {
+  display: grid;
+}
+
+.dg-hero__line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.06em;
+  margin-block: -0.06em;
+}
+
+.dg-hero__line > span {
+  display: block;
+}
+
+.dg-hero__title em {
+  font-style: normal;
+  color: var(--dg-lapis);
+}
+
+.dg-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+}
+
+.dg-hero__strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin-block-start: clamp(2.5rem, 7vh, 5rem);
+  padding-block-start: 1.25rem;
+  border-block-start: 1px solid var(--dg-line);
+  color: var(--dg-ink-3);
+}
+
+.dg-hero__strip-group {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.dg-scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--dg-ink-3);
+}
+
+.dg-scroll-cue__line {
+  display: block;
+  inline-size: 1px;
+  block-size: 1.5rem;
+  background: var(--dg-line-2);
+  position: relative;
+  overflow: hidden;
+}
+
+.dg-scroll-cue__line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--dg-lapis);
+  transform: translateY(-100%);
+}
+
+/* Arrival. The lines rise from under their clip, in reading order; the rest
+   settles after them. Once, on load, and never when motion is reduced. */
+@media (prefers-reduced-motion: no-preference) {
+  .dg-hero__line > span {
+    animation: dg-rise-clip var(--dg-t-4) var(--dg-ease) both;
+    animation-delay: calc(120ms + var(--i, 0) * 110ms);
+  }
+
+  .dg-hero__eyebrow,
+  .dg-hero__lede,
+  .dg-hero__actions,
+  .dg-hero__strip {
+    animation: dg-rise var(--dg-t-3) var(--dg-ease) both;
+  }
+
+  .dg-hero__eyebrow {
+    animation-delay: 60ms;
+  }
+
+  .dg-hero__lede {
+    animation-delay: 420ms;
+  }
+
+  .dg-hero__actions {
+    animation-delay: 520ms;
+  }
+
+  .dg-hero__strip {
+    animation-delay: 700ms;
+  }
+
+  .dg-scroll-cue__line::after {
+    animation: dg-cue 2.2s var(--dg-ease-in-out) infinite;
+    animation-delay: 1.4s;
+  }
+}
+
+@keyframes dg-rise-clip {
+  from {
+    transform: translateY(105%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dg-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dg-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reveals — scroll-driven, in CSS, with no observer. A block is fully visible
+   wherever the browser has no view timelines, and rises into place as it
+   enters the viewport where it does. Motion off means nothing moves.
+   -------------------------------------------------------------------------- */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .dg-reveal {
+      animation: dg-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 4% entry 34%;
+    }
+
+    .dg-reveal--far {
+      animation-range: entry 8% entry 46%;
+    }
+  }
+}
+
+@keyframes dg-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Statement — three lines read by a moving light: each brightens as it enters
+   the middle of the viewport, like a finger following the text.
+   -------------------------------------------------------------------------- */
+
+.dg-statement {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  max-inline-size: 64rem;
+}
+
+.dg-statement__line {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 1rem 1.5rem;
+  padding-block-start: 1.25rem;
+  border-block-start: 1px solid var(--dg-rule);
+  color: var(--dg-text);
+}
+
+.dg-statement__line .dg-mono {
+  color: var(--dg-text-3);
+  padding-block-start: 0.55em;
+}
+
+.dg-statement__text {
+  font-family: var(--dg-font-display);
+  font-stretch: var(--dg-display-stretch);
+  font-weight: 540;
+  letter-spacing: -0.03em;
+  font-size: var(--dg-size-l);
+  line-height: 1.02;
+  text-wrap: balance;
+  margin: 0;
+}
+
+html[data-site="digital"]:lang(ar) .dg-statement__text {
+  line-height: 1.3;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .dg-statement__line {
+      animation: dg-light linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 45%;
+    }
+  }
+}
+
+@keyframes dg-light {
+  from {
+    opacity: 0.22;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Stations — the capabilities. A hairline grid drawn the way a schematic is:
+   the gap between cells IS the line. Each station carries its own route glyph,
+   which draws itself when the station is hovered or focused.
+   -------------------------------------------------------------------------- */
+
+.dg-stations {
+  display: grid;
+  gap: 1px;
+  background: var(--dg-rule);
+  border: 1px solid var(--dg-rule);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 48rem) {
+  .dg-stations {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dg-station {
+    min-block-size: 18rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .dg-stations {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.dg-station {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+  background: var(--dg-surface);
+  transition: background-color var(--dg-t-3) var(--dg-ease);
+}
+
+.dg-station__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.dg-station__index {
+  color: var(--dg-text-3);
+}
+
+.dg-station__glyph {
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
+  color: var(--dg-lapis);
+  overflow: visible;
+}
+
+.dg-station__glyph path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linejoin: miter;
+  stroke-linecap: square;
+  vector-effect: non-scaling-stroke;
+}
+
+.dg-station__glyph rect {
+  fill: var(--dg-text);
+}
+
+/* The glyphs travel with the text: mirrored where the text runs right to left. */
+[dir="rtl"] .dg-station__glyph,
+[dir="rtl"] .dg-row__glyph,
+[dir="rtl"] .dg-done__mark,
+[dir="rtl"] .dg-closing__glyph {
+  transform: scaleX(-1);
+}
+
+.dg-station__body {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.dg-station__title {
+  transition: translate var(--dg-t-3) var(--dg-ease);
+}
+
+.dg-station__summary {
+  color: var(--dg-text-2);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.dg-station__examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dg-station__examples li {
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  padding: 0.375rem 0.625rem;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--dg-rule);
+  color: var(--dg-text-2);
+}
+
+.dg-station__link {
+  position: absolute;
+  inset: 0;
+}
+
+.dg-station__link:focus-visible {
+  outline-offset: -4px;
+}
+
+@media (hover: hover) {
+  .dg-station:hover {
+    background: color-mix(in oklab, var(--dg-surface) 92%, var(--dg-lapis) 8%);
+  }
+
+  .dg-station:hover .dg-station__title {
+    translate: 4px 0;
+  }
+
+  [dir="rtl"] .dg-station:hover .dg-station__title {
+    translate: -4px 0;
+  }
+}
+
+.dg-station:has(.dg-station__link:focus-visible) {
+  background: color-mix(in oklab, var(--dg-surface) 92%, var(--dg-lapis) 8%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dg-station__glyph path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset var(--dg-t-4) var(--dg-ease);
+  }
+
+  .dg-station__glyph path {
+    /* pathLength="1" on the element normalises every glyph to a unit length. */
+    stroke-dasharray: 1 1;
+  }
+
+  @media (hover: hover) {
+    .dg-station:hover .dg-station__glyph path,
+    .dg-station:has(.dg-station__link:focus-visible) .dg-station__glyph path {
+      animation: dg-draw var(--dg-t-4) var(--dg-ease) both;
+    }
+  }
+}
+
+@keyframes dg-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Approach — four stops on one route. The connecting line draws itself as the
+   section enters, then each stop lights.
+   -------------------------------------------------------------------------- */
+
+.dg-steps {
+  position: relative;
+  display: grid;
+  gap: 2.5rem 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: dg-step;
+}
+
+@media (min-width: 48rem) {
+  .dg-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .dg-steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.dg-step {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding-block-start: 1.5rem;
+}
+
+/* The route through the stops: a hairline along the top, a node at each. */
+.dg-step::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 1px;
+  background: var(--dg-rule-2);
+}
+
+.dg-step::after {
+  content: "";
+  position: absolute;
+  inset-block-start: -3px;
+  inset-inline-start: 0;
+  inline-size: 7px;
+  block-size: 7px;
+  background: var(--dg-lapis);
+}
+
+.dg-step__index {
+  color: var(--dg-lapis);
+}
+
+.dg-step__title {
+  margin: 0;
+}
+
+.dg-step__summary {
+  color: var(--dg-text-2);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .dg-step::before {
+      transform-origin: 0 50%;
+      animation: dg-grow-x linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 60%;
+    }
+
+    [dir="rtl"] .dg-step::before {
+      transform-origin: 100% 50%;
+    }
+
+    .dg-step > * {
+      animation: dg-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 12% entry 42%;
+    }
+  }
+}
+
+@keyframes dg-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Principles — four commitments on lapis, as a two-by-two of hairline cells.
+   -------------------------------------------------------------------------- */
+
+.dg-principles {
+  display: grid;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-block-start: 1px solid var(--dg-rule);
+}
+
+@media (min-width: 48rem) {
+  .dg-principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.dg-principle {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  border-block-end: 1px solid var(--dg-rule);
+}
+
+@media (min-width: 48rem) {
+  .dg-principle:nth-child(odd) {
+    padding-inline-end: clamp(1.5rem, 3vw, 2.5rem);
+    border-inline-end: 1px solid var(--dg-rule);
+  }
+
+  .dg-principle:nth-child(even) {
+    padding-inline-start: clamp(1.5rem, 3vw, 2.5rem);
+  }
+}
+
+.dg-principle__index {
+  color: var(--dg-text-3);
+}
+
+.dg-principle__title {
+  margin: 0;
+}
+
+.dg-principle__body {
+  color: var(--dg-text-2);
+  margin: 0;
+  max-width: 30rem;
+  text-wrap: pretty;
+}
+
+/* --------------------------------------------------------------------------
+   Group — the five companies as a row of tiles, each in its own hue: a small
+   honest fact about where this company sits.
+   -------------------------------------------------------------------------- */
+
+.dg-companies {
+  display: grid;
+  gap: 1px;
+  background: var(--dg-rule);
+  border: 1px solid var(--dg-rule);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 40rem) {
+  .dg-companies {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .dg-companies {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.dg-company {
+  position: relative;
+  display: grid;
+  gap: 2.5rem;
+  padding: 1.25rem;
+  min-block-size: 10rem;
+  background: var(--dg-surface);
+  transition: background-color var(--dg-t-3) var(--dg-ease);
+}
+
+.dg-company__swatch {
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  background: var(--dg-company-hue, var(--dg-lapis));
+}
+
+.dg-company__name {
+  display: grid;
+  gap: 0.25rem;
+  align-self: end;
+}
+
+.dg-company__name strong {
+  font-weight: 560;
+  font-size: var(--dg-size-small);
+  line-height: 1.3;
+}
+
+.dg-company__name span {
+  color: var(--dg-text-3);
+  font-size: 0.8125rem;
+}
+
+.dg-company__link {
+  position: absolute;
+  inset: 0;
+}
+
+.dg-company__link:focus-visible {
+  outline-offset: -4px;
+}
+
+.dg-company__arrow {
+  position: absolute;
+  inset-inline-end: 1rem;
+  inset-block-start: 1rem;
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+  color: var(--dg-text-3);
+  transition:
+    translate var(--dg-t-2) var(--dg-ease),
+    color var(--dg-t-2) var(--dg-ease);
+}
+
+[dir="rtl"] .dg-company__arrow {
+  transform: scaleX(-1);
+}
+
+@media (hover: hover) {
+  .dg-company:hover {
+    background: color-mix(in oklab, var(--dg-surface) 94%, var(--dg-company-hue, var(--dg-lapis)) 6%);
+  }
+
+  .dg-company:hover .dg-company__arrow {
+    color: var(--dg-text);
+    translate: 2px -2px;
+  }
+
+  [dir="rtl"] .dg-company:hover .dg-company__arrow {
+    translate: -2px -2px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Closing — the route ends at a conversation.
+   -------------------------------------------------------------------------- */
+
+.dg-closing {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 2rem;
+  max-inline-size: 60rem;
+}
+
+.dg-closing-section {
+  overflow: clip;
+}
+
+.dg-closing-section > .dg-container {
+  position: relative;
+}
+
+/* The route arriving, drawn large and quiet beside the ask. */
+.dg-closing__glyph {
+  display: none;
+  position: absolute;
+  inset-inline-end: var(--dg-gutter);
+  inset-block-start: 50%;
+  translate: 0 -50%;
+  inline-size: clamp(14rem, 24vw, 22rem);
+  block-size: clamp(14rem, 24vw, 22rem);
+  color: var(--dg-bone);
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+.dg-closing__glyph path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linejoin: miter;
+  stroke-linecap: square;
+  vector-effect: non-scaling-stroke;
+}
+
+.dg-closing__glyph rect {
+  fill: currentColor;
+}
+
+@media (min-width: 64rem) {
+  .dg-closing__glyph {
+    display: block;
+  }
+}
+
+.dg-closing__body {
+  color: var(--dg-text-2);
+  max-width: 36rem;
+  margin: 0;
+  font-size: var(--dg-size-lede);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.dg-footer {
+  padding-block: clamp(3rem, 6vw, 5rem) 2rem;
+}
+
+.dg-footer__grid {
+  display: grid;
+  gap: 2.5rem 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  .dg-footer__grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+
+.dg-footer__brand {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.dg-footer__tagline {
+  color: var(--dg-text-2);
+  margin: 0;
+  max-width: 22rem;
+}
+
+.dg-footer__heading {
+  color: var(--dg-text-3);
+  margin: 0 0 1rem;
+}
+
+.dg-footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.dg-footer__link {
+  display: inline-flex;
+  min-block-size: 44px;
+  align-items: center;
+  color: var(--dg-text-2);
+  transition: color var(--dg-t-2) var(--dg-ease);
+}
+
+.dg-footer__link[lang="ar"] {
+  font-family: var(--dg-font-arabic);
+}
+
+.dg-footer__link[lang="en"] {
+  font-family: var(--font-archivo), Arial, sans-serif;
+}
+
+@media (hover: hover) {
+  .dg-footer__link:hover {
+    color: var(--dg-text);
+  }
+}
+
+.dg-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin-block-start: clamp(2.5rem, 5vw, 4rem);
+  padding-block-start: 1.25rem;
+  border-block-start: 1px solid var(--dg-rule);
+  color: var(--dg-text-3);
+}
+
+.dg-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.dg-clock__dot {
+  inline-size: 6px;
+  block-size: 6px;
+  background: var(--dg-signal);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dg-clock__dot {
+    animation: dg-pulse 2.4s var(--dg-ease-in-out) infinite;
+  }
+}
+
+@keyframes dg-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Page intros (services, company, contact)
+   -------------------------------------------------------------------------- */
+
+.dg-intro {
+  display: grid;
+  gap: 1.5rem;
+  padding-block: clamp(3rem, 7vw, 6rem) clamp(2.5rem, 5vw, 4rem);
+  max-inline-size: 56rem;
+}
+
+/* --------------------------------------------------------------------------
+   Services — each capability as a full-width row on the schematic.
+   -------------------------------------------------------------------------- */
+
+.dg-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-block-start: 1px solid var(--dg-rule);
+}
+
+.dg-row {
+  display: grid;
+  gap: 1.25rem;
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  border-block-end: 1px solid var(--dg-rule);
+  scroll-margin-block-start: calc(var(--dg-header) + 1rem);
+}
+
+@media (min-width: 64rem) {
+  .dg-row {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 3fr);
+    gap: var(--layout-grid-gap, 1.25rem);
+  }
+}
+
+.dg-row__lead {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.dg-row__glyph {
+  inline-size: 4rem;
+  block-size: 4rem;
+  color: var(--dg-lapis);
+}
+
+.dg-row__glyph path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linejoin: miter;
+  stroke-linecap: square;
+  vector-effect: non-scaling-stroke;
+}
+
+.dg-row__glyph rect {
+  fill: var(--dg-text);
+}
+
+.dg-row__body {
+  display: grid;
+  gap: 1rem;
+}
+
+.dg-row__detail {
+  color: var(--dg-text-2);
+  margin: 0;
+  max-width: 40rem;
+  text-wrap: pretty;
+}
+
+.dg-row__aside {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.dg-row__examples {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.dg-row__examples li {
+  padding-block: 0.5rem;
+  border-block-start: 1px solid var(--dg-rule);
+  font-size: var(--dg-size-small);
+  color: var(--dg-text-2);
+}
+
+.dg-panel {
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--dg-rule);
+}
+
+@media (min-width: 64rem) {
+  .dg-panel {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 3rem;
+  }
+}
+
+.dg-panel__body {
+  color: var(--dg-text-2);
+  margin: 0.5rem 0 0;
+  max-width: 34rem;
+  text-wrap: pretty;
+}
+
+/* --------------------------------------------------------------------------
+   Company — sections read as a set of numbered entries.
+   -------------------------------------------------------------------------- */
+
+.dg-entries {
+  display: grid;
+  border-block-start: 1px solid var(--dg-rule);
+}
+
+.dg-entry {
+  display: grid;
+  gap: 1rem;
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  border-block-end: 1px solid var(--dg-rule);
+}
+
+@media (min-width: 64rem) {
+  .dg-entry {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: var(--layout-grid-gap, 1.25rem);
+  }
+}
+
+.dg-entry__title {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.dg-entry__body {
+  display: grid;
+  gap: 1rem;
+  max-width: 40rem;
+}
+
+.dg-entry__body p {
+  margin: 0;
+  color: var(--dg-text-2);
+  text-wrap: pretty;
+  font-size: var(--dg-size-lede);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   Contact — the brief composer beside the form.
+   -------------------------------------------------------------------------- */
+
+.dg-contact {
+  display: grid;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (min-width: 64rem) {
+  .dg-contact {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  .dg-contact__aside {
+    position: sticky;
+    inset-block-start: calc(var(--dg-header) + 1.5rem);
+  }
+}
+
+.dg-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+  min-inline-size: 0;
+}
+
+.dg-fieldset__legend {
+  padding: 0;
+  margin-block-end: 0.5rem;
+  font-weight: 560;
+  font-size: var(--dg-size-s);
+  letter-spacing: -0.015em;
+}
+
+.dg-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dg-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-block-size: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--dg-line-2);
+  font-size: var(--dg-size-small);
+  font-weight: 500;
+  color: var(--dg-ink-2);
+  background: transparent;
+  transition:
+    background-color var(--dg-t-2) var(--dg-ease),
+    color var(--dg-t-2) var(--dg-ease),
+    box-shadow var(--dg-t-2) var(--dg-ease);
+}
+
+.dg-chip::before {
+  content: "";
+  inline-size: 6px;
+  block-size: 6px;
+  background: currentColor;
+  opacity: 0.35;
+  transition: opacity var(--dg-t-2) var(--dg-ease);
+}
+
+.dg-chip[aria-pressed="true"],
+.dg-chip[aria-checked="true"] {
+  background: var(--dg-ink);
+  color: var(--dg-bone);
+  box-shadow: inset 0 0 0 1px var(--dg-ink);
+}
+
+.dg-chip[aria-pressed="true"]::before,
+.dg-chip[aria-checked="true"]::before {
+  opacity: 1;
+  background: var(--dg-signal);
+}
+
+@media (hover: hover) {
+  .dg-chip:hover {
+    box-shadow: inset 0 0 0 1px var(--dg-ink);
+    color: var(--dg-ink);
+  }
+
+  .dg-chip[aria-pressed="true"]:hover,
+  .dg-chip[aria-checked="true"]:hover {
+    color: var(--dg-bone);
+  }
+}
+
+.dg-brief {
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  min-block-size: 14rem;
+}
+
+.dg-brief__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  color: var(--dg-text-3);
+}
+
+.dg-brief__clear {
+  color: var(--dg-text-2);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  min-block-size: 44px;
+  margin-block: -0.75rem;
+}
+
+.dg-brief__text {
+  font-family: var(--dg-font-display);
+  font-stretch: var(--dg-display-stretch);
+  font-weight: 540;
+  letter-spacing: -0.025em;
+  font-size: var(--dg-size-m);
+  line-height: 1.12;
+  margin: 0;
+  text-wrap: pretty;
+  transition: opacity var(--dg-t-2) var(--dg-ease);
+}
+
+.dg-brief__text[data-empty="true"] {
+  color: var(--dg-text-2);
+  font-weight: 500;
+}
+
+html[data-site="digital"]:lang(ar) .dg-brief__text {
+  line-height: 1.4;
+}
+
+.dg-brief__caret {
+  display: inline-block;
+  inline-size: 0.5em;
+  block-size: 1em;
+  vertical-align: -0.15em;
+  margin-inline-start: 0.1em;
+  background: var(--dg-signal);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dg-brief__caret {
+    animation: dg-blink 1.1s steps(2, start) infinite;
+  }
+}
+
+@keyframes dg-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.dg-after {
+  display: grid;
+  gap: 1rem;
+  margin-block-start: 1.5rem;
+}
+
+.dg-after__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.dg-after__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding-block: 0.875rem;
+  border-block-start: 1px solid var(--dg-rule);
+  color: var(--dg-text-2);
+  font-size: var(--dg-size-small);
+}
+
+.dg-after__item .dg-mono {
+  color: var(--dg-text-3);
+  padding-block-start: 0.2em;
+}
+
+.dg-form {
+  display: grid;
+  gap: 1.75rem;
+  margin-block-start: 2.5rem;
+}
+
+.dg-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.dg-field__label {
+  font-weight: 500;
+  font-size: var(--dg-size-small);
+}
+
+.dg-field__hint {
+  color: var(--dg-ink-3);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.dg-input {
+  inline-size: 100%;
+  min-block-size: 3.25rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--dg-line-2);
+  border-radius: var(--dg-radius);
+  background: color-mix(in oklab, var(--dg-bone) 60%, white 40%);
+  color: var(--dg-ink);
+  font: inherit;
+  transition:
+    border-color var(--dg-t-2) var(--dg-ease),
+    box-shadow var(--dg-t-2) var(--dg-ease);
+}
+
+.dg-input:focus {
+  outline: none;
+  border-color: var(--dg-lapis);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--dg-lapis) 22%, transparent);
+}
+
+.dg-input[aria-invalid="true"] {
+  border-color: var(--dg-signal);
+}
+
+textarea.dg-input {
+  min-block-size: 9rem;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.dg-field__error {
+  color: color-mix(in oklab, var(--dg-signal) 80%, var(--dg-ink) 20%);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.dg-form__row {
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 40rem) {
+  .dg-form__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.dg-form__foot {
+  display: grid;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+@media (min-width: 40rem) {
+  .dg-form__foot {
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.dg-form__note {
+  color: var(--dg-ink-3);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.dg-form__note a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  color: var(--dg-ink-2);
+}
+
+.dg-form__status {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--dg-line-2);
+  border-radius: var(--dg-radius);
+  color: var(--dg-ink-2);
+  font-size: var(--dg-size-small);
+}
+
+.dg-form__status--error {
+  border-color: color-mix(in oklab, var(--dg-signal) 60%, transparent);
+}
+
+.dg-done {
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(2rem, 5vw, 3.5rem) 0;
+}
+
+.dg-done__mark {
+  inline-size: 3rem;
+  block-size: 3rem;
+  color: var(--dg-lapis);
+}
+
+.dg-done__mark path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linejoin: miter;
+  stroke-linecap: square;
+  vector-effect: non-scaling-stroke;
+}
+
+.dg-done__mark rect {
+  fill: var(--dg-ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dg-done__mark path {
+    stroke-dasharray: 1 1;
+    animation: dg-draw var(--dg-t-4) var(--dg-ease) both;
+  }
+
+  .dg-done > :not(.dg-done__mark) {
+    animation: dg-rise var(--dg-t-3) var(--dg-ease) both;
+    animation-delay: 300ms;
+  }
+}
+
+.dg-honeypot {
+  position: absolute;
+  inset-inline-start: -10000px;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Prose — the CMS pages (privacy, terms) in the Digital voice.
+   -------------------------------------------------------------------------- */
+
+.dg-prose {
+  max-inline-size: 42rem;
+  color: var(--dg-ink-2);
+  font-size: var(--dg-size-body);
+  line-height: 1.65;
+}
+
+.dg-prose > * + * {
+  margin-block-start: 1.25em;
+}
+
+.dg-prose h2,
+.dg-prose h3,
+.dg-prose h4 {
+  color: var(--dg-ink);
+  font-family: var(--dg-font-display);
+  font-stretch: var(--dg-display-stretch);
+  font-weight: 560;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-block-start: 2em;
+}
+
+.dg-prose h2 {
+  font-size: var(--dg-size-s);
+}
+
+.dg-prose h3 {
+  font-size: 1.125rem;
+}
+
+.dg-prose a {
+  color: var(--dg-lapis);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.dg-prose ul,
+.dg-prose ol {
+  padding-inline-start: 1.25em;
+}
+
+.dg-prose li + li {
+  margin-block-start: 0.5em;
+}
+
+.dg-prose strong {
+  color: var(--dg-ink);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   404
+   -------------------------------------------------------------------------- */
+
+.dg-404 {
+  position: relative;
+  min-block-size: calc(100svh - var(--dg-header));
+  display: grid;
+  align-content: center;
+  gap: 1.5rem;
+  overflow: clip;
+  isolation: isolate;
+}
+
+.dg-404__code {
+  color: var(--dg-lapis);
+}
+
+/* --------------------------------------------------------------------------
+   Cross-document transitions. The header and spine hold still; the page
+   itself crossfades briefly.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-site="digital"]::view-transition-old(root),
+  html[data-site="digital"]::view-transition-new(root) {
+    animation-duration: 260ms;
+    animation-timing-function: var(--dg-ease);
+  }
+
+  html[data-site="digital"]::view-transition-old(dg-header),
+  html[data-site="digital"]::view-transition-new(dg-header),
+  html[data-site="digital"]::view-transition-old(dg-spine),
+  html[data-site="digital"]::view-transition-new(dg-spine) {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Motion off. Everything is already in place; nothing arrives, draws, sweeps
+   or blinks. The field is the server's still.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-site="digital"] *,
+  html[data-site="digital"] *::before,
+  html[data-site="digital"] *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .dg-hero__field canvas {
+    display: none;
+  }
+
+  .dg-hero__field[data-live="true"] svg {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Print
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .dg-spine,
+  .dg-header__menu,
+  .dg-hero__field,
+  .dg-scroll-cue {
+    display: none !important;
+  }
+
+  html[data-site="digital"] .dg-tone-deep,
+  html[data-site="digital"] .dg-tone-ink {
+    background: none;
+    color: #000;
+  }
+}

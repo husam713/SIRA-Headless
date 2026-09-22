@@ -11,6 +11,7 @@ import { getBrand } from "@/lib/brand";
 import { CtaLink } from "@/components/homepage/cta-link";
 import { getIndustryDetail, recordLocale } from "@/lib/content/get-content-page";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { notFoundOnDigital } from "@/lib/digital-site/routes";
 import { CHROME, localeHref } from "@/lib/i18n/locale";
 import { getRequestLocale } from "@/lib/i18n/request-locale";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
@@ -43,6 +44,7 @@ async function resolve(params: IndustryPageProps["params"]) {
   const site = getSiteDefinition(siteKey);
 
   if (site === null) notFound();
+  notFoundOnDigital(site.key);
 
   const request = await getRequestLocale(site);
   // The Arabic record carries the prefixed slug. Asking for it first and

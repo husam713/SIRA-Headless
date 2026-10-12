@@ -3,6 +3,8 @@
   "updatedAt": "2026-10-12",
   "handover": {
     "document": "docs/HANDOVER.md",
+    "managementSummary": "docs/HANDOVER-MANAGEMENT.md",
+    "digitalContinuation": "docs/DIGITAL-HANDOVER.md",
     "verifiedAt": "2026-10-12",
     "mainSnapshot": "2cb12ca93d7b379198856137478d1534e6055950",
     "production": {

@@ -3,9 +3,15 @@
 Six SIRA brands served by one Next.js 16 app from one WordPress Multisite
 through WPGraphQL.
 
-**Start here:** [`docs/HANDOVER.md`](docs/HANDOVER.md) — what is live, how to
-run, ship and roll back, and what is still open. Current state on one page:
-[`docs/STATE.md`](docs/STATE.md). Engineering rules: [`AGENTS.md`](AGENTS.md).
+**Start here**
+
+| Document | For |
+|---|---|
+| [`docs/HANDOVER.md`](docs/HANDOVER.md) | engineers — architecture, run, ship, deploy, roll back, operate |
+| [`docs/HANDOVER-MANAGEMENT.md`](docs/HANDOVER-MANAGEMENT.md) | management — what was delivered, status, decisions needed |
+| [`docs/DIGITAL-HANDOVER.md`](docs/DIGITAL-HANDOVER.md) | SIRA Digital — launch plan and how to continue |
+| [`docs/STATE.md`](docs/STATE.md) | current state on one page |
+| [`AGENTS.md`](AGENTS.md) | engineering rules |
 
 ## Structure
 

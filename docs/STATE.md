@@ -1,8 +1,9 @@
 # SIRA — current state (read this first)
 
 One page. Facts here are verified against Git/GitHub on the date shown; anything
-older is provenance. Machine-readable twin: `project-state.json`. Handover entry
-point: `docs/HANDOVER.md`. Full history and registries: `docs/HANDOFF.md`,
+older is provenance. Machine-readable twin: `project-state.json`. Handover:
+`docs/HANDOVER.md` (technical), `docs/HANDOVER-MANAGEMENT.md` (management),
+`docs/DIGITAL-HANDOVER.md` (SIRA Digital). Full history and registries: `docs/HANDOFF.md`,
 `docs/SOURCE-OF-TRUTH.md`, `docs/PROJECT-STATE.md`, `docs/DECISIONS.md`.
 
 **Verified through:** 2026-10-12 · `main` @ `2cb12ca9` (merge of PR #80, 2026-09-19)

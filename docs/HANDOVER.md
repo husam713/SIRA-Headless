@@ -18,7 +18,7 @@ owns presentation, routing, SEO and the contact pipeline.
 |---|---|---|
 | Group | `siratrgroup.com` (`www` redirects) | Cloud Run `sira-frontend` |
 | Consulting, Healthcare, Lifestyle, Real Estate | `<brand>.siratrgroup.com` | Cloud Run `sira-frontend` |
-| Digital | `digital.siratrgroup.com` | still the WordPress host — the new Digital site is PR #81, not merged |
+| Digital | `digital.siratrgroup.com` | still the WordPress host — the new Digital site is PR #81 and is not deployed |
 
 Each brand renders in English and Arabic (ADR-037), with the Atlas design, the
 newsroom "The SIRA Record", and live CMS content. CMS origins are
@@ -87,11 +87,12 @@ extra hosts such as preview domains to a tenant.
 
 ## Open items (owner decisions)
 
-1. **PR #81 — the new SIRA Digital site "Masar"** (ADR-039, PROPOSED). Green,
-   mergeable, reviewed screenshots in the PR. Merge it to accept the direction;
-   then deploy and point `digital.siratrgroup.com` at Cloud Run. After that, the
-   retired ADR-033 composition (`components/digital/*`, the `.digital-*` CSS
-   block, the `digitalHomepage` branch in `page.tsx`) can be deleted.
+1. **PR #81 — the new SIRA Digital site "Masar"** (ADR-039, PROPOSED). Green
+   and mergeable, with review screenshots in the PR; handed to the owner for
+   merge on 2026-10-12. Once merged: mark ADR-039 accepted, deploy, point
+   `digital.siratrgroup.com` at Cloud Run, then delete the retired ADR-033
+   composition (`components/digital/*`, the `.digital-*` CSS block, the
+   `digitalHomepage` branch in `page.tsx`).
 2. **Turn search indexing on** after the final content review: set
    `SIRA_SEARCH_INDEXING=on` on the Cloud Run service — no code deploy.
 3. **Editorial claims to confirm** before indexing: the list in

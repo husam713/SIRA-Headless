@@ -21,7 +21,7 @@ load automatically from `.claude/rules/` when you touch those paths.
 | Group + branch homepages, shell, newsroom, Atlas pages, Arabic edition (ADR-037), Digital tenant (ADR-033/034) | merged on `main` (PRs #36–#78) | Git |
 | Launch: Group on `cms-group`, frontend on Cloud Run, apex to DNS (ADR-038) | merged on `main` — PR **#79**, 2026-09-18 | Git |
 | Contact form: tenant-scoped services, optional phone | merged on `main` — PR **#80** @ `2cb12ca9`, 2026-09-19 | Git |
-| SIRA Digital "Masar" site (ADR-039, PROPOSED) | open — PR **#81**, CI green, mergeable; awaits the owner's merge | GitHub |
+| SIRA Digital "Masar" site (ADR-039, PROPOSED) | PR **#81** — CI green and mergeable, handed to the owner for merge on 2026-10-12 (check GitHub for whether it has merged); not deployed either way | GitHub |
 | Production | Cloud Run `sira-frontend` (europe-west1) rev `00009-dvr` serves `main` @ `2cb12ca9` on the apex and the four company subdomains; apex DNS has moved; `digital.siratrgroup.com` is still on the WordPress host | gcloud, DNS, HTTP probe 2026-10-12 |
 | Search indexing | OFF (`SIRA_SEARCH_INDEXING=off`) until the owner's final review | live `robots.txt` 2026-10-12 |
 | Release tags | `release/2026-09-19-production` (live), `release/2026-09-18-production` | Git |
@@ -47,8 +47,8 @@ exist for PRs #64–#80.
 
 ## Open gates
 
-- **PR #81 / ADR-039** — the owner merges or declines; after acceptance, retire
-  the ADR-033 composition and move `digital.siratrgroup.com` to Cloud Run.
+- **PR #81 / ADR-039** — once merged: mark ADR-039 accepted, deploy, move
+  `digital.siratrgroup.com` to Cloud Run, then retire the ADR-033 composition.
 - **Search indexing** — `SIRA_SEARCH_INDEXING=on` after the editorial claims in
   `docs/tasks/atlas-launch-2026-09-18.md` are confirmed.
 - **Digital content** — blog 6 still carries 94 placeholder records

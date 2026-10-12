@@ -1,6 +1,30 @@
 {
   "project": "SIRA Headless Platform",
-  "updatedAt": "2026-09-18",
+  "updatedAt": "2026-10-12",
+  "handover": {
+    "document": "docs/HANDOVER.md",
+    "verifiedAt": "2026-10-12",
+    "mainSnapshot": "2cb12ca93d7b379198856137478d1534e6055950",
+    "production": {
+      "service": "cloud-run/sira-frontend",
+      "region": "europe-west1",
+      "revision": "sira-frontend-00009-dvr",
+      "servesCommit": "2cb12ca93d7b379198856137478d1534e6055950",
+      "releaseTag": "release/2026-09-19-production",
+      "searchIndexing": "off",
+      "apexDns": "MOVED_TO_CLOUD_RUN",
+      "digitalHost": "STILL_ON_WORDPRESS_HOST"
+    },
+    "openOwnerDecisions": [
+      "PR_81_DIGITAL_MASAR_ADR_039",
+      "SEARCH_INDEXING_SWITCH",
+      "EDITORIAL_CLAIMS_CONFIRMATION",
+      "DIGITAL_BLOG_6_PLACEHOLDER_CONTENT",
+      "SIRA_SIRAH_SPELLING_AND_DIGITAL_MARK",
+      "RB_009_RESTORE_REHEARSAL"
+    ],
+    "branchPolicy": "MAIN_ONLY_LONG_LIVED; STEP_BRANCHES_AND_APPROVED_TAGS_IMMUTABLE; UNMERGED_WORK_PRESERVED_AS_ARCHIVE_TAGS"
+  },
   "status": "IN_PROGRESS",
   "currentStage": "2C.5B",
   "currentSubstage": "2C.5B-CMS-MUTATION-READINESS-BACKUP-GATE",

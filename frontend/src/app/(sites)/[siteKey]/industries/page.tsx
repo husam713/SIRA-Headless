@@ -13,7 +13,10 @@ import {
   neutralSlug,
 } from "@/lib/content/get-content-page";
 import { resolveContentRoute } from "@/lib/content/route-context";
-import { notFoundOnDigital } from "@/lib/digital-site/routes";
+import { DigitalIndustriesPage } from "@/components/digital-site/pages/industries";
+import { buildDigitalMetadata } from "@/lib/digital-site/metadata";
+import { getSiteDefinition } from "@/lib/host/resolve-site";
+import { getRequestLocale } from "@/lib/i18n/request-locale";
 import { CHROME, localeHref } from "@/lib/i18n/locale";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
@@ -41,9 +44,18 @@ interface IndustriesPageProps {
   readonly params: Promise<{ readonly siteKey: string }>;
 }
 
-async function resolve(params: IndustriesPageProps["params"]) {
-  notFoundOnDigital((await params).siteKey);
+// SIRA Digital's industries page is composed in the repository (ADR-039,
+// proposed): sectors and functions from its own narrative, never the CMS
+// `sira_industry` records, which on blog 6 are placeholders.
+async function resolveDigital(params: IndustriesPageProps["params"]) {
+  const { siteKey } = await params;
+  const site = getSiteDefinition(siteKey);
+  if (site === null || site.key !== "digital") return null;
+  const request = await getRequestLocale(site);
+  return { site, request };
+}
 
+async function resolve(params: IndustriesPageProps["params"]) {
   const { extra: industries, ...context } = await resolveContentRoute(
     params,
     `${ROUTE}/`,
@@ -56,6 +68,18 @@ async function resolve(params: IndustriesPageProps["params"]) {
 export async function generateMetadata({
   params,
 }: IndustriesPageProps): Promise<Metadata> {
+  const digital = await resolveDigital(params);
+  if (digital !== null) {
+    const requestHeaders = await headers();
+    return buildDigitalMetadata({
+      site: digital.site,
+      locale: digital.request.locale,
+      path: ROUTE,
+      hostname: requestHeaders.get("host") ?? "",
+      page: "industries",
+    });
+  }
+
   const { site, page, request } = await resolve(params);
   const [brand, requestHeaders] = await Promise.all([
     getBrand(site.key),
@@ -76,6 +100,11 @@ export async function generateMetadata({
 }
 
 export default async function IndustriesPage({ params }: IndustriesPageProps) {
+  const digital = await resolveDigital(params);
+  if (digital !== null) {
+    return <DigitalIndustriesPage site={digital.site} locale={digital.request.locale} />;
+  }
+
   const { industries, page, site, request } = await resolve(params);
 
   if (industries.length === 0) notFound();

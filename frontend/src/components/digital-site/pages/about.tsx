@@ -1,7 +1,5 @@
-import { DigitalApproach } from "@/components/digital-site/sections/approach";
-import { DigitalClosing } from "@/components/digital-site/sections/closing";
-import { DigitalGroup } from "@/components/digital-site/sections/group";
-import { DigitalPrinciples } from "@/components/digital-site/sections/principles";
+import { companyHref } from "@/components/digital-site/footer";
+import { Closing, PageIntro, Related, Section, SectionHead } from "@/components/digital-site/primitives";
 import { getDigitalSiteContent } from "@/content/digital-site";
 import type { LocaleCode, SiteDefinition } from "@/types/site";
 
@@ -11,52 +9,69 @@ interface DigitalAboutPageProps {
 }
 
 /**
- * The company. Deliberately no team, no founding date, no office: none of
- * those have been supplied by the owner, and a company page that invents them
- * is worse than one that waits for them.
+ * Company: why SIRA Digital exists and how it works, its principles, and the
+ * group it belongs to. No people, numbers, offices or dates — none have been
+ * supplied, and the page does not invent them.
  */
 export function DigitalAboutPage({ site, locale }: DigitalAboutPageProps) {
   const content = getDigitalSiteContent(locale);
-  const { about } = content;
+  const page = content.about;
 
   return (
     <>
-      <section aria-labelledby="dg-about-heading">
-        <div className="dg-container">
-          <div className="dg-intro">
-            <p className="dg-eyebrow dg-mono">{about.eyebrow}</p>
-            <h1 className="dg-display-l" id="dg-about-heading">
-              {about.title}
-            </h1>
-            <p className="dg-lede">{about.lede}</p>
-          </div>
+      <PageIntro id="dg-about-title" intro={page.intro} />
 
-          <div className="dg-entries">
-            {about.sections.map((section, index) => (
-              <section key={section.key} className="dg-entry dg-reveal" aria-labelledby={`dg-about-${section.key}`}>
-                <div className="dg-entry__title">
-                  <span className="dg-mono" style={{ color: "var(--dg-text-3)" }}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h2 className="dg-display-m" id={`dg-about-${section.key}`}>
-                    {section.title}
-                  </h2>
-                </div>
-                <div className="dg-entry__body">
-                  {section.body.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
+      <Section tone="paper" labelledBy="dg-about-why">
+        <div className="dg-about">
+          {page.sections.map((section) => (
+            <div key={section.key} className="dg-about__block">
+              <h2 className="dg-title-m" id={`dg-about-${section.key}`}>
+                {section.title}
+              </h2>
+              <div className="dg-about__body">
+                {section.body.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      <DigitalApproach content={content} />
-      <DigitalPrinciples content={content} headingId="dg-about-principles" />
-      <DigitalGroup locale={locale} content={content} />
-      <DigitalClosing site={site} locale={locale} content={content} />
+      <Section tone="mist" labelledBy="dg-principles-title">
+        <SectionHead id="dg-principles-title" title={page.principles.title} intro={page.principles.intro} />
+        <ul className="dg-commitments">
+          {page.principles.items.map((item) => (
+            <li key={item.key} className="dg-commitment">
+              <h3 className="dg-commitment__title">{item.title}</h3>
+              <p className="dg-commitment__body">{item.body}</p>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section tone="sheet" labelledBy="dg-group-title">
+        <SectionHead id="dg-group-title" title={page.group.title} intro={page.group.intro} />
+        <ul className="dg-group">
+          {page.group.companies.map((company) => {
+            const href = companyHref(company.key, locale);
+            return (
+              <li key={company.key} className="dg-group__company">
+                <span className="dg-group__name">{company.name}</span>
+                <span className="dg-group__field">{company.field}</span>
+                {href === null ? null : (
+                  <a className="dg-link dg-group__link" href={href} aria-label={`${page.group.visit}: ${company.name}`}>
+                    {page.group.visit}
+                  </a>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </Section>
+
+      <Related site={site} locale={locale} content={content} paths={["/services/", "/method/", "/industries/"]} />
+      <Closing site={site} locale={locale} content={content} />
     </>
   );
 }

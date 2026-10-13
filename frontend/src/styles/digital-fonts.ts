@@ -1,36 +1,36 @@
-import { Archivo, IBM_Plex_Mono } from "next/font/google";
-import { archivo, notoKufiArabic } from "@/styles/fonts";
+import { IBM_Plex_Sans, IBM_Plex_Sans_Arabic } from "next/font/google";
 
 /**
  * SIRA Digital's type, loaded only by the Digital document.
  *
- * Two voices from one family: Archivo with its width axis is the display
- * face (set semi-expanded, it stops being the group's instrument font and
- * becomes a signage voice of its own), and the ordinary Archivo the site
- * already loads is the text face. Noto Kufi Arabic, also already loaded, is
- * the Arabic for both roles. IBM Plex Mono is the instrument layer: indices,
- * eyebrows, the clock. Kept out of `fonts.ts` so the other five tenants never
- * preload it.
+ * One superfamily for both editions: IBM Plex Sans for Latin and IBM Plex
+ * Sans Arabic for Arabic, drawn to the same proportions, so the English and
+ * Arabic sites carry the same voice instead of two fonts that merely sit side
+ * by side. Plex was designed for enterprise software, which is the world this
+ * company works in.
+ *
+ * Plex Sans is variable (one file for every weight). Plex Sans Arabic is
+ * static, so only the three weights the sheet uses are loaded, and only its
+ * Arabic subset: Latin characters on Arabic pages fall through to Plex Sans,
+ * which is already loaded, instead of downloading a second Latin. Neither is
+ * preloaded on the other edition's pages: the Arabic face is fetched by
+ * unicode-range when Arabic text appears. Kept out of `fonts.ts` so the other
+ * five tenants never load them.
  */
-export const archivoWide = Archivo({
+export const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   display: "swap",
-  axes: ["wdth"],
-  variable: "--font-archivo-wide",
-  fallback: ["Arial", "Helvetica", "sans-serif"],
+  variable: "--font-plex-sans",
+  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
 });
 
-export const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
+export const plexSansArabic = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic"],
+  weight: ["400", "500", "600"],
   display: "swap",
-  variable: "--font-plex-mono",
-  fallback: ["ui-monospace", "Menlo", "Consolas", "monospace"],
+  preload: false,
+  variable: "--font-plex-arabic",
+  fallback: ["Tahoma", "Arial", "sans-serif"],
 });
 
-export const DIGITAL_FONT_VARIABLE_CLASSES = [
-  archivoWide.variable,
-  archivo.variable,
-  notoKufiArabic.variable,
-  plexMono.variable,
-].join(" ");
+export const DIGITAL_FONT_VARIABLE_CLASSES = [plexSans.variable, plexSansArabic.variable].join(" ");

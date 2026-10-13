@@ -1,5 +1,4 @@
-import { ArrowGlyph, RouteGlyph } from "@/components/digital-site/glyphs";
-import { DigitalClosing } from "@/components/digital-site/sections/closing";
+import { ButtonLink, Closing, PageIntro, Related, Section, SectionHead } from "@/components/digital-site/primitives";
 import { getDigitalSiteContent } from "@/content/digital-site";
 import { digitalHref } from "@/lib/digital-site/hrefs";
 import type { LocaleCode, SiteDefinition } from "@/types/site";
@@ -9,66 +8,96 @@ interface DigitalServicesPageProps {
   readonly locale: LocaleCode;
 }
 
-/** What we build: each capability as a full row on the schematic. */
+/**
+ * Solutions: the five lines of work at full length — what each includes,
+ * what the client ends up with, where it fits — then the ways an engagement
+ * starts. An in-page index leads to each line (anchors are the solution keys,
+ * so `/services/#support` is a stable address).
+ */
 export function DigitalServicesPage({ site, locale }: DigitalServicesPageProps) {
   const content = getDigitalSiteContent(locale);
-  const { services, capabilities } = content;
+  const page = content.services;
 
   return (
     <>
-      <section aria-labelledby="dg-services-heading">
-        <div className="dg-container">
-          <div className="dg-intro">
-            <p className="dg-eyebrow dg-mono">{services.eyebrow}</p>
-            <h1 className="dg-display-l" id="dg-services-heading">
-              {services.title}
-            </h1>
-            <p className="dg-lede">{services.lede}</p>
-          </div>
-
-          <ol className="dg-rows">
-            {capabilities.items.map((item) => (
-              <li key={item.key} id={item.key} className="dg-row dg-reveal">
-                <div className="dg-row__lead">
-                  <span className="dg-mono" style={{ color: "var(--dg-text-3)" }}>
-                    {item.index}
-                  </span>
-                  <RouteGlyph name={item.key} className="dg-row__glyph" />
-                </div>
-                <div className="dg-row__body">
-                  <h2 className="dg-display-m">{item.title}</h2>
-                  <p className="dg-row__detail">{item.detail}</p>
-                </div>
-                <div className="dg-row__aside">
-                  <h3 className="dg-mono" style={{ margin: 0, color: "var(--dg-text-3)" }}>
-                    {capabilities.examplesLabel}
-                  </h3>
-                  <ul className="dg-row__examples">
-                    {item.examples.map((example) => (
-                      <li key={example}>{example}</li>
-                    ))}
-                  </ul>
-                </div>
+      <PageIntro id="dg-services-title" intro={page.intro}>
+        <nav className="dg-index" aria-label={page.indexLabel}>
+          <ol className="dg-index__list">
+            {content.solutions.map((solution) => (
+              <li key={solution.key}>
+                <a className="dg-index__link" href={`#${solution.key}`}>
+                  {solution.title}
+                </a>
               </li>
             ))}
           </ol>
+        </nav>
+      </PageIntro>
 
-          <div className="dg-section dg-section--tight">
-            <div className="dg-panel dg-reveal">
-              <div>
-                <h2 className="dg-display-m">{services.notSureTitle}</h2>
-                <p className="dg-panel__body">{services.notSureBody}</p>
+      <section className="dg-section dg-tone-paper dg-services" aria-labelledby="dg-services-title">
+        <div className="dg-container">
+          {content.solutions.map((solution) => (
+            <article key={solution.key} id={solution.key} className="dg-service" aria-labelledby={`dg-service-${solution.key}`}>
+              <header className="dg-service__head">
+                <h2 className="dg-title-m" id={`dg-service-${solution.key}`}>
+                  {solution.title}
+                </h2>
+                <p className="dg-service__summary">{solution.summary}</p>
+              </header>
+              <div className="dg-service__body">
+                <p className="dg-service__detail">{solution.detail}</p>
+                <div className="dg-service__columns">
+                  <div>
+                    <h3 className="dg-label">{page.includesLabel}</h3>
+                    <ul className="dg-list">
+                      {solution.includes.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <dl className="dg-service__facts">
+                    <div>
+                      <dt className="dg-label">{page.outcomeLabel}</dt>
+                      <dd>{solution.outcome}</dd>
+                    </div>
+                    <div>
+                      <dt className="dg-label">{page.fitsLabel}</dt>
+                      <dd>{solution.fits}</dd>
+                    </div>
+                  </dl>
+                </div>
+                {solution.link.href.startsWith("/services/") ? null : (
+                  <a className="dg-link" href={digitalHref(site, locale, solution.link.href)}>
+                    {solution.link.label}
+                  </a>
+                )}
               </div>
-              <a href={digitalHref(site, locale, services.notSure.href)} className="dg-btn">
-                <span>{services.notSure.label}</span>
-                <ArrowGlyph className="dg-btn__arrow" />
-              </a>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      <DigitalClosing site={site} locale={locale} content={content} />
+      <Section tone="mist" labelledBy="dg-engagements-title">
+        <SectionHead id="dg-engagements-title" title={page.engagements.title} intro={page.engagements.intro} />
+        <ul className="dg-engagements">
+          {page.engagements.items.map((item) => (
+            <li key={item.key} className="dg-engagement">
+              <h3 className="dg-title-s">{item.title}</h3>
+              <p>{item.body}</p>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section tone="paper" labelledBy="dg-notsure-title">
+        <div className="dg-callout">
+          <SectionHead id="dg-notsure-title" title={page.notSure.title} intro={page.notSure.intro} />
+          <ButtonLink href={digitalHref(site, locale, page.notSure.link.href)}>{page.notSure.link.label}</ButtonLink>
+        </div>
+      </Section>
+
+      <Related site={site} locale={locale} content={content} paths={["/erpnext/", "/automation/", "/method/"]} />
+      <Closing site={site} locale={locale} content={content} />
     </>
   );
 }

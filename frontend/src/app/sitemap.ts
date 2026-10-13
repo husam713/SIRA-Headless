@@ -6,6 +6,7 @@ import { resolveSiteFromHostname } from "@/lib/host/resolve-site";
 import { isAtlasTenant } from "@/lib/atlas/routes";
 import { getProjectArchiveForLocale } from "@/lib/projects";
 import { buildSitemap, type SitemapEntryInput } from "@/lib/seo/discovery";
+import { DIGITAL_ROUTES } from "@/lib/digital-site/routes";
 
 // How much of the archive the sitemap lists: the feed's own page size, up to
 // this many pages through its cursor. A tenant with more entries than that is
@@ -34,6 +35,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   if (resolution === null || resolution.hostnameRole !== "canonical") {
     return buildSitemap(hostname);
+  }
+
+  // SIRA Digital serves its own pages from the repository narrative
+  // (ADR-039) and answers 404 on the newsroom and editorial routes, so its
+  // sitemap lists exactly the registry — nothing it would not render. The
+  // CMS prose pages (privacy, terms) are left out until they are confirmed
+  // to exist in both languages. The indexing switch still applies inside
+  // `buildSitemap`.
+  if (resolution.site.key === "digital") {
+    return buildSitemap(
+      hostname,
+      Object.values(DIGITAL_ROUTES)
+        .filter((path) => path !== "/")
+        .map((path) => ({ path })),
+    );
   }
 
   const entries: SitemapEntryInput[] = [{ path: "/news/" }];

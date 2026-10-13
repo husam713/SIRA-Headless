@@ -64,12 +64,12 @@ describe("SIRA Digital document gates", () => {
     const block = css.slice(index);
     expect(block).toContain("animation-duration: 0.001ms !important");
     expect(block).toContain("transition-duration: 0.001ms !important");
-    expect(block).toMatch(/\.dg-hero__field canvas \{\s*display: none;/u);
+    expect(block).toMatch(/\.dg-route__token \{\s*display: none;/u);
   });
 
   it("gates scroll-driven effects behind support and motion preference", () => {
     const gated = css.match(/@supports \(animation-timeline: (view|scroll)\(\)\) \{\s*@media \(prefers-reduced-motion: no-preference\)/gu) ?? [];
-    expect(gated.length).toBeGreaterThanOrEqual(3);
+    expect(gated.length).toBeGreaterThanOrEqual(1);
     // No scroll-driven timeline outside such a gate: every use is inside one.
     const uses = css.match(/animation-timeline: (view|scroll)\(/gu) ?? [];
     expect(uses.length).toBeGreaterThan(0);
@@ -95,25 +95,27 @@ describe("SIRA Digital document gates", () => {
 
   it("styles keyboard focus and neutralises Latin tracking for Arabic", () => {
     expect(css).toContain(":focus-visible {");
-    expect(css).toMatch(/html\[data-site="digital"\]:lang\(ar\) :not\(:lang\(en\)\):not\(\.dg-mono\) \{\s*letter-spacing: 0 !important;/u);
+    expect(css).toMatch(/html\[data-site="digital"\]:lang\(ar\) :not\(:lang\(en\)\) \{\s*letter-spacing: 0 !important;/u);
     expect(css).toContain("html[data-site=\"digital\"]:lang(ar) .dg-display");
     expect(css).toContain("lining-nums tabular-nums");
   });
 
-  it("reserves the primary colour for lines and surfaces, never small text on paper", () => {
-    // The vermilion signal is decorative: it may not be a text colour.
-    for (const match of css.matchAll(/^\s*color: var\(--dg-signal\);/gmu)) {
-      expect.fail(`--dg-signal used as a text colour at ${match.index}`);
+  it("keeps the document-state colours for markers, never for running text", () => {
+    // Pending, approved and rejected fill markers and chips; text in those
+    // states uses the contrast-checked *-fg tokens instead.
+    for (const match of css.matchAll(/^\s*color: var\(--dg-(pending|approved|rejected)\);/gmu)) {
+      expect.fail(`a state colour used as a text colour at ${match.index}`);
     }
   });
 
   it("loads its type through next/font, in its own module", () => {
     const fonts = read(join("src", "styles", "digital-fonts.ts"));
     expect(fonts).toContain('from "next/font/google"');
-    expect(fonts).toContain("IBM_Plex_Mono");
-    expect(fonts).toContain('axes: ["wdth"]');
+    expect(fonts).toContain("IBM_Plex_Sans,");
+    expect(fonts).toContain("IBM_Plex_Sans_Arabic");
+    expect(fonts).toContain('subsets: ["arabic"]');
     expect(fonts).not.toContain("fonts.googleapis.com");
-    // The shared font module is not the place for Digital's instruments.
+    // The shared font module is not the place for Digital's type.
     expect(read(join("src", "styles", "fonts.ts"))).not.toContain("Plex");
   });
 
@@ -135,16 +137,20 @@ describe("SIRA Digital document gates", () => {
   });
 
   it("renders its own pages on the routes it serves", () => {
-    for (const route of ["services", "contact", "about", "[section]"]) {
+    for (const route of ["services", "contact", "about", "industries", "[section]"]) {
       const source = read(join(APP, route, "page.tsx"));
       expect(source, route).toContain("resolveDigital(");
       expect(source, route).toContain("buildDigitalMetadata(");
     }
     expect(read(join(APP, "not-found.tsx"))).toContain("<DigitalNotFoundPage");
+    // Digital-only pages come from the registry before the CMS is asked.
+    const section = read(join(APP, "[section]", "page.tsx"));
+    expect(section).toContain("digitalSectionPage(slug)");
+    expect(section.indexOf("digitalSectionPage(slug)")).toBeLessThan(section.indexOf("getContentPageForLocale(site.key"));
   });
 
   it("answers 404 on the routes it does not have", () => {
-    for (const route of ["work", "industries", join("industries", "[slug]"), "news", join("[section]", "[slug]")]) {
+    for (const route of ["work", join("industries", "[slug]"), "news", join("[section]", "[slug]")]) {
       const source = read(join(APP, route, "page.tsx"));
       expect(source, route).toContain("notFoundOnDigital(");
     }
@@ -159,7 +165,7 @@ describe("SIRA Digital document gates", () => {
       .map((path) => path.slice(root.length + 1).replace(/\\/gu, "/"))
       .sort();
 
-    expect(clients).toEqual(["brief-composer.tsx", "clock.tsx", "field/live-field.tsx"]);
+    expect(clients).toEqual(["discovery-composer.tsx", "tabs.tsx", "workflow-simulator.tsx"]);
 
     for (const path of listFiles(root)) {
       const source = read(path);
@@ -169,13 +175,28 @@ describe("SIRA Digital document gates", () => {
     }
   });
 
-  it("keeps the live field honest about when it may run", () => {
-    const live = read(join("src", "components", "digital-site", "field", "live-field.tsx"));
-    expect(live).toContain('window.matchMedia("(prefers-reduced-motion: reduce)")');
-    expect(live).toContain("if (reduced.matches) return;");
-    expect(live).toContain("new IntersectionObserver(");
-    expect(live).toContain('document.addEventListener("visibilitychange"');
-    expect(live).toContain("cancelAnimationFrame(frame)");
-    expect(live).toContain('event.pointerType === "touch"');
+  it("gives the looping hero motion a pause control that needs no script (WCAG 2.2.2)", () => {
+    const map = read(join("src", "components", "digital-site", "route-map.tsx"));
+    expect(map).toContain('type="checkbox" className="dg-motion__input"');
+    expect(css).toContain(".dg-hero:has(.dg-motion__input:checked) .dg-route__token {");
+    expect(css).toMatch(/\.dg-hero:has\(\.dg-motion__input:checked\) \.dg-route__token \{\s*animation-play-state: paused;/u);
+  });
+
+  it("labels every illustrative demonstration as such, where it is rendered", () => {
+    for (const file of ["dashboard.tsx", "workflow-simulator.tsx"]) {
+      const source = read(join("src", "components", "digital-site", file));
+      expect(source, file).toContain('<p className="dg-illustrative">{illustrative}</p>');
+    }
+    const home = read(join("src", "components", "digital-site", "sections", "home.tsx"));
+    expect(home.match(/illustrative=\{content\.common\.illustrative\}/gu)?.length).toBe(2);
+    expect(read(join("src", "components", "digital-site", "dashboard.tsx"))).toContain("{content.stamp}");
+  });
+
+  it("lists exactly the Digital registry in Digital's sitemap", () => {
+    const sitemap = read(join("src", "app", "sitemap.ts"));
+    const branch = sitemap.indexOf('if (resolution.site.key === "digital")');
+    expect(branch).toBeGreaterThan(-1);
+    expect(branch).toBeLessThan(sitemap.indexOf('{ path: "/news/" }'));
+    expect(sitemap).toContain("Object.values(DIGITAL_ROUTES)");
   });
 });

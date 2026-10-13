@@ -2,27 +2,27 @@ import type { ContentPage } from "@/lib/content/get-content-page";
 
 interface DigitalProsePageProps {
   readonly page: ContentPage;
-  readonly eyebrow?: string;
 }
 
 /**
  * A CMS page (privacy, terms, anything an editor adds) in the Digital voice.
  * The HTML is sanitised in the data layer, not here.
  */
-export function DigitalProsePage({ page, eyebrow }: DigitalProsePageProps) {
+export function DigitalProsePage({ page }: DigitalProsePageProps) {
   return (
-    <article>
-      <div className="dg-container">
-        <div className="dg-intro">
-          {eyebrow === undefined ? null : <p className="dg-eyebrow dg-mono">{eyebrow}</p>}
-          <h1 className="dg-display-l">{page.title}</h1>
+    <article className="dg-tone-paper">
+      <header className="dg-page-intro">
+        <div className="dg-container">
+          <h1 className="dg-title-l dg-page-intro__title">{page.title}</h1>
         </div>
-        {page.html === null ? null : (
-          <div className="dg-section dg-section--tight" style={{ paddingBlockStart: 0 }}>
+      </header>
+      {page.html === null ? null : (
+        <div className="dg-section dg-section--flush">
+          <div className="dg-container">
             <div className="dg-prose" dangerouslySetInnerHTML={{ __html: page.html }} />
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </article>
   );
 }

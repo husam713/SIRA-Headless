@@ -5,7 +5,11 @@ import { notFound } from "next/navigation";
 import { PageContainer } from "@/components/layout/page-container";
 import { Prose } from "@/components/layout/prose";
 import { getBrand } from "@/lib/brand";
+import { DigitalAutomationPage } from "@/components/digital-site/pages/automation";
+import { DigitalErpnextPage } from "@/components/digital-site/pages/erpnext";
+import { DigitalMethodPage } from "@/components/digital-site/pages/method";
 import { DigitalProsePage } from "@/components/digital-site/pages/prose";
+import { digitalSectionPage } from "@/lib/digital-site/routes";
 import { buildDigitalMetadata } from "@/lib/digital-site/metadata";
 import { getContentPage, getContentPageForLocale } from "@/lib/content/get-content-page";
 import { getSiteDefinition } from "@/lib/host/resolve-site";
@@ -57,10 +61,16 @@ async function resolveDigital(params: ContentPageProps["params"]) {
   if (site === null || site.key !== "digital") return null;
 
   const request = await getRequestLocale(site);
+
+  // A page the repository narrative owns (ADR-039) answers before the CMS is
+  // asked: /erpnext/, /automation/ and /method/ exist only on Digital.
+  const narrative = digitalSectionPage(slug);
+  if (narrative !== null) return { site, slug, request, narrative, page: null };
+
   const uri = `/${slug}/`;
   const page = await getContentPageForLocale(site.key, localeUri(request.locale, site, uri), uri);
 
-  return { site, slug, request, page };
+  return { site, slug, request, narrative: null, page };
 }
 
 export async function generateMetadata({
@@ -68,14 +78,14 @@ export async function generateMetadata({
 }: ContentPageProps): Promise<Metadata> {
   const digital = await resolveDigital(params);
   if (digital !== null) {
-    if (digital.page === null) return {};
+    if (digital.narrative === null && digital.page === null) return {};
     const requestHeaders = await headers();
     return buildDigitalMetadata({
       site: digital.site,
       locale: digital.request.locale,
       path: `/${digital.slug}`,
       hostname: requestHeaders.get("host") ?? "",
-      page: { title: digital.page.title, description: null },
+      page: digital.narrative ?? { title: digital.page?.title ?? "", description: null },
     });
   }
 
@@ -101,6 +111,10 @@ export async function generateMetadata({
 export default async function ContentPageRoute({ params }: ContentPageProps) {
   const digital = await resolveDigital(params);
   if (digital !== null) {
+    const { site, request } = digital;
+    if (digital.narrative === "erpnext") return <DigitalErpnextPage site={site} locale={request.locale} />;
+    if (digital.narrative === "automation") return <DigitalAutomationPage site={site} locale={request.locale} />;
+    if (digital.narrative === "method") return <DigitalMethodPage site={site} locale={request.locale} />;
     if (digital.page === null) notFound();
     return <DigitalProsePage page={digital.page} />;
   }

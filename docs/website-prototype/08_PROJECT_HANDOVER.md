@@ -3,15 +3,15 @@
 **Task:** SIRA Digital premium website prototype (owner brief, in session, 2026-10-13).
 **Branch:** `feat/digital-enterprise-prototype`, stacked on PR #81 (`feat/digital-masar`).
 **Worktree:** `C:\Users\User\Downloads\SIRA-Headless-worktrees\digital-masar` (reused from Masar; it previously held `docs/handover-2026-10-12`, which is pushed and unchanged).
-**Status at this commit (2026-10-14):** implementation complete and validated locally; documentation package and PR not yet done. This file is the resume point.
+**Status (2026-10-14, second session):** implementation complete, production QA run, two accessibility defects fixed, documentation package 01–10 written, ADR-039 amendment recorded as PROPOSED, PR opened against `feat/digital-masar`. Awaiting owner review. This file is the resume point.
 
 ---
 
 ## 1. Resume here (next session)
 
 1. `git -C <worktree> status` and `git log --oneline -3` — expect a clean tree on this branch.
-2. Read this file, then `02_MARKET_AND_COMPETITOR_RESEARCH.md` (the only other document written so far).
-3. Do the remaining steps in §5, in order.
+2. Read this file and `01_EXECUTIVE_SUMMARY.md`; the other documents are referenced where needed.
+3. Nothing in §5 is left for the agent. Next work starts from owner decisions (§6): content changes per `09`, then the follow-ups in §7.
 
 Machine rules that cost time before (see auto-memory `machine-constraints`):
 
@@ -55,35 +55,40 @@ Machine rules that cost time before (see auto-memory `machine-constraints`):
 | Sitemap lists Digital's registry only | Fixes a #81 defect: it advertised `/news/` and editorial URLs that 404 on Digital |
 | Contact form keeps the real pipeline | Production architecture; all QA used a mocked endpoint, nothing was sent to WordPress |
 
-ADR: record as an **amendment to ADR-039 (PROPOSED)** in `docs/DECISIONS.md` — not yet written (§5).
+ADR: recorded as an **amendment to ADR-039 (PROPOSED, 2026-10-14)** in `docs/DECISIONS.md`. No new ADR number: the decision (own document, repository narrative) is unchanged; identity, routes and the sitemap rule are amended.
 
-## 4. Validation so far (local, 2026-10-13/14)
+## 4. Validation (local)
+
+Full report: `07_QA_AND_PERFORMANCE_REPORT.md`. Second-session results are on the final tree.
 
 | Check | Status | Evidence |
 |---|---|---|
-| `pnpm build` | PASS | production build, all routes compiled |
+| `pnpm build` | PASS | 2026-10-14, final tree |
 | `pnpm lint` | PASS | clean |
 | `pnpm typecheck` | PASS | clean (after build, see §1) |
 | `pnpm test:run` | WARNING | 738/738 tests pass; `tests/unit/launch-gate.test.ts` fails to load on Windows (CRLF, known baseline, untouched) |
 | Digital unit tests | PASS | 46/46 (`tests/unit/digital-site`) |
-| Browser interaction QA (Playwright, dev server, `/api/contact/` mocked) | PASS | 22/22: tabs keyboard LTR/RTL, simulator route + run + reset, exclusive FAQ, hero pause, form validation/focus/payload/success, popover menu open/Escape, no page errors |
-| Page sweep, 1440 px | PASS | 10 routes EN/AR: 200 (404 for unknown), one `h1`, 0 px overflow |
-| Mobile 390 px, home EN/AR | PASS | 0 px overflow, vertical route map, mirrored Arabic |
-| `scripts/qa-sweep.mjs` on production build | NOT RUN | next step |
-| `scripts/measure-web-vitals.mjs` | NOT RUN | next step |
-| Lighthouse | NOT RUN | not installed; vitals script is the equivalent |
-| CI | NOT RUN | PR not opened |
-| Owner review | NOT RUN | — |
+| `scripts/qa-sweep.mjs` on production build | PASS | 16/16 after the touch-target fix (first run 12/16) |
+| Touch targets, all 17 other routes at 390 px | PASS | 0 undersized |
+| `scripts/measure-web-vitals.mjs` + per-route vitals | PASS | cold LCP 152–404 ms, CLS ≤ 0.001; `/news/` 404 by design |
+| CSS size impact | WARNING | Digital sheet 8.76 KB gzip (Masar 7.06 KB), still bundled for every tenant — known limitation |
+| Contrast | PASS | text ≥ 4.5:1 everywhere; pending marker raised to ≥ 3:1 |
+| Browser interaction QA | NOT RUN | TRANSFERRED EVIDENCE: 22/22 in the first session (dev server, `/api/contact/` mocked); not re-run |
+| Lighthouse, axe, screen reader | NOT RUN | not installed / manual |
+| CI | NOT RUN | runs when the PR is opened; read the PR checks |
+| Owner review | NOT RUN | `10_DESIGN_REVIEW_CHECKLIST.md` |
 
-Scripts used for screenshots and interaction QA live in the session scratchpad (`qa-shots.cjs`, `qa-interact.cjs`); recreate if needed — they are short Playwright scripts against `digital.localhost`.
+Defects fixed in the second session (CSS only): section "read more" links under 44 px on phones; `--dg-pending` marker at 2.85:1 (now `#bf7a12`). Details in 07 §3.
 
-## 5. Remaining steps (in order)
+QA helper scripts (`small-targets.mjs`, `vitals-routes.mjs`; first session's `qa-shots.cjs`, `qa-interact.cjs`) lived in session scratchpads and are not committed.
 
-1. **Production QA:** `pnpm build && pnpm start --port 3031`; run `node scripts/qa-sweep.mjs http://localhost:3031 digital` and `node scripts/measure-web-vitals.mjs http://localhost:3031 digital`; record results. Check the CSS size impact (Digital sheet ships in every tenant's CSS — compare gzip size with Masar's 7 KB).
-2. **Documents** in `docs/website-prototype/`: 01 executive summary, 03 strategy & IA, 04 design system, 05 implementation guide, 06 ERPNext/automation service blueprint, 07 QA & performance report, 09 content & approval register, 10 design review checklist; finalise this file (08).
-3. **ADR-039 amendment** (PROPOSED) in `docs/DECISIONS.md`.
-4. **Commit, push, PR** from `.github/pull_request_template.md`, base `feat/digital-masar` (stacked on #81). Do not merge.
-5. Update auto-memory (`digital-masar-task` / new task note).
+## 5. Steps — all done
+
+1. ~~Production QA~~ — done (07).
+2. ~~Documents 01, 03–07, 09, 10; finalise 08~~ — done.
+3. ~~ADR-039 amendment (PROPOSED)~~ — recorded in `docs/DECISIONS.md` under ADR-039.
+4. ~~Commit, push, PR with base `feat/digital-masar`~~ — opened; **not merged** (owner).
+5. ~~Auto-memory~~ — updated.
 
 ## 6. Owner decisions required
 

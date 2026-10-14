@@ -1,11 +1,6 @@
 import type { CSSProperties } from "react";
 
-import {
-  ArrowGlyph,
-  CloseGlyph,
-  MenuGlyph,
-  WordmarkGlyph,
-} from "@/components/digital-site/glyphs";
+import { CloseGlyph, MenuGlyph, WordmarkGlyph } from "@/components/digital-site/glyphs";
 import type { DigitalSiteContent } from "@/content/digital-site";
 import { digitalHref, isCurrentPath } from "@/lib/digital-site/hrefs";
 import { localeHref } from "@/lib/i18n/locale";
@@ -85,7 +80,7 @@ export function DigitalHeader({ site, locale, path, content }: DigitalHeaderProp
       <div className="dg-container dg-header__inner">
         <DigitalWordmark href={homeHref} content={content} />
 
-        <nav className="dg-header__nav" aria-label={content.nav.menu}>
+        <nav className="dg-header__nav" aria-label={content.nav.label}>
           {items.map((item) => (
             <a
               key={item.href}
@@ -101,8 +96,7 @@ export function DigitalHeader({ site, locale, path, content }: DigitalHeaderProp
         <div className="dg-header__tools">
           <DigitalLanguageSwitch site={site} locale={locale} path={path} content={content} />
           <a href={startHref} className="dg-btn dg-header__cta">
-            <span>{content.nav.start.label}</span>
-            <ArrowGlyph className="dg-btn__arrow" />
+            {content.nav.start.label}
           </a>
           {/* The browser owns this menu: `popover` gives it open/close,
               Escape, light-dismiss and focus handling without a script. */}
@@ -114,7 +108,7 @@ export function DigitalHeader({ site, locale, path, content }: DigitalHeaderProp
             aria-label={content.nav.menu}
           >
             <MenuGlyph className="dg-header__menu-glyph" />
-            <span className="dg-mono">{content.nav.menu}</span>
+            <span>{content.nav.menu}</span>
           </button>
         </div>
       </div>
@@ -129,12 +123,12 @@ export function DigitalHeader({ site, locale, path, content }: DigitalHeaderProp
             popoverTargetAction="hide"
             aria-label={content.nav.close}
           >
-            <span className="dg-mono">{content.nav.close}</span>
+            <span>{content.nav.close}</span>
             <CloseGlyph className="dg-header__menu-glyph" />
           </button>
         </div>
 
-        <nav className="dg-container" aria-label={content.nav.menu}>
+        <nav className="dg-container" aria-label={content.nav.label}>
           <ul className="dg-menu__list">
             {[{ label: content.nav.home, href: homeHref, current: isCurrentPath(path, "/") }, ...items].map(
               (item, index) => (
@@ -144,8 +138,7 @@ export function DigitalHeader({ site, locale, path, content }: DigitalHeaderProp
                     className="dg-menu__link"
                     aria-current={item.current ? "page" : undefined}
                   >
-                    <span>{item.label}</span>
-                    <span className="dg-mono">{String(index + 1).padStart(2, "0")}</span>
+                    {item.label}
                   </a>
                 </li>
               ),
@@ -155,8 +148,7 @@ export function DigitalHeader({ site, locale, path, content }: DigitalHeaderProp
 
         <div className="dg-container dg-menu__foot">
           <a href={startHref} className="dg-btn">
-            <span>{content.nav.start.label}</span>
-            <ArrowGlyph className="dg-btn__arrow" />
+            {content.nav.start.label}
           </a>
           <DigitalLanguageSwitch site={site} locale={locale} path={path} content={content} />
         </div>

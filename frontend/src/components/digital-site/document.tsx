@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 
 import { DigitalFooter } from "@/components/digital-site/footer";
 import { DigitalHeader } from "@/components/digital-site/header";
-import { DigitalSpine } from "@/components/digital-site/spine";
 import { getDigitalSiteContent } from "@/content/digital-site";
 import { CHROME } from "@/lib/i18n/locale";
 import { getTextDirection } from "@/lib/i18n/direction";
@@ -63,7 +62,6 @@ export function DigitalDocument({
         ) : null}
 
         <DigitalHeader site={site} locale={locale} path={path} content={content} />
-        <DigitalSpine />
 
         <main id="main-content">{children}</main>
 

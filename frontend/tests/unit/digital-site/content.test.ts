@@ -3,6 +3,8 @@ import { describe, expect, it } from "vitest";
 import { DIGITAL_SITE_AR } from "@/content/digital-site/ar";
 import { DIGITAL_SITE_EN } from "@/content/digital-site/en";
 import { getDigitalSiteContent } from "@/content/digital-site";
+import { ROUTE_STATIONS } from "@/lib/digital-site/route-map";
+import { DIGITAL_SERVED_PATHS } from "@/lib/digital-site/routes";
 
 // The two languages are one site. This asserts what a reader would notice: a
 // section, an option or a link that exists in English and not in Arabic, an
@@ -13,6 +15,9 @@ type Json = string | number | boolean | null | readonly Json[] | { readonly [key
 
 /** Fields whose values are shared identifiers or deliberate other-script echoes. */
 const SHARED_KEYS = new Set(["key", "index", "href", "locale", "echo"]);
+
+/** Arrays of identifiers that point into another catalogue (a sector's module keys, a page's FAQ keys). */
+const REFERENCE = /^(sectors\.\d+\.modules|home\.faq\.keys|erpnext\.faqKeys|automation\.faqKeys)\.\d+$/u;
 
 const ARABIC = /[؀-ۿ]/u;
 const LATIN_LETTERS = /[A-Za-z]/u;
@@ -44,7 +49,9 @@ function identifiers(value: Json, path: readonly string[] = []): string[] {
   const found: string[] = [];
   walk(value, path, (at, text) => {
     const leaf = at[at.length - 1] ?? "";
-    if (leaf === "key" || leaf === "index" || leaf === "href") found.push(`${at.join(".")}=${text}`);
+    if (leaf === "key" || leaf === "index" || leaf === "href" || REFERENCE.test(at.join("."))) {
+      found.push(`${at.join(".")}=${text}`);
+    }
   });
   return found;
 }
@@ -84,7 +91,7 @@ describe("SIRA Digital content", () => {
   it("writes the Arabic edition in Arabic", () => {
     walk(ar, [], (path, text) => {
       const leaf = path[path.length - 1] ?? "";
-      if (SHARED_KEYS.has(leaf)) return;
+      if (SHARED_KEYS.has(leaf) || REFERENCE.test(path.join("."))) return;
       // Punctuation-only strings (a full stop, a list joiner) have no script.
       if (!/\p{L}/u.test(text)) return;
       // The language switch names the other language in that language.
@@ -122,18 +129,40 @@ describe("SIRA Digital content", () => {
   it("resolves a whole narrative per locale", () => {
     expect(getDigitalSiteContent("en")).toBe(DIGITAL_SITE_EN);
     expect(getDigitalSiteContent("ar")).toBe(DIGITAL_SITE_AR);
-    expect(LATIN_LETTERS.test(DIGITAL_SITE_EN.hero.title.join(" "))).toBe(true);
-    expect(DIGITAL_SITE_EN.capabilities.items).toHaveLength(6);
-    expect(DIGITAL_SITE_AR.capabilities.items).toHaveLength(6);
+    expect(LATIN_LETTERS.test(DIGITAL_SITE_EN.home.hero.title.join(" "))).toBe(true);
+    expect(DIGITAL_SITE_EN.solutions).toHaveLength(5);
+    expect(DIGITAL_SITE_EN.phases).toHaveLength(5);
+  });
+
+  it("supplies a label for every station of the hero route", () => {
+    for (const content of [DIGITAL_SITE_EN, DIGITAL_SITE_AR]) {
+      expect(content.home.hero.map.purchase).toHaveLength(ROUTE_STATIONS);
+      expect(content.home.hero.map.sales).toHaveLength(ROUTE_STATIONS);
+    }
+  });
+
+  it("only refers to modules, questions and pages that exist", () => {
+    for (const content of [DIGITAL_SITE_EN, DIGITAL_SITE_AR]) {
+      const modules = new Set(content.modules.map((module) => module.key));
+      const questions = new Set(content.questions.map((question) => question.key));
+      for (const sector of content.sectors) {
+        for (const key of sector.modules) expect(modules.has(key), `${sector.key} → ${key}`).toBe(true);
+      }
+      for (const key of [...content.home.faq.keys, ...content.erpnext.faqKeys, ...content.automation.faqKeys]) {
+        expect(questions.has(key), key).toBe(true);
+      }
+      for (const item of content.nav.items) expect(DIGITAL_SERVED_PATHS).toContain(item.href);
+    }
   });
 
   it("only links to routes the Digital site serves", () => {
-    const served = new Set(["/", "/services/", "/about/", "/contact/", "/privacy/", "/terms/"]);
+    const served = new Set(DIGITAL_SERVED_PATHS);
     for (const content of [en, ar]) {
       walk(content, [], (path, text) => {
         if (path[path.length - 1] !== "href") return;
         if (text.startsWith("#")) return;
-        expect(served.has(text), `${path.join(".")} links to ${text}`).toBe(true);
+        const route = text.split("#")[0] ?? "";
+        expect(served.has(route), `${path.join(".")} links to ${text}`).toBe(true);
       });
     }
   });

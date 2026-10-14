@@ -2,13 +2,13 @@ import "server-only";
 
 import type { Metadata } from "next";
 
-import { getDigitalSiteContent } from "@/content/digital-site";
+import { getDigitalSiteContent, type DigitalPageKey } from "@/content/digital-site";
 import { createFallbackBrand } from "@/lib/brand";
 import { resolveSiteDiscoveryContext } from "@/lib/seo/discovery";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 import type { LocaleCode, SiteDefinition } from "@/types/site";
 
-export type DigitalPageKey = "home" | "services" | "about" | "contact";
+export type { DigitalPageKey };
 
 /** A page whose words come from the CMS (privacy, terms). */
 export interface DigitalCustomPage {
@@ -37,8 +37,8 @@ export function buildDigitalMetadata(options: DigitalMetadataOptions): Metadata 
   const content = getDigitalSiteContent(locale);
   const meta =
     typeof page === "string"
-      ? content.meta[page]
-      : { title: page.title, description: page.description ?? content.meta.home.description };
+      ? content.meta.pages[page]
+      : { title: page.title, description: page.description ?? content.meta.pages.home.description };
   const discovery = resolveSiteDiscoveryContext(site.key, hostname);
   const base = buildSiteMetadata(discovery, createFallbackBrand(site.key), path, {
     locale,

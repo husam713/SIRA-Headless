@@ -1,10 +1,15 @@
-import { DigitalApproach } from "@/components/digital-site/sections/approach";
-import { DigitalClosing } from "@/components/digital-site/sections/closing";
-import { DigitalGroup } from "@/components/digital-site/sections/group";
+import { Closing } from "@/components/digital-site/primitives";
 import { DigitalHero } from "@/components/digital-site/sections/hero";
-import { DigitalPrinciples } from "@/components/digital-site/sections/principles";
-import { DigitalStatement } from "@/components/digital-site/sections/statement";
-import { DigitalStations } from "@/components/digital-site/sections/stations";
+import {
+  CommitmentsSection,
+  ErpSection,
+  FaqSection,
+  IndustriesSection,
+  MethodSection,
+  ProblemSection,
+  SolutionsSection,
+  SystemSection,
+} from "@/components/digital-site/sections/home";
 import { getDigitalSiteContent } from "@/content/digital-site";
 import type { LocaleCode, SiteDefinition } from "@/types/site";
 
@@ -15,21 +20,27 @@ interface DigitalHomeProps {
 
 /**
  * The SIRA Digital homepage, in one language. The order is the argument:
- * what we believe, what we build, how we work, what we hold to, who we are
- * part of, and then the one thing to do next.
+ * the promise and its drawing; the problem as buyers live it; what we do;
+ * the ERP at the centre; the system running (an approval, the view it
+ * feeds); where it applies; how it goes live; what you can hold us to; the
+ * questions asked first; and one thing to do next.
  */
 export function DigitalHome({ site, locale }: DigitalHomeProps) {
   const content = getDigitalSiteContent(locale);
+  const props = { site, locale, content };
 
   return (
     <>
-      <DigitalHero site={site} locale={locale} content={content} />
-      <DigitalStatement content={content} />
-      <DigitalStations site={site} locale={locale} content={content} />
-      <DigitalApproach content={content} />
-      <DigitalPrinciples content={content} />
-      <DigitalGroup locale={locale} content={content} />
-      <DigitalClosing site={site} locale={locale} content={content} />
+      <DigitalHero {...props} />
+      <ProblemSection {...props} />
+      <SolutionsSection {...props} />
+      <ErpSection {...props} />
+      <SystemSection {...props} />
+      <IndustriesSection {...props} />
+      <MethodSection {...props} />
+      <CommitmentsSection {...props} />
+      <FaqSection {...props} />
+      <Closing {...props} />
     </>
   );
 }

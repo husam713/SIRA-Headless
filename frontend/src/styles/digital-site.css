@@ -43,8 +43,9 @@ html[data-site="digital"] {
   --dg-on-night-3: #959dc4;
   --dg-route-night: #8492ff;
 
-  /* Colour — document states (fills and markers) */
-  --dg-pending: #d18a1f;
+  /* Colour — document states (fills and markers). Markers keep 3:1 against
+     sheet and paper, and pending also against its own fill (WCAG 1.4.11). */
+  --dg-pending: #bf7a12;
   --dg-approved: #12855b;
   --dg-rejected: #c2402a;
 
@@ -273,6 +274,15 @@ html[data-site="digital"] :focus-visible {
   color: var(--dg-text-2);
   font-size: var(--dg-size-lede);
   line-height: 1.55;
+}
+
+/* A heading's "read more" link stands alone, so on a phone it needs a 44px
+   target; the padding grows the hit area and the margin cancels it in the
+   layout, so the text stays where it was. */
+.dg-head__aside .dg-link {
+  display: inline-block;
+  padding-block: 0.7rem;
+  margin-block: -0.7rem;
 }
 
 .dg-split > .dg-head {
